@@ -1,0 +1,104 @@
+Build 5.4.5213
+Fix Auto Target
+Improve Auto Pause on Manual Cast
+Fix Grapple Weapon
+Improve Mana Tea Logic
+
+
+Build 5.4.5196
+Fix issue with Burst activate on Ctrl + x Key
+Fix issue proffession bull never activated (Engineering Glove/Lifeblood)
+Thank Fragnot
+
+
+Build 5.4.5189
+No longer Stop Casting on Thok the Bloodthirsty if you have Devotion Aura or Hand of Protection (Thank Aussiemob)
+
+
+Build 5.4.5181
+Support Stop Casting on Thok the Bloodthirsty (Thank Aussiemob)
+
+
+Build 5.4.5181
+Fix Enveloping Mist
+
+
+Build 5.4.5172
+Improve dumb chi method on PvE and PvP
+Add Thunder Focus Tea on incoming silience 
+47476, //Strangulate
+2139, //Counterspell
+19647, //Spell Lock
+34490, //Silencing Shot
+116705, //Spear Hand Strike
+15487, //Silence
+
+
+Build 5.4.5161
+Life Cocoon now only cast on Player
+
+
+Build 5.4.5160
+Add/Fix option Storm, Earth, and Fire.
+Now you can enable Storm, Earth, and Fire AoE mode in PvP and PvE.
+Test in a RBG game and the talent increase your dps by 20%, quite impressive.
+
+
+Build 5.4.5157
+Improve performance.
+WindWalker now can use Rushing Jade Wind on 1 target if you set the talent to use on target = 1
+
+
+Build 5.4.5155
+MAJOR UPDATE FOR WINDWALKER PVE
+Rotation revised
+Now support Storm, Earth, and Fire logic. Test on dummy and DPS increased by 200% xD
+
+
+Build 5.4.5153
+Improve Movement Logic
+Add Transcendence and Blizzard to do not interrupt list
+
+
+Build 5.4.5144
+Add Contaminated Puddle (NPC ID: 71604) to healing list
+Move Rushing Jade Wind to higher priority in DPS rotation
+
+
+Build 5.4.5142
+Improve WW afk movement
+Remove QuestGive from enemy blacklist
+Improve Invalid Target detection
+Fists of Fury no long cast on enemy player have Crowd Control effects like Stun/Fear
+
+
+Build 5.4.5139
+Improve Global Cooldown Management
+Add Option to drop Healing Sphere on Mouse Over/You/Target/Focus location. You are immortal healer until you run out of mana ^.^
+Thank Mirabis for drop Healing Sphere on Mouse Over code <3
+
+
+Build 5.4.5130
+Combat Routine no longer try to heal pet with Healing Sphere
+
+
+Build 5.4.5127.25997
+Combat Routine no longer try to get behind target that are not player.
+Fix issue attacking critter :D
+
+
+Build 5.4.5127.5650
+Improve logic on Calculating Health Percent
+Support Malkorok and Necrotic Absorbs heal debuff
+
+
+Build 5.4.5125.2245
+Fix Auto Update Issue
+Improve logic and minor bug fix
+
+
+Build 5.4.5123.38312
+Auto Update is ready to serve! You are now no longer to worry about svn update!
+Improved movement logic - smart just like player!
+Improved targeting logic - smart just like player!
+Added Change Log.

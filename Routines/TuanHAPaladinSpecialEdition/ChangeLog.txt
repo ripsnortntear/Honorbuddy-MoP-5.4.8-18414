@@ -1,0 +1,157 @@
+Build 5.4.5213
+Fix Auto Target
+Improve Auto Pause on Manual Cast
+
+
+Build 5.4.5183
+Fix Divine Storm do not use on Divine Crusader Proc on Single target
+
+
+Build 5.4.5183
+No longer Hand of Protection Warrior to remove fear. Leet Warrior don't get fear ever :D
+Thank Bloodyfinal
+
+
+Build 5.4.5181
+Support Stop Casting on Thok the Bloodthirsty (Thank Aussiemob)
+
+
+Build 5.4.5179
+Devotion Aura redesigned: It now will watch combat log and activate when incoming silence about to hit you and you/your friend below 70%
+The debuff include:
+            129597, //Arcane Torrent (Chi)
+            25046, //Arcane Torrent (Energy)
+            80483, //Arcane Torrent (Focus)
+            28730, //Arcane Torrent (Mana)
+            69179, //Arcane Torrent (Rage)
+            50613, //Arcane Torrent (Runic Power)
+            31935, //Avenger's Shield
+            114238, //Fae Silence (Glyph of Fae Silence)
+            102051, //Frostjaw (also a root)
+            1330, //Garrote - Silence
+            115782, //Optical Blast (Observer)
+            15487, //Silence
+            55021, //Silenced - Improved Counterspell
+            34490, //Silencing Shot
+            116709, //Spear Hand Strike
+            24259, //Spell Lock (Felhunter)
+            132409, //Spell Lock (Grimoire of Sacrifice)
+            47476, //Strangulate
+
+Hand of Sacrifice redesigned: It now will watch bombat log and cast on friend when incoming CC Break on Damage about to hit you.
+The debuff include:
+            2094, //Blind
+            3355, //Freezing Trap
+            1776, //Gouge
+            115268, //Mesmerize (Shivarra)
+            115078, //Paralysis
+            126355, //Paralyzing Quill (Porcupine)
+            126423, //Petrifying Gaze (Basilisk)
+            118, //Polymorph
+            61305, //Polymorph: Black Cat
+            28272, //Polymorph: Pig
+            61721, //Polymorph: Rabbit
+            61780, //Polymorph: Turkey
+            28271, //Polymorph: Turtle
+            20066, //Repentance
+            6770, //Sap
+            19503, //Scatter Shot
+            132412, //Seduction (Grimoire of Sacrifice)
+            6358, //Seduction (Succubus)
+            104045, //Sleep (Metamorphosis)
+            19386, //Wyvern Sting
+
+
+Build 5.4.5169
+Retribution Paladin Rewritten!
+HUGE DPS increase in PvP and PvE
+Support Raid Set Bonus (new) as well as talent and Glyph (Including Glyph of Exorcism and Glyph of Double Jeopardy)
+Faster Target Health Percent detection, you will Hammer of Wrath right after your target drop to 20%
+More accurate Holy Power detection
+Better and Smarter priority list in PvP
+
+
+Build 5.4.5147
+Improve Holy Power detection code.
+
+
+Build 5.4.5144
+Improve Movement Logic
+Add DE and IT language
+
+Build 5.4.5144
+Add Contaminated Puddle (NPC ID: 71604) to healing list
+
+
+Build 5.4.5143 (New Version release on the same day)
+Support Chinese GUI thank to Joe_ss
+Support Double Divine Protection on T16 bonus thank Ianbo
+
+Build 5.4.5143
+Repentance / Turn Evil redesigned - Now you have option to Crowd Control
+Target
+Focus
+Healer
+DPS
+
+Heal Balancing can now be set fron -20 to +20
+
+Multi-Language GUI is supported.
+Current version only have English Translation.
+If you can translate it into your language, open Routines\TuanHAPaladinSpecialEdition\Preset\Language.[yourlanguage].xml and edit the file.
+Send translate file to tuanha2000vn@yahoo.com so we can make it available for all user. Thank you
+
+
+Build 5.4.5142
+Remove QuestGive from enemy blacklist
+Improve Invalid Target detection
+Fix issue Holy Paladin use spell while mounted in Holy Spec in Raid
+
+Build 5.4.5136
+Improve Global Cooldown Management
+
+
+Build 5.4.5135
+Fix issue Holy Paladin do not denounce in PvE
+
+
+Build 5.4.5132
+Better use 5 Holy Power during uninterruptable phrase
+
+
+Build 5.4.5128.39163
+Add option to Hand of Protection on friendly unit have Touch of Karma debuff along with Blind and Intimidation Shout. Thank Gladiator Bloodyfinal.
+
+
+Build 5.4.5127.28341
+Combat Routine no longer try to get behind target that are not player.
+Fix issue attacking critter :D
+
+
+Build 5.4.5127.5015
+Improve logic on Calculating Health Percent
+Support Malkorok and Necrotic Absorbs heal debuff
+
+
+Build 5.4.5127.589
+Improve logic on Beacon of Light
+No longer cast Holy Shock to build Holy Power during Arena / Battleground Preparation, it look bottish :D
+
+
+Build 5.4.5125.2225
+Fix Auto Update Issue
+Improve logic and minor bug fix
+
+
+Build 5.4.5123.28193
+Fix Missing Combat Log in Ret and Prot spec.
+
+
+Build 5.4.5123.28193
+Auto Update is ready to serve! You are now no longer to worry about svn update!
+Improved movement logic - smart just like player!
+Improved targeting logic - smart just like player!
+Improve logic on waiting for interrupt.
+Improve logic on waiting for using trinket/racial/Hand of Sacrifice/Hand of Protection... when remove CCs
+Improve logic on waiting for Cleanse.
+Added Change Log.

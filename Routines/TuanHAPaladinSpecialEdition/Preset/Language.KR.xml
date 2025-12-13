@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data>
+		<ControlName>GUITranslateBy</ControlName>
+		<ControlText>Contact tuanha2000vn@yahoo.com for translation help</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageWelcome</ControlName>
+		<ControlText>Welcome</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageGeneral</ControlName>
+		<ControlText>General</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageHoly</ControlName>
+		<ControlText>Holy</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageProtection</ControlName>
+		<ControlText>Protection</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageRetribution</ControlName>
+		<ControlText>Retribution</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageSpecialThanks</ControlName>
+		<ControlText>Special Thanks</ControlText>
+	</data>
+	<data>
+		<ControlName>bOK</ControlName>
+		<ControlText>OK</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxControl</ControlName>
+		<ControlText>Control</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxInterruptAndOther</ControlName>
+		<ControlText>차단 및 기타</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoMove</ControlName>
+		<ControlText>자동 - 이동</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoTarget</ControlName>
+		<ControlText>자동 - 대상</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxRetribution</ControlName>
+		<ControlText>Retribution</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCleanse</ControlName>
+		<ControlText>Cleanse</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTogglePauseMode</ControlName>
+		<ControlText>일시정지 On/Off</ControlText>
+	</data>
+	<data>
+		<ControlName>labelBurst</ControlName>
+		<ControlText>폭딜</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTrinket2</ControlName>
+		<ControlText>장신구 2</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTrinket1</ControlName>
+		<ControlText>장신구 1</ControlText>
+	</data>
+	<data>
+		<ControlName>labelProfBuff</ControlName>
+		<ControlText>전문기술</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoBuff</ControlName>
+		<ControlText>자동 - 버프</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoRacial</ControlName>
+		<ControlText>자동 - 종족특성</ControlText>
+	</data>
+	<data>
+		<ControlName>SacredShieldRet</ControlName>
+		<ControlText>성스러운 보호막</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxHeal</ControlName>
+		<ControlText>Heal</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAttack</ControlName>
+		<ControlText>Attack</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyShockOffensive</ControlName>
+		<ControlText>신성 충격 - 공격</ControlText>
+	</data>
+	<data>
+		<ControlName>CrusaderStrikeHoly</ControlName>
+		<ControlText>성전사의 일격</ControlText>
+	</data>
+	<data>
+		<ControlName>JudgmentHolyAttack</ControlName>
+		<ControlText>심판 - 공격</ControlText>
+	</data>
+	<data>
+		<ControlName>Denounce</ControlName>
+		<ControlText>선고</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofWrathHoly</ControlName>
+		<ControlText>천벌의 망치</ControlText>
+	</data>
+	<data>
+		<ControlName>BeaconofLight</ControlName>
+		<ControlText>빛의 봉화 (문양이 필요함)</ControlText>
+	</data>
+	<data>
+		<ControlName>labelOnlyAttackWhenManaAbove</ControlName>
+		<ControlText>마나가 (  )% 이상일 때만 공격</ControlText>
+	</data>
+	<data>
+		<ControlName>CleanseASAP</ControlName>
+		<ControlText>정화 - 중요 디버프는 최대한 빠르게 해제</ControlText>
+	</data>
+	<data>
+		<ControlName>BDungeon</ControlName>
+		<ControlText>Dungeon</ControlText>
+	</data>
+	<data>
+		<ControlName>BRaid</ControlName>
+		<ControlText>Raid</ControlText>
+	</data>
+	<data>
+		<ControlName>BPvPHelper</ControlName>
+		<ControlText>PvP Helper</ControlText>
+	</data>
+	<data>
+		<ControlName>BQuestHelper</ControlName>
+		<ControlText>Quest</ControlText>
+	</data>
+	<data>
+		<ControlName>BFullAfk</ControlName>
+		<ControlText>Full AFK</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoTaunt</ControlName>
+		<ControlText>자동 - 도발</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoRighteousFury</ControlName>
+		<ControlText>자동 - 정의의 격노</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxProtection</ControlName>
+		<ControlText>Protection</ControlText>
+	</data>
+	<data>
+		<ControlName>bSave</ControlName>
+		<ControlText>Apply</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxGroupHealing</ControlName>
+		<ControlText>Group Healing</ControlText>
+	</data>
+	<data>
+		<ControlName>Group1</ControlName>
+		<ControlText>파티 1</ControlText>
+	</data>
+	<data>
+		<ControlName>Group4</ControlName>
+		<ControlText>파티 4</ControlText>
+	</data>
+	<data>
+		<ControlName>Group3</ControlName>
+		<ControlText>파티 3</ControlText>
+	</data>
+	<data>
+		<ControlName>Group2</ControlName>
+		<ControlText>파티 2</ControlText>
+	</data>
+	<data>
+		<ControlName>Group8</ControlName>
+		<ControlText>파티 8</ControlText>
+	</data>
+	<data>
+		<ControlName>Group7</ControlName>
+		<ControlText>파티 7</ControlText>
+	</data>
+	<data>
+		<ControlName>Group6</ControlName>
+		<ControlText>파티 6</ControlText>
+	</data>
+	<data>
+		<ControlName>Group5</ControlName>
+		<ControlText>파티 5</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoFace</ControlName>
+		<ControlText>자동 - 바라보기</ControlText>
+	</data>
+	<data>
+		<ControlName>LoadSettings</ControlName>
+		<ControlText>Load Setting</ControlText>
+	</data>
+	<data>
+		<ControlName>SaveSettings</ControlName>
+		<ControlText>Save Setting</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxOnlyHeal</ControlName>
+		<ControlText>Only Heal</ControlText>
+	</data>
+	<data>
+		<ControlName>OnlyHealFocus</ControlName>
+		<ControlText>주시 대상만</ControlText>
+	</data>
+	<data>
+		<ControlName>OnlyHealTarget</ControlName>
+		<ControlText>대상만</ControlText>
+	</data>
+	<data>
+		<ControlName>OnlyHealMe</ControlName>
+		<ControlText>자신만</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxHealBalancing</ControlName>
+		<ControlText>Heal Balancing</ControlText>
+	</data>
+	<data>
+		<ControlName>label66</ControlName>
+		<ControlText>label66</ControlText>
+	</data>
+	<data>
+		<ControlName>labelMoreManaHeal</ControlName>
+		<ControlText>  많은 마나/치유</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLessManaHeal</ControlName>
+		<ControlText>  적은 마나/치유</ControlText>
+	</data>
+	<data>
+		<ControlName>labelAdjustLeft</ControlName>
+		<ControlText>스크롤 바를 왼쪽으로 옮기면 치유량이
+적어지지만 소모되는 마나량도 적게 소모됨.</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDragCenter</ControlName>
+		<ControlText>만약 전투가 끝났을 때 당신에게 마나가 없다면, 
+그것은 완벽하게 치유의 균형을 이룬것이다.</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDragRight</ControlName>
+		<ControlText>만약 전투가 끝났을 때 마나가 많이 남으면, 
+스크롤 바를 오른쪽으로 이동하라.</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDragLeft</ControlName>
+		<ControlText>만약 전투 중 마나가 너무 빨리 없어진다면, 
+스크롤 바를 왼쪽으로 이동하라.</ControlText>
+	</data>
+	<data>
+		<ControlName>label69</ControlName>
+		<ControlText>----------------------------------------</ControlText>
+	</data>
+	<data>
+		<ControlName>labelAdjustRight</ControlName>
+		<ControlText>스크롤 바를 오른쪽으로 옮기면 치유량이
+많아지지만 소모되는 마나도 많이 소모됨.</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoRez</ControlName>
+		<ControlText>자동 - 구원</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptFocus</ControlName>
+		<ControlText>주시 대상</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptTarget</ControlName>
+		<ControlText>대상</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptAll</ControlName>
+		<ControlText>모두</ControlText>
+	</data>
+	<data>
+		<ControlName>labelInterrupt</ControlName>
+		<ControlText>차단</ControlText>
+	</data>
+	<data>
+		<ControlName>Rebuke</ControlName>
+		<ControlText>비난</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeInterrupt</ControlName>
+		<ControlText>심판의 주먹/망치</ControlText>
+	</data>
+	<data>
+		<ControlName>BlindingLightInterrupt</ControlName>
+		<ControlText>눈부신 빛</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoUseFood</ControlName>
+		<ControlText>음식 사용 - 체력/마나가 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>BlindingLightLow</ControlName>
+		<ControlText>눈부신 빛 - 아군의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeLow</ControlName>
+		<ControlText>주먹/망치 - 아군의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeEnemyLow</ControlName>
+		<ControlText>주먹/망치 - 적의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCrowdControl</ControlName>
+		<ControlText>군중제어</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageCooldownHotkeys</ControlName>
+		<ControlText>Cooldown &amp;&amp; Hotkeys</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxHotkeys</ControlName>
+		<ControlText>Hotkeys</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCooldown2</ControlName>
+		<ControlText>Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCooldown</ControlName>
+		<ControlText>Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>HealthStone</ControlName>
+		<ControlText>생명석 사용</ControlText>
+	</data>
+	<data>
+		<ControlName>SelflessHealer</ControlName>
+		<ControlText>관대한 치유사 - 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>LayonHands</ControlName>
+		<ControlText>신의 축복</ControlText>
+	</data>
+	<data>
+		<ControlName>labelHandofSacRet</ControlName>
+		<ControlText>희생의 손길로 군중제어 효과 제거 (징벌 PvP)</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacCCRemoveHealer</ControlName>
+		<ControlText>힐러</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacCCRemoveCaster</ControlName>
+		<ControlText>원거리</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacCCRemoveMelee</ControlName>
+		<ControlText>근접</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacrifice</ControlName>
+		<ControlText>희생의 손길</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofProtection</ControlName>
+		<ControlText>보호의 손길</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineShield</ControlName>
+		<ControlText>천상의 보호막</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineProtection</ControlName>
+		<ControlText>신의 가호</ControlText>
+	</data>
+	<data>
+		<ControlName>DivinePlea</ControlName>
+		<ControlText>신성한 기도</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAura</ControlName>
+		<ControlText>헌신의 오라</ControlText>
+	</data>
+	<data>
+		<ControlName>BattleStandard</ControlName>
+		<ControlText>(얼라이언스, 호드) 전투 깃발</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofProtectionHPRemoveCC</ControlName>
+		<ControlText>실명/위협/업보의 손아귀일 때 보호의 손길</ControlText>
+	</data>
+	<data>
+		<ControlName>labelHandofFreedomOnlyinPvP</ControlName>
+		<ControlText>자유의 손길 (PvP에서 사용)</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomHealer</ControlName>
+		<ControlText>힐러</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomCaster</ControlName>
+		<ControlText>원거리</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomMelee</ControlName>
+		<ControlText>근접</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomMyself</ControlName>
+		<ControlText>자신</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxBurstTrinketandProfessionalBuff</ControlName>
+		<ControlText>폭딜(쿨다운 몰기), 장신구 그리고 전문기술 버프</ControlText>
+	</data>
+	<data>
+		<ControlName>ExecutionSentenceFriend</ControlName>
+		<ControlText>사형선고 - 아군 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>ExecutionSentenceEnemy</ControlName>
+		<ControlText>사형선고 - 적 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>LightsHammerEnemy</ControlName>
+		<ControlText>빛의 망치 - 적의 수</ControlText>
+	</data>
+	<data>
+		<ControlName>LightsHammerFriend</ControlName>
+		<ControlText>빛의 망치 - 아군 수, 체력</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismEnemyHeal</ControlName>
+		<ControlText>성빛 - 적의 수, 아군 체력</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismEnemy</ControlName>
+		<ControlText>성스러운빛기둥-적 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismFriend</ControlName>
+		<ControlText>성스러운빛기둥-아군 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofPurityDebuff</ControlName>
+		<ControlText>정화의 손길 - 디버프가 많을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofPurity</ControlName>
+		<ControlText>정화의 손길 - 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>SpeedofLight</ControlName>
+		<ControlText>빛의 속도 - 근접과의 거리</ControlText>
+	</data>
+	<data>
+		<ControlName>labelPreferBuffType</ControlName>
+		<ControlText>/ 선호하는 버프는</ControlText>
+	</data>
+	<data>
+		<ControlName>AvengingWrathHoly</ControlName>
+		<ControlText>응징의 격노 - 개체수, 체력</ControlText>
+	</data>
+	<data>
+		<ControlName>LightofDawn</ControlName>
+		<ControlText>여명의 빛 - 개체수, 체력</ControlText>
+	</data>
+	<data>
+		<ControlName>CleanseDebuff</ControlName>
+		<ControlText>정화 - 디버프가 많을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyRadiance</ControlName>
+		<ControlText>신성한 광휘 - 개체수, 체력</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineFavor</ControlName>
+		<ControlText>신의 은총 - 개체수, 체력</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineLight</ControlName>
+		<ControlText>천상의 빛 - 개체의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>EternalFlameBlanket</ControlName>
+		<ControlText>영원의 불꽃으로 사전 치유, 신성한 힘</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightHoly</ControlName>
+		<ControlText>빛의 섬광 - 개체의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyLight</ControlName>
+		<ControlText>성스러운 빛 - 개체의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryHoly</ControlName>
+		<ControlText>영광의 서약 - 개체의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyAvengerHoly</ControlName>
+		<ControlText>신성한 복수자 -개체수,체력</ControlText>
+	</data>
+	<data>
+		<ControlName>GuardianofAncientKingsHoly</ControlName>
+		<ControlText>고왕수 - 개체수, 체력</ControlText>
+	</data>
+	<data>
+		<ControlName>JudgmentBurdenofGuilt</ControlName>
+		<ControlText>심판 - 죄책감 (문양)</ControlText>
+	</data>
+	<data>
+		<ControlName>JudgmentLongArmoftheLaw</ControlName>
+		<ControlText>심판 - 법의 위세 (특성)</ControlText>
+	</data>
+	<data>
+		<ControlName>ArdentDefender</ControlName>
+		<ControlText>헌신적인 수호자 - 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightMeProt</ControlName>
+		<ControlText>빛의 섬광 - 나의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>GuardianofAncientKingsProt</ControlName>
+		<ControlText>고대 왕의 수호자 - 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>SealofRighteousnessProt</ControlName>
+		<ControlText>정의의 문장 - 주변 개체수</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryMeProt</ControlName>
+		<ControlText>영서/영불-나 신힘,체력</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightMeRet</ControlName>
+		<ControlText>빛의 섬광 - 나의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineStorm</ControlName>
+		<ControlText>천상의 폭풍 - 주변 개체수</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightFriendRet</ControlName>
+		<ControlText>빛의 섬광 - 아군의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>Inquisition</ControlName>
+		<ControlText>심문 - 신성한 힘 소모</ControlText>
+	</data>
+	<data>
+		<ControlName>HammeroftheRighteousUnit</ControlName>
+		<ControlText>정의의 망치 - 주변 개체수</ControlText>
+	</data>
+	<data>
+		<ControlName>SealofRighteousnessRet</ControlName>
+		<ControlText>정의의 문장 - 주변 개체수</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryMeRet</ControlName>
+		<ControlText>영서/영불 - 나의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryFriendRet</ControlName>
+		<ControlText>영서/영불 - 아군의 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeEnemyUsingCD</ControlName>
+		<ControlText>주먹/망치 - 적이 쿨다운기술 사용할 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismFriendDPS</ControlName>
+		<ControlText>성스러운빛기둥-아군 주변에 적의 수</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilenceAny</ControlName>
+		<ControlText>아무나</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilenceCaster</ControlName>
+		<ControlText>원거리</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilenceHealer</ControlName>
+		<ControlText>힐러</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilence</ControlName>
+		<ControlText>헌신의 오라 - 침묵 제거, 체력이 낮을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>HammeroftheRighteousProt</ControlName>
+		<ControlText>정의의 망치 - 주변 개체수</ControlText>
+	</data>
+	<data>
+		<ControlName>HammeroftheRighteousRetWeakenedBlows</ControlName>
+		<ControlText>정의의 망치 - 근접에게 약화된 공격</ControlText>
+	</data>
+	<data>
+		<ControlName>ShieldofRighterous</ControlName>
+		<ControlText>정의의 방패 - 신성한 힘</ControlText>
+	</data>
+	<data>
+		<ControlName>SacredShieldProt</ControlName>
+		<ControlText>성스러운 보호막 - 다른 탱커에게 사용</ControlText>
+	</data>
+	<data>
+		<ControlName>AvengersShieldLoseThreat</ControlName>
+		<ControlText>응징의 방패 - 위협수준이 낮은 개체에 사용</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSalvHighThreat</ControlName>
+		<ControlText>구원의 손길 - 위협 수준 높을 때</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDelayBetweenUsingCooldown</ControlName>
+		<ControlText>쿨다운 기술들 사이의 지연시간 (Sec)</ControlText>
+	</data>
+	<data>
+		<ControlName>Consecration</ControlName>
+		<ControlText>신성화</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryFriendProt</ControlName>
+		<ControlText>영서/영불-아군 신힘,체력</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoCancelBubble</ControlName>
+		<ControlText>천보,보손 취소 - 나의 체력이 넘으면</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoDetectManualCast</ControlName>
+		<ControlText>수동 입력할 때 자동으로 일시정지</ControlText>
+	</data>
+	<data>
+		<ControlName>HotkeyConfigButton</ControlName>
+		<ControlText>Hotkey Setting Changer Config</ControlText>
+	</data>
+	<data>
+		<ControlName>HotkeyPrintChat</ControlName>
+		<ControlText>게임 내 채팅으로 알림 출력</ControlText>
+	</data>
+	<data>
+		<ControlName>FlagReturnorPickup</ControlName>
+		<ControlText>깃발 줍기 / 되돌리기</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoSetFocus</ControlName>
+		<ControlText>자동 - 주시 대상</ControlText>
+	</data>
+	<data>
+		<ControlName>AttackOOC</ControlName>
+		<ControlText>자동 전투시작 (대상을 선택하면 공격시작)</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxRandomDelay</ControlName>
+		<ControlText>무작위 지연(Milliseconds)   Min         Max</ControlText>
+	</data>
+	<data>
+		<ControlName>labelCleanseDelay</ControlName>
+		<ControlText>정화 지연 시간</ControlText>
+	</data>
+	<data>
+		<ControlName>labelBreakcCCDelay</ControlName>
+		<ControlText>군중제어 해제 지연 시간</ControlText>
+	</data>
+	<data>
+		<ControlName>labelInterruptDelay</ControlName>
+		<ControlText>차단 지연 시간</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilDPS</ControlName>
+		<ControlText>딜러 대상</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilHealer</ControlName>
+		<ControlText>힐러 대상</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilFocus</ControlName>
+		<ControlText>주시 대상</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilTarget</ControlName>
+		<ControlText>대상</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvil</ControlName>
+		<ControlText>참회 / 악령 퇴치</ControlText>
+	</data>
+		<data>
+		<ControlName>PreferMight</ControlName>
+		<ControlText>힘의 축복</ControlText>
+	</data>
+	<data>
+		<ControlName>PreferKings</ControlName>
+		<ControlText>왕의 축복</ControlText>
+	</data>
+</data_Table>

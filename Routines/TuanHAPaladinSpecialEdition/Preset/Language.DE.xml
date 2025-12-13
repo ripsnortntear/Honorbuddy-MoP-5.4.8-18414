@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data>
+		<ControlName>GUITranslateBy</ControlName>
+		<ControlText>Translated by Ianbo</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageWelcome</ControlName>
+		<ControlText>Willkommen</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageGeneral</ControlName>
+		<ControlText>Allgemein</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageHoly</ControlName>
+		<ControlText>Heilig</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageProtection</ControlName>
+		<ControlText>Schutz</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageRetribution</ControlName>
+		<ControlText>Vergelter</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageSpecialThanks</ControlName>
+		<ControlText>Danksagung</ControlText>
+	</data>
+	<data>
+		<ControlName>bOK</ControlName>
+		<ControlText>OK</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxControl</ControlName>
+		<ControlText>Steuerung</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxInterruptAndOther</ControlName>
+		<ControlText>Unterbrechen</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoMove</ControlName>
+		<ControlText>Auto Laufen</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoTarget</ControlName>
+		<ControlText>Autom Zielen</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxRetribution</ControlName>
+		<ControlText>Vergelter</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCleanse</ControlName>
+		<ControlText>Läutern</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTogglePauseMode</ControlName>
+		<ControlText>Pausieren an/aus</ControlText>
+	</data>
+	<data>
+		<ControlName>labelBurst</ControlName>
+		<ControlText>Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTrinket2</ControlName>
+		<ControlText>Schmuck 2</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTrinket1</ControlName>
+		<ControlText>Schmuck 1</ControlText>
+	</data>
+	<data>
+		<ControlName>labelProfBuff</ControlName>
+		<ControlText>Beruf Buff</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoBuff</ControlName>
+		<ControlText>Auto Buff</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoRacial</ControlName>
+		<ControlText>Auto Volksfähigkeit</ControlText>
+	</data>
+	<data>
+		<ControlName>SacredShieldRet</ControlName>
+		<ControlText>Geheiligter Schild</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxHeal</ControlName>
+		<ControlText>Heilung</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAttack</ControlName>
+		<ControlText>Angriff</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyShockOffensive</ControlName>
+		<ControlText>Mit Heiliger Schock angreifen</ControlText>
+	</data>
+	<data>
+		<ControlName>CrusaderStrikeHoly</ControlName>
+		<ControlText>Kreuzfahrerstoß</ControlText>
+	</data>
+	<data>
+		<ControlName>JudgmentHolyAttack</ControlName>
+		<ControlText>Mit Richturteil angreifen</ControlText>
+	</data>
+	<data>
+		<ControlName>Denounce</ControlName>
+		<ControlText>Denunzierung</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofWrathHoly</ControlName>
+		<ControlText>Hammer des Zorns</ControlText>
+	</data>
+	<data>
+		<ControlName>BeaconofLight</ControlName>
+		<ControlText>Flamme des Glaubens (Erfordert Glyphe)</ControlText>
+	</data>
+	<data>
+		<ControlName>labelOnlyAttackWhenManaAbove</ControlName>
+		<ControlText>Nur Angreifen wenn Mana über</ControlText>
+	</data>
+	<data>
+		<ControlName>CleanseASAP</ControlName>
+		<ControlText>Läutere wichtige Debuffs sofort</ControlText>
+	</data>
+	<data>
+		<ControlName>BDungeon</ControlName>
+		<ControlText>Dungeon</ControlText>
+	</data>
+	<data>
+		<ControlName>BRaid</ControlName>
+		<ControlText>Raid</ControlText>
+	</data>
+	<data>
+		<ControlName>BPvPHelper</ControlName>
+		<ControlText>PvP Helfer</ControlText>
+	</data>
+	<data>
+		<ControlName>BQuestHelper</ControlName>
+		<ControlText>Quest</ControlText>
+	</data>
+	<data>
+		<ControlName>BFullAfk</ControlName>
+		<ControlText>Voll AFK</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoTaunt</ControlName>
+		<ControlText>Auto Spott</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoRighteousFury</ControlName>
+		<ControlText>Auto Zorn d. Gerechtigkeit</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxProtection</ControlName>
+		<ControlText>Schutz</ControlText>
+	</data>
+	<data>
+		<ControlName>bSave</ControlName>
+		<ControlText>Bestätigen</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxGroupHealing</ControlName>
+		<ControlText>Gruppenheilung</ControlText>
+	</data>
+	<data>
+		<ControlName>Group1</ControlName>
+		<ControlText>Grp 1</ControlText>
+	</data>
+	<data>
+		<ControlName>Group4</ControlName>
+		<ControlText>Grp 4</ControlText>
+	</data>
+	<data>
+		<ControlName>Group3</ControlName>
+		<ControlText>Grp 3</ControlText>
+	</data>
+	<data>
+		<ControlName>Group2</ControlName>
+		<ControlText>Grp 2</ControlText>
+	</data>
+	<data>
+		<ControlName>Group8</ControlName>
+		<ControlText>Grp 8</ControlText>
+	</data>
+	<data>
+		<ControlName>Group7</ControlName>
+		<ControlText>Grp 7</ControlText>
+	</data>
+	<data>
+		<ControlName>Group6</ControlName>
+		<ControlText>Grp 6</ControlText>
+	</data>
+	<data>
+		<ControlName>Group5</ControlName>
+		<ControlText>Grp 5</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoFace</ControlName>
+		<ControlText>Auto Face</ControlText>
+	</data>
+	<data>
+		<ControlName>LoadSettings</ControlName>
+		<ControlText>Lade Einstellung</ControlText>
+	</data>
+	<data>
+		<ControlName>SaveSettings</ControlName>
+		<ControlText>Speicher Einstellung</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxOnlyHeal</ControlName>
+		<ControlText>Nur Heilung</ControlText>
+	</data>
+	<data>
+		<ControlName>OnlyHealFocus</ControlName>
+		<ControlText>Fokus</ControlText>
+	</data>
+	<data>
+		<ControlName>OnlyHealTarget</ControlName>
+		<ControlText>Ziel</ControlText>
+	</data>
+	<data>
+		<ControlName>OnlyHealMe</ControlName>
+		<ControlText>Mich</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxHealBalancing</ControlName>
+		<ControlText>Heilbalance</ControlText>
+	</data>
+	<data>
+		<ControlName>label66</ControlName>
+		<ControlText>label66</ControlText>
+	</data>
+	<data>
+		<ControlName>labelMoreManaHeal</ControlName>
+		<ControlText>Weniger Mana/Heilung</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLessManaHeal</ControlName>
+		<ControlText>Mehr Mana/Heilung</ControlText>
+	</data>
+	<data>
+		<ControlName>labelAdjustLeft</ControlName>
+		<ControlText>Schieb den Regler nach LINKS wird weniger Heilen aber weniger Mana verbrauchen</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDragCenter</ControlName>
+		<ControlText>Wenn du am Ende des Kampfes kein Mana mehr hast, ist es PERFEKT eingestellt</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDragRight</ControlName>
+		<ControlText>Hast du am Ende des Kampfes noch Mana über schieb den Regler nach RECHTS</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDragLeft</ControlName>
+		<ControlText>Wenn du während des Kampfes kein Mana mehr hast, schieb den Regler nach LINKS</ControlText>
+	</data>
+	<data>
+		<ControlName>label69</ControlName>
+		<ControlText>----------------------------------------</ControlText>
+	</data>
+	<data>
+		<ControlName>labelAdjustRight</ControlName>
+		<ControlText>Schieb den Regler nach RECHTS wird mehr Heilen aber mehr Mana verbrauchen</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoRez</ControlName>
+		<ControlText>Auto Wiederbeleben</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptFocus</ControlName>
+		<ControlText>Fokus</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptTarget</ControlName>
+		<ControlText>Ziel</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptAll</ControlName>
+		<ControlText>Alle</ControlText>
+	</data>
+	<data>
+		<ControlName>labelInterrupt</ControlName>
+		<ControlText>Unterbrechen</ControlText>
+	</data>
+	<data>
+		<ControlName>Rebuke</ControlName>
+		<ControlText>Zurechtweisung</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeInterrupt</ControlName>
+		<ControlText>Faust/Hammer d. Gerechtigkeit</ControlText>
+	</data>
+	<data>
+		<ControlName>BlindingLightInterrupt</ControlName>
+		<ControlText>Blendendes Licht</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoUseFood</ControlName>
+		<ControlText>Essen wenn HP/Mana unter</ControlText>
+	</data>
+	<data>
+		<ControlName>BlindingLightLow</ControlName>
+		<ControlText>Blendendes Licht Freund HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeLow</ControlName>
+		<ControlText>Faust/Hammer Freund HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeEnemyLow</ControlName>
+		<ControlText>Faust/Hammer Gegner HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCrowdControl</ControlName>
+		<ControlText>Gruppenkontrolle</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageCooldownHotkeys</ControlName>
+		<ControlText>Cooldown &amp;&amp; Hotkeys</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxHotkeys</ControlName>
+		<ControlText>Hotkeys</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCooldown2</ControlName>
+		<ControlText>Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxCooldown</ControlName>
+		<ControlText>Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>HealthStone</ControlName>
+		<ControlText>Gesundheitsstein</ControlText>
+	</data>
+	<data>
+		<ControlName>SelflessHealer</ControlName>
+		<ControlText>Selbstloser Heiler HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>LayonHands</ControlName>
+		<ControlText>Handauflegen</ControlText>
+	</data>
+	<data>
+		<ControlName>labelHandofSacRet</ControlName>
+		<ControlText>Hand der Aufopferung bricht CC (Vergelter PvP)</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacCCRemoveHealer</ControlName>
+		<ControlText>Heiler</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacCCRemoveCaster</ControlName>
+		<ControlText>Caster</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacCCRemoveMelee</ControlName>
+		<ControlText>Melee</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSacrifice</ControlName>
+		<ControlText>Hand d. Aufopferung</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofProtection</ControlName>
+		<ControlText>Hand d. Schutzes</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineShield</ControlName>
+		<ControlText>Gottesschild</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineProtection</ControlName>
+		<ControlText>Göttlicher Schutz</ControlText>
+	</data>
+	<data>
+		<ControlName>DivinePlea</ControlName>
+		<ControlText>Göttliche Bitte</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAura</ControlName>
+		<ControlText>Aure der Hingabe</ControlText>
+	</data>
+	<data>
+		<ControlName>BattleStandard</ControlName>
+		<ControlText>Schlachtstandarte</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofProtectionHPRemoveCC</ControlName>
+		<ControlText>Hand d. Schutzes auf Geblendet/Einschüchterung/Karma</ControlText>
+	</data>
+	<data>
+		<ControlName>labelHandofFreedomOnlyinPvP</ControlName>
+		<ControlText>Hand d. Freiheit (Nur im PvP)</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomHealer</ControlName>
+		<ControlText>Heiler</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomCaster</ControlName>
+		<ControlText>Caster</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomMelee</ControlName>
+		<ControlText>Melee</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofFreedomMyself</ControlName>
+		<ControlText>Mich</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxBurstTrinketandProfessionalBuff</ControlName>
+		<ControlText>Burst, Schmuck and Berufe Buff</ControlText>
+	</data>
+	<data>
+		<ControlName>ExecutionSentenceFriend</ControlName>
+		<ControlText>Richtspruch Freund HP</ControlText>
+	</data>
+	<data>
+		<ControlName>ExecutionSentenceEnemy</ControlName>
+		<ControlText>Richtspruch Gegner HP</ControlText>
+	</data>
+	<data>
+		<ControlName>LightsHammerEnemy</ControlName>
+		<ControlText>Hammer d. Lichts Gegneranzahl</ControlText>
+	</data>
+	<data>
+		<ControlName>LightsHammerFriend</ControlName>
+		<ControlText>Hammer d. Lichts Freund</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismEnemyHeal</ControlName>
+		<ControlText>HPrisma Gegner heilt Freund</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismEnemy</ControlName>
+		<ControlText>Heiliges Prisma Gegner HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismFriend</ControlName>
+		<ControlText>Heiliges Prisma Freund HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofPurityDebuff</ControlName>
+		<ControlText>Hand d. Reinheit übersteigt Debuff</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofPurity</ControlName>
+		<ControlText>Hand d. Reinheit HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>SpeedofLight</ControlName>
+		<ControlText>Geschwindigkeit d. Lichts Melee in Distanz</ControlText>
+	</data>
+	<data>
+		<ControlName>labelPreferBuffType</ControlName>
+		<ControlText>Bevorzugter Buff</ControlText>
+	</data>
+	<data>
+		<ControlName>AvengingWrathHoly</ControlName>
+		<ControlText>Zornige Vergeltung Einheit | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>LightofDawn</ControlName>
+		<ControlText>Licht d. Morgendämmerung Einheit | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>CleanseDebuff</ControlName>
+		<ControlText>Läutere Ziel übersteigt Debuffs</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyRadiance</ControlName>
+		<ControlText>Eiliges Strahlen Einheit | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineFavor</ControlName>
+		<ControlText>Göttliche Gunst Einheit | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineLight</ControlName>
+		<ControlText>Göttliches Licht Ziel HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>EternalFlameBlanket</ControlName>
+		<ControlText>Ewige Flame leert Heilige Kraft</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightHoly</ControlName>
+		<ControlText>Lichtblitz Einheit HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyLight</ControlName>
+		<ControlText>Heiliges Licht Einheit HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryHoly</ControlName>
+		<ControlText>Wort d. Herrlichkeit Einheit HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyAvengerHoly</ControlName>
+		<ControlText>Heiliger Rächer Einheit | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>GuardianofAncientKingsHoly</ControlName>
+		<ControlText>Wächter d. Uralten Einheit | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>JudgmentBurdenofGuilt</ControlName>
+		<ControlText>Richturteil Bürde d. Schuld</ControlText>
+	</data>
+	<data>
+		<ControlName>JudgmentLongArmoftheLaw</ControlName>
+		<ControlText>Richturteil Langer Arm d. Gesetzes</ControlText>
+	</data>
+	<data>
+		<ControlName>ArdentDefender</ControlName>
+		<ControlText>Unermüdlicher Verteidiger HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightMeProt</ControlName>
+		<ControlText>Lichtblitz auf mir HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>GuardianofAncientKingsProt</ControlName>
+		<ControlText>Wächter mich HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>SealofRighteousnessProt</ControlName>
+		<ControlText>Siegel d. Rechtschaffenheit anzahl Ziele</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryMeProt</ControlName>
+		<ControlText>WdH/EF mich HPr | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightMeRet</ControlName>
+		<ControlText>Lichtblitz mich HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>DivineStorm</ControlName>
+		<ControlText>Göttlicher Sturm anzahl Gegner</ControlText>
+	</data>
+	<data>
+		<ControlName>FlashofLightFriendRet</ControlName>
+		<ControlText>Lichtblitz Freund HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>Inquisition</ControlName>
+		<ControlText>Inquisition bei dieser Anzahl Heiliger Kraft</ControlText>
+	</data>
+	<data>
+		<ControlName>HammeroftheRighteousUnit</ControlName>
+		<ControlText>Hammer d. Rechtschaffenen anzahl Gegner</ControlText>
+	</data>
+	<data>
+		<ControlName>SealofRighteousnessRet</ControlName>
+		<ControlText>Siegel d. Rechtschaffenheit anzahl Ziele</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryMeRet</ControlName>
+		<ControlText>WdH/EF mich HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryFriendRet</ControlName>
+		<ControlText>WdH/EF Feund HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HammerofJusticeEnemyUsingCD</ControlName>
+		<ControlText>Faust/Hammer Gegner nutzt CD</ControlText>
+	</data>
+	<data>
+		<ControlName>HolyPrismFriendDPS</ControlName>
+		<ControlText>HPrisma umzingelt von Gegnern</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilenceAny</ControlName>
+		<ControlText>Alle</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilenceCaster</ControlName>
+		<ControlText>Caster</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilenceHealer</ControlName>
+		<ControlText>Heiler</ControlText>
+	</data>
+	<data>
+		<ControlName>DevotionAuraSilence</ControlName>
+		<ControlText>Aura d. Hingabe entfernt Stille HP unter</ControlText>
+	</data>
+	<data>
+		<ControlName>HammeroftheRighteousProt</ControlName>
+		<ControlText>Hammer d. Rechtschaffenen anzahl Gegner</ControlText>
+	</data>
+	<data>
+		<ControlName>HammeroftheRighteousRetWeakenedBlows</ControlName>
+		<ControlText>Hammer d. Rechtschaffenen schwä Angreifer</ControlText>
+	</data>
+	<data>
+		<ControlName>ShieldofRighterous</ControlName>
+		<ControlText>Schild d. Rechtschaffenen on Holy Power</ControlText>
+	</data>
+	<data>
+		<ControlName>SacredShieldProt</ControlName>
+		<ControlText>Geheiligter Schild auf andren Tank</ControlText>
+	</data>
+	<data>
+		<ControlName>AvengersShieldLoseThreat</ControlName>
+		<ControlText>Schild d. Rechtschaffenen auf Ziel mit niedrigster Berdrohung</ControlText>
+	</data>
+	<data>
+		<ControlName>HandofSalvHighThreat</ControlName>
+		<ControlText>Hand d. Erlösung Einheit Bedrohung >=</ControlText>
+	</data>
+	<data>
+		<ControlName>labelDelayBetweenUsingCooldown</ControlName>
+		<ControlText>Zeit zwischen der Nutzung von CDs (Sec)</ControlText>
+	</data>
+	<data>
+		<ControlName>Consecration</ControlName>
+		<ControlText>Weihe</ControlText>
+	</data>
+	<data>
+		<ControlName>WordofGloryFriendProt</ControlName>
+		<ControlText>WdH/EF Freund HPr | HP</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoCancelBubble</ControlName>
+		<ControlText>Auto entferne Schild HP über</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoDetectManualCast</ControlName>
+		<ControlText>Auto Pause bei manuellen Zaubern</ControlText>
+	</data>
+	<data>
+		<ControlName>HotkeyConfigButton</ControlName>
+		<ControlText>Hotkey Einstellungen</ControlText>
+	</data>
+	<data>
+		<ControlName>HotkeyPrintChat</ControlName>
+		<ControlText>Schreibt Benachrichtigung in WoW Chat</ControlText>
+	</data>
+	<data>
+		<ControlName>FlagReturnorPickup</ControlName>
+		<ControlText>Aufnehmen/Zurückbringen Flagge</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoSetFocus</ControlName>
+		<ControlText>Auto Fokus setzen</ControlText>
+	</data>
+	<data>
+		<ControlName>AttackOOC</ControlName>
+		<ControlText>Außerhalb vom Kampf angreifen</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxRandomDelay</ControlName>
+		<ControlText>Zufälliger Verzug Millisekunden   Min            Max</ControlText>
+	</data>
+	<data>
+		<ControlName>labelCleanseDelay</ControlName>
+		<ControlText>Läutern Verzögerung</ControlText>
+	</data>
+	<data>
+		<ControlName>labelBreakcCCDelay</ControlName>
+		<ControlText>Breche CC Verzögerung</ControlText>
+	</data>
+	<data>
+		<ControlName>labelInterruptDelay</ControlName>
+		<ControlText>Unterbrechen Verzögerung</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilDPS</ControlName>
+		<ControlText>auf DPS</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilHealer</ControlName>
+		<ControlText>auf Heiler</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilFocus</ControlName>
+		<ControlText>auf Fokus</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvilTarget</ControlName>
+		<ControlText>auf Ziel</ControlText>
+	</data>
+	<data>
+		<ControlName>RepentanceTurnEvil</ControlName>
+		<ControlText>Buße / Böses vertreiben</ControlText>
+	</data>
+</data_Table>
