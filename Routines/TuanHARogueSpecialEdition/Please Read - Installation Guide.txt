@@ -1,0 +1,16 @@
+Please Unblock the .zip file before extracting if you download combat routine on my website www.tuanha.biz
+For detail Installation Guide, please visite my website: 
+http://tuanha.biz/index.php/combat-routines/installation-guide
+
+Ensure files look like:
+<Honorbuddy>/Routines/TuanHARogueSpecialEdition/Files/
+<Honorbuddy>/Routines/TuanHARogueSpecialEdition/Settings/
+<Honorbuddy>/Routines/TuanHARogueSpecialEdition/User Settings/
+<Honorbuddy>/Routines/TuanHARogueSpecialEdition/#Please Read - Installation Guide.txt
+<Honorbuddy>/Routines/TuanHARogueSpecialEdition/Loader.cs
+<Honorbuddy>/Routines/TuanHARogueSpecialEdition/TuanHA_Combat_Routine.dll
+
+Download and Install tortoisesvn: http://tortoisesvn.net/
+
+Right-Click folder <Honorbuddy>/Routines/TuanHARogueSpecialEdition and select SVN Upgade working copy (if you see that message)
+Right-Click folder <Honorbuddy>/Routines/TuanHARogueSpecialEdition and select SVN Update

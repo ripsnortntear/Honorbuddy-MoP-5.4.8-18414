@@ -1,0 +1,116 @@
+Build 5.4.5213
+Fix Auto Target
+Improve Auto Pause on Manual Cast
+
+
+Build 5.4.5202
+Auto Cancel Sweeping Strike as soon as there's an emey has CC Break on Damage within 12 yard range.
+Never Thunder Clap when there's an emey has CC Break on Damage within 12 yard range.
+Fix Charge Interrupt that move you to different location after Intervene/Heroic Leap to eat trap.
+Add Option Use Slam when Rage Above, that logic to help stack rage.
+For example you can set Only Slam When Rage Above 75 and it will hold Slam until you got 75 rage and use 3 Slam in a row, that much more Bursty in PvP damage. In PvE it's advise to set to use at 25 through.
+
+Build 5.4.5182
+Add option turn on/off Sweeping Strike. The spell only activate when there/'s no enemy have CC break on damage within 20 yard to make sure it doesn't break anything.
+Faster Aura Detection = faster speed.
+
+
+Build 5.4.5175
+Add option Intimidation Shout on Group Number of x (default is 3)
+Add option Intimidation Shout on healer if target is below x (default is 30%) - Removed, working on better chain CC healer not only fear but stun...
+Shockwave and Stormbold Save Friend no longer use on Melee or Hunter that already disamed
+Better logic on calculating height of a certain location. Hotkey Heroic forward/backward 40/20 yard now work a lot better
+No longer to interrupt pet in arena except Mesmerize (Shivarra) and Psychic Terror (Psyfiend)
+Kill Totem and Psyfiend BEFORE you can see it :D
+Add logic Hamstring any unsnared player nearby
+Add logic use Throw when you are rooted and can't get into enemy melee range
+
+
+Build 5.4.5174
+Fix Issue Charge and Heroic Leap overlap by advanced tracking speed :D
+
+
+Build 5.4.5159
+Add Victory Rush on High Priority to heal you if your HP drop below 70%
+
+
+Build 5.4.5159
+Improve AFK Movement Logic
+Add internal cooldown to use stun, heroic leap, interven healer scatter shot
+Change Taunt logic on Rogue/Feral, only when they are not in combat
+Improve Rage Detection Logic
+
+
+Build 5.4.5153
+Remove QuestGive from enemy blacklist
+Improve Invalid Target detection
+Add Korean Translation by magejin
+
+Build 5.4.5140
+Multi-Language GUI is supported.
+Current version only have English and Chinese Translation.
+If you can translate it into your language, open Routines\TuanHAWarriorPatronEdition\Preset\Language.[yourlanguage].xml and edit the file.
+Send translate file to tuanha2000vn@yahoo.com so we can make it available for all user. Thank you
+
+Build 5.4.5136
+Improve Global Cooldown Management
+Add Heroic Leap to Mouse Over Location
+
+
+Build 5.4.5134
+Add option to Intervene/Safeguard/Leap on friend
+or Stun/Disarm Hunter if Scatter Shot
+
+A. The priority list is:
+
+A.1. If hunter just scatter shot but trap NOT placed:
+Storm Bold (Stun hunter can't trap)
+Shock Wave (Stun hunter can't trap)
+Disarm (Disarm hunter can't trap)
+
+A.2. If hunter just scatter shot AND he's not stun, CC, out of stun range...:
+Intervene if not rooted
+Safeguard
+Heroic Leap if not rooted or Scatter Shoted friend distance > 25 yard (out of Intervene Range)
+
+B. Revise Charge Interrupt logic
+
+B.1 Charge Interrupt on healer only use when healer using Healing Spell
+B.2 Charge Interrupt on DPS only use when DPS using CC spell in this list
+            33786, //Cyclone
+            113506, //Cyclone (Symbiosis)
+            605, //Dominate Mind
+            5782, //Fear
+            117418, //Fists of Fury
+            2637, //Hibernate
+            102051, //Frostjaw
+            51514, //Hex
+            129197, //Mind Flay (Insanity)
+            118, //Polymorph
+            28271, //Polymorph
+            28272, //Polymorph
+            61721, //Polymorph
+            61305, //Polymorph
+            113792, //Psychic Terror (Psyfiend)
+            20066, //Repentance
+            82691, //Ring of Frost
+            1513, //Scare Beast
+            10326, //Turn Evil
+            145067, //Turn Evil Glyph
+            20549, //War Stomp
+
+Build 5.4.5127.25959
+Combat Routine no longer try to get behind target that are not player.
+Fix issue attacking critter :D
+
+Build 5.4.5125.2291
+Fix Auto Update Issue
+Improve logic and minor bug fix
+
+Build 5.4.5123.6775
+Auto Update is ready to serve! You are now no longer to worry about svn update!
+Improved movement logic - smart just like player!
+Improved targeting logic - smart just like player!
+Improve logic on waiting for interrupt.
+Improve logic on waiting for using trinket/racial/Berserker Rage, Bladestorm... when remove CCs
+Added Change Log.
