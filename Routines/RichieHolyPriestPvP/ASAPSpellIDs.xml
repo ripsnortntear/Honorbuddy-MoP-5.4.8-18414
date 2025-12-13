@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpellLists>
+	<DispelASAP>
+		<spell id="1044">Hand of Freedom</spell>
+		<spell id="6940">Hand of Sacrifice</spell>
+		<spell id="69369">Predatory Swiftness</spell>
+		<spell id="12472">Icy Veins</spell>
+		<spell id="1022">Hand of Protection</spell>
+		<spell id="11426">Ice Barrier</spell>
+		<spell id="114250">Selfless Healer</spell>
+		<spell id="17">Power Word: Shield</spell>
+		<spell id="12043">Presence of Mind</spell>
+		<spell id="132158">Nature's Swiftness</spell>
+		<spell id="16188">Ancestral Swiftness</spell>
+		<spell id="110909">Alter time</spell>
+		<spell id="6346">Fear Ward</spell>
+		<spell id="974">Earth Shield</spell>
+	</DispelASAP>
+	<PurifyASAP>
+		<spell id="105421">Blinding Light</spell>
+		<spell id="123393">Breath of Fire (Glyph of Breath of Fire)</spell>
+		<spell id="44572">Deep Freeze</spell>
+		<spell id="605">Dominate Mind</spell>
+		<spell id="31661">Dragon's Breath</spell>
+		<spell id="5782">Fear</spell>
+		<spell id="118699">Fear</spell>
+		<spell id="130616">Fear (Glyph of Fear)</spell>
+		<spell id="3355">Freezing Trap</spell>
+		<spell id="853">Hammer of Justice</spell>
+		<spell id="110698">Hammer of Justice (Paladin)</spell>
+		<spell id="2637">Hibernate</spell>
+		<spell id="88625">Holy Word: Chastise</spell>
+		<spell id="119072">Holy Wrath</spell>
+		<spell id="5484">Howl of Terror</spell>
+		<spell id="115268">Mesmerize (Shivarra)</spell>
+		<spell id="6789">Mortal Coil</spell>
+		<spell id="115078">Paralysis</spell>
+		<spell id="113953">Paralysis (Paralytic Poison)</spell>
+		<spell id="126355">Paralyzing Quill (Porcupine)</spell>
+		<spell id="118">Polymorph</spell>
+		<spell id="61305">Polymorph: Black Cat</spell>
+		<spell id="28272">Polymorph: Pig</spell>
+		<spell id="61721">Polymorph: Rabbit</spell>
+		<spell id="61780">Polymorph: Turkey</spell>
+		<spell id="28271">Polymorph: Turtle</spell>
+		<spell id="64044">Psychic Horror</spell>
+		<spell id="8122">Psychic Scream</spell>
+		<spell id="113792">Psychic Terror (Psyfiend)</spell>
+		<spell id="107079">Quaking Palm</spell>
+		<spell id="115001">Remorseless Winter</spell>
+		<spell id="20066">Repentance</spell>
+		<spell id="82691">Ring of Frost</spell>
+		<spell id="1513">Scare Beast</spell>
+		<spell id="132412">Seduction (Grimoire of Sacrifice)</spell>
+		<spell id="6358">Seduction (Succubus)</spell>
+		<spell id="9484">Shackle Undead</spell>
+		<spell id="30283">Shadowfury</spell>
+		<spell id="87204">Sin and Punishment</spell>
+		<spell id="104045">Sleep (Metamorphosis)</spell>
+		<spell id="118905">Static Charge (Capacitor Totem)</spell>
+		<spell id="33395">Freeze</spell>
+		<spell id="63685">Freeze (Frozen Power)</spell>
+		<spell id="112948">Frost Bomb</spell>
+		<spell id="122">Frost Nova</spell>
+		<spell id="110693">Frost Nova (Mage)</spell>
+		<spell id="2944">Devouring Plague</spell>
+		<spell id="10326">Turn Evil</spell>		
+	</PurifyASAP>
+</SpellLists>
