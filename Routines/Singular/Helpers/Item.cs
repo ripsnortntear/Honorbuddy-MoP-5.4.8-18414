@@ -65,27 +65,22 @@ namespace Singular.Helpers
 
         public static Composite UseEquippedTrinket(TrinketUsage usage)
         {
-            PrioritySelector ps = new PrioritySelector();
-
-            if (SingularSettings.Instance.Trinket1Usage == usage)
-            {
-                ps.AddChild( UseEquippedItem( (uint) WoWInventorySlot.Trinket1 ));
-            }
-
-            if (SingularSettings.Instance.Trinket2Usage == usage)
-            {
-                ps.AddChild(UseEquippedItem((uint)WoWInventorySlot.Trinket2));
-            }
-
-            if (SingularSettings.Instance.GloveUsage == usage)
-            {
-                ps.AddChild(UseEquippedItem((uint)WoWInventorySlot.Hands));
-            }
-
-            if (!ps.Children.Any())
-                return new ActionAlwaysFail();
-
-            return ps;
+            return new Throttle( TimeSpan.FromMilliseconds(250),
+                new PrioritySelector(
+                    new Decorator(
+                        ret => usage == SingularSettings.Instance.Trinket1Usage,
+                        UseEquippedItem( (uint) WoWInventorySlot.Trinket1 )
+                        ),
+                    new Decorator(
+                        ret => usage == SingularSettings.Instance.Trinket2Usage,
+                        UseEquippedItem( (uint) WoWInventorySlot.Trinket2 )
+                        ),
+                    new Decorator(
+                        ret => usage == SingularSettings.Instance.GloveUsage,
+                        UseEquippedItem( (uint) WoWInventorySlot.Hands )
+                        )
+                    )
+                );
         }
 
         /// <summary>
@@ -131,7 +126,7 @@ namespace Singular.Helpers
 
         private static void UseItem(WoWItem item)
         {
-            Logger.Write( Color.White, "/use " + item.Name);
+            Logger.Write( Color.DodgerBlue, "Using item: " + item.Name);
             item.Use();
         }
 
@@ -213,61 +208,21 @@ namespace Singular.Helpers
             if (!SingularSettings.Instance.UseAlchemyFlasks)
                 return new ActionAlwaysFail();
 
-            return new ThrottlePasses(
-                1,
-                TimeSpan.FromSeconds(5),
-                RunStatus.Failure,
+            return new PrioritySelector(
                 new Decorator(
-                    req => !StyxWoW.Me.Auras.Any(aura => aura.Key.StartsWith("Enhanced ") && !aura.Key.StartsWith("Flask of ") || aura.Key != "Visions of Insanity"), 
-                    new Sequence(
-                        new PrioritySelector(
-                            new Decorator(
-                                req => StyxWoW.Me.GetSkill(SkillLine.Alchemy) != null && StyxWoW.Me.GetSkill(SkillLine.Alchemy).CurrentValue >= 400,
-                                new PrioritySelector(
-                                    ctx => StyxWoW.Me.CarriedItems.FirstOrDefault(i => i.Entry == 75525),
-                                    // Alchemist's Flask
-                                    new Decorator(
-                                        ret => ret != null,
-                                        new PrioritySelector(
-                                            new Decorator(
-                                                req => CanUseItem((WoWItem)req),
-                                                new Sequence(
-                                                    new Action(ret => Logger.Write(String.Format("Using {0}", ((WoWItem)ret).Name))),
-                                                    new Action(ret => ((WoWItem)ret).UseContainerItem()),
-                                                    Helpers.Common.CreateWaitForLagDuration(stopIf => StyxWoW.Me.Auras.Any(aura => aura.Key.StartsWith("Enhanced ") || aura.Key.StartsWith("Flask of ")))
-                                                    )
-                                                ),
-                                            new ActionAlwaysSucceed()
-                                            )
-                                        )
-                                    )
-                                ),
-                            new Decorator(
-                                ret => Me.Level >= 85,
-                                new PrioritySelector(
-                                    ctx => StyxWoW.Me.CarriedItems.FirstOrDefault(i => i.Entry == 86569),
-                                    // Crystal of Insanity
-                                    new Decorator(
-                                        ret => ret != null,
-                                        new PrioritySelector(
-                                            new Decorator( 
-                                                req => CanUseItem((WoWItem)req),
-                                                new Sequence(
-                                                    new Action(ret => Logger.Write(String.Format("Using {0}", ((WoWItem)ret).Name))),
-                                                    new Action(ret => ((WoWItem)ret).UseContainerItem()),
-                                                    Helpers.Common.CreateWaitForLagDuration(stopIf => StyxWoW.Me.Auras.Any(aura => aura.Key.StartsWith("Enhanced ") || aura.Key.StartsWith("Flask of ")))
-                                                    )
-                                                ),
-
-                                            new ActionAlwaysSucceed()
-                                            )
-                                        )
-                                    )
+                    ret => StyxWoW.Me.GetSkill(SkillLine.Alchemy) != null && StyxWoW.Me.GetSkill(SkillLine.Alchemy).CurrentValue >= 400 
+                        && !StyxWoW.Me.Auras.Any(aura => aura.Key.StartsWith("Enhanced ") || aura.Key.StartsWith("Flask of ")), // don't try to use the flask if we already have or if we're using a better one
+                    new PrioritySelector(
+                        ctx => StyxWoW.Me.CarriedItems.FirstOrDefault(i => i.Entry == 75525),
+                        // Alchemist's Flask
+                        new Decorator(
+                            ret => ret != null && ((WoWItem)ret).CooldownTimeLeft == TimeSpan.Zero,
+                            new Sequence(
+                                new Action(ret => Logger.Write(String.Format("Using {0}", ((WoWItem)ret).Name))),
+                                new Action(ret => ((WoWItem)ret).UseContainerItem()),
+                                Helpers.Common.CreateWaitForLagDuration(stopIf => StyxWoW.Me.Auras.Any(aura => aura.Key.StartsWith("Enhanced ") || aura.Key.StartsWith("Flask of ")))
                                 )
-                            ),
-
-                        // force this behavior to continue
-                        new ActionAlwaysFail()
+                            )
                         )
                     )
                 );
@@ -488,58 +443,7 @@ namespace Singular.Helpers
 
             if (Me.Inventory.Equipped.Trinket2 != null)
                 Logger.WriteFile("Trinket2: {0} #{1}", Me.Inventory.Equipped.Trinket2.Name, Me.Inventory.Equipped.Trinket2.Entry);
-
-            if (Me.Inventory.Equipped.Hands != null)
-            {
-                WoWItem item = Me.Inventory.Equipped.Hands;
-                if (!item.Usable)
-                    Logger.WriteDiagnostic("Hands: {0} #{1} - are not usable and will be ignored", item.Name, item.Entry);
-                else 
-                {
-                    string itemSpell = Lua.GetReturnVal<string>("return GetItemSpell(" + item.Entry + ")",0);       
-                    if (string.IsNullOrEmpty(itemSpell))
-                        Logger.WriteDiagnostic("Hands: {0} #{1} - does not appear to have a usable enchant present and will be ignored", item.Name, item.Entry);
-                    else
-                        Logger.WriteFile("Hands: {0} #{1} - found [{2}] and will use as per user settings", item.Name, item.Entry, itemSpell);
-                }
-                
-                // debug logic:  try another method to check for Engineering Tinkers
-                foreach (var enchName in GloveEnchants)
-                {
-                    WoWItem.WoWItemEnchantment ench = item.GetEnchantment(enchName);
-                    if (ench != null)
-                        Logger.WriteFile("Hands (double check): {0} #{1} - found enchant [{2}] #{3} (debug info only)", item.Name, item.Entry, ench.Name, ench.Id);
-                }
-
-                item = Me.Inventory.Equipped.Waist;
-                if (item != null)
-                {
-                    foreach (var enchName in BeltEnchants)
-                    {
-                        WoWItem.WoWItemEnchantment ench = item.GetEnchantment(enchName);
-                        if (ench != null)
-                            Logger.WriteFile("Belt (double check): {0} #{1} - found enchant [{2}] #{3} (debug info only)", item.Name, item.Entry, ench.Name, ench.Id);
-                    }
-                }
-            }
         }
-
-        // should be an api to inspect gloves, but instead yal (yet another list)
-        internal static List<string> GloveEnchants = new List<string>() 
-        {
-            "Hyperspeed Accelerators",
-            "Hand-Mounted Pyro Rocket",
-            "Tazik Shocker",
-            "Synapse Springs",
-            "Phase Fingers",
-            "Incendiary Fireworks Launcher"
-        };
-
-        internal static List<string> BeltEnchants = new List<string>() 
-        {
-            "Nitro Boosts",
-            "Frag Belt"
-        };
 
         public static uint CalcTotalGearScore()
         {
@@ -681,7 +585,7 @@ namespace Singular.Helpers
         {
             return new Decorator( 
 
-                ret => SingularSettings.Instance.UseBandages && Me.PredictedHealthPercent(includeMyHeals: true) < 95 && SpellManager.HasSpell( "First Aid") && !Me.HasAura( "Recently Bandaged") && !Me.ActiveAuras.Any( a => a.Value.IsHarmful ),
+                ret => SingularSettings.Instance.UseBandages && Me.GetPredictedHealthPercent(true) < 95 && SpellManager.HasSpell( "First Aid") && !Me.HasAura( "Recently Bandaged") && !Me.ActiveAuras.Any( a => a.Value.IsHarmful ),
 
                 new PrioritySelector(
 

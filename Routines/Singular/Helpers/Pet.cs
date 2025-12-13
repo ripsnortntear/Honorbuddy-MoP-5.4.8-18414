@@ -37,9 +37,9 @@ namespace Singular.Helpers
         /// </summary>
         /// <param name="action"> The name of the pet spell that will be casted. </param>
         /// <returns></returns>
-        public static Composite CastPetAction(string action)
+        public static Composite CreateCastPetAction(string action)
         {
-            return CastPetAction(action, ret => true);
+            return CreateCastPetAction(action, ret => true);
         }
 
         /// <summary>
@@ -48,9 +48,9 @@ namespace Singular.Helpers
         /// <param name="action"> The name of the pet spell that will be casted. </param>
         /// <param name="extra"> Extra conditions that will be checked. </param>
         /// <returns></returns>
-        public static Composite CastPetAction(string action, SimpleBooleanDelegate extra)
+        public static Composite CreateCastPetAction(string action, SimpleBooleanDelegate extra)
         {
-            return CastPetActionOn(action, ret => StyxWoW.Me.CurrentTarget, extra);
+            return CreateCastPetActionOn(action, ret => StyxWoW.Me.CurrentTarget, extra);
         }
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace Singular.Helpers
         /// <param name="action"> The name of the pet spell that will be casted. </param>
         /// <param name="onUnit"> The unit to cast the spell on. </param>
         /// <returns></returns>
-        public static Composite CastPetActionOn(string action, UnitSelectionDelegate onUnit)
+        public static Composite CreateCastPetActionOn(string action, UnitSelectionDelegate onUnit)
         {
-            return CastPetActionOn(action, onUnit, ret => true);
+            return CreateCastPetActionOn(action, onUnit, ret => true);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Singular.Helpers
         /// <param name="onUnit"> The unit to cast the spell on. </param>
         /// <param name="extra"> Extra conditions that will be checked. </param>
         /// <returns></returns>
-        public static Composite CastPetActionOn(string action, UnitSelectionDelegate onUnit, SimpleBooleanDelegate extra)
+        public static Composite CreateCastPetActionOn(string action, UnitSelectionDelegate onUnit, SimpleBooleanDelegate extra)
         {
             return new Decorator(
                 ret => extra(ret) && PetManager.CanCastPetAction(action),
@@ -83,9 +83,9 @@ namespace Singular.Helpers
         /// </summary>
         /// <param name="action"> The name of the pet spell that will be casted. </param>
         /// <returns></returns>
-        public static Composite CastPetActionOnLocation(string action)
+        public static Composite CreateCastPetActionOnLocation(string action)
         {
-            return CastPetActionOnLocation(action, ret => true);
+            return CreateCastPetActionOnLocation(action, ret => true);
         }
 
         /// <summary>
@@ -95,9 +95,9 @@ namespace Singular.Helpers
         /// <param name="action"> The name of the pet spell that will be casted. </param>
         /// <param name="extra"> Extra conditions that will be checked. </param>
         /// <returns></returns>
-        public static Composite CastPetActionOnLocation(string action, SimpleBooleanDelegate extra)
+        public static Composite CreateCastPetActionOnLocation(string action, SimpleBooleanDelegate extra)
         {
-            return CastPetActionOnLocation(action, ret => StyxWoW.Me.CurrentTarget.Location, extra);
+            return CreateCastPetActionOnLocation(action, ret => StyxWoW.Me.CurrentTarget.Location, extra);
         }
 
         /// <summary>
@@ -106,9 +106,9 @@ namespace Singular.Helpers
         /// <param name="action"> The name of the pet spell that will be casted. </param>
         /// <param name="location"> The point to click. </param>
         /// <returns></returns>
-        public static Composite CastPetActionOnLocation(string action, LocationRetriever location)
+        public static Composite CreateCastPetActionOnLocation(string action, LocationRetriever location)
         {
-            return CastPetActionOnLocation(action, location, ret => true);
+            return CreateCastPetActionOnLocation(action, location, ret => true);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Singular.Helpers
         /// <param name="location"> The point to click. </param>
         /// <param name="extra"> Extra conditions that will be checked. </param>
         /// <returns></returns>
-        public static Composite CastPetActionOnLocation(string action, LocationRetriever location, SimpleBooleanDelegate extra)
+        public static Composite CreateCastPetActionOnLocation(string action, LocationRetriever location, SimpleBooleanDelegate extra)
         {
             return new Decorator(
                 ret => StyxWoW.Me.GotAlivePet && extra(ret) && PetManager.CanCastPetAction(action),
