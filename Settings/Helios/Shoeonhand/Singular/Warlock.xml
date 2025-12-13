@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WarlockSettings>
+  <Pet>Auto</Pet>
+  <HealthFunnelCast>60</HealthFunnelCast>
+  <HealthFunnelCancel>95</HealthFunnelCancel>
+  <HealthFunnelRest>75</HealthFunnelRest>
+  <UseDisarm>False</UseDisarm>
+  <CreateSoulwell>True</CreateSoulwell>
+  <DrainLifePercentage>20</DrainLifePercentage>
+  <UseFear>True</UseFear>
+  <UseFearCount>3</UseFearCount>
+  <UseSoulstone>Auto</UseSoulstone>
+  <FurySwitchToCaster>750</FurySwitchToCaster>
+  <FurySwitchToDemon>900</FurySwitchToDemon>
+  <FelstormMobCount>1</FelstormMobCount>
+  <UseDemonicLeap>True</UseDemonicLeap>
+  <DestructionSpellPriority>Noxxic</DestructionSpellPriority>
+</WarlockSettings>

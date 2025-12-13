@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+  <TicksPerSecond>90</TicksPerSecond>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <SelectTalents>True</SelectTalents>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <LootRadius>45</LootRadius>
+  <DrinkAmount>0</DrinkAmount>
+  <FoodAmount>0</FoodAmount>
+  <MailRecipient></MailRecipient>
+  <FoodName>4599</FoodName>
+  <DrinkName></DrinkName>
+  <MountName></MountName>
+  <FlyingMountName></FlyingMountName>
+  <UseRandomMount>False</UseRandomMount>
+  <MountDistance>60</MountDistance>
+  <ClassProfileName>Warlock - Destruction</ClassProfileName>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <MaxBoEDisenchantQuality>Epic</MaxBoEDisenchantQuality>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Tyrael</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <LootChests>True</LootChests>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LastUsedPath></LastUsedPath>
+</CharacterSettings>

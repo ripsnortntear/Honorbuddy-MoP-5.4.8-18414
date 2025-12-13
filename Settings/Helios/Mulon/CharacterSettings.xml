@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+  <TicksPerSecond>25</TicksPerSecond>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBoEEpics>False</AutoEquipBoEEpics>
+  <SelectTalents>True</SelectTalents>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <LootRadius>45</LootRadius>
+  <DrinkAmount>0</DrinkAmount>
+  <FoodAmount>0</FoodAmount>
+  <MailRecipient></MailRecipient>
+  <FoodName>117</FoodName>
+  <DrinkName>159</DrinkName>
+  <MountName></MountName>
+  <FlyingMountName></FlyingMountName>
+  <UseRandomMount>False</UseRandomMount>
+  <MountDistance>60</MountDistance>
+  <ClassProfileName>Mage - Arcane</ClassProfileName>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
+  <RecentProfiles>
+    <Entry>[A - Quest] Panda 1-12 [Kick] ($Rev: 3198 $)@@!@@C:\Users\Ryan\Desktop\Honorbuddy\Default Profiles\1-90 Questing Evermoon Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 [Kick]\[A - Quest] Panda 1-12 [Kick].xml</Entry>
+    <Entry>[A - Quest] Panda 1-12 [Kick] ($Rev: 3198 $)@@!@@C:\HonorBuddy MoP\Default Profiles\1-90 Questing Evermoon Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 [Kick]\[A - Quest] Panda 1-12 [Kick].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Questing</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <LootChests>True</LootChests>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LastUsedPath>C:\Users\Ryan\Desktop\Honorbuddy\Default Profiles\1-90 Questing Evermoon Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 [Kick]\[A - Quest] Panda 1-12 [Kick].xml</LastUsedPath>
+</CharacterSettings>
