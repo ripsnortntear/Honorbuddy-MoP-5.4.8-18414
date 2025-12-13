@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DiscPriestSettings>
+  <ShadowfiendPct>80</ShadowfiendPct>
+  <HymnofHopePct>15</HymnofHopePct>
+  <EnablePriestMovementBuff>True</EnablePriestMovementBuff>
+  <UsePowerWordFortitude>True</UsePowerWordFortitude>
+  <PrayerOfMendingPct>100</PrayerOfMendingPct>
+  <FlashHealSoLPct>80</FlashHealSoLPct>
+  <UseFade>True</UseFade>
+  <EnableOffensiveDps>True</EnableOffensiveDps>
+  <PainSuppressionPercent>50</PainSuppressionPercent>
+  <GreaterHealPct>45</GreaterHealPct>
+  <DivineStarPct>75</DivineStarPct>
+  <DivineStarCount>3</DivineStarCount>
+  <CascadePct>75</CascadePct>
+  <CascadeCount>3</CascadeCount>
+  <HaloPct>75</HaloPct>
+  <HaloCount>3</HaloCount>
+  <PrayerofHealingPct>86</PrayerofHealingPct>
+  <PrayerofHealingCount>3</PrayerofHealingCount>
+  <PowerWordBarrierPct>86</PowerWordBarrierPct>
+  <PowerWordBarrierCount>2</PowerWordBarrierCount>
+  <DesperatePrayerPct>40</DesperatePrayerPct>
+  <SpiritShellPct>95</SpiritShellPct>
+  <SpiritShellCount>10</SpiritShellCount>
+  <ArchangelPct>80</ArchangelPct>
+  <ArchangelCount>3</ArchangelCount>
+  <PowerInfusionPct>80</PowerInfusionPct>
+  <PowerInfusionCount>3</PowerInfusionCount>
+  <VoidShiftPct>30</VoidShiftPct>
+  <UrgentHealthPercentage>35</UrgentHealthPercentage>
+</DiscPriestSettings>

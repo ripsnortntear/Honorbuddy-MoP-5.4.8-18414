@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HolyPriestSettings>
+  <EnableLightwellUsage>False</EnableLightwellUsage>
+  <MaxLightwellDistance>30</MaxLightwellDistance>
+  <LightwellWaitTime>180</LightwellWaitTime>
+  <ShadowfiendPct>80</ShadowfiendPct>
+  <HymnofHopePct>15</HymnofHopePct>
+  <EnablePriestMovementBuff>True</EnablePriestMovementBuff>
+  <UsePowerWordFortitude>True</UsePowerWordFortitude>
+  <PrayerOfMendingPct>100</PrayerOfMendingPct>
+  <FlashHealSoLPct>80</FlashHealSoLPct>
+  <GuardianSpiritPct>35</GuardianSpiritPct>
+  <UseFade>True</UseFade>
+  <DivineStarPct>75</DivineStarPct>
+  <DivineStarCount>3</DivineStarCount>
+  <CascadePct>75</CascadePct>
+  <CascadeCount>3</CascadeCount>
+  <HaloPct>75</HaloPct>
+  <HaloCount>3</HaloCount>
+  <PrayerofHealingPct>86</PrayerofHealingPct>
+  <PrayerofHealingCount>3</PrayerofHealingCount>
+  <DivineHymnPct>70</DivineHymnPct>
+  <DivineHymnCount>8</DivineHymnCount>
+  <CircleOfHealingPct>96</CircleOfHealingPct>
+  <CircleOfHealingCount>2</CircleOfHealingCount>
+  <HolyWordSanctuaryPct>90</HolyWordSanctuaryPct>
+  <HolyWordSanctuaryCount>4</HolyWordSanctuaryCount>
+  <DesperatePrayerPct>40</DesperatePrayerPct>
+  <PowerInfusionPct>80</PowerInfusionPct>
+  <PowerInfusionCount>3</PowerInfusionCount>
+  <VoidShiftPct>30</VoidShiftPct>
+  <UrgentHealthPercentage>35</UrgentHealthPercentage>
+</HolyPriestSettings>

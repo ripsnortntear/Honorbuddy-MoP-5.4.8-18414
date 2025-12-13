@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PaladinSettings>
+  <DivinePleaPct>70</DivinePleaPct>
+  <DivineLightPct>80</DivineLightPct>
+  <FlashofLightTankPct>45</FlashofLightTankPct>
+  <HandOfProtectionPct>15</HandOfProtectionPct>
+  <HandOfSalvationPct>55</HandOfSalvationPct>
+  <HandofPurityPct>45</HandofPurityPct>
+  <HandOfSacrificePct>50</HandOfSacrificePct>
+  <UseCrusaderStrike>False</UseCrusaderStrike>
+  <UseHandOfFreedom>True</UseHandOfFreedom>
+  <LayOnHandsTankPct>35</LayOnHandsTankPct>
+  <LayOnHandsHealTargetPct>20</LayOnHandsHealTargetPct>
+  <BuildIlluminatedHealingManaPct>90</BuildIlluminatedHealingManaPct>
+  <GuardianofAncientKingsPct>70</GuardianofAncientKingsPct>
+  <DivineProtectionPct>60</DivineProtectionPct>
+  <ExecutionSentencePct>85</ExecutionSentencePct>
+  <DivineShieldPct>30</DivineShieldPct>
+  <UrgentHealthPercentage>45</UrgentHealthPercentage>
+  <LowManaPct>20</LowManaPct>
+  <UseHolyPrismSingleTarget>False</UseHolyPrismSingleTarget>
+  <HolyPrismPct>90</HolyPrismPct>
+  <HolyPrismLimit>3</HolyPrismLimit>
+  <LightsHammerPct>85</LightsHammerPct>
+  <LightsHammerLimit>3</LightsHammerLimit>
+  <HolyRadiancePct>90</HolyRadiancePct>
+  <HolyRadianceLimit>3</HolyRadianceLimit>
+  <LightofDawnPct>95</LightofDawnPct>
+  <LightofDawnLimit>3</LightofDawnLimit>
+  <DivineFavorPct>70</DivineFavorPct>
+  <DivineFavorLimit>6</DivineFavorLimit>
+  <AvengingWrathPct>70</AvengingWrathPct>
+  <AvengingWrathLimit>6</AvengingWrathLimit>
+  <DevotionAuraPct>60</DevotionAuraPct>
+  <DevotionAuraLimit>6</DevotionAuraLimit>
+  <GuardianofAncientKingsAoEPct>70</GuardianofAncientKingsAoEPct>
+  <GuardianofAncientKingsAoELimit>3</GuardianofAncientKingsAoELimit>
+</PaladinSettings>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ShamanSettings>
+  <HandleBuffonTank>Always</HandleBuffonTank>
+  <UrgentHealthPercentage>20</UrgentHealthPercentage>
+  <HealingStreamTotemPercent>99</HealingStreamTotemPercent>
+  <ManaTideTotemPercent>20</ManaTideTotemPercent>
+  <LightningBoltPercent>90</LightningBoltPercent>
+  <AstralShiftPercent>30</AstralShiftPercent>
+  <HandleEarthShieldTarget>True</HandleEarthShieldTarget>
+  <UseReinforcewithEarthElemental>True</UseReinforcewithEarthElemental>
+  <HealingSurgePercent>30</HealingSurgePercent>
+  <StoneBulwarkTotemPercent>25</StoneBulwarkTotemPercent>
+  <HealingRainPct>95</HealingRainPct>
+  <HealingRainLimit>4</HealingRainLimit>
+  <HealingRainAscendancePct>99</HealingRainAscendancePct>
+  <HealingRainAscendanceLimit>3</HealingRainAscendanceLimit>
+  <ChainHealPct>93</ChainHealPct>
+  <ChainHealLimit>3</ChainHealLimit>
+  <HealingTideTotemPct>70</HealingTideTotemPct>
+  <HealingTideTotemLimit>6</HealingTideTotemLimit>
+  <SpiritLinkTotemPct>65</SpiritLinkTotemPct>
+  <SpiritLinkTotemLimit>6</SpiritLinkTotemLimit>
+  <EarthElementalTotemPct>65</EarthElementalTotemPct>
+  <EarthElementalTotemLimit>6</EarthElementalTotemLimit>
+  <AscendancePct>65</AscendancePct>
+  <AscendanceLimit>6</AscendanceLimit>
+  <SpiritwalkersGracePct>80</SpiritwalkersGracePct>
+  <SpiritwalkersGraceLimit>2</SpiritwalkersGraceLimit>
+</ShamanSettings>
