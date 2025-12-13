@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data>
+		<SID>50433</SID>
+		<SpellName>Ankle Crack (Crocolisk)</SpellName>
+	</data>
+	<data>
+		<SID>11113</SID>
+		<SpellName>Blast Wave - gone?</SpellName>
+	</data>
+	<data>
+		<SID>110300</SID>
+		<SpellName>Burden of Guilt</SpellName>
+	</data>
+	<data>
+		<SID>45524</SID>
+		<SpellName>Chains of Ice</SpellName>
+	</data>
+	<data>
+		<SID>50435</SID>
+		<SpellName>Chilblains</SpellName>
+	</data>
+	<data>
+		<SID>121288</SID>
+		<SpellName>Chilled (Frost Armor)</SpellName>
+	</data>
+	<data>
+		<SID>35101</SID>
+		<SpellName>Concussive Barrage</SpellName>
+	</data>
+	<data>
+		<SID>5116</SID>
+		<SpellName>Concussive Shot</SpellName>
+	</data>
+	<data>
+		<SID>120</SID>
+		<SpellName>Cone of Cold</SpellName>
+	</data>
+	<data>
+		<SID>3409</SID>
+		<SpellName>Crippling Poison</SpellName>
+	</data>
+	<data>
+		<SID>18223</SID>
+		<SpellName>Curse of Exhaustion</SpellName>
+	</data>
+	<data>
+		<SID>63529</SID>
+		<SpellName>Dazed - Avenger's Shield</SpellName>
+	</data>
+	<data>
+		<SID>1604</SID>
+		<SpellName>Dazed - lots of daze effects. try to find the right one.</SpellName>
+	</data>
+	<data>
+		<SID>50259</SID>
+		<SpellName>Dazed (Wild Charge - Cat)</SpellName>
+	</data>
+	<data>
+		<SID>26679</SID>
+		<SpellName>Deadly Throw</SpellName>
+	</data>
+	<data>
+		<SID>119696</SID>
+		<SpellName>Debilitation</SpellName>
+	</data>
+	<data>
+		<SID>116095</SID>
+		<SpellName>Disable</SpellName>
+	</data>
+	<data>
+		<SID>123727</SID>
+		<SpellName>Dizzying Haze</SpellName>
+	</data>
+	<data>
+		<SID>3600</SID>
+		<SpellName>Earthbind (Earthbind Totem)</SpellName>
+	</data>
+	<data>
+		<SID>77478</SID>
+		<SpellName>Earthquake (Glyph of Unstable Earth)</SpellName>
+	</data>
+	<data>
+		<SID>123586</SID>
+		<SpellName>Flying Serpent Kick</SpellName>
+	</data>
+	<data>
+		<SID>113092</SID>
+		<SpellName>Frost Bomb</SpellName>
+	</data>
+	<data>
+		<SID>54644</SID>
+		<SpellName>Frost Breath (Chimaera)</SpellName>
+	</data>
+	<data>
+		<SID>8056</SID>
+		<SpellName>Frost Shock</SpellName>
+	</data>
+	<data>
+		<SID>116</SID>
+		<SpellName>Frostbolt</SpellName>
+	</data>
+	<data>
+		<SID>8034</SID>
+		<SpellName>Frostbrand Attack</SpellName>
+	</data>
+	<data>
+		<SID>44614</SID>
+		<SpellName>Frostfire Bolt</SpellName>
+	</data>
+	<data>
+		<SID>61394</SID>
+		<SpellName>Frozen Wake (Glyph of Freezing Trap)</SpellName>
+	</data>
+	<data>
+		<SID>1715</SID>
+		<SpellName>Hamstring</SpellName>
+	</data>
+	<data>
+		<SID>13810</SID>
+		<SpellName>Ice Trap</SpellName>
+	</data>
+	<data>
+		<SID>110610</SID>
+		<SpellName>Ice Trap (Hunter)</SpellName>
+	</data>
+	<data>
+		<SID>58180</SID>
+		<SpellName>Infected Wounds</SpellName>
+	</data>
+	<data>
+		<SID>118585</SID>
+		<SpellName>Leer of the Ox</SpellName>
+	</data>
+	<data>
+		<SID>15407</SID>
+		<SpellName>Mind Flay</SpellName>
+	</data>
+	<data>
+		<SID>12323</SID>
+		<SpellName>Piercing Howl</SpellName>
+	</data>
+	<data>
+		<SID>115000</SID>
+		<SpellName>Remorseless Winter</SpellName>
+	</data>
+	<data>
+		<SID>20170</SID>
+		<SpellName>Seal of Justice</SpellName>
+	</data>
+	<data>
+		<SID>47960</SID>
+		<SpellName>Shadowflame</SpellName>
+	</data>
+	<data>
+		<SID>31589</SID>
+		<SpellName>Slow</SpellName>
+	</data>
+	<data>
+		<SID>51490</SID>
+		<SpellName>Thunderstorm</SpellName>
+	</data>
+	<data>
+		<SID>61391</SID>
+		<SpellName>Typhoon</SpellName>
+	</data>
+	<data>
+		<SID>127797</SID>
+		<SpellName>Ursol's Vortex</SpellName>
+	</data>
+	<data>
+		<SID>129923</SID>
+		<SpellName>Hindering Strikes Glyph</SpellName>
+	</data>
+</data_Table>

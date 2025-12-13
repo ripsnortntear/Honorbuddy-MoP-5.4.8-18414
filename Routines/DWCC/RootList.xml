@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data>
+		<SID>96294</SID>
+		<SpellName>Chains of Ice (Chilblains)</SpellName>
+	</data>
+	<data>
+		<SID>116706</SID>
+		<SpellName>Disable</SpellName>
+	</data>
+	<data>
+		<SID>64695</SID>
+		<SpellName>Earthgrab (Earthgrab Totem)</SpellName>
+	</data>
+	<data>
+		<SID>339</SID>
+		<SpellName>Entangling Roots</SpellName>
+	</data>
+	<data>
+		<SID>19975</SID>
+		<SpellName>Entangling Roots</SpellName>
+	</data>
+	<data>
+		<SID>113275</SID>
+		<SpellName>Entangling Roots (Symbiosis)</SpellName>
+	</data>
+	<data>
+		<SID>113275</SID>
+		<SpellName>Entangling Roots (Symbiosis)</SpellName>
+	</data>
+	<data>
+		<SID>19185</SID>
+		<SpellName>Entrapment</SpellName>
+	</data>
+	<data>
+		<SID>33395</SID>
+		<SpellName>Freeze</SpellName>
+	</data>
+	<data>
+		<SID>63685</SID>
+		<SpellName>Freeze (Frozen Power)</SpellName>
+	</data>
+	<data>
+		<SID>39965</SID>
+		<SpellName>Frost Grenade</SpellName>
+	</data>
+	<data>
+		<SID>122</SID>
+		<SpellName>Frost Nova</SpellName>
+	</data>
+	<data>
+		<SID>110693</SID>
+		<SpellName>Frost Nova (Mage)</SpellName>
+	</data>
+	<data>
+		<SID>55536</SID>
+		<SpellName>Frostweave Net</SpellName>
+	</data>
+	<data>
+		<SID>87194</SID>
+		<SpellName>Glyph of Mind Blast</SpellName>
+	</data>
+	<data>
+		<SID>111340</SID>
+		<SpellName>Ice Ward</SpellName>
+	</data>
+	<data>
+		<SID>45334</SID>
+		<SpellName>Immobilized (Wild Charge - Bear)</SpellName>
+	</data>
+	<data>
+		<SID>102359</SID>
+		<SpellName>Mass Entanglement</SpellName>
+	</data>
+	<data>
+		<SID>128405</SID>
+		<SpellName>Narrow Escape</SpellName>
+	</data>
+	<data>
+		<SID>13099</SID>
+		<SpellName>Net-o-Matic</SpellName>
+	</data>
+	<data>
+		<SID>115197</SID>
+		<SpellName>Partial Paralysis (is this actually used?)</SpellName>
+	</data>
+	<data>
+		<SID>50245</SID>
+		<SpellName>Pin (Crab)</SpellName>
+	</data>
+	<data>
+		<SID>91807</SID>
+		<SpellName>Shambling Rush (Dark Transformation)</SpellName>
+	</data>
+	<data>
+		<SID>123407</SID>
+		<SpellName>Spinning Fire Blossom</SpellName>
+	</data>
+	<data>
+		<SID>107566</SID>
+		<SpellName>Staggering Shout</SpellName>
+	</data>
+	<data>
+		<SID>54706</SID>
+		<SpellName>Venom Web Spray (Silithid)</SpellName>
+	</data>
+	<data>
+		<SID>114404</SID>
+		<SpellName>Void Tendril's Grasp</SpellName>
+	</data>
+	<data>
+		<SID>4167</SID>
+		<SpellName>Web (Spider)</SpellName>
+	</data>
+</data_Table>

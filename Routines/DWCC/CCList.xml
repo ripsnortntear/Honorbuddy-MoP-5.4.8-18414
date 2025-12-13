@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data>
+		<SID>30217</SID>
+		<SpellName>Adamantite Grenade</SpellName>
+	</data>
+	<data>
+		<SID>108194</SID>
+		<SpellName>Asphyxiate</SpellName>
+	</data>
+	<data>
+		<SID>89766</SID>
+		<SpellName>Axe Toss (Felguard/Wrathguard)</SpellName>
+	</data>
+	<data>
+		<SID>90337</SID>
+		<SpellName>Bad Manner (Monkey)</SpellName>
+	</data>
+	<data>
+		<SID>710</SID>
+		<SpellName>Banish</SpellName>
+	</data>
+	<data>
+		<SID>102795</SID>
+		<SpellName>Bear Hug</SpellName>
+	</data>
+	<data>
+		<SID>76780</SID>
+		<SpellName>Bind Elemental</SpellName>
+	</data>
+	<data>
+		<SID>117526</SID>
+		<SpellName>Binding Shot</SpellName>
+	</data>
+	<data>
+		<SID>2094</SID>
+		<SpellName>Blind</SpellName>
+	</data>
+	<data>
+		<SID>105421</SID>
+		<SpellName>Blinding Light</SpellName>
+	</data>
+	<data>
+		<SID>115752</SID>
+		<SpellName>Blinding Light (Glyph of Blinding Light)</SpellName>
+	</data>
+	<data>
+		<SID>111397</SID>
+		<SpellName>Blood Fear - is this actually used? please test</SpellName>
+	</data>
+	<data>
+		<SID>123393</SID>
+		<SpellName>Breath of Fire (Glyph of Breath of Fire)</SpellName>
+	</data>
+	<data>
+		<SID>119392</SID>
+		<SpellName>Charging Ox Wave</SpellName>
+	</data>
+	<data>
+		<SID>1833</SID>
+		<SpellName>Cheap Shot</SpellName>
+	</data>
+	<data>
+		<SID>126451</SID>
+		<SpellName>Clash</SpellName>
+	</data>
+	<data>
+		<SID>122242</SID>
+		<SpellName>Clash (not sure which one is right)</SpellName>
+	</data>
+	<data>
+		<SID>67769</SID>
+		<SpellName>Cobalt Frag Bomb</SpellName>
+	</data>
+	<data>
+		<SID>118271</SID>
+		<SpellName>Combustion Impact</SpellName>
+	</data>
+	<data>
+		<SID>33786</SID>
+		<SpellName>Cyclone</SpellName>
+	</data>
+	<data>
+		<SID>113506</SID>
+		<SpellName>Cyclone (Symbiosis)</SpellName>
+	</data>
+	<data>
+		<SID>44572</SID>
+		<SpellName>Deep Freeze</SpellName>
+	</data>
+	<data>
+		<SID>54786</SID>
+		<SpellName>Demonic Leap (Metamorphosis)</SpellName>
+	</data>
+	<data>
+		<SID>99</SID>
+		<SpellName>Disorienting Roar</SpellName>
+	</data>
+	<data>
+		<SID>605</SID>
+		<SpellName>Dominate Mind</SpellName>
+	</data>
+	<data>
+		<SID>118895</SID>
+		<SpellName>Dragon Roar</SpellName>
+	</data>
+	<data>
+		<SID>31661</SID>
+		<SpellName>Dragon's Breath</SpellName>
+	</data>
+	<data>
+		<SID>77505</SID>
+		<SpellName>Earthquake</SpellName>
+	</data>
+	<data>
+		<SID>118699</SID>
+		<SpellName>Fear</SpellName>
+	</data>
+	<data>
+		<SID>30216</SID>
+		<SpellName>Fel Iron Bomb</SpellName>
+	</data>
+	<data>
+		<SID>105593</SID>
+		<SpellName>Fist of Justice</SpellName>
+	</data>
+	<data>
+		<SID>3355</SID>
+		<SpellName>Freezing Trap</SpellName>
+	</data>
+	<data>
+		<SID>91800</SID>
+		<SpellName>Gnaw</SpellName>
+	</data>
+	<data>
+		<SID>1776</SID>
+		<SpellName>Gouge</SpellName>
+	</data>
+	<data>
+		<SID>853</SID>
+		<SpellName>Hammer of Justice</SpellName>
+	</data>
+	<data>
+		<SID>110698</SID>
+		<SpellName>Hammer of Justice (Paladin)</SpellName>
+	</data>
+	<data>
+		<SID>51514</SID>
+		<SpellName>Hex</SpellName>
+	</data>
+	<data>
+		<SID>2637</SID>
+		<SpellName>Hibernate</SpellName>
+	</data>
+	<data>
+		<SID>88625</SID>
+		<SpellName>Holy Word: Chastise</SpellName>
+	</data>
+	<data>
+		<SID>119072</SID>
+		<SpellName>Holy Wrath</SpellName>
+	</data>
+	<data>
+		<SID>5484</SID>
+		<SpellName>Howl of Terror</SpellName>
+	</data>
+	<data>
+		<SID>113056</SID>
+		<SpellName>Intimidating Roar [Cowering in fear] (Warrior)</SpellName>
+	</data>
+	<data>
+		<SID>113004</SID>
+		<SpellName>Intimidating Roar [Fleeing in fear] (Warrior)</SpellName>
+	</data>
+	<data>
+		<SID>5246</SID>
+		<SpellName>Intimidating Shout (Cowering in fear)</SpellName>
+	</data>
+	<data>
+		<SID>20511</SID>
+		<SpellName>Intimidating Shout (Cowering in fear)</SpellName>
+	</data>
+	<data>
+		<SID>24394</SID>
+		<SpellName>Intimidation</SpellName>
+	</data>
+	<data>
+		<SID>408</SID>
+		<SpellName>Kidney Shot</SpellName>
+	</data>
+	<data>
+		<SID>119381</SID>
+		<SpellName>Leg Sweep</SpellName>
+	</data>
+	<data>
+		<SID>22570</SID>
+		<SpellName>Maim</SpellName>
+	</data>
+	<data>
+		<SID>115268</SID>
+		<SpellName>Mesmerize (Shivarra)</SpellName>
+	</data>
+	<data>
+		<SID>5211</SID>
+		<SpellName>Mighty Bash</SpellName>
+	</data>
+	<data>
+		<SID>91797</SID>
+		<SpellName>Monstrous Blow (Dark Transformation)</SpellName>
+	</data>
+	<data>
+		<SID>6789</SID>
+		<SpellName>Mortal Coil</SpellName>
+	</data>
+	<data>
+		<SID>115078</SID>
+		<SpellName>Paralysis</SpellName>
+	</data>
+	<data>
+		<SID>113953</SID>
+		<SpellName>Paralysis (Paralytic Poison)</SpellName>
+	</data>
+	<data>
+		<SID>118</SID>
+		<SpellName>Polymorph</SpellName>
+	</data>
+	<data>
+		<SID>61305</SID>
+		<SpellName>Polymorph: Black Cat</SpellName>
+	</data>
+	<data>
+		<SID>28272</SID>
+		<SpellName>Polymorph: Pig</SpellName>
+	</data>
+	<data>
+		<SID>61721</SID>
+		<SpellName>Polymorph: Rabbit</SpellName>
+	</data>
+	<data>
+		<SID>61780</SID>
+		<SpellName>Polymorph: Turkey</SpellName>
+	</data>
+	<data>
+		<SID>28271</SID>
+		<SpellName>Polymorph: Turtle</SpellName>
+	</data>
+	<data>
+		<SID>9005</SID>
+		<SpellName>Pounce</SpellName>
+	</data>
+	<data>
+		<SID>102546</SID>
+		<SpellName>Pounce (Incarnation)</SpellName>
+	</data>
+	<data>
+		<SID>64044</SID>
+		<SpellName>Psychic Horror</SpellName>
+	</data>
+	<data>
+		<SID>8122</SID>
+		<SpellName>Psychic Scream</SpellName>
+	</data>
+	<data>
+		<SID>113792</SID>
+		<SpellName>Psychic Terror (Psyfiend)</SpellName>
+	</data>
+	<data>
+		<SID>118345</SID>
+		<SpellName>Pulverize</SpellName>
+	</data>
+	<data>
+		<SID>107079</SID>
+		<SpellName>Quaking Palm</SpellName>
+	</data>
+	<data>
+		<SID>13327</SID>
+		<SpellName>Reckless Charge</SpellName>
+	</data>
+	<data>
+		<SID>115001</SID>
+		<SpellName>Remorseless Winter</SpellName>
+	</data>
+	<data>
+		<SID>20066</SID>
+		<SpellName>Repentance</SpellName>
+	</data>
+	<data>
+		<SID>82691</SID>
+		<SpellName>Ring of Frost</SpellName>
+	</data>
+	<data>
+		<SID>6770</SID>
+		<SpellName>Sap</SpellName>
+	</data>
+	<data>
+		<SID>1513</SID>
+		<SpellName>Scare Beast</SpellName>
+	</data>
+	<data>
+		<SID>19503</SID>
+		<SpellName>Scatter Shot</SpellName>
+	</data>
+	<data>
+		<SID>6358</SID>
+		<SpellName>Seduction (Succubus)</SpellName>
+	</data>
+	<data>
+		<SID>9484</SID>
+		<SpellName>Shackle Undead</SpellName>
+	</data>
+	<data>
+		<SID>30283</SID>
+		<SpellName>Shadowfury</SpellName>
+	</data>
+	<data>
+		<SID>132168</SID>
+		<SpellName>Shockwave</SpellName>
+	</data>
+	<data>
+		<SID>87204</SID>
+		<SpellName>Sin and Punishment</SpellName>
+	</data>
+	<data>
+		<SID>104045</SID>
+		<SpellName>Sleep (Metamorphosis)</SpellName>
+	</data>
+	<data>
+		<SID>50519</SID>
+		<SpellName>Sonic Blast (Bat)</SpellName>
+	</data>
+	<data>
+		<SID>118905</SID>
+		<SpellName>Static Charge (Capacitor Totem)</SpellName>
+	</data>
+	<data>
+		<SID>56626</SID>
+		<SpellName>Sting (Wasp)</SpellName>
+	</data>
+	<data>
+		<SID>10326</SID>
+		<SpellName>Turn Evil</SpellName>
+	</data>
+	<data>
+		<SID>20549</SID>
+		<SpellName>War Stomp</SpellName>
+	</data>
+	<data>
+		<SID>105771</SID>
+		<SpellName>Warbringer</SpellName>
+	</data>
+	<data>
+		<SID>19386</SID>
+		<SpellName>Wyvern Sting</SpellName>
+	</data>
+</data_Table>
