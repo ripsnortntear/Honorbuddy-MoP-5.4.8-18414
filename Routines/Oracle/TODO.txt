@@ -1,0 +1,95 @@
+#region Revision info
+
+/*
+ * $Author: wulf_ $
+ * $Date: 2013-09-17 12:14:14 +1000 (Tue, 17 Sep 2013) $
+ * $ID$
+ * $Revision: 227 $
+ * $URL: https://subversion.assembla.com/svn/oracle/trunk/Oracle/TODO.txt $
+ * $LastChangedBy: wulf_ $
+ * $ChangesMade$
+ */
+
+#endregion Revision info
+
+
+IMPROVEMENT: 
+Is it possible to use the stopcast settings so if your healing a dsp/healer 
+and a tank is under your oh shit level for cr to stop casting on 
+lesser target to heal tank or in the case im referring to a target with debuff?
+
+Wulf any planned support of the Malkorok healing mechanics, and Thok stopcasting at screeches? Also I don't see a donate buttons, is this by coincidence?
+
+FIX: So you start encounter, healing wave crits for 140k then you do 60k healing waves normally 
+it will always take that 140k.. So when the tank is 35% it thinks it can use a cheep HW to cover the deficit
+
+IMPROVEMENT: Sacred Shield  support. (may not support this as traditionally this is a Prot Paladin talent.)
+
+List of DoTs to shield players no matter HP
+Smite Clipping
+
+a dps toggle would be nice as well, a hot key of some kind
+
+Holy Priest: its not casting lightspring,
+Fix: Lightwell Lightspring placement
+
+Improvement: Mass Dispel
+
+Communicate to the user that 0 in both HP and Count on cooldowns and AoE spells will disable the use.
+
+Improvement: LoS checks with StyxWoW.LastRedErrorMessage !!
+
+
+Dynamic Priority Spell Logging
+======================================
+
+[{0} : {5}] [Deficit {1}%] [MPS: {2}] [HPS: {3}] [Oracle prio: {4}] {6}
+
+
+0 = Spellname
+
+1 = Deficit percent 
+    (totalHeal - healthDeficit)
+    * totalHeal is from one of two places.
+      * - Calculated by Oracle (using current auras and current spellpower)
+      * - Combat Log (it gets the minimum and Maximum the heal hit for and averages it, crits included)
+    * healthDeficit is maxhealth - currentHealth of the healtarget (this usese predicted heal and includes your heals)
+
+2 = Mana Per Second 
+    * ManaCost / Math.Max(CastTime, 1)
+	* - Used to weight the spell (the lower the MPS the higher the priority)
+	* - Can be seen in the HealCalcs tab
+	
+3 = Heals per second   
+    * TotalCalculatedHeal / Math.Max(CastTime, 1)
+	* - Used to weight the spell (the higher the HPS the higher the priority ONLY valid when the Healtarget is less than Urgent Health percent)
+	* - When the target is less than Urgent Health percent setting HPS get the priority. MPS is ignored
+	* - Can be seen in the HealCalcs tab
+
+4 = Oracle prio 
+    * 100 - Deficit percent + (Oracles calulated heal / Mana Per Second) or (Heals per second)
+    * this is the priority Oracle uses to order the spells.
+
+5 = Oracles Calculated Heal
+      * totalHeal is from one of two places.
+      * - Calculated by Oracle (using current auras and current spellpower)
+      * - Combat Log (it gets the minimum and Maximum the heal hit for and averages it, crits included)
+
+6 = [Calculated Heal] or [Combat Log Heal (Averaged)]
+      * If the heal came from the averaged combat log heal then [Combat Log Heal (Averaged)] will be shown
+      * Once Oracle has the combat log value it will continue to use that value for the duration of the encounter.
+      * If the combat log heal is greater than the current heal amount it will be updated.
+      * if its a spell that was calculated by Oracle it will show [Calculated Heal] 
+
+Example Output.
+--------------------------
+
+[Oracle [1.0.0.226]]: ---> Oto the Protector Health Deficit: 92257
+[Oracle [1.0.0.226]]: ---> [Power Word: Solace : 42699.08] [Deficit 8%] [MPS: 0] [HPS: 34555] [Oracle prio: Infinity] [Calculated Heal]
+[Oracle [1.0.0.226]]: ---> [Smite : 34645.64] [Deficit 9%] [MPS: 2454.545] [HPS: 10499] [Oracle prio: 115.1149] [Calculated Heal]
+[Oracle [1.0.0.226]]: ---> [Penance : 121268] [Deficit 4%] [MPS: 6773.001] [HPS: 73604] [Oracle prio: 113.9046] [Calculated Heal]
+[Oracle [1.0.0.226]]: ---> [Heal : 47845.92] [Deficit 7%] [MPS: 5699] [HPS: 47846] [Oracle prio: 101.3955] [Calculated Heal]
+[Oracle [1.0.0.226]]: ---> [Flash Heal : 76943] [Deficit 4%] [MPS: 14324.12] [HPS: 51028] [Oracle prio: 100.7187] [Combat Log Heal (Averaged)]
+[Oracle [1.0.0.226]]: ---> [Renew : 44542.71] [Deficit 8%] [MPS: 5200] [HPS: 29695] [Oracle prio: 100.5659] [Calculated Heal]
+[Oracle [1.0.0.226]]: ---> [Power Word: Shield : 58271.05] [Deficit 5%] [MPS: 11107.26] [HPS: 47157] [Oracle prio: 100.2462] [Calculated Heal]
+[Oracle [1.0.0.226]]: ---> [Binding Heal : 45079.79] [Deficit 7%] [MPS: 13110.21] [HPS: 36482] [Oracle prio: 96.43852] [Calculated Heal]
