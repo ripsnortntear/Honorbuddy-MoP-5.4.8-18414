@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DruidSettings>
+  <UrgentHealthPercentage>35</UrgentHealthPercentage>
+  <DisableNourish>False</DisableNourish>
+  <HandleBuffonTank>Always</HandleBuffonTank>
+  <ToLConserveManaPct>20</ToLConserveManaPct>
+  <LifebloomstacksForToL>3</LifebloomstacksForToL>
+  <InnervatePercent>70</InnervatePercent>
+  <InnervateHymnOfHopePercent>85</InnervateHymnOfHopePercent>
+  <RegrowtToLPercent>70</RegrowtToLPercent>
+  <RegrowtClearcastingPercent>98</RegrowtClearcastingPercent>
+  <NaturesSwiftnessHealingTouchPct>35</NaturesSwiftnessHealingTouchPct>
+  <CenarionWardPct>90</CenarionWardPct>
+  <RenewalPct>90</RenewalPct>
+  <BarkskinPct>60</BarkskinPct>
+  <IronBarkPct>70</IronBarkPct>
+  <MightofUrsocPct>20</MightofUrsocPct>
+  <ForceOfNaturePct>75</ForceOfNaturePct>
+  <ForceOfNatureWaitTime>6</ForceOfNatureWaitTime>
+  <TranquilityPct>75</TranquilityPct>
+  <TranquilityLimit>3</TranquilityLimit>
+  <WildGrowthPct>95</WildGrowthPct>
+  <WildGrowthLimit>3</WildGrowthLimit>
+  <SwiftmendAoEPct>98</SwiftmendAoEPct>
+  <SwiftmendAoeLimit>3</SwiftmendAoeLimit>
+  <WildMushroomPct>91</WildMushroomPct>
+  <WildMushroomLimit>3</WildMushroomLimit>
+  <NaturesVigilPct>75</NaturesVigilPct>
+  <NaturesVigilLimit>3</NaturesVigilLimit>
+  <ForceOfNatureAoEPct>85</ForceOfNatureAoEPct>
+  <ForceOfNatureAoeLimit>3</ForceOfNatureAoeLimit>
+  <IncarnationPct>60</IncarnationPct>
+  <IncarnationLimit>3</IncarnationLimit>
+  <GenesisPct>92</GenesisPct>
+  <GenesisLimit>3</GenesisLimit>
+  <GenesisbuffLimit>2</GenesisbuffLimit>
+  <HeartOfTheWildPct>65</HeartOfTheWildPct>
+  <HeartOfTheWildLimit>3</HeartOfTheWildLimit>
+</DruidSettings>

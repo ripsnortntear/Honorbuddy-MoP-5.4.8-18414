@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DiscPriestSettings>
+  <BindingHealPct>80</BindingHealPct>
+  <ShadowfiendPct>60</ShadowfiendPct>
+  <HymnofHopePct>15</HymnofHopePct>
+  <EnablePriestMovementBuff>False</EnablePriestMovementBuff>
+  <UsePowerWordFortitude>True</UsePowerWordFortitude>
+  <PrayerOfMendingPct>100</PrayerOfMendingPct>
+  <FlashHealSoLPct>80</FlashHealSoLPct>
+  <UseFade>False</UseFade>
+  <EnableOffensiveDps>True</EnableOffensiveDps>
+  <PainSuppressionPercent>25</PainSuppressionPercent>
+  <GreaterHealPct>45</GreaterHealPct>
+  <HealDSPPct>60</HealDSPPct>
+  <FlashHealDSPPct>60</FlashHealDSPPct>
+  <DivineStarPct>80</DivineStarPct>
+  <DivineStarCount>2</DivineStarCount>
+  <CascadePct>75</CascadePct>
+  <CascadeCount>3</CascadeCount>
+  <HaloPct>75</HaloPct>
+  <HaloCount>3</HaloCount>
+  <PrayerofHealingPct>87</PrayerofHealingPct>
+  <PrayerofHealingCount>3</PrayerofHealingCount>
+  <PowerWordBarrierPct>10</PowerWordBarrierPct>
+  <PowerWordBarrierCount>5</PowerWordBarrierCount>
+  <DesperatePrayerPct>40</DesperatePrayerPct>
+  <SpiritShellPct>10</SpiritShellPct>
+  <SpiritShellCount>10</SpiritShellCount>
+  <ArchangelPct>85</ArchangelPct>
+  <ArchangelCount>3</ArchangelCount>
+  <PowerInfusionPct>80</PowerInfusionPct>
+  <PowerInfusionCount>3</PowerInfusionCount>
+  <VoidShiftPct>30</VoidShiftPct>
+  <UrgentHealthPercentage>35</UrgentHealthPercentage>
+</DiscPriestSettings>

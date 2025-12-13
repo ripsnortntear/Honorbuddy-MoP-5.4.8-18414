@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonkSettings>
+  <ManaTeaStackCount>1</ManaTeaStackCount>
+  <ManaTeaPct>50</ManaTeaPct>
+  <StopCastingManaTeapCt>90</StopCastingManaTeapCt>
+  <StopCastingHealthpCtforTank>45</StopCastingHealthpCtforTank>
+  <HealingSphereManaPct>101</HealingSphereManaPct>
+  <HealingSpherePrioManaPct>60</HealingSpherePrioManaPct>
+  <IgnoreSoothingMist>True</IgnoreSoothingMist>
+  <SwitchMistPercent>1</SwitchMistPercent>
+  <UseThunderFocusTeaMaxChi>True</UseThunderFocusTeaMaxChi>
+  <UseUpliftMaxChi>True</UseUpliftMaxChi>
+  <UseNimbleBrew>True</UseNimbleBrew>
+  <FistWeaveMana>101</FistWeaveMana>
+  <ThunderFocusTeaOnCooldown>True</ThunderFocusTeaOnCooldown>
+  <EnableUpliftOveride>True</EnableUpliftOveride>
+  <ChiCountUpliftOveride>2</ChiCountUpliftOveride>
+  <EnableSoothingSpam>True</EnableSoothingSpam>
+  <EnableSerpentStatueUsage>True</EnableSerpentStatueUsage>
+  <MaxSerpentStatueDistance>20</MaxSerpentStatueDistance>
+  <SerpentStatueWaitTime>10</SerpentStatueWaitTime>
+  <SurgingVitalMistPercent>90</SurgingVitalMistPercent>
+  <SurgingVitalPrioEnabled>False</SurgingVitalPrioEnabled>
+  <ExpelHarmPct>100</ExpelHarmPct>
+  <ExpelHarmChiCount>4</ExpelHarmChiCount>
+  <DampenHarmPct>40</DampenHarmPct>
+  <LifeCocoonPct>35</LifeCocoonPct>
+  <FortifyingBrewPct>40</FortifyingBrewPct>
+  <RenewingMistPct>100</RenewingMistPct>
+  <RenewingMistLimit>0</RenewingMistLimit>
+  <UpliftPct>96</UpliftPct>
+  <UpliftLimit>3</UpliftLimit>
+  <RevivalPct>50</RevivalPct>
+  <RevivalLimit10Man>5</RevivalLimit10Man>
+  <RevivalLimit25Man>10</RevivalLimit25Man>
+  <InvokeXuentheWhiteTigerPct>75</InvokeXuentheWhiteTigerPct>
+  <InvokeXuentheWhiteTigerLimit>4</InvokeXuentheWhiteTigerLimit>
+  <ThunderFocusTeaPct>75</ThunderFocusTeaPct>
+  <ThunderFocusTeaLimit>3</ThunderFocusTeaLimit>
+  <UrgentHealthPercentage>35</UrgentHealthPercentage>
+</MonkSettings>

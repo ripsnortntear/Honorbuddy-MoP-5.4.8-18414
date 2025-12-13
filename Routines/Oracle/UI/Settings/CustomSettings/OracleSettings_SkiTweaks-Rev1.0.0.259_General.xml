@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OracleSettings>
+  <EnableProvingGrounds>False</EnableProvingGrounds>
+  <EnableSelectiveHealing>False</EnableSelectiveHealing>
+  <PvPSupport>False</PvPSupport>
+  <Trace>False</Trace>
+  <LastStatCounted>273</LastStatCounted>
+  <HealthStonePct>60</HealthStonePct>
+  <ManaPotionPct>30</ManaPotionPct>
+  <PotionSelection>None</PotionSelection>
+  <UseRacials>Never</UseRacials>
+  <FirstTrinketUsage>LowMana</FirstTrinketUsage>
+  <SecondTrinketUsage>Never</SecondTrinketUsage>
+  <TrinketHealthPct>80</TrinketHealthPct>
+  <TrinketManaPct>50</TrinketManaPct>
+  <PerformanceLogging>None</PerformanceLogging>
+  <EnableDispelLogging>False</EnableDispelLogging>
+  <EnablePriorityLogging>False</EnablePriorityLogging>
+  <EnableEFLogging>False</EnableEFLogging>
+  <EnableStopCasting>False</EnableStopCasting>
+  <StopCastingPercent>91</StopCastingPercent>
+  <ENABLE_HPM>True</ENABLE_HPM>
+  <URGENT_HEALTH_PERCENT>45</URGENT_HEALTH_PERCENT>
+  <MAX_AOE_HP>91</MAX_AOE_HP>
+  <CheckAllowUsageTracking>True</CheckAllowUsageTracking>
+  <DispelDebuffs>True</DispelDebuffs>
+</OracleSettings>

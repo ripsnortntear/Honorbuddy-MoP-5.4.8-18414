@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Filename>F:\Games\Honorbuddy\HBeta\Settings\Oracle\DispelableSpells.xml</Filename>
+  <Version>1.0.1</Version>
+  <Spells>
+	<SpellEntry Id="6358" Name="Seduction" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="113092" Name="Frost Bomb" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="104045" Name="Sleep" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="30283" Name="Shadowfury" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="6789" Name="Mortal Coil" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="5484" Name="Howl of Terror" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="118699" Name="Fear" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="5782" Name="Fear" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="118905" Name="Static Charge" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="9484" Name="Shackle Undead" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="113792" Name="Psychic Terror" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="8122" Name="Psychic Scream" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="64044" Name="Psychic Horror" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="10326" Name="Turn Evil" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="20066" Name="Repentance" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="119072" Name="Holy Wrath" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="853" Name="Hammer of Justice" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="105593" Name="Fist of Justice" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="115752" Name="Blinding Light" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="105421" Name="Blinding Light" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="115078" Name="Paralysis" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="123393" Name="Breath of Fire" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="11129" Name="Combustion" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="82691" Name="Ring of Frost" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="28271" Name="Polymorph: Turtle" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="61780" Name="Polymorph: Turkey" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="61721" Name="Polymorph: Rabbit" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="28272" Name="Polymorph: Pig" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="61305" Name="Polymorph: Black Cat" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="31661" Name="Dragon's Breath" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="44572" Name="Deep Freeze" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="118271" Name="Combustion Impact" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="1513" Name="Scare Beast" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="3355" Name="Freezing Trap" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="117526" Name="Binding Shot" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="110698" Name="Hammer of Justice" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+	<SpellEntry Id="2637" Name="Hibernate" DisType="Priority" Delay="0" StackCount="0" Range="0" />
+  </Spells>
+</SpellList>

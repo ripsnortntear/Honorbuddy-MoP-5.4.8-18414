@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Filename>F:\Games\Honorbuddy\Latest\Settings\Oracle\DispelableSpells.xml</Filename>
+  <Version>1.0.0.276</Version>
+  <Spells>
+    <SpellEntry Id="96328" Name="Toxic Torment (Green Cauldron)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="96325" Name="Frostburn Formula (Blue Cauldron)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="96326" Name="Frostburn Formula (?)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="131040" Name="Burning Blood (Red Cauldron)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="92876" Name="Burning Blood (?)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="92878" Name="Blackout (10man)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="86788" Name="Blackout (25man)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="30108" Name="Blackout (?)" DisType="BlackList" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="143446" Name="Shadow Word: Bane" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="143434" Name="Shadow Word: Bane" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="144514" Name="Lingering Corruption" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="144351" Name="Mark of Arrogance" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="77351" Name="Aqua Bomb" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="145206" Name="Aqua Bomb" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136708" Name="Horridon - Stone Gaze" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136719" Name="Farraki - Blazing Sunlight" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136587" Name="Gurubashi- Venom Bolt Volley" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136710" Name="Drakaki - Deadly Plague" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136512" Name="Amani - Hex of Confusion" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136857" Name="Entrapped" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136185" Name="Fragile Bones" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136187" Name="Clouded Mind" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136183" Name="Dulled Synapses" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="136181" Name="Impaired Eyesight" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="138040" Name="Horrific Visage" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="117949" Name="Closed Curcuit" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="140179" Name="Mageara - Supression (Heroic)" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="117436" Name="Lightning Prison" DisType="Priority" Delay="0" DisDelayType="None" StackCount="0" Range="0" />
+    <SpellEntry Id="139822" Name="Mageara - Cinders" DisType="Range" Delay="0" DisDelayType="None" StackCount="0" Range="12" />
+    <SpellEntry Id="138609" Name="Dark Animus - Matter Swap" DisType="Delay" Delay="5000" DisDelayType="CountingDown" StackCount="0" Range="0" />
+    <SpellEntry Id="133597" Name="Durumu - Dark Parasite ( Heroic )" DisType="Delay" Delay="7000" DisDelayType="CountingDown" StackCount="0" Range="0" />
+    <SpellEntry Id="142942" Name="Torment" DisType="Delay" Delay="3000" DisDelayType="CountingUp" StackCount="0" Range="0" />
+    <SpellEntry Id="144514" Name="Lingering Corruption" DisType="Delay" Delay="5000" DisDelayType="CountingDown" StackCount="0" Range="0" />
+    <SpellEntry Id="11" Name=" Test-Stack" DisType="Stack" Delay="0" DisDelayType="None" StackCount="3" Range="0" />
+    <SpellEntry Id="143791" Name="Corrosive Blood" DisType="Stack" Delay="0" DisDelayType="None" StackCount="2" Range="0" />
+    <SpellEntry Id="143446" Name="Shadow Word: Bane" DisType="Stack" Delay="0" DisDelayType="None" StackCount="2" Range="0" />
+  </Spells>
+</SpellList>
