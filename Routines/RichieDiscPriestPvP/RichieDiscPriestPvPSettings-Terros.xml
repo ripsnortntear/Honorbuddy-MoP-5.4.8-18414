@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DiscSettings>
+  <Cascade>True</Cascade>
+  <DesperatePrayer>60</DesperatePrayer>
+  <AutoFace>True</AutoFace>
+  <FadeAuto>True</FadeAuto>
+  <HealthstonePercent>35</HealthstonePercent>
+  <PowerWordFortitude>True</PowerWordFortitude>
+  <ShadowfiendAuto>False</ShadowfiendAuto>
+  <SearchInterval>400</SearchInterval>
+  <GriefPpl>False</GriefPpl>
+  <FearWardSelf>True</FearWardSelf>
+  <AutoMassDispel>False</AutoMassDispel>
+  <PeelSelf>80</PeelSelf>
+  <PowerInfusionOnCD>False</PowerInfusionOnCD>
+  <LoF>False</LoF>
+  <UseRacial>True</UseRacial>
+  <Shackle>True</Shackle>
+  <rightClickMovementOff>True</rightClickMovementOff>
+  <useTrinket>True</useTrinket>
+  <trinketSlotNumber>13</trinketSlotNumber>
+  <PoMHp>90</PoMHp>
+  <painSuppressionHp>35</painSuppressionHp>
+  <penanceHp>85</penanceHp>
+  <InstantFlashHealBelowHP>80</InstantFlashHealBelowHP>
+  <innerFocusHp>40</innerFocusHp>
+  <FlashHealHp>50</FlashHealHp>
+  <barrierHp>40</barrierHp>
+  <VoidShiftBelowHp>30</VoidShiftBelowHp>
+  <renewHp>90</renewHp>
+  <Lvl90SafeCheck>False</Lvl90SafeCheck>
+  <PWSHp>90</PWSHp>
+  <AtonementHealingAbove>80</AtonementHealingAbove>
+  <OnlyUseSmite>False</OnlyUseSmite>
+  <PWSBlanketAboveHp>80</PWSBlanketAboveHp>
+  <AngelicFeatherDelay>10</AngelicFeatherDelay>
+  <DontCancelDominateMind>False</DontCancelDominateMind>
+  <TotemAndPlayerKillingAboveHp>40</TotemAndPlayerKillingAboveHp>
+</DiscSettings>
