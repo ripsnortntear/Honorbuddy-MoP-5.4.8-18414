@@ -95,59 +95,16 @@ namespace Singular.ClassSpecific.Shaman
 
         #endregion
 
-        /// <summary>
-        /// invoke on CurrentTarget if not tagged. use ranged instant casts first
-        /// and if none known or off cooldown use Lightning Bolt.  this  is a blend
-        /// of abilities across all specializations
-        /// </summary>
-        /// <returns></returns>
-        public static Composite CreateShamanInCombatPullMore()
-        {
-            if (SingularRoutine.CurrentWoWContext != WoWContext.Normal)
-                return new ActionAlwaysFail();
-
-            return new Throttle(
-                2,
-                new Decorator(
-                    req => Me.GotTarget
-                        && !Me.CurrentTarget.IsPlayer
-                        && !Me.CurrentTarget.IsTagged
-                        && !Me.CurrentTarget.IsWithinMeleeRange,
-                    new PrioritySelector(
-                        Spell.Cast("Earth Shock", ret => StyxWoW.Me.HasAura("Lightning Shield", 5)),
-                        Spell.Buff("Flame Shock", true, req => SpellManager.HasSpell("Lava Burst")),
-                        Spell.Cast("Unleash Weapon", ret => Common.IsImbuedForDPS(StyxWoW.Me.Inventory.Equipped.MainHand)),
-                        Spell.Cast("Earth Shock", ret => !SpellManager.HasSpell("Flame Shock")),
-
-                        Spell.Cast("Lightning Bolt", req => TalentManager.CurrentSpec != WoWSpec.ShamanEnhancement),
-                        Spell.Cast("Lightning Bolt", ret => TalentManager.CurrentSpec == WoWSpec.ShamanEnhancement && !ShamanSettings.AvoidMaelstromDamage && StyxWoW.Me.HasAura("Maelstrom Weapon", 5) && (StyxWoW.Me.GetAuraTimeLeft("Maelstom Weapon", true).TotalSeconds < 3000 || StyxWoW.Me.PredictedHealthPercent(includeMyHeals: true) > 90))
-                        )
-                    )
-                );
-        }
-
         [Behavior(BehaviorType.LossOfControl, WoWClass.Shaman)]
         public static Composite CreateShamanLossOfControlBehavior()
         {
             return new Decorator(
                 ret => !Spell.IsGlobalCooldown() && !Spell.IsCastingOrChannelling(),
                 new PrioritySelector(
+                    Spell.Cast(WoWTotem.Tremor.ToSpellId(), on => Me, ret => Me.Fleeing),
                     new Decorator(
-                        ret => Me.Fleeing && !Spell.IsSpellOnCooldown(WoWTotem.Tremor.ToSpellId()),
-                        new PrioritySelector(
-                            new Action( r => {
-                                Logger.Write(Color.White, "/use Tremor Totem (I am fleeing...)");
-                                return RunStatus.Failure;
-                            }),
-                            Spell.Cast(WoWTotem.Tremor.ToSpellId(), on => Me),
-                            Spell.CastHack("Tremor Totem", on => Me, 
-                                req => {
-                                    if (!Spell.CanCastHack("Tremor Totem", Me))
-                                        return false;
-                                    Logger.WriteDebug( Color.Pink, "Hack Casting Tremor"); 
-                                    return true; 
-                                })
-                            )
+                        ret => Me.Fleeing && Spell.CanCastHack("Tremor Totem", Me),
+                        Spell.CastHack("Tremor Totem", on => Me, req => { Logger.WriteDebug( Color.Pink, "Hack Casting Tremor"); return true; })
                         ),
                     Spell.Cast("Thunderstorm", on => Me, ret => Me.Stunned && Unit.NearbyUnfriendlyUnits.Any( u => u.IsWithinMeleeRange )),
                     Spell.BuffSelf("Shamanistic Rage", ret => Me.Stunned && Unit.NearbyUnfriendlyUnits.Any(u => u.IsWithinMeleeRange))
@@ -180,7 +137,7 @@ namespace Singular.ClassSpecific.Shaman
 
                     // hex someone if they are not current target, attacking us, and 12 yds or more away
                     new Decorator(
-                        req => Me.GotTarget && (TalentManager.CurrentSpec != WoWSpec.ShamanEnhancement || !ShamanSettings.AvoidMaelstromDamage),
+                        req => Me.GotTarget && (Me.Specialization != WoWSpec.ShamanEnhancement || !ShamanSettings.AvoidMaelstromDamage),
                         new PrioritySelector(
                             new PrioritySelector(
                                 ctx => Unit.NearbyUnfriendlyUnits
@@ -234,7 +191,7 @@ namespace Singular.ClassSpecific.Shaman
                             )
                         ),
 
-                    Spell.BuffSelf("Ascendance", ret => ShamanSettings.UseAscendance && SingularRoutine.CurrentWoWContext == WoWContext.Normal && Common.StressfulSituation),
+                    Spell.BuffSelf("Ascendance", ret => SingularRoutine.CurrentWoWContext == WoWContext.Normal && Common.StressfulSituation),
 
                     Spell.BuffSelf("Elemental Mastery", ret => !PartyBuff.WeHaveBloodlust)
 
@@ -271,7 +228,7 @@ namespace Singular.ClassSpecific.Shaman
                         && IsPvpFightWorthLusting),
 
                 Spell.BuffSelf("Ascendance",
-                    ret => ShamanSettings.UseAscendance && ((Me.GotTarget && Me.CurrentTarget.HealthPercent > 70) || Unit.NearbyUnfriendlyUnits.Count() > 1)),
+                    ret => ((Me.GotTarget && Me.CurrentTarget.HealthPercent > 70) || Unit.NearbyUnfriendlyUnits.Count() > 1)),
 
                 Spell.BuffSelf("Elemental Mastery", ret => !PartyBuff.WeHaveBloodlust)
 
@@ -402,7 +359,7 @@ namespace Singular.ClassSpecific.Shaman
         public static void SetNextAllowedImbueTime()
         {
             // 2 seconds to allow for 0.5 seconds plus latency for buff to appear
-            nextImbueAllowed = DateTime.Now + new TimeSpan(0, 0, 0, 0, 750); // 1500 + (int) SingularRoutine.Latency << 1);
+            nextImbueAllowed = DateTime.Now + new TimeSpan(0, 0, 0, 0, 750); // 1500 + (int) StyxWoW.WoWClient.Latency << 1);
         }
 
         public static string ToSpellName(this Imbue i)
@@ -471,29 +428,11 @@ namespace Singular.ClassSpecific.Shaman
             return new Decorator(
                 ret => !Spell.IsGlobalCooldown() && !Spell.IsCastingOrChannelling(),
                 new PrioritySelector(
-
+            // use predicted health for non-combat healing to reduce drinking downtime and help
+            // .. avoid unnecessary heal casts
                     new Decorator(
-                        ret => !Me.Combat
-                            && (!Me.IsMoving || Me.HasAura("Maelstrom Weapon", 5))
-                            && Me.HealthPercent <= 85  // not redundant... this eliminates unnecessary GetPredicted... checks
-                            && SpellManager.HasSpell("Healing Surge")
-                            && Me.PredictedHealthPercent(includeMyHeals: true) < 85,
-                        new PrioritySelector(
-                            new Sequence(
-                                ctx => (float)Me.HealthPercent,
-                                new Action(r => Logger.WriteDebug("Healing Surge: {0:F1}% Predict:{1:F1}% and moving:{2}, cancast:{3}", (float) r, Me.PredictedHealthPercent(includeMyHeals: true), Me.IsMoving, Spell.CanCastHack("Healing Surge", Me, skipWowCheck: false))),
-                                Spell.Cast(
-                                    "Healing Surge",
-                                    mov => true,
-                                    on => Me,
-                                    req => true,
-                                    cancel => Me.HealthPercent > 85
-                                    ),
-                                new WaitContinue(TimeSpan.FromMilliseconds(500), until => !Me.IsCasting && Me.HealthPercent > (1.1 * ((float)until)), new ActionAlwaysSucceed()),
-                                new Action( r => Logger.WriteDebug("Healing Surge: After Heal Attempted: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.PredictedHealthPercent(includeMyHeals: true)))
-                                ),
-                            new Action( r => Logger.WriteDebug("Healing Surge: After Heal Skipped: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.PredictedHealthPercent(includeMyHeals: true)))
-                            )
+                        ret => !Me.Combat,  // non-combat = top off health
+                        Spell.Cast("Healing Surge", ret => Me, ret => Me.GetPredictedHealthPercent(true) < 85)
                         ),
 
                     new Decorator(
@@ -512,27 +451,10 @@ namespace Singular.ClassSpecific.Shaman
                             // save myself if possible
                             new Decorator(
                                 ret => (!Me.IsInGroup() || Battlegrounds.IsInsideBattleground)
-                                    && (!Me.IsMoving || Me.HasAura("Maelstrom Weapon", 5) || !Spell.IsSpellOnCooldown("Ancestral Swiftness"))
-                                    && Me.HealthPercent < ShamanSettings.SelfAncestralSwiftnessHeal
-                                    && Me.PredictedHealthPercent(includeMyHeals: true) < ShamanSettings.SelfAncestralSwiftnessHeal,
+                                    && Me.HealthPercent < ShamanSettings.SelfAncestralSwiftnessHeal,
                                 new PrioritySelector(
                                     Spell.OffGCD( Spell.BuffSelf("Ancestral Swiftness") ),
-                                    new PrioritySelector(
-                                        new Sequence(
-                                            ctx => (float)Me.HealthPercent,
-                                            new Action(r => Logger.WriteDebug("Healing Surge: {0:F1}% Predict:{1:F1}% and moving:{2}, cancast:{3}", (float)r, Me.PredictedHealthPercent(includeMyHeals: true), Me.IsMoving, Spell.CanCastHack("Healing Surge", Me, skipWowCheck: false))),
-                                            Spell.Cast(
-                                                "Healing Surge",
-                                                mov => true,
-                                                on => Me,
-                                                req => true,
-                                                cancel => Me.HealthPercent > 85
-                                                ),
-                                            new WaitContinue(TimeSpan.FromMilliseconds(500), until => !Me.IsCasting && Me.HealthPercent > (1.1 * ((float)until)), new ActionAlwaysSucceed()),
-                                            new Action(r => Logger.WriteDebug("Healing Surge: After Heal Attempted: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.PredictedHealthPercent(includeMyHeals: true)))
-                                            ),
-                                        new Action(r => Logger.WriteDebug("Healing Surge: After Heal Skipped: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.PredictedHealthPercent(includeMyHeals: true)))
-                                        )
+                                    Spell.Cast("Healing Surge", ret => Me)
                                     )
                                 )
                             )
@@ -567,7 +489,7 @@ namespace Singular.ClassSpecific.Shaman
                 String.Format("Oh Shoot Heal @ {0}%", ShamanSettings.OffHealSettings.AncestralSwiftness),
                 null,
                 new Decorator(
-                    ret => (Me.Combat || ((WoWUnit)ret).Combat) && ((WoWUnit)ret).PredictedHealthPercent() < ShamanSettings.OffHealSettings.AncestralSwiftness,
+                    ret => (Me.Combat || ((WoWUnit)ret).Combat) && ((WoWUnit)ret).GetPredictedHealthPercent() < ShamanSettings.OffHealSettings.AncestralSwiftness,
                     new PrioritySelector(
                         Spell.OffGCD(Spell.BuffSelf("Ancestral Swiftness")),
                         Spell.Cast("Healing Surge", on => (WoWUnit)on, ret => !SpellManager.HasSpell("Greater Healing Wave"))
@@ -587,7 +509,7 @@ namespace Singular.ClassSpecific.Shaman
                     Spell.Cast(
                         "Healing Tide Totem",
                         on => Me,
-                        req => Me.Combat && HealerManager.Instance.TargetList.Count(p => p.PredictedHealthPercent() < ShamanSettings.OffHealSettings.HealingTideTotem && p.Distance <= Totems.GetTotemRange(WoWTotem.HealingTide)) >= ShamanSettings.OffHealSettings.MinHealingTideCount
+                        req => Me.Combat && HealerManager.Instance.TargetList.Count(p => p.GetPredictedHealthPercent() < ShamanSettings.OffHealSettings.HealingTideTotem && p.Distance <= Totems.GetTotemRange(WoWTotem.HealingTide)) >= ShamanSettings.OffHealSettings.MinHealingTideCount
                         )
                     )
                 );
@@ -599,7 +521,7 @@ namespace Singular.ClassSpecific.Shaman
                     ret => StyxWoW.Me.GroupInfo.IsInParty || StyxWoW.Me.GroupInfo.IsInRaid,
                     Spell.Cast(
                         "Healing Stream Totem",
-                        on => (!Me.Combat || Totems.Exist(WoWTotemType.Water)) ? null : HealerManager.Instance.TargetList.FirstOrDefault(p => p.PredictedHealthPercent() < ShamanSettings.OffHealSettings.HealingStreamTotem && p.Distance <= Totems.GetTotemRange(WoWTotem.HealingStream))
+                        on => (!Me.Combat || Totems.Exist(WoWTotemType.Water)) ? null : HealerManager.Instance.TargetList.FirstOrDefault(p => p.GetPredictedHealthPercent() < ShamanSettings.OffHealSettings.HealingStreamTotem && p.Distance <= Totems.GetTotemRange(WoWTotem.HealingStream))
                         )
                     )
                 );
@@ -626,7 +548,7 @@ namespace Singular.ClassSpecific.Shaman
                 Spell.Cast("Healing Surge",
                     mov => true,
                     on => (WoWUnit)on,
-                    req => ((WoWUnit)req).PredictedHealthPercent(includeMyHeals: true) < ShamanSettings.OffHealSettings.HealingSurge,
+                    req => ((WoWUnit)req).GetPredictedHealthPercent(true) < ShamanSettings.OffHealSettings.HealingSurge,
                     cancel => ((WoWUnit)cancel).HealthPercent > cancelHeal
                     )
                 );
@@ -642,7 +564,7 @@ namespace Singular.ClassSpecific.Shaman
                 ctx => HealerManager.FindLowestHealthTarget(), // HealerManager.Instance.FirstUnit,
 
                 new Decorator(
-                    ret => ret != null && (Me.Combat || ((WoWUnit)ret).Combat || ((WoWUnit)ret).PredictedHealthPercent() <= 99),
+                    ret => ret != null && (Me.Combat || ((WoWUnit)ret).Combat || ((WoWUnit)ret).GetPredictedHealthPercent() <= 99),
 
                     new PrioritySelector(
                         new Decorator(

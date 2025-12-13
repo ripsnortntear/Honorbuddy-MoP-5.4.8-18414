@@ -65,15 +65,15 @@ namespace Singular.ClassSpecific.Rogue
                     new Sequence(
                         new DecoratorContinue(
                             ret => !Me.Disarmed && !Common.HasDaggerInMainHand && SpellManager.HasSpell("Dispatch"),
-                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires a dagger in mainhand to cast Dispatch", TalentManager.CurrentSpec.ToString().CamelToSpaced()))
+                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires a dagger in mainhand to cast Dispatch", Me.Specialization.ToString().CamelToSpaced()))
                             ),
                         new DecoratorContinue(
                             ret => !Me.Disarmed && !Common.HasTwoDaggers && SpellManager.HasSpell("Mutilate"),
-                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires two daggers equipped to cast Mutilate", TalentManager.CurrentSpec.ToString().CamelToSpaced()))
+                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires two daggers equipped to cast Mutilate", Me.Specialization.ToString().CamelToSpaced()))
                             ),
                         new DecoratorContinue(
                             ret => !Me.Disarmed && !Common.HasDaggerInMainHand && SpellManager.HasSpell("Backstab"),
-                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires a dagger in mainhand to cast Backstab", TalentManager.CurrentSpec.ToString().CamelToSpaced()))
+                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires a dagger in mainhand to cast Backstab", Me.Specialization.ToString().CamelToSpaced()))
                             ),
                         new ActionAlwaysFail()
                         )
@@ -317,7 +317,7 @@ namespace Singular.ClassSpecific.Rogue
                                     req => UseLongCoolDownAbility,
                                     Spell.BuffSelf("Shadow Blades", req =>
                                     {
-                                        switch (TalentManager.CurrentSpec)
+                                        switch (Me.Specialization)
                                         {
                                             default:
                                             case WoWSpec.RogueAssassination:
@@ -364,8 +364,8 @@ namespace Singular.ClassSpecific.Rogue
                     // check if in cloak and dagger range
                     if (unit.SpellDistance() > 40)
                     {
-                        if (SingularSettings.DebugSpellCasting)
-                            Logger.WriteFile("RogueCanCastOpener[{0}]: target @ {1:F1} yds is more than 40 yds away", spell.Name, unit.SpellDistance());
+                        if (SingularSettings.DebugSpellCanCast)
+                            Logger.WriteFile(LogLevel.Diagnostic, "RogueCanCastOpener[{0}]: target @ {1:F1} yds is more than 40 yds away", spell.Name, unit.SpellDistance());
                         return false;
                     }
 
@@ -491,7 +491,7 @@ namespace Singular.ClassSpecific.Rogue
 
                     if (closestTarget != null)
                     {
-                        msg = string.Format("^Sap: {0} which is {1:F1} yds from target to avoid aggro while attacking", closestTarget.SafeName(), Me.CurrentTarget.SpellDistance(closestTarget));
+                        msg = string.Format("^Sap: {0} @ {1:F1} yds from target to avoid aggro while hitting target", closestTarget.SafeName(), closestTarget.Location.Distance(Me.CurrentTarget.Location));
                     }
                 }
             }
@@ -501,7 +501,7 @@ namespace Singular.ClassSpecific.Rogue
                 if (RogueSettings.SapMovingTargetsOnPull && Me.CurrentTarget.IsMoving && IsUnitViableForSap(Me.CurrentTarget))
                 {
                     closestTarget = Me.CurrentTarget;
-                    msg = string.Format( "^Sap: {0} @ {1:F1} yds since moving", Me.CurrentTarget.SafeName(), Me.CurrentTarget.SpellDistance());
+                    msg = "^Sap: {0} since our target and moving";
                 }
             }
 
@@ -525,7 +525,7 @@ namespace Singular.ClassSpecific.Rogue
             if (unit.Combat)
                 return false;
 
-            if (!(unit.IsHumanoid || unit.IsBeast || unit.IsDemon || unit.IsDragon))
+            if (!(Me.CurrentTarget.IsHumanoid || Me.CurrentTarget.IsBeast || Me.CurrentTarget.IsDemon || Me.CurrentTarget.IsDragon))
                 return false;
 
             if (unit.IsCrowdControlled())
@@ -996,12 +996,6 @@ namespace Singular.ClassSpecific.Rogue
         private static bool AutoLootIsEnabled()
         {
             List<string> option = Lua.GetReturnValues("return GetCVar(\"AutoLootDefault\")");
-            return option != null && !string.IsNullOrEmpty(option[0]) && option[0] == "1";
-        }
-
-        private static bool AutoSelfCastIsEnabled()
-        {
-            List<string> option = Lua.GetReturnValues("return GetCVar(\"autoSelfCast\")");
             return option != null && !string.IsNullOrEmpty(option[0]) && option[0] == "1";
         }
 

@@ -51,12 +51,12 @@ namespace Singular.ClassSpecific.Paladin
                         Spell.Cast("Lay on Hands",
                             mov => false,
                             on => Me,
-                            req => Me.PredictedHealthPercent(includeMyHeals: true) <= PaladinSettings.SelfLayOnHandsHealth),
+                            req => Me.GetPredictedHealthPercent(true) <= PaladinSettings.SelfLayOnHandsHealth),
                         Common.CreateWordOfGloryBehavior(on => Me),
                         Spell.Cast("Flash of Light",
                             mov => true,
                             on => Me,
-                            req => Me.PredictedHealthPercent(includeMyHeals: true) <= PaladinSettings.SelfFlashOfLightHealth,
+                            req => Me.GetPredictedHealthPercent(true) <= PaladinSettings.SelfFlashOfLightHealth,
                             cancel => Me.HealthPercent > PaladinSettings.SelfFlashOfLightHealth)
                         )
                     )
@@ -87,8 +87,6 @@ namespace Singular.ClassSpecific.Paladin
                             new PrioritySelector(
                                 Helpers.Common.CreateAutoAttack(true),
                                 Helpers.Common.CreateInterruptBehavior(),
-
-                                Common.CreatePaladinPullMore(),
 
                                 Common.CreatePaladinBlindingLightBehavior(),
 

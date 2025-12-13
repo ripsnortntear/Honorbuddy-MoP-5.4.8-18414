@@ -19,7 +19,6 @@ using System.Drawing;
 using Styx.CommonBot.POI;
 using Styx.Common.Helpers;
 using System.Collections.Generic;
-using Styx.CommonBot.Routines;
 
 namespace Singular.ClassSpecific.Hunter
 {
@@ -74,41 +73,6 @@ namespace Singular.ClassSpecific.Hunter
 
         #endregion
 
-        /// <summary>
-        /// Hunter specific version of EnsureReadyToAttackFromLongRange() which will
-        /// have pet attack earlier in sequence
-        /// </summary>
-        /// <returns></returns>
-        public static Composite CreateHunterEnsureReadyToAttackFromLongRange()
-        {
-            return new PrioritySelector(
-                Safers.EnsureTarget(),
-                Helpers.Common.CreateAutoAttack(true),
-                Movement.CreateMoveToLosBehavior(),
-                Helpers.Common.CreateDismount(Dynamics.CompositeBuilder.CurrentBehaviorType.ToString()),   // should be Pull or Combat 99% of the time
-                Movement.CreateMoveToUnitBehavior(on => Me.CurrentTarget, 40, 36),
-                Movement.CreateEnsureMovementStoppedBehavior(36f),
-                Movement.CreateFaceTargetBehavior()
-                );
-        }
-
-        [Behavior(BehaviorType.Initialize, WoWClass.Hunter)]
-        public static Composite CreateHunterInitialize()
-        {
-            if (SingularRoutine.CurrentWoWContext == WoWContext.Normal || SingularRoutine.CurrentWoWContext == WoWContext.Battlegrounds)
-            {
-                Composite jturn = null;
-                if (!SingularSettings.Instance.JumpTurnAllow)
-                    jturn = null;
-                else
-                    jturn = CreateJumpTurnAttack();
-
-                Kite.CreateKitingBehavior(CreateSlowMeleeBehavior(), null, jturn);
-            }
-
-            return null;
-        }
-
         [Behavior(BehaviorType.Rest, WoWClass.Hunter)]
         public static Composite CreateHunterRest()
         {
@@ -148,44 +112,40 @@ namespace Singular.ClassSpecific.Hunter
             if (!HunterSettings.UseFetch || !TalentManager.HasGlyph("Fetch"))
                 return new ActionAlwaysFail();
 
-            return new Decorator(
-                req => (!SingularRoutine.IsDungeonBuddyActive && CharacterSettings.Instance.LootMobs)
-                    || (SingularRoutine.IsDungeonBuddyActive && Bots.DungeonBuddy.Helpers.DungeonBuddySettings.Instance.LootMode != Bots.DungeonBuddy.Enums.LootMode.Off),
-                new PrioritySelector(
-                    ctx => ObjectManager.GetObjectsOfType<WoWUnit>(true,false)
-                        .Where( u => u.IsDead && u.Lootable && u.CanLoot && u.Distance < 50 && !Blacklist.Contains(u.Guid, BlacklistFlags.Loot))
-                        .OrderBy( u => u.Distance)
-                        .ToList(),
-                    new Decorator(
-                        req => Me.GotAlivePet && ((List<WoWUnit>)req).Any() && ((List<WoWUnit>)req).First().Distance > 10,
-                        new Sequence(
-                            new PrioritySelector(
-                                Movement.CreateMoveToUnitBehavior( to => ((List<WoWUnit>)to).FirstOrDefault(), 5f),
-                                new ActionAlwaysSucceed()
-                                ),
-                            Spell.Cast("Fetch", on => ((List<WoWUnit>)on).FirstOrDefault(), req => true ),
-                            new Action( r => Logger.WriteDebug( "first wait")),
-                            new Wait(TimeSpan.FromMilliseconds(1500), until => Me.Pet.IsMoving, new ActionAlwaysSucceed()),
-                            new Action(r => Logger.WriteDebug("second wait")),
-                            new Wait(TimeSpan.FromMilliseconds(3500), until => Me.Pet.IsCasting && Me.Pet.CastingSpell.Name == "Fetch", new ActionAlwaysSucceed()),
-                            new PrioritySelector(
-                                Movement.CreateEnsureMovementStoppedBehavior(reason: "to Fetch"),
-                                new ActionAlwaysSucceed()
-                                ),
-                            new Action(r => Logger.WriteDebug("third wait")),
-                            new Wait(1, until => !Me.IsMoving, new ActionAlwaysSucceed()),
-                            new Action(r => Logger.WriteDebug("fourth wait")),
-                            new WaitContinue(TimeSpan.FromMilliseconds(2000), until => !Me.Pet.IsCasting && !((List<WoWUnit>)until).FirstOrDefault().CanLoot, new ActionAlwaysSucceed()),
-                            new Action(r => Logger.WriteDebug("done waiting")),
+            return new PrioritySelector(
+                ctx => ObjectManager.GetObjectsOfType<WoWUnit>(true,false)
+                    .Where( u => u.IsDead && u.Lootable && u.CanLoot && u.Distance < 50 && !Blacklist.Contains(u.Guid, BlacklistFlags.Loot))
+                    .OrderBy( u => u.Distance)
+                    .ToList(),
+                new Decorator(
+                    req => Me.GotAlivePet && ((List<WoWUnit>)req).Any() && ((List<WoWUnit>)req).First().Distance > 10,
+                    new Sequence(
+                        new PrioritySelector(
+                            Movement.CreateMoveToUnitBehavior( to => ((List<WoWUnit>)to).FirstOrDefault(), 5f),
+                            new ActionAlwaysSucceed()
+                            ),
+                        Spell.Cast("Fetch", on => ((List<WoWUnit>)on).FirstOrDefault(), req => true ),
+                        new Action( r => Logger.WriteDebug( "first wait")),
+                        new Wait(TimeSpan.FromMilliseconds(1500), until => Me.Pet.IsMoving, new ActionAlwaysSucceed()),
+                        new Action(r => Logger.WriteDebug("second wait")),
+                        new Wait(TimeSpan.FromMilliseconds(3500), until => Me.Pet.IsCasting && Me.Pet.CastingSpell.Name == "Fetch", new ActionAlwaysSucceed()),
+                        new PrioritySelector(
+                            Movement.CreateEnsureMovementStoppedBehavior(reason: "to Fetch"),
+                            new ActionAlwaysSucceed()
+                            ),
+                        new Action(r => Logger.WriteDebug("third wait")),
+                        new Wait(1, until => !Me.IsMoving, new ActionAlwaysSucceed()),
+                        new Action(r => Logger.WriteDebug("fourth wait")),
+                        new WaitContinue(TimeSpan.FromMilliseconds(2000), until => !Me.Pet.IsCasting && !((List<WoWUnit>)until).FirstOrDefault().CanLoot, new ActionAlwaysSucceed()),
+                        new Action(r => Logger.WriteDebug("done waiting")),
 
-                            new Action( r => {
-                                WoWUnit looted = ((List<WoWUnit>)r).FirstOrDefault();
-                                if (looted != null && looted.IsValid)
-                                    Blacklist.Add(looted.Guid, BlacklistFlags.Loot, TimeSpan.FromSeconds(5));
-                                if (BotPoi.Current.Type == PoiType.Loot && BotPoi.Current.Guid == looted.Guid)
-                                    BotPoi.Clear();
-                            })
-                            )
+                        new Action( r => {
+                            WoWUnit looted = ((List<WoWUnit>)r).FirstOrDefault();
+                            if (looted != null && looted.IsValid)
+                                Blacklist.Add(looted.Guid, BlacklistFlags.Loot, TimeSpan.FromSeconds(5));
+                            if (BotPoi.Current.Type == PoiType.Loot && BotPoi.Current.Guid == looted.Guid)
+                                BotPoi.Clear();
+                        })
                         )
                     )
                 );
@@ -578,8 +538,7 @@ namespace Singular.ClassSpecific.Hunter
         {
             return new PrioritySelector(
                 new Decorator(
-                    ret =>  !SingularSettings.Instance.DisablePetUsage
-                        && SingularRoutine.IsAllowed(Styx.CommonBot.Routines.CapabilityFlags.PetSummoning) 
+                    ret =>  !SingularSettings.Instance.DisablePetUsage 
                         && (!Me.GotAlivePet || (ActivePetNumber != PetWeWant && ActivePetNumber != 0))
                         && PetManager.PetSummonAfterDismountTimer.IsFinished 
                         && !Me.Mounted 
@@ -692,7 +651,32 @@ namespace Singular.ClassSpecific.Hunter
         /// <returns></returns>
         public static Composite CreateHunterAvoidanceBehavior(Composite nonfacingAttack, Composite jumpturnAttack)
         {
-            return Avoidance.CreateAvoidanceBehavior("Disengage", 20, Disengage.Direction.Backwards, new ActionAlwaysSucceed());
+            Composite jturn = null;
+            if (!SingularSettings.Instance.JumpTurnAllow)
+                jturn = null;
+            else if (jumpturnAttack != null)
+                jturn = jumpturnAttack;
+            else
+                jturn = CreateJumpTurnAttack();
+
+            Kite.CreateKitingBehavior(CreateSlowMeleeBehavior(), nonfacingAttack, jturn);
+
+            return new Decorator(
+                req => MovementManager.IsClassMovementAllowed,
+                new PrioritySelector(
+                    new Decorator(
+                        ret => Kite.IsDisengageWantedByUserSettings(),
+                        new PrioritySelector(
+                            Disengage.CreateDisengageBehavior("Disengage", Disengage.Direction.Backwards, 20, CreateSlowMeleeBehaviorForDisengage()),
+                            Disengage.CreateDisengageBehavior("Rocket Jump", Disengage.Direction.Frontwards, 20, CreateSlowMeleeBehavior())
+                            )
+                        ),
+                    new Decorator(
+                        ret => Kite.IsKitingWantedByUserSettings(),
+                        Kite.BeginKitingBehavior()
+                        )
+                    )
+                );
         }
 
         private static bool useRocketJump;

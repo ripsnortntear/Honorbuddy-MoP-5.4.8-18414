@@ -29,6 +29,16 @@ namespace Singular.ClassSpecific.Warrior
 
         private static LocalPlayer Me { get { return StyxWoW.Me; } }
         private static WarriorSettings WarriorSettings { get { return SingularSettings.Instance.Warrior(); } }
+
+        [Behavior(BehaviorType.Rest, WoWClass.Warrior, WoWSpec.WarriorProtection, WoWContext.All)]
+        public static Composite CreateProtectionRest()
+        {
+            return new PrioritySelector(
+                Singular.Helpers.Rest.CreateDefaultRestBehaviour(),
+                CheckThatShieldIsEquippedIfNeeded()
+                );
+        }
+
         [Behavior(BehaviorType.Pull, WoWClass.Warrior, WoWSpec.WarriorProtection, WoWContext.All)]
         public static Composite CreateProtectionNormalPull()
         {
@@ -86,9 +96,7 @@ namespace Singular.ClassSpecific.Warrior
         {
             return new PrioritySelector(
 
-                // no shield means no shield slam, so use Battle Stance for more Rage generation for 
-                // ... those Prot warriors the owner didnt see fit to give a shield
-                Spell.BuffSelf( stance => HasShieldInOffHand ? "Defensive Stance" : "Battle Stance", req => true),
+                Spell.BuffSelf("Defensive Stance"),
 
                 PartyBuff.BuffGroup( "Battle Shout", ret => WarriorSettings.Shout == WarriorShout.BattleShout ),
 
@@ -161,9 +169,7 @@ namespace Singular.ClassSpecific.Warrior
                 Helpers.Common.EnsureReadyToAttackFromMelee(),
                 Helpers.Common.CreateAutoAttack(true),
 
-                Spell.WaitForCast(FaceDuring.Yes),
-
-                Common.CheckIfWeShouldCancelBladestorm(),
+                Spell.WaitForCast(),
 
                 new Decorator(
                     ret => !Spell.IsGlobalCooldown(),
@@ -191,9 +197,6 @@ namespace Singular.ClassSpecific.Warrior
 
                         CreateProtectionInterrupt(),
 
-                        // special "in combat" pull logic for mobs not tagged and out of melee range
-                        Common.CreateWarriorCombatPullMore(),
-
                         // Handle Ultimatum procs 
                         // Handle Glyph of Incite procs
                         // Dump Rage
@@ -214,10 +217,10 @@ namespace Singular.ClassSpecific.Warrior
                         new Decorator(
                             ret => UseAOE,
                             new PrioritySelector(
-                                Spell.Cast("Thunder Clap", on => Unit.UnfriendlyUnits(8).FirstOrDefault()),
-                                Spell.Cast("Bladestorm", on => Unit.UnfriendlyUnits(8).FirstOrDefault(), ret => AoeCount >= 4),
-                                Spell.Cast("Shockwave", on => Unit.UnfriendlyUnits(8).FirstOrDefault(u => Me.IsSafelyFacing(u)), ret => Clusters.GetClusterCount(StyxWoW.Me, Unit.NearbyUnfriendlyUnits, ClusterType.Cone, 10f) >= 3),
-                                Spell.Cast("Dragon Roar", on => Unit.UnfriendlyUnits(8).FirstOrDefault(u => Me.IsSafelyFacing(u)), ret => Me.CurrentTarget.SpellDistance() <= 8 || Me.CurrentTarget.IsWithinMeleeRange)
+                                Spell.Cast("Thunder Clap"),
+                                Spell.Cast("Bladestorm", ret => AoeCount >= 4),
+                                Spell.Cast("Shockwave", ret => Clusters.GetClusterCount(StyxWoW.Me, Unit.NearbyUnfriendlyUnits, ClusterType.Cone, 10f) >= 3),
+                                Spell.Cast("Dragon Roar", ret => Me.CurrentTarget.SpellDistance() <= 8 || Me.CurrentTarget.IsWithinMeleeRange)
                                 )
                             ),
 
@@ -229,7 +232,6 @@ namespace Singular.ClassSpecific.Warrior
 
                         // Filler
                         Spell.Cast("Devastate"),
-                        Spell.Cast("Heroic Strike", req => !SpellManager.HasSpell("Devastate") || !HasShieldInOffHand),
 
                         //Charge
                         Common.CreateChargeBehavior(),
@@ -252,10 +254,8 @@ namespace Singular.ClassSpecific.Warrior
             // .. it will keep us from casting both for the same mob we lost aggro on
             return new Throttle( 1, 1,
                 new PrioritySelector(
-                    ctx => TankManager.Instance.NeedToTaunt.FirstOrDefault(),
-
                     Spell.CastOnGround("Mocking Banner",
-                        on => (WoWUnit) on,
+                        on => (TankManager.Instance.NeedToTaunt.FirstOrDefault() ?? Me),
                         ret => TankManager.Instance.NeedToTaunt.Any() && Clusters.GetCluster(TankManager.Instance.NeedToTaunt.FirstOrDefault(), TankManager.Instance.NeedToTaunt, ClusterType.Radius, 15f).Count() >= 2),
 
                     Spell.Cast("Taunt", ret => TankManager.Instance.NeedToTaunt.FirstOrDefault()),
@@ -303,8 +303,7 @@ namespace Singular.ClassSpecific.Warrior
         }
 
         static bool UseAOE
-        {            
-            get
+        {            get
             {
                 if (Me.GotTarget && Me.CurrentTarget.IsPlayer)
                     return false;
@@ -317,7 +316,7 @@ namespace Singular.ClassSpecific.Warrior
         {
             get
             {
-                return Unit.UnfriendlyUnits(8).Count();
+                return Unit.NearbyUnfriendlyUnits.Count(u => u.Distance < 8f);
             }
         }
 
@@ -355,7 +354,7 @@ namespace Singular.ClassSpecific.Warrior
                     new Sequence(
                         new DecoratorContinue(
                             ret => !Me.Disarmed && !HasShieldInOffHand && SpellManager.HasSpell("Shield Slam"),
-                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires a Shield in offhand to cast Shield Slam", TalentManager.CurrentSpec.ToString().CamelToSpaced()))
+                            new Action(ret => Logger.Write(Color.HotPink, "User Error: a{0} requires a Shield in offhand to cast Shield Slam", Me.Specialization.ToString().CamelToSpaced()))
                             ),
                         new ActionAlwaysFail()
                         )

@@ -86,8 +86,7 @@ namespace Singular.ClassSpecific.DeathKnight
                     // I am using pet as dps bonus
                     Spell.BuffSelf("Raise Dead",
                         ret => Helpers.Common.UseLongCoolDownAbility
-                            && Settings.UseGhoulAsDpsCdBlood
-                            && SingularRoutine.IsAllowed(Styx.CommonBot.Routines.CapabilityFlags.PetSummoning) 
+                            && Settings.UseGhoulAsDpsCdBlood 
                             && !Common.GhoulMinionIsActive),
 
                     Spell.BuffSelf("Death's Advance",
@@ -125,8 +124,6 @@ namespace Singular.ClassSpecific.DeathKnight
                         Helpers.Common.CreateInterruptBehavior(),
 
                         Helpers.Common.CreateAutoAttack(true),
-
-                        Common.CreateDeathKnightPullMore(),
 
                         Common.CreateDarkSuccorBehavior(),
 
@@ -322,8 +319,6 @@ namespace Singular.ClassSpecific.DeathKnight
                         ret => !Spell.IsGlobalCooldown(),
                         new PrioritySelector(
                             Helpers.Common.CreateInterruptBehavior(),
-
-                            Common.CreateDeathKnightPullMore(),
 
                             // Taunts
                             //------------------------------------------------------------------------

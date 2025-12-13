@@ -15,7 +15,6 @@ using Styx.CommonBot;
 using CommonBehaviors.Actions;
 using System.Drawing;
 using Styx.Pathing;
-using Action = Styx.TreeSharp.Action;
 
 namespace Singular.ClassSpecific.Warrior
 {
@@ -26,71 +25,7 @@ namespace Singular.ClassSpecific.Warrior
         public static bool HasTalent(WarriorTalents tal) { return TalentManager.IsSelected((int)tal); }
 
         public static bool Tier14TwoPieceBonus { get { return Me.HasAura("Item - Warrior T14 DPS 2P Bonus"); } }
-        public static bool Tier14FourPieceBonus { get { return Me.HasAura("Item - Warrior T14 DPS 4P Bonus"); } }
-
-        public static float DistanceChargeBehavior { get; set; }
-        public static int VictoryRushHealth { get; set; }
-       
-        [Behavior(BehaviorType.Initialize, WoWClass.Warrior)]
-        public static Composite CreateWarriorInitialize()
-        {
-            // removed combatreach because of # of missed Charges
-            DistanceChargeBehavior = 25f;
-
-            if (TalentManager.HasGlyph("Long Charge"))
-            {
-                Logger.Write("[glyph of charge] Recognized - Charge Distance increased by 5 yds");
-                DistanceChargeBehavior = 30f;
-            }
-
-            string spellVictory = "Victory Rush";
-            VictoryRushHealth = 90;
-            if (SpellManager.HasSpell("Impending Victory"))
-            {
-                Logger.Write("[impending victory talent] Recognized");
-                VictoryRushHealth = 80;
-                spellVictory = "Impending Victory";
-            }
-            else if (TalentManager.HasGlyph("Victory Rush"))
-            {
-                Logger.Write("[glyph of victory rush] Recognized");
-                VictoryRushHealth -= (100 - VictoryRushHealth) / 2;
-            }
-
-            if (WarriorSettings.VictoryRushOnCooldown)
-            {
-                Logger.Write("[victory rush on cooldown] User Setting will cause [{0}] cast on cooldown", spellVictory);
-                VictoryRushHealth = 100;
-            }
-            else
-            {
-                Logger.WriteDebug("[victory rush] will cast if health <= {0}%", VictoryRushHealth);
-            }
-
-            Logger.Write("[charge distance] Charge cast at targets within {0:F1} yds", DistanceChargeBehavior);
-
-            DistanceChargeBehavior -= 0.2f;    // should not be needed, but is  -- based on log files and observations we need this adjustment
-
-            return null;
-        }
-
-        [Behavior(BehaviorType.Rest, WoWClass.Warrior, WoWSpec.WarriorArms, WoWContext.All)]
-        [Behavior(BehaviorType.Rest, WoWClass.Warrior, WoWSpec.WarriorFury, WoWContext.All)]
-        public static Composite CreateWarriorRest()
-        {
-            return new PrioritySelector(
-
-                CheckIfWeShouldCancelBladestorm(),
-
-                Singular.Helpers.Rest.CreateDefaultRestBehaviour(),
-
-                new Decorator(
-                    req => TalentManager.CurrentSpec == WoWSpec.WarriorProtection,
-                    ClassSpecific.Warrior.Protection.CheckThatShieldIsEquippedIfNeeded()
-                    )
-                );
-        }
-
+        public static bool Tier14FourPieceBonus { get { return Me.HasAura("Item - Warrior T14 DPS 4P Bonus"); } }      
 
         [Behavior(BehaviorType.PreCombatBuffs, WoWClass.Warrior)]
         public static Composite CreateWarriorNormalPreCombatBuffs()
@@ -113,35 +48,6 @@ namespace Singular.ClassSpecific.Warrior
                 );
         }
 
-        public static Composite CreateWarriorCombatPullMore()
-        {
-            return new Throttle(
-                2,
-                new Decorator(
-                    req => SingularRoutine.CurrentWoWContext == WoWContext.Normal
-                        && Me.GotTarget
-                        && !Me.CurrentTarget.IsPlayer
-                        && !Me.CurrentTarget.IsTagged
-                        && !Me.HasAura("Charge")
-                        && !Me.CurrentTarget.HasAnyOfMyAuras("Charge Stun", "Warbringer")
-                        && !Me.CurrentTarget.IsWithinMeleeRange,
-                    new PrioritySelector(
-                        Common.CreateChargeBehavior(),
-                        Spell.Cast("Heroic Throw", req => Me.IsSafelyFacing(Me.CurrentTarget)),
-                        Spell.Cast("Taunt"),
-                        new Decorator(
-                            req => SpellManager.HasSpell("Throw") && Me.CurrentTarget.SpellDistance() < 27,
-                            new Sequence(
-                                new Action( r => StopMoving.Now() ),
-                                new Wait( 1, until => !Me.IsMoving, new ActionAlwaysSucceed()),
-                                Spell.Cast( s => "Throw", mov => true, on => Me.CurrentTarget, req => true, cancel => false ),
-                                new WaitContinue( 1, until => !Me.IsCasting, new ActionAlwaysSucceed())
-                                )
-                            )
-                        )
-                    )
-                );
-        }
 
         public static Composite CreateWarriorEnragedRegeneration()
         {
@@ -169,7 +75,7 @@ namespace Singular.ClassSpecific.Warrior
                 var stance = WarriorSettings.Stance;
                 if (stance == WarriorStance.Auto)
                 {
-                    switch (TalentManager.CurrentSpec)
+                    switch (Me.Specialization)
                     {
                         case WoWSpec.WarriorArms:
                             stance = WarriorStance.BattleStance;
@@ -193,9 +99,13 @@ namespace Singular.ClassSpecific.Warrior
         /// uses across multiple behaviors that reference this method
         /// </summary>
         private static Composite _singletonChargeBehavior = null;
-
+        private static float _distanceChargeBehavior { get; set; }
+       
         public static Composite CreateChargeBehavior()
         {
+            // removed combatreach because of # of missed Charges
+            _distanceChargeBehavior = /*Me.CombatReach +*/ (TalentManager.HasGlyph("Long Charge") ? 30f : 25f);
+
             if (!WarriorSettings.UseWarriorCloser)
                 return new ActionAlwaysFail();
 
@@ -206,29 +116,24 @@ namespace Singular.ClassSpecific.Warrior
             if (_singletonChargeBehavior == null)
             {
                 _singletonChargeBehavior = new Throttle(TimeSpan.FromMilliseconds(1500),
-                    new PrioritySelector(
-                        ctx => Me.CurrentTarget,
-                        new Decorator(
-                            req => MovementManager.IsClassMovementAllowed 
-                                && req != null 
-                                && ((req as WoWUnit).Guid != Singular.Utilities.EventHandlers.LastNoPathTarget || Singular.Utilities.EventHandlers.LastNoPathFailure < DateTime.Now - TimeSpan.FromMinutes(15))
-                                && !Me.HasAura("Charge")
-                                && !(req as WoWUnit).HasAnyOfMyAuras( "Charge Stun", "Warbringer")
-                                && Me.IsSafelyFacing( req as WoWUnit)
-                                && (req as WoWUnit).InLineOfSight,
+                    new Decorator(
+                        ret => MovementManager.IsClassMovementAllowed && Me.CurrentTarget != null && Me.CurrentTargetGuid != Singular.Utilities.EventHandlers.LastNoPathTarget,
 
-                            new PrioritySelector(
-                                // note: use Distance here -- even though to a WoWUnit, hitbox does not come into play
-                                Spell.Cast("Charge", req => (req as WoWUnit).Distance.Between( 8, DistanceChargeBehavior)),
+                        new PrioritySelector(
+                            // Charge to close distance
+                            // note: use SpellDistance since charge is to a wowunit
+                            Spell.Cast("Charge",
+                                ret => !Me.CurrentTarget.HasAnyOfMyAuras("Charge Stun", "Warbringer")
+                                    && Me.CurrentTarget.Distance.Between( 8, _distanceChargeBehavior)),
 
-                                //  Leap to close distance
-                                // note: use Distance rather than SpellDistance since spell is to point on ground
-                                Spell.CastOnGround("Heroic Leap",
-                                    on => (WoWUnit) on,
-                                    req => (req as WoWUnit).Distance.Between( 8, 40),
-                                    false
-                                    )
-                                )
+                            //  Leap to close distance
+                            // note: use Distance rather than SpellDistance since spell is to point on ground
+                            Spell.CastOnGround("Heroic Leap",
+                                on => Me.CurrentTarget,
+                                req => !Me.HasAura("Charge")
+                                    && Me.CurrentTarget.Distance.Between( 8, 40)
+                                    && !Me.CurrentTarget.HasAnyOfMyAuras("Charge Stun", "Warbringer"),
+                                false)
                             )
                         )
                     );
@@ -237,16 +142,32 @@ namespace Singular.ClassSpecific.Warrior
             return _singletonChargeBehavior;
         }
 
+        private static int _VictoryRushHealth = 0;
 
         public static Composite CreateVictoryRushBehavior()
         {
+            int prevVRH = _VictoryRushHealth;
+
+            _VictoryRushHealth = 90;
+            if (SpellManager.HasSpell("Impending Victory"))
+                _VictoryRushHealth = 80;
+            if (TalentManager.HasGlyph("Victory Rush"))
+                _VictoryRushHealth -= (100 - _VictoryRushHealth) / 2;
+            if (WarriorSettings.VictoryRushOnCooldown)
+                _VictoryRushHealth = 100;
+
+            if (_VictoryRushHealth != prevVRH)
+            {
+                Logger.WriteDebug("VictoryRush: will cast if health <= {0}%", _VictoryRushHealth);
+            }
+
             // health below determined %
             // user wants to cast on cooldown without regard to health
             // we have aura AND (target is about to die OR aura expires in less than 3 secs)
             return new Throttle( 
                 new Decorator(
                     ret => WarriorSettings.VictoryRushOnCooldown
-                        || Me.HealthPercent <= VictoryRushHealth
+                        || Me.HealthPercent <= _VictoryRushHealth
                         || Me.HasAura("Victorious") && (Me.HasAuraExpired("Victorious", 3) || (Me.GotTarget && Me.CurrentTarget.TimeToDeath() < 7)),
                     new PrioritySelector(
                         Spell.Cast("Impending Victory"),
@@ -368,34 +289,6 @@ namespace Singular.ClassSpecific.Warrior
                     )
                 );
         }
-
-        public static Composite CheckIfWeShouldCancelBladestorm()
-        {
-            if (!HasTalent(WarriorTalents.Bladestorm))
-                return new ActionAlwaysFail();
-
-            return new ThrottlePasses(
-                1, 
-                TimeSpan.FromSeconds(1),
-                RunStatus.Failure,
-                new Decorator(
-                    req => StyxWoW.Me.HasAura("Bladestorm"),
-                    new Action(r =>
-                    {
-                        // check if it makes sense to cancel to resume normal speed movement and charge
-                        if (Dynamics.CompositeBuilder.CurrentBehaviorType == BehaviorType.Rest || !Me.Combat || !Unit.UnfriendlyUnits(20).Any(u => u.Aggro || (u.IsPlayer && u.IsHostile)))
-                        {
-                            Logger.WriteDebug("Bladestorm: cancel since out of combat or no targets within 20 yds");
-                            Me.CancelAura("Bladestorm");
-                            return RunStatus.Success;
-                        }
-                        return RunStatus.Failure;
-                    })
-                    )
-                );
-        }
-
-
     }
 
     enum WarriorTalents

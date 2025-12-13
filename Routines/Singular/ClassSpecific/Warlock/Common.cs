@@ -27,7 +27,7 @@ namespace Singular.ClassSpecific.Warlock
         private static LocalPlayer Me { get { return StyxWoW.Me; } }
         private static WarlockSettings WarlockSettings { get { return SingularSettings.Instance.Warlock(); } }
 
-        public static bool HaveHealthStone { get { return StyxWoW.Me.BagItems.Any(i => i.Entry == 5512); } }
+        private static bool HaveHealthStone { get { return StyxWoW.Me.BagItems.Any(i => i.Entry == 5512); } }
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace Singular.ClassSpecific.Warlock
             return new PrioritySelector(
 
                 new Decorator(
-                    ret => TalentManager.CurrentSpec == WoWSpec.WarlockDemonology && Me.HasAura("Metamorphosis") && Demonology.demonFormRestTimer.IsFinished,
+                    ret => Me.Specialization == WoWSpec.WarlockDemonology && Me.HasAura("Metamorphosis") && Demonology.demonFormRestTimer.IsFinished,
                     new Sequence(
                         new Action(ret => Logger.Write(Color.White, "^Cancel Metamorphosis at Rest")),
                         new Action(ret => Me.CancelAura("Metamorphosis")),
@@ -57,7 +57,7 @@ namespace Singular.ClassSpecific.Warlock
                     ),
 
                 new Decorator(
-                    ret => TalentManager.CurrentSpec == WoWSpec.WarlockAffliction && Me.HasAura("Soulburn"),
+                    ret => Me.Specialization == WoWSpec.WarlockAffliction && Me.HasAura("Soulburn"),
                     new Sequence(
                         new Action(ret => Logger.Write(Color.White, "^Cancel Soulburn at Rest")),
                         new Action(ret => Me.CancelAura("Soulburn")),
@@ -96,67 +96,21 @@ namespace Singular.ClassSpecific.Warlock
         {
             return new PrioritySelector(
                 Spell.WaitForCastOrChannel(),
-                Spell.WaitForGlobalCooldown(),
-
-                //new ThrottlePasses(5, new Action(r => { Logger.Write("in PreCombatBuff()"); return RunStatus.Failure; })),
-                CreateWarlockSummonPet(),
-                Spell.BuffSelf("Soul Link", ret => !Me.HasAura("Soul Link") && Me.GotAlivePet && PetManager.PetSummonAfterDismountTimer.IsFinished ),
-
-                new PrioritySelector(
-                    new Decorator(
-                        ctx => ShouldCreateSoulwell,
-                        new Sequence(
-                            new DecoratorContinue(
-                                ctx => StyxWoW.Me.IsMoving,
-                                new Sequence(
-                                    new Action(ctx => StopMoving.Now()),
-                                    new WaitContinue(2, ctx => !StyxWoW.Me.IsMoving, new ActionAlwaysSucceed())
-                                    )
-                                ),
-                            new Action(r => Logger.WriteDebug("Soulwell: make sure not casting")),
-                            new WaitContinue(2, ctx => !Spell.IsCastingOrChannelling(LagTolerance.No), new ActionAlwaysSucceed()),
-                            new Action(ctx => Logger.Write(Color.White, "^Create Soulwell")),
-                            new Action(ctx => SpellManager.Cast("Create Soulwell")),
-                            new Action(r => Logger.WriteDebug("Soulwell: wait until it shows we are casting")),
-                            new WaitContinue(2, ctx => Spell.IsCastingOrChannelling(), new ActionAlwaysSucceed()),
-                            new Action(r => Logger.WriteDebug("Soulwell: now wait for it to stop casting")),
-                            new WaitContinue(10, ctx => !Spell.IsCastingOrChannelling(LagTolerance.No), new ActionAlwaysSucceed()),
-                            new Action(r => Logger.WriteDebug("Soulwell: cast to creat completed")),
-                            new Wait(2, ctx => Soulwell != null, new ActionAlwaysSucceed()),
-                            new Sequence(
-                                ctx => Soulwell,
-                                new Action(r => Logger.WriteDebug("Soulwell: found it exists @ {0:F1} yds", (r as WoWGameObject).Distance)),
-                                new Wait(5, until => (until as WoWGameObject).CanUseNow(), new ActionAlwaysSucceed()),
-                                new Action(r => Logger.WriteDebug("Soulwell: is ready for use")),
-                                new Decorator(
-                                    req => (req as WoWGameObject).Distance < 1,
-                                    new Sequence(
-                                        new Action( r => {
-                                            WoWGameObject obj = r as WoWGameObject;
-                                            const int StrafeTime = 250;
-                                            WoWMovement.MovementDirection strafe = (((int)DateTime.Now.Second) & 1) == 0 ? WoWMovement.MovementDirection.StrafeLeft : WoWMovement.MovementDirection.StrafeRight;
-                                            Logger.Write( Color.White, "Soulwell {0} for {1} ms since too close to Soulwell @ {2:F2} yds", strafe, StrafeTime, obj.Distance);
-                                            WoWMovement.Move(strafe, TimeSpan.FromMilliseconds(StrafeTime));
-                                        })
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    ),
-
                 new Decorator(
-                    req => !HaveHealthStone && !ShouldCreateSoulwell,
-                    new Throttle(5, Spell.Cast("Create Healthstone", mov => true, on => Me, ret => !Unit.NearbyUnfriendlyUnits.Any(u => u.Distance < 25), cancel => false))
-                    ),
-
-                Spell.BuffSelf("Soulstone", ret => NeedToSoulstoneMyself()),
-                PartyBuff.BuffGroup("Dark Intent"),
-                Spell.BuffSelf( "Grimoire of Sacrifice", ret => GetCurrentPet() != WarlockPet.None && GetCurrentPet() != WarlockPet.Other),
-                Spell.BuffSelf( "Unending Breath", req => Me.IsSwimming )
+                    ret => !Spell.IsGlobalCooldown(),
+                    new PrioritySelector(
+                        //new ThrottlePasses(5, new Action(r => { Logger.Write("in PreCombatBuff()"); return RunStatus.Failure; })),
+                        CreateWarlockSummonPet(),
+                        Spell.BuffSelf("Soul Link", ret => !Me.HasAura("Soul Link") && Me.GotAlivePet && PetManager.PetSummonAfterDismountTimer.IsFinished ),
+                        new Throttle(5, Spell.Cast("Create Healthstone", mov => true, on => Me, ret => !HaveHealthStone && !Unit.NearbyUnfriendlyUnits.Any(u => u.Distance < 25), cancel => false )),
+                        Spell.BuffSelf("Soulstone", ret => NeedToSoulstoneMyself()),
+                        PartyBuff.BuffGroup("Dark Intent"),
+                        Spell.BuffSelf( "Grimoire of Sacrifice", ret => GetCurrentPet() != WarlockPet.None && GetCurrentPet() != WarlockPet.Other),
+                        Spell.BuffSelf( "Unending Breath", req => Me.IsSwimming )
+                        )
+                    )
                 );
         }
-
 
         private static bool NeedToSoulstoneMyself()
         {
@@ -290,9 +244,9 @@ namespace Singular.ClassSpecific.Warlock
                         new Decorator(
                             ret => (Me.GotTarget && (Me.CurrentTarget.IsPlayer || Me.CurrentTarget.IsBoss() || Me.CurrentTarget.TimeToDeath() > 20)) || Unit.NearbyUnfriendlyUnits.Count(u => u.IsTargetingMyStuff()) >= 3,
                             new PrioritySelector(
-                                Spell.BuffSelf("Dark S  oul: Misery", ret => TalentManager.CurrentSpec == WoWSpec.WarlockAffliction),
-                                Spell.BuffSelf("Dark Soul: Instability", ret => TalentManager.CurrentSpec == WoWSpec.WarlockDestruction && Destruction.CurrentBurningEmbers >= 30),
-                                Spell.BuffSelf("Dark Soul: Knowledge", ret => TalentManager.CurrentSpec == WoWSpec.WarlockDemonology && Me.GetCurrentPower(WoWPowerType.DemonicFury) > 800)
+                                Spell.BuffSelf("Dark S  oul: Misery", ret => Me.Specialization == WoWSpec.WarlockAffliction),
+                                Spell.BuffSelf("Dark Soul: Instability", ret => Me.Specialization == WoWSpec.WarlockDestruction && Destruction.CurrentBurningEmbers >= 30),
+                                Spell.BuffSelf("Dark Soul: Knowledge", ret => Me.Specialization == WoWSpec.WarlockDemonology && Me.GetCurrentPower(WoWPowerType.DemonicFury) > 800)
                                 )
                             ),
 
@@ -449,7 +403,6 @@ namespace Singular.ClassSpecific.Warlock
         {
             return new Decorator(
                 ret => !SingularSettings.Instance.DisablePetUsage
-                    && SingularRoutine.IsAllowed(Styx.CommonBot.Routines.CapabilityFlags.PetSummoning) 
                     && !Me.HasAura( "Grimoire of Sacrifice")        // don't summon pet if this buff active
                     && GetBestPet() != GetCurrentPet()
                     && Spell.CanCastHack( "Summon Imp"), 
@@ -497,12 +450,12 @@ namespace Singular.ClassSpecific.Warlock
 #region Instant Pet Summon Check
                             new PrioritySelector(
                                 new Decorator(
-                                    ret => TalentManager.CurrentSpec == WoWSpec.WarlockDemonology && Me.HasAura("Demonic Rebirth"),
+                                    ret => Me.Specialization == WoWSpec.WarlockDemonology && Me.HasAura("Demonic Rebirth"),
                                     new Action(r => Logger.Write(Color.White, "^Instant Summon Pet: Demonic Rebirth active!"))
                                     ),
                                 new Decorator(
                                     // need to check that no live pet here as FoX will only summon last living, so worthless if live pet (even if wrong one)
-                                    ret => TalentManager.CurrentSpec == WoWSpec.WarlockDestruction && !Me.GotAlivePet && Spell.CanCastHack("Flames of Xoroth", Me) && Warlock.Destruction.CurrentBurningEmbers >= 10,
+                                    ret => Me.Specialization == WoWSpec.WarlockDestruction && !Me.GotAlivePet && Spell.CanCastHack("Flames of Xoroth", Me) && Warlock.Destruction.CurrentBurningEmbers >= 10,
                                     new Sequence(
                                         new Action(r => Logger.Write(Color.White, "^Instant Summon Pet: Flames of Xoroth!")),
                                         Spell.BuffSelf("Flames of Xoroth")
@@ -513,7 +466,7 @@ namespace Singular.ClassSpecific.Warlock
                                     new Action( r => Logger.Write(Color.White, "^Instant Summon Pet: Soulburn already active - should work!"))
                                     ),
                                 CreateCastSoulburn(ret => {
-                                    if (TalentManager.CurrentSpec == WoWSpec.WarlockAffliction)
+                                    if (Me.Specialization == WoWSpec.WarlockAffliction)
                                     {
                                         if (Me.CurrentSoulShards == 0)
                                             Logger.WriteDebug("CreateWarlockSummonPet:  no shards so instant pet summon not available");
@@ -586,14 +539,14 @@ namespace Singular.ClassSpecific.Warlock
             WarlockPet bestPet = SingularSettings.Instance.Warlock().Pet;
             if (bestPet != WarlockPet.None)
             {
-                if (TalentManager.CurrentSpec == WoWSpec.None)
+                if (Me.Specialization == WoWSpec.None)
                     return WarlockPet.Imp;
 
                 if (bestPet == WarlockPet.Auto)
                 {
-                    if (TalentManager.CurrentSpec == WoWSpec.WarlockDemonology)
+                    if (Me.Specialization == WoWSpec.WarlockDemonology)
                         bestPet = WarlockPet.Felguard;
-                    else if (TalentManager.CurrentSpec == WoWSpec.WarlockDestruction && Me.Level == Me.MaxLevel)
+                    else if (Me.Specialization == WoWSpec.WarlockDestruction && Me.Level == Me.MaxLevel)
                         bestPet = WarlockPet.Felhunter;
                     else if (SingularRoutine.CurrentWoWContext == WoWContext.Battlegrounds)
                         bestPet = WarlockPet.Succubus;
@@ -771,7 +724,7 @@ namespace Singular.ClassSpecific.Warlock
                         new Decorator( ret => TalentManager.HasGlyph("Health Funnel"), new ActionAlwaysSucceed()),
 
                         CreateCastSoulburn(ret => {
-                            if (TalentManager.CurrentSpec == WoWSpec.WarlockAffliction)
+                            if (Me.Specialization == WoWSpec.WarlockAffliction)
                             {
                                 if (Me.CurrentSoulShards > 0 && Spell.CanCastHack("Soulburn", Me))
                                 {
@@ -790,6 +743,7 @@ namespace Singular.ClassSpecific.Warlock
                             )
                         ),
                     new Decorator( ret => Spell.CanCastHack( "Health Funnel", Me.Pet), new ActionAlwaysSucceed()),
+                    new Action(ret => Logger.WriteDebug("*Health Funnel on Pet @ {0:F1}%", Me.Pet.HealthPercent)),
                     new PrioritySelector(
                         Spell.Cast(ret => "Health Funnel", mov => false, on => Me.Pet, req => Me.HasAura( "Soulburn") || TalentManager.HasGlyph("Health Funnel")),
                         Spell.Cast(ret => "Health Funnel", mov => true, on => Me.Pet, req => true, cancel => !Me.GotAlivePet || Me.Pet.HealthPercent >= petMaxHealth)
@@ -805,82 +759,6 @@ namespace Singular.ClassSpecific.Warlock
             get
             {
                 return Unit.NearbyUnfriendlyUnits.Where(u => u.Combat && u.IsTargetingUs() && !u.IsCrowdControlled() && StyxWoW.Me.IsSafelyFacing(u));
-            }
-        }
-
-
-        private static bool ShouldCreateSoulwell
-        {
-            get
-            {
-                if (!WarlockSettings.CreateSoulwell)
-                    return false;
-                if (!SpellManager.HasSpell("Create Soulwell"))
-                    return false;
-                if (Spell.IsSpellOnCooldown("Create Soulwell"))
-                    return false;
-                if (!NeedSoulwellForThisContext)
-                    return false;
-                return true;
-            }
-        }
-
-        static readonly uint[] SoulwellIds = new uint[]
-                                         {
-                                             181621
-                                         };
-
-        static public WoWGameObject Soulwell
-        {
-            get
-            {
-                return
-                    ObjectManager.GetObjectsOfType<WoWGameObject>()
-                        .FirstOrDefault(
-                            i => SoulwellIds.Contains(i.Entry) && (StyxWoW.Me.RaidMembers.Any(p => p.Guid == i.CreatedByGuid) || StyxWoW.Me.Guid == i.CreatedByGuid)
-                            );
-            }
-        }
-        private static int _secondsBeforeBattle = 0;
-
-        public static int RandomNumberOfSecondsBeforeBattleStarts
-        {
-            get
-            {
-                if (_secondsBeforeBattle == 0)
-                    _secondsBeforeBattle = new Random().Next(30, 60);
-
-                return _secondsBeforeBattle;
-            }
-
-            set
-            {
-                _secondsBeforeBattle = value;
-            }
-        }
-
-        public static bool NeedSoulwellForThisContext
-        {
-            get
-            {
-                // in battlegrounds, create prior to regardless of whether we have any
-                if ( SingularRoutine.CurrentWoWContext == WoWContext.Battlegrounds)
-                    return PVP.PrepTimeLeft < RandomNumberOfSecondsBeforeBattleStarts && Me.HasAnyAura("Preparation", "Arena Preparation");
-
-                // otherwise, while group members nearby, no hostiles, and I need some stones
-                if (Me.IsInGroup() && !HaveHealthStone)
-                {
-                    // if no players nearby, soulwell not needed
-                    if (!Unit.NearbyGroupMembers.Any(g => g.IsAlive && !g.IsMe))
-                        return false;
-
-                    if (Unit.UnfriendlyUnits(55).Any(u => u.IsAlive))
-                        return false;
-
-                    return true;
-                }
-
-                return false;
             }
         }
 

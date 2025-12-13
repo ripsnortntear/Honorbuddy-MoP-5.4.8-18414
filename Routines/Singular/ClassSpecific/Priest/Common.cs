@@ -64,7 +64,7 @@ namespace Singular.ClassSpecific.Priest
 
                         Spell.BuffSelf("Shadowform"),
 
-                        CreatePriestMovementBuffOnTank("PreCombat")
+                        CreatePriestMovementBuff("PreCombat")
                         )
                     )
                 );
@@ -91,18 +91,15 @@ namespace Singular.ClassSpecific.Priest
                    !unit.HasAura("Commanding Shout");
         }
 
-        public static Composite CreatePriestMovementBuff()
+        public static Decorator CreatePriestMovementBuff()
         {
-            if (!SpellManager.HasSpell("Angelic Feather") && !TalentManager.IsSelected((int)PriestTalents.BodyAndSoul))
-                return new ActionAlwaysFail();
-
             return new Decorator(
                 ret => MovementManager.IsClassMovementAllowed
                     && StyxWoW.Me.IsAlive
-                    && Me.IsMoving
                     && !StyxWoW.Me.Mounted
                     && !StyxWoW.Me.IsOnTransport
                     && !StyxWoW.Me.OnTaxi
+                    && (SpellManager.HasSpell("Angelic Feather") || TalentManager.IsSelected((int)PriestTalents.BodyAndSoul))
                     && !StyxWoW.Me.HasAnyAura("Angelic Feather", "Body and Soul")
                     && !StyxWoW.Me.IsAboveTheGround(),
 
@@ -121,13 +118,11 @@ namespace Singular.ClassSpecific.Priest
                                     ret => SpellManager.HasSpell("Angelic Feather")
                                         && !StyxWoW.Me.HasAura("Angelic Feather"),
                                     new Sequence(
-                                        Spell.CastOnGround(
-                                            "Angelic Feather", 
-                                            loc => Me.Location.RayCast(Me.RenderFacing, 1.5f), 
-                                            req => true, 
-                                            waitForSpell: false, 
-                                            tgtDescRtrv:  desc => string.Format("Speed Boost on {0}", Me.SafeName())
-                                            ),
+                // new Action( ret => Logger.Write( "Speed Buff for {0}", mode ) ),
+                                        Spell.CastOnGround("Angelic Feather",
+                                            on => StyxWoW.Me,
+                                            ret => true,
+                                            false),
                                         Helpers.Common.CreateWaitForLagDuration(orUntil => Spell.GetPendingCursorSpell != null),
                                         new Action(ret => Lua.DoString("SpellStopTargeting()"))
                                         )
@@ -152,7 +147,7 @@ namespace Singular.ClassSpecific.Priest
             return hotTarget;
         }
 
-        public static Composite CreatePriestMovementBuffOnTank(string mode, bool checkMoving = true)
+        public static Composite CreatePriestMovementBuff(string mode, bool checkMoving = true)
         {
             return new PrioritySelector(
 
@@ -165,13 +160,7 @@ namespace Singular.ClassSpecific.Priest
                             ctx => Group.Tanks.FirstOrDefault( t => t.IsAlive && t.IsMoving && !t.Combat && !t.HasAnyAura("Body and Soul", "Angelic Feather") && t.SpellDistance() < 40),
                             Spell.Buff("Power Word: Shield", on => (WoWUnit) on, req => HasTalent(PriestTalents.BodyAndSoul) && !((WoWUnit)req).HasAura("Weakened Soul")),
                             new Sequence(
-                                Spell.CastOnGround(
-                                    "Angelic Feather", 
-                                    loc => (loc as WoWUnit).Location.RayCast((loc as WoWUnit).RenderFacing, 1.5f),
-                                    req => req != null, 
-                                    waitForSpell: false,
-                                    tgtDescRtrv: desc => string.Format("Speed Boost Tank {0}", (desc as WoWUnit).SafeName())
-                                    ),
+                                Spell.CastOnGround("Angelic Feather", on => (WoWUnit) on, req => true, waitForSpell: false),
                                 Helpers.Common.CreateWaitForLagDuration(orUntil => Spell.GetPendingCursorSpell != null),
                                 new Action(ret => Lua.DoString("SpellStopTargeting()"))
                                 )
@@ -236,8 +225,18 @@ namespace Singular.ClassSpecific.Priest
         /// <returns></returns>
         public static Composite CreatePriestAvoidanceBehavior()
         {
-            // use Rocket Jump if available
-            return Avoidance.CreateAvoidanceBehavior("", 0, Disengage.Direction.Frontwards, new ActionAlwaysSucceed());
+            return new PrioritySelector(
+                new Decorator(
+                    ret => MovementManager.IsClassMovementAllowed,
+                    Disengage.CreateDisengageBehavior("Rocket Jump", Disengage.Direction.Frontwards, 20, CreateSlowMeleeBehavior())
+                    ),
+                new Decorator(
+                    ret => MovementManager.IsClassMovementAllowed 
+                        && PriestSettings.AllowKiting
+                        && (Common.HasTalent(PriestTalents.AngelicFeather) || Common.HasTalent(PriestTalents.BodyAndSoul) || Common.HasTalent(PriestTalents.VoidTendrils )),
+                    Kite.BeginKitingBehavior(35)
+                    )
+                );
         }
 
         public static Composite CreateSlowMeleeBehavior()

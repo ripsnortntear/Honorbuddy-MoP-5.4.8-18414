@@ -59,7 +59,7 @@ namespace Singular.ClassSpecific.Shaman
                     "Healing Surge",
                     mov => true,
                     on => Me,
-                    req => Me.PredictedHealthPercent(includeMyHeals: true) <= ShamanSettings.SelfHealingSurge,
+                    req => Me.GetPredictedHealthPercent(true) <= ShamanSettings.SelfHealingSurge,
                     cancel => Me.HealthPercent > 85)
                 );
         }
