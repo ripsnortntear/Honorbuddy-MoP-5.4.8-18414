@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data>
+		<SID>118699</SID>
+		<SpellName>Fear</SpellName>
+	</data>
+	<data>
+		<SID>1776</SID>
+		<SpellName>Gouge</SpellName>
+	</data>
+	<data>
+		<SID>5484</SID>
+		<SpellName>Howl of Terror</SpellName>
+	</data>
+	<data>
+		<SID>113056</SID>
+		<SpellName>Intimidating Roar [Cowering in fear] (Warrior)</SpellName>
+	</data>
+	<data>
+		<SID>113004</SID>
+		<SpellName>Intimidating Roar [Fleeing in fear] (Warrior)</SpellName>
+	</data>
+	<data>
+		<SID>5246</SID>
+		<SpellName>Intimidating Shout (Cowering in fear)</SpellName>
+	</data>
+	<data>
+		<SID>20511</SID>
+		<SpellName>Intimidating Shout (Cowering in fear)</SpellName>
+	</data>
+	<data>
+		<SID>64044</SID>
+		<SpellName>Psychic Horror</SpellName>
+	</data>
+	<data>
+		<SID>8122</SID>
+		<SpellName>Psychic Scream</SpellName>
+	</data>
+	<data>
+		<SID>113792</SID>
+		<SpellName>Psychic Terror (Psyfiend)</SpellName>
+	</data>
+	<data>
+		<SID>20066</SID>
+		<SpellName>Repentance</SpellName>
+	</data>
+	<data>
+		<SID>6770</SID>
+		<SpellName>Sap</SpellName>
+	</data>
+</data_Table>

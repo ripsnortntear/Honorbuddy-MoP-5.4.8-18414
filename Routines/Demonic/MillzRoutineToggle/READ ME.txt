@@ -1,0 +1,7 @@
+This is a WoW Addon. If you want to use it, move the folder into your World of Warcraft addons folder;
+
+<WoW>/Interface/Addons/MillzRoutineToggle/MillzRoutineToggle.lua
+<WoW>/Interface/Addons/MillzRoutineToggle/MillzRoutineToggle.toc
+<WoW>/Interface/Addons/MillzRoutineToggle/MillzRoutineToggle.xml
+
+Thanks to larcerkev for the original addon.
