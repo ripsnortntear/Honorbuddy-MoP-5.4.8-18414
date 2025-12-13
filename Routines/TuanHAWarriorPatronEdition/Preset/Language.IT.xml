@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data>
+		<ControlName>GUITranslateBy</ControlName>
+		<ControlText>Contact tuanha2000vn@yahoo.com for translation help</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageWelcome</ControlName>
+		<ControlText>Welcome</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageGeneralSettings</ControlName>
+		<ControlText>General Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>OK</ControlName>
+		<ControlText>OK</ControlText>
+	</data>
+	<data>
+		<ControlName>Apply</ControlName>
+		<ControlText>Apply</ControlText>
+	</data>
+	<data>
+		<ControlName>Dungeon</ControlName>
+		<ControlText>Dungeon</ControlText>
+	</data>
+	<data>
+		<ControlName>Raid</ControlName>
+		<ControlText>Raid</ControlText>
+	</data>
+	<data>
+		<ControlName>PvP</ControlName>
+		<ControlText>PvP</ControlText>
+	</data>
+	<data>
+		<ControlName>Quest</ControlName>
+		<ControlText>Quest</ControlText>
+	</data>
+	<data>
+		<ControlName>AFK</ControlName>
+		<ControlText>Full AFK</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageSpecialThank</ControlName>
+		<ControlText>Special Thank</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxInterrupt</ControlName>
+		<ControlText>Interrupt</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxOtherSettings</ControlName>
+		<ControlText>Other Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>labelBurst</ControlName>
+		<ControlText>Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTrinket1</ControlName>
+		<ControlText>Trinket 1</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTrinket2</ControlName>
+		<ControlText>Trinket 2</ControlText>
+	</data>
+	<data>
+		<ControlName>labelProfBuff</ControlName>
+		<ControlText>Prof. Buff</ControlText>
+	</data>
+	<data>
+		<ControlName>labelTogglePauseMode</ControlName>
+		<ControlText>Toggle Pause Mode</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoFace</ControlName>
+		<ControlText>Auto Face</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoTaunt</ControlName>
+		<ControlText>Auto Taunt</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoRacial</ControlName>
+		<ControlText>Auto Racial</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoBuff</ControlName>
+		<ControlText>Auto Buff</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoMove</ControlName>
+		<ControlText>Auto Move</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoTarget</ControlName>
+		<ControlText>Auto Target</ControlText>
+	</data>
+	<data>
+		<ControlName>AttackOOC</ControlName>
+		<ControlText>Attack Out of Combat</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxTrinketandBurst</ControlName>
+		<ControlText>Trinket &amp;&amp; Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>PummelInterrupt</ControlName>
+		<ControlText>Pummel</ControlText>
+	</data>
+	<data>
+		<ControlName>SaveSetting</ControlName>
+		<ControlText>Save Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>LoadSetting</ControlName>
+		<ControlText>Load Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>UseFood</ControlName>
+		<ControlText>Use Food HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageAdvancedSettings</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAdvancedSetting5</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAdvancedSetting4</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAdvancedSetting1</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>tabPageAdvancedSetting2</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAdvancedSetting3</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoAoE</ControlName>
+		<ControlText>Use AoE rotation on Number Unit</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptFocus</ControlName>
+		<ControlText>Focus</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptTarget</ControlName>
+		<ControlText>Target</ControlText>
+	</data>
+	<data>
+		<ControlName>InterruptAll</ControlName>
+		<ControlText>All</ControlText>
+	</data>
+	<data>
+		<ControlName>AttackASAP</ControlName>
+		<ControlText>Attack Fkag Capper &amp;&amp; Totem ASAP</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAdvancedSetting6</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>FlagReturnorPickup</ControlName>
+		<ControlText>Pickup/Return Flag</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxAdvancedSetting2</ControlName>
+		<ControlText>Advanced Settings</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoDetectManualCast</ControlName>
+		<ControlText>Auto Pause on Manual Cast</ControlText>
+	</data>
+	<data>
+		<ControlName>DisruptingShoutInterrupt</ControlName>
+		<ControlText>Disrupting Shout</ControlText>
+	</data>
+	<data>
+		<ControlName>DragonRoarInterrupt</ControlName>
+		<ControlText>Dragon Roar</ControlText>
+	</data>
+	<data>
+		<ControlName>ShockwaveInterrupt</ControlName>
+		<ControlText>Shockwave</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltInterrupt</ControlName>
+		<ControlText>Storm Bolt</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltInterruptHealer</ControlName>
+		<ControlText>on Healer</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltInterruptDPS</ControlName>
+		<ControlText>on DPS</ControlText>
+	</data>
+	<data>
+		<ControlName>PreferCommandingShout</ControlName>
+		<ControlText>Commanding Shout</ControlText>
+	</data>
+	<data>
+		<ControlName>PreferBattleShout</ControlName>
+		<ControlText>Prefer Batter Shout</ControlText>
+	</data>
+	<data>
+		<ControlName>AvatarCooldown</ControlName>
+		<ControlText>Avatar on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>AvatarBurst</ControlName>
+		<ControlText>on Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>BerserkerRageRemoveCC</ControlName>
+		<ControlText>Berserker Rage in Fear, Sap, Incapacitate</ControlText>
+	</data>
+	<data>
+		<ControlName>BerserkerRageCooldown</ControlName>
+		<ControlText>Berserker Rage on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>BladestormRemoveCC</ControlName>
+		<ControlText>Bladestorm on CC Duration</ControlText>
+	</data>
+	<data>
+		<ControlName>BladestormRemoveRoot</ControlName>
+		<ControlText>Bladestorm on Root Duration</ControlText>
+	</data>
+	<data>
+		<ControlName>BladestormEnemyinRange</ControlName>
+		<ControlText>Bladestorm when Enemy Near</ControlText>
+	</data>
+	<data>
+		<ControlName>BloodbathBurst</ControlName>
+		<ControlText>on Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>BloodbathCooldown</ControlName>
+		<ControlText>Bloodbath on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>Charge</ControlName>
+		<ControlText>Charge</ControlText>
+	</data>
+	<data>
+		<ControlName>DiebytheSword</ControlName>
+		<ControlText>Die by the Sword HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>Disarm</ControlName>
+		<ControlText>Disarm Help Friend HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>DisarmBurst</ControlName>
+		<ControlText>Disarm when Enemy Bursting</ControlText>
+	</data>
+	<data>
+		<ControlName>DragonRoarSingleDPS</ControlName>
+		<ControlText>Dragon Roar in Single Target Rotation</ControlText>
+	</data>
+	<data>
+		<ControlName>DragonRoarAoEDPS</ControlName>
+		<ControlText>Dragon Roar in Multi Target Rotation</ControlText>
+	</data>
+	<data>
+		<ControlName>EnragedRegeneration</ControlName>
+		<ControlText>Enraged Regeneration HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>ExecuteSuddenExecution</ControlName>
+		<ControlText>Execute for Sudden Execute</ControlText>
+	</data>
+	<data>
+		<ControlName>Hamstring</ControlName>
+		<ControlText>Hamstring Player and Fleeing Mob</ControlText>
+	</data>
+	<data>
+		<ControlName>HealthStone</ControlName>
+		<ControlText>Health Stone HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>HeroicLeap</ControlName>
+		<ControlText>Heroic Leap</ControlText>
+	</data>
+	<data>
+		<ControlName>Intervene</ControlName>
+		<ControlText>Intervene Friend HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>InterveneHealer</ControlName>
+		<ControlText>on Healer</ControlText>
+	</data>
+	<data>
+		<ControlName>InterveneDPS</ControlName>
+		<ControlText>on DPS</ControlText>
+	</data>
+	<data>
+		<ControlName>ChargeInterruptDPS</ControlName>
+		<ControlText>on DPS</ControlText>
+	</data>
+	<data>
+		<ControlName>ChargeInterruptHealer</ControlName>
+		<ControlText>on Healer</ControlText>
+	</data>
+	<data>
+		<ControlName>ChargeInterrupt</ControlName>
+		<ControlText>Charge</ControlText>
+	</data>
+	<data>
+		<ControlName>ChargeInterruptDoubleTime</ControlName>
+		<ControlText>Only when you have 2 Charge available</ControlText>
+	</data>
+	<data>
+		<ControlName>ShockwaveEnemyGroup</ControlName>
+		<ControlText>Shockwave Enemy Group of</ControlText>
+	</data>
+	<data>
+		<ControlName>ShockwaveFriendLow</ControlName>
+		<ControlText>Shockwave Friend HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>ShockwaveEnemyLow</ControlName>
+		<ControlText>Shockwave Enemy HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>ShockwaveEnemyUsingCooldown</ControlName>
+		<ControlText>Shockwave Enemy Bursting</ControlText>
+	</data>
+	<data>
+		<ControlName>ShockwaveBurst</ControlName>
+		<ControlText>on Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>ShockwaveCooldown</ControlName>
+		<ControlText>Shockwave on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltHelpFriend</ControlName>
+		<ControlText>Storm Bolt Friend HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltEnemyLow</ControlName>
+		<ControlText>Storm Bolt Enemy HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltBursting</ControlName>
+		<ControlText>Storm Bolt Enemy Bursting</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltBurst</ControlName>
+		<ControlText>on Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>StormBoltCooldown</ControlName>
+		<ControlText>Storm Bolt on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>ShieldWall</ControlName>
+		<ControlText>Shield Wall My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>SpellReflection</ControlName>
+		<ControlText>Spell Reflection Cast Ms</ControlText>
+	</data>
+	<data>
+		<ControlName>RecklessnessBurst</ControlName>
+		<ControlText>on Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>RecklessnessCooldown</ControlName>
+		<ControlText>Recklessness on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>RallyingCryFriend</ControlName>
+		<ControlText>Rallying Cry Friend HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>RallyingCry</ControlName>
+		<ControlText>Rallying Cry My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>BattleStance</ControlName>
+		<ControlText>Battle Stance My HP Above</ControlText>
+	</data>
+	<data>
+		<ControlName>DefensiveStance</ControlName>
+		<ControlText>Defensive Stance My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>SkullBaneronBurst</ControlName>
+		<ControlText>on Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>SkullBaneronCooldown</ControlName>
+		<ControlText>Skull Banner on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>DemoralizingBanerEnemyUsingCooldown</ControlName>
+		<ControlText>Demoralizing Banner When Enemy Bursting</ControlText>
+	</data>
+	<data>
+		<ControlName>DemoralizingBanerFriendLow</ControlName>
+		<ControlText>Demo Banner Help Friend HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>DemoralizingBanerEnemyGroup</ControlName>
+		<ControlText>Demo Banner Enemy Group Around</ControlText>
+	</data>
+	<data>
+		<ControlName>ThunderClapDeepWound</ControlName>
+		<ControlText>Thunder Clap Spread Deep Wound</ControlText>
+	</data>
+	<data>
+		<ControlName>ThunderClapDeepWeakendedBlows</ControlName>
+		<ControlText>Thnder Clap Apply Weakened Blow</ControlText>
+	</data>
+	<data>
+		<ControlName>labelAndMyRageBelow</ControlName>
+		<ControlText>And My Rage Below</ControlText>
+	</data>
+	<data>
+		<ControlName>ShieldBlock</ControlName>
+		<ControlText>Shield Block My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>ShieldBarrier</ControlName>
+		<ControlText>Shield Barrier My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>DemoralizingShout</ControlName>
+		<ControlText>Demoralizing Shout My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>ShatteringThrow</ControlName>
+		<ControlText>Shattering Throw Break Invunerable</ControlText>
+	</data>
+	<data>
+		<ControlName>Vigilance</ControlName>
+		<ControlText>Vigilance Friend HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLeapBackwardtoFriend</ControlName>
+		<ControlText>Leap Backward to Friend</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLeapBackward40Yard</ControlName>
+		<ControlText>Leap Backward 40 yard</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLeapForward20Yard</ControlName>
+		<ControlText>Leap Forward 20 yard</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLeapForward40Yard</ControlName>
+		<ControlText>Leap Forward 40 yard</ControlText>
+	</data>
+	<data>
+		<ControlName>HeroicThrow</ControlName>
+		<ControlText>Heroic Throw on DPS Rotation</ControlText>
+	</data>
+	<data>
+		<ControlName>BerserkerTargetLow</ControlName>
+		<ControlText>Berserker Rage Target HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>BladestormBurst</ControlName>
+		<ControlText>on Burst</ControlText>
+	</data>
+	<data>
+		<ControlName>BladestormCooldown</ControlName>
+		<ControlText>Bladestorm on Cooldown</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoTauntProt</ControlName>
+		<ControlText>Auto Taunt Prot</ControlText>
+	</data>
+	<data>
+		<ControlName>AutoSetFocus</ControlName>
+		<ControlText>Auto Set Focus</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLeaptoFocus</ControlName>
+		<ControlText>Leap to Focus</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLeaptoTarget</ControlName>
+		<ControlText>Leap to Target</ControlText>
+	</data>
+	<data>
+		<ControlName>SpellReflectionLow</ControlName>
+		<ControlText>Spell Reflection My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>HotkeyConfigButton</ControlName>
+		<ControlText>Hotkey Setting Changer Config</ControlText>
+	</data>
+	<data>
+		<ControlName>HotkeyPrintChat</ControlName>
+		<ControlText>Print Notification to WoW Chat Log</ControlText>
+	</data>
+	<data>
+		<ControlName>groupBoxRandomDelay</ControlName>
+		<ControlText>Random Delay Milliseconds   Min            Max</ControlText>
+	</data>
+	<data>
+		<ControlName>labelBreacCCDelay</ControlName>
+		<ControlText>Break CC Delay</ControlText>
+	</data>
+	<data>
+		<ControlName>labelInterruptDelay</ControlName>
+		<ControlText>Interrupt Delay</ControlText>
+	</data>
+	<data>
+		<ControlName>MassSpellReflectionLow</ControlName>
+		<ControlText>Mass Spell Reflection HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>MassSpellReflection</ControlName>
+		<ControlText>Mass Spell Reflection Cast Ms</ControlText>
+	</data>
+	<data>
+		<ControlName>SafeGuardRoot</ControlName>
+		<ControlText>Safeguard Remove Root</ControlText>
+	</data>
+	<data>
+		<ControlName>SafeGuardRootBanner</ControlName>
+		<ControlText>Use Banner</ControlText>
+	</data>
+	<data>
+		<ControlName>InterveneTrapDPS</ControlName>
+		<ControlText>on DPS</ControlText>
+	</data>
+	<data>
+		<ControlName>InterveneTrapHealer</ControlName>
+		<ControlText>on Healer</ControlText>
+	</data>
+	<data>
+		<ControlName>InterveneTrap</ControlName>
+		<ControlText>Intervene/Safeguard/Leap on friend</ControlText>
+	</data>
+	<data>
+		<ControlName>LastStand</ControlName>
+		<ControlText>Last Stand My HP Below</ControlText>
+	</data>
+	<data>
+		<ControlName>labelLeaptoMouseLocation</ControlName>
+		<ControlText>Leap to Mouse Location</ControlText>
+	</data>		
+</data_Table>

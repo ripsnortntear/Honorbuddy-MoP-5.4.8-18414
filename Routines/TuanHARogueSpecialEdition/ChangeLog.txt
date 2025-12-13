@@ -1,0 +1,232 @@
+Build 5.4.5213
+Fix Auto Target
+Improve Auto Pause on Manual Cast
+
+
+Build 5.4.5212
+Improve Performance
+Better Auto Pause on Manual Cast
+Cloak of Shadow now use on Hunter's root (Narrow Escape)
+
+
+Build 5.4.5202
+Fix issue rogue kick non-player target in arena/bg
+Fix issue stun on Mage blink and Monk Dematerialize
+
+
+Build 5.4.5202
+Remove ability to read combatlog and pre-emptive Cloak/Feint/Blind/Smoke Bomb/Gouge/Shiv if you are using AFK Botbase like BGBuddy... make your account safe, not one know you are botting. Thank tomcruise
+
+Rogue will Feint with Elusiveness talent as soon as enemy start using Offensive Cooldown on you. The list include:
+            107574, //	-- Avatar
+            12292, //-- Bloodbath-- Death Wish
+            121471, //-- Shadow Blades
+            51271, // "Pillar of Frost",
+            49016, //"Unholy Frenzy",
+            102560, // "Incarnation: Chosen of Elune",
+            124974, //"Nature's Vigil",
+            106952, //"Berserk ",
+            19574, //"Bestial Wrath",
+            3045, //"Rapid Fire",
+            12472, //"Icy Veins",
+            31884, //"Avenging Wrath",
+            105809, //"Holy Avenger",
+            86698, //"Guardian of Ancient Kings",
+            86669, //"Guardian of Ancient Kings",
+            51713, //"Shadow Dance",
+            51690, // "Killing Spree",
+            13750, //Adrenaline Rush
+            114049, // "Ascendance",
+            114051, // "Ascendance",
+            113858, //"Dark Soul: Instability",
+            1719, //"Recklessness",
+            114207, //"Skull Banner",
+            46924, //Bladestorm
+            147531, //Bloodbath
+
+
+Build 5.4.5199
+Rogue will no longer go Stealth if you have Horde Mine Cart (141210) or Alliance Mine Cart (140876) - Thank Chaser 
+
+
+Build 5.4.5199
+Fix Rupture in Assassination Rotation (thank ginuwin12)
+Remove Pick Pocket as it handled by Questbot (make CR a bit faster)
+Marked for Death only use when you have 0 Combo Point and not capping energy
+Shadow Blade now activate burst if you have option Burst Activate on Using Offensive Cooldown (Thank destor@th)
+If you have talent Elusivemess, CR will cast Feint as soon as these spell about to hit you (Thank ginuwine12 again)
+            102051, //Frost Jaw 
+            51505, // Lava Burst
+            116858, //Chaos Bolt
+            113092, //Frost Bomb
+            48181, //Haunt
+            78674, //starsurge
+            108194, // Asphyxiate
+            102795, // Bear Hug
+            22570, // Maim
+            5211, // Mighty Bash
+            9005, // Pounce
+            102546, // Pounce (Incarnation)
+            110698, // Hammer of Justice (Paladin)
+            118271, // Combustion Impact
+            44572, // Deep Freeze
+            105593, // Fist of Justice
+            853, // Hammer of Justice
+            1833, // Cheap Shot
+            408, // Kidney Shot
+            54786, // Demonic Leap (Metamorphosis)
+            89766, // Axe Toss (Felguard/Wrathguard)
+            7922, // Charge Stun
+            132168, // Shockwave
+            105771 // Warbringer     
+Paralytic Poison Shiv redesigned logic:
+If unit is Range DPS/ Healer: They must be the rogue current target and not snared
+If unit is Melee: They can be the rogue current target or is within rogue Shiv range. If his target is a Range/DPS, always Shiv if he's not rooted. If his target is Melee, only Shiv if his target HP < his HP and his target trying to run away from him.
+Add Sprint Back to rogue without Burst of Speed, thank pmpaul
+
+Build 5.4.5198
+Kidney Shot/Cheap Shot no longer use on target that have 3 Paralytic Poison Debuff
+Fix Stop Attack: Rogue now only Stop Attack when he's in Stealth and Subterfuge is not up. Thank ginuwine12.
+
+
+Build 5.4.5196
+Cheap Shot no longer try to cast on Caster/Healer that under Silence Effect which last more than 300 ms
+
+
+Build 5.4.5196
+
+Add A LOT PvP Trick by watching combat log:
+
+Cloak of Shadow incoming:
+105421, //-- Blinding Light
+44572, //-- Deep Freeze
+31661, //-- Dragon's Breath
+105593, //-- Fist of Justice
+853, //-- Hammer of Justice
+88625, //-- Holy Word: Chastise
+126246, //-- Lullaby
+6789, //-- Mortal Coil
+64044, //-- Psychic Horror
+//115001, //-- Remorseless Winter
+33786, //-- Cyclone
+605, //-- Dominate Mind
+5782, //-- Fear
+51514, //-- Hex
+115268, //-- Mesmerize
+118, //-- Polymorph
+61305, //-- Polymorph (Black Cat)
+28272, //-- Polymorph (Pig)
+61025, //-- Polymorph (Serpent)
+28271, //-- Polymorph (Turtle)
+113792, //-- Psychic Terror
+20066, //-- Repentance
+113724, //-- Ring of Frost
+//1513, //-- Scare Beast
+6358, //-- Seduction
+//9484, //-- Shackle Undead
+19386, //-- Wyvern Sting
+145067, //Turn Evil
+5484, //-- Howl of Terror
+8122, //-- Psychic Scream
+
+Smoke Bomb Incoming:
+44572, //-- Deep Freeze
+105593, //-- Fist of Justice
+853, //-- Hammer of Justice
+88625, //-- Holy Word: Chastise
+6789, //-- Mortal Coil
+33786, //-- Cyclone
+605, //-- Dominate Mind
+5782, //-- Fear
+51514, //-- Hex
+118, //-- Polymorph
+61305, //-- Polymorph (Black Cat)
+28272, //-- Polymorph (Pig)
+61025, //-- Polymorph (Serpent)
+28271, //-- Polymorph (Turtle)
+113792, //-- Psychic Terror
+20066, //-- Repentance
+19386, //-- Wyvern Sting
+145067, //Turn Evil
+
+Blind Incoming: (only when your HP below Blind Help Friend Setting)
+1833, //Cheap Shot
+44572, //Deep Freeze
+105593, //Fist of Justice
+117418, //Fists of Fury
+853, //Hammer of Justice
+110698, //Hammer of Justice (Paladin)
+408, //Kidney Shot
+132168, //Shockwave
+107570, //Storm Bolt
+108194, //Asphyxiate
+
+Shiv or Gouge Hunter Just Disengage
+
+Blind Rogue just Vanish
+
+Note: Lower latency have more success rate. If Enemy Latency > Your Latency, it almost always success.
+
+
+Build 5.4.5193
+Fix Auto Focus Missing
+Improve Mage Blink Tracking (only stun after blink)
+Improve Monk Demateralize Tracking (only stun after Demateralize)
+
+
+Build 5.4.5165
+Improve core mechanic on rogue
+DPS increase in all 3 spec
+Sub PvP Rotaion is now rewriten and it doing well in PvP
+To be added: Assassination and Combat PvP Rotation.
+Fix Wound Poison issue typo
+
+
+Build 5.4.5165
+Fix Expose Armor issue on Rogue
+Fix Crimson Tempest on Combat Spec
+
+
+Build 5.4.5164
+Fix issue fail to check enemy around that have CC break on damage cause AoE spell disabled.
+Fix Vanish issue that auto-activate when Vanish option not enabled.
+
+Build 5.4.5163
+Improve Combat Rotation PvE, all 3 spec now doing little more damage than SimulationCraft result (the highest possible dps in theory)
+
+
+Build 5.4.5162
+MAJOR UPDATE"
+PvE Rotation completely rewriten
+Improve DPS on Assassination, Combat and Subtlety spec
+Fix Poison
+
+
+Build 5.4.5142
+Remove QuestGive from enemy blacklist
+Improve Invalid Target detection
+
+
+Build 5.4.5130.248
+Add Option Enable/Disable Blade Flurry, some fight require manual activate it.
+
+
+Build 5.4.5128.24594
+Add Option Auto Move Behind
+Improved Movement Logic
+Improved Targeting Logic
+
+
+Build 5.4.5127.27664
+Improved DPS on Combat Spec, improve dps on Anticipation Talent.
+Combat Routine no longer try to get behind target that are not player.
+Fix issue attacking critter :D
+
+
+Build 5.4.5125.2279
+Auto Update is ready to serve! You are now no longer to worry about svn update!
+Improved movement logic - smart just like player!
+Improved targeting logic - smart just like player!
+Improve logic on waiting for interrupt.
+Improve logic on waiting for using trinket/racial/Hand of Sacrifice/Hand of Protection... when remove CCs
+Added Change Log.
