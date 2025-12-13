@@ -2,7 +2,7 @@
 
 # Honorbuddy MoP 5.4.8 (18414)
 ## How to execute it 
-### |
+
 >**add this lines to**
 
 >C:\Windows\System32\drivers\etc\hosts
