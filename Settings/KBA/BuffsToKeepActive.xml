@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Filename>C:\Users\Ryan\Desktop\New folder\Settings\KBA\BuffsToKeepActive.xml</Filename>
+  <Version>1.0.2</Version>
+  <Spells>
+    <SpellEntry ObjectId="93351" ObjectName="Potion of Luck" BuffId="135855" BuffName="Potion of Luck" BuffLocation="Everywhere" BuffCondition="Everytime" />
+    <SpellEntry ObjectId="76085" ObjectName="Flask of the Warm Sun" BuffId="105691" BuffName="Flask of the Warm Sun" BuffLocation="Raid" BuffCondition="Never" />
+    <SpellEntry ObjectId="76086" ObjectName="Flask of Falling Leaves" BuffId="105693" BuffName="Flask of Falling Leaves" BuffLocation="Raid" BuffCondition="Never" />
+    <SpellEntry ObjectId="76087" ObjectName="Flask of the Earth" BuffId="105694" BuffName="Flask of the Earth" BuffLocation="Raid" BuffCondition="Never" />
+    <SpellEntry ObjectId="76088" ObjectName="Flask of Winter's Bite" BuffId="105696" BuffName="Flask of Winter's Bite" BuffLocation="Raid" BuffCondition="Never" />
+    <SpellEntry ObjectId="76084" ObjectName="Flask of Spring Blossoms" BuffId="105689" BuffName="Flask of Spring Blossoms" BuffLocation="Raid" BuffCondition="Never" />
+    <SpellEntry ObjectId="103642" ObjectName="Book of the Ages" BuffId="147226" BuffName="Book of the Ages" BuffLocation="TimelessIsle" BuffCondition="Everytime" />
+    <SpellEntry ObjectId="103643" ObjectName="Dew of Eternal Morning" BuffId="147476" BuffName="Dew of Eternal Morning" BuffLocation="TimelessIsle" BuffCondition="Everytime" />
+    <SpellEntry ObjectId="103641" ObjectName="Singing Crystal" BuffId="147055" BuffName="Singing Crystal" BuffLocation="TimelessIsle" BuffCondition="Everytime" />
+  </Spells>
+</SpellList>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HotkeySettings>
+  <SavedToFile>False</SavedToFile>
+  <ChatFrameMessage>True</ChatFrameMessage>
+  <KeysToggleBehavior>True</KeysToggleBehavior>
+  <AoeToggle>None</AoeToggle>
+  <CombatToggle>None</CombatToggle>
+  <MovementToggle>None</MovementToggle>
+  <PullMoreToggle>None</PullMoreToggle>
+  <SuspendMovement>False</SuspendMovement>
+  <SuspendDuration>3</SuspendDuration>
+</HotkeySettings>

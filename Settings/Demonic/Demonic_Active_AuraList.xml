@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string_0>C:\HB\HB - Main\Settings\Demonic\Demonic_Active_AuraList.xml</string_0>
+  <Version>Millz</Version>
+  <Spells>
+    <SpellEntry AuraName="Dark Soul: Misery" AuraId="113860" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="true" Comment="+Haste - Affliction" />
+    <SpellEntry AuraName="Dark Soul: Instability" AuraId="113858" StackCount="1" ChaosBolt="true" Haunt="true" RoF="true" Metamorphosis="true" SoulFire="true" Comment="+Crit - Destruction" />
+    <SpellEntry AuraName="Dark Soul: Knowledge" AuraId="113861" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="true" Comment="+Mastery - Demonology" />
+    <SpellEntry AuraName="Skull Banner" AuraId="114206" StackCount="1" ChaosBolt="true" Haunt="false" RoF="false" Metamorphosis="true" SoulFire="false" Comment="+20% Crit Damage - Warrior Banner" />
+    <SpellEntry AuraName="Heroism" AuraId="32182" StackCount="1" ChaosBolt="false" Haunt="true" RoF="true" Metamorphosis="true" SoulFire="true" Comment="+30% Haste - Shaman Ability (Alliance)" />
+    <SpellEntry AuraName="Time Warp" AuraId="80353" StackCount="1" ChaosBolt="false" Haunt="true" RoF="true" Metamorphosis="true" SoulFire="true" Comment="+30% Haste - Mage Ability" />
+    <SpellEntry AuraName="Bloodlust" AuraId="2825" StackCount="1" ChaosBolt="false" Haunt="true" RoF="true" Metamorphosis="true" SoulFire="true" Comment="+30% Haste - Shaman Ability (Horde)" />
+    <SpellEntry AuraName="Ancient Hysteria" AuraId="90355" StackCount="1" ChaosBolt="false" Haunt="true" RoF="true" Metamorphosis="true" SoulFire="true" Comment="+30% Haste - Hunter's Pet Ability" />
+    <SpellEntry AuraName="Perfect Aim" AuraId="138963" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="false" Comment="Lei Shen's 100% Crit Trinket" />
+    <SpellEntry AuraName="Acceleration" AuraId="138703" StackCount="1" ChaosBolt="false" Haunt="true" RoF="true" Metamorphosis="false" SoulFire="true" Comment="+9483 Haste (10s) Volatile Talisman of the Shado-Pan Assault" />
+    <SpellEntry AuraName="Wushoolay's Lightning" AuraId="138786" StackCount="8" ChaosBolt="false" Haunt="false" RoF="false" Metamorphosis="false" SoulFire="false" Comment="Wushoolay's Final Choice Trinket" />
+    <SpellEntry AuraName="Yu'lon's Bite" AuraId="146218" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="true" Comment="+5084 Crit - 20s" />
+    <SpellEntry AuraName="Expanded Mind" AuraId="146046" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="true" Comment="+5084 Intellect - 20s" />
+    <SpellEntry AuraName="Wrath of the Darkspear" AuraId="146184" StackCount="6" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="true" Comment="+1016 Intellect, Stacks 10 Times, 10s" />
+    <SpellEntry AuraName="Toxic Power" AuraId="148906" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="true" Comment="+5084 Intellect - 10s" />
+    <SpellEntry AuraName="Jade Spirit" AuraId="104993" StackCount="1" ChaosBolt="false" Haunt="false" RoF="false" Metamorphosis="false" SoulFire="false" Comment="Weapon Enchant" />
+    <SpellEntry AuraName="Lifeblood" AuraId="121279" StackCount="1" ChaosBolt="false" Haunt="false" RoF="false" Metamorphosis="false" SoulFire="false" Comment="+2880 Haste - Herbalism" />
+    <SpellEntry AuraName="Tempus Repit" AuraId="137590" StackCount="1" ChaosBolt="false" Haunt="true" RoF="true" Metamorphosis="true" SoulFire="true" Comment="+30% Haste - Legendary Meta" />
+    <SpellEntry AuraName="Ember Master" AuraId="145164" StackCount="1" ChaosBolt="true" Haunt="false" RoF="false" Metamorphosis="false" SoulFire="false" Comment="T16 4 Piece Set Bonus" />
+    <SpellEntry AuraName="Surge of Dominance" AuraId="126706" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="false" SoulFire="false" Comment="PvP Trinket - Insignia of Dominance" />
+    <SpellEntry AuraName="Call of Dominance" AuraId="126683" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="false" SoulFire="false" Comment="PvP Trinket - Badge of Dominance" />
+  </Spells>
+</SpellList>

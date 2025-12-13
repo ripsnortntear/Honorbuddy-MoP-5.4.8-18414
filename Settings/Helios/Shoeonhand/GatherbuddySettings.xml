@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GatherbuddySettings>
+  <GatherHerbs>True</GatherHerbs>
+  <GatherMinerals>False</GatherMinerals>
+  <PathingType>Circle</PathingType>
+  <UseSpiritHealer>False</UseSpiritHealer>
+  <UseGuildVault>False</UseGuildVault>
+  <HearthAndExit>True</HearthAndExit>
+  <MailToAlt>False</MailToAlt>
+  <WaitRezSickness>True</WaitRezSickness>
+  <HeightModifier>0</HeightModifier>
+  <BottingHours>0</BottingHours>
+  <NoNinja>False</NoNinja>
+  <IgnoreElites>False</IgnoreElites>
+  <BlacklistTimer>20</BlacklistTimer>
+  <LootMobs>True</LootMobs>
+  <RepairFromGuildBank>False</RepairFromGuildBank>
+  <RandomizeHotspots>False</RandomizeHotspots>
+  <RandomizationFactor>1</RandomizationFactor>
+  <FaceNodes>False</FaceNodes>
+  <DiagnosticLogging>False</DiagnosticLogging>
+</GatherbuddySettings>

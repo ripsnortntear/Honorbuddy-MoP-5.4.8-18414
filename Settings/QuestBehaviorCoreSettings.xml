@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuestBehaviorCoreSettings>
+  <AudibleNotify_OnDeprecatedAttributeUse>False</AudibleNotify_OnDeprecatedAttributeUse>
+  <AudibleNotify_OnDeprecatedBehaviorUse>False</AudibleNotify_OnDeprecatedBehaviorUse>
+  <AudibleNotify_OnSemanticIncoherency>True</AudibleNotify_OnSemanticIncoherency>
+  <LogProfileContextOnExceptions>False</LogProfileContextOnExceptions>
+  <MonitoredBehaviors>
+    <Entry>BEHAVIOR_CLASS_NAME</Entry>
+  </MonitoredBehaviors>
+  <LogNotifyOn_OnDeprecatedAttributeUse>False</LogNotifyOn_OnDeprecatedAttributeUse>
+  <LogNotifyOn_OnDeprecatedBehaviorUse>True</LogNotifyOn_OnDeprecatedBehaviorUse>
+  <LogNotifyOn_OnScheduledForDeprecation>False</LogNotifyOn_OnScheduledForDeprecation>
+</QuestBehaviorCoreSettings>

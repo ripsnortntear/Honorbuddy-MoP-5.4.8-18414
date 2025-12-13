@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MrItemRemover2Settings>
+  <EnableSell>False</EnableSell>
+  <EnableRemove>False</EnableRemove>
+  <CombineItems>False</CombineItems>
+  <EnableOpen>False</EnableOpen>
+  <LootCheck>False</LootCheck>
+  <SellGray>False</SellGray>
+  <SellWhite>False</SellWhite>
+  <SellGreen>False</SellGreen>
+  <SellBlue>False</SellBlue>
+  <SellSoulbound>False</SellSoulbound>
+  <SellFood>False</SellFood>
+  <SellDrinks>False</SellDrinks>
+  <DeleteAllGray>False</DeleteAllGray>
+  <DeleteAllWhite>False</DeleteAllWhite>
+  <DeleteAllGreen>False</DeleteAllGreen>
+  <DeleteAllBlue>False</DeleteAllBlue>
+  <DeleteQuestItems>False</DeleteQuestItems>
+  <RemoveFood>False</RemoveFood>
+  <RemoveDrinks>False</RemoveDrinks>
+  <GoldGrays>1</GoldGrays>
+  <SilverGrays>53</SilverGrays>
+  <CopperGrays>41</CopperGrays>
+  <Time>5</Time>
+  <ReqRefLvl>0</ReqRefLvl>
+</MrItemRemover2Settings>
