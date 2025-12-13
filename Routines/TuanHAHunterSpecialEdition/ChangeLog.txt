@@ -1,0 +1,185 @@
+Build 5.4.5213
+Fix Auto Target
+Improve Auto Pause on Manual Cast
+
+Build 5.4.5205
+Pet now again ability move to Hunter's Freezing Trap Location and Eat it!
+Rewrite logic on caching, DPS is back (and better) for real.
+
+This is TRUELY EPIC to see on your combat log:
+Pet Move To Location X:2125.824 Y: 180.2162 Z: 43.65009 to Eat Trap!
+Automatically Activate Dash if your pet have it
+Pet cast Bullheaded on Lvl 90 Alliance Hunter (flagged: False)'s pet reason 
+
+Build 5.4.5204
+Burst redesigned: 
+Added new Burst Mode Activate on Boss or Player.
+Added option to active Burst Mode on Modifier Key (None, Shift, Control, Alt) + (A-Z, 0-9, Up, Down, Left, Right) Key - Thank you Brandon for your generous donation.
+Auto Freezing Trap no longer use on target immune (Monk Dematerialized, Paladin Divine Shield...) and immune to magic unit (dk have Anti-Magic shell, any unit have Grouding Totem Effect...)
+
+
+Build 5.4.5201
+Arcane Shot now use all Thrill of the Hunt Proc in PvP! Don't blame me if you doing less dps...
+
+
+Build 5.4.5200
+New logic tracking current target buff/debuff
+Glaives Toss totally ignored 5 second after you cast Freezing Trap to make sure you never break it, ever!
+
+
+Build 5.4.5197
+New GUI for Freezing Trap, it's now much more customizable. You can now set it trap like Only Healer with Narrow Escape and Healer/DPS with Scatter Shot...
+Improve Auto Target logic... it prefer the MOST focused enemy unit, test in bg and it targeting logic is a lot smarter in BG
+Improve Auto Focus after HB API Auto Focus change.
+
+
+Build 5.4.5187
+Widow Venom always apply on enemy player. The spell cost only 15 Focus and Last 30 seconds, should not lower your dps.
+
+
+Build 5.4.5187
+NEW and REVOLUTIONARY method on check facing. Now PvP hunter do a lot more damage while kiting!
+Fastest CR ever, full optimization. I got 50 FPS on Tyrael Hardlock ON (was 15 FPS previous revision :P)
+Add a random delay on Breaking CC and Interrupt
+Barrage no longer break CC nearby unit (sheep/blind...) 
+
+
+Build 5.4.5184
+Major change in core SpellCooldown and ItemCooldown
+More DPS All 3 Spec!
+PvP Tweak, attacking enemy flag capper.
+
+
+Build 5.4.5182
+Beastial Wrath now only use to Break Hunter CC, not Pet
+Improve logic on Black Arrow, in arena it now prefer cast on pet with more HP. Because cast on player it get dispelled a lot resulting in low Explosive Proc/low DPS for Survival Hunter in arena.
+
+
+Build 5.4.5180
+Better Separate Target Invulnerable Physic and Magic
+Add Healing Stream Totem to Kill List
+
+
+Build 5.4.5179
+Move Chimera Shot on higher priority if target is player
+Better Handle Rogue, Druid No Combat or In Stealth
+
+Build 5.4.5174
+
+Revise MM rotation, we are now doing a little more damage
+
+Add 4 crucial option for PvP
+
+- Interrupt Any Offensive Spell: Interrupt ANY offensive cast
+
+- Interrupt Only Important Offensive Spell: Interrupt ONLY important offensive cast
+	- Always interrupt these spells
+		"Cyclone",
+		"Polymorph",
+		"Ring of Frost",
+		"Repentance",
+		"Turn Evil",
+		"Mind Control",
+		"Mass Dispel",
+		"Hex",
+		"Fear",
+		"Mind Flay (Insanity)",
+		"Chaos Bolt",
+		"Haunt",
+
+	- Always interrupt these spells IF his target below 70%
+		"Frostbolt",
+		"Pyroblast",
+		"Arcane Blast",
+		"Mind Blast",
+		"Mind Spike",
+		"Lava Burst",
+		"Elemental Blast",
+		"Incinerate",
+		"Drain Soul",
+		"Malefic Grasp",
+
+- Interrupt Healing Spells if My Target Below: Interrupt ANY healing cast if target below [defined percent] - this mostly serve for high end arena purpose. You don't want to waste a Silencing/Counter shot on a heal from enemy if your target above 70%
+
+- Blanket CC/Silence Healer if My Target Below: Silence CC healer if target below [defined percent]
+	This is a VERY NICE feature. When your target below 30% (you can change) your hunter will auto Scatter Shot, Pet Stun, Root, Sleep, Trap enemy healer so he can do nothing to safe his friend.
+
+
+Build 5.4.5169
+Kill Shot now use right well target drop below 20%
+Happy Killing!
+
+
+Build 5.4.5159
+Fix issue low level hunter don't cast Steady Shot
+
+
+Build 5.4.5157
+Fix Bestial Wrath and PvP Trinket usage overlap
+
+
+Build 5.4.5157
+Fix DPS issue on Markmanship
+Psyfiend add to unit to kill asap just like totem
+
+
+Build 5.4.5156
+Fix DPS issue on Survival and Markmanship
+
+
+Build 5.4.5155
+MAJOR UPDATE: ALL 3 SPEC ROTATION REWRITEN
+Improved DPS on PvE
+Improved DPS on PvP
+Better PvP logic
+
+
+Build 5.4.5153
+Improve DPS on Marksmanship and Survival Spec
+Fix A Murder of Crows Issue
+
+
+Build 5.4.5153
+Improve Tranquilizing Shot logic: Thank Mehmetcan
+Now Hunter will Tranquilizing Shot on ANY unit IF he have important buff need dispel ASAP:
+            "Nature's Swiftness",
+            "Predator's Swiftness",
+            "Presence of Mind",
+            "Hand of Protection",
+            "Spiritwalker's Grace",
+The normal Tranquilizing Shot on Current Target only use when target above 40% because if he's low you better finish him
+Improved Concussive Shot logic, now Combat Routine will snare ANY enemy melee targeting you, the logic make kiting a lot easier.
+Fix Hunter's Mark logic, now also Hunter's Mark Mage if he's not in combat (to prevent he go stealth)
+Improve Movement Logic
+Add Blizzard and Transcendence to do not interrupt list
+
+
+Build 5.4.5133
+Remove QuestGive from enemy blacklist
+Improve Invalid Target detection
+Widow Venom move to higher priority
+
+
+Build 5.4.5132
+Previous version will try to trap on any unit have stun/root debuff on 3000ms to 500 ms left
+This version will try to trap on any unit have stun/root debuff on 3000ms to 1000 ms left
+
+
+Build 5.4.5132
+Fix the facing issue
+Fix the spam cast issue
+
+
+Build 5.4.5130.801
+Better stopcasting logic on Manual Trap launcher
+
+
+Build 5.4.5127.25978
+Fix issue attacking critter :D
+
+
+Build 5.4.5125.2699
+Auto Update is ready to serve! You are now no longer to worry about svn update!
+Improved targeting logic - smart just like player!
+Added Change Log.
+Improve logic and minor bug fix
