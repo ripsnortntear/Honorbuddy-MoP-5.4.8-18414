@@ -52,11 +52,6 @@ namespace Singular.Managers
 
         public static bool HavePet { get { return StyxWoW.Me.GotAlivePet; } }
 
-        public static string GetPetTalentTree()
-        {
-            return Lua.GetReturnVal<string>("return GetPetTalentTree()", 0);
-        }
-
         public static string WantedPet { get; set; }
 
         internal static void Pulse()
@@ -90,7 +85,7 @@ namespace Singular.Managers
                         PetSummonAfterDismountTimer.Reset();
                         _petGuid = StyxWoW.Me.Pet.Guid;
 
-                        Logger.WriteDebug("---PetSpells Loaded for: {0} Pet ---", PetManager.GetPetTalentTree());
+                        Logger.WriteDebug("---PetSpells Loaded---");
                         foreach (var sp in PetSpells)
                         {
                             if (sp.Spell == null)
@@ -102,23 +97,17 @@ namespace Singular.Managers
                     }
                 }
 
-                HandleAutoCast();
+                if (NeedToCheckPetTauntAutoCast)
+                {
+                    NeedToCheckPetTauntAutoCast = false;
+                    HandleAutoCast();
+                }
             }
 
             if (!StyxWoW.Me.GotAlivePet)
             {
                 PetSpells.Clear();
             }
-        }
-
-        public static bool Attack(WoWUnit unit)
-        {
-            if ( unit == null || StyxWoW.Me.Pet == null || StyxWoW.Me.Pet.CurrentTargetGuid == unit.Guid)
-                return false;
-
-            Logger.Write(Color.White, "/petattack on {0} @ {1:F1} yds", unit.SafeName(), unit.SpellDistance());
-            PetManager.CastPetAction("Attack", unit);
-            return true;
         }
 
         public static bool CanCastPetAction(string action)
@@ -145,30 +134,28 @@ namespace Singular.Managers
             if (spell == null)
                 return;
 
-            Logger.Write(Color.DeepSkyBlue, "[Pet] Casting {0}", action);
+            Logger.Write(string.Format("[Pet] Casting {0}", action));
             Lua.DoString("CastPetAction({0})", spell.ActionBarIndex + 1);
         }
 
         public static void CastPetAction(string action, WoWUnit on)
         {
+            // target is currenttarget, then use simplified version (to avoid setfocus/setfocus
+            if (on == StyxWoW.Me.CurrentTarget)
+            {
+                CastPetAction(action);
+                return;
+            }
+
             WoWPetSpell spell = PetSpells.FirstOrDefault(p => p.ToString() == action);
             if (spell == null)
                 return;
 
-            Logger.Write(Color.DeepSkyBlue, "[Pet] Casting {0} on {1} @ {2:F1} yds", action, on.SafeName(), on.SpellDistance());
-            if (on.Guid == StyxWoW.Me.CurrentTargetGuid)
-            {
-                Logger.WriteDebug("CastPetAction: cast [{0}] specifying CurrentTarget", action);
-                Lua.DoString("CastPetAction({0}, 'target')", spell.ActionBarIndex + 1);
-            }
-            else
-            {
-                WoWUnit save = StyxWoW.Me.FocusedUnit;
-                StyxWoW.Me.SetFocus(on);
-                Logger.WriteDebug("CastPetAction: cast [{0}] specifying FocusTarget {1}", action, on.SafeName());
-                Lua.DoString("CastPetAction({0}, 'focus')", spell.ActionBarIndex + 1);
-                StyxWoW.Me.SetFocus(save == null ? 0 : save.Guid);
-            }
+            Logger.Write(string.Format("[Pet] Casting {0} on {1}", action, on.SafeName()));
+            WoWUnit save = StyxWoW.Me.FocusedUnit;
+            StyxWoW.Me.SetFocus(on);
+            Lua.DoString("CastPetAction({0}, 'focus')", spell.ActionBarIndex + 1);
+            StyxWoW.Me.SetFocus( save == null ? 0 : save.Guid );           
         }
 
         /// <summary>
@@ -237,7 +224,7 @@ namespace Singular.Managers
                 case WoWClass.Warlock:
                     if (Spell.CanCastHack("Summon " + petName))
                     {
-                        Logger.Write(Color.DeepSkyBlue, "[Pet] Calling out my {0}", petName);
+                        Logger.Write(string.Format("[Pet] Calling out my {0}", petName));
                         bool result = SpellManager.Cast("Summon " + petName);
                         return result;
                     }
@@ -246,7 +233,7 @@ namespace Singular.Managers
                 case WoWClass.Mage:
                     if (Spell.CanCastHack("Summon Water Elemental"))
                     {
-                        Logger.Write(Color.DeepSkyBlue, "[Pet] Calling out Water Elemental");
+                        Logger.Write("[Pet] Calling out Water Elemental");
                         bool result = SpellManager.Cast("Summon Water Elemental");
                         return result;
                     }
@@ -257,7 +244,7 @@ namespace Singular.Managers
                     {
                         if (!StyxWoW.Me.GotAlivePet)
                         {
-                            Logger.Write(Color.DeepSkyBlue, "[Pet] Calling out pet #{0}", petName);
+                            Logger.Write(string.Format("[Pet] Calling out pet #{0}", petName));
                             bool result = SpellManager.Cast("Call Pet " + petName);
                             return result;
                         }
@@ -301,123 +288,61 @@ namespace Singular.Managers
 
         // flag used to indicate need to check; set anywhere but handled within Pulse()
         private static bool NeedToCheckPetTauntAutoCast { get; set; }
-        private static bool PetSpellsAvailableAfterNeedToCheck { get; set; }
 
         // set needtocheck flag anytime context changes
         static void PetManager_OnWoWContextChanged(object sender, WoWContextEventArg e)
         {
             NeedToCheckPetTauntAutoCast = true;
-            PetSpellsAvailableAfterNeedToCheck = false;
         }
 
         public static void HandleAutoCast()
         {
-            if ( NeedToCheckPetTauntAutoCast)
+            if ( StyxWoW.Me.GotAlivePet )
             {
-                if (StyxWoW.Me.GotAlivePet)
+                if (StyxWoW.Me.Class == WoWClass.Hunter)
                 {
-                    if (!IsAnySpellOnPetToolbar("Growl", "Taunt", "Thunderstomp", "Suffering"))
-                    {
-                        NeedToCheckPetTauntAutoCast = false;
-                    }
-                    else if (CanWeCheckAutoCastForAnyOfThese("Growl", "Taunt", "Thunderstomp", "Suffering"))
-                    {
-                        if (StyxWoW.Me.Class == WoWClass.Hunter)
-                        {
-                            NeedToCheckPetTauntAutoCast = !(HandleAutoCastForSpell("Growl") || HandleAutoCastForSpell("Taunt") || HandleAutoCastForSpell("Thunderstomp"));
-                        }
-                        else if (StyxWoW.Me.Class == WoWClass.Warlock && Singular.ClassSpecific.Warlock.Common.GetCurrentPet() == Settings.WarlockPet.Voidwalker)
-                        {
-                            NeedToCheckPetTauntAutoCast = !HandleAutoCastForSpell("Suffering");
-                        }
-                    }
+                    HandleAutoCastForSpell("Growl");
+                    HandleAutoCastForSpell("Taunt");
+                    HandleAutoCastForSpell("Thunderstomp");
+                }
+                else if (StyxWoW.Me.Class == WoWClass.Warlock && Singular.ClassSpecific.Warlock.Common.GetCurrentPet() == Settings.WarlockPet.Voidwalker)
+                {
+                    HandleAutoCastForSpell("Suffering");
                 }
             }
         }
 
-        public static bool IsAnySpellOnPetToolbar(params string[] spells)
-        {
-            if (!StyxWoW.Me.GotAlivePet)
-                return false;
-
-            if (spells == null || !spells.Any())
-                return false;
-
-            if (StyxWoW.Me.PetSpells == null)
-                return false;
-
-            HashSet<string> taunt = new HashSet<string>(spells);
-            WoWPetSpell ps = StyxWoW.Me.PetSpells.FirstOrDefault(s => s.Spell != null && taunt.Contains(s.Spell.Name));
-
-            return ps != null;
-        }
-
-        public static bool CanWeCheckAutoCastForAnyOfThese(params string[] spells)
-        {
-            if (!StyxWoW.Me.GotAlivePet)
-                return false;
-
-            if (spells == null || !spells.Any())
-                return false;
-
-            if (StyxWoW.Me.PetSpells == null)
-                return false;
-
-            HashSet<string> taunt = new HashSet<string>(spells);
-            WoWPetSpell ps = StyxWoW.Me.PetSpells.FirstOrDefault(s => s.Spell != null && taunt.Contains(s.Spell.Name));
-
-            if (ps == null)
-                return false;
-
-            bool allowed;
-            bool active = PetManager.IsAutoCast(ps, out allowed);
-            if (!allowed)
-                return false;
-
-            return true;
-        }
-
-        private static bool HandleAutoCastForSpell(string spellName)
+        private static void HandleAutoCastForSpell(string spellName)
         {
             WoWPetSpell ps = StyxWoW.Me.PetSpells.FirstOrDefault(s => s.ToString() == spellName);
+            bool allowed;
+            bool active = PetManager.IsAutoCast(ps, out allowed);
 
             // Disable pet growl in instances but enable it outside.
             if (ps == null)
                 Logger.WriteDebug("PetManager: '{0}' is NOT an ability known by this Pet", spellName);
-            else
+            else if (!allowed)
+                Logger.Write(Color.White, "PetManager: '{0}' is NOT an auto-cast ability for this Pet", spellName);
+            else if (SingularRoutine.CurrentWoWContext == WoWContext.Instances)
             {
-                bool allowed;
-                bool active = PetManager.IsAutoCast(ps, out allowed);
-                if (!allowed)
-                    Logger.Write(Color.White, "PetManager: '{0}' is NOT an auto-cast ability for this Pet", spellName);
+                if (!active)
+                    Logger.Write(Color.White, "PetManager: '{0}' Auto-Cast Already Disabled", spellName);
                 else
                 {
-                    if (SingularRoutine.CurrentWoWContext == WoWContext.Instances)
-                    {
-                        if (!active)
-                            Logger.Write(Color.White, "PetManager: '{0}' Auto-Cast Already Disabled", spellName);
-                        else
-                        {
-                            Logger.Write(Color.White, "PetManager: Disabling '{0}' Auto-Cast", spellName);
-                            Lua.DoString("DisableSpellAutocast(GetSpellInfo(" + ps.Spell.Id + "))");
-                        }
-                    }
-                    else
-                    {
-                        if (active)
-                            Logger.Write(Color.White, "PetManager: '{0}' Auto-Cast Already Enabled", spellName);
-                        else
-                        {
-                            Logger.Write(Color.White, "PetManager: Enabling '{0}' Auto-Cast", spellName);
-                            Lua.DoString("EnableSpellAutocast(GetSpellInfo(" + ps.Spell.Id + "))");
-                        }
-                    }
-
-                    return true;
+                    Logger.Write(Color.White, "PetManager: Disabling '{0}' Auto-Cast", spellName);
+                    Lua.DoString("DisableSpellAutocast(GetSpellInfo(" + ps.Spell.Id + "))");
                 }
             }
-
-            return false;
+            else
+            {
+                if (active)
+                    Logger.Write(Color.White, "PetManager: '{0}' Auto-Cast Already Enabled", spellName);
+                else
+                {
+                    Logger.Write(Color.White, "PetManager: Enabling '{0}' Auto-Cast", spellName);
+                    Lua.DoString("EnableSpellAutocast(GetSpellInfo(" + ps.Spell.Id + "))");
+                }
+            }
         }
 
         #endregion

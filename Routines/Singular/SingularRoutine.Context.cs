@@ -14,7 +14,6 @@ using Styx.WoWInternals;
 using Styx.Common;
 using Styx.Plugins;
 using System.Dynamic;
-using Singular.Managers;
 
 namespace Singular
 {
@@ -46,10 +45,8 @@ namespace Singular
         internal static bool IsDungeonBuddyActive { get; set; }
         internal static bool IsPokeBuddyActive { get; set; }
         internal static bool IsManualMovementBotActive { get; set; }
-        internal static bool IsGrindBotActive { get; set; }
 
         internal static WoWContext _cachedContext = WoWContext.None;
-        internal static HealingContext _cachedHealCtx = HealingContext.None;
 
         internal static WoWContext CurrentWoWContext
         {
@@ -67,20 +64,17 @@ namespace Singular
         {
             get
             {
-                return _cachedHealCtx;
-            }
-            set
-            {
-                _cachedHealCtx = value;
+                WoWContext ctx = CurrentWoWContext;
+                if (ctx == WoWContext.Instances && Me.GroupInfo.IsInRaid)
+                    return HealingContext.Raids;
+
+                return (HealingContext) ctx;
             }
         }
 
         private static void DetermineCurrentWoWContext()
         {
             CurrentWoWContext = _DetermineCurrentWoWContext();
-            CurrentHealContext = (CurrentWoWContext == WoWContext.Instances && Me.GroupInfo.IsInRaid)
-                ? HealingContext.Raids
-                : (HealingContext)CurrentWoWContext;
         }
 
         private static WoWContext _DetermineCurrentWoWContext()
@@ -89,20 +83,12 @@ namespace Singular
                 return WoWContext.None;
 
             if (ForcedContext != WoWContext.None)
-            {
-                if (_lastContext != ForcedContext)
-                    Logger.Write(Color.White, "Context: forcing use of {0} behaviors", ForcedContext);
-
                 return ForcedContext;
-            }
 
             Map map = StyxWoW.Me.CurrentMap;
 
             if (map.IsBattleground || map.IsArena)
             {
-                if (_lastContext != WoWContext.Battlegrounds)
-                    Logger.Write(Color.White, "Context: using {0} behaviors since in battleground/arena", WoWContext.Battlegrounds);
-
                 return WoWContext.Battlegrounds;
             }
 
@@ -110,30 +96,14 @@ namespace Singular
             {
                 if (Me.IsInInstance)
                 {
-                    if (_lastContext != WoWContext.Instances)
-                        Logger.Write(Color.White, "Context: using {0} behaviors since inside an instance", WoWContext.Instances);
-
                     return WoWContext.Instances;
                 }
 
-                // if (Group.Tanks.Any() || Group.Healers.Any())
-                const WoWPartyMember.GroupRole hasGroupRoleMask = WoWPartyMember.GroupRole.Healer | WoWPartyMember.GroupRole.Tank | WoWPartyMember.GroupRole.Damage;
-                if ((Me.Role & hasGroupRoleMask) != WoWPartyMember.GroupRole.None)
+                if (Group.Tanks.Any())
                 {
-                    if (_lastContext != WoWContext.Instances)
-                        Logger.Write(Color.White, "Context: using {0} behaviors since in group as {1}", WoWContext.Instances, Me.Role & hasGroupRoleMask);
-
                     return WoWContext.Instances;
                 }
-
-                if (_lastContext != WoWContext.Normal)
-                    Logger.Write(Color.White, "Context: no Role assigned (Tank/Healer/Damage), so using Normal (SOLO) behaviors");
-
-                return WoWContext.Normal;
             }
-
-            if (_lastContext != WoWContext.Normal)
-                Logger.Write(Color.White, "Context: using Normal (SOLO) behaviors since we are not in a group");
 
             return WoWContext.Normal;
         }
@@ -154,9 +124,9 @@ namespace Singular
                     {
                         // check if any of the bot detection values have changed which we use to 
                         // .. conditionally build trees
-                        DescribeContext();
                         if (UpdateContextStateValues())
                         {
+                            // DescribeContext();
                             RebuildBehaviors();
                         }
                     }
@@ -211,9 +181,6 @@ namespace Singular
             bool petHack = IsPluginEnabled("Pokébuddy", "Pokehbuddy");
             bool manualBot = IsBotInUse("LazyRaider", "Raid Bot", "Tyrael");
 
-            BotBase bot = GetCurrentBotBase();
-            bool grindBot = bot != null && bot.Name.ToUpper().Contains("GRIND");
-
             bool changed = false;
 
             if (questBot != IsQuestBotActive )
@@ -246,16 +213,10 @@ namespace Singular
                 IsManualMovementBotActive = manualBot;
             }
 
-            if (grindBot != IsGrindBotActive)
-            {
-                changed = true;
-                IsGrindBotActive = grindBot;
-            }
-
             return changed;
         } 
 
-        public static void DescribeContext()
+        static void DescribeContext()
         {
             string sRace = Me.Race.ToString().CamelToSpaced();
             if (Me.Race == WoWRace.Pandaren)
@@ -364,10 +325,10 @@ namespace Singular
 
         private static string SpecializationName()
         {
-            if (TalentManager.CurrentSpec == WoWSpec.None)
+            if (Me.Specialization == WoWSpec.None)
                 return "Lowbie";
 
-            string spec = TalentManager.CurrentSpec.ToString().CamelToSpaced();
+            string spec = Me.Specialization.ToString().CamelToSpaced();
             int idxLastSpace = spec.LastIndexOf(' ');
             if (idxLastSpace >= 0 && ++idxLastSpace < spec.Length)
                 spec = spec.Substring(idxLastSpace);
@@ -395,7 +356,7 @@ namespace Singular
                 }
             }
 
-            return bot == null ? "(null)" : bot.Name;
+            return bot.Name;
         }
 
         public static BotBase GetCurrentBotBase()

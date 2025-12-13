@@ -48,7 +48,7 @@ namespace Singular.Settings
         public WarlockPet Pet { get; set; }
 
         [Setting]
-        [DefaultValue(60)]
+        [DefaultValue(40)]
         [Category("Pet")]
         [DisplayName("Health Funnel at %")]
         [Description("Pet Health % to begin Health Funnel in combat")]
@@ -74,13 +74,6 @@ namespace Singular.Settings
         [DisplayName("Use Disarm")]
         [Description("True: use Disarm on cooldown; False: do not cast")]
         public bool UseDisarm { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
-        [Category("Common")]
-        [DisplayName("Create Soulwell If In Group")]
-        [Description("Creates a Soulwell if in a Group at certain point (Battlefield start, etc)")]
-        public bool CreateSoulwell { get; set; }
 
         [Setting]
         [DefaultValue(20)]
@@ -123,13 +116,6 @@ namespace Singular.Settings
         [DisplayName("Switch to Demon Fury Level")]
         [Description("Go Demon above this Demonic Fury value (0 - 1000)")]
         public int FurySwitchToDemon { get; set; }
-
-        [Setting]
-        [DefaultValue(1)]
-        [Category("Demonology")]
-        [DisplayName("Felstorm Mob Count")]
-        [Description("0: disable ability, otherwise mob count required within 8 yds.  Controls Wrathstorm also")]
-        public int FelstormMobCount { get; set; }
 
         [Setting]
         [DefaultValue(true)]

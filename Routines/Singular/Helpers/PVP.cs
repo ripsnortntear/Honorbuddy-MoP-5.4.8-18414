@@ -2,7 +2,6 @@
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
 using System;
-using Singular.Settings;
 
 namespace Singular.Helpers
 {
@@ -69,18 +68,9 @@ namespace Singular.Helpers
             return unit.Silenced || unit.HasAuraWithEffect(WoWApplyAuraType.ModSilence, WoWApplyAuraType.ModPacifySilence);
         }
 
-        public static bool IsSlowed(this WoWUnit unit, uint slowedPct = 30)
+        public static bool IsSlowed(this WoWUnit unit)
         {
-            int slowedCompare = -(int)slowedPct;
-            WoWAura aura = unit.GetAllAuras().FirstOrDefault(a => a.Spell.SpellEffects.Any(e => e.AuraType == WoWApplyAuraType.ModDecreaseSpeed && e.BasePoints <= slowedCompare));
-            if (aura != null && SingularSettings.Debug)
-            {
-                Styx.WoWInternals.DBC.SpellEffect se = aura.Spell.SpellEffects.FirstOrDefault(e => e.AuraType == WoWApplyAuraType.ModDecreaseSpeed);
-                if (se != null)
-                    Logger.WriteDebug("IsSlowed: target {0} slowed {1}% with [{2}] #{3}", unit.SafeName(), se.BasePoints, aura.Name, aura.SpellId);
-            }
-
-            return aura != null;
+            return unit.GetAllAuras().Any(a => a.Spell.SpellEffects.Any(e => e.AuraType == WoWApplyAuraType.ModDecreaseSpeed));
         }
 
 #region Battleground Start Timer

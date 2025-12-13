@@ -16,7 +16,6 @@ using Singular.ClassSpecific;
 using Styx.WoWInternals.WoWObjects;
 using Singular.ClassSpecific.Warlock;
 using System.Drawing;
-using Styx.CommonBot.POI;
 
 namespace Singular.Helpers
 {
@@ -59,17 +58,12 @@ namespace Singular.Helpers
         {
             PrioritySelector prio = new PrioritySelector();
             // const int spellIdAutoShot = 75;
-            bool autoAttack = 
-                   TalentManager.CurrentSpec == WoWSpec.None
-                || Me.Class == WoWClass.DeathKnight
-                || TalentManager.CurrentSpec == WoWSpec.DruidGuardian
-                || TalentManager.CurrentSpec == WoWSpec.DruidFeral
-                || TalentManager.CurrentSpec == WoWSpec.MonkBrewmaster
-                || TalentManager.CurrentSpec == WoWSpec.MonkWindwalker
-                || TalentManager.CurrentSpec == WoWSpec.PaladinProtection
-                || TalentManager.CurrentSpec == WoWSpec.PaladinRetribution
+            bool autoAttack = Me.Class == WoWClass.DeathKnight
+                || (Me.Class == WoWClass.Druid && Me.Specialization != WoWSpec.DruidRestoration)
+                || Me.Class == WoWClass.Monk
+                || (Me.Class == WoWClass.Paladin && Me.Specialization != WoWSpec.PaladinHoly)
                 || Me.Class == WoWClass.Rogue
-                || TalentManager.CurrentSpec == WoWSpec.ShamanEnhancement
+                || (Me.Class == WoWClass.Shaman && Me.Specialization != WoWSpec.ShamanRestoration)
                 || Me.Class == WoWClass.Warrior;
 
             if (autoAttack)
@@ -77,11 +71,9 @@ namespace Singular.Helpers
                 prio.AddChild(
                     new Throttle(TimeSpan.FromMilliseconds(500),
                         new Decorator(
-                            ret => !StyxWoW.Me.IsAutoAttacking && Me.GotTarget && Me.CurrentTarget.IsWithinMeleeRange, // && StyxWoW.Me.AutoRepeatingSpellId != spellIdAutoShot,
+                            ret => !StyxWoW.Me.IsAutoAttacking, // && StyxWoW.Me.AutoRepeatingSpellId != spellIdAutoShot,
                             new Action(ret =>
                                 {
-                                    WoWUnit unit = Me.CurrentTarget;
-                                    Logger.Write(Color.White, "/startattack on {0} @ {1:F1} yds", unit.SafeName(), unit.SpellDistance());
                                     Lua.DoString("StartAttack()");
                                     return RunStatus.Failure;
                                 })
@@ -90,71 +82,44 @@ namespace Singular.Helpers
                     );
             }
 
-            if ( includePet)
+            if ( includePet && (SingularRoutine.CurrentWoWContext != WoWContext.Normal || !SingularSettings.Instance.PetTankAdds ))
             {
-                if (SingularRoutine.CurrentWoWContext != WoWContext.Normal || !SingularSettings.Instance.PetTankAdds)
-                {
-                    // pet assist: always keep pet on my target
-                    prio.AddChild(
-                        new ThrottlePasses(
-                            1, 
-                            TimeSpan.FromMilliseconds(500),
-                            RunStatus.Failure,
-                            new Decorator(
-                        // check pet targeting same target as Me
-                                ret => Me.GotAlivePet && (!Me.Pet.GotTarget || Me.Pet.CurrentTargetGuid != Me.CurrentTargetGuid),
-                                new Action(delegate
-                                    {
-                                        PetManager.Attack(Me.CurrentTarget);
-                                        return RunStatus.Failure;
-                                    })
-                                )
+                // pet assist: always keep pet on my target
+                prio.AddChild( 
+                    new ThrottlePasses(TimeSpan.FromMilliseconds(500),
+                        new Decorator(
+                            // check pet targeting same target as Me
+                            ret => Me.GotAlivePet && (!Me.Pet.GotTarget || Me.Pet.CurrentTargetGuid != Me.CurrentTargetGuid),
+                            new Action( delegate
+                                {
+                                    PetManager.CastPetAction("Attack", Me.CurrentTarget);
+                                    return RunStatus.Failure;
+                                })
                             )
-                        );
-                }
-                else
-                {
-                    // pet tank: if pet's target isn't targeting Me, check if we should switch to one that is targeting Me
-                    prio.AddChild(
-                        new ThrottlePasses(
-                            1,
-                            TimeSpan.FromMilliseconds(500),
-                            RunStatus.Failure,
-                            new Decorator(
-                                ret => Me.GotAlivePet && (!Me.Pet.GotTarget || Me.Pet.CurrentTarget.CurrentTargetGuid != Me.Guid),
-                                new PrioritySelector(
-                                    ctx => {
-                                        WoWUnit aggroedOnMe = 
-                                            Unit.NearbyUnfriendlyUnits
-                                                .Where(u => u.Combat && u.GotTarget && u.CurrentTarget.IsMe && !u.IsCrowdControlled())
-                                                .OrderBy(u => u.Location.DistanceSqr(Me.Pet.Location))
-                                                .FirstOrDefault(); 
-                                        return aggroedOnMe ?? Me.CurrentTarget;
-                                    },
-                                    new Decorator(
-                                        ret => ret != null && Me.Pet.CurrentTargetGuid != ((WoWUnit)ret).Guid,
-                                        new Action(r =>
-                                        {
-                                            if (SingularSettings.Debug)
-                                            {
-                                                string reason;
-                                                if (Me.CurrentTarget != null && (r as WoWUnit).Guid == Me.CurrentTargetGuid && Me.CurrentTarget.CurrentTargetGuid != Me.Guid)
-                                                    reason = "MyCurrTarget";
-                                                else
-                                                    reason = "PickupAggro";
+                        )
+                    );
+            }
 
-                                                Logger.WriteDebug("PetManager: [reason={0}] sending Pet at {1} @ {2:F1} yds from Pet", reason, (r as WoWUnit).SafeName(), Me.Pet.SpellDistance(r as WoWUnit));
-                                            }
-
-                                            PetManager.Attack(r as WoWUnit);
-                                            return RunStatus.Failure;
+            if ( includePet && SingularRoutine.CurrentWoWContext == WoWContext.Normal && SingularSettings.Instance.PetTankAdds )
+            {
+                // pet tank: if pet's target isn't targeting Me, check if we should switch to one that is targeting Me
+                prio.AddChild(
+                    new ThrottlePasses(TimeSpan.FromMilliseconds(500),
+                        new Decorator(
+                            ret => Me.GotAlivePet && (!Me.Pet.GotTarget || Me.Pet.CurrentTarget.CurrentTargetGuid != Me.Guid),
+                            new PrioritySelector(
+                                ctx => Unit.NearbyUnfriendlyUnits.Where(u => u.Combat && u.GotTarget && u.CurrentTarget.IsMe).FirstOrDefault() ?? Me.CurrentTarget,
+                                new Decorator(
+                                    ret => ret != null && Me.Pet.CurrentTargetGuid != ((WoWUnit)ret).Guid,
+                                    new Action(r => {
+                                        PetManager.CastPetAction("Attack", (WoWUnit)r);
+                                        return RunStatus.Failure;
                                         })
-                                        )
                                     )
                                 )
                             )
-                        );
-                }
+                        )
+                    );
             }
 
             return prio;
@@ -304,7 +269,7 @@ namespace Singular.Helpers
             if (Me.Class == WoWClass.Paladin)
                 prioSpell.AddChild( Spell.Cast("Hammer of Justice", ctx => _unitInterrupt));
 
-            if (TalentManager.CurrentSpec == WoWSpec.DruidBalance )
+            if (Me.Specialization == WoWSpec.DruidBalance )
                 prioSpell.AddChild( Spell.Cast("Hammer of Justice", ctx => _unitInterrupt));
 
             if (Me.Class == WoWClass.Warrior) 
@@ -324,7 +289,7 @@ namespace Singular.Helpers
             if (TalentManager.HasGlyph("Fae Silence"))
                 prioSpell.AddChild(Spell.Cast("Faerie Fire", ctx => _unitInterrupt, req => Me.Shapeshift == ShapeshiftForm.Bear));
 
-            if (TalentManager.CurrentSpec == WoWSpec.PaladinProtection)
+            if (Me.Specialization == WoWSpec.PaladinProtection)
                 prioSpell.AddChild( Spell.Cast("Avenger's Shield", ctx => _unitInterrupt));
 
             if (Me.Class == WoWClass.Warrior && TalentManager.HasGlyph("Gag Order"))
@@ -350,18 +315,18 @@ namespace Singular.Helpers
             if (Me.Class == WoWClass.Hunter)
                 prioSpell.AddChild(Spell.Cast("Counter Shot", ctx => _unitInterrupt));
 
-            if (TalentManager.CurrentSpec == WoWSpec.HunterMarksmanship)
+            if (Me.Specialization == WoWSpec.HunterMarksmanship)
                 prioSpell.AddChild(Spell.Cast("Silencing Shot", ctx => _unitInterrupt));
 
             if (Me.Class == WoWClass.Druid)
                 prioSpell.AddChild( Spell.Cast("Solar Beam", ctx => _unitInterrupt, ret => StyxWoW.Me.Shapeshift == ShapeshiftForm.Moonkin));
 
-            if (TalentManager.CurrentSpec == WoWSpec.ShamanElemental || TalentManager.CurrentSpec == WoWSpec.ShamanEnhancement )
+            if (Me.Specialization == WoWSpec.ShamanElemental || Me.Specialization == WoWSpec.ShamanEnhancement )
                 prioSpell.AddChild( Spell.Cast("Solar Beam", ctx => _unitInterrupt, ret => true));
 
             #endregion
 
-            return new ThrottlePasses( 2, TimeSpan.FromMilliseconds(500),  
+            return new ThrottlePasses( 1, TimeSpan.FromMilliseconds(500),  
                 new Sequence(
                     actionSelectTarget,               
                     // majority of these are off GCD, so throttle all to avoid most fail messages
@@ -461,7 +426,7 @@ namespace Singular.Helpers
         /// <returns></returns>
         public static Composite CreateWaitForLagDuration()
         {
-            // return new WaitContinue(TimeSpan.FromMilliseconds((SingularRoutine.Latency * 2) + 150), ret => false, new ActionAlwaysSucceed());
+            // return new WaitContinue(TimeSpan.FromMilliseconds((StyxWoW.WoWClient.Latency * 2) + 150), ret => false, new ActionAlwaysSucceed());
             return CreateWaitForLagDuration(ret => false);
         }
 
@@ -472,7 +437,7 @@ namespace Singular.Helpers
         /// <returns></returns>
         public static Composite CreateWaitForLagDuration( CanRunDecoratorDelegate orUntil)
         {
-            return new DynaWaitContinue(ts => TimeSpan.FromMilliseconds((SingularRoutine.Latency * 2) + 150), orUntil, new ActionAlwaysSucceed());
+            return new WaitContinue(TimeSpan.FromMilliseconds((StyxWoW.WoWClient.Latency * 2) + 150), orUntil, new ActionAlwaysSucceed());
         }
 
         #region Wait for Rez Sickness
@@ -493,8 +458,7 @@ namespace Singular.Helpers
         public static Composite EnsureReadyToAttackFromMelee()
         {
             PrioritySelector prio = new PrioritySelector(
-                Movement.CreatePositionMobsInFront(),
-                Safers.EnsureTarget(),
+                Safers.EnsureTarget() ,
                 Movement.CreateMoveToLosBehavior(),
                 Movement.CreateFaceTargetBehavior(),
                 new Decorator(
@@ -541,8 +505,6 @@ namespace Singular.Helpers
         public static Composite EnsureReadyToAttackFromMediumRange( )
         {
             return new PrioritySelector(
-                Movement.CreatePositionMobsInFront(),
-
                 Safers.EnsureTarget(),
                 Movement.CreateMoveToLosBehavior(),
                 Movement.CreateFaceTargetBehavior(),
@@ -559,8 +521,6 @@ namespace Singular.Helpers
         public static Composite EnsureReadyToAttackFromLongRange()
         {
             return new PrioritySelector(
-                Movement.CreatePositionMobsInFront(),
-
                 Safers.EnsureTarget(),
                 Movement.CreateMoveToLosBehavior(),
                 Movement.CreateFaceTargetBehavior(),
@@ -636,153 +596,6 @@ namespace Singular.Helpers
                                 Movement.CreateMoveToUnitBehavior(on => (WoWUnit)on, 40f, 40f),
                                 new Wait( SingularSettings.Instance.CombatRezDelay, until => brezStart < DateTime.Now, new ActionAlwaysFail()),
                                 Spell.Cast(spellName, mov => true, on => (WoWUnit)on, requirements, cancel => ((WoWUnit)cancel).IsAlive)
-                                )
-                            )
-                        )
-                    )
-                );
-        }
-
-        private static DateTime timeMoveToSoulwell = DateTime.MinValue;
-
-        public static Composite CreateUseSoulwellBehavior(SimpleBooleanDelegate requirements = null)
-        {
-            if (!SingularSettings.Instance.UseSoulwell)
-                return new ActionAlwaysFail();
-
-            if (requirements == null)
-                requirements = req => true;
-
-            // throttle to minimize the impact of the list searches to once every interval
-            return new Decorator(
-                req => !MovementManager.IsMovementDisabled && DoWeNeedHealthstones && requirements(req),
-                new PrioritySelector(
-                    ctx => ClassSpecific.Warlock.Common.Soulwell,
-                    new Decorator(
-                        req => (req as WoWGameObject) != null && (SingularSettings.Instance.SoulwellDistance == 0 || (req as WoWGameObject).Distance < SingularSettings.Instance.SoulwellDistance),
-                        new PrioritySelector(
-                            new Throttle(
-                                TimeSpan.FromMilliseconds(500), 
-                                new Action( r => 
-                                { 
-                                    Logger.WriteDebug("Soulwell: moving towards @ {0:F1} yds", (r as WoWGameObject).Distance); 
-                                    return RunStatus.Failure; 
-                                })
-                                ),
-                            Movement.CreateMoveToLocationBehavior( loc => (loc as WoWGameObject).Location, true, range => (range as WoWGameObject).InteractRange - 0.5f),
-                            new Sequence(
-                                new Action( r=> 
-                                {
-                                    Logger.Write( Color.White, "^Interact with Soulwell");
-                                    (r as WoWGameObject).Interact();
-                                }),
-                                new WaitContinue( TimeSpan.FromSeconds(1), until => ClassSpecific.Warlock.Common.HaveHealthStone, new ActionAlwaysSucceed())
-                                )
-                            )
-                        )
-                    )
-                );
-        }
-
-        public static bool DoWeNeedHealthstones
-        {
-            get
-            {
-                return !Me.Combat && !Me.Mounted && !Me.BagsFull && !ClassSpecific.Warlock.Common.HaveHealthStone;
-            }
-        }
-
-        public static bool DoWeNeedBiscuits 
-        { 
-            get
-            {
-                if (!SingularSettings.Instance.UseTable)
-                    return false;
-                int drinksWanted = CharacterSettings.Instance.DrinkAmount;
-                int foodWanted = CharacterSettings.Instance.FoodAmount;
-                int biscuitsWanted = Math.Max(drinksWanted, foodWanted);
-
-                if (Me.Combat || Me.Mounted)
-                    return false;
-
-                if (ClassSpecific.Mage.Common.Gotfood)
-                    return false;
-
-                int slotsNeeded = (biscuitsWanted + 19) / 20;
-                if (Me.FreeNormalBagSlots < slotsNeeded)
-                    return false;
-
-                return true;
-            }
-        }
-
-       
-
-        private static DateTime timeMoveToTable = DateTime.MinValue;
-
-        public static Composite CreateUseTableBehavior(SimpleBooleanDelegate requirements = null)
-        {
-            if (!SingularSettings.Instance.UseTable)
-                return new ActionAlwaysFail();
-
-            if (requirements == null)
-                requirements = req => true;
-
-            // throttle to minimize the impact of the list searches to once every interval
-            return new Decorator(
-                req => !MovementManager.IsMovementDisabled && !ClassSpecific.Mage.Common.Gotfood && requirements(req),
-                new PrioritySelector(
-                    ctx => ClassSpecific.Mage.Common.MageTable,
-
-                    new Throttle(
-                        TimeSpan.FromSeconds(15),
-                        new Decorator(
-                            req => Me.FreeNormalBagSlots < 1,
-                            new Action( r=> Logger.Write(Color.White, "Refreshment Table:  !! Bags Full - skipping !!"))
-                            )
-                        ),
-
-                    // check if we have space
-                    new Decorator(
-                        req =>
-                        {
-                            int drinksWanted = CharacterSettings.Instance.DrinkAmount;
-                            int foodWanted = CharacterSettings.Instance.FoodAmount;
-                            int biscuitsWanted = Math.Max(drinksWanted, foodWanted);
-
-                            uint slotsNeeded = (uint) (biscuitsWanted + 19) / 20;
-                            uint slotsToFill = Me.FreeNormalBagSlots;
-
-                            if (slotsNeeded > slotsToFill)
-                            {
-                                Logger.Write(Color.White, "Refreshment Table: only {0} bag slots free - reducing amount we pickup", slotsToFill);
-                                slotsNeeded = slotsToFill;
-                            }
-                            
-                            return true;
-                        },
-                        new PrioritySelector(
-                            new Decorator(
-                                req => (req as WoWGameObject) != null && (SingularSettings.Instance.TableDistance == 0 || (req as WoWGameObject).Distance < SingularSettings.Instance.TableDistance),
-                                new PrioritySelector(
-                                    new Throttle(
-                                        TimeSpan.FromMilliseconds(500),
-                                        new Action(r =>
-                                        {
-                                            Logger.WriteDebug("Refreshment Table: moving towards @ {0:F1} yds", (r as WoWGameObject).Distance);
-                                            return RunStatus.Failure;
-                                        })
-                                        ),
-                                    Movement.CreateMoveToLocationBehavior(loc => (loc as WoWGameObject).Location, true, range => (range as WoWGameObject).InteractRange - 0.5f),
-                                    new Sequence(
-                                        new Action(r =>
-                                        {
-                                            Logger.Write(Color.White, "^Interact with Refreshment Table");
-                                            (r as WoWGameObject).Interact();
-                                        }),
-                                        Helpers.Common.CreateWaitForLagDuration()
-                                        )
-                                    )
                                 )
                             )
                         )

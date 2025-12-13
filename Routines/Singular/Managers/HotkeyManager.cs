@@ -33,11 +33,6 @@ namespace Singular.Managers
         public static bool IsAoeEnabled { get { return _AoeEnabled; } }
 
         /// <summary>
-        /// True: if PullMore spells are allowed, False: Single target only
-        /// </summary>
-        public static bool IsPullMoreEnabled { get { return _PullMoreEnabled; } }
-
-        /// <summary>
         /// True: allow normal combat, False: CombatBuff and Combat behaviors are suppressed
         /// </summary>
         public static bool IsCombatEnabled { get { return _CombatEnabled; } }
@@ -119,10 +114,6 @@ namespace Singular.Managers
 
                 if (HotkeySettings.CombatToggle != Keys.None)
                     RegisterHotkeyAssignment("Combat", HotkeySettings.CombatToggle, (hk) => { CombatToggle(); });
-
-                // register hotkey for commands with 1:1 key assignment
-                if (HotkeySettings.PullMoreToggle != Keys.None)
-                    RegisterHotkeyAssignment("PullMore", HotkeySettings.PullMoreToggle, (hk) => { PullMoreToggle(); });
 
                 // note: important to not check MovementManager if movement disabled here, since MovementManager calls us
                 // .. and the potential for side-effects exists.  check SingularSettings directly for this only
@@ -236,20 +227,8 @@ namespace Singular.Managers
                 last_IsAoeEnabled = _AoeEnabled;
                 if (last_IsAoeEnabled)
                     TellUser("AoE now active!");
-                else
-                    TellUser("AoE disabled... press {0} to enable", HotkeySettings.AoeToggle.ToFormattedString());
-            }
-        }
-
-        internal static void PullMoreKeyHandler()
-        {
-            if (_PullMoreEnabled != last_IsPullMoreEnabled)
-            {
-                last_IsPullMoreEnabled = _PullMoreEnabled;
-                if (last_IsPullMoreEnabled)
-                    TellUser("PullMore now allowed!");
-                else
-                    TellUser("PullMore disabled... press {0} to enable", HotkeySettings.PullMoreToggle.ToFormattedString());
+                else 
+                    TellUser("AoE disabled... press {0} to enable", HotkeySettings.AoeToggle.ToFormattedString() );
             }
         }
 
@@ -328,7 +307,6 @@ namespace Singular.Managers
         private static bool _AoeEnabled;
         private static bool _CombatEnabled;
         private static bool _MovementEnabled;
-        private static bool _PullMoreEnabled;
         private static DateTime _MovementTemporarySuspendEndtime = DateTime.MinValue;
         private static Keys _lastMovementTemporarySuspendKey;
 
@@ -338,27 +316,17 @@ namespace Singular.Managers
         // state prior to last puls saved here
         private static bool last_IsAoeEnabled;
         private static bool last_IsCombatEnabled;
-        private static bool last_IsPullMoreEnabled;
         private static bool last_IsMovementEnabled;
         private static bool last_IsMovementTemporarilySuspended; 
 
         // state toggle helpers
-        private static bool AoeToggle()
-        {
+        private static bool AoeToggle() 
+        {   
             _AoeEnabled = _AoeEnabled ? false : true;
 #if !REACT_TO_HOTKEYS_IN_PULSE
             AoeKeyHandler();
 #endif
-            return (_AoeEnabled);
-        }
-
-        private static bool PullMoreToggle()
-        {
-            _PullMoreEnabled = _PullMoreEnabled ? false : true;
-#if !REACT_TO_HOTKEYS_IN_PULSE
-            PullMoreKeyHandler();
-#endif
-            return (_PullMoreEnabled);
+            return (_AoeEnabled); 
         }
 
         private static bool CombatToggle() 
@@ -411,13 +379,11 @@ namespace Singular.Managers
             // reset these values so we begin at same state every Start
             _AoeEnabled = true;
             _CombatEnabled = true;
-            _PullMoreEnabled = true;
             _MovementEnabled = true;
             _MovementTemporarySuspendEndtime = DateTime.MinValue;
 
             last_IsAoeEnabled = true;
             last_IsCombatEnabled = true;
-            last_IsPullMoreEnabled = true;
             last_IsMovementEnabled = true;
             last_IsMovementTemporarilySuspended = false;
         }

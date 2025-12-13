@@ -121,7 +121,7 @@ namespace Singular
             else if (obj is WoWUnit && obj.ToUnit().IsPet)
             {
                 WoWUnit root = obj.ToUnit().OwnedByRoot;
-                name =  (root == null ? "(unknown-owner)" : root.SafeName()) + ":Pet";
+                name =  root == null ? "(unknown)" : root.SafeName()  + ":Pet";
             }
             else
             {
@@ -203,37 +203,6 @@ namespace Singular
                 return unitLoc.Z - listMeshZ.Max();
             
             return float.MaxValue;
-        }
-
-        private static string _lastGetPredictedError;
-        public static float PredictedHealthPercent(this WoWUnit u, bool includeMyHeals = false)
-        {
-#if true
-            return u.GetPredictedHealthPercent(includeMyHeals);
-#else
-            float ph = u.GetPredictedHealthPercent(includeMyHeals);
-            if (ph > 100f || ph < 0f)
-            {
-                float hp = (float)u.HealthPercent;
-                if (SingularSettings.Debug && hp < 99.95f)
-                {
-                    // note: added some simple caching of last erro to reduce message spam.
-                    // .. once this error occurs at a certain health %, it appears to persist 
-                    // .. for awhile
-                    string msg = string.Format("Error=WoWUnit.GetPredictedHealthPercent({0}) returned {1:F1}% for {2} with HealthPercent={3:F1}%", includeMyHeals, ph, u.SafeName(), hp);
-                    if (msg != _lastGetPredictedError)
-                    {
-                        _lastGetPredictedError = msg;
-                        Logger.WriteDebug(System.Drawing.Color.Pink, msg);
-                        u.LocalGetPredictedHealth(includeMyHeals);
-                    }
-                }
-
-                return hp;
-            }
-
-            return ph;
-#endif
         }
 
         /// <summary>

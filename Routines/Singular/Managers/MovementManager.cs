@@ -26,31 +26,6 @@ namespace Singular.Managers
                 if (IsBotMovementDisabled)
                     return true;
 
-                if (!SingularRoutine.IsAllowed(Styx.CommonBot.Routines.CapabilityFlags.Movement))
-                    return true;
-
-                if (SingularSettings.Instance.AllowMovement == AllowMovementType.Auto)
-                    return IsManualMovementBotActive;
-
-                return SingularSettings.Instance.AllowMovement != AllowMovementType.All;
-            }
-        }
-
-        /// <summary>
-        /// True: Singular movement is currently disabled.  This could be due to a setting,
-        /// the current Bot, or a Hotkey toggled.  All code needing to check if
-        /// movement is allowed should call this or MovementManager.IsMovementEnabled
-        /// </summary>
-        public static bool IsFacingDisabled
-        {
-            get
-            {
-                if (IsBotMovementDisabled)
-                    return true;
-
-                if (!SingularRoutine.IsAllowed(Styx.CommonBot.Routines.CapabilityFlags.Facing))
-                    return true;
-
                 if (SingularSettings.Instance.AllowMovement == AllowMovementType.Auto)
                     return IsManualMovementBotActive;
 
@@ -72,7 +47,6 @@ namespace Singular.Managers
         }
 
 
-
         /// <summary>
         /// True: Singular Class specific movement is currently disabled.  This could be due to a setting,
         /// the current Bot, or a Hotkey toggled.  This should be used by all class specific spells
@@ -83,9 +57,6 @@ namespace Singular.Managers
             get
             {
                 if (IsBotMovementDisabled)
-                    return false;
-
-                if (!SingularRoutine.IsAllowed(Styx.CommonBot.Routines.CapabilityFlags.GapCloser))
                     return false;
 
                 if (SingularSettings.Instance.AllowMovement == AllowMovementType.Auto)

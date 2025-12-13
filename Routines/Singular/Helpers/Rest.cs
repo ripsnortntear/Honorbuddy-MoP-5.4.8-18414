@@ -14,8 +14,6 @@ using Styx.TreeSharp;
 using System;
 
 using Action = Styx.TreeSharp.Action;
-using System.Drawing;
-using Singular.Managers;
 
 namespace Singular.Helpers
 {
@@ -59,22 +57,20 @@ namespace Singular.Helpers
                             ret => spellHeal != null
                                 && Me.HealthPercent <= 85  // not redundant... this eliminates unnecessary GetPredicted... checks
                                 && SpellManager.HasSpell(spellHeal) && Spell.CanCastHack(spellHeal, Me)
-                                && Me.PredictedHealthPercent(includeMyHeals: true) <= 85 && !Me.HasAnyAura("Drink", "Food"),
-                            new Sequence(
+                                && Me.GetPredictedHealthPercent(true) <= 85 && !Me.HasAnyAura("Drink", "Food"),
+                            new PrioritySelector(
                                 Movement.CreateEnsureMovementStoppedBehavior(reason: "to heal"),
-                                new Action(r => Logger.WriteDebug("Rest Heal - {0} @ {1:F1}% Predict:{2:F1}% and moving:{3}, cancast:{4}", spellHeal, Me.HealthPercent, Me.PredictedHealthPercent(includeMyHeals: true), Me.IsMoving, Spell.CanCastHack(spellHeal, Me, skipWowCheck: false)) ),
+                                new Action(r => { Logger.WriteDebug("Rest Heal - {0} @ {1:F1}% Predict:{2:F1}% and moving:{3}, cancast:{4}", spellHeal, Me.HealthPercent, Me.GetPredictedHealthPercent(true), Me.IsMoving, Spell.CanCastHack(spellHeal, Me, skipWowCheck: false)); return RunStatus.Failure; }),
                                 new Sequence(
-                                    ctx => (int) Me.HealthPercent,
                                     Spell.Cast(spellHeal,
                                         mov => true,
                                         on => Me,
                                         req => true,
                                         cancel => Me.HealthPercent > 90
                                         ),
-                                    new WaitContinue( TimeSpan.FromMilliseconds(500), until => Me.HealthPercent > (1.1 * ((int)until)), new ActionAlwaysSucceed()),
-                                    new Action( r => Logger.WriteDebug("Rest - After Heal Attempted: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.PredictedHealthPercent(includeMyHeals: true)))
+                                    new Action( r => Logger.WriteDebug("Rest - After Heal Attempted: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.GetPredictedHealthPercent(true)))
                                     ),
-                                new Action( r => Logger.WriteDebug("Rest - After Heal Skipped: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.PredictedHealthPercent(includeMyHeals: true)))
+                                new Action( r => Logger.WriteDebug("Rest - After Heal Skipped: {0:F1}% Predicted: {1:F1}%", Me.HealthPercent, Me.GetPredictedHealthPercent(true)))
                                 )
                             ),
 
@@ -85,7 +81,7 @@ namespace Singular.Helpers
                 // .. WaitForCast() before call to DefaultRest would prevent cancelling when health/mana reached
                         new Decorator(
                             ret => SingularSettings.Instance.UseRacials
-                                && (Me.PredictedHealthPercent(includeMyHeals: true) <= SingularSettings.Instance.MinHealth || (Me.PowerType == WoWPowerType.Mana && Me.ManaPercent <= SingularSettings.Instance.MinMana))
+                                && (Me.GetPredictedHealthPercent(true) <= SingularSettings.Instance.MinHealth || (Me.PowerType == WoWPowerType.Mana && Me.ManaPercent <= SingularSettings.Instance.MinMana))
                                 && Spell.CanCastHack("Cannibalize")
                                 && CorpseAround,
                             new Sequence(
@@ -128,13 +124,13 @@ namespace Singular.Helpers
 
                 // use a bandage if enabled (it's quicker)
                         new Decorator(
-                            ret => Me.IsAlive && Me.PredictedHealthPercent(includeMyHeals: true) <= SingularSettings.Instance.MinHealth,
+                            ret => Me.IsAlive && Me.GetPredictedHealthPercent(true) <= SingularSettings.Instance.MinHealth,
                             Item.CreateUseBandageBehavior()
                             ),
 
                 // Check if we're allowed to eat (and make sure we have some food. Don't bother going further if we have none.
                         new Decorator(
-                            ret => !Me.IsSwimming && Me.PredictedHealthPercent(includeMyHeals: true) <= SingularSettings.Instance.MinHealth
+                            ret => !Me.IsSwimming && Me.GetPredictedHealthPercent(true) <= SingularSettings.Instance.MinHealth
                                 && !Me.HasAura("Food") && Consumable.GetBestFood(false) != null,
                             new PrioritySelector(
                                 Movement.CreateEnsureMovementStoppedBehavior(reason: "to eat"),
@@ -218,7 +214,7 @@ namespace Singular.Helpers
         private static bool WaitForRegenIfNoFoodDrink()
         {
             // never wait in a battleground
-            if (Me.CurrentMap.IsBattleground)
+            if  (Me.CurrentMap.IsBattleground)
                 return false;
 
             // always wait for health to regen
@@ -230,7 +226,7 @@ namespace Singular.Helpers
                 return false;
 
             // ferals and guardians dont wait on mana either
-            if (TalentManager.CurrentSpec == WoWSpec.DruidFeral || TalentManager.CurrentSpec == WoWSpec.DruidGuardian )
+            if (Me.Specialization == WoWSpec.DruidFeral || Me.Specialization == WoWSpec.DruidGuardian )
                 return false;
                 
             // wait for mana if too low

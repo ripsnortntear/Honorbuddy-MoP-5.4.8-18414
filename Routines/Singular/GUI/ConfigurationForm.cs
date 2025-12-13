@@ -33,7 +33,6 @@ namespace Singular.GUI
                 Logger.WriteDebug(Color.LightGreen, "Settings saved, rebuilding behaviors...");
                 HotkeyDirector.Update();
                 MovementManager.Update();
-                SingularRoutine.DescribeContext();
                 SingularRoutine.Instance.RebuildBehaviors();
                 SingularSettings.Instance.LogSettings();
             }
@@ -48,8 +47,6 @@ namespace Singular.GUI
             //HealTargeting.Instance.OnTargetListUpdateFinished += new Styx.Logic.TargetListUpdateFinishedDelegate(Instance_OnTargetListUpdateFinished);
             pgGeneral.SelectedObject = SingularSettings.Instance;
 
-            tabClass.Text = StyxWoW.Me.Class.ToString().CamelToSpaced().Substring(1) + " Specific";
-            
             Styx.Helpers.Settings toSelect = null;
             switch (StyxWoW.Me.Class)
             {
@@ -97,11 +94,10 @@ namespace Singular.GUI
 
             pgHotkeys.SelectedObject = SingularSettings.Instance.Hotkeys();
 
-            InitializeDebugOutputDropdown();
-            chkDebugCasting.Checked = SingularSettings.Instance.EnableDebugSpellCasting;
+            // chkDebugLogging.Checked = SingularSettings.Instance.EnableDebugLogging;
+            // chkDebugSpellCanCast.Checked = SingularSettings.Instance.EnableDebugLoggingCanCast;
             chkDebugTrace.Checked = SingularSettings.Instance.EnableDebugTrace;
-
-            chkDebugLogging_CheckedChanged(this, new EventArgs());
+            chkDisableDebug.Checked = SingularSettings.Instance.DisableDebugLogging;
 
             InitializeHealContextDropdown(StyxWoW.Me.Class);
             InitializeForceBehaviorsDropdown();
@@ -166,13 +162,6 @@ namespace Singular.GUI
                 cboHealContext.Items.Add(new HealContextItem(HealingContext.Raids, WoWSpec.DruidRestoration, SingularSettings.Instance.Druid().Raid));
             }
 
-            if (cls == WoWClass.Monk)
-            {
-                cboHealContext.Items.Add(new HealContextItem(HealingContext.Battlegrounds, WoWSpec.MonkMistweaver, SingularSettings.Instance.Monk().MistBattleground));
-                cboHealContext.Items.Add(new HealContextItem(HealingContext.Instances, WoWSpec.MonkMistweaver, SingularSettings.Instance.Monk().MistInstance));
-                cboHealContext.Items.Add(new HealContextItem(HealingContext.Raids, WoWSpec.MonkMistweaver, SingularSettings.Instance.Monk().MistRaid));
-            }
-
             if (cls == WoWClass.Priest)
             {
 /*
@@ -198,7 +187,7 @@ namespace Singular.GUI
             foreach (var obj in cboHealContext.Items)
             {
                 HealContextItem ctx = (HealContextItem)obj;
-                if (ctx.Spec == TalentManager.CurrentSpec)
+                if (ctx.Spec == StyxWoW.Me.Specialization)
                 {
                     if (ctx.Context == SingularRoutine.CurrentHealContext)
                     {
@@ -258,15 +247,6 @@ namespace Singular.GUI
 
             SetComboBoxEnum(cboForceUseOf, (int)SingularRoutine.TrainingDummyBehaviors);
         }
-        private void InitializeDebugOutputDropdown()
-        {
-            cboDebugOutput.Items.Add(new CboItem((int)DebugOutputDest.None, "None (Off)"));
-            cboDebugOutput.Items.Add(new CboItem((int)DebugOutputDest.FileOnly, "File Only"));
-            cboDebugOutput.Items.Add(new CboItem((int)DebugOutputDest.WindowAndFile, "Window & File"));
-
-            SetComboBoxEnum(cboDebugOutput, (int)SingularSettings.Instance.DebugOutput);
-        }
-
         /*
                 private void Instance_OnTargetListUpdateFinished(object context)
                 {
@@ -305,9 +285,10 @@ namespace Singular.GUI
             try
             {
                 // deal with Debug tab controls individually
-                SingularSettings.Instance.DebugOutput = (DebugOutputDest) GetComboBoxEnum(cboDebugOutput);               
-                SingularSettings.Instance.EnableDebugSpellCasting = chkDebugCasting.Checked;
+                // SingularSettings.Instance.EnableDebugLogging = chkDebugLogging.Checked;
+                // SingularSettings.Instance.EnableDebugLoggingCanCast = chkDebugSpellCanCast.Checked;
                 SingularSettings.Instance.EnableDebugTrace = chkDebugTrace.Checked;
+                SingularSettings.Instance.DisableDebugLogging = chkDisableDebug.Checked;
                 Extensions.ShowPlayerNames = ShowPlayerNames.Checked;
                 SingularRoutine.TrainingDummyBehaviors = (WoWContext) GetComboBoxEnum(cboForceUseOf);
 
@@ -566,15 +547,6 @@ namespace Singular.GUI
         {
             CboItem item = (CboItem)cb.Items[cb.SelectedIndex];
             return item.e;
-        }
-
-        private void chkDebugLogging_CheckedChanged(object sender, EventArgs e)
-        {
-            DebugOutputDest dbgdest = (DebugOutputDest)GetComboBoxEnum(cboDebugOutput);
-            if (chkDebugCasting.Checked && dbgdest == DebugOutputDest.None)
-                chkDebugCasting.Checked = false;
-
-            chkDebugCasting.Enabled = (dbgdest != DebugOutputDest.None);
         }
     }
 
