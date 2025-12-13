@@ -118,7 +118,7 @@ namespace Singular.ClassSpecific.Paladin
                 Spell.Cast("Flash of Light",
                     mov => false,
                     on => Me,
-                    req => SingularRoutine.CurrentWoWContext != WoWContext.Instances && Me.PredictedHealthPercent(includeMyHeals: true) <= PaladinSettings.SelfFlashOfLightHealth,
+                    req => SingularRoutine.CurrentWoWContext != WoWContext.Instances && Me.GetPredictedHealthPercent(true) <= PaladinSettings.SelfFlashOfLightHealth,
                     cancel => Me.HealthPercent > 90),
 
                 // now any Offensive CDs
@@ -157,8 +157,6 @@ namespace Singular.ClassSpecific.Paladin
 
                         Helpers.Common.CreateAutoAttack(true),
                         Helpers.Common.CreateInterruptBehavior(),
-
-                        Common.CreatePaladinPullMore(),
 
                         Common.CreatePaladinBlindingLightBehavior(),
 

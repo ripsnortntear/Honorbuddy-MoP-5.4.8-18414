@@ -28,9 +28,7 @@ namespace Singular.ClassSpecific
             // 
             // 
 
-            if (SingularSettings.Instance.Trinket1Usage == TrinketUsage.Never
-                && SingularSettings.Instance.Trinket2Usage == TrinketUsage.Never
-                && SingularSettings.Instance.GloveUsage == TrinketUsage.Never )
+            if (SingularSettings.Instance.Trinket1Usage == TrinketUsage.Never && SingularSettings.Instance.Trinket2Usage == TrinketUsage.Never)
             {
                 return new Action(ret => { return RunStatus.Failure; });
             }
@@ -141,10 +139,7 @@ namespace Singular.ClassSpecific
             if ( !SingularSettings.Instance.UseRacials || !pri.Children.Any() )
                 return new ActionAlwaysFail();
 
-            return new Throttle(
-                TimeSpan.FromMilliseconds(250), 
-                new Decorator( req => !Spell.IsGlobalCooldown() && !Spell.IsCastingOrChannelling(), pri )
-                );
+            return new Throttle(TimeSpan.FromMilliseconds(250), pri );
         }
 
         private static Composite CreateCombatRacialInRangeBehavior()

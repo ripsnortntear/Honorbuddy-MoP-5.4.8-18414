@@ -48,12 +48,12 @@ namespace Singular.ClassSpecific.Paladin
                 Spell.Cast("Lay on Hands",
                     mov => false,
                     on => Me,
-                    req => Me.PredictedHealthPercent(includeMyHeals: true) <= PaladinSettings.SelfLayOnHandsHealth),
+                    req => Me.GetPredictedHealthPercent(true) <= PaladinSettings.SelfLayOnHandsHealth),
                 Common.CreateWordOfGloryBehavior(on => Me),
                 Spell.Cast("Flash of Light",
                     mov => false,
                     on => Me,
-                    req => Me.PredictedHealthPercent(includeMyHeals: true) <= PaladinSettings.SelfFlashOfLightHealth,
+                    req => Me.GetPredictedHealthPercent(true) <= PaladinSettings.SelfFlashOfLightHealth,
                     cancel => Me.HealthPercent > PaladinSettings.SelfFlashOfLightHealth)
                 );
         }
@@ -94,8 +94,6 @@ namespace Singular.ClassSpecific.Paladin
 
                         Helpers.Common.CreateAutoAttack(true),
                         Helpers.Common.CreateInterruptBehavior(),
-
-                        Common.CreatePaladinPullMore(),
 
                         // Defensive
                         Spell.BuffSelf("Hand of Freedom",
@@ -141,17 +139,16 @@ namespace Singular.ClassSpecific.Paladin
                         new Decorator(
                             ret => _mobCount >= 2 && Spell.UseAOE,
                             new PrioritySelector(
+                                Spell.CastOnGround("Light's Hammer", on => Me.CurrentTarget, ret => 2 <= Clusters.GetClusterCount(Me.CurrentTarget, Unit.NearbyUnfriendlyUnits, ClusterType.Radius, 10f)),
 
-                                // was EJ: Inq > 5HP DS > LH > HoW > Exo > HotR > Judge > 3-4HP DS (> SS)
-                                // now EJ: Inq > 5HP DS > LH > HoW (> T16 Free DS) > HotR > Judge > Exo > 3-4HP DS (> SS)
+                                // EJ: Inq > 5HP DS > LH > HoW > Exo > HotR > Judge > 3-4HP DS (> SS)
                                 Spell.BuffSelf("Inquisition", ret => Me.CurrentHolyPower > 0 && Me.GetAuraTimeLeft("Inquisition", true).TotalSeconds < 4),
                                 Spell.Cast(SpellManager.HasSpell("Divine Storm") ? "Divine Storm" : "Templar's Verdict", ret => Me.CurrentHolyPower == 5),
-                                Spell.CastOnGround("Light's Hammer", on => Me.CurrentTarget, ret => 2 <= Clusters.GetClusterCount(Me.CurrentTarget, Unit.NearbyUnfriendlyUnits, ClusterType.Radius, 10f)),
+                                Spell.Cast("Execution Sentence"),
                                 Spell.Cast("Hammer of Wrath"),
-                                Spell.Cast("Divine Storm", req => Me.HasAura("Divine Crusader")),   // T16 buff
+                                Spell.Cast("Exorcism"),
                                 Spell.Cast(SpellManager.HasSpell("Hammer of the Righteous") ? "Hammer of the Righteous" : "Crusader Strike"),
                                 Spell.Cast("Judgment"),
-                                Spell.Cast("Exorcism"),
                                 Spell.Cast(SpellManager.HasSpell("Divine Storm") ? "Divine Storm" : "Templar's Verdict", ret => Me.CurrentHolyPower >= 3),
                                 Spell.BuffSelf("Sacred Shield"),
                                 Movement.CreateMoveToMeleeBehavior(true),
@@ -160,18 +157,15 @@ namespace Singular.ClassSpecific.Paladin
                             ),
 
                         // was EJ: Inq > 5HP TV > ES > HoW > Exo > CS > Judge > 3-4HP TV (> SS)
-                        // was EJ: Inq > 5HP TV > ES > HoW > CS > Judge > Exo > 3-4HP TV (> SS)
-                        // now EJ: Inq > ES (> 5HP T16 Free DS) > 5HP TV > HoW (> T16 Free DS) > CS > Judge > Exo > 3-4HP TV (> SS)
-                        Spell.BuffSelf("Inquisition", req => Me.CurrentHolyPower > 0 && Me.GetAuraTimeLeft("Inquisition", true).TotalSeconds < 4),
-                        Spell.Cast("Execution Sentence"),
-                        Spell.Cast("Divine Storm", req => Me.CurrentHolyPower == 5 && Me.HasAura("Divine Crusader")),   // T16 buff
-                        Spell.Cast("Templar's Verdict", req => Me.CurrentHolyPower == 5),
+                        // now EJ: Inq > 5HP TV > ES > HoW > CS > Judge > Exo > 3-4HP TV (> SS)
+                        Spell.BuffSelf("Inquisition", ret => Me.CurrentHolyPower > 0 && Me.GetAuraTimeLeft("Inquisition", true).TotalSeconds < 4),
+                        Spell.Cast( "Templar's Verdict", ret => Me.CurrentHolyPower == 5),
+                        Spell.Cast("Execution Sentence" ),
                         Spell.Cast("Hammer of Wrath"),
-                        Spell.Cast("Divine Storm", req => Me.HasAura("Divine Crusader")),   // T16 buff
                         Spell.Cast("Crusader Strike"),
                         Spell.Cast("Judgment"),
                         Spell.Cast("Exorcism"),
-                        Spell.Cast("Templar's Verdict", req => Me.CurrentHolyPower >= 3),
+                        Spell.Cast("Templar's Verdict", ret => Me.CurrentHolyPower >= 3),
                         Spell.BuffSelf("Sacred Shield")
                         )
                     ),
@@ -284,41 +278,34 @@ namespace Singular.ClassSpecific.Paladin
                             new PrioritySelector(
                                 Spell.CastOnGround("Light's Hammer", on => Me.CurrentTarget, ret => true),
 
-                                // EJ Multi Rotation
-                                // was EJ: Inq > 5HP TV > ES > HoW > Exo > CS > Judge > 3-4HP TV (> SS)
-                                // now EJ: Inq > 5HP DS > LH > HoW (> T16 Free DS) > HotR > Judge > Exo > 3-4HP DS (> SS)
-                                Spell.BuffSelf("Inquisition", ret => Me.CurrentHolyPower > 0 && Me.GetAuraTimeLeft("Inquisition", true).TotalSeconds < 4),
-                                Spell.Cast(SpellManager.HasSpell("Divine Storm") ? "Divine Storm" : "Templar's Verdict", ret => Me.CurrentHolyPower == 5),
-                                Spell.CastOnGround("Light's Hammer", on => Me.CurrentTarget, ret => 2 <= Clusters.GetClusterCount(Me.CurrentTarget, Unit.NearbyUnfriendlyUnits, ClusterType.Radius, 10f)),
+                                // EJ Multi Rotation: Inq > 5HP TV > ES > HoW > Exo > CS > Judge > 3-4HP TV (> SS)
+                                Spell.BuffSelf("Inquisition", ret => Me.CurrentHolyPower > 0 && Me.GetAuraTimeLeft("Inquisition", true).TotalSeconds < 3),
+                                Spell.Cast(ret => SpellManager.HasSpell("Divine Storm") ? "Divine Storm" : "Templar's Verdict", ret => Me.CurrentHolyPower == 5),
+                                Spell.Cast("Execution Sentence"),
                                 Spell.Cast("Hammer of Wrath"),
-                                Spell.Cast("Divine Storm", req => Me.HasAura("Divine Crusader")),   // T16 buff
-                                Spell.Cast(SpellManager.HasSpell("Hammer of the Righteous") ? "Hammer of the Righteous" : "Crusader Strike"),
-                                Spell.Cast("Judgment"),
                                 Spell.Cast("Exorcism"),
-                                Spell.Cast(SpellManager.HasSpell("Divine Storm") ? "Divine Storm" : "Templar's Verdict", ret => Me.CurrentHolyPower >= 3),
+                                Spell.Cast("Hammer of the Righteous"),
+                                Spell.Cast(ret => SpellManager.HasSpell("Hammer of the Righteous") ? "Hammer of the Righteous" : "Crusader Strike"),
+                                Spell.Cast("Judgment"),
+                                Spell.Cast(ret => SpellManager.HasSpell("Divine Storm") ? "Divine Storm" : "Templar's Verdict", ret => Me.CurrentHolyPower >= 3),
                                 Spell.BuffSelf("Sacred Shield"),
                                 Movement.CreateMoveToMeleeBehavior(true)
                                 )
                             ),
 
-                        // Single Target Priority
-                        // was EJ: Inq > 5HP TV > ES > HoW > Exo > CS > Judge > 3-4HP TV (> SS)
-                        // was EJ: Inq > 5HP TV > ES > HoW > CS > Judge > Exo > 3-4HP TV (> SS)
-                        // now EJ: Inq > ES (> 5HP T16 Free DS) > 5HP TV > HoW (> T16 Free DS) > CS > Judge > Exo > 3-4HP TV (> SS)
-                        Spell.BuffSelf("Inquisition", req => Me.CurrentHolyPower > 0 && Me.GetAuraTimeLeft("Inquisition", true).TotalSeconds < 4),
+                        // Single Target Priority - EJ: Inq > 5HP TV > ES > HoW > Exo > CS > Judge > 3-4HP TV (> SS)
+                        Spell.BuffSelf("Inquisition", ret => Me.CurrentHolyPower > 0 && Me.GetAuraTimeLeft("Inquisition", true).TotalSeconds <= 2),
+                        Spell.Cast("Templar's Verdict", ret => Me.CurrentHolyPower >= 5),
                         Spell.Cast("Execution Sentence"),
-                        Spell.Cast("Divine Storm", req => Me.CurrentHolyPower == 5 && Me.HasAura("Divine Crusader")),   // T16 buff
-                        Spell.Cast("Templar's Verdict", req => Me.CurrentHolyPower == 5),
                         Spell.Cast("Hammer of Wrath"),
-                        Spell.Cast("Divine Storm", req => Me.HasAura("Divine Crusader")),   // T16 buff
+                        Spell.Cast("Exorcism"),
                         Spell.Cast("Crusader Strike"),
                         Spell.Cast("Judgment"),
-                        Spell.Cast("Exorcism"),
-                        Spell.Cast("Templar's Verdict", req => Me.CurrentHolyPower >= 3),
+                        Spell.Cast("Templar's Verdict", ret => Me.CurrentHolyPower >= 3),
                         Spell.BuffSelf("Sacred Shield"),
 
                         // Symbiosis
-                        Spell.Cast("Wrath", ret => !Me.CurrentTarget.IsWithinMeleeRange && Me.CurrentTarget.SpellDistance() < 40)
+                        Spell.Cast("Wrath", ret => !Me.CurrentTarget.IsWithinMeleeRange && Me.CurrentTarget.Distance < 40)
                         )
                     ),
 

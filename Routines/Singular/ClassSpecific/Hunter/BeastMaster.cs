@@ -32,7 +32,8 @@ namespace Singular.ClassSpecific.Hunter
         {
             return new PrioritySelector(
 
-                Common.CreateHunterEnsureReadyToAttackFromLongRange(),
+                Helpers.Common.EnsureReadyToAttackFromLongRange(),
+                Helpers.Common.CreateAutoAttack(true),
                 
                 Spell.WaitForCastOrChannel(),
             
@@ -102,7 +103,8 @@ namespace Singular.ClassSpecific.Hunter
         {
             return new PrioritySelector(
 
-                Common.CreateHunterEnsureReadyToAttackFromLongRange(),
+                Helpers.Common.EnsureReadyToAttackFromLongRange(),
+                Helpers.Common.CreateAutoAttack(true),
 
                 Spell.WaitForCastOrChannel(),
 

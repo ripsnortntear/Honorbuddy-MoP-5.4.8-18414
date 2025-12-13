@@ -42,13 +42,11 @@ namespace Singular.ClassSpecific.DeathKnight
                 new Decorator(
                     req => !Spell.IsGlobalCooldown(),
                     new PrioritySelector(
-                        Helpers.Common.CreateInterruptBehavior(),
-
                         Helpers.Common.CreateAutoAttack(true),
 
-                        Common.CreateDeathKnightPullMore(),
-
                         Spell.Cast("Necrotic Strike", ret => Me.CurrentTarget.IsPlayer && Me.DeathRuneCount > 0),
+
+                        Helpers.Common.CreateInterruptBehavior(),
 
                         Common.CreateGetOverHereBehavior(),
 

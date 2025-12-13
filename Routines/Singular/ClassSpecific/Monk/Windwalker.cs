@@ -54,9 +54,8 @@ namespace Singular.ClassSpecific.Monk
                                 )
                             ),
 #endif
-#if OLD_ROLL_LOGIC
                         new Decorator(
-                            ret => MovementManager.IsClassMovementAllowed && !MonkSettings.DisableRoll && !Me.CurrentTarget.IsAboveTheGround() && Me.CurrentTarget.SpellDistance() > 10,
+                            ret => MovementManager.IsClassMovementAllowed && !MonkSettings.DisableRoll && !Me.CurrentTarget.IsAboveTheGround() && Me.CurrentTarget.Distance > 12,
                             new Throttle( 1,
                                 new Sequence(
                                     new PrioritySelector(
@@ -67,13 +66,19 @@ namespace Singular.ClassSpecific.Monk
                                     )
                                 )
                             ),
-#else
-                        Common.CreateMonkCloseDistanceBehavior( ),
-#endif
+
                         Common.CreateGrappleWeaponBehavior(),
 
-                        Spell.Cast(sp => "Crackling Jade Lightning", mov => true, on => Me.CurrentTarget, req => !Me.CurrentTarget.IsWithinMeleeRange && Me.CurrentTarget.SpellDistance() < 40, cancel => false),
-                        Spell.Cast("Provoke", ret => !Me.CurrentTarget.IsPlayer && !Me.CurrentTarget.Combat && Me.CurrentTarget.SpellDistance().Between(20, 40)),
+                        // only cast these in Pull if we didn't just roll/fsk.  allow us to reach
+                        // .. targets we cannot fully navigate to, but don't want to cast 
+                        // .. while while closing to melee range with roll/fsk
+                        new Decorator(
+                            ret => RollTimer.IsFinished,
+                            new PrioritySelector(
+                                Spell.Cast("Provoke", ret => !Me.CurrentTarget.IsPlayer && !Me.CurrentTarget.Combat && Me.CurrentTarget.Distance.Between( 10, 40)),
+                                Spell.Cast(sp => "Crackling Jade Lightning", mov => true, on => Me.CurrentTarget, req => !Me.CurrentTarget.IsWithinMeleeRange && Me.CurrentTarget.SpellDistance() < 40, cancel => false)
+                                )
+                            ),
 
                         Spell.Cast("Blackout Kick", ret => Me.CurrentChi == Me.MaxChi || Me.HasAura("Combo Breaker: Blackout Kick")),
                         Spell.Cast("Tiger Palm", ret => (Me.CurrentChi > 0 && Me.HasKnownAuraExpired( "Tiger Power")) || Me.HasAura("Combo Breaker: Tiger Palm")),
@@ -94,7 +99,7 @@ namespace Singular.ClassSpecific.Monk
                                 );
                             return RunStatus.Failure;
                         }),
-                        Spell.Cast("Spinning Fire Blossom", req => Spell.UseAOE && Me.CurrentTarget.SpellDistance() < 50 && Me.IsSafelyFacing(Me.CurrentTarget, 5f)),
+                        Spell.Cast("Spinning Fire Blossom", req => Me.CurrentTarget.SpellDistance() < 50 && Me.IsSafelyFacing(Me.CurrentTarget,5f)),
                         Spell.Cast(sp => "Crackling Jade Lightning", mov => true, on => Me.CurrentTarget, req => !Me.CurrentTarget.IsWithinMeleeRange && Me.CurrentTarget.SpellDistance() < 40, cancel => false),
                         Movement.CreateMoveToUnitBehavior(on => StyxWoW.Me.CurrentTarget, 27f, 22f)
                         )
@@ -112,7 +117,7 @@ namespace Singular.ClassSpecific.Monk
                 Spell.BuffSelf("Legacy of the Emperor"),
 
                 new Decorator(
-                    req => !Unit.IsTrivial(Me.CurrentTarget),
+                    req => !Unit.IsTrivial( Me.CurrentTarget),
                     new PrioritySelector(
                         Spell.Buff("Touch of Karma",
                             ctx => Unit.NearbyUnfriendlyUnits.FirstOrDefault(
@@ -124,23 +129,9 @@ namespace Singular.ClassSpecific.Monk
                         Spell.Cast("Tigereye Brew", ctx => Me, ret => Me.HasAura("Tigereye Brew", 10)),
                         Spell.Cast("Energizing Brew", ctx => Me, ret => Me.CurrentEnergy < 40),
                         Spell.Cast("Chi Brew", ctx => Me, ret => Me.CurrentChi == 0),
-                        Spell.Cast("Fortifying Brew", ctx => Me, ret => Me.HealthPercent <= SingularSettings.Instance.Monk().FortifyingBrewPct),
-                        Spell.BuffSelf("Zen Sphere", ctx => Me.HealthPercent < 90 && HasTalent(MonkTalents.ZenSphere)),
-
-                        Spell.Cast(
-                            "Invoke Xuen, the White Tiger",
-                            ret =>
-                            {
-                                if (Me.GotTarget)
-                                {
-                                    if (!Me.IsMoving && Unit.NearbyUnfriendlyUnits.Count(u => u.Distance < 10) >= 3)
-                                        return true;
-                                    if (Me.CurrentTarget.IsPlayer && Me.CurrentTarget.IsHostile && Me.CurrentTarget.IsWithinMeleeRange)
-                                        return true;
-                                }
-                                return false;
-                            }
-                            )
+                        Spell.Cast("Fortifying Brew", ctx => Me, ret => Me.HealthPercent <= SingularSettings.Instance.Monk().FortifyingBrewPercent),
+                        Spell.BuffSelf("Zen Sphere", ctx => Me.HealthPercent < 90 && Me.CurrentChi >= 3),
+                        Spell.Cast("Invoke Xuen, the White Tiger", ret => !Me.IsMoving && Unit.NearbyUnfriendlyUnits.Count(u => u.Distance < 10) >= 2)
                         )
                     )
                 );
@@ -176,9 +167,8 @@ namespace Singular.ClassSpecific.Monk
 
                         Helpers.Common.CreateInterruptBehavior(),
 
-#if USE_OLD_ROLL
                         new Decorator(
-                            ret => MovementManager.IsClassMovementAllowed && !MonkSettings.DisableRoll && !Me.CurrentTarget.IsAboveTheGround() && Me.CurrentTarget.SpellDistance() > 10,
+                            ret => MovementManager.IsClassMovementAllowed && !MonkSettings.DisableRoll && !Me.CurrentTarget.IsAboveTheGround() && Me.CurrentTarget.Distance > 12,
                             new Throttle(1,
                                 new Sequence(
                                     new PrioritySelector(
@@ -189,9 +179,6 @@ namespace Singular.ClassSpecific.Monk
                                     )
                                 )
                             ),
-#else
-                        Common.CreateMonkCloseDistanceBehavior( ),
-#endif
 
 
                         Common.CreateGrappleWeaponBehavior(),
@@ -212,7 +199,7 @@ namespace Singular.ClassSpecific.Monk
                             ret => Unit.NearbyUnfriendlyUnits.Count( u => u.IsWithinMeleeRange && Me.IsSafelyFacing(u)) >= 2),
 
                         Spell.Cast("Rushing Jade Wind", ctx => HasTalent(MonkTalents.RushingJadeWind) && Unit.NearbyUnfriendlyUnits.Count(u => u.DistanceSqr <= 8 * 8) >= 4),
-                        Spell.Cast("Spinning Crane Kick", ret => Spell.UseAOE && Unit.NearbyUnfriendlyUnits.Count(u => u.Distance <= 8) >= MonkSettings.SpinningCraneKickCnt),
+                        Spell.Cast("Spinning Crane Kick", ret => Unit.NearbyUnfriendlyUnits.Count(u => u.Distance <= 8) >= 4),
 
                         Spell.Cast("Tiger Palm", ret => Me.CurrentChi > 0 && Me.HasKnownAuraExpired( "Tiger Power")),
 
@@ -272,7 +259,7 @@ namespace Singular.ClassSpecific.Monk
                         Helpers.Common.CreateInterruptBehavior(),
 
                         // ranged attack on the run
-                        Spell.Cast("Spinning Fire Blossom", req => Spell.UseAOE && Me.IsMoving && Me.CurrentTarget.SpellDistance().Between(10, 50) && Me.IsSafelyFacing(Me.CurrentTarget, 5f) && Me.IsSafelyBehind(Me.CurrentTarget)),
+                        Spell.Cast("Spinning Fire Blossom", req => Me.IsMoving && Me.CurrentTarget.SpellDistance().Between(10,50) && Me.IsSafelyFacing(Me.CurrentTarget,5f) && Me.IsSafelyBehind( Me.CurrentTarget)),
 
                         Common.CreateGrappleWeaponBehavior(),
 
@@ -294,7 +281,7 @@ namespace Singular.ClassSpecific.Monk
                             ret => Unit.NearbyUnfriendlyUnits.Any(u => u.IsWithinMeleeRange && Me.IsSafelyFacing(u))),
 
                         Spell.Cast("Rushing Jade Wind", ctx => HasTalent(MonkTalents.RushingJadeWind) && Unit.NearbyUnfriendlyUnits.Count(u => u.DistanceSqr <= 8 * 8) >= 4),
-                        Spell.Cast("Spinning Crane Kick", ret => Spell.UseAOE && Unit.NearbyUnfriendlyUnits.Count(u => u.Distance <= 8) >= MonkSettings.SpinningCraneKickCnt),
+                        Spell.Cast("Spinning Crane Kick", ret => Unit.NearbyUnfriendlyUnits.Count(u => u.Distance <= 8) >= 4),
 
                         Spell.Cast("Tiger Palm", ret => Me.CurrentChi > 0 && Me.HasKnownAuraExpired("Tiger Power")),
                                     
@@ -308,26 +295,22 @@ namespace Singular.ClassSpecific.Monk
                         Spell.Cast("Jab", ret => Me.CurrentChi < Me.MaxChi),
 
                         // close distance if at range
-                        Movement.CreateFaceTargetBehavior(10f, false),
-                        //new Decorator(
-                        //    ret => !Me.IsSafelyFacing( Me.CurrentTarget, 10f),
-                        //    new Action( ret => {
-                        //        // Logger.WriteDebug("WindWalkerMonk: Facing because turned more than 10 degrees");
-                        //        StyxWoW.Me.CurrentTarget.Face();
-                        //        return RunStatus.Failure;
-                        //        }) 
-                        //    ),
-#if USE_OLD_ROLL        
                         new Decorator(
-                            ret => MovementManager.IsClassMovementAllowed && Me.IsSafelyFacing(Me.CurrentTarget, 10f) && Me.CurrentTarget.SpellDistance() > 10,
+                            ret => !Me.IsSafelyFacing( Me.CurrentTarget, 10f),
+                            new Action( ret => {
+                                // Logger.WriteDebug("WindWalkerMonk: Facing because turned more than 10 degrees");
+                                StyxWoW.Me.CurrentTarget.Face();
+                                return RunStatus.Failure;
+                                }) 
+                            ),
+
+                        new Decorator(
+                            ret => MovementManager.IsClassMovementAllowed && Me.IsSafelyFacing(Me.CurrentTarget, 10f) && Me.CurrentTarget.Distance > 10,
                             new PrioritySelector(
                                 Spell.Cast("Flying Serpent Kick",  ret => TalentManager.HasGlyph("Flying Serpent Kick")),
-                                Spell.Cast("Roll", ret =>  !MonkSettings.DisableRoll && Me.CurrentTarget.SpellDistance() > 10 && !Me.HasAura("Flying Serpent Kick"))
+                                Spell.Cast("Roll", ret =>  !MonkSettings.DisableRoll && Me.CurrentTarget.Distance > 12 && !Me.HasAura("Flying Serpent Kick"))
                                 )
                             )
-#else
-                        Common.CreateMonkCloseDistanceBehavior()
-#endif
                         )
                     ),
 
@@ -348,16 +331,13 @@ namespace Singular.ClassSpecific.Monk
 
                 Spell.WaitForCast(FaceDuring.Yes),
 
-#if USE_OLD_ROLL
                 new Decorator(
                     ret => !Spell.IsGlobalCooldown(),
                     new PrioritySelector(
                         Spell.Cast("Roll", ret => MovementManager.IsClassMovementAllowed && !MonkSettings.DisableRoll && Me.CurrentTarget.Distance > 15)
                         )
                     ),
-#else
-                Common.CreateMonkCloseDistanceBehavior(),
-#endif
+
                 Movement.CreateMoveToMeleeBehavior(true)
                 );
         }
@@ -370,16 +350,9 @@ namespace Singular.ClassSpecific.Monk
                 Spell.Cast("Tigereye Brew", ctx => Me, ret => Me.HasAura("Tigereye Brew", 10)),
                 Spell.Cast("Energizing Brew", ctx => Me, ret => Me.CurrentEnergy < 40),
                 Spell.Cast("Chi Brew", ctx => Me, ret => Me.CurrentChi == 0),
-                Spell.Cast("Fortifying Brew", ctx => Me, ret => Me.HealthPercent <= SingularSettings.Instance.Monk().FortifyingBrewPct),
-                Spell.BuffSelf("Zen Sphere", ctx => HasTalent(MonkTalents.ZenSphere) && Me.HealthPercent < 90),
-
-                Spell.BuffSelf(
-                    "Invoke Xuen, the White Tiger", 
-                    req => !Me.IsMoving 
-                        && Me.CurrentTarget.IsBoss() 
-                        && Me.CurrentTarget.IsWithinMeleeRange 
-                        && (PartyBuff.WeHaveBloodlust || PartyBuff.WeHaveSatedDebuff)
-                        )
+                Spell.Cast("Fortifying Brew", ctx => Me, ret => Me.HealthPercent <= SingularSettings.Instance.Monk().FortifyingBrewPercent),
+                Spell.BuffSelf("Zen Sphere", ctx => HasTalent(MonkTalents.ZenSphere) && Me.HealthPercent < 90 && Me.CurrentChi >= 3),
+                Spell.BuffSelf("Invoke Xuen, the White Tiger", ret => !Me.IsMoving && Me.CurrentTarget.IsBoss() && Me.CurrentTarget.IsWithinMeleeRange)
                 );
         }
 
@@ -398,6 +371,12 @@ namespace Singular.ClassSpecific.Monk
         {
             return new PrioritySelector(
 
+                // not likely, but if one close don't waste it
+                new Decorator(
+                    ret => Me.HealthPercent < 80 && Common.AnySpheres(SphereType.Life, MonkSettings.SphereDistanceInCombat ),
+                    Common.CreateMoveToSphereBehavior(SphereType.Life, MonkSettings.SphereDistanceInCombat)
+                    ),
+
                 Common.CreateHealingSphereBehavior(65),
 
                 Spell.Cast("Expel Harm", on =>
@@ -407,15 +386,15 @@ namespace Singular.ClassSpecific.Monk
                     if (Me.HealthPercent < MonkSettings.ExpelHarmHealth)
                         target = Me;
                     else if (MonkSettings.AllowOffHeal && TalentManager.HasGlyph("Targeted Explusion"))
-                        target = Unit.GroupMembers.Where(p => p.IsAlive && p.PredictedHealthPercent() < MonkSettings.ExpelHarmHealth && p.DistanceSqr < 40 * 40).FirstOrDefault();
+                        target = Unit.GroupMembers.Where(p => p.IsAlive && p.GetPredictedHealthPercent() < MonkSettings.ExpelHarmHealth && p.DistanceSqr < 40 * 40).FirstOrDefault();
 
                     if (target != null)
-                        Logger.WriteDebug("Expel Harm Heal @ actual:{0:F1}% predict:{1:F1}% and moving:{2}", target.HealthPercent, target.PredictedHealthPercent(includeMyHeals: true), target.IsMoving);
+                        Logger.WriteDebug("Expel Harm Heal @ actual:{0:F1}% predict:{1:F1}% and moving:{2}", target.HealthPercent, target.GetPredictedHealthPercent(true), target.IsMoving);
 
                     return target;
                 }),
 
-                Spell.Cast( "Chi Wave", ctx => Me, ret => TalentManager.IsSelected((int)MonkTalents.ChiWave) && Me.HealthPercent < MonkSettings.ChiWavePct)
+                Spell.Cast( "Chi Wave", ctx => Me, ret => TalentManager.IsSelected((int)MonkTalents.ChiWave) && Me.HealthPercent < SingularSettings.Instance.Monk().ChiWavePercent)
                 );
         }
 
@@ -444,6 +423,23 @@ namespace Singular.ClassSpecific.Monk
 
             return target;
         }
+
+        public static Composite CreateCloseDistanceBehavior()
+        {
+            return new Throttle(TimeSpan.FromMilliseconds(1500),
+                new Decorator(
+                    ret => MovementManager.IsClassMovementAllowed && !Me.CurrentTarget.IsAboveTheGround() && Me.CurrentTarget.SpellDistance() > 10 && Me.IsSafelyFacing(Me.CurrentTarget, 10f),
+                    new Sequence(
+                        new PrioritySelector(
+                            Spell.Cast("Flying Serpent Kick", ret => TalentManager.HasGlyph("Flying Serpent Kick")),
+                            Spell.Cast("Roll", ret =>  !MonkSettings.DisableRoll && Me.CurrentTarget.Distance > 12 && !Me.HasAnyAura("Flying Serpent Kick"))
+                            )
+                        )
+                    )
+                );
+
+        }
+
         private static Composite CreateWindwalkerDiagnosticBehavior()
         {
             return new ThrottlePasses( 1, 1,

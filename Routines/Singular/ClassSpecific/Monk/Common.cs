@@ -14,7 +14,6 @@ using Action = Styx.TreeSharp.Action;
 using Rest = Singular.Helpers.Rest;
 using Singular.Settings;
 using Singular.Managers;
-using Styx.Common.Helpers;
 
 namespace Singular.ClassSpecific.Monk
 {
@@ -53,8 +52,7 @@ namespace Singular.ClassSpecific.Monk
                     Spell.BuffSelf("Dematerialize"),
                     Spell.BuffSelf("Nimble Brew", ret => Me.Stunned || Me.Fleeing || Me.HasAuraWithMechanic( WoWSpellMechanic.Horrified )),
                     Spell.BuffSelf("Dampen Harm", ret => Me.Stunned && Unit.NearbyUnitsInCombatWithMeOrMyStuff.Any()),
-                    Spell.BuffSelf("Tiger's Lust", ret => Me.Rooted && !Me.HasAuraWithEffect( WoWApplyAuraType.ModIncreaseSpeed)),
-                    Spell.BuffSelf("Life Cocoon", req => Me.Stunned && TalentManager.HasGlyph("Life Cocoon") && Unit.NearbyUnitsInCombatWithMeOrMyStuff.Any())
+                    Spell.BuffSelf("Tiger's Lust", ret => Me.Rooted && !Me.HasAuraWithEffect( WoWApplyAuraType.ModIncreaseSpeed))
                     )
                 );
         }
@@ -78,7 +76,7 @@ namespace Singular.ClassSpecific.Monk
                     req => !Unit.IsTrivial(Me.CurrentTarget),
                     new PrioritySelector(               
                         // check our individual buffs here
-                        Spell.Buff("Disable", ret => Me.GotTarget && Me.CurrentTarget.IsPlayer && Me.CurrentTarget.ToPlayer().IsHostile && !Me.CurrentTarget.HasAuraWithEffect(WoWApplyAuraType.ModDecreaseSpeed)),
+                        Spell.Buff("Disable", ret => Me.GotTarget && Me.CurrentTarget.IsPlayer && Me.CurrentTarget.ToPlayer().IsHostile && !Me.CurrentTarget.HasAuraWithEffect( WoWApplyAuraType.ModDecreaseSpeed)),
                         Spell.Buff("Ring of Peace", onunitRop)
                         )
                     ),
@@ -97,13 +95,13 @@ namespace Singular.ClassSpecific.Monk
                     new PrioritySelector(
                         // pickup free heals from Life Spheres
                         new Decorator(
-                            ret => Me.HealthPercent < 95 && AnySpheres(SphereType.Life, SingularSettings.Instance.SphereDistanceAtRest ),
-                            CreateMoveToSphereBehavior(SphereType.Life, SingularSettings.Instance.SphereDistanceAtRest)
+                            ret => Me.HealthPercent < 95 && AnySpheres(SphereType.Life, MonkSettings.SphereDistanceAtRest ),
+                            CreateMoveToSphereBehavior( SphereType.Life, MonkSettings.SphereDistanceAtRest )
                             ),
                         // pickup free chi from Chi Spheres
                         new Decorator(
-                            ret => Me.CurrentChi < Me.MaxChi && AnySpheres(SphereType.Chi, SingularSettings.Instance.SphereDistanceAtRest),
-                            CreateMoveToSphereBehavior(SphereType.Chi, SingularSettings.Instance.SphereDistanceAtRest)
+                            ret => Me.CurrentChi < Me.MaxChi && AnySpheres(SphereType.Chi, MonkSettings.SphereDistanceAtRest),
+                            CreateMoveToSphereBehavior(SphereType.Chi, MonkSettings.SphereDistanceAtRest)
                             ),
 
                         // heal ourselves... confirm we have spell and enough energy already or waiting for energy regen will
@@ -143,7 +141,7 @@ namespace Singular.ClassSpecific.Monk
                 return false;
             }
 
-            uint latency = SingularRoutine.Latency * 2;
+            uint latency = StyxWoW.WoWClient.Latency * 2;
             TimeSpan cooldownLeft = spell.CooldownTimeLeft;
             if (cooldownLeft != TimeSpan.Zero && cooldownLeft.TotalMilliseconds >= latency)
                 return false;
@@ -223,13 +221,13 @@ namespace Singular.ClassSpecific.Monk
                             }),
                             // if spell was in progress before cast (we queued this one) then wait in progress one to finish
                             new WaitContinue( 
-                                new TimeSpan(0, 0, 0, 0, (int) SingularRoutine.Latency << 1),
+                                new TimeSpan(0, 0, 0, 0, (int) StyxWoW.WoWClient.Latency << 1),
                                 ret => !wasMonkSpellQueued || !(Spell.GcdActive || Me.IsCasting || Me.ChanneledSpell != null),
                                 new ActionAlwaysSucceed()
                                 ),
                             // wait for this cast to appear on the GCD or Spell Casting indicators
                             new WaitContinue(
-                                new TimeSpan(0, 0, 0, 0, (int) SingularRoutine.Latency << 1),
+                                new TimeSpan(0, 0, 0, 0, (int) StyxWoW.WoWClient.Latency << 1),
                                 ret => Spell.GcdActive || Me.IsCasting || Me.ChanneledSpell != null,
                                 new ActionAlwaysSucceed()
                                 )
@@ -238,178 +236,8 @@ namespace Singular.ClassSpecific.Monk
                     )
                 );
         }
-         
+
         private static bool wasMonkSpellQueued = false;
-
-        // delay casting instant ranged abilities if we just cast Roll/FSK
-        public readonly static WaitTimer RollTimer = new WaitTimer(TimeSpan.FromMilliseconds(1500));
-
-
-        public static Composite CreateMonkCloseDistanceBehavior( SimpleIntDelegate minDist = null, UnitSelectionDelegate onUnit = null, SimpleBooleanDelegate canReq = null)
-        {
-            /*
-            new Decorator(
-                unit => (unit as WoWUnit).SpellDistance() > 10
-                    && Me.IsSafelyFacing(unit as WoWUnit, 5f),
-                Spell.Cast("Roll")
-                )
-            */
-
-            if (!MovementManager.IsClassMovementAllowed)
-                return new ActionAlwaysFail();
-
-            bool hasFSKGlpyh = TalentManager.HasGlyph("Flying Serpent Kick");
-            bool hasTigersLust = HasTalent(MonkTalents.TigersLust);
-
-            if (minDist == null)
-                minDist = min => Me.Combat ? 10 : 12;
-
-            if (onUnit == null)
-                onUnit = on => Me.CurrentTarget;
-
-            if (canReq == null)
-                canReq = req => true;
-
-            return new Throttle( 1,
-                new PrioritySelector(
-                    ctx => onUnit(ctx),
-                    new Decorator(
-                        req => {
-                            if (!canReq(req))
-                                return false;
-
-                            float dist = Me.SpellDistance(req as WoWUnit);
-                            if ( dist <= minDist(req))
-                                return false;
-
-                            if ((req as WoWUnit).IsAboveTheGround())
-                                return false;
-
-                            float facingPrecision = (req as WoWUnit).SpellDistance() < 15 ? 6f : 4f;
-                            if (!Me.IsSafelyFacing(req as WoWUnit, facingPrecision))
-                                return false;
-
-                            bool isObstructed = Movement.MeshTraceline(Me.Location, (req as WoWUnit).Location);
-                            if (isObstructed == true)
-                                return false;
-
-                            return true;
-                            },
-                        new PrioritySelector(
-                            Spell.BuffSelf(
-                                "Tiger's Lust", 
-                                req => hasTigersLust 
-                                    && !Me.HasAuraWithEffect(WoWApplyAuraType.ModIncreaseSpeed)
-                                    && Me.HasAuraWithEffect(WoWApplyAuraType.ModRoot, WoWApplyAuraType.ModDecreaseSpeed)
-                                ),
-
-                            new Sequence( 
-                                Spell.Cast(
-                                    "Flying Serpent Kick", 
-                                    on => (WoWUnit) on,
-                                    ret => TalentManager.CurrentSpec == WoWSpec.MonkWindwalker
-                                        && !Me.Auras.ContainsKey("Flying Serpent Kick")
-                                        && ((ret as WoWUnit).SpellDistance() > 25 || Spell.IsSpellOnCooldown("Roll"))
-                                    ),
-                                /* wait until in progress */
-                                new PrioritySelector(
-                                    new Wait(
-                                        TimeSpan.FromMilliseconds(750),
-                                        until => Me.Auras.ContainsKey("Flying Serpent Kick"),
-                                        new Action( r => Logger.WriteDebug("CloseDistance: Flying Serpent Kick detected towards {0} @ {1:F1} yds in progress", (r as WoWUnit).SafeName(), (r as WoWUnit).SpellDistance()))
-                                        ),
-                                    new Action( r => {
-                                        Logger.WriteDebug("CloseDistance: failure - did not see Flying Serpent Kick aura appear - lag?");
-                                        return RunStatus.Failure;
-                                        })
-                                    ),
-
-                                /* cancel when in range */
-                                new Wait( 
-                                    2,
-                                    until => {
-                                        if (!Me.Auras.ContainsKey("Flying Serpent Kick"))
-                                        {
-                                            Logger.WriteDebug("CloseDistance: Flying Serpent Kick completed on {0} @ {1:F1} yds and {2} behind me", (until as WoWUnit).SafeName(), (until as WoWUnit).SpellDistance(), (until as WoWUnit).IsBehind(Me) ? "IS" : "is NOT");
-                                            return true;
-                                        }
-
-                                        if (!hasFSKGlpyh)
-                                        {
-                                            if (((until as WoWUnit).IsWithinMeleeRange || (until as WoWUnit).SpellDistance() < 8f))
-                                            {
-                                                Logger.Write(Color.White, "/cancel Flying Serpent Kick in melee range of {0} @ {1:F1} yds", (until as WoWUnit).SafeName(), (until as WoWUnit).SpellDistance());
-                                                return true;
-                                            }
-
-                                            if ((until as WoWUnit).IsBehind(Me))
-                                            {
-                                                Logger.Write(Color.White, "/cancel Flying Serpent Kick flew past {0} @ {1:F1} yds", (until as WoWUnit).SafeName(), (until as WoWUnit).SpellDistance());
-                                                return true;
-                                            }
-                                        }
-
-                                        return false;
-                                        },
-                                    new PrioritySelector(
-                                        new Decorator(
-                                            req => !Me.Auras.ContainsKey("Flying Serpent Kick"),
-                                            new ActionAlwaysSucceed()
-                                            ),
-                                        new Sequence(
-                                            new Action( r => {
-                                                if (hasFSKGlpyh)
-                                                {
-                                                    Logger.WriteDebug("CloseDistance: FSK is glyphed, should not be here - notify developer!");
-                                                }
-                                                else
-                                                {
-                                                    Logger.WriteDebug("CloseDistance: casting Flying Serpent Kick to cancel");
-                                                    SpellManager.Cast("Flying Serprent Kick");
-                                                }
-                                            }),
-                                            /* wait until cancel takes effect */
-                                            new PrioritySelector(
-                                                new Wait(
-                                                    TimeSpan.FromMilliseconds(450),
-                                                    until => !Me.Auras.ContainsKey("Flying Serpent Kick"),
-                                                    new Action( r => Logger.WriteDebug("CloseDistance: Flying Serpent Kick aura no longer exists"))
-                                                    ),
-                                                new Action( r => {
-                                                    Logger.WriteDebug("CloseDistance: error - Flying Serpent Kick was not removed - lag?");
-                                                    })
-                                                )
-                                            )
-                                        )
-                                    )
-                                ),
-
-                            Spell.BuffSelf("Tiger's Lust", req => hasTigersLust ),
-
-                            new Sequence(
-                                Spell.Cast("Roll", on => (WoWUnit)on, req => !MonkSettings.DisableRoll ),
-                                new PrioritySelector(
-                                    new Wait(
-                                        TimeSpan.FromMilliseconds(500), 
-                                        until => Me.Auras.ContainsKey("Roll"),
-                                        new Action(r => Logger.WriteDebug("CloseDistance: Roll in progress"))
-                                        ),
-                                    new Action( r => {
-                                        Logger.WriteDebug("CloseDistance: failure - did not detect Roll in progress aura- lag?");
-                                        return RunStatus.Failure;
-                                        })
-                                    ),
-                                new Wait(
-                                    TimeSpan.FromMilliseconds(950), 
-                                    until => !Me.Auras.ContainsKey("Roll"),
-                                    new Action(r => Logger.WriteDebug("CloseDistance: Roll has ended"))
-                                    )
-                                )
-                            )
-                        )
-                    )
-                );
-        }
 
         public static WoWObject FindClosestSphere(SphereType typ, float range)
         {
@@ -438,8 +266,8 @@ namespace Singular.ClassSpecific.Monk
 
         public static Composite CreateMoveToSphereBehavior(SphereType typ, float range)
         {
-            return new Decorator(
-                ret => SingularSettings.Instance.MoveToSpheres && !MovementManager.IsMovementDisabled,
+            return new Decorator( 
+                ret => MonkSettings.MoveToSpheres && MovementManager.IsClassMovementAllowed,
 
                 new PrioritySelector(
 
@@ -538,72 +366,20 @@ namespace Singular.ClassSpecific.Monk
                 return new ActionAlwaysFail();
 
             return new Throttle(15,
-                new Sequence(
-                    ctx => {
-                        WoWUnit target;
-                        if (Spell.IsSpellOnCooldown("Grapple Weapon"))
-                            target = null;
-                        else
-                            target = Unit.NearbyUnitsInCombatWithMeOrMyStuff
-                                        .FirstOrDefault(u => IsGrappleWeaponCandidate(u) && u.SpellDistance() < 40 && Me.IsSafelyFacing(u, 150));
-                        return new CtxGrapple( target);
-                    },
+                Spell.Cast("Grapple Weapon", on =>
+                {
+                    if (Spell.IsSpellOnCooldown("Grapple Weapon"))
+                        return null;
 
-                    Spell.Cast("Grapple Weapon", on => (on as CtxGrapple).target),
-
-                    // if cast successful, make sure we return success to Throttle even if Wait for weapon fails
-                    new PrioritySelector(
-                        new Sequence(
-                            new Wait( TimeSpan.FromMilliseconds(350), until => Me.Inventory.Equipped.MainHand != (until as CtxGrapple).mainhand, new ActionAlwaysSucceed()),
-                            new Action( mh => Logger.Write(Color.White, "/grappleweapon: equipped [{0}] #{1}", Me.Inventory.Equipped.MainHand.Name, Me.Inventory.Equipped.MainHand.Entry ))
-                            ),
-                        new PrioritySelector(
-                            ctx => Me.GetAllAuras().FirstOrDefault(a => a.SpellId == 123231 || a.SpellId == 123232 || a.SpellId == 123234),
-                            new Decorator(
-                                req => req != null,
-                                new Action( r => Logger.Write( Color.White, "/grappleweapon: received buff [{0}] #{1}", (r as WoWAura).Name, (r as WoWAura).SpellId))
-                                )
-                            ),
-                        new Action(r => Blacklist.Add((r as CtxGrapple).target.IsPlayer ? (r as CtxGrapple).target.Guid : (r as CtxGrapple).target.Entry, BlacklistFlags.Node, TimeSpan.FromDays(7), "Singular: failed Grapple Weapon on this target"))
-                        )
-                    )
+                    WoWUnit unit = Unit.NearbyUnitsInCombatWithMeOrMyStuff.FirstOrDefault(
+                        u => u.SpellDistance() < 40
+                            && !Me.CurrentTarget.Disarmed
+                            && !Me.CurrentTarget.IsCrowdControlled()
+                            && Me.IsSafelyFacing(u, 150)
+                            );
+                    return unit;
+                })
                 );
-        }
-
-        class CtxGrapple
-        {
-            public WoWUnit target { get; set; }
-            public WoWItem mainhand { get; set; }
-            public WoWAura aura { get; set; }
-
-            public CtxGrapple( WoWUnit t)
-            {
-                mainhand = Me.Inventory.Equipped.MainHand;
-                target = t;
-            }
-        }
-
-        private static bool IsGrappleWeaponCandidate(WoWUnit u)
-        {
-            if (u.IsPlayer)
-            {
-                if (Blacklist.Contains(u.Guid, BlacklistFlags.Node))
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (!u.IsHumanoid || Blacklist.Contains(u.Entry, BlacklistFlags.Node))
-                {
-                    return false;
-                }
-            }
-
-            if (u.CurrentTarget.Disarmed || u.CurrentTarget.IsCrowdControlled())
-                return false;
-
-            return true;
         }
 
         public static Composite CreateChiBurstBehavior()
@@ -611,7 +387,7 @@ namespace Singular.ClassSpecific.Monk
             if ( !HasTalent(MonkTalents.ChiBurst))
                 return new ActionAlwaysFail();
 
-            if (TalentManager.CurrentSpec == WoWSpec.MonkMistweaver && SingularRoutine.CurrentWoWContext != WoWContext.Normal)
+            if (Me.Specialization == WoWSpec.MonkMistweaver && SingularRoutine.CurrentWoWContext != WoWContext.Normal)
             {
                 return new Decorator(
                     req => !Spell.IsSpellOnCooldown("Chi Burst") && !Me.CurrentTarget.IsBoss()
@@ -619,7 +395,7 @@ namespace Singular.ClassSpecific.Monk
                     Spell.Cast("Chi Burst",
                         mov => true,
                         ctx => Me,
-                        ret => Me.HealthPercent < MonkSettings.ChiWavePct,
+                        ret => Me.HealthPercent < SingularSettings.Instance.Monk().ChiWavePercent,
                         cancel => false
                         )
                     );
@@ -631,7 +407,7 @@ namespace Singular.ClassSpecific.Monk
                 Spell.Cast("Chi Burst",
                     mov => true,
                     ctx => Me,
-                    ret => Me.HealthPercent < MonkSettings.ChiWavePct,
+                    ret => Me.HealthPercent < SingularSettings.Instance.Monk().ChiWavePercent,
                     cancel => false
                     )
                 );

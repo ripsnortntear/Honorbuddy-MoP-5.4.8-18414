@@ -55,7 +55,7 @@ namespace Singular.ClassSpecific.Druid
                 new Decorator(
                     ret => !Me.HasAura("Drink") && !Me.HasAura("Food")
                         && Me.HasAura("Predatory Swiftness")
-                        && (Me.PredictedHealthPercent(includeMyHeals: true) < 95),
+                        && (Me.GetPredictedHealthPercent(true) < 95),
                     new PrioritySelector(
                         new Action(r => { Logger.WriteDebug("Druid Rest Swift Heal @ {0:F1}% and moving:{1} in form:{2}", Me.HealthPercent, Me.IsMoving, Me.Shapeshift); return RunStatus.Failure; }),
                         Spell.Cast("Healing Touch",
@@ -324,7 +324,7 @@ namespace Singular.ClassSpecific.Druid
 
                         Spell.Cast("Mangle"),
 
-                        Spell.OffGCD(Spell.Cast("Force of Nature", req => TalentManager.CurrentSpec != WoWSpec.DruidRestoration && Me.CurrentTarget.TimeToDeath() > 8)),
+                        Spell.OffGCD(Spell.Cast("Force of Nature", req => Me.Specialization != WoWSpec.DruidRestoration && Me.CurrentTarget.TimeToDeath() > 8)),
 
                         new Decorator(
                             ret => MovementManager.IsClassMovementAllowed && Me.IsMoving && Me.CurrentTarget.Distance > (Me.CurrentTarget.IsPlayer ? 10 : 15),

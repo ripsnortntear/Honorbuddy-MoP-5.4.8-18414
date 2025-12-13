@@ -47,7 +47,6 @@ namespace Singular.ClassSpecific.Mage
                         Helpers.Common.CreateAutoAttack(true),
                         Helpers.Common.CreateInterruptBehavior(),
 
-                        Common.CreateMagePullBuffs(),
                         Spell.BuffSelf("Arcane Power"),
 
                         new Action(r =>
@@ -116,7 +115,7 @@ namespace Singular.ClassSpecific.Mage
                     ret => !Spell.IsGlobalCooldown(),
                     new PrioritySelector(
 
-                        Common.CreateMageAvoidanceBehavior(),
+                        Common.CreateMageAvoidanceBehavior(null, null),
 
                         Helpers.Common.CreateAutoAttack(true),
                         Helpers.Common.CreateInterruptBehavior(),
@@ -193,9 +192,7 @@ namespace Singular.ClassSpecific.Mage
                     ret => !Spell.IsGlobalCooldown(),
                     new PrioritySelector(
        
-                        Common.CreateMageAvoidanceBehavior(),
-
-                        Common.CreateMagePullBuffs(),
+                        Common.CreateMageAvoidanceBehavior(null, null),
 
                         // Defensive stuff
                         Spell.BuffSelf("Ice Block", ret => Me.HealthPercent < 10 && !Me.ActiveAuras.ContainsKey("Hypothermia")),
@@ -234,7 +231,6 @@ namespace Singular.ClassSpecific.Mage
                         Helpers.Common.CreateAutoAttack(true),
                         Helpers.Common.CreateInterruptBehavior(),
 
-                        Common.CreateMagePullBuffs(),
                         Spell.BuffSelf("Arcane Power"),
 
                         // AoE comes first
