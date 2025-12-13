@@ -1,0 +1,54 @@
+Build 5.4.5165
+Revise Frost DK 1 handler and dual weild rotation.
+DPS is now really good.
+Time to mix new PvP ability into PvE rotation for more PvP damage.
+
+
+Build 5.4.5164
+Frost DK rotation rewritten.
+Improve dps on 1h and 2h weapon.
+
+
+Build 5.4.5144
+Better way to detect DW/2H Rotation on DK
+
+
+Build 5.4.5133
+Remove QuestGive from enemy blacklist
+Improve Invalid Target detection
+
+
+Build 5.4.5133
+Better handle presence swap
+
+
+Build 5.4.5132
+Fix issue Frost doesn't Plague Strike to keep Blood Plague disease up.
+Improve frost dps.
+
+
+Build 5.4.5131
+Add option to use Unholy Frenzy on Healer / DPS to remove CC - Credit undefined - thank you for nice suggestion
+Separate Unholy Frenzy and Gargoyle Settings
+
+
+Build 5.4.5131
+Improve Frost Dual-Wielding DPS by 20%
+
+
+Build 5.4.5129.405
+Add option Death Coil Help Friend when his HP Below (This spell require Glyph of Death Coil)
+
+
+Build 5.4.5127.25987
+Combat Routine no longer try to get behind target that are not player.
+Fix issue attacking critter :D
+
+
+Build 5.4.5123.5670
+Auto Update is ready to serve! You are now no longer to worry about svn update!
+Improved movement logic - smart just like player!
+Improved targeting logic - smart just like player!
+Improve logic on waiting for interrupt.
+Improve logic on waiting for using trinket/racial/Icebound Fortitude/Desecrated Ground/Lichborne... when remove CCs
+Added Change Log.
