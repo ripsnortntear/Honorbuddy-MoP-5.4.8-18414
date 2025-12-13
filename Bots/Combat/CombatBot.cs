@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 using Levelbot.Actions.Combat;
 using Styx.Common;
@@ -12,8 +13,6 @@ using Styx.Helpers;
 using Styx.Pathing;
 using Styx.WoWInternals.WoWObjects;
 using Styx.TreeSharp;
-using Action = Styx.TreeSharp.Action;
-using Sequence = Styx.TreeSharp.Sequence;
 using Styx.WoWInternals;
 
 namespace Styx.Bot.CustomBots
@@ -21,21 +20,28 @@ namespace Styx.Bot.CustomBots
     public class CombatBot : BotBase
     {
         [DllImport("user32.dll")]
-        private static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
+        private static extern short GetAsyncKeyState(Keys vKey);
 
-        #region Overrides of BotBase
+        public override bool RequiresProfile
+        {
+            get { return false; }
+        }
 
-        public override bool RequiresProfile { get { return false; } }
-        public override string Name { get { return "Combat Bot"; } }
+        public override string Name
+        {
+            get { return "Combat Bot"; }
+        }
 
         private Composite _root;
+
         public override Composite Root
         {
             get
             {
                 return _root ?? (_root = new PrioritySelector(
                     CreateCombatBehavior()
-                    //, CreateFollowBehavior()
+                    // Uncomment if follow behavior is needed
+                    // , CreateFollowBehavior()
                 ));
             }
         }
@@ -52,9 +58,8 @@ namespace Styx.Bot.CustomBots
 
         public override void Pulse()
         {
-            // Optimized: keep Pulse lightweight for max tick rate
-            // Uncomment for manual target POI
-            // if ((GetAsyncKeyState(System.Windows.Forms.Keys.NumPad0) & 1) != 0)
+            // Example usage of GetAsyncKeyState if needed:
+            // if ((GetAsyncKeyState(Keys.NumPad0) & 1) != 0)
             //     BotPoi.Current = new BotPoi(StyxWoW.Me.CurrentTarget, PoiType.Kill);
         }
 
@@ -64,11 +69,15 @@ namespace Styx.Bot.CustomBots
         }
 
         private bool _oldLogoutForInactivity;
+
         public override void Start()
         {
             Targeting.Instance.IncludeTargetsFilter += IncludeTargetsFilter;
             _oldLogoutForInactivity = GlobalSettings.Instance.LogoutForInactivity;
             GlobalSettings.Instance.LogoutForInactivity = false;
+
+            // Load an empty profile if needed
+            // ProfileManager.LoadEmpty();
         }
 
         public override void Stop()
@@ -76,10 +85,6 @@ namespace Styx.Bot.CustomBots
             Targeting.Instance.IncludeTargetsFilter -= IncludeTargetsFilter;
             GlobalSettings.Instance.LogoutForInactivity = _oldLogoutForInactivity;
         }
-
-        #endregion
-
-        #region Targeting Filter
 
         private static void IncludeTargetsFilter(List<WoWObject> incomingUnits, HashSet<WoWObject> outgoingUnits)
         {
@@ -91,94 +96,107 @@ namespace Styx.Bot.CustomBots
             }
         }
 
-        #endregion
-
-        #region Behaviors
-
-        #region Combat Behavior
-
         private static bool NeedPull(object context)
         {
-            var me = StyxWoW.Me;
-            var target = me.CurrentTarget;
-            if (target == null || !target.InLineOfSight || target.Distance > Targeting.PullDistance)
-                return false;
-            return true;
+            var target = StyxWoW.Me.CurrentTarget;
+
+            return target != null
+                   && target.InLineOfSight
+                   && target.Distance <= Targeting.PullDistance;
         }
 
         private static Composite CreateCombatBehavior()
         {
-            // Cache for faster access
             return new PrioritySelector(
-                // Out of combat: Rest, Buffs, Pull
                 new Decorator(ret => !StyxWoW.Me.Combat,
                     new PrioritySelector(
                         // Rest
-                        new Decorator(ctx =>
-                            RoutineManager.Current.RestBehavior != null && RoutineManager.Current.NeedRest,
-                            new Sequence(
-                                new Action(ret => TreeRoot.StatusText = "Resting"),
-                                RoutineManager.Current.RestBehavior
-                            )
+                        new PrioritySelector(
+                            new Decorator(ctx => RoutineManager.Current.RestBehavior != null,
+                                RoutineManager.Current.RestBehavior),
+                            new Decorator(ctx => RoutineManager.Current.NeedRest,
+                                new Sequence(
+                                    new Action(ret => TreeRoot.StatusText = "Resting"),
+                                    new Action(ret => RoutineManager.Current.Rest())
+                                ))
                         ),
+
                         // PreCombatBuffs
-                        new Decorator(ctx =>
-                            RoutineManager.Current.PreCombatBuffBehavior != null && RoutineManager.Current.NeedPreCombatBuffs,
-                            new Sequence(
-                                new Action(ret => TreeRoot.StatusText = "Applying pre-combat buffs"),
-                                RoutineManager.Current.PreCombatBuffBehavior
-                            )
+                        new PrioritySelector(
+                            new Decorator(ctx => RoutineManager.Current.PreCombatBuffBehavior != null,
+                                RoutineManager.Current.PreCombatBuffBehavior),
+                            new Decorator(ctx => RoutineManager.Current.NeedPreCombatBuffs,
+                                new Sequence(
+                                    new Action(ret => TreeRoot.StatusText = "Applying pre-combat buffs"),
+                                    new Action(ret => RoutineManager.Current.PreCombatBuff())
+                                ))
                         ),
+
                         // Pull
-                        new Decorator(ret => BotPoi.Current.Type == PoiType.Kill && NeedPull(null),
+                        new Decorator(ret => BotPoi.Current.Type == PoiType.Kill,
                             new PrioritySelector(
-                                new Decorator(ctx => RoutineManager.Current.PullBuffBehavior != null,
-                                    RoutineManager.Current.PullBuffBehavior
-                                ),
-                                new Decorator(ctx => RoutineManager.Current.PullBehavior != null,
-                                    RoutineManager.Current.PullBehavior
-                                ),
-                                new ActionPull()
-                            )
-                        )
-                    )
-                ),
-                // In combat: Heal, Buffs, Combat
+                                new Decorator(ret => Targeting.Instance.TargetList.Count != 0,
+                                    new Decorator(ret => BotPoi.Current.AsObject != Targeting.Instance.FirstUnit,
+                                        new Sequence(
+                                            new Action(ret => BotPoi.Current = new BotPoi(Targeting.Instance.FirstUnit, PoiType.Kill)),
+                                            new Action(ret => BotPoi.Current.AsObject.ToUnit().Target())
+                                        ))),
+                                new Decorator(NeedPull,
+                                    new PrioritySelector(
+                                        new Decorator(ctx => RoutineManager.Current.PullBuffBehavior != null,
+                                            RoutineManager.Current.PullBuffBehavior),
+                                        new Decorator(ctx => RoutineManager.Current.PullBehavior != null,
+                                            RoutineManager.Current.PullBehavior),
+                                        new ActionPull()
+                                    ))
+                            ))
+                    )),
+
                 new Decorator(ret => StyxWoW.Me.Combat,
                     new PrioritySelector(
-                        // Heal (only if needed)
-                        new Decorator(ctx =>
-                            RoutineManager.Current.HealBehavior != null && RoutineManager.Current.NeedHeal,
+                        // Heal
+                        new PrioritySelector(
+                            new Decorator(ctx => RoutineManager.Current.HealBehavior != null,
+                                new Sequence(
+                                    RoutineManager.Current.HealBehavior,
+                                    new Action(ret => RunStatus.Success)
+                                )),
+                            new Decorator(ctx => RoutineManager.Current.NeedHeal,
+                                new Sequence(
+                                    new Action(ret => TreeRoot.StatusText = "Healing"),
+                                    new Action(ret => RoutineManager.Current.Heal())
+                                ))
+                        ),
+
+                        // Combat Buffs
+                        new PrioritySelector(
+                            new Decorator(ctx => RoutineManager.Current.CombatBuffBehavior != null,
+                                new Sequence(
+                                    RoutineManager.Current.CombatBuffBehavior,
+                                    new Action(ret => RunStatus.Success)
+                                )),
+                            new Decorator(ctx => RoutineManager.Current.NeedCombatBuffs,
+                                new Sequence(
+                                    new Action(ret => TreeRoot.StatusText = "Applying Combat Buffs"),
+                                    new Action(ret => RoutineManager.Current.CombatBuff())
+                                ))
+                        ),
+
+                        // Combat
+                        new PrioritySelector(
+                            new Decorator(ctx => RoutineManager.Current.CombatBehavior != null,
+                                new PrioritySelector(
+                                    RoutineManager.Current.CombatBehavior,
+                                    new Action(ret => RunStatus.Success)
+                                )),
                             new Sequence(
-                                RoutineManager.Current.HealBehavior,
-                                new Action(delegate { return RunStatus.Success; })
+                                new Action(ret => TreeRoot.StatusText = "Combat"),
+                                new Action(ret => RoutineManager.Current.Combat())
                             )
-                        ),
-                        // Combat Buffs (only if needed)
-                        new Decorator(ctx =>
-                            RoutineManager.Current.CombatBuffBehavior != null && RoutineManager.Current.NeedCombatBuffs,
-                            new Sequence(
-                                RoutineManager.Current.CombatBuffBehavior,
-                                new Action(delegate { return RunStatus.Success; })
-                            )
-                        ),
-                        // Main Combat
-                        new Decorator(ctx => RoutineManager.Current.CombatBehavior != null,
-                            new PrioritySelector(
-                                RoutineManager.Current.CombatBehavior,
-                                new Action(delegate { return RunStatus.Success; })
-                            )
-                        ),
-                        new Sequence(
-                            new Action(ret => TreeRoot.StatusText = "Combat"),
-                            new Action(ret => RoutineManager.Current.Combat())
                         )
-                    )
-                )
+                    ))
             );
         }
-
-        #endregion
 
         #region Follow Behavior
 
@@ -197,30 +215,27 @@ namespace Styx.Bot.CustomBots
 
                 if (_followMe == null || !_followMe.IsValid)
                 {
-                    var me = StyxWoW.Me;
-                    if (me.IsInInstance)
+                    if (StyxWoW.Me.IsInInstance)
                     {
-                        for (int i = 1; i <= 4; i++)
+                        for (var i = 1; i < 5; i++)
                         {
-                            string role = Lua.GetReturnVal<string>(
-                                string.Format("return UnitGroupRolesAssigned('party{0}')", i), 0);
+                            var role = Lua.GetReturnVal<string>(string.Format("return UnitGroupRolesAssigned('party{0}')", i), 0);
                             if (role == "TANK")
                             {
-                                _followMe = ObjectManager.GetObjectByGuid<WoWPlayer>(
-                                    me.GetPartyMemberGuid(i - 1));
+                                _followMe = ObjectManager.GetObjectByGuid<WoWPlayer>(StyxWoW.Me.GetPartyMemberGuid(i - 1));
                                 break;
                             }
                         }
                     }
                     else
                     {
-                        _followMe = RaFHelper.Leader ?? me.PartyMembers.FirstOrDefault();
+                        _followMe = RaFHelper.Leader ?? StyxWoW.Me.PartyMembers.FirstOrDefault();
                     }
                     if (_followMe != null)
                         RaFHelper.SetLeader(_followMe.Guid);
                 }
 
-                if (_followMe != null && RaFHelper.Leader != null && _followMe.Guid != RaFHelper.Leader.Guid)
+                if (!((_followMe != null && RaFHelper.Leader != null && _followMe.Guid == RaFHelper.Leader.Guid) || (_followMe == null && RaFHelper.Leader == null)))
                     _followMe = RaFHelper.Leader;
 
                 if (_followMe == null)
@@ -239,14 +254,11 @@ namespace Styx.Bot.CustomBots
         {
             return new PrioritySelector(
                 new Decorator(ret => StyxWoW.Me.GroupInfo.IsInParty &&
-                                    FollowMe != null &&
-                                    (FollowMe.Distance > 10 || !FollowMe.InLineOfSight),
+                                    (FollowMe != null && (FollowMe.Distance > 10 || !FollowMe.InLineOfSight)),
                     new Action(ret => Navigator.MoveTo(FollowMe.Location))
                 )
             );
         }
-
-        #endregion
 
         #endregion
     }
