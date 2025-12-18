@@ -1,4 +1,3 @@
-﻿
 using Styx;
 using Styx.Pathing;
 using Styx.WoWInternals;
@@ -134,4 +133,5 @@ namespace Templar.Helpers
             // Logging unchanged for brevity
         }
     }
+
 }
