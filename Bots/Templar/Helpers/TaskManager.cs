@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Globalization;
 using Styx.Common;
@@ -221,4 +220,5 @@ namespace Templar.Helpers
             }
         }
     }
+
 }
