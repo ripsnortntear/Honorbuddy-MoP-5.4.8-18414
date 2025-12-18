@@ -58,11 +58,12 @@ namespace Templar.Helpers
                         RoutineManager.Current.PreCombatBuffBehavior,
                         new ActionAlwaysSucceed()
                     ),
-                    // New: Periodic bag check for mailing (low priority, runs if time has passed)
+                    // New: Periodic bag check for mailing and vendoring (low priority, runs if time has passed)
                     new Decorator(ctx => (DateTime.Now - _lastBagCheck).TotalMinutes >= BagCheckIntervalMinutes,
                         new Action(ctx =>
                         {
                             Mail.CheckBags();
+                            Vendor.CheckBags();
                             _lastBagCheck = DateTime.Now;
                             return RunStatus.Success; // Allow tree to continue
                         })
@@ -71,6 +72,13 @@ namespace Templar.Helpers
                     new Decorator(ctx => MailSettings.Instance.Mail && Variables.MailList.Count > 0,
                         new Sequence(
                             new Action(ctx => Mail.HandleMailing()),
+                            new ActionAlwaysSucceed() // Yield control back to tree after handling
+                        )
+                    ),
+                    // New: Vendor handling (only if enabled and need to vendor)
+                    new Decorator(ctx => VendorSettings.Instance.Vendor && Variables.NeedToVendor,
+                        new Sequence(
+                            new Action(ctx => Vendor.HandleVendoring()),
                             new ActionAlwaysSucceed() // Yield control back to tree after handling
                         )
                     )
