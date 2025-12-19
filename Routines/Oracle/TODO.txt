@@ -1,4 +1,4 @@
-#region Revision info
+﻿#region Revision info
 
 /*
  * $Author: wulf_ $
