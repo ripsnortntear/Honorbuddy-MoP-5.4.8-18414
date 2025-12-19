@@ -1,0 +1,163 @@
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{12345678-1234-1234-1234-123456789ABC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VitalicRotation</RootNamespace>
+    <AssemblyName>VitalicRotation</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <!-- Miroir v.zip : build forcé en x86 + 32-bit préféré -->
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\AntiAfk.cs" />
+    <Compile Include="Helpers\AoESuppressionHelper.cs" />
+    <Compile Include="Helpers\AudioBus.cs" />
+    <Compile Include="Helpers\AutoAttack.cs" />
+    <Compile Include="Helpers\Cast.cs" />
+    <Compile Include="Helpers\CastCounters.cs" />
+    <Compile Include="Helpers\CombatCaches.cs" />
+    <Compile Include="Helpers\CombatContext.cs" />
+    <Compile Include="Helpers\ComboPointsEx.cs" />
+    <Compile Include="Helpers\ContextResets.cs" />
+    <Compile Include="Helpers\ControlTracker.cs" />
+    <Compile Include="Helpers\DangerTracker.cs" />
+    <Compile Include="Helpers\Diag.cs" />
+    <Compile Include="Helpers\EnemyCountCache.cs" />
+    <Compile Include="Helpers\MechanicsGuard.cs" />
+    <Compile Include="Helpers\MovementSafety.cs" />
+    <Compile Include="Helpers\PoisonHelper.cs" />
+    <Compile Include="Helpers\ResourceAccessor.cs" />
+    <Compile Include="Helpers\RuntimeToggles.cs" />
+    <Compile Include="Helpers\Throttle.cs" />
+    <Compile Include="Helpers\ToggleState.cs" />
+    <Compile Include="Helpers\UiCompat.cs" />
+    <Compile Include="Helpers\UiNotifications.cs" />
+    <Compile Include="Helpers\UiTheme.cs" />
+    <Compile Include="Managers\AutoCCManager.cs" />
+    <Compile Include="Managers\BladeFlurryToggle.cs" />
+    <Compile Include="Managers\BurstManager.cs" />
+    <Compile Include="Managers\FlagReturnManager.cs" />
+    <Compile Include="Managers\FocusManager.cs" />
+    <Compile Include="Managers\ImmunityGuard.cs" />
+    <Compile Include="Managers\MacroManager.cs" />
+  <Compile Include="Managers\GlueManager.cs" />
+    <Compile Include="Managers\MobilityManager.cs" />
+    <Compile Include="Managers\PreparationManager.cs" />
+    <Compile Include="Managers\PsyfiendManager.cs" />
+    <Compile Include="Managers\RestealthManager.cs" />
+    <Compile Include="Managers\ShivManager.cs" />
+    <Compile Include="Managers\ShroudManager.cs" />
+    <Compile Include="Managers\ThreatEvents.cs" />
+    <Compile Include="Managers\ThreatTable.cs" />
+    <Compile Include="Managers\TotemRecentCache.cs" />
+    <Compile Include="Managers\TricksManager.cs" />
+    <Compile Include="Helpers\VitalicUi.cs" />
+    <Compile Include="Helpers\DRTracker.cs" />
+    <Compile Include="Helpers\EventHandlers.cs" />
+    <Compile Include="Helpers\Totems.cs" />
+    <Compile Include="Helpers\UnitExtensions.cs" />
+    <Compile Include="Managers\CooldownManager.cs" />
+    <Compile Include="Managers\CrowdControlManager.cs" />
+    <Compile Include="Managers\InputPoller.cs" />
+    <Compile Include="Managers\PoisonManager.cs" />
+    <Compile Include="Managers\PvERotation.cs" />
+    <Compile Include="Managers\PvPRotation.cs" />
+    <Compile Include="Managers\ShadowstepManager.cs" />
+    <Compile Include="Managers\SmokeBombManager.cs" />
+    <Compile Include="Managers\StealthManager.cs" />
+    <Compile Include="Managers\TeamCCManager.cs" />
+    <Compile Include="Managers\TrapManager.cs" />
+    <Compile Include="Managers\VanishManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BasicToolTipView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BasicToolTipView.Designer.cs">
+      <DependentUpon>BasicToolTipView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DiagOverlay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VitalicRotationRoutine.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\LuaHelper.cs" />
+    <Compile Include="Managers\DefensivesManager.cs" />
+    <Compile Include="Managers\InterruptManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Configuration\VitalicSettings.cs" />
+    <Compile Include="Helpers\SpellBook.cs" />
+    <Compile Include="UI\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GreyMagic">
+      <HintPath>..\..\GreyMagic.dll</HintPath>
+    </Reference>
+    <Reference Include="Honorbuddy">
+      <HintPath>..\..\Honorbuddy.exe</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+    <Reference Include="Tripper.Tools">
+      <HintPath>..\..\Tripper.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Vitalic-cleaned\Vitalic-cleaned.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <!-- RESSOURCES EMBARQUÉES (miroir ResourceAccessor de v.zip) -->
+  <ItemGroup>
+    <!-- Audio -->
+    <EmbeddedResource Include="Resources\Audio\bigwigs_alarm.wav" />
+    <EmbeddedResource Include="Resources\Audio\event.wav" />
+    <EmbeddedResource Include="Resources\Audio\interrupt.wav" />
+    <EmbeddedResource Include="Resources\Audio\ready.wav" />
+    <!-- Images -->
+    <EmbeddedResource Include="Resources\Images\icon.png" />
+    <EmbeddedResource Include="Resources\Images\title.png" />
+    <EmbeddedResource Include="Resources\Images\cursor.png" />
+    <EmbeddedResource Include="Resources\Images\cursor_move.png" />
+    <EmbeddedResource Include="Resources\Images\cursor_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Vitalic-cleaned\Vitalic-cleaned.sln" />
+  </ItemGroup>
+  <!-- (Supprimé : tous les <None Include="Properties\*.png|*.wav"> et <Content Include="Resources\*.png|*.wav">) -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
