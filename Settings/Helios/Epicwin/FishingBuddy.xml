@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FishingBuddySettings>
+  <LastLoadedProfile></LastLoadedProfile>
+  <LootNPCs>False</LootNPCs>
+  <Hat>0</Hat>
+  <MainHand>98261</MainHand>
+  <OffHand>0</OffHand>
+  <Poolfishing>False</Poolfishing>
+  <Fly>True</Fly>
+  <UseWaterWalking>True</UseWaterWalking>
+  <AvoidLava>False</AvoidLava>
+  <NinjaNodes>False</NinjaNodes>
+  <UseBait>True</UseBait>
+  <UseBaitPreference>0</UseBaitPreference>
+  <FilletFish>True</FilletFish>
+  <MaxTimeAtPool>5</MaxTimeAtPool>
+  <MaxFailedCasts>15</MaxFailedCasts>
+  <PathPrecision>15</PathPrecision>
+  <TraceStep>40</TraceStep>
+  <PoolRangeStep>0.5</PoolRangeStep>
+</FishingBuddySettings>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProtectedItemSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProtectedItems>
+    <ProtectedItemEntry Entry="6948" Name="Hearthstone" />
+    <ProtectedItemEntry Entry="80513" Name="Vintage Bug Sprayer" />
+    <ProtectedItemEntry Entry="79104" Name="Rusty Watering Can" />
+    <ProtectedItemEntry Entry="89880" Name="Dented Shovel" />
+    <ProtectedItemEntry Entry="95568" Name="Sunreaver Beacon" />
+    <ProtectedItemEntry Entry="45858" Name="Nat's Lucky Fishing Pole" />
+    <ProtectedItemEntry Entry="76061" Name="Spirit of Harmony" />
+    <ProtectedItemEntry Entry="91838" Name="Lion's Landing Commission" />
+    <ProtectedItemEntry Entry="86565" Name="Battle Horn" />
+    <ProtectedItemEntry Entry="94221" Name="Shan'ze Ritual Stone" />
+    <ProtectedItemEntry Entry="6532" Name="Bright Baubles" />
+    <ProtectedItemEntry Entry="85216" Name="Enigma Seed" />
+    <ProtectedItemEntry Entry="89112" Name="Mote of Harmony" />
+    <ProtectedItemEntry Entry="104198" Name="Mantid Artifact Hunter's Kit" />
+    <ProtectedItemEntry Entry="86545" Name="Mimic Octopus" />
+    <ProtectedItemEntry Entry="10755" Name="Amulet of Allistarj" />
+    <ProtectedItemEntry Entry="10753" Name="Amulet of Grol" />
+    <ProtectedItemEntry Entry="10754" Name="Amulet of Sevine" />
+    <ProtectedItemEntry Entry="94123" Name="Attuned Crystal" />
+    <ProtectedItemEntry Entry="84239" Name="Flitterling Dust" />
+    <ProtectedItemEntry Entry="79197" Name="Glade Glimmer" />
+    <ProtectedItemEntry Entry="79895" Name="Master's Pot" />
+    <ProtectedItemEntry Entry="57196" Name="Reliquary Papers" />
+    <ProtectedItemEntry Entry="17662" Name="Stolen Treats" />
+    <ProtectedItemEntry Entry="58241" Name="Tablet of Shadra" />
+    <ProtectedItemEntry Entry="94222" Name="Key to the Palace of Lei Shen" />
+    <ProtectedItemEntry Entry="87779" Name="Ancient Guo-Lai Cache Key" />
+    <ProtectedItemEntry Entry="87549" Name="Lorewalker's Map" />
+    <ProtectedItemEntry Entry="17735" Name="The Feast of Winter Veil" />
+  </ProtectedItems>
+</ProtectedItemSettings>

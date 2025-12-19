@@ -1,40 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
-  <RessAtSpiritHealers>False</RessAtSpiritHealers>
-  <TicksPerSecond>90</TicksPerSecond>
-  <AutoEquip>True</AutoEquip>
-  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
   <SelectTalents>True</SelectTalents>
-  <RollOnItems>True</RollOnItems>
-  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
-  <LootMobs>True</LootMobs>
-  <SkinMobs>False</SkinMobs>
-  <NinjaSkin>False</NinjaSkin>
-  <HarvestMinerals>False</HarvestMinerals>
-  <HarvestHerbs>False</HarvestHerbs>
-  <LootRadius>45</LootRadius>
-  <DrinkAmount>0</DrinkAmount>
-  <FoodAmount>0</FoodAmount>
-  <MailRecipient></MailRecipient>
-  <FoodName>4599</FoodName>
-  <DrinkName></DrinkName>
-  <MountName></MountName>
-  <FlyingMountName></FlyingMountName>
-  <UseRandomMount>False</UseRandomMount>
-  <MountDistance>60</MountDistance>
   <ClassProfileName>Warlock - Destruction</ClassProfileName>
+  <AutoEquip>True</AutoEquip>
   <AutoEquipBags>True</AutoEquipBags>
   <AutoEquipWeapons>True</AutoEquipWeapons>
   <AutoEquipArmor>True</AutoEquipArmor>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
   <WeaponStyle>Automatic</WeaponStyle>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
   <MaxBoEDisenchantQuality>Epic</MaxBoEDisenchantQuality>
+  <TicksPerSecond>90</TicksPerSecond>
+  <FoodAmount>0</FoodAmount>
+  <DrinkAmount>0</DrinkAmount>
   <!--The last selected index used by the Combobox in the form.-->
   <SelectedBotIndex>-1</SelectedBotIndex>
   <SelectedBotName>Tyrael</SelectedBotName>
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
+  <UseRandomMount>False</UseRandomMount>
+  <MailRecipient></MailRecipient>
+  <FoodName>17407</FoodName>
+  <DrinkName>17404</DrinkName>
+  <MountName>Black Skeletal Horse</MountName>
+  <FlyingMountName>Tawny Wind Rider</FlyingMountName>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
   <LootChests>True</LootChests>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
   <UseMount>True</UseMount>
   <PullDistance>100</PullDistance>
+  <LootRadius>45</LootRadius>
   <LastUsedPath></LastUsedPath>
+  <MountDistance>60</MountDistance>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
 </CharacterSettings>

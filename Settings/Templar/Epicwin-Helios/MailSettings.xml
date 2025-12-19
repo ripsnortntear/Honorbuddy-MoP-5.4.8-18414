@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MailSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mail>true</Mail>
+  <MailWhites>true</MailWhites>
+  <MailGreens>true</MailGreens>
+  <MailBlues>true</MailBlues>
+  <MailPurples>true</MailPurples>
+  <Recipient>Mulon</Recipient>
+</MailSettings>

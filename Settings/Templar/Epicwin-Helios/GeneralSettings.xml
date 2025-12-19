@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GeneralSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HealthPercentThreshold>50</HealthPercentThreshold>
+  <MobThreshold>3</MobThreshold>
+  <StartingLocationMaxDistance>1000</StartingLocationMaxDistance>
+  <IgnoreElites>true</IgnoreElites>
+  <MultiPull>false</MultiPull>
+  <LootMobs>true</LootMobs>
+  <SkinMobs>true</SkinMobs>
+  <NinjaSkin>false</NinjaSkin>
+  <TimeBetweenLoots>1</TimeBetweenLoots>
+  <TimeBetweenSkins>1</TimeBetweenSkins>
+  <MinimumFreeBagSlots>2</MinimumFreeBagSlots>
+</GeneralSettings>
