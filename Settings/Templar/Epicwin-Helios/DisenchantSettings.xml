@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DisenchantSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Disenchant>false</Disenchant>
+  <DisenchantOnlyNewItems>false</DisenchantOnlyNewItems>
+  <DisenchantWeapons>false</DisenchantWeapons>
+  <DisenchantGreens>false</DisenchantGreens>
+  <DisenchantBlues>false</DisenchantBlues>
+  <DisenchantPurples>false</DisenchantPurples>
+  <TimeBetweenDisenchants>5</TimeBetweenDisenchants>
+</DisenchantSettings>

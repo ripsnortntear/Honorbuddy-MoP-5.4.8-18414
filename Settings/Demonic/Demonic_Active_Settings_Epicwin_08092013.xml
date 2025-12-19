@@ -14,8 +14,8 @@
   <UseHealthstones>True</UseHealthstones>
   <OnlyHealthstoneWithDarkRegen>False</OnlyHealthstoneWithDarkRegen>
   <HealthstoneHPPercent>30</HealthstoneHPPercent>
-  <UseTrinket1>True</UseTrinket1>
-  <UseTrinket2>True</UseTrinket2>
+  <UseTrinket1>False</UseTrinket1>
+  <UseTrinket2>False</UseTrinket2>
   <Trinket1Condition>0</Trinket1Condition>
   <Trinket2Condition>0</Trinket2Condition>
   <Trinket1LowHPValue>30</Trinket1LowHPValue>
@@ -27,11 +27,11 @@
   <UseLifeblood>False</UseLifeblood>
   <LifebloodCond>1</LifebloodCond>
   <LifebloodLowHPValue>25</LifebloodLowHPValue>
-  <RacialUsage>1</RacialUsage>
+  <RacialUsage>0</RacialUsage>
   <ForceOutOfCombatPulse>False</ForceOutOfCombatPulse>
   <BreakStealthedUnits>False</BreakStealthedUnits>
   <UseDarkIntent>True</UseDarkIntent>
-  <EnableWowChatText>False</EnableWowChatText>
+  <EnableWowChatText>True</EnableWowChatText>
   <EnableInGameAddon>True</EnableInGameAddon>
   <UseHealthFunnel>True</UseHealthFunnel>
   <HealthFunnelMyHPGreaterThan>50</HealthFunnelMyHPGreaterThan>
@@ -41,8 +41,8 @@
   <DrainLifeHP>70</DrainLifeHP>
   <UseSoulburnDrainLife>False</UseSoulburnDrainLife>
   <SoulburnDrainLifeHP>30</SoulburnDrainLifeHP>
-  <TwilightWardCond>0</TwilightWardCond>
-  <CurseSelection>0</CurseSelection>
+  <TwilightWardCond>3</TwilightWardCond>
+  <CurseSelection>1</CurseSelection>
   <CurseSelectionCond>0</CurseSelectionCond>
   <Affliction_UseSoulburnWithCurse>False</Affliction_UseSoulburnWithCurse>
   <UseUnendingResolve>True</UseUnendingResolve>
@@ -84,20 +84,20 @@
   <Pet_CauterizeHealthPercent>88</Pet_CauterizeHealthPercent>
   <Pet_ShadowBulwarkHealthPercent>25</Pet_ShadowBulwarkHealthPercent>
   <Pet_ShadowBulwarkWithDarkRegen>True</Pet_ShadowBulwarkWithDarkRegen>
-  <Pet_ForceAttack>False</Pet_ForceAttack>
+  <Pet_ForceAttack>True</Pet_ForceAttack>
   <UseDarkRegeneration>False</UseDarkRegeneration>
   <DarkRegenerationPercent>35</DarkRegenerationPercent>
-  <UseHowlOfTerrorHPLessThan>True</UseHowlOfTerrorHPLessThan>
+  <UseHowlOfTerrorHPLessThan>False</UseHowlOfTerrorHPLessThan>
   <HowlOfTerrorHPLessThanValue>80</HowlOfTerrorHPLessThanValue>
-  <UseHowlOfTerrorUnitsInRange>True</UseHowlOfTerrorUnitsInRange>
+  <UseHowlOfTerrorUnitsInRange>False</UseHowlOfTerrorUnitsInRange>
   <HowlOfTerrorUnitsInRangeValue>3</HowlOfTerrorUnitsInRangeValue>
   <UseDemonicBreath>False</UseDemonicBreath>
   <UseDemonicBreathOnlyWhenTargetNotSlowed>False</UseDemonicBreathOnlyWhenTargetNotSlowed>
   <UseMortalCoil>False</UseMortalCoil>
   <MortalCoilHPValue>75</MortalCoilHPValue>
   <UseMortalCoilHealer>False</UseMortalCoilHealer>
-  <UseShadowfuryUnitsInRange>True</UseShadowfuryUnitsInRange>
-  <ShadowfuryUnitsInRangeValue>4</ShadowfuryUnitsInRangeValue>
+  <UseShadowfuryUnitsInRange>False</UseShadowfuryUnitsInRange>
+  <ShadowfuryUnitsInRangeValue>1</ShadowfuryUnitsInRangeValue>
   <UseShadowfuryOnCooldown>False</UseShadowfuryOnCooldown>
   <UseShadowfuryOnHealers>False</UseShadowfuryOnHealers>
   <UseSoulLink>True</UseSoulLink>
@@ -113,7 +113,7 @@
   <OnlyUseBurningRushInCombat>False</OnlyUseBurningRushInCombat>
   <BurningRushCancelHPBelowValue>50</BurningRushCancelHPBelowValue>
   <UseUnboundWillOnLossOfControl>False</UseUnboundWillOnLossOfControl>
-  <GrimoireOfServiceCondition>3</GrimoireOfServiceCondition>
+  <GrimoireOfServiceCondition>1</GrimoireOfServiceCondition>
   <GrimoireOfServiceTargetLowHPValue>20</GrimoireOfServiceTargetLowHPValue>
   <UseGrimoireOfSacrifice>False</UseGrimoireOfSacrifice>
   <Talent_DarkSoulSecondCharge>False</Talent_DarkSoulSecondCharge>
@@ -157,7 +157,7 @@
   <Destruction_FelFlameInsteadOfIncinerateAtHPValue>25</Destruction_FelFlameInsteadOfIncinerateAtHPValue>
   <Destruction_UseDarkSoulInstability>True</Destruction_UseDarkSoulInstability>
   <Destruction_MinimumEmbersForDarkSoul>20</Destruction_MinimumEmbersForDarkSoul>
-  <Destruction_DarkSoulCondition>1</Destruction_DarkSoulCondition>
+  <Destruction_DarkSoulCondition>2</Destruction_DarkSoulCondition>
   <Destruction_DarkSoulLowHPValue>40</Destruction_DarkSoulLowHPValue>
   <Destruction_ChaosBoltValue>35</Destruction_ChaosBoltValue>
   <Destruction_ChaosBoltMinimumHPValue>0</Destruction_ChaosBoltMinimumHPValue>
@@ -202,11 +202,11 @@
   <AttackOutOfCombat>True</AttackOutOfCombat>
   <UsePotion>True</UsePotion>
   <PotionCondition>0</PotionCondition>
-  <Hotkey_Modifier>0</Hotkey_Modifier>
-  <Hotkey_Movement>29</Hotkey_Movement>
-  <Hotkey_Targeting>27</Hotkey_Targeting>
-  <Hotkey_Facing>28</Hotkey_Facing>
-  <Hotkey_AoE>1</Hotkey_AoE>
+  <Hotkey_Modifier>1</Hotkey_Modifier>
+  <Hotkey_Movement>13</Hotkey_Movement>
+  <Hotkey_Targeting>20</Hotkey_Targeting>
+  <Hotkey_Facing>18</Hotkey_Facing>
+  <Hotkey_AoE>6</Hotkey_AoE>
   <Hotkey_Burst>2</Hotkey_Burst>
   <Hotkey_Cooldowns>3</Hotkey_Cooldowns>
   <Hotkey_FearTarget_Modifier>0</Hotkey_FearTarget_Modifier>
@@ -222,7 +222,7 @@
   <Hotkey_MortalCoilMouseover_Modifier>0</Hotkey_MortalCoilMouseover_Modifier>
   <Hotkey_MortalCoilMouseover_Key>0</Hotkey_MortalCoilMouseover_Key>
   <Hotkey_ShadowfuryTarget_Modifier>0</Hotkey_ShadowfuryTarget_Modifier>
-  <Hotkey_ShadowfuryTarget_Key>0</Hotkey_ShadowfuryTarget_Key>
+  <Hotkey_ShadowfuryTarget_Key>27</Hotkey_ShadowfuryTarget_Key>
   <Hotkey_ShadowfuryFocus_Modifier>0</Hotkey_ShadowfuryFocus_Modifier>
   <Hotkey_ShadowfuryFocus_Key>0</Hotkey_ShadowfuryFocus_Key>
   <Hotkey_ShadowfuryMouseover_Modifier>0</Hotkey_ShadowfuryMouseover_Modifier>
@@ -232,5 +232,5 @@
   <Hotkey_Soulstone_Modifier>0</Hotkey_Soulstone_Modifier>
   <Hotkey_Soulstone_Key>0</Hotkey_Soulstone_Key>
   <Hotkey_PauseNonMovementKeyPress>False</Hotkey_PauseNonMovementKeyPress>
-  <Hotkey_PauseNonMovementKeyPressDuration>500</Hotkey_PauseNonMovementKeyPressDuration>
+  <Hotkey_PauseNonMovementKeyPressDuration>150</Hotkey_PauseNonMovementKeyPressDuration>
 </DemonicSettings>
