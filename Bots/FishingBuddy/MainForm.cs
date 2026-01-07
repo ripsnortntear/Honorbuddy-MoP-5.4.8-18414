@@ -12,12 +12,12 @@ namespace Bots.FishingBuddy
         public MainForm()
         {
             InitializeComponent();
-			propertyGrid.SelectedObject = FishingBuddySettings.Instance;
+            propertyGrid.SelectedObject = FishingBuddySettings.Instance;
         }
 
         private void PropertyGridPropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-			FishingBuddySettings.Instance.Save();
+            FishingBuddySettings.Instance.Save();
         }
 
         private void MailButtonClick(object sender, EventArgs e)
@@ -31,17 +31,21 @@ namespace Bots.FishingBuddy
                     if (!string.IsNullOrEmpty(CharacterSettings.Instance.MailRecipient))
                     {
                         BotPoi.Current = new BotPoi(mailbox);
-						FishingBuddyBot.Log("Forced Mail run");
+                        FishingBuddyBot.Log("Forced Mail run");
                         TreeRoot.StatusText = "Doing Mail Run";
                     }
                     else
-						FishingBuddyBot.Log("No mail recipient set");
+                        FishingBuddyBot.Log("No mail recipient set");
                 }
                 else
                 {
-					FishingBuddyBot.Log("Profile has no Mailbox");
+                    FishingBuddyBot.Log("Profile has no Mailbox");
                 }
             }
         }
+
+        // Note: The new "Stop on Item ID" setting (StopOnItemId) from FishingBuddySettings.cs
+        // will automatically appear in the PropertyGrid under the "Fishing" category.
+        // No additional code is needed here—users can edit it directly in the grid.
     }
 }
