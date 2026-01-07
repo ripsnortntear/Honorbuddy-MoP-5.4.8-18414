@@ -59,6 +59,34 @@ namespace Bots.FishingBuddy
 			if (await CheckLootFrame())
 				return true;
 
+			// Updated: Check for stop-on-item with quantity after looting
+			if (FishingBuddySettings.Instance.StopOnItemId != 0)
+			{
+				var targetItems = Me.BagItems.Where(i => i.Entry == FishingBuddySettings.Instance.StopOnItemId);
+				uint currentCount = (uint)targetItems.Sum(i => i.StackCount);
+				uint targetCount = FishingBuddySettings.Instance.StopOnItemCount;
+
+				if (targetCount == 0 && targetItems.Any())  // Backward compatibility: stop on first if count is 0
+				{
+					var item = targetItems.First();
+					FishingBuddyBot.Log("Stopping bot: Caught target item '{0}' (ID: {1}).", item.Name, item.Entry);
+					TreeRoot.Stop("Caught target item");
+					return true;
+				}
+				else if (targetCount > 0 && currentCount >= targetCount)
+				{
+					var item = targetItems.First();
+					FishingBuddyBot.Log("Stopping bot: Caught {0}/{1} of target item '{2}' (ID: {3}).", currentCount, targetCount, item.Name, item.Entry);
+					TreeRoot.Stop("Caught target item quantity");
+					return true;
+				}
+				else if (targetCount > 0 && currentCount > 0)
+				{
+					var item = targetItems.First();
+					FishingBuddyBot.Log("Progress: Caught {0}/{1} of target item '{2}' (ID: {3}).", currentCount, targetCount, item.Name, item.Entry);
+				}
+			}
+
 			// refresh water walking if needed
 			if (!Me.Mounted && WaterWalking.CanCast 
 				&& !WaterWalking.IsActive
