@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BBSettings>
+  <HPFactor>8</HPFactor>
+  <LevelFactor>-50</LevelFactor>
+  <AdFactor>4</AdFactor>
+  <DisFactor>4</DisFactor>
+  <Distance>300</Distance>
+  <GetRarity>5</GetRarity>
+  <BlacklistCounterLimit>5</BlacklistCounterLimit>
+  <SkipCounterLimit>5</SkipCounterLimit>
+  <DoPVP>False</DoPVP>
+  <PVPMinTime>5</PVPMinTime>
+  <PVPMaxTime>10</PVPMaxTime>
+  <MinPetsAlive>3</MinPetsAlive>
+  <BelowLevel>24</BelowLevel>
+  <AboveLevel>24</AboveLevel>
+  <UseBandagesToHeal>0</UseBandagesToHeal>
+  <UseHealSkill>3</UseHealSkill>
+  <ForfeitIfNotInteresting>False</ForfeitIfNotInteresting>
+  <UseWhiteList>False</UseWhiteList>
+  <UseBlackList>True</UseBlackList>
+  <DetailedLogging>False</DetailedLogging>
+  <AmHorde>True</AmHorde>
+  <HPFormula>petHP * HPFactor</HPFormula>
+  <AdFormula>advantage * 50 * AdFactor</AdFormula>
+  <DisFormula>disadvantage * 50 * DisFactor</DisFormula>
+  <LevelFormula>(petLevel - enemylevel) * 4 * LevelFactor</LevelFormula>
+  <CheckAllowUsageTracking>True</CheckAllowUsageTracking>
+  <IBSupport>False</IBSupport>
+</BBSettings>
