@@ -1,0 +1,13 @@
+WHAT DOES IT DO?
+It will use "Kafa Press" if you have it in your bag.
+
+WHAT DOES THE ITEM "Kafa Press" DO?
+Increases your Haste by 4000 for 25 sec and sobers you up. (10 Min Cooldown).
+
+WHERE CAN I GET THE ITEM?
+By looting "Frozen Trail Packer" in Kun-Lai Summit.
+
+URL
+Crystal of Insanity - http://www.wowhead.com/item=86125/
+Frozen Trail Packer - http://www.wowhead.com/npc=64227
+My website - http://www.cisem.se

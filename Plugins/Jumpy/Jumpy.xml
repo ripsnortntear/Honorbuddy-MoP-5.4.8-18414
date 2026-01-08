@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Jumpy>
+  <RandMountJumpSpan>10000</RandMountJumpSpan>
+  <BaseMountJumpSpan>900</BaseMountJumpSpan>
+  <RandWalkJumpSpan>10000</RandWalkJumpSpan>
+  <BaseWalkJumpSpan>850</BaseWalkJumpSpan>
+  <UsePlayerRange>false</UsePlayerRange>
+  <CombatRoutines />
+  <MountedRoutines />
+  <WalkingRoutines />
+  <PlayerRange>100</PlayerRange>
+  <StandJumpInCombat>false</StandJumpInCombat>
+  <StandJumpOutCombat>true</StandJumpOutCombat>
+</Jumpy>
