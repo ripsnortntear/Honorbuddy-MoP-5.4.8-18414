@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PetBattleSettings>
+  <Logic>PASSTURN HASBUFF(822) EQUALS true@SWAPOUT Health(THISPET) ISLESSTHAN 30@CASTSPELL(2) Health(THISPET) ISLESSTHAN 70 $ COOLDOWN(SKILL(2)) EQUALS false@CASTSPELL(3) COOLDOWN(SKILL(3)) EQUALS false@CASTSPELL(1) COOLDOWN(SKILL(1)) EQUALS false</Logic>
+</PetBattleSettings>
+
