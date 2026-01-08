@@ -1,0 +1,46 @@
+<HBProfile>
+  <Name>Feralas 14 - 16 - Crowley</Name>
+  <MinDurability>0.4</MinDurability>
+  <MinFreeBagSlots>1</MinFreeBagSlots>
+  
+  <MinLevel>1</MinLevel>
+  <MaxLevel>91</MaxLevel>
+  <Factions>99999</Factions>
+  
+  <MailGrey>False</MailGrey>
+  <MailWhite>True</MailWhite>
+  <MailGreen>True</MailGreen>
+  <MailBlue>True</MailBlue>
+  <MailPurple>True</MailPurple>
+ 
+  <SellGrey>True</SellGrey>
+  <SellWhite>True</SellWhite>
+  <SellGreen>False</SellGreen>
+  <SellBlue>False</SellBlue>
+  <SellPurple>False</SellPurple>
+
+	<Vendors>
+
+	</Vendors>
+	
+	<Mailboxes>
+
+	</Mailboxes>
+
+  <Hotspots>
+    <Hotspot X="-4286.72" Y="1239.001" Z="80" />
+    <Hotspot X="-4446.106" Y="-429.6933" Z="80" />
+    <Hotspot X="-4887.2" Y="453.6516" Z="80" />
+    <Hotspot X="-4171.813" Y="479.3668" Z="80" />
+    <Hotspot X="-5198.56" Y="1268.192" Z="80" />
+    <Hotspot X="-4620.32" Y="1135.447" Z="80" />
+    <Hotspot X="-4551.746" Y="2027.827" Z="80" />
+    <Hotspot X="-3560.213" Y="2342.662" Z="80" />
+    <Hotspot X="-3482.373" Y="2761.052" Z="80" />
+    <Hotspot X="-2998.653" Y="2420.501" Z="80" />
+    <Hotspot X="-4201.466" Y="2094.547" Z="80" />
+    <Hotspot X="-4542.479" Y="2035.472" Z="80" />
+    <Hotspot X="-4520.24" Y="1715.077" Z="80" />
+    <Hotspot X="-4368.267" Y="1422.482" Z="80" />
+  </Hotspots>
+</HBProfile>
