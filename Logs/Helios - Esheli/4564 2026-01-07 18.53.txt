@@ -1,0 +1,195 @@
+[23:53:34.168 N] Honorbuddy v2.5.11489.748 started.
+[23:53:34.476 Q] Welcome to Honorbuddy MoP.
+By Likon69, Vo1d, Manjaro and Err0r.
+[23:53:34.477 D] System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   at System.Net.WebClient.DownloadString(Uri address)
+   at System.Net.WebClient.DownloadString(String address)
+   at Honorbuddy.MainWindow.CheckForUpdate()
+[23:53:35.931 N] Logging in...
+[23:53:35.969 N] T: 5250720286586890663 
+[23:53:38.106 N] Attaching to D3D11
+[23:53:38.338 N] Attached to WoW with ID 4044
+[23:53:38.379 N] Honorbuddy v2.5.11489.748 started!
+[23:53:38.379 D] Using WoW with process ID 4044
+[23:53:38.379 D] Platform: Microsoft Windows NT 6.2.9200.0
+[23:53:38.380 D] Executable Path: D:\Games\GH of HB\Honorbuddy.exe
+[23:53:38.380 N] Character is a level 90 BloodElf Warlock
+[23:53:38.380 N] Current zone is Orgrimmar
+[23:53:38.383 D] UICulture: en-US
+[23:53:38.383 D] UseFrameLock: True
+[23:53:38.383 D] SendUsageInformation: True
+[23:53:38.383 D] CombatRoutinesPath: Routines
+[23:53:38.383 D] ReloadRoutinesOnFileChange: False
+[23:53:38.383 D] PluginsPath: Plugins
+[23:53:38.383 D] ReloadPluginsOnFileChange: False
+[23:53:38.383 D] BotsPath: Bots
+[23:53:38.383 D] ReloadBotsOnFileChange: False
+[23:53:38.383 D] QuestBehaviorsPath: Quest Behaviors
+[23:53:38.383 D] MeshesFolderPath: C:\Users\Ryan\AppData\Local\Bossland\Honorbuddy\Meshes
+[23:53:38.383 D] KillBetweenHotspots: True
+[23:53:38.383 D] AdvancedSettingsMode: True
+[23:53:38.383 D] LogoutForInactivity: False
+[23:53:38.383 D] LogoutInactivityTimer: 20
+[23:53:38.383 D] LogoutInactivityUseForceQuit: False
+[23:53:38.383 D] ProfileDebuggingMode: False
+[23:53:38.383 D] LogLevel: Diagnostic
+[23:53:38.383 D] SeperatedLogFolders: True
+[23:53:38.383 D] SelectTalents: True
+[23:53:38.383 D] ClassProfileName has no value yet!
+[23:53:38.383 D] AutoEquip: True
+[23:53:38.383 D] AutoEquipBags: True
+[23:53:38.383 D] AutoEquipWeapons: True
+[23:53:38.383 D] AutoEquipArmor: True
+[23:53:38.383 D] AutoEquipBoEEpics: False
+[23:53:38.383 D] WeaponStyle: Automatic
+[23:53:38.383 D] RollOnItems: True
+[23:53:38.383 D] RollDisenchantWhenGreed: True
+[23:53:38.383 D] MaxBoEDisenchantQuality: Uncommon
+[23:53:38.383 D] TicksPerSecond: 15
+[23:53:38.383 D] FoodAmount: 0
+[23:53:38.383 D] DrinkAmount: 0
+[23:53:38.383 D] SelectedBotIndex: -1
+[23:53:38.383 D] SelectedBotName has no value yet!
+[23:53:38.383 D] UseFlightPaths: True
+[23:53:38.383 D] FindMountAutomatically: True
+[23:53:38.383 D] UseRandomMount: False
+[23:53:38.383 D] MailRecipient has no value yet!
+[23:53:38.383 D] FoodName has no value yet!
+[23:53:38.383 D] DrinkName has no value yet!
+[23:53:38.383 D] MountName has no value yet!
+[23:53:38.383 D] FlyingMountName has no value yet!
+[23:53:38.383 D] LootMobs: True
+[23:53:38.383 D] SkinMobs: False
+[23:53:38.383 D] NinjaSkin: False
+[23:53:38.383 D] LootChests: True
+[23:53:38.383 D] HarvestMinerals: False
+[23:53:38.383 D] HarvestHerbs: False
+[23:53:38.383 D] UseMount: True
+[23:53:38.383 D] PullDistance: 100
+[23:53:38.383 D] LootRadius: 45
+[23:53:38.383 D] LastUsedPath has no value yet!
+[23:53:38.383 D] MountDistance: 60
+[23:53:38.383 D] RessAtSpiritHealers: True
+[23:53:38.383 D] GroundMountFarmingMode: False
+[23:53:38.383 N] Please wait a few seconds while Honorbuddy initializes.
+[23:53:38.383 D] Activity: Initializing
+[23:53:38.384 D] Activity: Checking for Buddy Store products. This may take a while
+[23:53:38.508 D] Activity: Loading memory management & tables
+[23:53:38.521 D] Activity: Loading Spells
+[23:53:38.524 N] New bot added!: ArchaeologyBuddy
+[23:53:38.525 N] New bot added!: BGBuddy
+[23:53:38.543 N] New bot added!: Dungeonbuddy
+[23:53:38.545 D] Activity: Initializing Spell Manager
+[23:53:38.567 D] [SpellManager] Adding known spells: Survey               (080451) | Archaeology          (110393) | Jewelcrafting        (025229)
+[23:53:38.567 D] [SpellManager] Adding known spells: Fishing              (131474) | Smelting             (002656) | Cooking Fire         (000818)
+[23:53:38.567 D] [SpellManager] Adding known spells: Cooking              (104381) | First Aid            (110406) | Symbiosis            (110505)
+[23:53:38.567 D] [SpellManager] Adding known spells: Summon Voidwalker    (000697) | Summon Succubus      (000712) | Summon Felhunter     (000691)
+[23:53:38.567 D] [SpellManager] Adding known spells: Summon Imp           (000688) | Voidwalker: Suffer.. (103128) | Voidwalker: Shadow.. (103130)
+[23:53:38.567 D] [SpellManager] Adding known spells: Voidwalker: Shadow.. (103142) | Voidwalker: Disarm   (124539) | Unending Resolve     (104773)
+[23:53:38.567 D] [SpellManager] Adding known spells: Succubus: Whiplash   (103141) | Succubus: Seduction  (103139) | Succubus: Lesser I.. (103140)
+[23:53:38.567 D] [SpellManager] Adding known spells: Soul Leech           (108370) | Soul Harvest         (101976) | Pyroclasm            (123686)
+[23:53:38.567 D] [SpellManager] Adding known spells: Pandemic             (131973) | Nethermancy          (086091) | Mastery: Emberstorm  (077220)
+[23:53:38.567 D] [SpellManager] Adding known spells: Kil'jaeden's Cunning (137587) | Imp: Singe Magic     (103150) | Imp: Flee            (103133)
+[23:53:38.567 D] [SpellManager] Adding known spells: Imp: Cauterize Mas.. (124538) | Grimoire of Suprem.. (108499) | Felhunter: Spell L.. (103135)
+[23:53:38.567 D] [SpellManager] Adding known spells: Felhunter: Devour .. (103136) | Fel Armor            (104938) | Control Demon        (093375)
+[23:53:38.567 D] [SpellManager] Adding known spells: Life Tap             (001454) | Burning Embers       (108647) | Backlash             (108563)
+[23:53:38.567 D] [SpellManager] Adding known spells: Backdraft            (117896) | Aftermath            (109784) | Unending Breath      (005697)
+[23:53:38.567 D] [SpellManager] Adding known spells: Twilight Ward        (006229) | Summon Doomguard     (018540) | Summon Infernal      (001122)
+[23:53:38.567 D] [SpellManager] Adding known spells: Soulstone            (020707) | Soulshatter          (029858) | Shadowfury           (030283)
+[23:53:38.567 D] [SpellManager] Adding known spells: Shadowburn           (017877) | Ritual of Summoning  (000698) | Rain of Fire         (005740)
+[23:53:38.567 D] [SpellManager] Adding known spells: Shadow Bolt          (000686) | Corruption           (000172) | Howl of Terror       (005484)
+[23:53:38.567 D] [SpellManager] Adding known spells: Health Funnel        (000755) | Havoc                (080240) | Flames of Xoroth     (120451)
+[23:53:38.567 D] [SpellManager] Adding known spells: Fire and Brimstone   (108683) | Fel Flame            (077799) | Fear                 (005782)
+[23:53:38.567 D] [SpellManager] Adding known spells: Eye of Kilrogg       (000126) | Enslave Demon        (001098) | Ember Tap            (114635)
+[23:53:38.567 D] [SpellManager] Adding known spells: Drain Life           (000689) | Demonic Gateway      (111771) | Demonic Circle: Te.. (048020)
+[23:53:38.567 D] [SpellManager] Adding known spells: Demonic Circle: Su.. (048018) | Dark Soul            (077801) | Dark Intent          (109773)
+[23:53:38.567 D] [SpellManager] Adding known spells: Dark Bargain         (110913) | Curse of the Eleme.. (001490) | Curse of Enfeeblem.. (109466)
+[23:53:38.567 D] [SpellManager] Adding known spells: Create Soulwell      (029893) | Create Healthstone   (006201) | Conflagrate          (017962)
+[23:53:38.567 D] [SpellManager] Adding known spells: Command Demon        (119898) | Chaos Bolt           (116858) | Burning Rush         (111400)
+[23:53:38.567 D] [SpellManager] Adding known spells: Banish               (000710) | Working Overtime     (118021) | Wisdom of the Four.. (115913)
+[23:53:38.567 D] [SpellManager] Adding known spells: Weapon Skills        (076299) | The Quick and the .. (083950) | The Doctor Is In     (118076)
+[23:53:38.567 D] [SpellManager] Adding known spells: Ride Like the Wind   (117983) | Reinforce            (083943) | Mr. Popularity       (078635)
+[23:53:38.567 D] [SpellManager] Adding known spells: Mount Up             (078633) | Master Riding        (090265) | Languages            (079748)
+[23:53:38.567 D] [SpellManager] Adding known spells: Honorable Mention    (083960) | Hasty Hearth         (083944) | Guild Mail           (083951)
+[23:53:38.567 D] [SpellManager] Adding known spells: For Great Justice    (118483) | Flight Master's Li.. (090267) | Fast Track           (078632)
+[23:53:38.567 D] [SpellManager] Adding known spells: Cold Weather Flying  (054197) | Cloud Serpent Riding (130487) | Cash Flow            (083941)
+[23:53:38.567 D] [SpellManager] Adding known spells: Bountiful Bags       (083966) | Battle Pet Training  (119467) | Battle Fatigue       (134732)
+[23:53:38.567 D] [SpellManager] Adding known spells: Bartering            (083964) | Armor Skills         (076277) | Arcane Resistance    (000822)
+[23:53:38.567 D] [SpellManager] Adding known spells: Arcane Affinity      (028877) | Shoot                (005019) | Revive Battle Pets   (125439)
+[23:53:38.567 D] [SpellManager] Adding known spells: Mobile Banking       (083958) | Mass Resurrection    (083968) | Auto Attack          (006603)
+[23:53:38.567 D] [SpellManager] Adding known spells: Arcane Torrent       (028730)
+[23:53:38.568 D] [SpellManager] Disarm (119907) overrides Command Demon (119898)
+[23:53:38.568 D] [SpellManager] Dark Soul: Instability (113858) overrides Dark Soul (77801)
+[23:53:38.568 D] [SpellManager] Immolate (348) overrides Corruption (172)
+[23:53:38.568 D] [SpellManager] Incinerate (29722) overrides Shadow Bolt (686)
+[23:53:38.568 D] [SpellManager] Rain of Fire (104232) overrides Rain of Fire (5740)
+[23:53:38.568 D] [SpellManager] Summon Abyssal (112921) overrides Summon Infernal (1122)
+[23:53:38.568 D] [SpellManager] Summon Terrorguard (112927) overrides Summon Doomguard (18540)
+[23:53:38.568 D] [SpellManager] Chaotic Energy (111546) overrides Life Tap (1454)
+[23:53:38.569 D] [SpellManager] Unending Resolve (148688) overrides Unending Resolve (104773)
+[23:53:38.569 D] [SpellManager] Summon Fel Imp (112866) overrides Summon Imp (688)
+[23:53:38.569 D] [SpellManager] Summon Observer (112869) overrides Summon Felhunter (691)
+[23:53:38.569 D] [SpellManager] Summon Shivarra (112868) overrides Summon Succubus (712)
+[23:53:38.569 D] [SpellManager] Summon Voidlord (112867) overrides Summon Voidwalker (697)
+[23:53:38.569 D] Activity: Initializing Navigator
+[23:53:38.585 N] New bot added!: Gatherbuddy2
+[23:53:38.586 N] New bot added!: ProfessionBuddy
+[23:53:38.586 N] New bot added!: Grind Bot
+[23:53:38.586 N] New bot added!: Questing
+[23:53:38.593 N] New bot added!: Mixed Mode
+[23:53:38.593 N] New bot added!: Party Bot
+[23:53:38.593 N] New bot added!: [BETA] GrindBuddy
+[23:53:38.596 D] Reloading AssemblyLoader<BotBase> - Reloading Bots
+[23:53:38.678 D] Class profile set to WarlockDestruction (Warlock - Destruction)
+[23:53:38.692 D] Activity: Initializing Flight Paths
+[23:53:38.725 D] Activity: Initializing Routines
+[23:53:38.725 D] Activity: Initializing Plugins
+[23:53:38.728 D] Reloading AssemblyLoader<ICombatRoutine> - [RoutineManager] ReloadRoutineAssemblies called.
+[23:53:38.738 D] Reloading AssemblyLoader<HBPlugin> - RefreshPlugins Called
+[23:53:39.742 D] ItemForAura: Loading config file: D:\Games\GH of HB\Plugins\ItemForAuraQuesthelper\ItemForAura.config
+[23:53:39.753 N] ItemForAura - Questhelper - Version 2.0 Loaded.
+[23:53:39.753 D] ItemForAura: Loading config file: D:\Games\GH of HB\Plugins\ItemForAuraQuesthelper\ItemForAura.config
+[23:53:41.254 N] Installed plugins
+[23:53:41.254 N]     Anti Drown - Disabled
+[23:53:41.254 N]     Combat Looter - Disabled
+[23:53:41.254 N]     DrinkPotions - Disabled
+[23:53:41.254 N]     Find Rares and Chests - Disabled
+[23:53:41.254 N]     KBA - Disabled
+[23:53:41.254 N]     MIR2 - Disabled
+[23:53:41.254 N]     NoCombat Looter - Disabled
+[23:53:41.254 N]     Questhelper - ItemForAura - Disabled
+[23:53:41.254 N]     Refreshment Detection - Enabled
+[23:53:42.535 N] New bot added!: AutoAngler2
+[23:53:42.535 N] New bot added!: Combat Bot
+[23:53:42.535 N] New bot added!: FishingBuddy
+[23:53:42.535 N] New bot added!: LazyRaider
+[23:53:42.535 N] New bot added!: Raid Bot
+[23:53:42.535 N] New bot added!: Templar
+[23:53:42.535 N] New bot added!: Tyrael
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Helpers\UnitExtensions.cs(126,47) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.UnitExtensions.CountEnemiesInRange(Styx.WoWInternals.WoWObjects.WoWUnit, double)' and 'VitalicRotation.Helpers.UnitExtensions.CountEnemiesInRange(Styx.WoWInternals.WoWObjects.WoWUnit, double)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(317,57) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)' and 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(318,116) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string, bool)' and 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string, bool)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(372,40) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)' and 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(373,84) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string, bool)' and 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string, bool)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(387,40) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)' and 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(397,113) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)' and 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(440,169) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string, bool)' and 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string, bool)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(544,21) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)' and 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvERotation.cs(603,21) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)' and 'VitalicRotation.Helpers.UnitExtensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, string)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvPRotation.cs(176,49) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, int, bool)' and 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, int, bool)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvPRotation.cs(424,80) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)' and 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvPRotation.cs(435,69) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)' and 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvPRotation.cs(494,76) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, int, bool)' and 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, int, bool)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\PvPRotation.cs(495,128) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, int, bool)' and 'VitalicRotation.Helpers.Extensions.GetAuraTimeLeft(Styx.WoWInternals.WoWObjects.WoWUnit, int, bool)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\TeamCCManager.cs(34,29) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)' and 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\TeamCCManager.cs(34,63) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)' and 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\TeamCCManager.cs(34,97) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)' and 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)'
+[23:53:53.219 N] Compiler Error: d:\Games\GH of HB\Routines\vitalicrotation\Managers\TeamCCManager.cs(34,134) : error CS0121: The call is ambiguous between the following methods or properties: 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)' and 'VitalicRotation.Helpers.Extensions.HasMyAura(Styx.WoWInternals.WoWObjects.WoWUnit, int)'
+[23:53:53.223 D] [RoutineManager] Routines have been reloaded. Current class-specific list:
+[23:53:53.223 D] Demonic Premium [Millz] v0.0.0.0
+[23:53:53.223 D] Oracle [1.0.0.315] v1.0.0.315
+[23:53:53.223 D] Singular v3.0.0.3502 v3.0.0.3502
+[23:54:01.500 D] Activity: Initialization complete
+[23:54:01.507 D] Activity: Honorbuddy Startup Complete
+[23:54:01.507 N] Honorbuddy Startup Complete

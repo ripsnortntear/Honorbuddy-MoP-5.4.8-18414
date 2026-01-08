@@ -1,0 +1,123 @@
+﻿using Styx.Common;
+
+namespace Superbad
+{
+    public partial class Superbad
+    {
+        private static void BearHandler()
+        {
+            if (bear_form())
+                return;
+            if (growl())
+                return;
+            if (BurstMode)
+                DPSButtonPressed();
+
+            DoCHealBear();
+            ElusiveBrew();
+            SpellReflection();
+            BoneShield();
+            use_item();
+
+            if (_unitCount >= SuperbadSettings.Instance.BearAoe)
+            {
+                ThrashAoe();
+                return;
+            }
+            Sd();
+        }
+
+        private static void Sd()
+        {
+            if (bear_hug())
+                return;
+            Maul();
+            if (Frenzied_Regeneration())
+                return;
+            if (_rage > 59 && buff.savage_defense.down)
+                savage_defense();
+            if (SuperbadSettings.Instance.UseBerserk)
+                berserk();
+            if (talent.incarnation.enabled && cooldown.berserk.remains < 170 && cooldown.berserk.remains >= 30)
+                incarnation();
+            if (talent.natures_vigil.enabled)
+                if (buff.berserk.up || cooldown.berserk.remains >= 85)
+                    natures_vigil();
+            if (_healthPercent < SuperbadSettings.Instance.MightofUrsoc)
+                if (Might_of_Ursoc())
+                    return;
+            if (_healthPercent < SuperbadSettings.Instance.CenarionWard)
+                if (cenarion_ward())
+                    return;
+            if (_rage < 80)
+                enrage();
+            if (Mangle())
+                return;
+            if (Lacerate())
+                return;
+            if (debuff.weakened_blows.remains < 6)
+                if (thrash_bear())
+                    return;
+            if (faerie_fire())
+                return;
+            if (Consecration())
+                return;
+            if (cooldown.thrash.remains > 1 && cooldown.FF.remains > 1 && cooldown.lacerate.remains > 1)
+                Swipe();
+        }
+
+        private static void ThrashAoe()
+        {
+            if (_healthPercent < SuperbadSettings.Instance.MightofUrsoc)
+                if (Might_of_Ursoc())
+                    return;
+            if (_healthPercent < SuperbadSettings.Instance.CenarionWard)
+                if (cenarion_ward())
+                    return;
+            Maul();
+            if (Frenzied_Regeneration())
+                return;
+            if (_rage > 59 && buff.savage_defense.down)
+                savage_defense();
+            if (_rage < 80)
+                enrage();
+            if (SuperbadSettings.Instance.UseBerserk)
+                berserk();
+            if (talent.incarnation.enabled && cooldown.berserk.remains < 170 && cooldown.berserk.remains >= 30)
+                incarnation();
+            if (talent.natures_vigil.enabled)
+                if (buff.berserk.up || cooldown.berserk.remains >= 85)
+                    natures_vigil();
+            if (buff.berserk.up && _unitCount <= 3)
+                if (Mangle())
+                    return;
+            if (thrash_bear())
+                return;
+            if (Swipe())
+                return;
+            if (Consecration())
+                return;
+            if (Mangle())
+                return;
+            if (Lacerate())
+                return;
+            faerie_fire();
+        }
+
+        private static void BearPullHandler()
+        {
+            if (bear_form())
+                return;
+            if (faerie_fire())
+                return;
+            if (SpeedHandler())
+                return;
+            if (_targetAboveGround)
+                if (moonfire())
+                    return;
+            if (Mangle())
+                return;
+            auto_attack();
+        }
+    }
+}

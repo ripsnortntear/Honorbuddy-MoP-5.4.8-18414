@@ -1,0 +1,180 @@
+[23:55:59.643 N] Honorbuddy v2.5.11489.748 started.
+[23:55:59.912 Q] Welcome to Honorbuddy MoP.
+By Likon69, Vo1d, Manjaro and Err0r.
+[23:55:59.913 D] System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   at System.Net.WebClient.DownloadString(Uri address)
+   at System.Net.WebClient.DownloadString(String address)
+   at Honorbuddy.MainWindow.CheckForUpdate()
+[23:56:01.052 N] Logging in...
+[23:56:01.087 N] T: 5250720288038091699 
+[23:56:03.226 N] Attaching to D3D11
+[23:56:03.433 N] Attached to WoW with ID 4044
+[23:56:03.488 N] Honorbuddy v2.5.11489.748 started!
+[23:56:03.488 D] Using WoW with process ID 4044
+[23:56:03.488 D] Platform: Microsoft Windows NT 6.2.9200.0
+[23:56:03.488 D] Executable Path: D:\Games\GH of HB\Honorbuddy.exe
+[23:56:03.489 N] Character is a level 90 BloodElf Warlock
+[23:56:03.489 N] Current zone is Orgrimmar
+[23:56:03.495 D] UICulture: en-US
+[23:56:03.495 D] UseFrameLock: True
+[23:56:03.495 D] SendUsageInformation: True
+[23:56:03.495 D] CombatRoutinesPath: Routines
+[23:56:03.495 D] ReloadRoutinesOnFileChange: False
+[23:56:03.495 D] PluginsPath: Plugins
+[23:56:03.495 D] ReloadPluginsOnFileChange: False
+[23:56:03.495 D] BotsPath: Bots
+[23:56:03.495 D] ReloadBotsOnFileChange: False
+[23:56:03.495 D] QuestBehaviorsPath: Quest Behaviors
+[23:56:03.495 D] MeshesFolderPath: C:\Users\Ryan\AppData\Local\Bossland\Honorbuddy\Meshes
+[23:56:03.495 D] KillBetweenHotspots: True
+[23:56:03.495 D] AdvancedSettingsMode: True
+[23:56:03.495 D] LogoutForInactivity: True
+[23:56:03.495 D] LogoutInactivityTimer: 20
+[23:56:03.495 D] LogoutInactivityUseForceQuit: False
+[23:56:03.495 D] ProfileDebuggingMode: False
+[23:56:03.495 D] LogLevel: Diagnostic
+[23:56:03.495 D] SeperatedLogFolders: True
+[23:56:03.495 D] SelectTalents: True
+[23:56:03.495 D] ClassProfileName: Warlock - Destruction
+[23:56:03.495 D] AutoEquip: False
+[23:56:03.495 D] AutoEquipBags: True
+[23:56:03.495 D] AutoEquipWeapons: True
+[23:56:03.495 D] AutoEquipArmor: True
+[23:56:03.495 D] AutoEquipBoEEpics: False
+[23:56:03.495 D] WeaponStyle: Automatic
+[23:56:03.495 D] RollOnItems: True
+[23:56:03.495 D] RollDisenchantWhenGreed: True
+[23:56:03.495 D] MaxBoEDisenchantQuality: Uncommon
+[23:56:03.495 D] TicksPerSecond: 70
+[23:56:03.495 D] FoodAmount: 0
+[23:56:03.495 D] DrinkAmount: 0
+[23:56:03.495 N] EnabledPlugins:
+[23:56:03.495 D]     Refreshment Detection
+[23:56:03.495 N] RecentProfiles:
+[23:56:03.495 D]     Durotar-Copper[HB]@@!@@C:\Users\catch\Desktop\Herbs\Durotar-Copper[HB].xml
+[23:56:03.495 D] SelectedBotIndex: -1
+[23:56:03.495 D] SelectedBotName: Combat Bot
+[23:56:03.495 D] UseFlightPaths: True
+[23:56:03.495 D] FindMountAutomatically: True
+[23:56:03.495 D] UseRandomMount: True
+[23:56:03.495 D] MailRecipient has no value yet!
+[23:56:03.495 D] FoodName: 81414
+[23:56:03.495 D] DrinkName: 81414
+[23:56:03.495 D] MountName: Red Primal Raptor
+[23:56:03.495 D] FlyingMountName: Green Wind Rider
+[23:56:03.495 D] LootMobs: True
+[23:56:03.495 D] SkinMobs: False
+[23:56:03.495 D] NinjaSkin: False
+[23:56:03.495 D] LootChests: True
+[23:56:03.495 D] HarvestMinerals: False
+[23:56:03.495 D] HarvestHerbs: False
+[23:56:03.495 D] UseMount: True
+[23:56:03.495 D] PullDistance: 100
+[23:56:03.495 D] LootRadius: 45
+[23:56:03.495 D] LastUsedPath: C:\Users\catch\Desktop\Herbs\Durotar-Copper[HB].xml
+[23:56:03.495 D] MountDistance: 60
+[23:56:03.495 D] RessAtSpiritHealers: False
+[23:56:03.495 D] GroundMountFarmingMode: False
+[23:56:03.496 N] Please wait a few seconds while Honorbuddy initializes.
+[23:56:03.496 D] Activity: Initializing
+[23:56:03.496 D] Activity: Checking for Buddy Store products. This may take a while
+[23:56:03.617 D] Activity: Loading memory management & tables
+[23:56:03.627 N] New bot added!: ArchaeologyBuddy
+[23:56:03.627 N] New bot added!: BGBuddy
+[23:56:03.632 D] Activity: Loading Spells
+[23:56:03.645 N] New bot added!: Dungeonbuddy
+[23:56:03.653 D] Activity: Initializing Spell Manager
+[23:56:03.678 D] [SpellManager] Adding known spells: Survey               (080451) | Archaeology          (110393) | Jewelcrafting        (025229)
+[23:56:03.678 D] [SpellManager] Adding known spells: Fishing              (131474) | Smelting             (002656) | Cooking Fire         (000818)
+[23:56:03.678 D] [SpellManager] Adding known spells: Cooking              (104381) | First Aid            (110406) | Symbiosis            (110505)
+[23:56:03.678 D] [SpellManager] Adding known spells: Summon Voidwalker    (000697) | Summon Succubus      (000712) | Summon Felhunter     (000691)
+[23:56:03.678 D] [SpellManager] Adding known spells: Summon Imp           (000688) | Voidwalker: Suffer.. (103128) | Voidwalker: Shadow.. (103130)
+[23:56:03.678 D] [SpellManager] Adding known spells: Voidwalker: Shadow.. (103142) | Voidwalker: Disarm   (124539) | Unending Resolve     (104773)
+[23:56:03.678 D] [SpellManager] Adding known spells: Succubus: Whiplash   (103141) | Succubus: Seduction  (103139) | Succubus: Lesser I.. (103140)
+[23:56:03.678 D] [SpellManager] Adding known spells: Soul Leech           (108370) | Soul Harvest         (101976) | Pyroclasm            (123686)
+[23:56:03.678 D] [SpellManager] Adding known spells: Pandemic             (131973) | Nethermancy          (086091) | Mastery: Emberstorm  (077220)
+[23:56:03.678 D] [SpellManager] Adding known spells: Kil'jaeden's Cunning (137587) | Imp: Singe Magic     (103150) | Imp: Flee            (103133)
+[23:56:03.678 D] [SpellManager] Adding known spells: Imp: Cauterize Mas.. (124538) | Grimoire of Suprem.. (108499) | Felhunter: Spell L.. (103135)
+[23:56:03.678 D] [SpellManager] Adding known spells: Felhunter: Devour .. (103136) | Fel Armor            (104938) | Control Demon        (093375)
+[23:56:03.678 D] [SpellManager] Adding known spells: Life Tap             (001454) | Burning Embers       (108647) | Backlash             (108563)
+[23:56:03.678 D] [SpellManager] Adding known spells: Backdraft            (117896) | Aftermath            (109784) | Unending Breath      (005697)
+[23:56:03.678 D] [SpellManager] Adding known spells: Twilight Ward        (006229) | Summon Doomguard     (018540) | Summon Infernal      (001122)
+[23:56:03.678 D] [SpellManager] Adding known spells: Soulstone            (020707) | Soulshatter          (029858) | Shadowfury           (030283)
+[23:56:03.678 D] [SpellManager] Adding known spells: Shadowburn           (017877) | Ritual of Summoning  (000698) | Rain of Fire         (005740)
+[23:56:03.678 D] [SpellManager] Adding known spells: Shadow Bolt          (000686) | Corruption           (000172) | Howl of Terror       (005484)
+[23:56:03.678 D] [SpellManager] Adding known spells: Health Funnel        (000755) | Havoc                (080240) | Flames of Xoroth     (120451)
+[23:56:03.678 D] [SpellManager] Adding known spells: Fire and Brimstone   (108683) | Fel Flame            (077799) | Fear                 (005782)
+[23:56:03.678 D] [SpellManager] Adding known spells: Eye of Kilrogg       (000126) | Enslave Demon        (001098) | Ember Tap            (114635)
+[23:56:03.678 D] [SpellManager] Adding known spells: Drain Life           (000689) | Demonic Gateway      (111771) | Demonic Circle: Te.. (048020)
+[23:56:03.678 D] [SpellManager] Adding known spells: Demonic Circle: Su.. (048018) | Dark Soul            (077801) | Dark Intent          (109773)
+[23:56:03.678 D] [SpellManager] Adding known spells: Dark Bargain         (110913) | Curse of the Eleme.. (001490) | Curse of Enfeeblem.. (109466)
+[23:56:03.678 D] [SpellManager] Adding known spells: Create Soulwell      (029893) | Create Healthstone   (006201) | Conflagrate          (017962)
+[23:56:03.678 D] [SpellManager] Adding known spells: Command Demon        (119898) | Chaos Bolt           (116858) | Burning Rush         (111400)
+[23:56:03.678 D] [SpellManager] Adding known spells: Banish               (000710) | Working Overtime     (118021) | Wisdom of the Four.. (115913)
+[23:56:03.678 D] [SpellManager] Adding known spells: Weapon Skills        (076299) | The Quick and the .. (083950) | The Doctor Is In     (118076)
+[23:56:03.678 D] [SpellManager] Adding known spells: Ride Like the Wind   (117983) | Reinforce            (083943) | Mr. Popularity       (078635)
+[23:56:03.678 D] [SpellManager] Adding known spells: Mount Up             (078633) | Master Riding        (090265) | Languages            (079748)
+[23:56:03.678 D] [SpellManager] Adding known spells: Honorable Mention    (083960) | Hasty Hearth         (083944) | Guild Mail           (083951)
+[23:56:03.678 D] [SpellManager] Adding known spells: For Great Justice    (118483) | Flight Master's Li.. (090267) | Fast Track           (078632)
+[23:56:03.678 D] [SpellManager] Adding known spells: Cold Weather Flying  (054197) | Cloud Serpent Riding (130487) | Cash Flow            (083941)
+[23:56:03.678 D] [SpellManager] Adding known spells: Bountiful Bags       (083966) | Battle Pet Training  (119467) | Battle Fatigue       (134732)
+[23:56:03.678 D] [SpellManager] Adding known spells: Bartering            (083964) | Armor Skills         (076277) | Arcane Resistance    (000822)
+[23:56:03.678 D] [SpellManager] Adding known spells: Arcane Affinity      (028877) | Shoot                (005019) | Revive Battle Pets   (125439)
+[23:56:03.678 D] [SpellManager] Adding known spells: Mobile Banking       (083958) | Mass Resurrection    (083968) | Auto Attack          (006603)
+[23:56:03.678 D] [SpellManager] Adding known spells: Arcane Torrent       (028730)
+[23:56:03.679 D] [SpellManager] Disarm (119907) overrides Command Demon (119898)
+[23:56:03.679 D] [SpellManager] Dark Soul: Instability (113858) overrides Dark Soul (77801)
+[23:56:03.679 D] [SpellManager] Immolate (348) overrides Corruption (172)
+[23:56:03.680 D] [SpellManager] Incinerate (29722) overrides Shadow Bolt (686)
+[23:56:03.680 D] [SpellManager] Rain of Fire (104232) overrides Rain of Fire (5740)
+[23:56:03.680 D] [SpellManager] Summon Abyssal (112921) overrides Summon Infernal (1122)
+[23:56:03.680 D] [SpellManager] Summon Terrorguard (112927) overrides Summon Doomguard (18540)
+[23:56:03.680 D] [SpellManager] Chaotic Energy (111546) overrides Life Tap (1454)
+[23:56:03.680 D] [SpellManager] Unending Resolve (148688) overrides Unending Resolve (104773)
+[23:56:03.680 D] [SpellManager] Summon Fel Imp (112866) overrides Summon Imp (688)
+[23:56:03.680 D] [SpellManager] Summon Observer (112869) overrides Summon Felhunter (691)
+[23:56:03.680 D] [SpellManager] Summon Shivarra (112868) overrides Summon Succubus (712)
+[23:56:03.680 D] [SpellManager] Summon Voidlord (112867) overrides Summon Voidwalker (697)
+[23:56:03.680 D] Activity: Initializing Navigator
+[23:56:03.690 N] New bot added!: Gatherbuddy2
+[23:56:03.691 N] New bot added!: ProfessionBuddy
+[23:56:03.692 N] New bot added!: Grind Bot
+[23:56:03.692 N] New bot added!: Questing
+[23:56:03.697 N] New bot added!: Mixed Mode
+[23:56:03.697 N] New bot added!: Party Bot
+[23:56:03.697 N] New bot added!: [BETA] GrindBuddy
+[23:56:03.700 D] Reloading AssemblyLoader<BotBase> - Reloading Bots
+[23:56:03.702 D] Class profile set to WarlockDestruction (Warlock - Destruction)
+[23:56:03.723 D] Activity: Initializing Flight Paths
+[23:56:03.758 D] Activity: Initializing Routines
+[23:56:03.758 D] Activity: Initializing Plugins
+[23:56:03.761 D] Reloading AssemblyLoader<ICombatRoutine> - [RoutineManager] ReloadRoutineAssemblies called.
+[23:56:03.772 D] Reloading AssemblyLoader<HBPlugin> - RefreshPlugins Called
+[23:56:04.741 D] ItemForAura: Loading config file: D:\Games\GH of HB\Plugins\ItemForAuraQuesthelper\ItemForAura.config
+[23:56:04.741 N] ItemForAura - Questhelper - Version 2.0 Loaded.
+[23:56:04.741 D] ItemForAura: Loading config file: D:\Games\GH of HB\Plugins\ItemForAuraQuesthelper\ItemForAura.config
+[23:56:06.082 N] Installed plugins
+[23:56:06.082 N]     Anti Drown - Disabled
+[23:56:06.082 N]     Combat Looter - Disabled
+[23:56:06.082 N]     DrinkPotions - Disabled
+[23:56:06.082 N]     Find Rares and Chests - Disabled
+[23:56:06.082 N]     KBA - Disabled
+[23:56:06.082 N]     MIR2 - Disabled
+[23:56:06.082 N]     NoCombat Looter - Disabled
+[23:56:06.082 N]     Questhelper - ItemForAura - Disabled
+[23:56:06.082 N]     Refreshment Detection - Enabled
+[23:56:06.594 N] New bot added!: AutoAngler2
+[23:56:06.594 N] New bot added!: Combat Bot
+[23:56:06.594 N] New bot added!: FishingBuddy
+[23:56:06.594 N] New bot added!: LazyRaider
+[23:56:06.594 N] New bot added!: Raid Bot
+[23:56:06.594 N] New bot added!: Templar
+[23:56:06.594 N] New bot added!: Tyrael
+[23:56:12.517 D] [RoutineManager] Routines have been reloaded. Current class-specific list:
+[23:56:12.517 D] Demonic Premium [Millz] v0.0.0.0
+[23:56:12.517 D] Oracle [1.0.0.315] v1.0.0.315
+[23:56:12.517 D] Singular v3.0.0.3502 v3.0.0.3502
+[23:56:16.619 D] Activity: Initialization complete
+[23:56:16.627 D] Activity: Honorbuddy Startup Complete
+[23:56:16.627 N] Honorbuddy Startup Complete

@@ -1,0 +1,56 @@
+﻿#region
+
+using Styx.WoWInternals;
+
+#endregion
+
+namespace Superbad
+{
+    public partial class Superbad
+    {
+        public static double LuaGetAgi()
+        {
+            return Lua.GetReturnVal<float>("return UnitStat(\"player\",2);", 1);
+        }
+
+        public static double LuaGetStamina()
+        {
+            return Lua.GetReturnVal<float>("return UnitStat(\"player\",3);", 1);
+        }
+
+        public static double LuaGetAttackPower()
+        {
+            return Lua.GetReturnVal<float>("return UnitAttackPower(\"player\");", 0);
+        }
+
+        public static double LuaGetHaste()
+        {
+            return Lua.GetReturnVal<float>("return GetCombatRating(CR_HASTE_MELEE)", 0)/425.19;
+        }
+
+        public static double LuaGetRage()
+        {
+            return Lua.GetReturnVal<int>("return UnitPower(\"player\");", 0);
+        }
+
+        public static double LuaGetMastery()
+        {
+            return Lua.GetReturnVal<float>("return GetMasteryEffect()", 0)/100;
+        }
+
+        public static double LuaGetComboPoints()
+        {
+            return Lua.GetReturnVal<int>("return GetComboPoints(\"player\",\"target\");", 0);
+        }
+
+        public static double LuaGetEnergyRegen()
+        {
+            return Lua.GetReturnVal<float>("return GetPowerRegen()", 1);
+        }
+
+        public static double LuaGetSpellCharges()
+        {
+            return Lua.GetReturnVal<int>("return GetSpellCharges(102703)", 0);
+        }
+    }
+}

@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FlightNodes>
+  <Node name="Ethel Rethor, Desolace" continent="1" master="35562" x="-356.47" y="2478.9" z="75.95">
+    <Connections>
+      <Connection name="Thunder Bluff, Mulgore" />
+      <Connection name="Orgrimmar, Durotar" />
+      <Connection name="The Crossroads, Northern Barrens" />
+      <Connection name="Sun Rock Retreat, Stonetalon Mountains" />
+      <Connection name="Westreach Summit, Thousand Needles" />
+      <Connection name="Gadgetzan, Tanaris" />
+      <Connection name="Camp Mojache, Feralas" />
+      <Connection name="Bilgewater Harbor, Azshara" />
+      <Connection name="Everlook, Winterspring" />
+      <Connection name="Brackenwall Village, Dustwallow Marsh" />
+      <Connection name="Zoram'gar Outpost, Ashenvale" />
+      <Connection name="Splintertree Post, Ashenvale" />
+      <Connection name="Moonglade" />
+      <Connection name="Cenarion Hold, Silithus" />
+      <Connection name="Vendetta Point, Southern Barrens" />
+      <Connection name="Marshal's Stand, Un'Goro Crater" />
+      <Connection name="Ratchet, Northern Barrens" />
+      <Connection name="Emerald Sanctuary, Felwood" />
+      <Connection name="Mudsprocket, Dustwallow Marsh" />
+      <Connection name="Hellscream's Watch, Ashenvale" />
+      <Connection name="The Mor'Shan Ramparts, Ashenvale" />
+      <Connection name="Silverwind Refuge, Ashenvale" />
+      <Connection name="Cliffwalker Post, Stonetalon Mountains" />
+      <Connection name="Krom'gar Fortress, Stonetalon Mountains" />
+      <Connection name="Malaka'jin, Stonetalon Mountains" />
+      <Connection name="Furien's Post, Desolace" />
+      <Connection name="Karnum's Glade, Desolace" />
+      <Connection name="Thunk's Abode, Desolace" />
+      <Connection name="Hunter's Hill, Southern Barrens" />
+      <Connection name="Desolation Hold, Southern Barrens" />
+      <Connection name="Bloodhoof Village, Mulgore" />
+      <Connection name="Nozzlepot's Outpost, Northern Barrens" />
+      <Connection name="Fizzle &amp; Pozzik's Speedbarge, Thousand Needles" />
+      <Connection name="Dawnrise Expedition, Tanaris" />
+      <Connection name="Sen'jin Village, Durotar" />
+      <Connection name="Razor Hill, Durotar" />
+      <Connection name="The Sludgewerks, Stonetalon Mountains" />
+      <Connection name="Shrine of Aviana, Hyjal" />
+      <Connection name="Grove of Aessina, Hyjal" />
+      <Connection name="Nordrassil, Hyjal" />
+      <Connection name="Camp Ataya, Feralas" />
+      <Connection name="Stonemaul Hold, Feralas" />
+      <Connection name="Whisperwind Grove, Felwood" />
+      <Connection name="Wildheart Point, Felwood" />
+      <Connection name="Irontree Clearing, Felwood" />
+      <Connection name="Ramkahen, Uldum" />
+      <Connection name="Sanctuary of Malorne, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Thunder Bluff, Mulgore" continent="1" x="-1197.21" y="29.71" z="176.95">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Orgrimmar, Durotar" continent="1" x="1798.27" y="-4363.27" z="102.848">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="The Crossroads, Northern Barrens" continent="1" x="-441.8" y="-2596.08" z="96.06">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Sun Rock Retreat, Stonetalon Mountains" continent="1" x="966.57" y="1040.32" z="104.27">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Westreach Summit, Thousand Needles" continent="1" x="-4310.61" y="-927.064" z="81.1796">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Gadgetzan, Tanaris" continent="1" x="-7094.03" y="-3813.69" z="9.49695">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Camp Mojache, Feralas" continent="1" x="-4419.86" y="199.31" z="25.06">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Bilgewater Harbor, Azshara" continent="1" x="3547.2" y="-6294.66" z="0.754245">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Everlook, Winterspring" continent="1" x="6813.06" y="-4611.12" z="710.67">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Brackenwall Village, Dustwallow Marsh" continent="1" x="-3147.39" y="-2842.18" z="34.61">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Zoram'gar Outpost, Ashenvale" continent="1" x="3351.82" y="1052.3" z="3.07">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Splintertree Post, Ashenvale" continent="1" x="2302.39" y="-2524.55" z="104.4">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Nighthaven, Moonglade" continent="1" x="7787.72" y="-2404.1" z="489.56">
+    <Connections />
+  </Node>
+  <Node name="Moonglade" continent="1" x="7470.39" y="-2123.38" z="492.34">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Cenarion Hold, Silithus" continent="1" x="-6811.39" y="836.74" z="49.81">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Vendetta Point, Southern Barrens" continent="1" x="-2152.35" y="-1724.34" z="92.528">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Marshal's Stand, Un'Goro Crater" continent="1" x="-7548.05" y="-1541.13" z="-271.05">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Ratchet, Northern Barrens" continent="1" x="-894.59" y="-3773.01" z="11.48">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Emerald Sanctuary, Felwood" continent="1" x="3972.84" y="-1324.51" z="244.803">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Mudsprocket, Dustwallow Marsh" continent="1" x="-4566.23" y="-3226.05" z="34.7">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Hellscream's Watch, Ashenvale" continent="1" x="3049.08" y="-498.95" z="205.64">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="The Mor'Shan Ramparts, Ashenvale" continent="1" x="1206.05" y="-2209.15" z="92.1406">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Silverwind Refuge, Ashenvale" continent="1" x="2159.62" y="-1144.05" z="97.87">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Cliffwalker Post, Stonetalon Mountains" continent="1" x="2188" y="1241.89" z="465.763">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Krom'gar Fortress, Stonetalon Mountains" continent="1" x="932.12" y="-21.25" z="92.81">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Malaka'jin, Stonetalon Mountains" continent="1" x="-111.94" y="-260.41" z="23.88">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Furien's Post, Desolace" continent="1" x="-439.15" y="2242.62" z="93.09">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Karnum's Glade, Desolace" continent="1" x="-1038.43" y="1637.99" z="60.56">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Thunk's Abode, Desolace" continent="1" x="-534.04" y="1056.68" z="89.91">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Hunter's Hill, Southern Barrens" continent="1" x="-798.72" y="-1590.87" z="140.63">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Desolation Hold, Southern Barrens" continent="1" x="-3288.85" y="-1697.99" z="122.62">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Bloodhoof Village, Mulgore" continent="1" x="-2299.54" y="-379.069" z="-9.11829">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Nozzlepot's Outpost, Northern Barrens" continent="1" x="1152.6" y="-3381.74" z="91.8054">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Fizzle &amp; Pozzik's Speedbarge, Thousand Needles" continent="1" x="-6075.37" y="-3913.44" z="21.6224">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Dawnrise Expedition, Tanaris" continent="1" x="-9487.89" y="-2467.13" z="16.7286">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Sen'jin Village, Durotar" continent="1" x="-780.267" y="-4890.28" z="19.6215">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Razor Hill, Durotar" continent="1" x="269.917" y="-4766.76" z="11.4946">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="The Sludgewerks, Stonetalon Mountains" continent="1" x="1825.94" y="727.208" z="162.123">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Shrine of Aviana, Hyjal" continent="1" x="4987.87" y="-2676.19" z="1426.36">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Grove of Aessina, Hyjal" continent="1" master="41860" x="5163.51" y="-1760.58" z="1338.47">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Thunder Bluff, Mulgore" />
+      <Connection name="Orgrimmar, Durotar" />
+      <Connection name="The Crossroads, Northern Barrens" />
+      <Connection name="Sun Rock Retreat, Stonetalon Mountains" />
+      <Connection name="Westreach Summit, Thousand Needles" />
+      <Connection name="Gadgetzan, Tanaris" />
+      <Connection name="Camp Mojache, Feralas" />
+      <Connection name="Bilgewater Harbor, Azshara" />
+      <Connection name="Everlook, Winterspring" />
+      <Connection name="Brackenwall Village, Dustwallow Marsh" />
+      <Connection name="Zoram'gar Outpost, Ashenvale" />
+      <Connection name="Splintertree Post, Ashenvale" />
+      <Connection name="Moonglade" />
+      <Connection name="Cenarion Hold, Silithus" />
+      <Connection name="Vendetta Point, Southern Barrens" />
+      <Connection name="Marshal's Stand, Un'Goro Crater" />
+      <Connection name="Ratchet, Northern Barrens" />
+      <Connection name="Emerald Sanctuary, Felwood" />
+      <Connection name="Mudsprocket, Dustwallow Marsh" />
+      <Connection name="Hellscream's Watch, Ashenvale" />
+      <Connection name="The Mor'Shan Ramparts, Ashenvale" />
+      <Connection name="Silverwind Refuge, Ashenvale" />
+      <Connection name="Cliffwalker Post, Stonetalon Mountains" />
+      <Connection name="Krom'gar Fortress, Stonetalon Mountains" />
+      <Connection name="Malaka'jin, Stonetalon Mountains" />
+      <Connection name="Furien's Post, Desolace" />
+      <Connection name="Karnum's Glade, Desolace" />
+      <Connection name="Thunk's Abode, Desolace" />
+      <Connection name="Hunter's Hill, Southern Barrens" />
+      <Connection name="Desolation Hold, Southern Barrens" />
+      <Connection name="Bloodhoof Village, Mulgore" />
+      <Connection name="Nozzlepot's Outpost, Northern Barrens" />
+      <Connection name="Fizzle &amp; Pozzik's Speedbarge, Thousand Needles" />
+      <Connection name="Dawnrise Expedition, Tanaris" />
+      <Connection name="Sen'jin Village, Durotar" />
+      <Connection name="Razor Hill, Durotar" />
+      <Connection name="The Sludgewerks, Stonetalon Mountains" />
+      <Connection name="Shrine of Aviana, Hyjal" />
+      <Connection name="Nordrassil, Hyjal" />
+      <Connection name="Camp Ataya, Feralas" />
+      <Connection name="Stonemaul Hold, Feralas" />
+      <Connection name="Whisperwind Grove, Felwood" />
+      <Connection name="Wildheart Point, Felwood" />
+      <Connection name="Irontree Clearing, Felwood" />
+      <Connection name="Ramkahen, Uldum" />
+      <Connection name="Sanctuary of Malorne, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Nordrassil, Hyjal" continent="1" x="5584.06" y="-3569.84" z="1570.6">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Camp Ataya, Feralas" continent="1" x="-3081.7" y="2560.1" z="50.1791">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Stonemaul Hold, Feralas" continent="1" x="-4606.52" y="1898.19" z="107.849">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Whisperwind Grove, Felwood" continent="1" x="6078.51" y="-844.998" z="412.274">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Wildheart Point, Felwood" continent="1" x="4734.16" y="-883.806" z="342.934">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Irontree Clearing, Felwood" continent="1" x="6892.69" y="-1620.41" z="503.106">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Ramkahen, Uldum" continent="1" x="-9415.02" y="-1042.97" z="113.396">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+  <Node name="Sanctuary of Malorne, Hyjal" continent="1" x="4397.79" y="-2107.53" z="1204.34">
+    <Connections>
+      <Connection name="Ethel Rethor, Desolace" />
+      <Connection name="Grove of Aessina, Hyjal" />
+    </Connections>
+  </Node>
+</FlightNodes>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <SelectTalents>True</SelectTalents>
+  <ClassProfileName>Warlock - Destruction</ClassProfileName>
+  <AutoEquip>False</AutoEquip>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <AutoEquipBoEEpics>False</AutoEquipBoEEpics>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
+  <TicksPerSecond>70</TicksPerSecond>
+  <FoodAmount>0</FoodAmount>
+  <DrinkAmount>0</DrinkAmount>
+  <EnabledPlugins>
+    <Entry>Refreshment Detection</Entry>
+  </EnabledPlugins>
+  <RecentProfiles>
+    <Entry>Durotar-Copper[HB]@@!@@C:\Users\catch\Desktop\Herbs\Durotar-Copper[HB].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>FishingBuddy</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <UseRandomMount>True</UseRandomMount>
+  <MailRecipient></MailRecipient>
+  <FoodName>81414</FoodName>
+  <DrinkName>81414</DrinkName>
+  <MountName>Red Primal Raptor</MountName>
+  <FlyingMountName>Green Wind Rider</FlyingMountName>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <LootChests>True</LootChests>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LootRadius>45</LootRadius>
+  <LastUsedPath>C:\Users\catch\Desktop\Herbs\Durotar-Copper[HB].xml</LastUsedPath>
+  <MountDistance>60</MountDistance>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+</CharacterSettings>

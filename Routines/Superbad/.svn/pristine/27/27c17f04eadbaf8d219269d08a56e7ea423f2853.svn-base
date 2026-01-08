@@ -1,0 +1,426 @@
+﻿#region
+
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using JetBrains.Annotations;
+using Styx;
+using Styx.Common;
+using Styx.CommonBot;
+using Styx.Helpers;
+using Styx.WoWInternals;
+using Styx.WoWInternals.WoWObjects;
+
+#endregion
+
+namespace Superbad
+{
+    internal static class Spell
+    {
+        public static WoWAuraCollection CurrentTargetAuras;
+        public static WoWAuraCollection MyAuras;
+
+        public static readonly Dictionary<string, DoubleCastSpell> DoubleCastEntries =
+            new Dictionary<string, DoubleCastSpell>();
+
+        public static readonly Dictionary<string, LogEntry> LogEntries = new Dictionary<string, LogEntry>();
+
+        public static readonly Dictionary<ulong, double> RakeTargets = new Dictionary<ulong, double>();
+
+        public static void UpdateRakeTargets(ulong guid, double strength)
+        {
+            if (RakeTargets.ContainsKey(guid))
+                RakeTargets[guid] = strength;
+            if (!RakeTargets.ContainsKey(guid))
+                RakeTargets.Add(guid, strength);
+        }
+
+        internal static void PulseRakeTargets()
+        {
+            foreach (var rakeTarget in RakeTargets.Where(rakeTarget => rakeTarget.Value == 0))
+            {
+                RakeTargets.Remove(rakeTarget.Key);
+            }
+        }
+
+        internal static double GetRakeStrength(ulong guid)
+        {
+            return !RakeTargets.ContainsKey(guid) ? 0 : RakeTargets.FirstOrDefault(t => t.Key == guid).Value;
+        }
+
+        public static void UpdateLogEntries(string spellName, double expiryTime)
+        {
+            if (LogEntries.ContainsKey(spellName))
+                LogEntries[spellName] = new LogEntry(spellName, expiryTime, DateTime.UtcNow);
+            if (!LogEntries.ContainsKey(spellName))
+                LogEntries.Add(spellName, new LogEntry(spellName, expiryTime, DateTime.UtcNow));
+        }
+
+        internal static void PulseLogEntries()
+        {
+            LogEntries.RemoveAll(
+                t => DateTime.UtcNow.Subtract(t.DoubleCastCurrentTime).TotalSeconds >= t.DoubleCastExpiryTime);
+        }
+
+        public static void UpdateDoubleCastEntries(string spellName, double expiryTime)
+        {
+            if (DoubleCastEntries.ContainsKey(spellName))
+                DoubleCastEntries[spellName] = new DoubleCastSpell(spellName, expiryTime, DateTime.UtcNow);
+            if (!DoubleCastEntries.ContainsKey(spellName))
+                DoubleCastEntries.Add(spellName, new DoubleCastSpell(spellName, expiryTime, DateTime.UtcNow));
+        }
+
+        internal static void PulseDoubleCastEntries()
+        {
+            DoubleCastEntries.RemoveAll(
+                t => DateTime.UtcNow.Subtract(t.DoubleCastCurrentTime).TotalSeconds >= t.DoubleCastExpiryTime);
+        }
+
+        public static bool SpellOnCooldown(int id)
+        {
+            return GetSpellCooldown(id) > 0;
+        }
+
+        public static bool SpellOnCooldown(string id)
+        {
+            return GetSpellCooldown(id) > 0;
+        }
+
+        public static double GetSpellCooldown(int spell)
+        {
+            SpellFindResults results;
+            if (!SpellManager.FindSpell(spell, out results)) return TimeSpan.MaxValue.TotalSeconds;
+            return results.Override != null
+                ? Math.Max(results.Override.CooldownTimeLeft.TotalSeconds - SpellManager.GlobalCooldownLeft.TotalSeconds - 0.01, 0)
+                : Math.Max(results.Original.CooldownTimeLeft.TotalSeconds - SpellManager.GlobalCooldownLeft.TotalSeconds - 0.01, 0);
+        }
+
+        public static double GetSpellCooldown(string spell)
+        {
+            SpellFindResults results;
+            if (!SpellManager.FindSpell(spell, out results)) return TimeSpan.MaxValue.TotalSeconds;
+            return results.Override != null
+                ? Math.Max(results.Override.CooldownTimeLeft.TotalSeconds - SpellManager.GlobalCooldownLeft.TotalSeconds - 0.01, 0)
+                : Math.Max(results.Original.CooldownTimeLeft.TotalSeconds - SpellManager.GlobalCooldownLeft.TotalSeconds - 0.01, 0);
+        }
+
+        public static double MyAuraRemains(this WoWUnit unit, int aura)
+        {
+            if (CurrentTargetAuras == null)
+                return 0;
+            var cachedResult =
+                CurrentTargetAuras
+                    .FirstOrDefault(
+                        a => a.SpellId == aura && a.CreatorGuid == StyxWoW.Me.Guid && a.TimeLeft.TotalMilliseconds > 0);
+            return cachedResult != null ? cachedResult.TimeLeft.TotalSeconds : 0;
+        }
+
+        public static double MyAuraRemains(this WoWUnit unit, string aura)
+        {
+            if (CurrentTargetAuras == null)
+                return 0;
+            var cachedResult =
+                CurrentTargetAuras
+                    .FirstOrDefault(
+                        a => a.Name == aura && a.CreatorGuid == StyxWoW.Me.Guid && a.TimeLeft.TotalMilliseconds > 0);
+            return cachedResult != null ? cachedResult.TimeLeft.TotalSeconds : 0;
+        }
+
+        public static double MyBuffRemains(this WoWUnit unit, int aura)
+        {
+            var cachedResult =
+                MyAuras
+                    .FirstOrDefault(
+                        a => a.SpellId == aura && a.TimeLeft.TotalMilliseconds > 0);
+            return cachedResult != null ? cachedResult.TimeLeft.TotalSeconds : 0;
+        }
+
+        public static void GatherAuras()
+        {
+            if (StyxWoW.Me.CurrentTarget != null)
+                CurrentTargetAuras = StyxWoW.Me.CurrentTarget.GetAllAuras();
+            MyAuras = StyxWoW.Me.GetAllAuras();
+        }
+
+        public static bool TargetHasAura(this WoWUnit unit, int id)
+        {
+            if (CurrentTargetAuras == null)
+                return false;
+            var aura = CurrentTargetAuras.FirstOrDefault(
+                a => a.SpellId == id && a.TimeLeft.TotalMilliseconds > 0);
+            return aura != null;
+        }
+
+        public static bool HasBuff(this WoWUnit unit, int id)
+        {
+            var aura = MyAuras.FirstOrDefault(
+                a => a.SpellId == id && a.TimeLeft.TotalMilliseconds > 0);
+            return aura != null;
+        }
+
+        public static bool HasMyDebuff(this WoWUnit unit, int id)
+        {
+            if (CurrentTargetAuras == null)
+                return false;
+            var aura = CurrentTargetAuras.FirstOrDefault(
+                a => a.SpellId == id && a.CreatorGuid == StyxWoW.Me.Guid && a.TimeLeft.TotalMilliseconds > 0);
+            return aura != null;
+        }
+
+        public static bool HasMyDebuffCycle(this WoWUnit unit, int id)
+        {
+            var aura = unit.GetAllAuras().FirstOrDefault(
+                a => a.SpellId == id && a.CreatorGuid == StyxWoW.Me.Guid && a.TimeLeft.TotalMilliseconds > 0);
+            return aura != null;
+        }
+
+        public static bool HasBuff(this WoWUnit unit, String spell)
+        {
+            var aura = MyAuras.FirstOrDefault(
+                a => a.Name == spell && a.TimeLeft.TotalMilliseconds > 0);
+            return aura != null;
+        }
+
+        public static bool HasMyDebuff(this WoWUnit unit, String spell)
+        {
+            if (CurrentTargetAuras == null)
+                return false;
+            var aura = CurrentTargetAuras.FirstOrDefault(
+                a => a.Name == spell && a.CreatorGuid == StyxWoW.Me.Guid && a.TimeLeft.TotalMilliseconds > 0);
+            return aura != null;
+        }
+
+        public static bool HasActiveBuff(this WoWUnit unit, int id)
+        {
+            var aura = StyxWoW.Me.ActiveAuras.FirstOrDefault(
+                a => a.Value.SpellId == id && a.Value.TimeLeft.TotalMilliseconds > 0);
+            return aura.Value != null;
+        }
+
+        public static bool HasAnyBuff(this WoWUnit unit, int[] id)
+        {
+            var check = false;
+            foreach (
+                var i in
+                    id.Where(
+                        i => MyAuras.FirstOrDefault(a => a.SpellId == i && a.TimeLeft.TotalMilliseconds > 0) != null))
+            {
+                check = true;
+            }
+            return check;
+        }
+
+        public static bool HasAnyBuff(this WoWUnit unit, String[] spell)
+        {
+            var check = false;
+            foreach (
+                var i in
+                    spell.Where(
+                        i => MyAuras.FirstOrDefault(a => a.Name == i && a.TimeLeft.TotalMilliseconds > 0) != null))
+            {
+                check = true;
+            }
+            return check;
+        }
+
+        public static double StackCountOnMe(this WoWUnit unit, string aura)
+        {
+            var cachedResult =
+                MyAuras
+                    .FirstOrDefault(
+                        a => a.Name == aura && a.TimeLeft.TotalMilliseconds > 0);
+            return cachedResult != null ? cachedResult.StackCount : 0;
+        }
+
+        public static double StackCount(this WoWUnit unit, string aura)
+        {
+            if (CurrentTargetAuras == null)
+                return 0;
+            var cachedResult =
+                CurrentTargetAuras
+                    .FirstOrDefault(
+                        a => a.Name == aura && a.TimeLeft.TotalMilliseconds > 0);
+            if (cachedResult != null)
+                return cachedResult.StackCount;
+            return 0;
+        }
+
+        public static bool Buff(int spell)
+        {
+            return !SpellOnCooldown(spell) &&
+                   Buff(spell, StyxWoW.Me);
+        }
+
+        public static bool Buff(string spell)
+        {
+            return !SpellOnCooldown(spell) &&
+                   Buff(spell, StyxWoW.Me);
+        }
+
+        public static bool CastHack(int spell)
+        {
+            if (SpellOnCooldown(spell)) return false;
+            SpellManager.Cast(spell, StyxWoW.Me);
+            var clr = Color.Yellow;
+            LogAction(WoWSpell.FromId(spell).Name, clr);
+            return true;
+        }
+
+        public static bool Buff(int spell, WoWUnit onUnit)
+        {
+            if (SpellManager.CanCast(spell, onUnit) || Superbad.BotbaseManualMode())
+            {
+                SpellManager.Cast(spell, onUnit);
+                var clr = Color.Yellow;
+                LogAction(WoWSpell.FromId(spell).Name, clr);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool Buff(string spell, WoWUnit onUnit)
+        {
+            if (SpellManager.CanCast(spell, onUnit) || Superbad.BotbaseManualMode())
+            {
+                SpellManager.Cast(spell, onUnit);
+                var clr = Color.Yellow;
+                LogAction(spell, clr);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool CastSymbSpell(int spell)
+        {
+            if (SpellOnCooldown(spell)) return false;
+            SpellManager.Cast(spell);
+            var clr = Color.Yellow;
+            LogAction(WoWSpell.FromId(spell).Name, clr);
+            return true;
+        }
+
+        public static bool CastSymbSpell(int spell, WoWUnit unit)
+        {
+            if (SpellOnCooldown(spell)) return false;
+            if (unit == null) return false;
+            SpellManager.Cast(spell, unit);
+            var clr = Color.Red;
+            LogAction(WoWSpell.FromId(spell).Name, clr);
+            return true;
+        }
+
+        public static bool Cast(int spell)
+        {
+            return !SpellOnCooldown(spell) && Superbad.Facing &&
+                   Cast(spell, StyxWoW.Me.CurrentTarget);
+        }
+
+        public static bool CastHackFON(int spell)
+        {
+            if (!SpellOnCooldown(spell) && StyxWoW.Me.CurrentTarget != null)
+            {
+                SpellManager.Cast(spell, StyxWoW.Me.CurrentTarget);
+                var clr = Color.Red;
+                LogAction(WoWSpell.FromId(spell).Name, clr);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool Cast(int spell, WoWUnit onUnit)
+        {
+            if (SpellManager.CanCast(spell, onUnit) || Superbad.BotbaseManualMode())
+            {
+                SpellManager.Cast(spell, onUnit);
+                var clr = Color.Red;
+                LogAction(WoWSpell.FromId(spell).Name, clr);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool CastnoFace(int spell)
+        {
+            return !SpellOnCooldown(spell) && Cast(spell, StyxWoW.Me.CurrentTarget);
+        }
+
+        public static bool Heal(int spell)
+        {
+            return !SpellOnCooldown(spell) &&
+                   Heal(spell, StyxWoW.Me);
+        }
+
+        public static bool Heal(int spell, WoWUnit onUnit)
+        {
+            if (SpellManager.CanCast(spell, onUnit) || Superbad.BotbaseManualMode())
+            {
+                SpellManager.Cast(spell, onUnit);
+                var clr = Color.Green;
+                LogAction(WoWSpell.FromId(spell).Name, clr);
+                return true;
+            }
+            return false;
+        }
+
+        public static void LogAction(string log, Color colour)
+        {
+            var clr = colour;
+            if (LogEntries.ContainsKey(log))
+                return;
+            UpdateLogEntries(log, 1.5);
+            var newColor = System.Windows.Media.Color.FromArgb(clr.A, clr.R, clr.G, clr.B);
+            Logging.Write(LogLevel.Normal, newColor, log);
+        }
+
+        public static float SpellDistance(this WoWUnit unit, WoWUnit other = null)
+        {
+            // abort if mob null
+            if (unit == null)
+                return 99;
+
+            // optional arg implying Me, then make sure not Mob also
+            if (other == null)
+                other = StyxWoW.Me;
+
+            // pvp, then keep it close
+            var dist = other.Location.Distance(unit.Location);
+            dist -= other.CombatReach + unit.CombatReach;
+            return Math.Max(0, dist);
+        }
+
+        public struct DoubleCastSpell
+        {
+            public DoubleCastSpell(string spellName, double expiryTime, DateTime currentTime)
+                : this()
+            {
+                DoubleCastSpellName = spellName;
+                DoubleCastExpiryTime = expiryTime;
+                DoubleCastCurrentTime = currentTime;
+            }
+
+            private string DoubleCastSpellName { [UsedImplicitly] get; set; }
+
+            public double DoubleCastExpiryTime { get; set; }
+
+            public DateTime DoubleCastCurrentTime { get; set; }
+        }
+
+        public struct LogEntry
+        {
+            public LogEntry(string spellName, double expiryTime, DateTime currentTime)
+                : this()
+            {
+                DoubleCastSpellName = spellName;
+                DoubleCastExpiryTime = expiryTime;
+                DoubleCastCurrentTime = currentTime;
+            }
+
+            private string DoubleCastSpellName { [UsedImplicitly] get; set; }
+
+            public double DoubleCastExpiryTime { get; set; }
+
+            public DateTime DoubleCastCurrentTime { get; set; }
+        }
+    }
+}

@@ -1,0 +1,188 @@
+﻿#region
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Styx;
+using Styx.Pathing;
+using Styx.WoWInternals;
+using Styx.WoWInternals.WoWObjects;
+
+#endregion
+
+namespace Superbad
+{
+    internal static class Unit
+    {
+        public static HashSet<uint> IgnoreMobs = new HashSet<uint>
+        {
+            52288,
+            // Venomous Effusion (NPC near the snake boss in ZG. Its the green lines on the ground. We want to ignore them.)
+            52302, // Venomous Effusion Stalker (Same as above. A dummy unit)
+            52320, // Pool of Acid
+            52525, // Bloodvenom
+
+            52387, // Cave in stalker - Kilnara
+        };
+
+        public static IEnumerable<WoWUnit> NearbyUnfriendlyUnits
+        {
+            get
+            {
+                return
+                    ObjectManager.GetObjectsOfType<WoWUnit>(false, false).Where(
+                        p => !p.IsDead && p.Attackable && p.DistanceSqr <= 40*40).ToList();
+            }
+        }
+
+        public static IEnumerable<WoWUnit> NearbyUnfriendlyUnitsWithOutFFF
+        {
+            get
+            {
+                return Superbad.UnitList.Where(
+                    p =>
+                        p.IsWithinMeleeRange && Superbad.target.time_to_die_circle(p) > 5 && StyxWoW.Me.IsFacing(p))
+                    .ToList();
+            }
+        }
+
+        public static IEnumerable<WoWUnit> NearbyUnfriendlyUnitsWithOutRake
+        {
+            get
+            {
+                return Superbad.UnitList.Where(
+                    p =>
+                        p.IsWithinMeleeRange && Superbad.dot.rake_cycle.remains(p) < 3 &&
+                        Superbad.target.time_to_die_circle(p) > 15 && StyxWoW.Me.IsFacing(p)).ToList();
+            }
+        }
+
+        public static float MeleeRange
+        {
+            get { return StyxWoW.Me.CurrentTarget == null ? 0 : StyxWoW.Me.CurrentTarget.MeleeDistance(); }
+        }
+
+        public static IEnumerable<WoWPlayer> GroupMembers
+        {
+            get
+            {
+                // Grab party+raid member + myself GUIDs
+                var guids =
+                    StyxWoW.Me.GroupInfo.RaidMemberGuids.Union(StyxWoW.Me.GroupInfo.PartyMemberGuids)
+                        .Union(new[] {StyxWoW.Me.Guid})
+                        .Distinct()
+                        .ToArray();
+
+                return (
+                    from p in ObjectManager.GetObjectsOfType<WoWPlayer>(true, true)
+                    where p.IsFriendly && guids.Any(g => g == p.Guid)
+                    select p).ToList();
+            }
+        }
+
+        public static IEnumerable<WoWPlayer> NearbyGroupMembers
+        {
+            get { return GroupMembers.Where(p => p.DistanceSqr <= 30*30).ToList(); }
+        }
+
+        internal static bool IsBoss(WoWUnit thisUnit)
+        {
+            return thisUnit != null && (BossList.BossIds.Contains(thisUnit.Entry));
+        }
+
+        internal static bool IsDummy(WoWUnit thisUnit)
+        {
+            return thisUnit != null && (BossList.TrainingDummies.Contains(thisUnit.Entry));
+        }
+
+        public static bool ValidUnit(WoWUnit p)
+        {
+            if (IgnoreMobs.Contains(p.Entry))
+                return false;
+            if (!p.CanSelect)
+                return false;
+            if (p.IsFriendly)
+                return false;
+            if (p.IsPet || p.OwnedByRoot != null)
+                return false;
+            return !p.IsNonCombatPet;
+        }
+
+        public static bool IsCrowdControlled(WoWUnit unit)
+        {
+            if (StyxWoW.Me.CurrentTarget == null)
+                return false;
+            var auras = unit.Auras.Values;
+
+            return auras.Any(
+                a => a.Spell.Mechanic == WoWSpellMechanic.Banished ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Charmed ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Horrified ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Incapacitated ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Polymorphed ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Sapped ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Shackled ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Asleep ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Frozen ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Invulnerable ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Invulnerable2 ||
+                     a.Spell.Mechanic == WoWSpellMechanic.Turned ||
+                     a.Spell.Name == "Hex"
+                );
+        }
+
+        public static bool IsAboveTheGround(WoWUnit u)
+        {
+            var height = HeightOffTheGround(u);
+            if (height == float.MaxValue)
+                return false; // make this true if better to assume aerial 
+
+            return height > MeleeRange;
+        }
+
+        public static bool IsInGroup(this LocalPlayer me)
+        {
+            return me.GroupInfo.IsInParty || me.GroupInfo.IsInRaid;
+        }
+
+        public static WoWUnit GetPlayerParent(WoWUnit unit)
+        {
+            // If it is a pet/minion/totem, lets find the root of ownership chain
+            var pOwner = unit;
+            while (true)
+            {
+                if (pOwner.OwnedByUnit != null)
+                    pOwner = pOwner.OwnedByRoot;
+                else if (pOwner.CreatedByUnit != null)
+                    pOwner = pOwner.CreatedByUnit;
+                else if (pOwner.SummonedByUnit != null)
+                    pOwner = pOwner.SummonedByUnit;
+                else
+                    break;
+            }
+
+            if (unit != pOwner && pOwner.IsPlayer)
+                return pOwner;
+
+            return null;
+        }
+
+        public static float MeleeDistance(this WoWUnit mob)
+        {
+            return mob.IsPlayer ? 3.5f : Math.Max(5f, StyxWoW.Me.CombatReach + 1.3333334f + mob.CombatReach);
+        }
+
+        public static float HeightOffTheGround(WoWUnit u)
+        {
+            if (u != null)
+            {
+                var unitLoc = new WoWPoint(u.Location.X, u.Location.Y, u.Location.Z);
+                var listMeshZ = Navigator.FindHeights(unitLoc.X, unitLoc.Y).Where(h => h <= unitLoc.Z);
+                var meshZ = listMeshZ as float[] ?? listMeshZ.ToArray();
+                if (meshZ.Any())
+                    return unitLoc.Z - meshZ.Max();
+            }
+            return float.MaxValue;
+        }
+    }
+}

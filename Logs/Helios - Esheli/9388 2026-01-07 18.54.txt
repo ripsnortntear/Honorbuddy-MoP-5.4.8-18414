@@ -1,0 +1,480 @@
+[23:54:38.007 N] Honorbuddy v2.5.11489.748 started.
+[23:54:38.286 Q] Welcome to Honorbuddy MoP.
+By Likon69, Vo1d, Manjaro and Err0r.
+[23:54:38.287 D] System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   at System.Net.WebClient.DownloadString(Uri address)
+   at System.Net.WebClient.DownloadString(String address)
+   at Honorbuddy.MainWindow.CheckForUpdate()
+[23:54:39.250 N] Logging in...
+[23:54:39.284 N] T: 5250720287220061691 
+[23:54:41.432 N] Attaching to D3D11
+[23:54:41.619 N] Attached to WoW with ID 4044
+[23:54:41.676 N] Honorbuddy v2.5.11489.748 started!
+[23:54:41.676 D] Using WoW with process ID 4044
+[23:54:41.676 D] Platform: Microsoft Windows NT 6.2.9200.0
+[23:54:41.676 D] Executable Path: D:\Games\GH of HB\Honorbuddy.exe
+[23:54:41.676 N] Character is a level 90 BloodElf Warlock
+[23:54:41.676 N] Current zone is Orgrimmar
+[23:54:41.683 D] UICulture: en-US
+[23:54:41.683 D] UseFrameLock: True
+[23:54:41.683 D] SendUsageInformation: True
+[23:54:41.683 D] CombatRoutinesPath: Routines
+[23:54:41.683 D] ReloadRoutinesOnFileChange: False
+[23:54:41.683 D] PluginsPath: Plugins
+[23:54:41.683 D] ReloadPluginsOnFileChange: False
+[23:54:41.683 D] BotsPath: Bots
+[23:54:41.683 D] ReloadBotsOnFileChange: False
+[23:54:41.683 D] QuestBehaviorsPath: Quest Behaviors
+[23:54:41.683 D] MeshesFolderPath: C:\Users\Ryan\AppData\Local\Bossland\Honorbuddy\Meshes
+[23:54:41.683 D] KillBetweenHotspots: True
+[23:54:41.683 D] AdvancedSettingsMode: True
+[23:54:41.683 D] LogoutForInactivity: True
+[23:54:41.683 D] LogoutInactivityTimer: 20
+[23:54:41.683 D] LogoutInactivityUseForceQuit: False
+[23:54:41.683 D] ProfileDebuggingMode: False
+[23:54:41.683 D] LogLevel: Diagnostic
+[23:54:41.683 D] SeperatedLogFolders: True
+[23:54:41.683 D] SelectTalents: True
+[23:54:41.683 D] ClassProfileName: Warlock - Destruction
+[23:54:41.683 D] AutoEquip: False
+[23:54:41.683 D] AutoEquipBags: True
+[23:54:41.683 D] AutoEquipWeapons: True
+[23:54:41.683 D] AutoEquipArmor: True
+[23:54:41.683 D] AutoEquipBoEEpics: False
+[23:54:41.683 D] WeaponStyle: Automatic
+[23:54:41.683 D] RollOnItems: True
+[23:54:41.683 D] RollDisenchantWhenGreed: True
+[23:54:41.683 D] MaxBoEDisenchantQuality: Uncommon
+[23:54:41.683 D] TicksPerSecond: 70
+[23:54:41.683 D] FoodAmount: 0
+[23:54:41.683 D] DrinkAmount: 0
+[23:54:41.683 N] EnabledPlugins:
+[23:54:41.683 D]     Refreshment Detection
+[23:54:41.683 N] RecentProfiles:
+[23:54:41.683 D]     Durotar-Copper[HB]@@!@@C:\Users\catch\Desktop\Herbs\Durotar-Copper[HB].xml
+[23:54:41.683 D] SelectedBotIndex: -1
+[23:54:41.683 D] SelectedBotName: FishingBuddy
+[23:54:41.683 D] UseFlightPaths: True
+[23:54:41.683 D] FindMountAutomatically: True
+[23:54:41.683 D] UseRandomMount: True
+[23:54:41.683 D] MailRecipient has no value yet!
+[23:54:41.683 D] FoodName: 81414
+[23:54:41.683 D] DrinkName: 81414
+[23:54:41.683 D] MountName: Red Primal Raptor
+[23:54:41.683 D] FlyingMountName: Green Wind Rider
+[23:54:41.683 D] LootMobs: True
+[23:54:41.683 D] SkinMobs: False
+[23:54:41.683 D] NinjaSkin: False
+[23:54:41.683 D] LootChests: True
+[23:54:41.683 D] HarvestMinerals: False
+[23:54:41.683 D] HarvestHerbs: False
+[23:54:41.683 D] UseMount: True
+[23:54:41.683 D] PullDistance: 100
+[23:54:41.683 D] LootRadius: 45
+[23:54:41.683 D] LastUsedPath: C:\Users\catch\Desktop\Herbs\Durotar-Copper[HB].xml
+[23:54:41.683 D] MountDistance: 60
+[23:54:41.683 D] RessAtSpiritHealers: False
+[23:54:41.683 D] GroundMountFarmingMode: False
+[23:54:41.683 N] Please wait a few seconds while Honorbuddy initializes.
+[23:54:41.684 D] Activity: Initializing
+[23:54:41.684 D] Activity: Checking for Buddy Store products. This may take a while
+[23:54:41.803 D] Activity: Loading memory management & tables
+[23:54:41.809 N] New bot added!: ArchaeologyBuddy
+[23:54:41.809 N] New bot added!: BGBuddy
+[23:54:41.817 D] Activity: Loading Spells
+[23:54:41.827 N] New bot added!: Dungeonbuddy
+[23:54:41.837 D] Activity: Initializing Spell Manager
+[23:54:41.858 D] [SpellManager] Adding known spells: Survey               (080451) | Archaeology          (110393) | Jewelcrafting        (025229)
+[23:54:41.858 D] [SpellManager] Adding known spells: Fishing              (131474) | Smelting             (002656) | Cooking Fire         (000818)
+[23:54:41.858 D] [SpellManager] Adding known spells: Cooking              (104381) | First Aid            (110406) | Symbiosis            (110505)
+[23:54:41.858 D] [SpellManager] Adding known spells: Summon Voidwalker    (000697) | Summon Succubus      (000712) | Summon Felhunter     (000691)
+[23:54:41.858 D] [SpellManager] Adding known spells: Summon Imp           (000688) | Voidwalker: Suffer.. (103128) | Voidwalker: Shadow.. (103130)
+[23:54:41.858 D] [SpellManager] Adding known spells: Voidwalker: Shadow.. (103142) | Voidwalker: Disarm   (124539) | Unending Resolve     (104773)
+[23:54:41.858 D] [SpellManager] Adding known spells: Succubus: Whiplash   (103141) | Succubus: Seduction  (103139) | Succubus: Lesser I.. (103140)
+[23:54:41.858 D] [SpellManager] Adding known spells: Soul Leech           (108370) | Soul Harvest         (101976) | Pyroclasm            (123686)
+[23:54:41.858 D] [SpellManager] Adding known spells: Pandemic             (131973) | Nethermancy          (086091) | Mastery: Emberstorm  (077220)
+[23:54:41.858 D] [SpellManager] Adding known spells: Kil'jaeden's Cunning (137587) | Imp: Singe Magic     (103150) | Imp: Flee            (103133)
+[23:54:41.858 D] [SpellManager] Adding known spells: Imp: Cauterize Mas.. (124538) | Grimoire of Suprem.. (108499) | Felhunter: Spell L.. (103135)
+[23:54:41.858 D] [SpellManager] Adding known spells: Felhunter: Devour .. (103136) | Fel Armor            (104938) | Control Demon        (093375)
+[23:54:41.858 D] [SpellManager] Adding known spells: Life Tap             (001454) | Burning Embers       (108647) | Backlash             (108563)
+[23:54:41.858 D] [SpellManager] Adding known spells: Backdraft            (117896) | Aftermath            (109784) | Unending Breath      (005697)
+[23:54:41.858 D] [SpellManager] Adding known spells: Twilight Ward        (006229) | Summon Doomguard     (018540) | Summon Infernal      (001122)
+[23:54:41.858 D] [SpellManager] Adding known spells: Soulstone            (020707) | Soulshatter          (029858) | Shadowfury           (030283)
+[23:54:41.858 D] [SpellManager] Adding known spells: Shadowburn           (017877) | Ritual of Summoning  (000698) | Rain of Fire         (005740)
+[23:54:41.858 D] [SpellManager] Adding known spells: Shadow Bolt          (000686) | Corruption           (000172) | Howl of Terror       (005484)
+[23:54:41.858 D] [SpellManager] Adding known spells: Health Funnel        (000755) | Havoc                (080240) | Flames of Xoroth     (120451)
+[23:54:41.858 D] [SpellManager] Adding known spells: Fire and Brimstone   (108683) | Fel Flame            (077799) | Fear                 (005782)
+[23:54:41.858 D] [SpellManager] Adding known spells: Eye of Kilrogg       (000126) | Enslave Demon        (001098) | Ember Tap            (114635)
+[23:54:41.858 D] [SpellManager] Adding known spells: Drain Life           (000689) | Demonic Gateway      (111771) | Demonic Circle: Te.. (048020)
+[23:54:41.858 D] [SpellManager] Adding known spells: Demonic Circle: Su.. (048018) | Dark Soul            (077801) | Dark Intent          (109773)
+[23:54:41.858 D] [SpellManager] Adding known spells: Dark Bargain         (110913) | Curse of the Eleme.. (001490) | Curse of Enfeeblem.. (109466)
+[23:54:41.858 D] [SpellManager] Adding known spells: Create Soulwell      (029893) | Create Healthstone   (006201) | Conflagrate          (017962)
+[23:54:41.858 D] [SpellManager] Adding known spells: Command Demon        (119898) | Chaos Bolt           (116858) | Burning Rush         (111400)
+[23:54:41.858 D] [SpellManager] Adding known spells: Banish               (000710) | Working Overtime     (118021) | Wisdom of the Four.. (115913)
+[23:54:41.858 D] [SpellManager] Adding known spells: Weapon Skills        (076299) | The Quick and the .. (083950) | The Doctor Is In     (118076)
+[23:54:41.858 D] [SpellManager] Adding known spells: Ride Like the Wind   (117983) | Reinforce            (083943) | Mr. Popularity       (078635)
+[23:54:41.858 D] [SpellManager] Adding known spells: Mount Up             (078633) | Master Riding        (090265) | Languages            (079748)
+[23:54:41.858 D] [SpellManager] Adding known spells: Honorable Mention    (083960) | Hasty Hearth         (083944) | Guild Mail           (083951)
+[23:54:41.858 D] [SpellManager] Adding known spells: For Great Justice    (118483) | Flight Master's Li.. (090267) | Fast Track           (078632)
+[23:54:41.858 D] [SpellManager] Adding known spells: Cold Weather Flying  (054197) | Cloud Serpent Riding (130487) | Cash Flow            (083941)
+[23:54:41.858 D] [SpellManager] Adding known spells: Bountiful Bags       (083966) | Battle Pet Training  (119467) | Battle Fatigue       (134732)
+[23:54:41.858 D] [SpellManager] Adding known spells: Bartering            (083964) | Armor Skills         (076277) | Arcane Resistance    (000822)
+[23:54:41.858 D] [SpellManager] Adding known spells: Arcane Affinity      (028877) | Shoot                (005019) | Revive Battle Pets   (125439)
+[23:54:41.858 D] [SpellManager] Adding known spells: Mobile Banking       (083958) | Mass Resurrection    (083968) | Auto Attack          (006603)
+[23:54:41.858 D] [SpellManager] Adding known spells: Arcane Torrent       (028730)
+[23:54:41.859 D] [SpellManager] Disarm (119907) overrides Command Demon (119898)
+[23:54:41.859 D] [SpellManager] Dark Soul: Instability (113858) overrides Dark Soul (77801)
+[23:54:41.859 D] [SpellManager] Immolate (348) overrides Corruption (172)
+[23:54:41.860 D] [SpellManager] Incinerate (29722) overrides Shadow Bolt (686)
+[23:54:41.860 D] [SpellManager] Rain of Fire (104232) overrides Rain of Fire (5740)
+[23:54:41.860 D] [SpellManager] Summon Abyssal (112921) overrides Summon Infernal (1122)
+[23:54:41.860 D] [SpellManager] Summon Terrorguard (112927) overrides Summon Doomguard (18540)
+[23:54:41.860 D] [SpellManager] Chaotic Energy (111546) overrides Life Tap (1454)
+[23:54:41.860 D] [SpellManager] Unending Resolve (148688) overrides Unending Resolve (104773)
+[23:54:41.860 D] [SpellManager] Summon Fel Imp (112866) overrides Summon Imp (688)
+[23:54:41.860 D] [SpellManager] Summon Observer (112869) overrides Summon Felhunter (691)
+[23:54:41.860 D] [SpellManager] Summon Shivarra (112868) overrides Summon Succubus (712)
+[23:54:41.860 D] [SpellManager] Summon Voidlord (112867) overrides Summon Voidwalker (697)
+[23:54:41.860 D] Activity: Initializing Navigator
+[23:54:41.870 N] New bot added!: Gatherbuddy2
+[23:54:41.872 N] New bot added!: ProfessionBuddy
+[23:54:41.872 N] New bot added!: Grind Bot
+[23:54:41.872 N] New bot added!: Questing
+[23:54:41.877 N] New bot added!: Mixed Mode
+[23:54:41.877 N] New bot added!: Party Bot
+[23:54:41.877 N] New bot added!: [BETA] GrindBuddy
+[23:54:41.880 D] Reloading AssemblyLoader<BotBase> - Reloading Bots
+[23:54:41.882 D] Class profile set to WarlockDestruction (Warlock - Destruction)
+[23:54:41.904 D] Activity: Initializing Flight Paths
+[23:54:41.939 D] Activity: Initializing Routines
+[23:54:41.939 D] Activity: Initializing Plugins
+[23:54:41.941 D] Reloading AssemblyLoader<ICombatRoutine> - [RoutineManager] ReloadRoutineAssemblies called.
+[23:54:41.952 D] Reloading AssemblyLoader<HBPlugin> - RefreshPlugins Called
+[23:54:42.924 D] ItemForAura: Loading config file: D:\Games\GH of HB\Plugins\ItemForAuraQuesthelper\ItemForAura.config
+[23:54:42.925 N] ItemForAura - Questhelper - Version 2.0 Loaded.
+[23:54:42.925 D] ItemForAura: Loading config file: D:\Games\GH of HB\Plugins\ItemForAuraQuesthelper\ItemForAura.config
+[23:54:44.306 N] Installed plugins
+[23:54:44.306 N]     Anti Drown - Disabled
+[23:54:44.306 N]     Combat Looter - Disabled
+[23:54:44.306 N]     DrinkPotions - Disabled
+[23:54:44.306 N]     Find Rares and Chests - Disabled
+[23:54:44.306 N]     KBA - Disabled
+[23:54:44.306 N]     MIR2 - Disabled
+[23:54:44.306 N]     NoCombat Looter - Disabled
+[23:54:44.306 N]     Questhelper - ItemForAura - Disabled
+[23:54:44.306 N]     Refreshment Detection - Enabled
+[23:54:44.806 N] New bot added!: AutoAngler2
+[23:54:44.806 N] New bot added!: Combat Bot
+[23:54:44.806 N] New bot added!: FishingBuddy
+[23:54:44.806 N] New bot added!: LazyRaider
+[23:54:44.806 N] New bot added!: Raid Bot
+[23:54:44.806 N] New bot added!: Templar
+[23:54:44.806 N] New bot added!: Tyrael
+[23:54:52.121 D] [RoutineManager] Routines have been reloaded. Current class-specific list:
+[23:54:52.121 D] Demonic Premium [Millz] v0.0.0.0
+[23:54:52.122 D] Oracle [1.0.0.315] v1.0.0.315
+[23:54:52.122 D] Singular v3.0.0.3502 v3.0.0.3502
+[23:54:54.861 D] [Demonic ~ Debug] Logging in as: hello123
+[23:54:56.312 D] [Demonic ~ Debug] Successfully Authorised As hello123
+[23:54:56.359 D] [Demonic ~ Debug] [TalentManager] - Talent 2 chosen
+[23:54:56.360 D] [Demonic ~ Debug] [TalentManager] - Talent 6 chosen
+[23:54:56.361 D] [Demonic ~ Debug] [TalentManager] - Talent 9 chosen
+[23:54:56.362 D] [Demonic ~ Debug] [TalentManager] - Talent 11 chosen
+[23:54:56.362 D] [Demonic ~ Debug] [TalentManager] - Talent 13 chosen
+[23:54:56.363 D] [Demonic ~ Debug] [TalentManager] - Talent 17 chosen
+[23:54:56.364 D] [Demonic ~ Debug] Glyphdetection - GetNumGlyphSockets 6
+[23:54:56.364 D] [Demonic ~ Debug] Glyphdetection - SpellId: 58081,Name:Glyph of Eye of Kilrogg ,WoWSpell: Glyph of Eye of Kilrogg
+[23:54:56.365 D] [Demonic ~ Debug] Glyphdetection - SpellId: 56235,Name:Glyph of Conflagrate ,WoWSpell: Glyph of Conflagrate
+[23:54:56.365 D] [Demonic ~ Debug] Glyphdetection - SpellId: 56241,Name:Glyph of Verdant Spheres ,WoWSpell: Glyph of Verdant Spheres
+[23:54:56.365 D] [Demonic ~ Debug] Glyphdetection - SpellId: 56218,Name:Glyph of Siphon Life ,WoWSpell: Glyph of Siphon Life
+[23:54:56.366 D] [Demonic ~ Debug] Glyphdetection - SpellId: 56232,Name:Glyph of Nightmares ,WoWSpell: Glyph of Nightmares
+[23:54:56.366 D] [Demonic ~ Debug] Glyphdetection - SpellId: 148683,Name:Glyph of Eternal Resolve ,WoWSpell: Glyph of Eternal Resolve
+[23:54:56.367 D] [Demonic ~ Debug] RebuildBehaviors called.
+[23:54:56.370 N] [Demonic] Finding a suitable rotation...
+[23:54:56.442 N] [Demonic] Using the Destruction rotation.
+[23:54:56.496 D] [Demonic ~ Debug] Behaviors Created
+[23:54:56.496 D] [Demonic ~ Debug] Client Latency: 140
+[23:54:56.496 D] [Demonic ~ Debug] 0.2 days since Windows was started.
+[23:54:56.496 D] [Demonic ~ Debug] 
+[23:54:56.496 D] [Demonic ~ Debug] ====== Demonic Settings ======
+[23:54:56.499 D] [Demonic ~ Debug] + EnableMovement: False
+[23:54:56.499 D] [Demonic ~ Debug] + EnableTargeting: True
+[23:54:56.499 D] [Demonic ~ Debug] + EnableFacing: True
+[23:54:56.499 D] [Demonic ~ Debug] + SuspendMovement: False
+[23:54:56.499 D] [Demonic ~ Debug] + SuspendMovementDuration: 3000
+[23:54:56.499 D] [Demonic ~ Debug] + AutoJump: False
+[23:54:56.499 D] [Demonic ~ Debug] + AutoFocus: True
+[23:54:56.499 D] [Demonic ~ Debug] + AllowRestBehavior: False
+[23:54:56.499 D] [Demonic ~ Debug] + EatHPPercent: 75
+[23:54:56.499 D] [Demonic ~ Debug] + DrinkManaPercent: 50
+[23:54:56.499 D] [Demonic ~ Debug] + CreateHealthstones: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseHealthstones: True
+[23:54:56.499 D] [Demonic ~ Debug] + OnlyHealthstoneWithDarkRegen: False
+[23:54:56.499 D] [Demonic ~ Debug] + HealthstoneHPPercent: 30
+[23:54:56.499 D] [Demonic ~ Debug] + UseTrinket1: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseTrinket2: False
+[23:54:56.499 D] [Demonic ~ Debug] + Trinket1Condition: 2
+[23:54:56.499 D] [Demonic ~ Debug] + Trinket2Condition: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Trinket1LowHPValue: 30
+[23:54:56.499 D] [Demonic ~ Debug] + Trinket1LowManaValue: 30
+[23:54:56.499 D] [Demonic ~ Debug] + Trinket2LowHPValue: 30
+[23:54:56.499 D] [Demonic ~ Debug] + Trinket2LowManaValue: 30
+[23:54:56.499 D] [Demonic ~ Debug] + UseSynapseSprings: False
+[23:54:56.499 D] [Demonic ~ Debug] + SynapseSpringsCond: 0
+[23:54:56.499 D] [Demonic ~ Debug] + UseLifeblood: False
+[23:54:56.499 D] [Demonic ~ Debug] + LifebloodCond: 1
+[23:54:56.499 D] [Demonic ~ Debug] + LifebloodLowHPValue: 25
+[23:54:56.499 D] [Demonic ~ Debug] + RacialUsage: 1
+[23:54:56.499 D] [Demonic ~ Debug] + ForceOutOfCombatPulse: False
+[23:54:56.499 D] [Demonic ~ Debug] + BreakStealthedUnits: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseDarkIntent: True
+[23:54:56.499 D] [Demonic ~ Debug] + EnableWowChatText: False
+[23:54:56.499 D] [Demonic ~ Debug] + EnableInGameAddon: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseHealthFunnel: True
+[23:54:56.499 D] [Demonic ~ Debug] + HealthFunnelMyHPGreaterThan: 50
+[23:54:56.499 D] [Demonic ~ Debug] + HealthFunnelPetHPLessThan: 20
+[23:54:56.499 D] [Demonic ~ Debug] + UseSoulburnWithHealthFunnel: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseDrainLife: True
+[23:54:56.499 D] [Demonic ~ Debug] + DrainLifeHP: 70
+[23:54:56.499 D] [Demonic ~ Debug] + UseSoulburnDrainLife: False
+[23:54:56.499 D] [Demonic ~ Debug] + SoulburnDrainLifeHP: 30
+[23:54:56.499 D] [Demonic ~ Debug] + TwilightWardCond: 3
+[23:54:56.499 D] [Demonic ~ Debug] + CurseSelection: 0
+[23:54:56.499 D] [Demonic ~ Debug] + CurseSelectionCond: 1
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_UseSoulburnWithCurse: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseUnendingResolve: True
+[23:54:56.499 D] [Demonic ~ Debug] + UnendingResolveHPValue: 40
+[23:54:56.499 D] [Demonic ~ Debug] + UseUnendingResolveTargetLowHP: False
+[23:54:56.499 D] [Demonic ~ Debug] + UnendingResolveTargetHPValue: 30
+[23:54:56.499 D] [Demonic ~ Debug] + UnendingResolveOnBurst: False
+[23:54:56.499 D] [Demonic ~ Debug] + UnendingBreath: True
+[23:54:56.499 D] [Demonic ~ Debug] + DemonicCircle_RootedSnared: False
+[23:54:56.499 D] [Demonic ~ Debug] + DemonicCircle_LowHP: False
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_DemonicCircle_Soulburn: False
+[23:54:56.499 D] [Demonic ~ Debug] + DemonicCircle_LowHPValue: 65
+[23:54:56.499 D] [Demonic ~ Debug] + AutoSummonDemon: True
+[23:54:56.499 D] [Demonic ~ Debug] + DemonSelection: 1
+[23:54:56.499 D] [Demonic ~ Debug] + AutoSummonDoomguard: False
+[23:54:56.499 D] [Demonic ~ Debug] + DemonCombatInstantAbilitiesOnly: True
+[23:54:56.499 D] [Demonic ~ Debug] + DoomguardCondition: 1
+[23:54:56.499 D] [Demonic ~ Debug] + AutoSummonInfernal: True
+[23:54:56.499 D] [Demonic ~ Debug] + InfernalCondition: 1
+[23:54:56.499 D] [Demonic ~ Debug] + UseBanish: True
+[23:54:56.499 D] [Demonic ~ Debug] + BanishCondition: 0
+[23:54:56.499 D] [Demonic ~ Debug] + CommandDemonTarget: True
+[23:54:56.499 D] [Demonic ~ Debug] + CommandDemonFocus: True
+[23:54:56.499 D] [Demonic ~ Debug] + CommandDemonHealer: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseSoulshatter: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseFearTarget: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseFearFocus: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseFearAny: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseFearAnyUsedCooldowns: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseFearHealer: False
+[23:54:56.499 D] [Demonic ~ Debug] + OnlyFearFullDuration: True
+[23:54:56.499 D] [Demonic ~ Debug] + AllowFearHalfDuration: False
+[23:54:56.499 D] [Demonic ~ Debug] + KillTotems: True
+[23:54:56.499 D] [Demonic ~ Debug] + InterruptFlagCaptures: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseSymbiosisRejuventation: True
+[23:54:56.499 D] [Demonic ~ Debug] + SymbiosisRejuvenationHealthPercent: 80
+[23:54:56.499 D] [Demonic ~ Debug] + Pet_SpellLockDurationRemaining: 500
+[23:54:56.499 D] [Demonic ~ Debug] + Pet_DisarmHealthPercent: 40
+[23:54:56.499 D] [Demonic ~ Debug] + Pet_CauterizeHealthPercent: 88
+[23:54:56.499 D] [Demonic ~ Debug] + Pet_ShadowBulwarkHealthPercent: 25
+[23:54:56.499 D] [Demonic ~ Debug] + Pet_ShadowBulwarkWithDarkRegen: True
+[23:54:56.499 D] [Demonic ~ Debug] + Pet_ForceAttack: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseDarkRegeneration: False
+[23:54:56.499 D] [Demonic ~ Debug] + DarkRegenerationPercent: 35
+[23:54:56.499 D] [Demonic ~ Debug] + UseHowlOfTerrorHPLessThan: True
+[23:54:56.499 D] [Demonic ~ Debug] + HowlOfTerrorHPLessThanValue: 20
+[23:54:56.499 D] [Demonic ~ Debug] + UseHowlOfTerrorUnitsInRange: False
+[23:54:56.499 D] [Demonic ~ Debug] + HowlOfTerrorUnitsInRangeValue: 3
+[23:54:56.499 D] [Demonic ~ Debug] + UseDemonicBreath: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseDemonicBreathOnlyWhenTargetNotSlowed: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseMortalCoil: False
+[23:54:56.499 D] [Demonic ~ Debug] + MortalCoilHPValue: 75
+[23:54:56.499 D] [Demonic ~ Debug] + UseMortalCoilHealer: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseShadowfuryUnitsInRange: True
+[23:54:56.499 D] [Demonic ~ Debug] + ShadowfuryUnitsInRangeValue: 2
+[23:54:56.499 D] [Demonic ~ Debug] + UseShadowfuryOnCooldown: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseShadowfuryOnHealers: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseSoulLink: True
+[23:54:56.499 D] [Demonic ~ Debug] + UseSacrificialPact: False
+[23:54:56.499 D] [Demonic ~ Debug] + SacrificialPactMyHPBelowValue: 75
+[23:54:56.499 D] [Demonic ~ Debug] + SacrificialPactPetHPAboveValue: 65
+[23:54:56.499 D] [Demonic ~ Debug] + SacrificialPactOnlyUseOnLossOfControl: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseDarkBargain: True
+[23:54:56.499 D] [Demonic ~ Debug] + DarkBargainHPBelowValue: 25
+[23:54:56.499 D] [Demonic ~ Debug] + OnlyDarkBargainOnLossOfControl: False
+[23:54:56.499 D] [Demonic ~ Debug] + BloodHorror: 2
+[23:54:56.499 D] [Demonic ~ Debug] + UseBurningRush: False
+[23:54:56.499 D] [Demonic ~ Debug] + OnlyUseBurningRushInCombat: False
+[23:54:56.499 D] [Demonic ~ Debug] + BurningRushCancelHPBelowValue: 50
+[23:54:56.499 D] [Demonic ~ Debug] + UseUnboundWillOnLossOfControl: False
+[23:54:56.499 D] [Demonic ~ Debug] + GrimoireOfServiceCondition: 3
+[23:54:56.499 D] [Demonic ~ Debug] + GrimoireOfServiceTargetLowHPValue: 20
+[23:54:56.499 D] [Demonic ~ Debug] + UseGrimoireOfSacrifice: False
+[23:54:56.499 D] [Demonic ~ Debug] + Talent_DarkSoulSecondCharge: False
+[23:54:56.499 D] [Demonic ~ Debug] + UseMannorothsFury: False
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_EnableAoEAbilities: True
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_AoEHighUnitCount: 5
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_UseDarkSoulMisery: True
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_DarkSoulMiseryCondition: 1
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_DarkSoulMiseryLowHPValue: 40
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_EnableCancelCasting: False
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_CancelCastHPPercent: 5
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_CancelCastShardCount: 1
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_CorruptionForceRefresh: 4000
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_CorruptionPandemicPower: 10
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_CorruptionAnyPower: 30
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_CorruptionMinimumHpValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_AgonyForceRefresh: 4000
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_AgonyPandemicPower: 10
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_AgonyAnyPower: 30
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_AgonyMinimumHpValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_UnstableAfflictionForceRefresh: 4000
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_UnstableAfflictionPandemicPower: 10
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_UnstableAfflictionAnyPower: 30
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_UnstableAfflictionMinimumHpValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_PreventHauntSBSSWhen1Shard: False
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_DrainSoulWhenNoShards: False
+[23:54:56.499 D] [Demonic ~ Debug] + Affliction_SoulSwapExhaleHPValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_RoFSingleTargetTogglesWithAoE: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_RoFSingleTarget: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_RoFSingleTargetProcs: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_RoFEverythingInRange: False
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_RoFEverythingInRangeProcs: False
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_RoFEverythingIncludingNoCombat: False
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_UseHavoc: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_OnlyHavocWithCB: False
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_CastHavocOnFocus: False
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_FlamesOfXoroth: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_UseEmberTap: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_EmberTapHPValue: 25
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_FelFlameInsteadOfIncinerate: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_FelFlameInsteadOfIncinerateAtHPValue: 25
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_UseDarkSoulInstability: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_MinimumEmbersForDarkSoul: 20
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_DarkSoulCondition: 1
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_DarkSoulLowHPValue: 40
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_ChaosBoltValue: 35
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_ChaosBoltMinimumHPValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_UseAoEAbilities: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_AoEUnitCount: 2
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_EnableCancelCasting: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_CancelTimeRemaining: 500
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_CancelCastHPPercent: 15
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_CancelCurrentTarget: False
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_CancelAnyTarget: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_UseRoFToPull: True
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_MinimumEmbersForHavoc: 10
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_ImmolateRefresh: 4000
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_ImmolatePandemicPower: 10
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_ImmolateAnyPower: 30
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_ImmolateMaxUnitsToDoT: 4
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_ImmolateMinimumHpValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Destruction_4IncineratesInOpener: True
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_EnableAoEAbilities: True
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_AoEUnitCount: 5
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_FuryCancelValue: 650
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_FuryCastValue: 900
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_UseDarkSoulKnowledge: True
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_DarkSoulKnowledgeCondition: 1
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_DarkSoulKnowledgeLowHPValue: 40
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_UseImpSwarm: False
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_UseImpSwarmOnBurst: False
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_UseCarrionSwarm: True
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_UseSoulFireInDemonForm: False
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_UseSoulFireInNormalForm: True
+[23:54:56.499 D] [Demonic ~ Debug] + DoomForceRefresh: 15000
+[23:54:56.499 D] [Demonic ~ Debug] + DoomPandemicPower: 10
+[23:54:56.499 D] [Demonic ~ Debug] + DoomAnyPower: 30
+[23:54:56.499 D] [Demonic ~ Debug] + DoomMaxUnitsToDoT: 5
+[23:54:56.499 D] [Demonic ~ Debug] + DoomMinimumHpValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_CorruptionMaxUnitsToDoT: 5
+[23:54:56.499 D] [Demonic ~ Debug] + Demonology_CorruptionMinimumHpValue: 0
+[23:54:56.499 D] [Demonic ~ Debug] + UseCustomCanCast: False
+[23:54:56.499 D] [Demonic ~ Debug] + EnableFramelockAntiLag: True
+[23:54:56.499 D] [Demonic ~ Debug] + EnableFramelockAntiLagStage2: True
+[23:54:56.499 D] [Demonic ~ Debug] + HasGivenRep: 1
+[23:54:56.499 D] [Demonic ~ Debug] + AttackOutOfCombat: True
+[23:54:56.499 D] [Demonic ~ Debug] + UsePotion: True
+[23:54:56.499 D] [Demonic ~ Debug] + PotionCondition: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Movement: 29
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Targeting: 27
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Facing: 28
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_AoE: 1
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Burst: 2
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Cooldowns: 3
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_FearTarget_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_FearTarget_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_FearFocus_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_FearFocus_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_FearMouseover_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_FearMouseover_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_MortalCoilTarget_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_MortalCoilTarget_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_MortalCoilFocus_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_MortalCoilFocus_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_MortalCoilMouseover_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_MortalCoilMouseover_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_ShadowfuryTarget_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_ShadowfuryTarget_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_ShadowfuryFocus_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_ShadowfuryFocus_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_ShadowfuryMouseover_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_ShadowfuryMouseover_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_HowlOfTerror_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_HowlOfTerror_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Soulstone_Modifier: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_Soulstone_Key: 0
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_PauseNonMovementKeyPress: False
+[23:54:56.499 D] [Demonic ~ Debug] + Hotkey_PauseNonMovementKeyPressDuration: 500
+[23:54:56.499 D] [Demonic ~ Debug] ==============================
+[23:54:56.499 D] [Demonic ~ Debug] 
+[23:54:56.509 D] [Demonic ~ Debug] ==============================
+[23:54:56.509 D] [Demonic ~ Debug] Aura count loaded: 21
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Dark Soul: Misery] [ID:113860] [StackCount:1] [Comment:+Haste - Affliction] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Dark Soul: Instability] [ID:113858] [StackCount:1] [Comment:+Crit - Destruction] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:True] [RoF:True]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Dark Soul: Knowledge] [ID:113861] [StackCount:1] [Comment:+Mastery - Demonology] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Skull Banner] [ID:114206] [StackCount:1] [Comment:+20% Crit Damage - Warrior Banner] [Haunt:False] [Metamorphosis:True] [SoulFire:False] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Heroism] [ID:32182] [StackCount:1] [Comment:+30% Haste - Shaman Ability (Alliance)] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:False] [RoF:True]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Time Warp] [ID:80353] [StackCount:1] [Comment:+30% Haste - Mage Ability] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:False] [RoF:True]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Bloodlust] [ID:2825] [StackCount:1] [Comment:+30% Haste - Shaman Ability (Horde)] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:False] [RoF:True]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Ancient Hysteria] [ID:90355] [StackCount:1] [Comment:+30% Haste - Hunter's Pet Ability] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:False] [RoF:True]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Perfect Aim] [ID:138963] [StackCount:1] [Comment:Lei Shen's 100% Crit Trinket] [Haunt:True] [Metamorphosis:True] [SoulFire:False] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Acceleration] [ID:138703] [StackCount:1] [Comment:+9483 Haste (10s) Volatile Talisman of the Shado-Pan Assault] [Haunt:True] [Metamorphosis:False] [SoulFire:True] [Chaos Bolt:False] [RoF:True]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Wushoolay's Lightning] [ID:138786] [StackCount:8] [Comment:Wushoolay's Final Choice Trinket] [Haunt:False] [Metamorphosis:False] [SoulFire:False] [Chaos Bolt:False] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Yu'lon's Bite] [ID:146218] [StackCount:1] [Comment:+5084 Crit - 20s] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Expanded Mind] [ID:146046] [StackCount:1] [Comment:+5084 Intellect - 20s] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Wrath of the Darkspear] [ID:146184] [StackCount:6] [Comment:+1016 Intellect, Stacks 10 Times, 10s] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Toxic Power] [ID:148906] [StackCount:1] [Comment:+5084 Intellect - 10s] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Jade Spirit] [ID:104993] [StackCount:1] [Comment:Weapon Enchant] [Haunt:False] [Metamorphosis:False] [SoulFire:False] [Chaos Bolt:False] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Lifeblood] [ID:121279] [StackCount:1] [Comment:+2880 Haste - Herbalism] [Haunt:False] [Metamorphosis:False] [SoulFire:False] [Chaos Bolt:False] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Tempus Repit] [ID:137590] [StackCount:1] [Comment:+30% Haste - Legendary Meta] [Haunt:True] [Metamorphosis:True] [SoulFire:True] [Chaos Bolt:False] [RoF:True]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Ember Master] [ID:145164] [StackCount:1] [Comment:T16 4 Piece Set Bonus] [Haunt:False] [Metamorphosis:False] [SoulFire:False] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Surge of Dominance] [ID:126706] [StackCount:1] [Comment:PvP Trinket - Insignia of Dominance] [Haunt:True] [Metamorphosis:False] [SoulFire:False] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] [AuraList] [Name:Call of Dominance] [ID:126683] [StackCount:1] [Comment:PvP Trinket - Badge of Dominance] [Haunt:True] [Metamorphosis:False] [SoulFire:False] [Chaos Bolt:True] [RoF:False]
+[23:54:56.509 D] [Demonic ~ Debug] ==============================
+[23:54:56.791 D] [Demonic ~ Debug] Movement Key: JUMP = Space
+[23:54:56.840 D] [Demonic ~ Debug] Movement Key: TURNLEFT = Left
+[23:54:56.847 D] [Demonic ~ Debug] Movement Key: MOVEFORWARD = Up
+[23:54:56.854 D] [Demonic ~ Debug] Movement Key: TURNRIGHT = Right
+[23:54:56.862 D] [Demonic ~ Debug] Movement Key: MOVEBACKWARD = Down
+[23:54:56.997 D] [Demonic ~ Debug] Movement Key: TURNLEFT = A
+[23:54:57.018 D] [Demonic ~ Debug] Movement Key: TURNRIGHT = D
+[23:54:57.025 D] [Demonic ~ Debug] Movement Key: STRAFERIGHT = E
+[23:54:57.108 D] [Demonic ~ Debug] Movement Key: STRAFELEFT = Q
+[23:54:57.125 D] [Demonic ~ Debug] Movement Key: MOVEBACKWARD = S
+[23:54:57.154 D] [Demonic ~ Debug] Movement Key: MOVEFORWARD = W
+[23:54:57.211 D] [Demonic ~ Debug] Movement Key: JUMP = NumPad0
+[23:54:57.955 D] Applied filter to event COMBAT_LOG_EVENT_UNFILTERED. Filter: return args[2] == 'SPELL_CAST_FAILED' or args[2] == 'SPELL_CAST_SUCCESS' or args[2] == 'SPELL_AURA_REFRESH' or args[2] == 'SPELL_AURA_APPLIED'
+[23:54:57.955 N] [Demonic] Demonic Premium Modified BY:Kevin @2014 [Update: 01/Jun/2014]
+[23:54:57.957 N] [Demonic] You are a level 90 BloodElf (For the Horde!)
+[23:54:57.957 N] [Demonic]  
+[23:54:57.957 N] [Demonic] If you've got low in game latency, enable both of the anti-lag settings under Advanced for better FPS.
+[23:54:57.957 N] [Demonic]  
+[23:54:57.957 D] Activity: Initialization complete
+[23:54:57.963 D] Activity: Honorbuddy Startup Complete
+[23:54:57.963 N] Honorbuddy Startup Complete

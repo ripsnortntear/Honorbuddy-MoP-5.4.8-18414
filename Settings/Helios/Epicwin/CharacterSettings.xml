@@ -14,6 +14,10 @@
   <TicksPerSecond>90</TicksPerSecond>
   <FoodAmount>0</FoodAmount>
   <DrinkAmount>0</DrinkAmount>
+  <EnabledPlugins />
+  <RecentProfiles>
+    <Entry>Fight Here@@!@@C:\HB\HB - Main\Plugins\FightHere\FightHere.xml</Entry>
+  </RecentProfiles>
   <!--The last selected index used by the Combobox in the form.-->
   <SelectedBotIndex>-1</SelectedBotIndex>
   <SelectedBotName>Tyrael</SelectedBotName>
@@ -21,8 +25,8 @@
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>False</UseRandomMount>
   <MailRecipient></MailRecipient>
-  <FoodName>17407</FoodName>
-  <DrinkName>17404</DrinkName>
+  <FoodName>81414</FoodName>
+  <DrinkName>81414</DrinkName>
   <MountName>Black Skeletal Horse</MountName>
   <FlyingMountName>Tawny Wind Rider</FlyingMountName>
   <LootMobs>True</LootMobs>
@@ -30,11 +34,11 @@
   <NinjaSkin>False</NinjaSkin>
   <LootChests>True</LootChests>
   <HarvestMinerals>False</HarvestMinerals>
-  <HarvestHerbs>False</HarvestHerbs>
+  <HarvestHerbs>True</HarvestHerbs>
   <UseMount>True</UseMount>
   <PullDistance>100</PullDistance>
   <LootRadius>45</LootRadius>
-  <LastUsedPath></LastUsedPath>
+  <LastUsedPath>C:\HB\HB - Main\Plugins\FightHere\FightHere.xml</LastUsedPath>
   <MountDistance>60</MountDistance>
   <RessAtSpiritHealers>False</RessAtSpiritHealers>
 </CharacterSettings>

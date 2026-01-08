@@ -31,7 +31,7 @@
   <ForceOutOfCombatPulse>False</ForceOutOfCombatPulse>
   <BreakStealthedUnits>False</BreakStealthedUnits>
   <UseDarkIntent>True</UseDarkIntent>
-  <EnableWowChatText>True</EnableWowChatText>
+  <EnableWowChatText>False</EnableWowChatText>
   <EnableInGameAddon>True</EnableInGameAddon>
   <UseHealthFunnel>True</UseHealthFunnel>
   <HealthFunnelMyHPGreaterThan>50</HealthFunnelMyHPGreaterThan>
@@ -56,7 +56,7 @@
   <Affliction_DemonicCircle_Soulburn>False</Affliction_DemonicCircle_Soulburn>
   <DemonicCircle_LowHPValue>65</DemonicCircle_LowHPValue>
   <AutoSummonDemon>True</AutoSummonDemon>
-  <DemonSelection>1</DemonSelection>
+  <DemonSelection>3</DemonSelection>
   <AutoSummonDoomguard>False</AutoSummonDoomguard>
   <DemonCombatInstantAbilitiesOnly>False</DemonCombatInstantAbilitiesOnly>
   <DoomguardCondition>1</DoomguardCondition>
@@ -202,11 +202,11 @@
   <AttackOutOfCombat>True</AttackOutOfCombat>
   <UsePotion>True</UsePotion>
   <PotionCondition>0</PotionCondition>
-  <Hotkey_Modifier>1</Hotkey_Modifier>
-  <Hotkey_Movement>13</Hotkey_Movement>
-  <Hotkey_Targeting>20</Hotkey_Targeting>
-  <Hotkey_Facing>18</Hotkey_Facing>
-  <Hotkey_AoE>6</Hotkey_AoE>
+  <Hotkey_Modifier>0</Hotkey_Modifier>
+  <Hotkey_Movement>29</Hotkey_Movement>
+  <Hotkey_Targeting>27</Hotkey_Targeting>
+  <Hotkey_Facing>28</Hotkey_Facing>
+  <Hotkey_AoE>1</Hotkey_AoE>
   <Hotkey_Burst>2</Hotkey_Burst>
   <Hotkey_Cooldowns>3</Hotkey_Cooldowns>
   <Hotkey_FearTarget_Modifier>0</Hotkey_FearTarget_Modifier>

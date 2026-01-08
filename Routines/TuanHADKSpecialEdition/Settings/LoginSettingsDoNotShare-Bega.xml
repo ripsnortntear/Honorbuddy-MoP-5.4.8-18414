@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<THLoginSettings>
+  <Username></Username>
+  <Password></Password>
+  <AutoLogin>True</AutoLogin>
+  <RememberMe>True</RememberMe>
+  <ShowPassword>True</ShowPassword>
+</THLoginSettings>

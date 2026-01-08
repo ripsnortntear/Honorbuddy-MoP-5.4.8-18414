@@ -10,12 +10,12 @@
   <BotsPath>Bots</BotsPath>
   <ReloadBotsOnFileChange>False</ReloadBotsOnFileChange>
   <QuestBehaviorsPath>Quest Behaviors</QuestBehaviorsPath>
-  <Username>0Dni2YurEPpVpt+vgMNxeKkhbxhnPXiZU2Fsknhw5hc=</Username>
+  <Username>0Dni2YurEPpVpt+vgMNxeNXeVrmymVFGedTi8SLCYSo=</Username>
   <MeshesFolderPath>C:\Users\Ryan\AppData\Local\Bossland\Honorbuddy\Meshes</MeshesFolderPath>
   <KillBetweenHotspots>True</KillBetweenHotspots>
   <AdvancedSettingsMode>True</AdvancedSettingsMode>
   <!--Whether or not we should log out after the bot has detected inactivity.-->
-  <LogoutForInactivity>False</LogoutForInactivity>
+  <LogoutForInactivity>True</LogoutForInactivity>
   <!--Logs out after X minutes of inactivity.-->
   <LogoutInactivityTimer>20</LogoutInactivityTimer>
   <LogoutInactivityUseForceQuit>False</LogoutInactivityUseForceQuit>

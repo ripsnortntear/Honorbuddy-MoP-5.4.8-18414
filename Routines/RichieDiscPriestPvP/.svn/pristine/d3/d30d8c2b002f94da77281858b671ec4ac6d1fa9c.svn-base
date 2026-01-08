@@ -1,0 +1,143 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Styx;
+using Styx.Common;
+using Styx.CommonBot;
+using Styx.CommonBot.Routines;
+using Styx.TreeSharp;
+using Styx.WoWInternals;
+using Styx.WoWInternals.WoWObjects;
+using Action = Styx.TreeSharp.Action;
+
+namespace RichieDiscPriestPvP
+{
+    public partial class Main {
+
+        private static string RoutineName = "Richie's Discipline Priest PvP Combat Routine";
+
+        //Main Rotation
+		#region MainRotation
+
+        private static Composite MainRotation() {
+            return new PrioritySelector(
+                Hold(),
+                new Throttle(TimeSpan.FromMilliseconds(DiscSettings.Instance.SearchInterval), GetUnits()),
+                GetUnitHeal(),
+                MiscSetups(),
+                new Decorator(
+                    ret =>
+                    TreeRoot.Current.Name != "LazyRaider" &&
+                    TreeRoot.Current.Name != "Raid Bot" &&
+                    TreeRoot.Current.Name != "Combat Bot" &&
+                    TreeRoot.Current.Name != "Tyrael" &&
+                    (Me.IsCasting || Me.IsChanneling),
+                    new Action(delegate { return RunStatus.Success; })
+                ),
+                MovementMoveToLoS(ret => HealTarget),
+                MovementMoveStop(ret => HealTarget, 25),
+                PainSuppression(),
+                //VoidShiftGriefBG(),
+                //VoidShift(),
+                Fade(),                
+                UseHealthstone(),
+                //DesperatePrayer(),
+                Barrier(),
+                WotF(),
+                //LoFScatter(),
+                //MassDispel(),
+                //PurifyASAP(),
+                /*new Decorator(ret => HealTarget.HealthPercent >= DiscSettings.Instance.TotemAndPlayerKillingAboveHp &&
+                    !CastingorGCDL() &&
+                    GetASAPAttackTarget() &&
+                    ASAPAttackTarget != null &&
+                    ASAPAttackTarget.IsValid &&                    
+                    ASAPAttackTarget.InLineOfSpellSight,
+                    new PrioritySelector(
+                        SWDASAP(),
+                        SolaceASAP(),
+                        HolyFireASAP(),
+                        PenanceASAP(),
+                        SmiteASAP()
+                    )
+                ),
+                new Decorator(ret => Me.HealthPercent <= DiscSettings.Instance.PeelSelf &&
+                              Me.Combat && !CastingorGCDL(),
+                    new PrioritySelector(
+                        SpectralGuise(),
+                        PsychicScream(),
+                        VoidTendrils(),
+                        PsyfiendPeel()
+                     )
+                ),*/
+                AngelicFeather(),
+                //PWSBlanket(),
+                //RenewBlanket(),
+                //Shadowfiend(),
+                Shackle(),
+                PurifyLowPrio(),
+                /*new Decorator(ret => HealTarget.HealthPercent >= DiscSettings.Instance.AtonementHealingAbove &&
+                    GetAtonementAttackTarget() &&
+                    ValidUnit(AtonementAttackTarget) &&
+                    SafelyFaceTarget(AtonementAttackTarget) &&
+                    AtonementAttackTarget.InLineOfSpellSight &&
+                    AtonementAttackTarget.Distance2D <= SmiteRange &&
+                    !CastingorGCDL(),
+                    new PrioritySelector(
+                        new Decorator(ret => !DiscSettings.Instance.OnlyUseSmite,
+                            new PrioritySelector(
+                                Solace(),                        
+                                HolyFire()
+                            )
+                        ),
+                        Smite()
+                    )
+                ),*/
+                Cascade(),
+                Halo(),
+                new Decorator(ret => !CastingorGCDL() && Healable(HealTarget),
+                    new PrioritySelector(
+                        PrayerOfHealing(),
+                        new Decorator(ret => HealTarget.HealthPercent <= 30,
+                            new PrioritySelector(
+                                //PowerInfusion(),
+                                DPSTrinket("heal"),
+                                //Lifeblood("heal"),
+                                //SynapseSprings("heal"),
+                                Berserking("heal")
+                                //,Archangel()
+                            )
+                        ),
+                        PWS(),
+                        PoM(),
+                        Renew(),
+                        Penance(),
+                        FlashHealInstant(),
+                        BindingHeal(),
+                        FlashHeal(),                                                
+                        DivineStar()
+                    )
+                ),
+                InnerFire(),
+                PowerWordFortitude(),
+                FearWardSelf(),
+                SetBasicVariables()
+            );
+        }
+
+
+		private static Composite SetBasicVariables() {			
+
+            return new Action(
+                delegate {
+                    return RunStatus.Success;
+                }
+            );
+		}
+
+        #endregion
+
+    }
+}
