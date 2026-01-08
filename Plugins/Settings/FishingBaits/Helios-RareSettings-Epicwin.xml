@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RareSettings>
+  <CombatLooter>True</CombatLooter>
+  <Rarefinder>True</Rarefinder>
+  <ChestFinder>True</ChestFinder>
+  <radius>200</radius>
+  <NormalRares>True</NormalRares>
+  <EliteRares>True</EliteRares>
+</RareSettings>

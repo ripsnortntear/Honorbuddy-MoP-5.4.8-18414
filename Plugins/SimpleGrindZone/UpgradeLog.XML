@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SimpleGrindZone">
+</Property><Property Name="Solution documents" Value="E:\Workspace\Honorbuddy\SimpleGrindZone\SimpleGrindZone.sln">
+</Property><Property Name="User options file" Value="E:\Workspace\Honorbuddy\SimpleGrindZone\SimpleGrindZone.suo">
+</Property><Property Name="Date" Value="2012年9月18日">
+</Property><Property Name="Time" Value="20:00">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="SimpleGrindZone.sln" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\SimpleGrindZone.sln">
+</Event><Event ErrorLevel="0" Project="" Source="SimpleGrindZone.suo" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\SimpleGrindZone.suo">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="SimpleGrindZone.csproj" Description="项目文件已成功备份为 E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\SimpleGrindZone.csproj">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="SimpleGrindZone.csproj.user" Description="项目用户文件成功备份为 E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\SimpleGrindZone.csproj.user">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="SimpleGrindZone.cs" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\SimpleGrindZone.cs">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Form1.cs" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Form1.cs">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Form1.Designer.cs" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Program.cs" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Properties\AssemblyInfo.cs" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Properties\Resources.Designer.cs" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Properties\Settings.Designer.cs" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Properties\Settings.settings" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Form1.resx" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Form1.resx">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="Properties\Resources.resx" Description="The file was successfully backed up as E:\Workspace\Honorbuddy\SimpleGrindZone\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="SimpleGrindZone.csproj" Description="The project has been successfully converted">
+</Event><Event ErrorLevel="3" Project="SimpleGrindZone" Source="SimpleGrindZone.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="SimpleGrindZone.sln" Description="Successful conversion solutions">
+</Event><Event ErrorLevel="3" Project="" Source="SimpleGrindZone.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SimpleGrindZone" Source="SimpleGrindZone.csproj" Description="Scan complete: project files do not need to be upgraded。">
+</Event></UpgradeLog>
