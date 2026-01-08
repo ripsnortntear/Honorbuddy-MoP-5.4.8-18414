@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PetBattleSettings>
+  <Logic>SWAPOUT Health(THISPET) ISLESSTHAN 30@CASTSPELL(1) COOLDOWN(SKILL(1)) EQUALS false</Logic>
+  <SpellLayout>ASSIGNABILITY1(0)@ASSIGNABILITY2(0)@ASSIGNABILITY3(0)</SpellLayout>
+</PetBattleSettings>

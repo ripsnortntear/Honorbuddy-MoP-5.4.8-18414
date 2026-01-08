@@ -1,0 +1,15 @@
+WHAT DOES IT DO?
+It will use "Crystal of Insanity" if you have it in your bag.
+
+WHAT DOES THE ITEM "Crystal of Insanity" DO?
+Increases all stats by 500 for 1 hour.  Counts as both a Battle and Guardian elixir. (15 Min Cooldown).
+
+WHERE CAN I GET THE ITEM?
+By killing the rare "Sulik'shor" in Valley of the Four Winds.
+Or by looting Eerie Crystal on Timeless Isle.
+
+URL
+Crystal of Insanity - http://www.wowhead.com/item=86569/
+Sulik'shor - http://www.wowhead.com/npc=50339/
+Eerie Crystal - http://www.wowhead.com/object=222686
+My website - http://cisems.wordpress.com

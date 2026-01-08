@@ -1,0 +1,91 @@
+LogMeOut! Changelog - Written by ZenLulz
+-----------------------------------------
+1.2.18
+	- The stucks are properly detected by the stuck trigger for HonorBuddy 2.5.11034.745.
+	- Handle the exception in the PeopleAroundMe class, detecting the units around the bot for the triggers "Players follow/target me".
+	- Add a new feature in the Actions After allowing LogMeOut! to clear the Cache folder of HonorBuddy.
+	- Add a new feature in the Actions After allowing LogMeOut! to clear the CompiledAssemblies folder of HonorBuddy.
+1.2.17
+	- The logging option "Beep when stuck" is now turned off by default (only when you create a new LogMeOut! profile, it does not impact your actual configuration).
+	- The actions before logging out are correctly handled.
+1.2.16
+	- Add a logging option was created to log each time the bot is stuck or only when the bot reached the maximum number of stuck allowed
+	- Add an exception to not being logged out by the inactivity trigger when the bot has the Deserter debuff
+	- The trigger "Follow me" and "Target me" do not longer trigger when the player is on transport
+1.2.15
+	- Add an extra check in order to avoid triggering the teleportation detection when the player dies based on the health percent
+1.2.14
+	- Update for Honorbuddy v2.5.8690.707
+1.2.13
+	- The trigger "X consecutive stucks" is no longer spammed, a delay of 6 seconds was added between stucking event
+	- The Trigger "X whispers received" only notify whispers when enabled
+1.2.12
+	- The trigger "X consecutive stucks" now correctly works for the WoW 5.4
+1.2.11
+	- The trigger Loot x items is now in the correct section
+	- The trigger "Quit on teleportation" won't detect anymore when the player is standing next to a quest giver and is teleported
+	- The trigger "Quit on teleportation" won't detect anymore when the player is transported by a Zepplin
+	- The trigger "Quit on teleportation" won't detect anymore when the player is teleported by the NPC "The Uncrashable" (Id: 48708)
+	- Don't run to corpse when logging out exception added
+	- When a whisper is received, it explicitly indicates if the sender was a GM
+	- No longer try to cast the hearthstone at the graveyard when the player is dead
+	- No longer displays a negative timer when the trigger "Quit on time" is enabled and the plugin is disabled after the user started the bot
+1.2.10
+	- The GUI no longer crashes HonorBuddy it is called if the bot is started
+	- The trigger "Quit on teleportation" won't detect anymore when the player dies
+1.2.9
+	- The trigger "Quit on teleportation" won't detect anymore when the player is teleported by a meeting stone
+	- The trigger "Quit on teleportation" won't detect anymore when the player is transported by a zeppelin
+1.2.8
+	- The new Trigger "Quit on achievement completed" was added, allowing you to exit the game when a specific achievement is completed
+	- The trigger "Quit on teleportation" won't detect anymore when the player is entering/leaving an instance/battleground
+	- The trigger "Quit on teleportation" won't detect anymore when the player is accepting a quest and is teleported
+	- The trigger "Quit on teleportation" won't detect anymore when the player has opened a frame (Gossip or Quest) and is teleported
+1.2.7
+	- The trigger "Quit on teleportation" won't detect anymore when the player is transferred to the graveyard when it dies
+	- The trigger "Quit on teleportation" won't detect anymore when the player uses a magic object to teleport itself (like a portal)
+	- The trigger "Quit on teleportation" won't detect anymore when the player has the aura "Honorless Target" (appears after a loading screen)
+1.2.6
+	- The new trigger "Teleported further than X yards" has been added
+	- The new trigger "Got a whisper from a GM" has been added
+	- LogMeOut! no longer exits WoW when receiving whispers from BattleNet contacts
+	- A new exception has been added, allowing LogMeOut! to ignore members of your party/raid when evaluating triggers
+1.2.5
+	- Running lua script in action before logout added
+	- Killing reloggers option in action after logout added
+	- Modify duration of the timeout when the bot is flying/dead to 3 minutes
+1.2.4
+	- Quit on inactivity trigger added
+1.2.3
+	- Fix an issue in the settings form if the player doesn't have a profession
+1.2.2
+	- Quit on loot item trigger added
+	- Quit on got a specific aura trigger added
+	- Quit on level in a profession reached trigger added
+	- Quit on durability reached trigger added
+	- Don't log my toon out option in the exceptions tab added
+	- Don't log out if a mailbox is nearby the player in the exceptions tab added
+	- Gracefully shutdown the game now
+	- The stuck trigger is fixed !
+	- The cannot loot mobs trigger is fixed !
+1.2.1
+	- Level trigger up to 90
+	- The stuck trigger and cannot loot trigger have been disabled due to an event issue in HB
+1.2.0
+	- Updated for MoP !
+	- The trigger "Cannot loot mobs" is disabled until someone gives me more information on this problem with new releases of HB
+1.1.2
+	- The new trigger "Cannot loot mobs" has been added. It logs out the bot when it isn't able to loot mobs
+1.1.1
+	- The timeout when the bot logs out is now correctly set to 5 minutes
+1.1
+	- Updater embedded
+	- Showing the name of the attacker and the bot's position when he dies
+	- Detect if another player is following/targeting the bot
+	- Every time HonorBuddy starts, LogMeOut! writes why the bot was logged out (only if the shutdown was launched by LogMeOut!)
+	- Possibility to add a beep when triggers fire
+	- Can ignore the number of death in BGs
+	- Case fixed : Don't get the elapsed time correctly if you start the bot before enable the plugin
+	- A timeout has been added if the bot get stucked during the lougout process (5 minutes)
+1.0
+	- First release

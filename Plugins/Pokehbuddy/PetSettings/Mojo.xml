@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PetBattleSettings>
+  <Logic>SWAPOUT Health(THISPET) ISLESSTHAN 30@CASTSPELL(1) MYPETSPEED ISGREATERTHAN ENEMYSPEED@CASTSPELL(2) COOLDOWN(SKILL(2)) EQUALS false@CASTSPELL(3) COOLDOWN(SKILL(3)) EQUALS false</Logic>
+</PetBattleSettings>
+

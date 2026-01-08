@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PetBattleSettings>
+  <Logic>SWAPOUT Health(THISPET) ISLESSTHAN 25@PASSTURN HASBUFF(822) EQUALS true@PASSTURN HASBUFF(498) EQUALS true@PASSTURN HASBUFF(174) EQUALS true@PASSTURN HASBUFF(734) EQUALS true</Logic>
+  <SpellLayout>ASSIGNABILITY1(0)@ASSIGNABILITY2(0)@ASSIGNABILITY3(0)</SpellLayout>
+</PetBattleSettings>

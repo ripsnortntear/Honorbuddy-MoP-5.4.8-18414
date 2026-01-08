@@ -1,0 +1,10 @@
+﻿TurnOffCTM Changelog - Written by ZenLulz
+-----------------------------------------
+1.1
+	- Update notifier
+	- Define when you wish to disable Click-To-Move (OnBotStopped or OnBotExited)
+	- Define a specific botbase to diable Click-To-Move
+	- A new GUI was created to manage settings
+	- No longer disable Click-To-Move when the plugin is disabled
+1.0
+	- First release

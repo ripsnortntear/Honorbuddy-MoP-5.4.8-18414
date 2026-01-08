@@ -676,3 +676,291 @@ By Likon69, Vo1d, Manjaro and Err0r.
 [23:58:34.563 D] [SpellManager] Summon Voidlord (112867) overrides Summon Voidwalker (697)
 [23:58:34.590 D] Set query filter to Horde
 [23:58:34.667 N] FishingBuddy: Equipping Nat's Lucky Fishing Pole
+[00:06:20.467 N] Stopping the bot!
+[00:06:20.467 Q] Bot stopping! Reason: User pressed the stop button
+[00:06:20.490 N] FishingBuddy: Equipping weapons
+[00:06:20.498 N] FishingBuddy: In 0 days, 0 hours and 7 minutes we have caught
+[00:06:20.498 N] FishingBuddy: Raw Brilliant Smallfish x7
+[00:06:20.498 N] FishingBuddy: Raw Longjaw Mud Snapper x26
+[00:06:20.498 N] FishingBuddy: Raw Bristle Whisker Catfish x12
+[00:09:39.927 V] [Tyrael] 
+[00:09:39.928 V] [Tyrael] ------------------------------------------
+[00:09:39.928 V] [Tyrael] Diagnostic Logging
+[00:09:39.928 V] [Tyrael] 
+[00:09:39.928 V] [Tyrael] Tyrael Revision: 5.6.4
+[00:09:39.928 V] [Tyrael] 
+[00:09:39.928 V] [Tyrael] HardLock Enabled: True
+[00:09:39.928 V] [Tyrael] Ticks per Second: 70
+[00:09:39.928 V] [Tyrael] 
+[00:09:39.928 V] [Tyrael] ====== Settings ======
+[00:09:39.929 V] [Tyrael] AutoUpdate: False
+[00:09:39.929 V] [Tyrael] ChatOutput: False
+[00:09:39.929 V] [Tyrael] ClickToMove: False
+[00:09:39.929 V] [Tyrael] ContinuesHealingMode: False
+[00:09:39.929 V] [Tyrael] PluginPulsing: True
+[00:09:39.929 V] [Tyrael] RaidWarningOutput: False
+[00:09:39.929 V] [Tyrael] UseSoftLock: False
+[00:09:39.929 V] [Tyrael] SvnUrl: Release
+[00:09:39.929 V] [Tyrael] PauseKeyChoice: None
+[00:09:39.929 V] [Tyrael] ModKeyChoice: Control
+[00:09:39.929 V] [Tyrael] CurrentRevision: 0
+[00:09:39.929 V] [Tyrael] LastStatCounted: 7
+[00:09:39.930 V] [Tyrael] 
+[00:09:39.930 V] [Tyrael] 
+[00:09:39.930 V] [Tyrael] ------------------------------------------
+[00:09:39.724 N] Starting the bot!
+[00:09:39.724 N] Currently Using BotBase : Tyrael
+[00:09:39.724 D] Character is a level 90 BloodElf Warlock
+[00:09:39.724 D] Current zone is Kun-Lai Summit
+[00:09:39.727 N] [Tyrael] 
+------------------------------------------
+[00:09:39.727 N] [Tyrael] Checking if the used revision is the latest, updates if it is not.
+[00:09:39.927 N] [Tyrael] No updates found.
+[00:09:39.927 N] [Tyrael] ------------------------------------------
+[00:09:39.932 D] Downloaded tilemap AllianceBeachDailyArea
+[00:09:39.934 D] Downloaded tilemap HordeBeachDailyArea
+[00:09:39.936 D] Downloaded tilemap ValeofEternalBlossoms_17116
+[00:09:39.938 D] Downloaded tilemap HawaiiMainLand
+[00:09:39.946 D] Changed map(s) to AllianceBeachDailyArea, HordeBeachDailyArea, ValeofEternalBlossoms_17116, HawaiiMainLand
+[00:09:39.948 N] Changing current profile to Empty Profile
+[00:09:39.948 D] BlackspotManager forcing unload of meshes - New profile loaded
+[00:09:39.948 N] [Tyrael] ------------------------------------------
+[00:09:39.948 N] [Tyrael] Tyrael 5.6.4 has been started.
+[00:09:39.948 N] [Tyrael] Demonic Premium [Millz] is loaded.
+
+[00:09:39.948 N] [Tyrael] Special thanks to the following persons:
+[00:09:39.948 N] [Tyrael] PureRotation Team
+[00:09:39.948 N] [Tyrael] -------------------------------------------
+
+[00:09:39.965 D] [SpellManager] Adding known spells: Survey               (080451) | Archaeology          (110393) | Jewelcrafting        (025229)
+[00:09:39.965 D] [SpellManager] Adding known spells: Fishing              (131474) | Smelting             (002656) | Cooking Fire         (000818)
+[00:09:39.965 D] [SpellManager] Adding known spells: Cooking              (104381) | First Aid            (110406) | Symbiosis            (110505)
+[00:09:39.965 D] [SpellManager] Adding known spells: Summon Voidwalker    (000697) | Summon Succubus      (000712) | Summon Felhunter     (000691)
+[00:09:39.965 D] [SpellManager] Adding known spells: Summon Imp           (000688) | Voidwalker: Suffer.. (103128) | Voidwalker: Shadow.. (103130)
+[00:09:39.965 D] [SpellManager] Adding known spells: Voidwalker: Shadow.. (103142) | Voidwalker: Disarm   (124539) | Unending Resolve     (104773)
+[00:09:39.965 D] [SpellManager] Adding known spells: Succubus: Whiplash   (103141) | Succubus: Seduction  (103139) | Succubus: Lesser I.. (103140)
+[00:09:39.965 D] [SpellManager] Adding known spells: Soul Leech           (108370) | Soul Harvest         (101976) | Pyroclasm            (123686)
+[00:09:39.965 D] [SpellManager] Adding known spells: Pandemic             (131973) | Nethermancy          (086091) | Mastery: Emberstorm  (077220)
+[00:09:39.965 D] [SpellManager] Adding known spells: Kil'jaeden's Cunning (137587) | Imp: Singe Magic     (103150) | Imp: Flee            (103133)
+[00:09:39.965 D] [SpellManager] Adding known spells: Imp: Cauterize Mas.. (124538) | Grimoire of Suprem.. (108499) | Felhunter: Spell L.. (103135)
+[00:09:39.965 D] [SpellManager] Adding known spells: Felhunter: Devour .. (103136) | Fel Armor            (104938) | Control Demon        (093375)
+[00:09:39.965 D] [SpellManager] Adding known spells: Life Tap             (001454) | Burning Embers       (108647) | Backlash             (108563)
+[00:09:39.965 D] [SpellManager] Adding known spells: Backdraft            (117896) | Aftermath            (109784) | Unending Breath      (005697)
+[00:09:39.965 D] [SpellManager] Adding known spells: Twilight Ward        (006229) | Summon Doomguard     (018540) | Summon Infernal      (001122)
+[00:09:39.965 D] [SpellManager] Adding known spells: Soulstone            (020707) | Soulshatter          (029858) | Shadowfury           (030283)
+[00:09:39.965 D] [SpellManager] Adding known spells: Shadowburn           (017877) | Ritual of Summoning  (000698) | Rain of Fire         (005740)
+[00:09:39.965 D] [SpellManager] Adding known spells: Shadow Bolt          (000686) | Corruption           (000172) | Howl of Terror       (005484)
+[00:09:39.965 D] [SpellManager] Adding known spells: Health Funnel        (000755) | Havoc                (080240) | Flames of Xoroth     (120451)
+[00:09:39.965 D] [SpellManager] Adding known spells: Fire and Brimstone   (108683) | Fel Flame            (077799) | Fear                 (005782)
+[00:09:39.965 D] [SpellManager] Adding known spells: Eye of Kilrogg       (000126) | Enslave Demon        (001098) | Ember Tap            (114635)
+[00:09:39.965 D] [SpellManager] Adding known spells: Drain Life           (000689) | Demonic Gateway      (111771) | Demonic Circle: Te.. (048020)
+[00:09:39.965 D] [SpellManager] Adding known spells: Demonic Circle: Su.. (048018) | Dark Soul            (077801) | Dark Intent          (109773)
+[00:09:39.965 D] [SpellManager] Adding known spells: Dark Bargain         (110913) | Curse of the Eleme.. (001490) | Curse of Enfeeblem.. (109466)
+[00:09:39.965 D] [SpellManager] Adding known spells: Create Soulwell      (029893) | Create Healthstone   (006201) | Conflagrate          (017962)
+[00:09:39.965 D] [SpellManager] Adding known spells: Command Demon        (119898) | Chaos Bolt           (116858) | Burning Rush         (111400)
+[00:09:39.965 D] [SpellManager] Adding known spells: Banish               (000710) | Working Overtime     (118021) | Wisdom of the Four.. (115913)
+[00:09:39.965 D] [SpellManager] Adding known spells: Weapon Skills        (076299) | The Quick and the .. (083950) | The Doctor Is In     (118076)
+[00:09:39.965 D] [SpellManager] Adding known spells: Ride Like the Wind   (117983) | Reinforce            (083943) | Mr. Popularity       (078635)
+[00:09:39.965 D] [SpellManager] Adding known spells: Mount Up             (078633) | Master Riding        (090265) | Languages            (079748)
+[00:09:39.965 D] [SpellManager] Adding known spells: Honorable Mention    (083960) | Hasty Hearth         (083944) | Guild Mail           (083951)
+[00:09:39.965 D] [SpellManager] Adding known spells: For Great Justice    (118483) | Flight Master's Li.. (090267) | Fast Track           (078632)
+[00:09:39.965 D] [SpellManager] Adding known spells: Cold Weather Flying  (054197) | Cloud Serpent Riding (130487) | Cash Flow            (083941)
+[00:09:39.965 D] [SpellManager] Adding known spells: Bountiful Bags       (083966) | Battle Pet Training  (119467) | Battle Fatigue       (134732)
+[00:09:39.965 D] [SpellManager] Adding known spells: Bartering            (083964) | Armor Skills         (076277) | Arcane Resistance    (000822)
+[00:09:39.965 D] [SpellManager] Adding known spells: Arcane Affinity      (028877) | Shoot                (005019) | Revive Battle Pets   (125439)
+[00:09:39.965 D] [SpellManager] Adding known spells: Mobile Banking       (083958) | Mass Resurrection    (083968) | Auto Attack          (006603)
+[00:09:39.965 D] [SpellManager] Adding known spells: Arcane Torrent       (028730)
+[00:09:39.965 D] [SpellManager] Disarm (119907) overrides Command Demon (119898)
+[00:09:39.965 D] [SpellManager] Dark Soul: Instability (113858) overrides Dark Soul (77801)
+[00:09:39.965 D] [SpellManager] Immolate (348) overrides Corruption (172)
+[00:09:39.965 D] [SpellManager] Incinerate (29722) overrides Shadow Bolt (686)
+[00:09:39.965 D] [SpellManager] Rain of Fire (104232) overrides Rain of Fire (5740)
+[00:09:39.965 D] [SpellManager] Summon Abyssal (112921) overrides Summon Infernal (1122)
+[00:09:39.965 D] [SpellManager] Summon Terrorguard (112927) overrides Summon Doomguard (18540)
+[00:09:39.965 D] [SpellManager] Chaotic Energy (111546) overrides Life Tap (1454)
+[00:09:39.965 D] [SpellManager] Unending Resolve (148688) overrides Unending Resolve (104773)
+[00:09:39.965 D] [SpellManager] Summon Fel Imp (112866) overrides Summon Imp (688)
+[00:09:39.965 D] [SpellManager] Summon Observer (112869) overrides Summon Felhunter (691)
+[00:09:39.965 D] [SpellManager] Summon Shivarra (112868) overrides Summon Succubus (712)
+[00:09:39.965 D] [SpellManager] Summon Voidlord (112867) overrides Summon Voidwalker (697)
+[00:09:39.985 D] Set query filter to Horde
+[00:09:40.001 D] [Demonic ~ Debug] Entered Combat
+[00:09:40.040 N] [Demonic] [HP: 100] [Mana: 100] [Embers: 1] [Casting: Disarm] [On: Brewmaster Chani @ 89.8%]
+[00:09:40.054 N] [Demonic] [HP: 100] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:09:40.273 N] [Demonic] [HP: 100] [Mana: 100] [Embers: 1] [Casting: Shadowfury] [Loc: <3462.42, 402.135, 587.9796>]
+[00:09:40.477 N] [Demonic] [HP: 100] [Mana: 100] [Embers: 1] [Casting: Immolate] [On: Brewmaster Chani @ 89.8%]
+[00:09:40.478 V] [Demonic] [DoTManager Added - Immolate] [Int:19982] [SP:31608] [Crit:20.59494] [Haste:0.8905559] [Mast:21.765]
+[00:09:41.058 N] Stopping the bot!
+[00:09:41.058 Q] Bot stopping! Reason: User pressed the stop button
+[00:09:41.060 N] [Tyrael] ------------------------------------------
+[00:09:41.060 N] [Tyrael] Shutdown - Performing required actions.
+[00:09:41.060 N] [Tyrael] -------------------------------------------
+
+[00:09:44.982 N] Starting the bot!
+[00:09:44.982 N] Currently Using BotBase : Combat Bot
+[00:09:44.982 D] Character is a level 90 BloodElf Warlock
+[00:09:44.982 D] Current zone is Kun-Lai Summit
+[00:09:44.997 D] [SpellManager] Adding known spells: Survey               (080451) | Archaeology          (110393) | Jewelcrafting        (025229)
+[00:09:44.997 D] [SpellManager] Adding known spells: Fishing              (131474) | Smelting             (002656) | Cooking Fire         (000818)
+[00:09:44.997 D] [SpellManager] Adding known spells: Cooking              (104381) | First Aid            (110406) | Symbiosis            (110505)
+[00:09:44.997 D] [SpellManager] Adding known spells: Summon Voidwalker    (000697) | Summon Succubus      (000712) | Summon Felhunter     (000691)
+[00:09:44.997 D] [SpellManager] Adding known spells: Summon Imp           (000688) | Voidwalker: Suffer.. (103128) | Voidwalker: Shadow.. (103130)
+[00:09:44.997 D] [SpellManager] Adding known spells: Voidwalker: Shadow.. (103142) | Voidwalker: Disarm   (124539) | Unending Resolve     (104773)
+[00:09:44.997 D] [SpellManager] Adding known spells: Succubus: Whiplash   (103141) | Succubus: Seduction  (103139) | Succubus: Lesser I.. (103140)
+[00:09:44.997 D] [SpellManager] Adding known spells: Soul Leech           (108370) | Soul Harvest         (101976) | Pyroclasm            (123686)
+[00:09:44.997 D] [SpellManager] Adding known spells: Pandemic             (131973) | Nethermancy          (086091) | Mastery: Emberstorm  (077220)
+[00:09:44.997 D] [SpellManager] Adding known spells: Kil'jaeden's Cunning (137587) | Imp: Singe Magic     (103150) | Imp: Flee            (103133)
+[00:09:44.997 D] [SpellManager] Adding known spells: Imp: Cauterize Mas.. (124538) | Grimoire of Suprem.. (108499) | Felhunter: Spell L.. (103135)
+[00:09:44.997 D] [SpellManager] Adding known spells: Felhunter: Devour .. (103136) | Fel Armor            (104938) | Control Demon        (093375)
+[00:09:44.997 D] [SpellManager] Adding known spells: Life Tap             (001454) | Burning Embers       (108647) | Backlash             (108563)
+[00:09:44.997 D] [SpellManager] Adding known spells: Backdraft            (117896) | Aftermath            (109784) | Unending Breath      (005697)
+[00:09:44.997 D] [SpellManager] Adding known spells: Twilight Ward        (006229) | Summon Doomguard     (018540) | Summon Infernal      (001122)
+[00:09:44.997 D] [SpellManager] Adding known spells: Soulstone            (020707) | Soulshatter          (029858) | Shadowfury           (030283)
+[00:09:44.997 D] [SpellManager] Adding known spells: Shadowburn           (017877) | Ritual of Summoning  (000698) | Rain of Fire         (005740)
+[00:09:44.997 D] [SpellManager] Adding known spells: Shadow Bolt          (000686) | Corruption           (000172) | Howl of Terror       (005484)
+[00:09:44.997 D] [SpellManager] Adding known spells: Health Funnel        (000755) | Havoc                (080240) | Flames of Xoroth     (120451)
+[00:09:44.997 D] [SpellManager] Adding known spells: Fire and Brimstone   (108683) | Fel Flame            (077799) | Fear                 (005782)
+[00:09:44.997 D] [SpellManager] Adding known spells: Eye of Kilrogg       (000126) | Enslave Demon        (001098) | Ember Tap            (114635)
+[00:09:44.997 D] [SpellManager] Adding known spells: Drain Life           (000689) | Demonic Gateway      (111771) | Demonic Circle: Te.. (048020)
+[00:09:44.997 D] [SpellManager] Adding known spells: Demonic Circle: Su.. (048018) | Dark Soul            (077801) | Dark Intent          (109773)
+[00:09:44.997 D] [SpellManager] Adding known spells: Dark Bargain         (110913) | Curse of the Eleme.. (001490) | Curse of Enfeeblem.. (109466)
+[00:09:44.997 D] [SpellManager] Adding known spells: Create Soulwell      (029893) | Create Healthstone   (006201) | Conflagrate          (017962)
+[00:09:44.997 D] [SpellManager] Adding known spells: Command Demon        (119898) | Chaos Bolt           (116858) | Burning Rush         (111400)
+[00:09:44.997 D] [SpellManager] Adding known spells: Banish               (000710) | Working Overtime     (118021) | Wisdom of the Four.. (115913)
+[00:09:44.997 D] [SpellManager] Adding known spells: Weapon Skills        (076299) | The Quick and the .. (083950) | The Doctor Is In     (118076)
+[00:09:44.997 D] [SpellManager] Adding known spells: Ride Like the Wind   (117983) | Reinforce            (083943) | Mr. Popularity       (078635)
+[00:09:44.997 D] [SpellManager] Adding known spells: Mount Up             (078633) | Master Riding        (090265) | Languages            (079748)
+[00:09:44.997 D] [SpellManager] Adding known spells: Honorable Mention    (083960) | Hasty Hearth         (083944) | Guild Mail           (083951)
+[00:09:44.997 D] [SpellManager] Adding known spells: For Great Justice    (118483) | Flight Master's Li.. (090267) | Fast Track           (078632)
+[00:09:44.997 D] [SpellManager] Adding known spells: Cold Weather Flying  (054197) | Cloud Serpent Riding (130487) | Cash Flow            (083941)
+[00:09:44.997 D] [SpellManager] Adding known spells: Bountiful Bags       (083966) | Battle Pet Training  (119467) | Battle Fatigue       (134732)
+[00:09:44.997 D] [SpellManager] Adding known spells: Bartering            (083964) | Armor Skills         (076277) | Arcane Resistance    (000822)
+[00:09:44.997 D] [SpellManager] Adding known spells: Arcane Affinity      (028877) | Shoot                (005019) | Revive Battle Pets   (125439)
+[00:09:44.997 D] [SpellManager] Adding known spells: Mobile Banking       (083958) | Mass Resurrection    (083968) | Auto Attack          (006603)
+[00:09:44.997 D] [SpellManager] Adding known spells: Arcane Torrent       (028730)
+[00:09:44.997 D] [SpellManager] Disarm (119907) overrides Command Demon (119898)
+[00:09:44.997 D] [SpellManager] Dark Soul: Instability (113858) overrides Dark Soul (77801)
+[00:09:44.997 D] [SpellManager] Immolate (348) overrides Corruption (172)
+[00:09:44.997 D] [SpellManager] Incinerate (29722) overrides Shadow Bolt (686)
+[00:09:44.997 D] [SpellManager] Rain of Fire (104232) overrides Rain of Fire (5740)
+[00:09:44.997 D] [SpellManager] Summon Abyssal (112921) overrides Summon Infernal (1122)
+[00:09:44.997 D] [SpellManager] Summon Terrorguard (112927) overrides Summon Doomguard (18540)
+[00:09:44.997 D] [SpellManager] Chaotic Energy (111546) overrides Life Tap (1454)
+[00:09:44.997 D] [SpellManager] Unending Resolve (148688) overrides Unending Resolve (104773)
+[00:09:44.997 D] [SpellManager] Summon Fel Imp (112866) overrides Summon Imp (688)
+[00:09:44.997 D] [SpellManager] Summon Observer (112869) overrides Summon Felhunter (691)
+[00:09:44.997 D] [SpellManager] Summon Shivarra (112868) overrides Summon Succubus (712)
+[00:09:44.997 D] [SpellManager] Summon Voidlord (112867) overrides Summon Voidwalker (697)
+[00:09:45.017 D] Set query filter to Horde
+[00:09:45.040 N] [Demonic] Map Changed!
+[00:09:45.047 N] [Demonic] [HP: 100] [Mana: 100] [Embers: 1] [Casting: Conflagrate] [On: Brewmaster Chani @ 78.1%]
+[00:09:46.058 N] [Demonic] [HP: 100] [Mana: 100] [Embers: 1.1] [Casting: Conflagrate] [On: Brewmaster Chani @ 65.9%]
+[00:09:47.067 N] [Demonic] [HP: 100] [Mana: 97] [Embers: 1.3] [Casting: Incinerate] [On: Brewmaster Chani @ 59.8%]
+[00:09:48.161 N] [Demonic] [HP: 100] [Mana: 100] [Embers: 1.4] [Casting: Incinerate] [On: Brewmaster Chani @ 54.3%]
+[00:09:49.385 N] [Demonic] [HP: 100] [Mana: 87] [Embers: 1.5] [Casting: Incinerate] [On: Brewmaster Chani @ 46.7%]
+[00:09:50.464 N] [Demonic] [HP: 100] [Mana: 89.6] [Embers: 1.6] [Casting: Incinerate] [On: Brewmaster Chani @ 34.8%]
+[00:09:51.686 N] [Demonic] [HP: 100] [Mana: 80.5] [Embers: 1.8] [Casting: Incinerate] [On: Brewmaster Chani @ 27.2%]
+[00:09:52.297 N] [Demonic] [HP: 100] [Mana: 79.9] [Embers: 2] Canceling Cast - Found a unit to Shadowburn!
+[00:09:52.521 N] [Demonic] [HP: 100] [Mana: 79.9] [Embers: 2] [Casting: Shadowburn] [On: Brewmaster Chani @ 12.9%]
+[00:09:52.745 D] [Demonic ~ Debug] Switching to Brewmaster Chani!
+[00:09:54.189 D] [Demonic ~ Debug] Combat ended after 14.1880598 seconds
+[00:09:54.782 D] Activity: Applying pre-combat buffs
+[00:09:55.737 N] [Demonic] Pause: I'm mounting up
+[00:10:09.191 V] [Demonic] No combat for 15002ms. Clearing DoTManager...
+[00:10:09.191 V] [Demonic] DoTManager Cleared.
+[00:10:10.084 D] Inserting Xuen [Gossip, Questgiver] into the database!
+[00:10:18.555 D] [Demonic ~ Debug] Entered Combat
+[00:10:18.563 N] [Demonic] [HP: 98.7] [Mana: 100] [Embers: 1] [Casting: Shadowfury] [Loc: <3721.354, 356.6715, 596.6445>]
+[00:10:18.571 D] [Demonic ~ Debug] [Targeting] Clever Ashyo - Fails - Friendly
+[00:10:18.571 D] [Demonic ~ Debug] Switching to Ken-Ken!
+[00:10:18.608 N] [Demonic] [HP: 98.7] [Mana: 100] [Embers: 1] [Casting: Twilight Ward] [On: Me @ 98.7%]
+[00:10:19.975 N] [Demonic] [HP: 98.7] [Mana: 100] [Embers: 1] [Casting: Rain of Fire] [Location: Ken-Ken]
+[00:10:20.990 N] [Demonic] [HP: 98.7] [Mana: 81.9] [Embers: 1] [Casting: Fire and Brimstone] [On: Lvl 90 Horde Warlock @ 98.7%]
+[00:10:21.004 N] [Demonic] [HP: 98.7] [Mana: 81.9] [Embers: 1] [Casting: Incinerate] [On: Clever Ashyo @ 84.6%]
+[00:10:22.841 N] [Demonic] [HP: 98.7] [Mana: 90.5] [Embers: 1] [Casting: Immolate] [On: Clever Ashyo @ 76.1%]
+[00:10:24.202 N] [Demonic] [HP: 98.7] [Mana: 100] [Embers: 0.4] [Casting: Havoc] [On: Ken-Ken @ 64.7%]
+[00:10:24.324 V] [Demonic] [DoTManager Added - Immolate] [Int:21715] [SP:33514] [Crit:15.28726] [Haste:0.8905559] [Mast:21.765]
+[00:10:24.911 N] [Demonic] [HP: 98.7] [Mana: 85.7] [Embers: 0.4] [Casting: Immolate] [On: Ken-Ken @ 63.1%]
+[00:10:26.288 N] [Demonic] [HP: 98.7] [Mana: 99.2] [Embers: 0.6] [Casting: Incinerate] [On: Clever Ashyo @ 43.9%]
+[00:10:28.404 N] [Demonic] [HP: 97.5] [Mana: 100] [Embers: 0.6] [Casting: Incinerate] [On: Clever Ashyo @ 32.0%]
+[00:10:29.667 D] [Demonic ~ Debug] Switching to Ken-Ken!
+[00:10:30.193 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:10:30.193 N] [Demonic] [HP: 98.6] [Mana: 93.5] [Embers: 0.8] Forcing pet to attack!
+[00:10:30.199 N] [Demonic] [HP: 98.6] [Mana: 93.5] [Embers: 0.8] [Casting: Conflagrate] [On: Ken-Ken @ 13.9%]
+[00:10:30.415 D] [Demonic ~ Debug] Switching to Ken-Ken!
+[00:10:32.191 D] [Demonic ~ Debug] Combat ended after 13.6359861 seconds
+[00:10:44.714 N] [Demonic] Pause: I'm mounting up
+[00:10:47.205 V] [Demonic] No combat for 15014ms. Clearing DoTManager...
+[00:10:47.205 V] [Demonic] DoTManager Cleared.
+[00:11:03.329 D] [Demonic ~ Debug] Entered Combat
+[00:11:03.334 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Casting: Disarm] [On: The Wrestler @ 100.0%]
+[00:11:03.343 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.343 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.345 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.360 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.360 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.362 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.375 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.375 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.377 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.391 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.391 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.393 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.406 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.406 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.408 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.421 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.421 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.424 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.437 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.437 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.439 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.453 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.453 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.455 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.469 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.469 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.472 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.485 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.485 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.487 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.500 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.500 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.502 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Using Item: Blossom of Pure Snow]
+[00:11:03.522 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.522 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.528 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Casting: Shadowfury] [Loc: <3677.374, 662.7124, 636.7496>]
+[00:11:03.537 D] [Demonic ~ Debug] Pet has no target, we're in combat, we need it to attack!
+[00:11:03.537 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] Forcing pet to attack!
+[00:11:03.543 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Casting: Shadowfury] [Loc: <3677.374, 662.7124, 636.7496>]
+[00:11:03.731 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Casting: Immolate] [On: The Wrestler @ 99.3%]
+[00:11:03.731 V] [Demonic] [DoTManager Added - Immolate] [Int:19982] [SP:31608] [Crit:20.59494] [Haste:0.8905559] [Mast:21.765]
+[00:11:04.352 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1] [Casting: Conflagrate] [On: The Wrestler @ 99.3%]
+[00:11:05.370 N] [Demonic] [HP: 96.9] [Mana: 96.9] [Embers: 1.1] [Casting: Conflagrate] [On: The Wrestler @ 95.2%]
+[00:11:06.344 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1.2] [Casting: Disarm] [On: The Wrestler @ 90.4%]
+[00:11:06.375 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1.2] [Casting: Immolate] [On: The Wrestler @ 90.4%]
+[00:11:07.677 N] [Demonic] [HP: 96.9] [Mana: 100] [Embers: 1.2] [Casting: Incinerate] [On: The Wrestler @ 89.7%]
+[00:11:08.931 N] [Demonic] [HP: 96.9] [Mana: 91.3] [Embers: 1.2] [Casting: Incinerate] [On: The Wrestler @ 88.4%]
+[00:11:09.363 N] [Demonic] [HP: 96.9] [Mana: 85.1] [Embers: 1.4] [Casting: Disarm] [On: The Wrestler @ 87.0%]
+[00:11:10.194 N] [Demonic] [HP: 96.9] [Mana: 93.4] [Embers: 1.4] [Casting: Incinerate] [On: The Wrestler @ 83.4%]
+[00:11:11.430 N] [Demonic] [HP: 97.4] [Mana: 82] [Embers: 1.6] [Casting: Incinerate] [On: The Wrestler @ 70.1%]
+[00:11:12.378 N] [Demonic] [HP: 97.4] [Mana: 81.7] [Embers: 1.7] [Casting: Disarm] [On: The Wrestler @ 66.5%]
+[00:11:12.902 N] [Demonic] [HP: 97.4] [Mana: 85.1] [Embers: 1.7] [Casting: Incinerate] [On: The Wrestler @ 65.8%]
+[00:11:14.144 N] [Demonic] [HP: 98] [Mana: 83.8] [Embers: 1.8] [Casting: Incinerate] [On: The Wrestler @ 61.0%]
+[00:11:14.367 N] [Demonic] [HP: 98] [Mana: 83.8] [Embers: 1.8] [Casting: Incinerate] [On: The Wrestler @ 59.6%]
+[00:11:15.390 N] [Demonic] [HP: 98] [Mana: 83.8] [Embers: 1.8] [Casting: Disarm] [On: The Wrestler @ 59.0%]
+[00:11:15.613 N] [Demonic] [HP: 98] [Mana: 83.8] [Embers: 1.8] [Casting: Incinerate] [On: The Wrestler @ 59.0%]
+[00:11:16.875 N] [Demonic] [HP: 98.5] [Mana: 85.9] [Embers: 1.9] [Casting: Conflagrate] [On: The Wrestler @ 53.4%]
+[00:11:18.091 N] [Demonic] [HP: 98.5] [Mana: 84] [Embers: 2.1] [Casting: Rain of Fire] [Location: The Wrestler]
+[00:11:18.406 N] [Demonic] [HP: 98.5] [Mana: 61.6] [Embers: 2.1] [Casting: Disarm] [On: The Wrestler @ 45.7%]
+[00:11:19.107 N] [Demonic] [HP: 99.1] [Mana: 63.3] [Embers: 2.1] [Casting: Incinerate] [On: The Wrestler @ 44.4%]
+[00:11:20.393 N] [Demonic] [HP: 99.1] [Mana: 75.9] [Embers: 2.2] [Casting: Immolate] [On: The Wrestler @ 42.3%]
+[00:11:20.393 V] [Demonic] [DoTManager Added - Immolate] [Int:21715] [SP:31608] [Crit:15.28726] [Haste:0.8905559] [Mast:21.765]
+[00:11:21.419 N] [Demonic] [HP: 99.6] [Mana: 70.4] [Embers: 2.4] [Casting: Disarm] [On: The Wrestler @ 32.2%]
+[00:11:21.864 N] [Demonic] [HP: 99.6] [Mana: 70.4] [Embers: 2.4] [Casting: Incinerate] [On: The Wrestler @ 32.2%]
+[00:11:23.117 N] [Demonic] [HP: 99.6] [Mana: 72.8] [Embers: 2.5] [Casting: Incinerate] [On: The Wrestler @ 28.7%]
+[00:11:23.838 N] [Demonic] [HP: 100] [Mana: 65.5] [Embers: 2.7] Canceling Cast - Found a unit to Shadowburn!
+[00:11:24.056 N] [Demonic] [HP: 100] [Mana: 68.1] [Embers: 2.7] [Casting: Shadowburn] [On: The Wrestler @ 17.0%]
+[00:11:24.292 D] [Demonic ~ Debug] Switching to The Wrestler!
+[00:11:26.156 D] [Demonic ~ Debug] Combat ended after 22.8263555 seconds
+[00:11:28.038 Q] Bot stopping! Reason: Main window is closing

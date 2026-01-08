@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PF_Makros>
+  <Makro Name="Swapout by bad enemyType" Logic="" />
+  <Makro Name="Cast spell 1 if ready" Logic="CASTSPELL(1) COOLDOWN(SKILL(1)) EQUALS false" />
+  <Makro Name="Cast spell 2 if ready" Logic="CASTSPELL(2) COOLDOWN(SKILL(2)) EQUALS false" />
+  <Makro Name="Cast spell 3 if ready" Logic="CASTSPELL(3) COOLDOWN(SKILL(3)) EQUALS false" />
+  <Makro Name="Swapout by low HP ( &lt; 30% )" Logic="SWAPOUT Health(THISPET) ISLESSTHAN 30" />
+  <Makro Name="Swapout (Me-HP &lt; 30%) AND (Enemy-HP &gt; 35%)" Logic="SWAPOUT Health(THISPET) ISLESSTHAN 30 þ Health(ENEMYPET) ISGREATERTHAN 35" />
+  <Makro Name="PASSTURN if all on cooldown" Logic="PASSTURN COOLDOWN(SKILL(1)) EQUALS true þ COOLDOWN(SKILL(2)) EQUALS true þ COOLDOWN(SKILL(3)) EQUALS true" />
+</PF_Makros>
