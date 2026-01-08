@@ -1,0 +1,35 @@
+<HBProfile xsi:noNamespaceSchemaLocation="../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Name>UF Kill All</Name>
+    <MinLevel>-1</MinLevel>
+    <MaxLevel>1001</MaxLevel>
+
+    <MinDurability>-1</MinDurability>
+    <MinFreeBagSlots>-1</MinFreeBagSlots>
+
+    <SellGrey>True</SellGrey>
+  <SellWhite>False</SellWhite>
+  <SellGreen>False</SellGreen>
+  <SellBlue>False</SellBlue>
+  <MailWhite>True</MailWhite>
+  <MailGreen>True</MailGreen>
+  <MailBlue>True</MailBlue>
+  <MailPurple>True</MailPurple>
+	<Mailboxes>
+	</Mailboxes>
+ 
+<AvoidMobs>
+</AvoidMobs>
+ 
+	<Vendors>
+	</Vendors>
+
+	<QuestOrder>
+	<While Condition="true" IgnoreCanRun="True">
+	</While>
+	</QuestOrder>
+
+
+<!-- Quest Overrides -->
+
+</HBProfile>
+
