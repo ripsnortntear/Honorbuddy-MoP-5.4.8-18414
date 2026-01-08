@@ -1,0 +1,3 @@
+D:\Dropbox\Dropbox\Bots\HonorBuddy\Honorbuddy 2.5.6795.534\Plugins\AssistFollow\obj\Debug\AssistFollow.csprojResolveAssemblyReference.cache
+D:\Dropbox\Dropbox\Bots\HonorBuddy\Honorbuddy 2.5.6795.534\Plugins\AssistFollow\obj\Debug\AssistFollow.Form1.resources
+D:\Dropbox\Dropbox\Bots\HonorBuddy\Honorbuddy 2.5.6795.534\Plugins\AssistFollow\obj\Debug\AssistFollow.csproj.GenerateResource.Cache
