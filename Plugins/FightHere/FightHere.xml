@@ -1,0 +1,45 @@
+<HBProfile>
+<Name>Fight Here</Name>
+<MinDurability>0.4</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+
+<MinLevel>0</MinLevel>
+<MaxLevel>91</MaxLevel>
+
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<SellGrey>true</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<Blackspots>
+</Blackspots>
+
+<GrindArea>
+    <Name>Fight Here</Name>
+    <TargetMinLevel>2</TargetMinLevel>
+    <TargetMaxLevel>91</TargetMaxLevel>
+    <Factions>190 188</Factions>
+    <LootRadius>200</LootRadius>
+    <MaxDistance>200</MaxDistance>
+    <Hotspots>
+        <Hotspot X="1546.514" Y="-4198.124" Z="53.01303" />
+        <Hotspot X="1546.514" Y="-4198.124" Z="53.5130348205566" />
+    </Hotspots>
+    <!-- Factions:
+Muddy Crawfish: Count 6, faction 190, entry 42548Dung Beetle: Count 1, faction 188, entry 62115
+    -->
+</GrindArea>
+
+</HBProfile>
