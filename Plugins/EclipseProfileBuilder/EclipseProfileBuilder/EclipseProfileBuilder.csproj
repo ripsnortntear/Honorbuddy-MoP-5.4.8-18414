@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{971DDE11-4AF3-440E-A284-02B727B9723A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EclipseProfileBuilder</RootNamespace>
+    <AssemblyName>EclipseProfileBuilder</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GreyMagic">
+      <HintPath>..\..\..\..\..\Users\Twist\Documents\Honorbuddy\GreyMagic.dll</HintPath>
+    </Reference>
+    <Reference Include="Honorbuddy">
+      <HintPath>..\..\..\..\..\Users\Twist\Documents\Honorbuddy\Honorbuddy.exe</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\..\..\Users\Twist\Documents\Honorbuddy\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\EclipseDBProfile.cs" />
+    <Compile Include="Controllers\EclipseQuestProfile.cs" />
+    <Compile Include="Controllers\ZygorReverseEngineer.cs" />
+    <Compile Include="Core.cs" />
+    <Compile Include="Data\DAL.cs" />
+    <Compile Include="Data\InstantObject.cs" />
+    <Compile Include="Data\ORM.cs" />
+    <Compile Include="EclipseProfileBuilder.cs" />
+    <Compile Include="Models\Blackspot.cs" />
+    <Compile Include="Models\Boss.cs" />
+    <Compile Include="Models\CustomBehavior.cs" />
+    <Compile Include="Models\EclipseGeneric.cs" />
+    <Compile Include="Models\EclipseMob.cs" />
+    <Compile Include="Models\EclipseObject.cs" />
+    <Compile Include="Models\EclipseVendor.cs" />
+    <Compile Include="Models\HotSpot.cs" />
+    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\MailBox.cs" />
+    <Compile Include="Models\Path.cs" />
+    <Compile Include="Models\QuestObjective.cs" />
+    <Compile Include="Models\QuestOrder.cs" />
+    <Compile Include="Models\QuestOrderLogic.cs" />
+    <Compile Include="Models\QuestORItem.cs" />
+    <Compile Include="Models\QuestORMob.cs" />
+    <Compile Include="Models\QuestOverride.cs" />
+    <Compile Include="Models\Translation.cs" />
+    <Compile Include="ProfileTypeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileTypeSelector.designer.cs">
+      <DependentUpon>ProfileTypeSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticDAta.cs" />
+    <Compile Include="Views\CustomBehaviorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomBehaviorForm.Designer.cs">
+      <DependentUpon>CustomBehaviorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Display.Designer.cs">
+      <DependentUpon>Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DungeonBuddy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DungeonBuddy.Designer.cs">
+      <DependentUpon>DungeonBuddy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogicBlocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LogicBlocks.Designer.cs">
+      <DependentUpon>LogicBlocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewDBProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NewDBProfile.Designer.cs">
+      <DependentUpon>NewDBProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewQuestingProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NewQuestingProfile.Designer.cs">
+      <DependentUpon>NewQuestingProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestingBuddy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\QuestingBuddy.Designer.cs">
+      <DependentUpon>QuestingBuddy.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ProfileTypeSelector.resources" />
+    <EmbeddedResource Include="ProfileTypeSelector.resx">
+      <DependentUpon>ProfileTypeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\CustomBehaviorForm.resources" />
+    <EmbeddedResource Include="Views\CustomBehaviorForm.resx">
+      <DependentUpon>CustomBehaviorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Display.resources" />
+    <EmbeddedResource Include="Views\Display.resx">
+      <DependentUpon>Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DungeonBuddy.resources" />
+    <EmbeddedResource Include="Views\DungeonBuddy.resx">
+      <DependentUpon>DungeonBuddy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LogicBlocks.resources" />
+    <EmbeddedResource Include="Views\LogicBlocks.resx">
+      <DependentUpon>LogicBlocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NewDBProfile.resources" />
+    <EmbeddedResource Include="Views\NewDBProfile.resx">
+      <DependentUpon>NewDBProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NewQuestingProfile.resources" />
+    <EmbeddedResource Include="Views\NewQuestingProfile.resx">
+      <DependentUpon>NewQuestingProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\QuestingBuddy.resources" />
+    <EmbeddedResource Include="Views\QuestingBuddy.resx">
+      <DependentUpon>QuestingBuddy.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Data\EclipseWoWDB.edb" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Changelog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
