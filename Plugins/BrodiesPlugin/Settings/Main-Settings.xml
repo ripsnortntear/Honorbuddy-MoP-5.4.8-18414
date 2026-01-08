@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BPGlobalSettings>
+  <AllowUpdate>False</AllowUpdate>
+  <Allowlaunch>True</Allowlaunch>
+  <BaseProfileToLaunch>5</BaseProfileToLaunch>
+</BPGlobalSettings>

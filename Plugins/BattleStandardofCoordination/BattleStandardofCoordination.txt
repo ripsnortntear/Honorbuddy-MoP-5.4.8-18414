@@ -1,0 +1,12 @@
+WHAT DOES IT DO?
+It will use "BattleStandardofCoordination" if you have it in your bag.
+
+WHAT DOES THE ITEM "Battle Standard of Coordination" DO?
+Place a Guild Battle Standard that increases the experience, honor and reputation gain from killing monsters for all guild members that stay within 100 yards of the Battle Standard by 15%.  Lasts 15 min. (10 Min Cooldown).
+
+WHERE CAN I GET THE ITEM?
+By buying it from Guild Vendor.
+
+URL
+Battle Standard of Coordination - http://www.wowhead.com/item=64399/
+My website - http://www.cisem.se
