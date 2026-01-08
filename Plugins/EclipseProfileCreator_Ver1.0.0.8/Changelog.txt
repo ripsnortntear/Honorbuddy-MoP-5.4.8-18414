@@ -1,0 +1,81 @@
+Changelog:
+-----------------------------------------
+-- Ver1.0.0.1
+	Added refresh button on Bag Items.
+	Added right click context menu to load bag items.
+	Fixed a bug where files weren't saving with the XML Extension.
+	Fixed a bug where objectives weren't outputting properly.
+-- Ver1.0.0.2
+	Added Insert Below/Above for QuestOrder (since order matters)
+	Added Order buttons to reorder questorder items
+	changed quest order type and objective type to fixed value boxes.
+	Moved game data listboxes to tabs.
+	Added get current position button.
+	Added some cosmetic changes.
+	Added a modular new profile box.
+-- Ver1.0.0.3
+	Added CustomBehavior builder. (If you are missing data HB will sometimes warn you when loading the profile pay attention to the orange messages)
+	Added CustomBehavior Templates (so you dont have to remember every parameter to add for interactions)
+		Chat with npc
+		Collect Items on ground.
+	Added buttons that autofill data based on wow logged-in game data (like target and quests).
+	When getting an item from bags it wasnt populating the itemid - this has been fixed.
+-- Ver1.0.0.4
+	Vendors werent being outputted in the final XML export. this has been fixed
+	The Y coordinate in the quest orders was grabbing the wrong value. (this has been fixed)
+	Added Mailboxes to lists and to Output XML
+	Added more error handling on Profile Import. (more profiles should be able to load successfully now)
+	Loading consecutive profiles caused duplicated information - this has been resolved.
+	prevented Adding a collectItem quest without specificing a collectcount.
+	Added Colors to inputs.
+	Added a "search nearby" to find mobs without having to locate them in game.
+	Right clicking on these mobs will populate them into mobid and mobname.
+-- Ver1.0.0.5
+	IF logic is now being outputted to the XML
+	Moved IF logic to its own Form
+	Changed encoding to UTF16 to support non-english languages/characters.
+	Added a vendors and mail tab
+	Moved QuestOrders to its own tab
+	Added additional controls for blackspots.
+	Added additional controls for Vendors
+	Added TYPES to vendors. (they will no longer be "unit" if you specify)
+	Added Useitem to profile load and to UI
+	Added runto to profile load and to UI
+	added Flyto to profile load and to UI
+	Added Runto, Flyto, and UseItem to output XML
+	Fixed blackspot profile load issue by removing blackspot from output xml (Instead added comment just before the black spot)
+	Fixed some weirdness in selected your item from the combolist
+	Made Kill count dynamic to support the "Number of times" property for useitem
+	Cleaned up condition generation for if/while logic (no difference to the ui)
+	Implemented custom conditions for advanced if/while blocks.
+	Added ElseIf to Logic Types
+	Added All item mail settings (UI, output XML, Input XML)
+	Added all item sell settings (UI, Output XML, Input XML)
+-- Ver1.0.0.6
+	Will no longer break when loading profiles with lower-case x,y,x hotspots or Runto Commands.
+	removed extra SellGrey node on export
+	Fixed nested loading of ifs quest/behaviors located in IF blocks will now load back into the same if blocks on profile load.
+	Fixed error/crash when loading the LogicBlocks screen. (this one was a pain, so your welcome)
+-- Ver1.0.0.7
+	Fixed NESTED if/while logic on save. It was only paying attention to one additional level at a time during the save. Now it should be capable of unlimited recursions.
+	Fixed profile load errors where data was missing from existing profiles that Eclipse expected to be there.
+	Fixed profile SAVE issue where information was not loaded and still not present on the save.
+-- Ver1.0.0.7-2
+	Brute forced all vendor coordinates from commas to periods (if there are any).
+	Fixed recursion loop on LOAD. (it was TOO recursive and grabbed all elements and then again for teh logic loops.)
+-- Ver1.0.0.8
+	Added a search feature to quest orders (in case you have a big list).
+	Fixed a load profile issue with lower case attributes.
+	Re-Added the ability to delete blackspots.
+	Added a launch screen for the different profile builder engines.
+	Created initial Dungeon Buddy profile creator.
+	Moved "Name" back into the BlackSpot attributes and out of comments.
+	Clicking on an item in the quest order list will now auto-fill the quest order boxes with that information.
+	
+	
+	
+	
+	
+	
+	
+	
