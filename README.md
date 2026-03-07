@@ -3,7 +3,7 @@
 # Honorbuddy MoP 5.4.8 (18414)
 ## How to execute it 
 
->**add this lines to**
+>**add these lines to**
 
 >C:\Windows\System32\drivers\etc\hosts
 
@@ -37,3 +37,4 @@
 Thx for help me : Vo1d, Err0r, Manjaro.
 Many thanks to the developer of the Honorbuddy content. Your profiles and plugins are always very useful.
 Kickazz006, Akna, Brodie, Cava, Vitalic, Twist, Echo, etc.
+
