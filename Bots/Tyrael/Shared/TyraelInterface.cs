@@ -1,4 +1,4 @@
-﻿using Styx.Common;
+using Styx.Common;
 using Styx.CommonBot;
 using System;
 using System.Runtime.InteropServices;
@@ -116,11 +116,6 @@ namespace Tyrael.Shared
         private void FAQLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.thebuddyforum.com/honorbuddy-forum/botbases/102004-bot-tyrael-raiding-botbase.html");
-        }
-
-        private void RepLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.thebuddyforum.com/reputation.php?do=addreputation&p=1002699");
         }
 
         private void AutomaticUpdater_MouseMove(object sender, MouseEventArgs e)

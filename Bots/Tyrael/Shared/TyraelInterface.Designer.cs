@@ -1,4 +1,4 @@
-﻿using Styx.CommonBot;
+using Styx.CommonBot;
 
 namespace Tyrael.Shared
 {
@@ -42,7 +42,6 @@ namespace Tyrael.Shared
             this.ChatOutput = new System.Windows.Forms.CheckBox();
             this.SaveandCloseButton = new System.Windows.Forms.Button();
             this.NamePanel = new System.Windows.Forms.Panel();
-            this.RepLinkLabel = new System.Windows.Forms.LinkLabel();
             this.FAQLinkLabel = new System.Windows.Forms.LinkLabel();
             this.TyraelNameLabel = new System.Windows.Forms.Label();
             this.TpsLabel = new System.Windows.Forms.Label();
@@ -72,20 +71,20 @@ namespace Tyrael.Shared
             // 
             this.SettingsPanel.BackColor = System.Drawing.Color.White;
             this.SettingsPanel.Controls.Add(this.TicksPerSecondTrackBar);
-            this.SettingsPanel.Location = new System.Drawing.Point(2, 45);
+            this.SettingsPanel.Location = new System.Drawing.Point(8, 68);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.Size = new System.Drawing.Size(761, 50);
+            this.SettingsPanel.Size = new System.Drawing.Size(1144, 56);
             this.SettingsPanel.TabIndex = 0;
             // 
             // TicksPerSecondTrackBar
             // 
             this.TicksPerSecondTrackBar.BackColor = System.Drawing.Color.White;
             this.TicksPerSecondTrackBar.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.TicksPerSecondTrackBar.Location = new System.Drawing.Point(10, 2);
+            this.TicksPerSecondTrackBar.Location = new System.Drawing.Point(12, 6);
             this.TicksPerSecondTrackBar.Maximum = 100;
             this.TicksPerSecondTrackBar.Minimum = 10;
             this.TicksPerSecondTrackBar.Name = "TicksPerSecondTrackBar";
-            this.TicksPerSecondTrackBar.Size = new System.Drawing.Size(742, 45);
+            this.TicksPerSecondTrackBar.Size = new System.Drawing.Size(1120, 45);
             this.TicksPerSecondTrackBar.SmallChange = 10;
             this.TicksPerSecondTrackBar.TabIndex = 0;
             this.TicksPerSecondTrackBar.TickFrequency = 5;
@@ -97,10 +96,11 @@ namespace Tyrael.Shared
             // 
             this.ClickToMove.AutoSize = true;
             this.ClickToMove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClickToMove.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.ClickToMove.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.ClickToMove.Location = new System.Drawing.Point(10, 105);
+            this.ClickToMove.Location = new System.Drawing.Point(16, 178);
             this.ClickToMove.Name = "ClickToMove";
-            this.ClickToMove.Size = new System.Drawing.Size(162, 21);
+            this.ClickToMove.Size = new System.Drawing.Size(178, 24);
             this.ClickToMove.TabIndex = 8;
             this.ClickToMove.Text = "Enable Click to Move";
             this.ClickToMove.UseVisualStyleBackColor = false;
@@ -114,11 +114,12 @@ namespace Tyrael.Shared
             this.PauseKeyComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PauseKeyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PauseKeyComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PauseKeyComboBox.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.PauseKeyComboBox.ForeColor = System.Drawing.Color.DodgerBlue;
             this.PauseKeyComboBox.FormattingEnabled = true;
-            this.PauseKeyComboBox.Location = new System.Drawing.Point(13, 59);
+            this.PauseKeyComboBox.Location = new System.Drawing.Point(16, 76);
             this.PauseKeyComboBox.Name = "PauseKeyComboBox";
-            this.PauseKeyComboBox.Size = new System.Drawing.Size(229, 25);
+            this.PauseKeyComboBox.Size = new System.Drawing.Size(336, 27);
             this.PauseKeyComboBox.TabIndex = 7;
             this.PauseKeyComboBox.SelectedIndexChanged += new System.EventHandler(this.PauseKeyComboBox_SelectedIndexChanged);
             this.PauseKeyComboBox.MouseLeave += new System.EventHandler(this.TicksPerSecondTrackBar_Scroll);
@@ -129,11 +130,12 @@ namespace Tyrael.Shared
             this.ModifierKeyComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModifierKeyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ModifierKeyComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModifierKeyComboBox.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.ModifierKeyComboBox.ForeColor = System.Drawing.Color.DodgerBlue;
             this.ModifierKeyComboBox.FormattingEnabled = true;
-            this.ModifierKeyComboBox.Location = new System.Drawing.Point(13, 22);
+            this.ModifierKeyComboBox.Location = new System.Drawing.Point(16, 40);
             this.ModifierKeyComboBox.Name = "ModifierKeyComboBox";
-            this.ModifierKeyComboBox.Size = new System.Drawing.Size(229, 25);
+            this.ModifierKeyComboBox.Size = new System.Drawing.Size(336, 27);
             this.ModifierKeyComboBox.TabIndex = 6;
             this.ModifierKeyComboBox.SelectedIndexChanged += new System.EventHandler(this.ModifierKeyComboBox_SelectedIndexChanged);
             this.ModifierKeyComboBox.MouseLeave += new System.EventHandler(this.TicksPerSecondTrackBar_Scroll);
@@ -141,11 +143,11 @@ namespace Tyrael.Shared
             // PauseLabel
             // 
             this.PauseLabel.AutoSize = true;
-            this.PauseLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PauseLabel.Font = new System.Drawing.Font("Century Gothic", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PauseLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.PauseLabel.Location = new System.Drawing.Point(10, 3);
+            this.PauseLabel.Location = new System.Drawing.Point(16, 12);
             this.PauseLabel.Name = "PauseLabel";
-            this.PauseLabel.Size = new System.Drawing.Size(226, 16);
+            this.PauseLabel.Size = new System.Drawing.Size(336, 20);
             this.PauseLabel.TabIndex = 5;
             this.PauseLabel.Text = "Select Pause Hotkey Combination";
             this.PauseLabel.MouseLeave += new System.EventHandler(this.TicksPerSecondTrackBar_Scroll);
@@ -154,10 +156,11 @@ namespace Tyrael.Shared
             // 
             this.Plugins.AutoSize = true;
             this.Plugins.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Plugins.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.Plugins.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.Plugins.Location = new System.Drawing.Point(10, 145);
+            this.Plugins.Location = new System.Drawing.Point(16, 242);
             this.Plugins.Name = "Plugins";
-            this.Plugins.Size = new System.Drawing.Size(217, 21);
+            this.Plugins.Size = new System.Drawing.Size(352, 24);
             this.Plugins.TabIndex = 4;
             this.Plugins.Text = "Enable Plugins and AutoEquip";
             this.Plugins.UseVisualStyleBackColor = false;
@@ -169,10 +172,11 @@ namespace Tyrael.Shared
             // 
             this.ContinuesHealingMode.AutoSize = true;
             this.ContinuesHealingMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ContinuesHealingMode.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.ContinuesHealingMode.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.ContinuesHealingMode.Location = new System.Drawing.Point(10, 125);
+            this.ContinuesHealingMode.Location = new System.Drawing.Point(16, 210);
             this.ContinuesHealingMode.Name = "ContinuesHealingMode";
-            this.ContinuesHealingMode.Size = new System.Drawing.Size(240, 21);
+            this.ContinuesHealingMode.Size = new System.Drawing.Size(352, 24);
             this.ContinuesHealingMode.TabIndex = 3;
             this.ContinuesHealingMode.Text = "Enable Continuous Healing Mode";
             this.ContinuesHealingMode.UseVisualStyleBackColor = false;
@@ -184,10 +188,11 @@ namespace Tyrael.Shared
             // 
             this.HardLock.AutoSize = true;
             this.HardLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HardLock.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.HardLock.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.HardLock.Location = new System.Drawing.Point(10, 22);
+            this.HardLock.Location = new System.Drawing.Point(16, 40);
             this.HardLock.Name = "HardLock";
-            this.HardLock.Size = new System.Drawing.Size(133, 21);
+            this.HardLock.Size = new System.Drawing.Size(146, 24);
             this.HardLock.TabIndex = 2;
             this.HardLock.Text = "Enable HardLock";
             this.HardLock.UseVisualStyleBackColor = false;
@@ -199,10 +204,11 @@ namespace Tyrael.Shared
             // 
             this.ChatOutput.AutoSize = true;
             this.ChatOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ChatOutput.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.ChatOutput.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.ChatOutput.Location = new System.Drawing.Point(13, 119);
+            this.ChatOutput.Location = new System.Drawing.Point(16, 146);
             this.ChatOutput.Name = "ChatOutput";
-            this.ChatOutput.Size = new System.Drawing.Size(155, 21);
+            this.ChatOutput.Size = new System.Drawing.Size(170, 24);
             this.ChatOutput.TabIndex = 1;
             this.ChatOutput.Text = "Enable Chat Output";
             this.ChatOutput.UseVisualStyleBackColor = false;
@@ -215,10 +221,10 @@ namespace Tyrael.Shared
             this.SaveandCloseButton.BackColor = System.Drawing.Color.DodgerBlue;
             this.SaveandCloseButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.SaveandCloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveandCloseButton.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.SaveandCloseButton.Location = new System.Drawing.Point(620, 288);
+            this.SaveandCloseButton.Font = new System.Drawing.Font("Century Gothic", 10.5F);
+            this.SaveandCloseButton.Location = new System.Drawing.Point(936, 452);
             this.SaveandCloseButton.Name = "SaveandCloseButton";
-            this.SaveandCloseButton.Size = new System.Drawing.Size(143, 23);
+            this.SaveandCloseButton.Size = new System.Drawing.Size(200, 40);
             this.SaveandCloseButton.TabIndex = 0;
             this.SaveandCloseButton.Text = "Save and Close";
             this.SaveandCloseButton.UseVisualStyleBackColor = true;
@@ -229,39 +235,22 @@ namespace Tyrael.Shared
             // NamePanel
             // 
             this.NamePanel.BackColor = System.Drawing.Color.White;
-            this.NamePanel.Controls.Add(this.RepLinkLabel);
             this.NamePanel.Controls.Add(this.FAQLinkLabel);
             this.NamePanel.Controls.Add(this.TyraelNameLabel);
-            this.NamePanel.Location = new System.Drawing.Point(2, 2);
+            this.NamePanel.Location = new System.Drawing.Point(8, 8);
             this.NamePanel.Name = "NamePanel";
-            this.NamePanel.Size = new System.Drawing.Size(761, 41);
+            this.NamePanel.Size = new System.Drawing.Size(1144, 58);
             this.NamePanel.TabIndex = 0;
             this.NamePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GuiDragDrop);
-            // 
-            // RepLinkLabel
-            // 
-            this.RepLinkLabel.ActiveLinkColor = System.Drawing.Color.SteelBlue;
-            this.RepLinkLabel.AutoSize = true;
-            this.RepLinkLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RepLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.RepLinkLabel.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.RepLinkLabel.Location = new System.Drawing.Point(617, 3);
-            this.RepLinkLabel.Name = "RepLinkLabel";
-            this.RepLinkLabel.Size = new System.Drawing.Size(136, 17);
-            this.RepLinkLabel.TabIndex = 14;
-            this.RepLinkLabel.TabStop = true;
-            this.RepLinkLabel.Text = "Rep+ nomnomnom";
-            this.RepLinkLabel.VisitedLinkColor = System.Drawing.Color.DodgerBlue;
-            this.RepLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RepLinkLabel_LinkClicked);
             // 
             // FAQLinkLabel
             // 
             this.FAQLinkLabel.ActiveLinkColor = System.Drawing.Color.SteelBlue;
             this.FAQLinkLabel.AutoSize = true;
-            this.FAQLinkLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FAQLinkLabel.Font = new System.Drawing.Font("Century Gothic", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FAQLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.FAQLinkLabel.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.FAQLinkLabel.Location = new System.Drawing.Point(680, 21);
+            this.FAQLinkLabel.Location = new System.Drawing.Point(960, 14);
             this.FAQLinkLabel.Name = "FAQLinkLabel";
             this.FAQLinkLabel.Size = new System.Drawing.Size(73, 17);
             this.FAQLinkLabel.TabIndex = 13;
@@ -275,11 +264,11 @@ namespace Tyrael.Shared
             // TyraelNameLabel
             // 
             this.TyraelNameLabel.AutoSize = true;
-            this.TyraelNameLabel.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TyraelNameLabel.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TyraelNameLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.TyraelNameLabel.Location = new System.Drawing.Point(195, 1);
+            this.TyraelNameLabel.Location = new System.Drawing.Point(302, 10);
             this.TyraelNameLabel.Name = "TyraelNameLabel";
-            this.TyraelNameLabel.Size = new System.Drawing.Size(385, 39);
+            this.TyraelNameLabel.Size = new System.Drawing.Size(540, 42);
             this.TyraelNameLabel.TabIndex = 0;
             this.TyraelNameLabel.Text = "Tyrael - Raiding BotBase";
             this.TyraelNameLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GuiDragDrop);
@@ -288,9 +277,9 @@ namespace Tyrael.Shared
             // 
             this.TpsLabel.AutoSize = true;
             this.TpsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.TpsLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TpsLabel.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TpsLabel.ForeColor = System.Drawing.Color.White;
-            this.TpsLabel.Location = new System.Drawing.Point(9, 291);
+            this.TpsLabel.Location = new System.Drawing.Point(24, 454);
             this.TpsLabel.Name = "TpsLabel";
             this.TpsLabel.Size = new System.Drawing.Size(43, 17);
             this.TpsLabel.TabIndex = 1;
@@ -300,10 +289,11 @@ namespace Tyrael.Shared
             // 
             this.AutomaticUpdater.AutoSize = true;
             this.AutomaticUpdater.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AutomaticUpdater.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.AutomaticUpdater.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.AutomaticUpdater.Location = new System.Drawing.Point(10, 85);
+            this.AutomaticUpdater.Location = new System.Drawing.Point(16, 146);
             this.AutomaticUpdater.Name = "AutomaticUpdater";
-            this.AutomaticUpdater.Size = new System.Drawing.Size(197, 21);
+            this.AutomaticUpdater.Size = new System.Drawing.Size(216, 24);
             this.AutomaticUpdater.TabIndex = 9;
             this.AutomaticUpdater.Text = "Enable Automatic Updater";
             this.AutomaticUpdater.UseVisualStyleBackColor = false;
@@ -322,17 +312,17 @@ namespace Tyrael.Shared
             this.panel1.Controls.Add(this.ContinuesHealingMode);
             this.panel1.Controls.Add(this.HardLock);
             this.panel1.Controls.Add(this.Plugins);
-            this.panel1.Location = new System.Drawing.Point(2, 97);
+            this.panel1.Location = new System.Drawing.Point(8, 128);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(253, 188);
+            this.panel1.Size = new System.Drawing.Size(384, 318);
             this.panel1.TabIndex = 10;
             // 
             // AdditionalFeaturesLabel
             // 
             this.AdditionalFeaturesLabel.AutoSize = true;
-            this.AdditionalFeaturesLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdditionalFeaturesLabel.Font = new System.Drawing.Font("Century Gothic", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AdditionalFeaturesLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.AdditionalFeaturesLabel.Location = new System.Drawing.Point(10, 66);
+            this.AdditionalFeaturesLabel.Location = new System.Drawing.Point(16, 118);
             this.AdditionalFeaturesLabel.Name = "AdditionalFeaturesLabel";
             this.AdditionalFeaturesLabel.Size = new System.Drawing.Size(135, 16);
             this.AdditionalFeaturesLabel.TabIndex = 11;
@@ -342,10 +332,11 @@ namespace Tyrael.Shared
             // 
             this.SoftLock.AutoSize = true;
             this.SoftLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SoftLock.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.SoftLock.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.SoftLock.Location = new System.Drawing.Point(10, 42);
+            this.SoftLock.Location = new System.Drawing.Point(16, 76);
             this.SoftLock.Name = "SoftLock";
-            this.SoftLock.Size = new System.Drawing.Size(126, 21);
+            this.SoftLock.Size = new System.Drawing.Size(138, 24);
             this.SoftLock.TabIndex = 10;
             this.SoftLock.Text = "Enable SoftLock";
             this.SoftLock.UseVisualStyleBackColor = false;
@@ -356,9 +347,9 @@ namespace Tyrael.Shared
             // FrameLockFeaturesLabel
             // 
             this.FrameLockFeaturesLabel.AutoSize = true;
-            this.FrameLockFeaturesLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FrameLockFeaturesLabel.Font = new System.Drawing.Font("Century Gothic", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FrameLockFeaturesLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.FrameLockFeaturesLabel.Location = new System.Drawing.Point(10, 3);
+            this.FrameLockFeaturesLabel.Location = new System.Drawing.Point(16, 12);
             this.FrameLockFeaturesLabel.Name = "FrameLockFeaturesLabel";
             this.FrameLockFeaturesLabel.Size = new System.Drawing.Size(134, 16);
             this.FrameLockFeaturesLabel.TabIndex = 8;
@@ -373,19 +364,20 @@ namespace Tyrael.Shared
             this.panel2.Controls.Add(this.PauseLabel);
             this.panel2.Controls.Add(this.ModifierKeyComboBox);
             this.panel2.Controls.Add(this.ChatOutput);
-            this.panel2.Location = new System.Drawing.Point(257, 97);
+            this.panel2.Location = new System.Drawing.Point(404, 128);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(252, 188);
+            this.panel2.Size = new System.Drawing.Size(368, 318);
             this.panel2.TabIndex = 11;
             // 
             // RaidWarningOutput
             // 
             this.RaidWarningOutput.AutoSize = true;
             this.RaidWarningOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RaidWarningOutput.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.RaidWarningOutput.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.RaidWarningOutput.Location = new System.Drawing.Point(13, 139);
+            this.RaidWarningOutput.Location = new System.Drawing.Point(16, 178);
             this.RaidWarningOutput.Name = "RaidWarningOutput";
-            this.RaidWarningOutput.Size = new System.Drawing.Size(204, 21);
+            this.RaidWarningOutput.Size = new System.Drawing.Size(336, 24);
             this.RaidWarningOutput.TabIndex = 9;
             this.RaidWarningOutput.Text = "Enable Raidwarning Output";
             this.RaidWarningOutput.UseVisualStyleBackColor = false;
@@ -396,9 +388,9 @@ namespace Tyrael.Shared
             // LoggingLabel
             // 
             this.LoggingLabel.AutoSize = true;
-            this.LoggingLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoggingLabel.Font = new System.Drawing.Font("Century Gothic", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoggingLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.LoggingLabel.Location = new System.Drawing.Point(10, 97);
+            this.LoggingLabel.Location = new System.Drawing.Point(16, 118);
             this.LoggingLabel.Name = "LoggingLabel";
             this.LoggingLabel.Size = new System.Drawing.Size(119, 16);
             this.LoggingLabel.TabIndex = 8;
@@ -412,9 +404,9 @@ namespace Tyrael.Shared
             this.panel3.Controls.Add(this.MaximumPerformanceButton);
             this.panel3.Controls.Add(this.NormalPerformanceButton);
             this.panel3.Controls.Add(this.CasualPerformanceButton);
-            this.panel3.Location = new System.Drawing.Point(511, 97);
+            this.panel3.Location = new System.Drawing.Point(784, 128);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(252, 188);
+            this.panel3.Size = new System.Drawing.Size(368, 318);
             this.panel3.TabIndex = 12;
             // 
             // QuickPerformanceButton
@@ -422,11 +414,11 @@ namespace Tyrael.Shared
             this.QuickPerformanceButton.BackColor = System.Drawing.Color.White;
             this.QuickPerformanceButton.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
             this.QuickPerformanceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.QuickPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.QuickPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.QuickPerformanceButton.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.QuickPerformanceButton.Location = new System.Drawing.Point(9, 87);
+            this.QuickPerformanceButton.Location = new System.Drawing.Point(16, 136);
             this.QuickPerformanceButton.Name = "QuickPerformanceButton";
-            this.QuickPerformanceButton.Size = new System.Drawing.Size(235, 26);
+            this.QuickPerformanceButton.Size = new System.Drawing.Size(336, 36);
             this.QuickPerformanceButton.TabIndex = 16;
             this.QuickPerformanceButton.Text = "Quick Performance";
             this.QuickPerformanceButton.UseVisualStyleBackColor = false;
@@ -437,11 +429,11 @@ namespace Tyrael.Shared
             // QuickConfigurationLabel
             // 
             this.QuickConfigurationLabel.AutoSize = true;
-            this.QuickConfigurationLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuickConfigurationLabel.Font = new System.Drawing.Font("Century Gothic", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuickConfigurationLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.QuickConfigurationLabel.Location = new System.Drawing.Point(10, 3);
+            this.QuickConfigurationLabel.Location = new System.Drawing.Point(16, 12);
             this.QuickConfigurationLabel.Name = "QuickConfigurationLabel";
-            this.QuickConfigurationLabel.Size = new System.Drawing.Size(190, 16);
+            this.QuickConfigurationLabel.Size = new System.Drawing.Size(336, 20);
             this.QuickConfigurationLabel.TabIndex = 15;
             this.QuickConfigurationLabel.Text = "Quick Configuration Buttons";
             // 
@@ -450,11 +442,11 @@ namespace Tyrael.Shared
             this.MaximumPerformanceButton.BackColor = System.Drawing.Color.White;
             this.MaximumPerformanceButton.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
             this.MaximumPerformanceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MaximumPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.MaximumPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.MaximumPerformanceButton.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.MaximumPerformanceButton.Location = new System.Drawing.Point(9, 119);
+            this.MaximumPerformanceButton.Location = new System.Drawing.Point(16, 180);
             this.MaximumPerformanceButton.Name = "MaximumPerformanceButton";
-            this.MaximumPerformanceButton.Size = new System.Drawing.Size(235, 26);
+            this.MaximumPerformanceButton.Size = new System.Drawing.Size(336, 36);
             this.MaximumPerformanceButton.TabIndex = 13;
             this.MaximumPerformanceButton.Text = "Maximum Performance";
             this.MaximumPerformanceButton.UseVisualStyleBackColor = false;
@@ -467,11 +459,11 @@ namespace Tyrael.Shared
             this.NormalPerformanceButton.BackColor = System.Drawing.Color.White;
             this.NormalPerformanceButton.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
             this.NormalPerformanceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NormalPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.NormalPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.NormalPerformanceButton.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.NormalPerformanceButton.Location = new System.Drawing.Point(9, 55);
+            this.NormalPerformanceButton.Location = new System.Drawing.Point(16, 92);
             this.NormalPerformanceButton.Name = "NormalPerformanceButton";
-            this.NormalPerformanceButton.Size = new System.Drawing.Size(235, 26);
+            this.NormalPerformanceButton.Size = new System.Drawing.Size(336, 36);
             this.NormalPerformanceButton.TabIndex = 14;
             this.NormalPerformanceButton.Text = "Normal Performance";
             this.NormalPerformanceButton.UseVisualStyleBackColor = false;
@@ -484,11 +476,11 @@ namespace Tyrael.Shared
             this.CasualPerformanceButton.BackColor = System.Drawing.Color.White;
             this.CasualPerformanceButton.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
             this.CasualPerformanceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CasualPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.CasualPerformanceButton.Font = new System.Drawing.Font("Century Gothic", 10.5F);
             this.CasualPerformanceButton.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.CasualPerformanceButton.Location = new System.Drawing.Point(9, 23);
+            this.CasualPerformanceButton.Location = new System.Drawing.Point(16, 48);
             this.CasualPerformanceButton.Name = "CasualPerformanceButton";
-            this.CasualPerformanceButton.Size = new System.Drawing.Size(235, 26);
+            this.CasualPerformanceButton.Size = new System.Drawing.Size(336, 36);
             this.CasualPerformanceButton.TabIndex = 14;
             this.CasualPerformanceButton.Text = "Casual Performance";
             this.CasualPerformanceButton.UseVisualStyleBackColor = false;
@@ -501,7 +493,7 @@ namespace Tyrael.Shared
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(765, 314);
+            this.ClientSize = new System.Drawing.Size(1160, 500);
             this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
@@ -510,7 +502,7 @@ namespace Tyrael.Shared
             this.Controls.Add(this.TpsLabel);
             this.Controls.Add(this.NamePanel);
             this.Controls.Add(this.SettingsPanel);
-            this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Century Gothic", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -565,7 +557,6 @@ namespace Tyrael.Shared
         private System.Windows.Forms.Label AdditionalFeaturesLabel;
         private System.Windows.Forms.Button QuickPerformanceButton;
         private System.Windows.Forms.LinkLabel FAQLinkLabel;
-        private System.Windows.Forms.LinkLabel RepLinkLabel;
         private System.Windows.Forms.Label LoggingLabel;
         private System.Windows.Forms.CheckBox RaidWarningOutput;
 
