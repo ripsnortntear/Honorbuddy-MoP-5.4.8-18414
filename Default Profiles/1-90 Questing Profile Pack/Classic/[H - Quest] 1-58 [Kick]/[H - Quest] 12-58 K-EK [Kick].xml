@@ -5758,9 +5758,9 @@
         <MoveTo QuestId="25518" X="-6141.899" Y="-3804.61" Z="6.184705" />
         <CustomBehavior File="InteractWith" QuestId="25518" MobId="40483" InteractByUsingItemId="54747" X="-6158.069" Y="-3800.302" Z="6.191476" />
         </If>
-        </If>
         <If Condition="((HasQuest(25518)) &amp;&amp; (IsQuestCompleted(25518)))" >
         <TurnIn QuestName="Bar Fight!" QuestId="25518" TurnInName="Zamec" TurnInId="40556" />
+        </If>
         -->
 
         <SetGrindArea>
