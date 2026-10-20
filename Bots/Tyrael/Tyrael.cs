@@ -20,6 +20,7 @@ namespace Tyrael
         
         private static Composite _root;
         private static PulseFlags _pulseFlags;
+        private static bool _oldLogoutForInactivity;
 
         /// <summary>
         /// Returns Me as StyxWoW.Me.
@@ -201,6 +202,7 @@ namespace Tyrael
 
                 ProfileManager.LoadEmpty();
 
+                _oldLogoutForInactivity = GlobalSettings.Instance.LogoutForInactivity;
                 GlobalSettings.Instance.LogoutForInactivity = false;
                 TreeRoot.TicksPerSecond = CharacterSettings.Instance.TicksPerSecond;
             }
@@ -218,7 +220,7 @@ namespace Tyrael
             try
             {
                 TyraelUtilities.RemoveHotkeys();
-                GlobalSettings.Instance.LogoutForInactivity = true;
+                GlobalSettings.Instance.LogoutForInactivity = _oldLogoutForInactivity;
                 TreeRoot.TicksPerSecond = CharacterSettings.Instance.TicksPerSecond;
             }
             catch (Exception stopcomponentsexception)
