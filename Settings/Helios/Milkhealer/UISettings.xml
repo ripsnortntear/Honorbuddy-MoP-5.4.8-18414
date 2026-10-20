@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UISettings>
+  <EnhancedMode>True</EnhancedMode>
+  <DevToolsWindowLocationX>20</DevToolsWindowLocationX>
+  <DevToolsWindowLocationY>20</DevToolsWindowLocationY>
+  <DevToolsWindowWidth>0</DevToolsWindowWidth>
+  <DevToolsWindowHeight>0</DevToolsWindowHeight>
+  <DevToolsWindowState>Normal</DevToolsWindowState>
+  <MainWindowLocationX>-900</MainWindowLocationX>
+  <MainWindowLocationY>-340</MainWindowLocationY>
+  <MainWindowWidth>1096</MainWindowWidth>
+  <MainWindowHeight>1888</MainWindowHeight>
+  <MainWindowState>Maximized</MainWindowState>
+  <PluginsWindowLocationX>-497</PluginsWindowLocationX>
+  <PluginsWindowLocationY>-109</PluginsWindowLocationY>
+  <PluginsWindowWidth>301</PluginsWindowWidth>
+  <PluginsWindowHeight>1099</PluginsWindowHeight>
+  <PluginsWindowState>Normal</PluginsWindowState>
+  <SettingsWindowLocationX>20</SettingsWindowLocationX>
+  <SettingsWindowLocationY>20</SettingsWindowLocationY>
+  <SettingsWindowWidth>945</SettingsWindowWidth>
+  <SettingsWindowHeight>512</SettingsWindowHeight>
+  <SettingsWindowState>Normal</SettingsWindowState>
+</UISettings>

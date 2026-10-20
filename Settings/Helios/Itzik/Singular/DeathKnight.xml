@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeathKnightSettings>
+  <Presence>Auto</Presence>
+  <UseArmyOfTheDead>False</UseArmyOfTheDead>
+  <UsePathOfFrost>False</UsePathOfFrost>
+  <ConversionPercent>60</ConversionPercent>
+  <MinimumConversionRunicPowerPrecent>80</MinimumConversionRunicPowerPrecent>
+  <DeathAndDecayCount>2</DeathAndDecayCount>
+  <DeathPactPercent>60</DeathPactPercent>
+  <DeathSiphonPercent>85</DeathSiphonPercent>
+  <DeathStrikeEmergencyPercent>30</DeathStrikeEmergencyPercent>
+  <TargetWithDarkSimulacrum>All</TargetWithDarkSimulacrum>
+  <AutoClearAuraWithDarkSimulacrum>False</AutoClearAuraWithDarkSimulacrum>
+  <IceboundFortitudePercent>30</IceboundFortitudePercent>
+  <LichbornePercent>60</LichbornePercent>
+  <ArmyOfTheDeadPercent>60</ArmyOfTheDeadPercent>
+  <BloodBoilCount>4</BloodBoilCount>
+  <BoneShieldExclusive>False</BoneShieldExclusive>
+  <DeathPactExclusive>False</DeathPactExclusive>
+  <EmpowerRuneWeaponPercent>60</EmpowerRuneWeaponPercent>
+  <IceboundFortitudeExclusive>False</IceboundFortitudeExclusive>
+  <LichborneExclusive>False</LichborneExclusive>
+  <RuneTapPercent>60</RuneTapPercent>
+  <SummonGhoulPercentBlood>70</SummonGhoulPercentBlood>
+  <UseGhoulAsDpsCdBlood>False</UseGhoulAsDpsCdBlood>
+  <VampiricBloodPercent>60</VampiricBloodPercent>
+  <VampiricBloodExclusive>False</VampiricBloodExclusive>
+  <UseGhoulAsDpsCdFrost>False</UseGhoulAsDpsCdFrost>
+  <SummonGhoulPercentFrost>70</SummonGhoulPercentFrost>
+  <UseSummonGargoyle>True</UseSummonGargoyle>
+</DeathKnightSettings>

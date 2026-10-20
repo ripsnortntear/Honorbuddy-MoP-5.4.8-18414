@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+  <TicksPerSecond>80</TicksPerSecond>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <SelectTalents>True</SelectTalents>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <LootRadius>45</LootRadius>
+  <DrinkAmount>0</DrinkAmount>
+  <FoodAmount>0</FoodAmount>
+  <MailRecipient></MailRecipient>
+  <FoodName>1707</FoodName>
+  <DrinkName>1708</DrinkName>
+  <MountName></MountName>
+  <FlyingMountName></FlyingMountName>
+  <UseRandomMount>True</UseRandomMount>
+  <MountDistance>60</MountDistance>
+  <ClassProfileName>Death Knight - Blood</ClassProfileName>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <MaxBoEDisenchantQuality>Epic</MaxBoEDisenchantQuality>
+  <EnabledPlugins>
+    <Entry>Refreshment Detection</Entry>
+    <Entry>TurnOffCTM</Entry>
+  </EnabledPlugins>
+  <RecentProfiles>
+    <Entry>Death Knight Starting Zone ($Rev$)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\DK Start Zone.xml</Entry>
+    <Entry>[H - Quest] 1-12 Auto-Loader [Kick] ($Rev$)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\[H - Quest] 1-58 [Kick]\[H - Quest] 1-12 Auto-Loader [Kick].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Tyrael</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <LootChests>True</LootChests>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LastUsedPath>D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\DK Start Zone.xml</LastUsedPath>
+</CharacterSettings>

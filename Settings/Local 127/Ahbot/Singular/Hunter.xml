@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HunterSettings>
+  <PetNumberSolo>1</PetNumberSolo>
+  <PetNumberPvp>1</PetNumberPvp>
+  <PetNumberInstance>1</PetNumberInstance>
+  <MendPetPercent>70</MendPetPercent>
+  <UseDisengage>True</UseDisengage>
+  <UseFetch>True</UseFetch>
+  <UseMisdirectionInInstances>True</UseMisdirectionInInstances>
+  <UseWidowVenom>False</UseWidowVenom>
+  <CrowdControlFocus>False</CrowdControlFocus>
+  <DeterrenceHealth>50</DeterrenceHealth>
+  <DeterrenceCount>3</DeterrenceCount>
+  <FeignDeathHealth>10</FeignDeathHealth>
+  <FeignDeathPvpEnemyPets>True</FeignDeathPvpEnemyPets>
+  <FeignDeathInInstances>True</FeignDeathInInstances>
+</HunterSettings>

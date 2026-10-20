@@ -1,0 +1,92 @@
+v 1.0.11
+================================================================================================================
+- New and better DR-Tracker
+- Added Pet Totem Stomp
+- Added Flare on stunned/rooted rogues
+- Added Diminishing Return Interrupt check for Player, Healer and Allies
+- Added hotkey active option ( if you set the value to 500ms (0.5sec) the hotkey you've pressed is queued for 500ms)
+- Overall improvement for Hunter dmg 
+- Explosive Trap & Snake Trap is now placed and not thrown at your feet anymore if melees attack you.
+  This way it should trigger faster
+- Added Freezin Trap mouseover hotkey
+================================================================================================================
+
+
+v 1.0.10
+================================================================================================================
+- Performance improved
+- Fixed DR Tracker
+- Added Notifier as Icons / RaidWarning / Chat Msg (Check the General Options)
+- Added DR value option for automated and manual CCs
+- You can now create your own Interrupt-list
+- Fixed a bug with Hybrids
+- Fixed Explo Shot
+- You can now create your own spellIDlist for Tranqshot
+================================================================================================================
+
+
+v 1.0.7
+================================================================================================================
+- added a Freezing Trap option where you can decide on which buffs the trap should be thrown (activate
+  custom ids +  leave the text box blank, then the CR will throw the freezing trap regardless of any debuffs)
+================================================================================================================
+
+
+v 1.0.6
+================================================================================================================
+- improved performance
+================================================================================================================
+
+
+v 1.0.5
+================================================================================================================
+- fixed and simplified many things
+- Added Concussive Shot on Healer
+- Changed Ice Trap logic
+- Added TranqAny checkbox
+- Imporved Freezing trap logic
+================================================================================================================
+
+
+v 1.0.4
+================================================================================================================
+- Fixed the issue that its not interrupting channeling spells sometimes
+- Added Interrupt Heal: Set the max target hp value to interrupt heal spells
+- Added Interrupt Dmg: Set the max ally hp value to interrupt normal dmg spells
+  (Chaosbolt, Haunt,Frost Bomb,Mind Blast,Insanity will allways be interrupted
+  regardles of your value for Interrupt Dmg, even when its unchecked)
+- Added Interrupt CC: Set the max ally hp value to interrupt CC spells
+- Added Interrupt CC if Healer not CCed
+================================================================================================================
+
+
+v 1.0.3
+================================================================================================================
+- Traps are now fired instantly instead of adding a cast between scatter and trap
+- The CR will stop casting your current cast now if you press a trap hotkey
+- Tranq All is now only used when pressing the hotkey or when your current target is above 99% HP.
+  This results in a DPS gain
+================================================================================================================
+
+
+v 1.0.2
+================================================================================================================
+- Freezing Traps are now more reliable
+- Pets added: Crab + Shale Spider (if you want more pets just give me the name of the pet or the SpellID of
+  the pets Ability)
+- Killshot stops casting now so you will see MUCH more killshots 
+- Added instant Tranq on HoP, HoS, Alter Time
+- Fixed Growl
+- overall performance increase
+================================================================================================================
+
+
+v 1.0.1
+================================================================================================================
+- Interface improved
+- You can now bind Pause to multiple keys
+- Non-Freezing Trap traps are allways thrown 3 yards in front of the enemy to your direction
+  (to allways knockback enemies away from you)
+- Added Feign Death for deadly dmg spells
+- Added Feign Death for CCs (the enemy has to target you and cast a CC, this wont work with MouseOver or Focus CCs)
+================================================================================================================

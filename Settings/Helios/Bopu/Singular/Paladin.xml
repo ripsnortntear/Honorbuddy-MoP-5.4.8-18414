@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PaladinSettings>
+  <HolyLightHealth>90</HolyLightHealth>
+  <Blessings>Auto</Blessings>
+  <Seal>Auto</Seal>
+  <StunMobsWhileSolo>True</StunMobsWhileSolo>
+  <SelfLayOnHandsHealth>25</SelfLayOnHandsHealth>
+  <SelfFlashOfLightHealth>40</SelfFlashOfLightHealth>
+  <SelfWordOfGloryHealth1>0</SelfWordOfGloryHealth1>
+  <SelfWordOfGloryHealth2>0</SelfWordOfGloryHealth2>
+  <SelfWordOfGloryHealth3>65</SelfWordOfGloryHealth3>
+  <SelfEternalFlameHealth>65</SelfEternalFlameHealth>
+  <LayOnHandsHealth>25</LayOnHandsHealth>
+  <FlashOfLightHealth>50</FlashOfLightHealth>
+  <KeepEternalFlameUp>True</KeepEternalFlameUp>
+  <LightOfDawnHealth>80</LightOfDawnHealth>
+  <LightOfDawnCount>2</LightOfDawnCount>
+  <HolyShockHealth>90</HolyShockHealth>
+  <DivineLightHealth>65</DivineLightHealth>
+  <DivinePleaMana>50</DivinePleaMana>
+  <GoAKHealth>40</GoAKHealth>
+  <ArdentDefenderHealth>40</ArdentDefenderHealth>
+  <DivineProtectionHealthProt>80</DivineProtectionHealthProt>
+  <AvengersPullOnly>False</AvengersPullOnly>
+  <ProtConsecrationCount>3</ProtConsecrationCount>
+  <DivineProtectionHealthRet>70</DivineProtectionHealthRet>
+  <RetAvengAndGoatK>True</RetAvengAndGoatK>
+</PaladinSettings>

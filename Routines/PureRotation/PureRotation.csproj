@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{417C8EE2-5993-41F2-A7CD-37AF0021C26A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PureRotation</RootNamespace>
+    <AssemblyName>PureRotation</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Honorbuddy, Version=2.5.7857.658, Culture=neutral, PublicKeyToken=50a565ab5c01ae50, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Honorbuddy\Honorbuddy.exe</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Tripper.Tools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c40611ce03f849a2, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Honorbuddy\Tripper.Tools.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\DeathKnight\Blood.cs" />
+    <Compile Include="Classes\DeathKnight\Common.cs" />
+    <Compile Include="Classes\DeathKnight\DeathStrikeTracker.cs" />
+    <Compile Include="Classes\DeathKnight\Frost.cs" />
+    <Compile Include="Classes\DeathKnight\Unholy.cs" />
+    <Compile Include="Classes\Druid\Balance.cs" />
+    <Compile Include="Classes\Druid\Common.cs" />
+    <Compile Include="Classes\Druid\Feral.cs" />
+    <Compile Include="Classes\Druid\Guardian.cs" />
+    <Compile Include="Classes\Hunter\BeastMastery.cs" />
+    <Compile Include="Classes\Hunter\Common.cs" />
+    <Compile Include="Classes\Hunter\Marksmanship.cs" />
+    <Compile Include="Classes\Hunter\Survival.cs" />
+    <Compile Include="Classes\Mage\Arcane.cs" />
+    <Compile Include="Classes\Mage\Common.cs" />
+    <Compile Include="Classes\Mage\Fire.cs" />
+    <Compile Include="Classes\Mage\Frost.cs" />
+    <Compile Include="Classes\Monk\Brewmaster.cs" />
+    <Compile Include="Classes\Monk\Common.cs" />
+    <Compile Include="Classes\Monk\Windwalker.cs" />
+    <Compile Include="Classes\Paladin\Common.cs" />
+    <Compile Include="Classes\Paladin\Protection.cs" />
+    <Compile Include="Classes\Paladin\Retribution.cs" />
+    <Compile Include="Classes\Priest\Shadow.cs" />
+    <Compile Include="Classes\Rogue\Assassination.cs" />
+    <Compile Include="Classes\Rogue\Combat.cs" />
+    <Compile Include="Classes\Rogue\Common.cs" />
+    <Compile Include="Classes\Rogue\Poisons.cs" />
+    <Compile Include="Classes\Rogue\Rogue.cs" />
+    <Compile Include="Classes\Rogue\Subtlety.cs" />
+    <Compile Include="Classes\RotationBase.cs" />
+    <Compile Include="Classes\Shaman\Common.cs" />
+    <Compile Include="Classes\Shaman\Elemental.cs" />
+    <Compile Include="Classes\Shaman\Enhancement.cs" />
+    <Compile Include="Classes\Shaman\Totems.cs" />
+    <Compile Include="Classes\Warlock\Affliction.cs" />
+    <Compile Include="Classes\Warlock\Common.cs" />
+    <Compile Include="Classes\Warlock\Demonology.cs" />
+    <Compile Include="Classes\Warlock\Destruction.cs" />
+    <Compile Include="Classes\Warrior\Arms.cs" />
+    <Compile Include="Classes\Warrior\Common.cs" />
+    <Compile Include="Classes\Warrior\Fury.cs" />
+    <Compile Include="Classes\Warrior\Protection.cs" />
+    <Compile Include="Core\CombatLogHandler.cs" />
+    <Compile Include="Core\Item.cs" />
+    <Compile Include="Core\PvP.cs" />
+    <Compile Include="Core\Racials.cs" />
+    <Compile Include="Helpers\CooldownTracker.cs" />
+    <Compile Include="Helpers\DoTTracker.cs" />
+    <Compile Include="Helpers\DpsMeter.cs" />
+    <Compile Include="Helpers\EncounterSpecific.cs" />
+    <Compile Include="Helpers\Lua.cs" />
+    <Compile Include="Core\Spell.cs" />
+    <Compile Include="Core\Unit.cs" />
+    <Compile Include="Helpers\Bosslist.cs" />
+    <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\PartyExtensions.cs" />
+    <Compile Include="Helpers\SpellLists.cs" />
+    <Compile Include="Helpers\Throttle.cs" />
+    <Compile Include="Managers\CachedUnits.cs" />
+    <Compile Include="Managers\CacheManager.cs" />
+    <Compile Include="Managers\HotKeyManager.cs" />
+    <Compile Include="Managers\TalentManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PureRotation.Behaviours.cs" />
+    <Compile Include="PureRotation.Context.cs" />
+    <Compile Include="Core\enums.cs" />
+    <Compile Include="PureRotation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\GUI\CboItem.cs" />
+    <Compile Include="Settings\GUI\ConfigurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\GUI\ConfigurationForm.designer.cs">
+      <DependentUpon>ConfigurationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\GUI\Debug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\GUI\Debug.Designer.cs">
+      <DependentUpon>Debug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\GUI\HealingDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\GUI\HealingDebug.Designer.cs">
+      <DependentUpon>HealingDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Settings\HotkeySettings.cs" />
+    <Compile Include="Settings\Settings\PRSettings.cs" />
+    <Compile Include="Settings\Settings\DeathKnightSettings.cs" />
+    <Compile Include="Settings\Settings\DruidSettings.cs" />
+    <Compile Include="Settings\Settings\HunterSettings.cs" />
+    <Compile Include="Settings\Settings\MageSettings.cs" />
+    <Compile Include="Settings\Settings\MonkSettings.cs" />
+    <Compile Include="Settings\Settings\PaladinSettings.cs" />
+    <Compile Include="Settings\Settings\PriestSettings.cs" />
+    <Compile Include="Settings\Settings\RogueSettings.cs" />
+    <Compile Include="Settings\Settings\ShamanSettings.cs" />
+    <Compile Include="Settings\Settings\WarlockSettings.cs" />
+    <Compile Include="Settings\Settings\WarriorSettings.cs" />
+    <Compile Include="Classes\SpellBook.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Settings\GUI\browse.ico" />
+    <Content Include="Settings\GUI\close.ico" />
+    <Content Include="Settings\GUI\folder.ico" />
+    <Content Include="Settings\GUI\icon.ico" />
+    <Content Include="Settings\GUI\logo.png" />
+    <Content Include="Settings\GUI\refresh.png" />
+    <Content Include="Settings\GUI\save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\GUI\ConfigurationForm.resx">
+      <DependentUpon>ConfigurationForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\GUI\Debug.resx">
+      <DependentUpon>Debug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\GUI\HealingDebug.resx">
+      <DependentUpon>HealingDebug.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

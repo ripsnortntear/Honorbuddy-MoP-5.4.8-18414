@@ -1,0 +1,167 @@
+v 1.0.21
+================================================================================================================
+
+- New and better DR-Tracker
+- Added Intercept Traps and Escape hotkey options
+- Improved the way Auto Shieldwall / Die by the Sword works
+- Added Rallying Cry configuration
+- Fixed a bug where the Icon notifier appeared while zoning
+- Added Diminishing Return Interrupt check for Player, Healer and Allies
+- Added hotkey active option ( if you set the value to 500ms (0.5sec) the hotkey you've pressed is queued for 500ms)
+- Added Fear Ward check to autofear
+- Added IBF to AutoShockwave
+================================================================================================================
+
+
+v 1.0.20
+================================================================================================================
+
+- Performance improved
+- Fixed DR Tracker
+- Added Notifier as Icons / RaidWarning / Chat Msg (Check the General Options)
+- Added DR value option for automated and manual CCs
+- You can now create your own Interrupt-list
+- Fixed a bug with Hybrids
+- Added AoE Mode
+- minor Improvements
+================================================================================================================
+
+
+v 1.0.18
+================================================================================================================
+- Added auto charge
+- fixed and simplified many things
+================================================================================================================
+
+
+v 1.0.17
+================================================================================================================
+- Fixed the issue that its not interrupting channeling spells sometimes
+================================================================================================================
+
+
+v 1.0.16
+================================================================================================================
+- You can now change your talents in arena without breaking the CR after leaving the arena (rly! )
+================================================================================================================
+
+
+v 1.0.15
+================================================================================================================
+- overall performance increase
+- bugfixes
+================================================================================================================
+
+
+v 1.0.14
+================================================================================================================
+- Interface improved
+- You can now bind Pause to multiple keys
+- Improved Rallying Cry Logic
+================================================================================================================
+
+
+v 1.0.13
+================================================================================================================
+- I rly rly  rly rly hope that this time the respeccing in arena works
+- improved interrupt
+================================================================================================================
+
+
+v 1.0.12
+================================================================================================================
+- Added Blacklist/Ignore Unit Hotkey (Mouseover)
+================================================================================================================
+
+
+v 1.0.11
+================================================================================================================
+- AOE's should no longer break CC's
+- Banner Charge with right mouse button now also checks the range to your target and wont place the banner if your target is oor
+================================================================================================================
+
+
+v 1.0.10
+================================================================================================================
+- small bugfixes
+- TC shouldnt clap nearby cced units anymore
+- Piercing Howl is now used when 2 or more player are around you
+================================================================================================================
+
+
+v 1.0.9
+================================================================================================================
+- Fixed Talentmanager
+================================================================================================================
+
+
+v 1.0.8
+================================================================================================================
+- minor Bugfixes
+================================================================================================================
+
+
+v 1.0.7
+================================================================================================================
+- Should no longer use spell reflect if interrupt is possible
+- Should no longer disarm targets that are stunned
+- Fixed issue when setting pause to modifier only
+- Added some missing spell IDs
+================================================================================================================
+
+
+v. 1.0.6
+================================================================================================================
+- Improved logging.
+- Several bug fixes.
+- You can now assign the pause key to only a modifier.
+- Talent manager should now update if skills were changed in arena
+================================================================================================================
+
+
+v. 1.0.5
+================================================================================================================
+- Fixed a Stormbolt Healer bug
+- Added Mirror images to autoretarget
+- Added Gloves to Trinket 1 && Trinket2, so if you have gloves but not a use trinket then use one of the trinket options
+- Revamped the AutoFearHealer logic
+- Auto pickup flags does now work!
+================================================================================================================
+
+
+v. 1.0.4
+================================================================================================================
+- Improved Stormbolt DPS
+- Added Some SpellIDs
+================================================================================================================
+
+
+v. 1.0.3
+================================================================================================================
+- Added "HardFocus" ( the CR remembers your focus and will focus that unit again if the focus gets lost)
+- Added Focus Gap Closer (W/ right mouse button = Heroic Leap on Focus || W/o right mouse button = charge)
+- IMPORTANT ( Remove your Hotkey-Settings or Honorbuddy will crash)
+- Fixed some Bugs
+================================================================================================================
+
+
+v. 1.0.2
+================================================================================================================
+- Fixed dematerialize SpellID
+- Added Healing Stream to totemstomp
+- Added retargeting on Stealth Spells
+- Gap Closer bug fixed
+- Changed BurstTarget to disable itself better
+================================================================================================================
+
+v.1.0.1
+================================================================================================================
+- Added Def Spec
+- Added Mass Spell Reflection
+- Added Vigilance
+- Added Enraged Regeneration
+- Added Impending Victory
+- Fixed Mass Spell Reflection for Freezing Trap
+- Fixed Settings Reset after releasing a new Version
+- Interface is now Resizeable
+================================================================================================================

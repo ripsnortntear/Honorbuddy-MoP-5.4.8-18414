@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HotkeySettings>
+  <SavedToFile>True</SavedToFile>
+  <ChatFrameMessage>False</ChatFrameMessage>
+  <KeysToggleBehavior>True</KeysToggleBehavior>
+  <AoeToggle>A, Control</AoeToggle>
+  <CombatToggle>None</CombatToggle>
+  <MovementToggle>None</MovementToggle>
+  <SuspendMovement>False</SuspendMovement>
+  <SuspendDuration>3</SuspendDuration>
+  <SuspendMovementKeys>
+    <Entry>MButton</Entry>
+    <Entry>RButton</Entry>
+    <Entry>W</Entry>
+    <Entry>S</Entry>
+    <Entry>A</Entry>
+    <Entry>D</Entry>
+    <Entry>Q</Entry>
+    <Entry>E</Entry>
+    <Entry>Up</Entry>
+    <Entry>Down</Entry>
+    <Entry>Left</Entry>
+    <Entry>Right</Entry>
+  </SuspendMovementKeys>
+</HotkeySettings>

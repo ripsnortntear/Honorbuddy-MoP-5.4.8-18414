@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeathKnightSettings>
+  <AutoTarget>True</AutoTarget>
+  <GrpTarget>True</GrpTarget>
+  <LastStatCounted>10</LastStatCounted>
+  <InterruptMinValue>40</InterruptMinValue>
+  <InterruptMaxValue>80</InterruptMaxValue>
+  <Tier4UnitValue>3</Tier4UnitValue>
+  <AutoBurstHPValue>70</AutoBurstHPValue>
+  <GSL2vs2>0</GSL2vs2>
+  <GSL3vs3>0</GSL3vs3>
+  <GSL5vs5>0</GSL5vs5>
+  <GSLRBG>0</GSLRBG>
+  <GSLHide>0</GSLHide>
+  <GSLUsername></GSLUsername>
+  <InterruptDiminishingReturnEnabled>False</InterruptDiminishingReturnEnabled>
+  <InterruptDiminishingReturnPlayerEnabled>True</InterruptDiminishingReturnPlayerEnabled>
+  <InterruptDiminishingReturnPlayerValue>2</InterruptDiminishingReturnPlayerValue>
+  <InterruptDiminishingReturnAllyHealerEnabled>True</InterruptDiminishingReturnAllyHealerEnabled>
+  <InterruptDiminishingReturnAllyHealerValue>2</InterruptDiminishingReturnAllyHealerValue>
+  <InterruptDiminishingReturnAllyPlayerEnabled>True</InterruptDiminishingReturnAllyPlayerEnabled>
+  <InterruptDiminishingReturnAllyPlayerValue>1</InterruptDiminishingReturnAllyPlayerValue>
+  <DiminishingReturnAutoValue>1</DiminishingReturnAutoValue>
+  <DiminishingReturnManualValue>2</DiminishingReturnManualValue>
+  <SpellReflectValueMin>40</SpellReflectValueMin>
+  <SpellReflectValueMax>80</SpellReflectValueMax>
+  <DefStanceValue>60</DefStanceValue>
+  <BattleStanceValue>80</BattleStanceValue>
+  <PetFollowValue>65</PetFollowValue>
+  <AutoStormBoltHealer>True</AutoStormBoltHealer>
+  <AutoStormBoltDps>False</AutoStormBoltDps>
+  <BerserkerRageonCS>False</BerserkerRageonCS>
+  <AutoBurstHP>False</AutoBurstHP>
+  <DnD>False</DnD>
+  <DnDSlow>False</DnDSlow>
+  <AutoBurstAllyBurst>False</AutoBurstAllyBurst>
+  <AutoFearHealer>True</AutoFearHealer>
+  <AutoEscape>False</AutoEscape>
+  <AutoLichbornSelfhealValue>30</AutoLichbornSelfhealValue>
+  <AutoGapCloser>True</AutoGapCloser>
+  <AutoExecuteDeathGrip>False</AutoExecuteDeathGrip>
+  <AutoCharge>False</AutoCharge>
+  <PickupAllianceFlag>True</PickupAllianceFlag>
+  <PickupHordeFlag>True</PickupHordeFlag>
+  <Trinket1>None</Trinket1>
+  <Trinket2>None</Trinket2>
+  <CustomSpellIdsTrinketProcString>126705	// Surge of Dominance</CustomSpellIdsTrinketProcString>
+  <AutoIBFWall>False</AutoIBFWall>
+  <IBFWallValue>30</IBFWallValue>
+  <AutoAntiMagicShell>False</AutoAntiMagicShell>
+  <AutoAntiMagicShellValue>30</AutoAntiMagicShellValue>
+  <AutoDemoBanner>False</AutoDemoBanner>
+  <AutoDemoBannerValue>30</AutoDemoBannerValue>
+  <AutoT4>True</AutoT4>
+  <AutoT4Value>30</AutoT4Value>
+  <AutoSafeGrip>False</AutoSafeGrip>
+  <AutoProtectAsphyxiateDps>False</AutoProtectAsphyxiateDps>
+  <AutoProtectValue>15</AutoProtectValue>
+  <DefStanceOnStun>True</DefStanceOnStun>
+  <InterceptTrapsLeap>True</InterceptTrapsLeap>
+  <InterceptTrapsIntervene>True</InterceptTrapsIntervene>
+  <EscapeHealer>True</EscapeHealer>
+  <EscapeDps>True</EscapeDps>
+  <AttackEveryone>False</AttackEveryone>
+  <LatencyValue>100</LatencyValue>
+  <HotkeyActiveValue>500</HotkeyActiveValue>
+  <CustomSpellIdsInterruptHighestPriorityEnabled>False</CustomSpellIdsInterruptHighestPriorityEnabled>
+  <CustomSpellIdsInterruptHighestPriorityString>48181	// Haunt
+116858	// Chaos Bolt
+129197	// Insanity</CustomSpellIdsInterruptHighestPriorityString>
+  <CustomSpellIdsInterruptHealEnabled>False</CustomSpellIdsInterruptHealEnabled>
+  <CustomSpellIdsInterruptHealString>5185	// Healing Touch
+8936	// Regrowth
+50464	// Nourish
+19750	// Flash of Light
+82326	// Divine Light
+2061	// Flash Heal
+331	// Healing Wave
+64901	// Hymn of Hope
+12051	// Evocation
+8004	// healing Surge
+47757	// actual penance
+64843	// Divine Hymn
+115175	// Soothing Mist
+77472	// Greater healing Wave
+1064	// Chain Heal
+77472	// Greater Healing Wave
+8004	// Healing Surge
+73920	// Healing Rain
+8936	// Regrowth
+2061	// Flash Heal
+47540	// Penance
+32546	// binding Heal
+2060	// Greater Heal
+32375	// Mass Dispel
+2006	// Resurrection
+5185	// Healing Touch
+596	// Prayer of Healing
+19750	// Flash of Light
+635	// Holy Light
+7328	// Redemption
+2008	// Ancestral Spirit
+50769	// Revive
+82327	// Holy Radiance
+82326	// Divine Light
+740	// Tranquillity
+116694	// Surging Mist
+124682	// Enveloping Mist
+64901	// Hymn of Hope
+64843	// Divine Hymn
+115151	// Renewing Mist
+115310	// Revival
+982	// Revive Pet</CustomSpellIdsInterruptHealString>
+  <CustomSpellIdsInterruptDmgEnabled>False</CustomSpellIdsInterruptDmgEnabled>
+  <CustomSpellIdsInterruptDmgString>116	// Frostbolt
+2948	// Scorch
+51505	// Lava Burst
+403	// Lightnin Bolt
+1120	// Drain Soul
+48181	// Haunt
+30108	// UA
+30451	// Arcane Blast
+116858	// Chaos Bolt
+113092	// Frost Bomb
+8092	// Mind Blast
+11366	// Pyroblast
+126201	// Frost Bolt
+15407	// Mind Flay
+44614	// Frostfire Bolt
+133	// Fireball
+103103	// Malefic Grasp
+117014	// Elemental Blast
+8092	// Mind Blast
+34914	// Vampiric Touch
+118297	// Immolate
+124465	// Vampiric Touch</CustomSpellIdsInterruptDmgString>
+  <CustomSpellIdsInterruptCcEnabled>False</CustomSpellIdsInterruptCcEnabled>
+  <CustomSpellIdsInterruptCcString>2637	// Hibernate
+9484	// Shackle Undead
+5782	// Fear
+33786	// Cyclone
+28272	// Pig Poly
+118	// Sheep Poly
+61305	// Cat Poly
+113506	// Symbiose Cyclone
+605	// Dominate Mind
+82691	// Ring of Frost
+145067	// Turn Evil ?!
+115750	// Blinding Light
+61721	// Rabbit Poly
+61780	// Turkey Poly
+28271	// Turtle Poly
+51514	// Hex
+339	// Entangling Roots
+605	// Dominate Mind
+20066	// Repentance
+102051	// Frost Jaw
+10326	// Turn Evil
+82012	// Repentance
+1513	// Scare Beast</CustomSpellIdsInterruptCcString>
+  <AutoHealthstone>False</AutoHealthstone>
+  <HealthstoneValue>30</HealthstoneValue>
+  <NotifyIconCc>False</NotifyIconCc>
+  <NotifyIconToggles>False</NotifyIconToggles>
+  <NotifyIconEvents>False</NotifyIconEvents>
+  <NotifyRaidWarningCc>False</NotifyRaidWarningCc>
+  <NotifyRaidWarningToggles>False</NotifyRaidWarningToggles>
+  <NotifyRaidWarningEvents>False</NotifyRaidWarningEvents>
+  <NotifyChatMsgCc>False</NotifyChatMsgCc>
+  <NotifyChatMsgToggles>False</NotifyChatMsgToggles>
+  <NotifyChatMsgEvents>False</NotifyChatMsgEvents>
+  <InterruptHealTargetHp>True</InterruptHealTargetHp>
+  <InterruptHealTargetHpValue>80</InterruptHealTargetHpValue>
+  <InterruptDmgAllyHp>True</InterruptDmgAllyHp>
+  <InterruptDmgAllyHpValue>70</InterruptDmgAllyHpValue>
+  <InterruptCcAllyHp>True</InterruptCcAllyHp>
+  <InterruptCcAllyHpValue>85</InterruptCcAllyHpValue>
+  <InterruptCcHealerNotCced>True</InterruptCcHealerNotCced>
+  <GSAero>True</GSAero>
+  <GSAeroToggle>True</GSAeroToggle>
+  <GSAeroInterrupt>False</GSAeroInterrupt>
+  <GSAeroCombatlog>False</GSAeroCombatlog>
+  <GSAeroSafeSpot>True</GSAeroSafeSpot>
+  <GSAeroHealrange>True</GSAeroHealrange>
+  <GSAeroAllyHelp>True</GSAeroAllyHelp>
+  <GSAeroAllyCCHealer>False</GSAeroAllyCCHealer>
+  <GSAeroAllyCCDPS>False</GSAeroAllyCCDPS>
+  <GSAeroPrimaryEnemy>True</GSAeroPrimaryEnemy>
+  <GSAeroPrimaryAlly>True</GSAeroPrimaryAlly>
+  <GSAeroOutgoingCC>True</GSAeroOutgoingCC>
+  <GSAeroIncomingCC>True</GSAeroIncomingCC>
+  <GSAeroEnemyBurst>False</GSAeroEnemyBurst>
+  <GSAeroFreezingTrap>True</GSAeroFreezingTrap>
+  <VAeroToggleX>40</VAeroToggleX>
+  <VAeroToggleY>100</VAeroToggleY>
+  <VAeroInfoX>40</VAeroInfoX>
+  <VAeroInfoY>250</VAeroInfoY>
+</DeathKnightSettings>

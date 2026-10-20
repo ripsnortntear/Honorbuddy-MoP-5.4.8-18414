@@ -1,0 +1,146 @@
+v 1.0.17
+================================================================================================================
+- New and better DR-Tracker
+- Improved the RoF cast function
+- IceLance wont spam into immun targets anymore but will remove Grounding/SpellReflection
+- Added Pet Totem Stomp
+- Fixed IceWard
+- FIxed Remove Curse bug for Frost Mages
+- Added Diminishing Return Interrupt check for Player, Healer and Allies
+- Added hotkey active option ( if you set the value to 500ms (0.5sec) the hotkey you've pressed is queued for 500ms)
+- Fixed Poly into morphed druids
+- Fixed alter time double cast
+================================================================================================================
+
+
+v 1.0.16
+================================================================================================================
+- Performance improved
+- Fixed DR Tracker
+- Added Notifier as Icons / RaidWarning / Chat Msg (Check the General Options)
+- Added DR value option for automated and manual CCs
+- You can now create your own Interrupt-list
+- Fixed a bug with Hybrids
+- Fixed BlanketHealer/DPS toggle 
+- Added AOE Hotkey for Blizzard/Flamestrike while standing still or AE while running
+- NT & LB prioritize now frozen targets
+================================================================================================================
+
+
+v 1.0.13
+================================================================================================================
+- Fixed trinkets in the interface for mage. Trinket 1 is now Trinket 1 and not 2 
+- Fixed RoF Healer
+- Fixed InterrupNextHeal
+- Fixed client language bug with pet spells
+- prob fix for alter time burst and PoM poly
+================================================================================================================
+
+
+v 1.0.12
+================================================================================================================
+- Changed living bomb and nether tempest to be more efficient
+- possible fixed the juke bug
+- Added PolyUnit to interrupt blacklist
+- fixed and simplified many things
+================================================================================================================
+
+
+v 1.0.11
+================================================================================================================
+- Fixed the issue that its not interrupting channeling spells sometimes
+- Added Interrupt Heal: Set the max target hp value to interrupt heal spells
+- Added Interrupt Dmg: Set the max ally hp value to interrupt normal dmg spells
+  (Chaosbolt, Haunt, Frost Bomb, Mind Blast, Insanity will allways be interrupted
+  regardles of your value for Interrupt Dmg, even when its unchecked)
+- Added Interrupt CC: Set the max ally hp value to interrupt CC spells
+- Added Interrupt CC if Healer not CCed
+================================================================================================================
+
+
+v 1.0.10
+================================================================================================================
+- All castable CCs are now stopping your current casts when used via hotkey
+================================================================================================================
+
+
+v 1.0.9
+================================================================================================================
+- Living Bomb will now be casted on frozen targets more often
+- LB or Tempest wont break sheeps anymore (rly!)
+- Fixed Ring Of Frost bug while right mouse button is pressed
+- overall performance increase
+- many minor bugfixes
+================================================================================================================
+
+
+v 1.0.8
+================================================================================================================
+- Interface improved
+- You can now bind Pause to multiple keys
+- Living Bomb has a higher priority
+- Added Cold Snap (if you are below 30% HP, in an IceBlock and no incoming heal)
+- Fixed IceWard
+- Alter Time will now be canceld if you fall below 20% HP
+================================================================================================================
+
+
+v 1.0.7
+================================================================================================================
+- Added RoF Focus
+- Added Pet Passive/Active Toggle
+- Added Interrupt Toggle
+- All RoF bindings use now Pet Freeze if RoF is casted on a target (hold right mousebutton)
+- Water Elemental should now be much smarter
+- more minor bugfixed
+================================================================================================================
+
+
+v 1.0.6
+================================================================================================================
+- Fixed the doublecast bug (armor , sheep)
+- Icelance burst should now work on targets below 30% hp
+================================================================================================================
+
+
+v 1.0.5
+================================================================================================================
+- Fixed a bug with Auto Sheep Healer
+================================================================================================================
+
+
+v 1.0.4
+================================================================================================================
+- Added Blacklist/Ignore Unit Hotkey (Mouseover)
+- Added Alter Time Hotkey (only for Frost)
+================================================================================================================
+
+
+v 1.0.3
+================================================================================================================
+- some DPS improvements for RBG and Arena
+================================================================================================================
+
+
+v 1.0.2
+================================================================================================================
+- Frostmage should now Alter Time more recently
+- fixed a bug with frostjaw and the Firemage CR ( it's not 100% perfect but its much better now)
+- Frostmage Pet wont spam attack anymore if its allready attacking your target
+- Removed normal Frost Nova for Firemage, it will now only Nova your target for burst.
+  You have to handle defensive Novas by yourself (for now)
+================================================================================================================
+
+
+v 1.0.1
+================================================================================================================
+- Added Fire Spec
+- Added Arcane Spec
+- fixed Remove Curse
+- fixed Bursttarget
+- fixed Blanket Healer / Blanket DPS
+- Added Execute low HP units with icelance/ffb
+- fixed Spellsteal
+- Added "None" to MageArmor Toggle Key
+- fixed many small bugs
+================================================================================================================

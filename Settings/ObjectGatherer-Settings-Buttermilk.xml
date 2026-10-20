@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ObjectGatherer_Settings>
+  <AglcCb>True</AglcCb>
+  <DsCb>True</DsCb>
+  <GcCb>True</GcCb>
+  <IamtCb>True</IamtCb>
+  <IamtnCb>True</IamtnCb>
+  <NeCb>True</NeCb>
+  <OeCb>True</OeCb>
+  <TcCb>True</TcCb>
+  <QCb>False</QCb>
+  <ShmcCb>True</ShmcCb>
+</ObjectGatherer_Settings>

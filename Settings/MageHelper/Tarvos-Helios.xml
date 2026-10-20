@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MageHelperSettings>
+  <UseBlink>True</UseBlink>
+  <UseSlowFall>True</UseSlowFall>
+  <UseInvis>True</UseInvis>
+  <InvisAdds>3</InvisAdds>
+  <InvisHP>20</InvisHP>
+  <UseBlinkKillPOI>False</UseBlinkKillPOI>
+  <AlwaysHaveIceBarrier>True</AlwaysHaveIceBarrier>
+</MageHelperSettings>

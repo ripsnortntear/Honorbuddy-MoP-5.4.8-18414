@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoAnglerSettings>
+  <MainHand>98261</MainHand>
+  <OffHand>0</OffHand>
+  <Poolfishing>False</Poolfishing>
+  <PathingType>Circle</PathingType>
+  <Fly>True</Fly>
+  <UseWaterWalking>True</UseWaterWalking>
+  <AvoidLava>False</AvoidLava>
+  <MaxTimeAtPool>5</MaxTimeAtPool>
+  <MaxFailedCasts>15</MaxFailedCasts>
+  <PathPrecision>15</PathPrecision>
+  <NinjaNodes>False</NinjaNodes>
+  <TraceStep>40</TraceStep>
+  <MinPoolRange>10</MinPoolRange>
+  <MaxPoolRange>20</MaxPoolRange>
+  <PoolRangeStep>0.5</PoolRangeStep>
+  <LastLoadedProfile>C:\Users\catch\Desktop\HB Work\more work\[PB][Gatherit] Nat Pagle-Anglers\[PB][Gatherit] Nat Pagle-Anglers.xml</LastLoadedProfile>
+  <LootNPCs>False</LootNPCs>
+  <CurrentRevision>0</CurrentRevision>
+</AutoAnglerSettings>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <SelectTalents>True</SelectTalents>
+  <ClassProfileName>Warlock - Destruction</ClassProfileName>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>False</RollDisenchantWhenGreed>
+  <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
+  <TicksPerSecond>30</TicksPerSecond>
+  <FoodAmount>0</FoodAmount>
+  <DrinkAmount>0</DrinkAmount>
+  <EnabledPlugins>
+    <Entry>Refreshment Detection</Entry>
+  </EnabledPlugins>
+  <RecentProfiles>
+    <Entry>[GB2] Mount Hyjal - Mining Obsidium@@!@@C:\Users\catch\Desktop\Hyjal-Mining[HB].xml</Entry>
+    <Entry>TheJadeForest-Mining[HB]@@!@@C:\Users\catch\Desktop\TheJadeForest-Mining[HB].xml</Entry>
+    <Entry>Krasarang-Mining - Ghost Iron Ore[HB]@@!@@D:\Games\GH of HB\Default Profiles\GatherBuddy2\Krasarang-Mining - Ghost Iron Ore[HB].xml</Entry>
+    <Entry>Hyjal-Obsidium[HB]@@!@@D:\Games\GH of HB\Default Profiles\GatherBuddy2\Cataclysm\Hyjal-Obsidium[HB].xml</Entry>
+    <Entry>IcecrownGlacier-Mining[HB]@@!@@C:\Users\catch\Desktop\IcecrownGlacier-Mining[HB].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Tyrael</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <UseRandomMount>True</UseRandomMount>
+  <MailRecipient></MailRecipient>
+  <FoodName>4604</FoodName>
+  <DrinkName>159</DrinkName>
+  <MountName>Dreadsteed</MountName>
+  <FlyingMountName>Green Wind Rider</FlyingMountName>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <LootChests>True</LootChests>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LootRadius>45</LootRadius>
+  <LastUsedPath>C:\Users\catch\Desktop\Hyjal-Mining[HB].xml</LastUsedPath>
+  <MountDistance>200</MountDistance>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+</CharacterSettings>

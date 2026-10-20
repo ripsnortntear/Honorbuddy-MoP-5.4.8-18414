@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TakeControlSettings>
+  <KeyBlObjects></KeyBlObjects>
+  <BlAllObjectsRadius>5</BlAllObjectsRadius>
+  <BlAllObjectsTime>20</BlAllObjectsTime>
+  <KeyBlTarget></KeyBlTarget>
+  <BlTargetTime>20</BlTargetTime>
+  <KeyPause></KeyPause>
+  <KeyStartOrStop></KeyStartOrStop>
+  <KeyRestart></KeyRestart>
+</TakeControlSettings>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Filename>D:\Games\GH of HB\Settings\Singular.PurgeWhitelist.xml</Filename>
+  <Version>3.0.0.3502</Version>
+  <Spells>
+    <SpellEntry Id="1022" Name="Hand of Protection" />
+    <SpellEntry Id="1044" Name="Hand of Freedom" />
+    <SpellEntry Id="6940" Name="Hand of Sacrifice" />
+    <SpellEntry Id="974" Name="Earth Shield" />
+    <SpellEntry Id="2825" Name="Bloodlust" />
+    <SpellEntry Id="32182" Name="Heroism" />
+    <SpellEntry Id="80353" Name="Time Warp" />
+    <SpellEntry Id="69369" Name="Predatory Swiftness" />
+    <SpellEntry Id="6346" Name="Fear Ward" />
+    <SpellEntry Id="123012" Name="Terrorize" />
+  </Spells>
+</SpellList>

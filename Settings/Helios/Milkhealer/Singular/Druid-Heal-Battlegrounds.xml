@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DruidHealSettings>
+  <SavedToFile>True</SavedToFile>
+  <Rejuvenation>95</Rejuvenation>
+  <Nourish>65</Nourish>
+  <HealingTouch>65</HealingTouch>
+  <Regrowth>75</Regrowth>
+  <WildGrowth>90</WildGrowth>
+  <CountWildGrowth>3</CountWildGrowth>
+  <SwiftmendAOE>25</SwiftmendAOE>
+  <CountSwiftmendAOE>0</CountSwiftmendAOE>
+  <SwiftmendDirectHeal>74</SwiftmendDirectHeal>
+  <WildMushroomBloom>60</WildMushroomBloom>
+  <CountMushroomBloom>1</CountMushroomBloom>
+  <Tranquility>0</Tranquility>
+  <CountTranquility>0</CountTranquility>
+  <TreeOfLife>60</TreeOfLife>
+  <CountTreeOfLife>1</CountTreeOfLife>
+  <Genesis>60</Genesis>
+  <CountGenesis>3</CountGenesis>
+  <Ironbark>59</Ironbark>
+  <NaturesSwiftness>35</NaturesSwiftness>
+  <CenarionWard>80</CenarionWard>
+  <NaturesVigil>60</NaturesVigil>
+  <HeartOfTheWild>60</HeartOfTheWild>
+  <CountHeartOfTheWild>5</CountHeartOfTheWild>
+  <DreamOfCenariusAbovePercent>0</DreamOfCenariusAbovePercent>
+  <DreamOfCenariusAboveCount>1</DreamOfCenariusAboveCount>
+  <DreamOfCenariusWhenIdle>True</DreamOfCenariusWhenIdle>
+</DruidHealSettings>

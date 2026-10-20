@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ShamanSettings>
+  <UseGhostWolf>True</UseGhostWolf>
+  <UseBloodlust>False</UseBloodlust>
+  <UseWeaponImbues>True</UseWeaponImbues>
+  <TwistWaterShield>15</TwistWaterShield>
+  <TwistDamageShield>25</TwistDamageShield>
+  <FeralSpiritCastOn>All</FeralSpiritCastOn>
+  <MaelHealingSurge>75</MaelHealingSurge>
+  <AvoidMaelstromDamage>False</AvoidMaelstromDamage>
+  <MaelPvpOffHeal>35</MaelPvpOffHeal>
+  <SelfHealingStreamTotem>85</SelfHealingStreamTotem>
+  <SelfHealingSurge>40</SelfHealingSurge>
+  <SelfAncestralGuidance>65</SelfAncestralGuidance>
+  <SelfAncestralSwiftnessHeal>25</SelfAncestralSwiftnessHeal>
+  <ManaTideTotemPercent>80</ManaTideTotemPercent>
+  <AstralShiftPercent>47</AstralShiftPercent>
+  <HealingTideTotemPercent>47</HealingTideTotemPercent>
+  <StoneBulwarkTotemPercent>47</StoneBulwarkTotemPercent>
+</ShamanSettings>

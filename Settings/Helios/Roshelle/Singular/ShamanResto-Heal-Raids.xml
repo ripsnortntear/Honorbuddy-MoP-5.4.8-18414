@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ShamanRestoHealSettings>
+  <SavedToFile>True</SavedToFile>
+  <HealingSurgeAdjusted>False</HealingSurgeAdjusted>
+  <HealingWave>93</HealingWave>
+  <ChainHeal>90</ChainHeal>
+  <HealingRain>95</HealingRain>
+  <GreaterHealingWave>50</GreaterHealingWave>
+  <Ascendance>50</Ascendance>
+  <HealingSurge>21</HealingSurge>
+  <AncestralSwiftness>20</AncestralSwiftness>
+  <SpiritLinkTotem>48</SpiritLinkTotem>
+  <HealingStreamTotem>85</HealingStreamTotem>
+  <HealingTideTotem>70</HealingTideTotem>
+  <RollRiptideCount>2</RollRiptideCount>
+  <MinHealingRainCount>3</MinHealingRainCount>
+  <MinChainHealCount>2</MinChainHealCount>
+  <MinHealingTideCount>4</MinHealingTideCount>
+  <MinSpiritLinkCount>1</MinSpiritLinkCount>
+  <MinAscendanceCount>3</MinAscendanceCount>
+  <TelluricHealthCast>90</TelluricHealthCast>
+  <TelluricHealthCancel>80</TelluricHealthCancel>
+</ShamanRestoHealSettings>

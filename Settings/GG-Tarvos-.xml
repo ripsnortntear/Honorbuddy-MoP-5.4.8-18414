@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GroupGreeterSettings>
+  <gg_enable>True</gg_enable>
+  <greeting1>hi</greeting1>
+  <greeting2>hey</greeting2>
+  <greeting3>greetings</greeting3>
+  <greeting4>hey guys</greeting4>
+  <greeting5>hello</greeting5>
+  <tank_marking>False</tank_marking>
+  <g1_enable>True</g1_enable>
+  <g2_enable>True</g2_enable>
+  <g3_enable>True</g3_enable>
+  <g4_enable>True</g4_enable>
+  <g5_enable>True</g5_enable>
+</GroupGreeterSettings>

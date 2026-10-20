@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PriestSettings>
+  <ShadowFlashHealHealth>30</ShadowFlashHealHealth>
+  <MindFlayMana>50</MindFlayMana>
+  <NormalContextOrbs>2</NormalContextOrbs>
+  <DispersionMana>20</DispersionMana>
+  <DontHealPercent>40</DontHealPercent>
+  <UseShieldPrePull>True</UseShieldPrePull>
+  <ShieldHealthPercent>60</ShieldHealthPercent>
+  <CountMassDispel>0</CountMassDispel>
+  <UseFade>True</UseFade>
+  <UsePsychicScream>True</UsePsychicScream>
+  <PsychicScreamAddCount>2</PsychicScreamAddCount>
+  <UseFearWard>True</UseFearWard>
+  <UseInnerFire>True</UseInnerFire>
+  <AllowKiting>True</AllowKiting>
+  <ShadowfiendMana>75</ShadowfiendMana>
+  <HymnofHopeMana>50</HymnofHopeMana>
+  <DesperatePrayerHealth>30</DesperatePrayerHealth>
+  <UseSpeedBuff>True</UseSpeedBuff>
+  <UseSpeedBuffOnTank>True</UseSpeedBuffOnTank>
+  <UseLeapOfFaith>True</UseLeapOfFaith>
+</PriestSettings>

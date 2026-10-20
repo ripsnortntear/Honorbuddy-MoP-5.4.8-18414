@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BlacklistSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BlacklistedUnits>
+    <BlacklistEntry Entry="48681" Name="Arcane Roller" />
+    <BlacklistEntry Entry="7430" Name="Young Frostsaber" />
+    <BlacklistEntry Entry="5983" Name="Bonepicker Felfeeder" />
+    <BlacklistEntry Entry="18733" Name="Fel Reaver" />
+    <BlacklistEntry Entry="62537" Name="Hozen Dangler" />
+    <BlacklistEntry Entry="59641" Name="Monstrous Plainshawk" />
+    <BlacklistEntry Entry="56171" Name="Great White Plainshawk" />
+  </BlacklistedUnits>
+</BlacklistSettings>

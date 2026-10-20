@@ -55,7 +55,7 @@
   <DemonicCircle_LowHP>False</DemonicCircle_LowHP>
   <Affliction_DemonicCircle_Soulburn>False</Affliction_DemonicCircle_Soulburn>
   <DemonicCircle_LowHPValue>65</DemonicCircle_LowHPValue>
-  <AutoSummonDemon>True</AutoSummonDemon>
+  <AutoSummonDemon>False</AutoSummonDemon>
   <DemonSelection>1</DemonSelection>
   <AutoSummonDoomguard>False</AutoSummonDoomguard>
   <DemonCombatInstantAbilitiesOnly>True</DemonCombatInstantAbilitiesOnly>

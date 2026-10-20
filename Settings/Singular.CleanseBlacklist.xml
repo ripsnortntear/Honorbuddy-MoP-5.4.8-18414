@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Filename>D:\Games\GH of HB\Settings\Singular.CleanseBlacklist.xml</Filename>
+  <Version>3.0.0.3502</Version>
+  <Spells>
+    <SpellEntry Id="96328" Name="Toxic Torment" />
+    <SpellEntry Id="96325" Name="Frostburn Formula" />
+    <SpellEntry Id="96326" Name="Burning Blood" />
+    <SpellEntry Id="92876" Name="(unknown)" />
+    <SpellEntry Id="92878" Name="(unknown)" />
+    <SpellEntry Id="30108" Name="Unstable Affliction" />
+    <SpellEntry Id="8050" Name="Flame Shock" />
+    <SpellEntry Id="3600" Name="Earthbind" />
+    <SpellEntry Id="34914" Name="Vampiric Touch" />
+    <SpellEntry Id="104050" Name="Torrent of Frost" />
+    <SpellEntry Id="103962" Name="Torrent of Frost" />
+    <SpellEntry Id="103904" Name="Torrent of Frost" />
+    <SpellEntry Id="139822" Name="Cinders" />
+    <SpellEntry Id="149207" Name="Corrupted Touch" />
+    <SpellEntry Id="144351" Name="Mark of Arrogance" />
+  </Spells>
+</SpellList>

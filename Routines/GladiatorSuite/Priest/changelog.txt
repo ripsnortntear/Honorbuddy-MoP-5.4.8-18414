@@ -1,0 +1,10 @@
+v 1.0.0
+================================================================================================================
+- fixed DominateMind
+- Added a new function to HW:Chastise key on Healer
+--> Hold the key pressed, the CR will Chastise the healer, then it drops a Feather to your feet and uses spectral
+  guise, when you have reached your target it will Fear (remember hold down the hotkey the whole time for this process)
+- Added hotkey active option ( if you set the value to 500ms (0.5sec) the hotkey you've pressed is queued for 500ms)
+- Fixed UA/VT Debuffs dispel, it's now safe to use Purify Debuffs
+- Possible Leap of Faith Trap fx
+================================================================================================================

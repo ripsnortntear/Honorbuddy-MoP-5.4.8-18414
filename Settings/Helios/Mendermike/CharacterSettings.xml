@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <SelectTalents>True</SelectTalents>
+  <ClassProfileName>Priest - Holy</ClassProfileName>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
+  <TicksPerSecond>60</TicksPerSecond>
+  <FoodAmount>20</FoodAmount>
+  <DrinkAmount>20</DrinkAmount>
+  <EnabledPlugins>
+    <Entry>Anti Drown</Entry>
+    <Entry>Find Rares and Chests</Entry>
+    <Entry>Mobile Banking</Entry>
+    <Entry>ObjectGatherer</Entry>
+    <Entry>Pandaren Pick Farm 1.22 </Entry>
+    <Entry>Pandaria Dailies v2</Entry>
+    <Entry>Questhelper - ItemForAura</Entry>
+    <Entry>Refreshment Detection</Entry>
+    <Entry>RepCollector</Entry>
+    <Entry>Timeless Buffs</Entry>
+    <Entry>TurnOffCTM</Entry>
+  </EnabledPlugins>
+  <RecentProfiles>
+    <Entry>[A - Quest] EK 12-58 [Kick] ($Rev$)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] EK 12-58 [Kick].xml</Entry>
+    <Entry>Fight Here@@!@@D:\Games\GH of HB\Plugins\FightHere\FightHere.xml</Entry>
+    <Entry>[A - Quest] Human 1-5 [Kick] ($Rev: 3162 $)@@!@@Y:\blackbox\[A - Quest] Human 1-5 [Kick].xml</Entry>
+    <Entry>[A - Quest] Human 1-5 [Kick] ($Rev: 3162 $)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Evermoon Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 [Kick]\[A - Quest] Human 1-5 [Kick].xml</Entry>
+    <Entry>[A - Quest] 1-12 Auto-Loader [Kick] ($Rev: 3162 $)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Evermoon Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 Auto-Loader [Kick].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Questing</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <UseRandomMount>False</UseRandomMount>
+  <MailRecipient>Buttermilk</MailRecipient>
+  <FoodName>2070</FoodName>
+  <DrinkName>159</DrinkName>
+  <MountName></MountName>
+  <FlyingMountName></FlyingMountName>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <LootChests>True</LootChests>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LootRadius>45</LootRadius>
+  <LastUsedPath>D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] EK 12-58 [Kick].xml</LastUsedPath>
+  <MountDistance>60</MountDistance>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+</CharacterSettings>

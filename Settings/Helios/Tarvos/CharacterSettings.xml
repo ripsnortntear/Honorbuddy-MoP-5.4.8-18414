@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <SelectTalents>True</SelectTalents>
+  <ClassProfileName>Warlock - Destruction</ClassProfileName>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <MaxBoEDisenchantQuality>Epic</MaxBoEDisenchantQuality>
+  <TicksPerSecond>70</TicksPerSecond>
+  <FoodAmount>0</FoodAmount>
+  <DrinkAmount>0</DrinkAmount>
+  <EnabledPlugins>
+    <Entry>Refreshment Detection</Entry>
+    <Entry>RoutesBuddy2</Entry>
+    <Entry>SimpleScriptGenerator 1.4</Entry>
+    <Entry>TurnOffCTM</Entry>
+  </EnabledPlugins>
+  <RecentProfiles>
+    <Entry>BurningSteppes-Mining Mithril[HB]@@!@@C:\Users\catch\Desktop\BurningSteppes-Mining Mithril[HB].xml</Entry>
+    <Entry>Krasarang-Mining - Ghost Iron Ore[HB]@@!@@C:\Users\catch\Desktop\Krasarang-Mining - Ghost Iron Ore[HB].xml</Entry>
+    <Entry>[JWheels420] Krasarang Wilds - Mining [GB2]@@!@@D:\Games\GH of HB\Default Profiles\GatherBuddy2\Mists of Pandaria\[JWheels420] Krasarang Wilds - Mining [GB2].xml</Entry>
+    <Entry>StranglethornJungle-Mining[HB]@@!@@D:\Games\GH of HB\Default Profiles\GatherBuddy2\StranglethornJungle-Mining[HB].xml</Entry>
+    <Entry>Mulgore-Mining - Copper[HB]@@!@@C:\Users\catch\Desktop\Mulgore-Mining - Copper[HB].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Tyrael</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <UseRandomMount>False</UseRandomMount>
+  <MailRecipient></MailRecipient>
+  <FoodName>81412</FoodName>
+  <DrinkName>81412</DrinkName>
+  <MountName>Dreadsteed</MountName>
+  <FlyingMountName>X-53 Touring Rocket</FlyingMountName>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <LootChests>True</LootChests>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LootRadius>45</LootRadius>
+  <LastUsedPath>C:\Users\catch\Desktop\BurningSteppes-Mining Mithril[HB].xml</LastUsedPath>
+  <MountDistance>60</MountDistance>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+</CharacterSettings>

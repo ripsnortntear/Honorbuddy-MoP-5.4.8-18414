@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeathKnightSettings>
+  <RotationSelections>PvP</RotationSelections>
+  <AoECount>2</AoECount>
+  <UseIceboundFortitude>True</UseIceboundFortitude>
+  <UseDeathGrip>True</UseDeathGrip>
+  <EnableUnholyBlight>True</EnableUnholyBlight>
+  <UseAntiMagicShell>True</UseAntiMagicShell>
+  <HealthstonePercent>40</HealthstonePercent>
+  <SoulReaperHP>35</SoulReaperHP>
+  <UseEmpowerRuneWeapon>True</UseEmpowerRuneWeapon>
+  <DeathStrikePercentCommon>80</DeathStrikePercentCommon>
+  <UsePetSacrifice>True</UsePetSacrifice>
+  <PetSacrificePercent>60</PetSacrificePercent>
+  <BloodIceboundFortitudePercent>60</BloodIceboundFortitudePercent>
+  <UseBoneShieldDefensively>True</UseBoneShieldDefensively>
+  <UseDancingRuneWeapon>True</UseDancingRuneWeapon>
+  <DancingRuneWeaponPercent>80</DancingRuneWeaponPercent>
+  <UseLichborne>True</UseLichborne>
+  <LichbornePercent>60</LichbornePercent>
+  <DeathCoilHealPercent>60</DeathCoilHealPercent>
+  <UseVampiricBlood>True</UseVampiricBlood>
+  <VampiricBloodPercent>60</VampiricBloodPercent>
+  <UseRuneTapWoTN>True</UseRuneTapWoTN>
+  <RuneTapWoTNPercent>80</RuneTapWoTNPercent>
+  <UseRuneTap>True</UseRuneTap>
+  <RuneTapPercent>90</RuneTapPercent>
+  <DeathStrikeBloodShieldPercent>90</DeathStrikeBloodShieldPercent>
+  <DeathStrikeBloodShieldTimeRemaining>2</DeathStrikeBloodShieldTimeRemaining>
+  <DeathStrikePercent>40</DeathStrikePercent>
+  <RuneStrikePercent>60</RuneStrikePercent>
+  <FrostIceboundFortitudePercent>60</FrostIceboundFortitudePercent>
+  <AntiMagicShellvalue>60</AntiMagicShellvalue>
+  <EnableDeathsAdvance>True</EnableDeathsAdvance>
+  <AntiMagicShellOnHealth>True</AntiMagicShellOnHealth>
+  <UsePillarOfFrostOnCooldown>True</UsePillarOfFrostOnCooldown>
+  <UsePillarOfFrostOnBoss>True</UsePillarOfFrostOnBoss>
+  <RaiseDeadBoth>True</RaiseDeadBoth>
+  <RaiseDeadPillar>True</RaiseDeadPillar>
+  <RaiseDeadUnholy>True</RaiseDeadUnholy>
+  <EmpowerOnCooldown>True</EmpowerOnCooldown>
+  <EmpowerOnBoss>True</EmpowerOnBoss>
+  <EnableDarkSuccor>True</EnableDarkSuccor>
+  <UseGargoyleAoE>False</UseGargoyleAoE>
+</DeathKnightSettings>

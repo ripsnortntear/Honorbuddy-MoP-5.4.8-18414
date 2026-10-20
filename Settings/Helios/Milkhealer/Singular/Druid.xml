@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DruidSettings>
+  <UseAquaticForm>True</UseAquaticForm>
+  <UseTravelForm>True</UseTravelForm>
+  <InnervateMana>40</InnervateMana>
+  <UseSymbiosis>True</UseSymbiosis>
+  <UseWildCharge>True</UseWildCharge>
+  <MoveBehindTargets>False</MoveBehindTargets>
+  <SelfRejuvenationHealth>60</SelfRejuvenationHealth>
+  <SelfHealingTouchHealth>40</SelfHealingTouchHealth>
+  <SelfRenewalHealth>35</SelfRenewalHealth>
+  <SelfNaturesSwiftnessHealth>20</SelfNaturesSwiftnessHealth>
+  <SelfCenarionWardHealth>80</SelfCenarionWardHealth>
+  <MoonBeastRejuvenationHealth>80</MoonBeastRejuvenationHealth>
+  <MoonBeastHealingTouch>40</MoonBeastHealingTouch>
+  <TranquilityHealth>60</TranquilityHealth>
+  <TranquilityCount>3</TranquilityCount>
+  <Swiftmend>65</Swiftmend>
+  <WildGrowthHealth>80</WildGrowthHealth>
+  <WildGrowthCount>2</WildGrowthCount>
+  <Regrowth>70</Regrowth>
+  <HealingTouch>60</HealingTouch>
+  <Nourish>75</Nourish>
+  <Rejuvenation>90</Rejuvenation>
+  <Barkskin>70</Barkskin>
+  <TankFrenziedRegenerationHealth>70</TankFrenziedRegenerationHealth>
+  <TankSavageDefense>100</TankSavageDefense>
+  <TankMightOfUrsoc>30</TankMightOfUrsoc>
+  <TankSurvivalInstinctsHealth>55</TankSurvivalInstinctsHealth>
+  <TankFeralBarkskin>80</TankFeralBarkskin>
+  <FeralSpellPriority>ElitistJerks</FeralSpellPriority>
+  <PredSwiftnessHealingTouchHealth>80</PredSwiftnessHealingTouchHealth>
+  <PredSwiftnessPvpHeal>35</PredSwiftnessPvpHeal>
+  <SurvivalInstinctsHealth>55</SurvivalInstinctsHealth>
+  <ProwlAlways>False</ProwlAlways>
+</DruidSettings>

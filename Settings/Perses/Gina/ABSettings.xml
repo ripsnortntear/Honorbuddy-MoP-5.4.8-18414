@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArchSettings>
+  <AutoSolveArtifacts>True</AutoSolveArtifacts>
+  <UseKeystones>True</UseKeystones>
+  <CrateArtifacts>True</CrateArtifacts>
+  <AutoTrain>True</AutoTrain>
+  <TrainUpto>375</TrainUpto>
+</ArchSettings>

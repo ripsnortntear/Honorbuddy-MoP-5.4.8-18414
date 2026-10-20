@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PriestSettings>
+  <AoECount>2</AoECount>
+  <UseFade>True</UseFade>
+  <UsePowerWordFortitude>True</UsePowerWordFortitude>
+  <HealthstonePercent>40</HealthstonePercent>
+  <ShadowfiendMana>80</ShadowfiendMana>
+  <HymnofHopeMana>15</HymnofHopeMana>
+  <MultiDoTStyle>AroundTarget</MultiDoTStyle>
+  <ShadowMaxUnitsToMultiDoTVT>3</ShadowMaxUnitsToMultiDoTVT>
+  <ShadowManaPercentToMultiDoTVT>30</ShadowManaPercentToMultiDoTVT>
+  <ShadowMaxUnitsToMultiDoTSWP>8</ShadowMaxUnitsToMultiDoTSWP>
+  <ShadowVampiricEmbracePercent>70</ShadowVampiricEmbracePercent>
+  <ShadowPowerWordShieldPercent>50</ShadowPowerWordShieldPercent>
+  <ShadowDispersionPercent>25</ShadowDispersionPercent>
+  <ShadowUseVoidShift>False</ShadowUseVoidShift>
+  <ShadowUseHalo>True</ShadowUseHalo>
+  <MindSearCount>3</MindSearCount>
+  <MultiDoTSingleTarget>True</MultiDoTSingleTarget>
+  <ReapplyDoTsWhenBuffed>True</ReapplyDoTsWhenBuffed>
+  <Shadow_ReapplyValue>1500</Shadow_ReapplyValue>
+  <EnableOffensiveDPS>False</EnableOffensiveDPS>
+  <PowerWordShieldPercent>70</PowerWordShieldPercent>
+  <PainSuppressionPercent>45</PainSuppressionPercent>
+  <GreaterHealPercent>50</GreaterHealPercent>
+  <DesperatePrayerPercent>40</DesperatePrayerPercent>
+  <FlashHealPercent>35</FlashHealPercent>
+  <FlashHealSoLPercent>80</FlashHealSoLPercent>
+  <HealPercent>85</HealPercent>
+  <VoidShiftPercent>30</VoidShiftPercent>
+  <PrayerofMendingPercent>95</PrayerofMendingPercent>
+  <HolyChakra>Serenity</HolyChakra>
+  <HolyDesperatePrayerPercent>40</HolyDesperatePrayerPercent>
+  <HolyGreaterHealPercent>50</HolyGreaterHealPercent>
+  <HolyRenewHealPercent>75</HolyRenewHealPercent>
+  <HolyFlashHealPercent>35</HolyFlashHealPercent>
+  <HolyFlashHealSoLPercent>80</HolyFlashHealSoLPercent>
+  <HolyPowerWordShieldPercent>70</HolyPowerWordShieldPercent>
+  <HolyHealPercent>85</HolyHealPercent>
+  <HolyVoidShiftPercent>30</HolyVoidShiftPercent>
+  <HolyPrayerofMendingPercent>95</HolyPrayerofMendingPercent>
+</PriestSettings>

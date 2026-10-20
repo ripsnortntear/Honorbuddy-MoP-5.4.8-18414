@@ -1,0 +1,967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FlightNodes>
+  <Node name="Serpent's Spine, Vale of Eternal Blossoms" continent="870" master="63497" x="611.365" y="2125.03" z="368.355">
+    <Connections>
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Grookin Hill, Jade Forest" continent="870" x="1418.57" y="-487.703" z="355.96">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Dawn's Blossom, Jade Forest" continent="870" x="1503.71" y="-1832.13" z="246.2">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="The Arboretum, Jade Forest" continent="870" x="1600.66" y="-2530.27" z="152.212">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Jade Temple Grounds, Jade Forest" continent="870" master="59727" x="773.247" y="-2358.96" z="120.98">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Sri-La Village, Jade Forest" continent="870" x="2550.76" y="-2418.32" z="23.9507">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Emperor's Omen, Jade Forest" continent="870" master="59735" x="2400.75" y="-2099.43" z="228.034">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Tian Monastery, Jade Forest" continent="870" master="59736" x="2505.9" y="-1590.89" z="400.868">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Honeydew Village, Jade Forest" continent="870" x="2927.16" y="-509.184" z="268.856">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Pang's Stead, Valley of the Four Winds" continent="870" x="543.915" y="-637.814" z="257.775">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Halfhill, Valley of the Four Winds" continent="870" x="-221.326" y="464.559" z="185.442">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Zhu's Watch, Krasarang Wilds" continent="870" master="60232" x="-375.684" y="-647.965" z="117.516">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Thunder Cleft, Krasarang Wilds" continent="870" x="-878.276" y="171.403" z="13.4901">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Stoneplow, Valley of the Four Winds" continent="870" x="-436.54" y="1886.7" z="131.13">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Dawnchaser Retreat, Krasarang Wilds" continent="870" master="59047" x="-1685.68" y="1590.34" z="16.1384">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Cradle of Chi-Ji, Krasarang Wilds" continent="870" x="-2082.3" y="1483.63" z="0.550604">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Marista, Krasarang Wilds" continent="870" x="-2504.09" y="491.583" z="2.33204">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Binan Village, Kun-Lai Summit" continent="870" master="61474" x="1690.11" y="303.958" z="478.587">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+    </Connections>
+  </Node>
+  <Node name="Temple of the White Tiger, Kun-Lai Summit" continent="870" x="3504.04" y="690.677" z="608.185">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Eastwind Rest, Kun-Lai Summit" continent="870" master="61745" x="2250.59" y="931.569" z="481.146">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Zouchin Village, Kun-Lai Summit" continent="870" master="61511" x="4362.96" y="932.118" z="110.039">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="One Keg, Kun-Lai Summit" continent="870" x="3124.52" y="1224.28" z="654.231">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Kota Basecamp, Kun-Lai Summit" continent="870" x="2716.43" y="2163.31" z="589.098">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Shado-Pan Fallback, Kun-Lai Summit" continent="870" x="1880.59" y="2088.58" z="500.854">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Winter's Blossom, Kun-Lai Summit" continent="870" x="3151.85" y="2677.76" z="579.735">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Tavern in the Mists, The Veiled Stair" continent="870" x="784.899" y="-203.67" z="402.192">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Grassy Cline, Valley of the Four Winds" continent="870" x="460.54" y="-100.467" z="179.535">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Longying Outpost, Townlong Steppes" continent="870" x="2363.23" y="2994.39" z="420.568">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Gao-Ran Battlefront, Townlong Steppes" continent="870" x="1440.72" y="2804.49" z="301.922">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Rensai's Watchpost, Townlong Steppes" continent="870" master="62898" x="1531.73" y="3963.7" z="227.666">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+    </Connections>
+  </Node>
+  <Node name="Shado-Pan Garrison, Townlong Steppes" continent="870" x="1803.32" y="4204.23" z="157.508">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Shrine of Two Moons, Vale of Eternal Blossoms" continent="870" master="61122" x="1580.16" y="894.167" z="473.964">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+    </Connections>
+  </Node>
+  <Node name="Klaxxi'vess, Dread Wastes" continent="870" x="172.663" y="3152.25" z="215.54">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Soggy's Gamble, Dread Wastes" continent="870" x="-1086.21" y="3136.19" z="0.9831">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="The Sunset Brewgarden, Dread Wastes" continent="870" x="982.677" y="3451.86" z="256.77">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Serpent's Overlook, Jade Forest" continent="870" x="465.856" y="-1558.56" z="154.886">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="The Briny Muck, Dread Wastes" continent="870" x="-570.405" y="3859.79" z="0.734358">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Domination Point, Krasarang Wilds" continent="870" x="-1752.19" y="2492.02" z="34.5132">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Bozzle's Wreck, Isle Of Giants" continent="870" x="5799.64" y="1080.57" z="1.13505">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Huojin Landing, Timeless Isle" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+    </Connections>
+  </Node>
+  <Node name="Huojin Landing, Timeless Isle" continent="870" master="71939" x="-404.95" y="-4608.56" z="4.3335">
+    <Connections>
+      <Connection name="Serpent's Spine, Vale of Eternal Blossoms" />
+      <Connection name="Jade Temple Grounds, Jade Forest" />
+      <Connection name="Emperor's Omen, Jade Forest" />
+      <Connection name="Zhu's Watch, Krasarang Wilds" />
+      <Connection name="Eastwind Rest, Kun-Lai Summit" />
+      <Connection name="Zouchin Village, Kun-Lai Summit" />
+      <Connection name="Tian Monastery, Jade Forest" />
+      <Connection name="Dawnchaser Retreat, Krasarang Wilds" />
+      <Connection name="Shrine of Two Moons, Vale of Eternal Blossoms" />
+      <Connection name="Grookin Hill, Jade Forest" />
+      <Connection name="Dawn's Blossom, Jade Forest" />
+      <Connection name="The Arboretum, Jade Forest" />
+      <Connection name="Sri-La Village, Jade Forest" />
+      <Connection name="Honeydew Village, Jade Forest" />
+      <Connection name="Pang's Stead, Valley of the Four Winds" />
+      <Connection name="Halfhill, Valley of the Four Winds" />
+      <Connection name="Thunder Cleft, Krasarang Wilds" />
+      <Connection name="Stoneplow, Valley of the Four Winds" />
+      <Connection name="Cradle of Chi-Ji, Krasarang Wilds" />
+      <Connection name="Marista, Krasarang Wilds" />
+      <Connection name="Binan Village, Kun-Lai Summit" />
+      <Connection name="Temple of the White Tiger, Kun-Lai Summit" />
+      <Connection name="One Keg, Kun-Lai Summit" />
+      <Connection name="Kota Basecamp, Kun-Lai Summit" />
+      <Connection name="Shado-Pan Fallback, Kun-Lai Summit" />
+      <Connection name="Winter's Blossom, Kun-Lai Summit" />
+      <Connection name="Tavern in the Mists, The Veiled Stair" />
+      <Connection name="Grassy Cline, Valley of the Four Winds" />
+      <Connection name="Longying Outpost, Townlong Steppes" />
+      <Connection name="Gao-Ran Battlefront, Townlong Steppes" />
+      <Connection name="Rensai's Watchpost, Townlong Steppes" />
+      <Connection name="Shado-Pan Garrison, Townlong Steppes" />
+      <Connection name="Klaxxi'vess, Dread Wastes" />
+      <Connection name="Soggy's Gamble, Dread Wastes" />
+      <Connection name="The Sunset Brewgarden, Dread Wastes" />
+      <Connection name="Serpent's Overlook, Jade Forest" />
+      <Connection name="The Briny Muck, Dread Wastes" />
+      <Connection name="Domination Point, Krasarang Wilds" />
+      <Connection name="Bozzle's Wreck, Isle Of Giants" />
+    </Connections>
+  </Node>
+</FlightNodes>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <SelectTalents>True</SelectTalents>
+  <ClassProfileName>Druid - Restoration</ClassProfileName>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
+  <TicksPerSecond>60</TicksPerSecond>
+  <FoodAmount>0</FoodAmount>
+  <DrinkAmount>0</DrinkAmount>
+  <EnabledPlugins>
+    <Entry>Cache Killer</Entry>
+    <Entry>Refreshment Detection</Entry>
+    <Entry>RoutesBuddy2</Entry>
+  </EnabledPlugins>
+  <RecentProfiles>
+    <Entry>TerokkarForest-Herbin[HB]@@!@@C:\Users\catch\Desktop\TerokkarForest-Herbin[HB].xml</Entry>
+    <Entry>Felwood-Herbin[HB]@@!@@C:\Users\catch\Desktop\Felwood-Herbin[HB].xml</Entry>
+    <Entry>SearingGorge-Herbin[HB]@@!@@C:\Users\catch\Desktop\SearingGorge-Herbin[HB].xml</Entry>
+    <Entry>WesternPlaguelands-Herbin[HB]@@!@@C:\Users\catch\Desktop\WesternPlaguelands-Herbin[HB].xml</Entry>
+    <Entry>HillsbradFoothills-Herb - Mage-briar-frozenherb[HB]@@!@@C:\Users\catch\Desktop\HillsbradFoothills-Herb - Mage-briar-frozenherb[HB].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Tyrael</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <UseRandomMount>False</UseRandomMount>
+  <MailRecipient></MailRecipient>
+  <FoodName>81412</FoodName>
+  <DrinkName>81412</DrinkName>
+  <MountName>Kor'kron Annihilator</MountName>
+  <FlyingMountName>Travel Form</FlyingMountName>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <LootChests>True</LootChests>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LootRadius>45</LootRadius>
+  <LastUsedPath>C:\Users\catch\Desktop\TerokkarForest-Herbin[HB].xml</LastUsedPath>
+  <MountDistance>200</MountDistance>
+  <RessAtSpiritHealers>True</RessAtSpiritHealers>
+</CharacterSettings>

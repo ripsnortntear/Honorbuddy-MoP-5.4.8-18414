@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CharacterSettings>
+  <SelectTalents>True</SelectTalents>
+  <ClassProfileName>Warlock - Destruction</ClassProfileName>
+  <AutoEquip>True</AutoEquip>
+  <AutoEquipBags>True</AutoEquipBags>
+  <AutoEquipWeapons>True</AutoEquipWeapons>
+  <AutoEquipArmor>True</AutoEquipArmor>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <WeaponStyle>Automatic</WeaponStyle>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>False</RollDisenchantWhenGreed>
+  <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
+  <TicksPerSecond>80</TicksPerSecond>
+  <FoodAmount>0</FoodAmount>
+  <DrinkAmount>0</DrinkAmount>
+  <EnabledPlugins>
+    <Entry>KBA</Entry>
+    <Entry>ObjectGatherer</Entry>
+    <Entry>Pandaren Pick Farm 1.22 </Entry>
+    <Entry>Pandaria Dailies v2</Entry>
+    <Entry>Refreshment Detection</Entry>
+    <Entry>RoutesBuddy2</Entry>
+  </EnabledPlugins>
+  <RecentProfiles>
+    <Entry>[PB][Gatherit] Nat Pagle-Anglers@@!@@C:\Users\catch\Desktop\HB Work\more work\[PB][Gatherit] Nat Pagle-Anglers\[PB][Gatherit] Nat Pagle-Anglers.xml</Entry>
+    <Entry>[GB2] Mount Hyjal - Mining Obsidium@@!@@C:\Users\catch\Desktop\Hyjal-Mining[HB].xml</Entry>
+    <Entry>TheJadeForest-Mining[HB]@@!@@C:\Users\catch\Desktop\TheJadeForest-Mining[HB].xml</Entry>
+    <Entry>Krasarang-Mining - Ghost Iron Ore[HB]@@!@@D:\Games\GH of HB\Default Profiles\GatherBuddy2\Krasarang-Mining - Ghost Iron Ore[HB].xml</Entry>
+    <Entry>Hyjal-Obsidium[HB]@@!@@D:\Games\GH of HB\Default Profiles\GatherBuddy2\Cataclysm\Hyjal-Obsidium[HB].xml</Entry>
+  </RecentProfiles>
+  <!--The last selected index used by the Combobox in the form.-->
+  <SelectedBotIndex>-1</SelectedBotIndex>
+  <SelectedBotName>Questing</SelectedBotName>
+  <UseFlightPaths>True</UseFlightPaths>
+  <FindMountAutomatically>True</FindMountAutomatically>
+  <UseRandomMount>True</UseRandomMount>
+  <MailRecipient></MailRecipient>
+  <FoodName>81414</FoodName>
+  <DrinkName>81414</DrinkName>
+  <MountName>Dreadsteed</MountName>
+  <FlyingMountName>Jade Cloud Serpent</FlyingMountName>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <LootChests>True</LootChests>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <UseMount>True</UseMount>
+  <PullDistance>100</PullDistance>
+  <LootRadius>45</LootRadius>
+  <LastUsedPath>C:\Users\catch\Desktop\HB Work\more work\[PB][Gatherit] Nat Pagle-Anglers\[PB][Gatherit] Nat Pagle-Anglers.xml</LastUsedPath>
+  <MountDistance>45</MountDistance>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+</CharacterSettings>

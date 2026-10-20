@@ -9,11 +9,11 @@
 		<Talent Tier="6" Index="2" Name="Kil'jaeden's Cunning" />
 	</TalentTree>
 	<WeightSet>
-		<Intellect>20</Intellect>
+		<Intellect>16</Intellect>
 		<SpellPower>18</SpellPower>
 		<Hit>18</Hit>
-		<Mastery>16</Mastery>
-		<Haste>15</Haste>
+		<Mastery>20</Mastery>
+		<Haste>19</Haste>
 		<CriticalStrike>14</CriticalStrike>
 		<Stamina>5</Stamina>
 		<Armor>0.01</Armor>

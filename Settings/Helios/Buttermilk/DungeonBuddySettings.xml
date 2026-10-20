@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DungeonBuddySettings>
+  <PartyMode>Off</PartyMode>
+  <PartyMembers />
+  <PortOutsideOnGhostSighting>True</PortOutsideOnGhostSighting>
+  <LootMode>BossesOnly</LootMode>
+  <FreeForAllLoot>False</FreeForAllLoot>
+  <SellItemQuality>Uncommon</SellItemQuality>
+  <MailBoeItems>False</MailBoeItems>
+  <MailItemQuality>Common</MailItemQuality>
+  <DungeonType>None</DungeonType>
+  <SelectedRandomDungeonId>0</SelectedRandomDungeonId>
+  <RaidType>None</RaidType>
+  <SelectedRaidIds />
+  <ScenarioType>None</ScenarioType>
+  <SelectedScenarioId>0</SelectedScenarioId>
+  <SelectedDungeonIds />
+  <SpecifiedScenariosIds />
+  <KillOptionalBosses>False</KillOptionalBosses>
+  <AbandonLowLevelQuests>True</AbandonLowLevelQuests>
+  <PickupQuests>True</PickupQuests>
+  <HearthOnVendorRun>True</HearthOnVendorRun>
+  <FollowingDistance>20</FollowingDistance>
+  <CombatMovement>False</CombatMovement>
+  <ShowAllDungeons>False</ShowAllDungeons>
+  <ShowAllScenarios>False</ShowAllScenarios>
+  <CustomProfileAndScriptsPath></CustomProfileAndScriptsPath>
+  <Role>Auto</Role>
+  <TankInRandomGroups>False</TankInRandomGroups>
+  <InsideInstanceRepairPercent>10</InsideInstanceRepairPercent>
+  <OutsideInstanceRepairPercent>50</OutsideInstanceRepairPercent>
+  <InsideInstanceMinFreeBagSlots>3</InsideInstanceMinFreeBagSlots>
+  <OutsideInstanceMinFreeBagSlots>15</OutsideInstanceMinFreeBagSlots>
+  <PortOutsideInstanceToSell>True</PortOutsideInstanceToSell>
+  <PortOutsideInstanceToBuy>True</PortOutsideInstanceToBuy>
+</DungeonBuddySettings>

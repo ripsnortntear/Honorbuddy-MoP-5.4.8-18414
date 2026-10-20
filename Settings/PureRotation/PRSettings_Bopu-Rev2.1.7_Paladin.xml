@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PaladinSettings>
+  <BlessingSelection>Might</BlessingSelection>
+  <HealthstonePercent>40</HealthstonePercent>
+  <UseSealSwapping>False</UseSealSwapping>
+  <SealofRighteousnessCount>5</SealofRighteousnessCount>
+  <UseAvengingWrath>True</UseAvengingWrath>
+  <UseExecutionSentence>True</UseExecutionSentence>
+  <UseExecutionSentenceHealthPercent>58</UseExecutionSentenceHealthPercent>
+  <HolyPrismPercent>50</HolyPrismPercent>
+  <LightsHammerPercent>50</LightsHammerPercent>
+  <HolyPrismLightsHammerPercent>40</HolyPrismLightsHammerPercent>
+  <HandOfSalvationPercent>40</HandOfSalvationPercent>
+  <HandOfProtectionPercent>40</HandOfProtectionPercent>
+  <DivineLightPercent>60</DivineLightPercent>
+  <FlashLightPercent>35</FlashLightPercent>
+  <LayOnHandsPercent>15</LayOnHandsPercent>
+  <SacredShieldPercent>85</SacredShieldPercent>
+  <HolyLightPercent>90</HolyLightPercent>
+  <WordGloryPercent>80</WordGloryPercent>
+  <UrgentHealingPercent>35</UrgentHealingPercent>
+  <GuardianofAncientKingsHealth>50</GuardianofAncientKingsHealth>
+  <ProtAoECount>4</ProtAoECount>
+  <HolyPrismLightsHammerCount>4</HolyPrismLightsHammerCount>
+  <ProtWordofGloryPercent>55</ProtWordofGloryPercent>
+  <UseAvengingWrathforThreat>False</UseAvengingWrathforThreat>
+  <UseAvengingWrathHealthPercent>45</UseAvengingWrathHealthPercent>
+  <UseExecutionSentenceforThreat>False</UseExecutionSentenceforThreat>
+  <ShoRPercent>40</ShoRPercent>
+  <HolyPrismCount>3</HolyPrismCount>
+  <LightsHammerCount>3</LightsHammerCount>
+  <ConsecrationCount>3</ConsecrationCount>
+  <ConsecrationManaPercent>30</ConsecrationManaPercent>
+  <ProtectionDPPercent>60</ProtectionDPPercent>
+  <ProtectionLoHPercent>30</ProtectionLoHPercent>
+  <ProtectionDSPercent>25</ProtectionDSPercent>
+  <HolyAvengerHealthProt>30</HolyAvengerHealthProt>
+  <GuardianofAncientKingsHealthProt>50</GuardianofAncientKingsHealthProt>
+  <ArdentDefenderHealth>30</ArdentDefenderHealth>
+  <RetAoECount>2</RetAoECount>
+</PaladinSettings>

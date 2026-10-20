@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MrGearBuyerConfig>
+  <Settings>
+    <LogoutAtCap>true</LogoutAtCap>
+    <RemoveHPJPWhenCapped>true</RemoveHPJPWhenCapped>
+    <BuyOppositePointToBuildUp>true</BuyOppositePointToBuildUp>
+    <MapID>-1</MapID>
+    <HomeX>0</HomeX>
+    <HomeY>0</HomeY>
+    <HomeZ>0</HomeZ>
+    <HPSet>false</HPSet>
+    <RepairName></RepairName>
+    <RepairX>0</RepairX>
+    <RepairY>0</RepairY>
+    <RepairZ>0</RepairZ>
+    <RepairMapID>0</RepairMapID>
+    <RepairID>0</RepairID>
+    <RepairSet>false</RepairSet>
+    <RepairSwap>false</RepairSwap>
+    <EquipAfterBuy>false</EquipAfterBuy>
+    <MyMount>false</MyMount>
+    <LogOutHPCap>false</LogOutHPCap>
+    <LogOutJPCap>false</LogOutJPCap>
+  </Settings>
+  <Items />
+</MrGearBuyerConfig>

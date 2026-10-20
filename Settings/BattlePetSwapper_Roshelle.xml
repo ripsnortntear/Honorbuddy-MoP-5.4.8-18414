@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PluginSettings>
+  <ModeSetting>Relative</ModeSetting>
+  <MinLevelSetting>1</MinLevelSetting>
+  <MinPetHealthSetting>90</MinPetHealthSetting>
+  <MaxLevelSetting>25</MaxLevelSetting>
+  <UseWildPetsSetting>-1</UseWildPetsSetting>
+  <OnlyBluePetsSetting>1</OnlyBluePetsSetting>
+  <UseFavouritePetsOnlySetting>-1</UseFavouritePetsOnlySetting>
+  <UseFavouriteRingersSetting>-1</UseFavouriteRingersSetting>
+  <MinRingerPetHealthSetting>90</MinRingerPetHealthSetting>
+</PluginSettings>

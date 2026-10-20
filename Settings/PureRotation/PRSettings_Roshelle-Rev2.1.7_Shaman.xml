@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ShamanSettings>
+  <AoECount>2</AoECount>
+  <RestorationEarthTotem>None</RestorationEarthTotem>
+  <RestorationWaterTotem>None</RestorationWaterTotem>
+  <RestorationAirTotem>None</RestorationAirTotem>
+  <SelfHealingPercentage>50</SelfHealingPercentage>
+  <UseFireElemental>True</UseFireElemental>
+  <UseEarthElemental>True</UseEarthElemental>
+  <UseMagmaTotem>True</UseMagmaTotem>
+  <UseGhostWolf>True</UseGhostWolf>
+  <UseSpiritwalkersGrace>True</UseSpiritwalkersGrace>
+  <EleAscendanceOnBoss>True</EleAscendanceOnBoss>
+  <UseAscendance>True</UseAscendance>
+  <HandleEarthShieldTarget>True</HandleEarthShieldTarget>
+  <RestoUseAscendance>True</RestoUseAscendance>
+  <RestoUseGhostWolf>True</RestoUseGhostWolf>
+  <HealStreamTotemPercent>85</HealStreamTotemPercent>
+  <GreaterHealWavePercent>75</GreaterHealWavePercent>
+  <HealWavePercent>90</HealWavePercent>
+  <RiptidePercent>85</RiptidePercent>
+  <HealingSurgePercent>30</HealingSurgePercent>
+  <AstralShiftPercent>30</AstralShiftPercent>
+  <EarthShieldTotemPercent>25</EarthShieldTotemPercent>
+  <UnleashElementsPercent>60</UnleashElementsPercent>
+  <ManaTideTotemPercent>75</ManaTideTotemPercent>
+</ShamanSettings>

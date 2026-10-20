@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <string_0>D:\Games\HB - Main\Settings\Demonic\Demonic_Active_AuraList.xml</string_0>
+  <string_0>D:\Games\GH of HB\Settings\Demonic\Demonic_Active_AuraList.xml</string_0>
   <Version>Millz</Version>
   <Spells>
     <SpellEntry AuraName="Dark Soul: Misery" AuraId="113860" StackCount="1" ChaosBolt="true" Haunt="true" RoF="false" Metamorphosis="true" SoulFire="true" Comment="+Haste - Affliction" />

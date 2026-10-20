@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TyraelSettings>
+  <AutoUpdate>True</AutoUpdate>
+  <ChatOutput>True</ChatOutput>
+  <ClickToMove>True</ClickToMove>
+  <ContinuesHealingMode>False</ContinuesHealingMode>
+  <PluginPulsing>False</PluginPulsing>
+  <RaidWarningOutput>False</RaidWarningOutput>
+  <UseSoftLock>False</UseSoftLock>
+  <SvnUrl>Release</SvnUrl>
+  <PauseKeyChoice>X</PauseKeyChoice>
+  <ModKeyChoice>Alt</ModKeyChoice>
+  <CurrentRevision>0</CurrentRevision>
+  <LastStatCounted>239</LastStatCounted>
+</TyraelSettings>

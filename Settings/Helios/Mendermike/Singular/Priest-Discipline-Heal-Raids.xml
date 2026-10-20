@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DiscPriestHealSettings>
+  <SavedToFile>True</SavedToFile>
+  <PowerWordShield>100</PowerWordShield>
+  <Renew>0</Renew>
+  <Penance>80</Penance>
+  <Heal>0</Heal>
+  <PrayerOfMending>90</PrayerOfMending>
+  <GreaterHeal>50</GreaterHeal>
+  <FlashHeal>30</FlashHeal>
+  <BindingHeal>70</BindingHeal>
+  <PrayerOfHealing>89</PrayerOfHealing>
+  <VoidShift>20</VoidShift>
+  <PainSuppression>49</PainSuppression>
+  <DiscLevel90Talent>89</DiscLevel90Talent>
+  <PowerWordBarrier>80</PowerWordBarrier>
+  <SpiritShell>75</SpiritShell>
+  <CountLevel90Talent>3</CountLevel90Talent>
+  <CountPrayerOfHealing>3</CountPrayerOfHealing>
+  <CountPrayerOfMending>3</CountPrayerOfMending>
+  <CountPowerWordBarrier>3</CountPowerWordBarrier>
+  <CountSpiritShell>3</CountSpiritShell>
+  <AtonementAbovePercent>90</AtonementAbovePercent>
+  <AtonementAboveCount>1</AtonementAboveCount>
+  <AtonementWhenIdle>True</AtonementWhenIdle>
+</DiscPriestHealSettings>

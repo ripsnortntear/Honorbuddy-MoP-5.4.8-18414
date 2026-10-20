@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SpellList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Filename>C:\HB\HB - Main\Settings\KBA\BuffsToKeepActive.xml</Filename>
+  <Filename>D:\Games\GH of HB\Settings\KBA\BuffsToKeepActive.xml</Filename>
   <Version>1.0.2</Version>
   <Spells>
     <SpellEntry ObjectId="93351" ObjectName="Potion of Luck" BuffId="135855" BuffName="Potion of Luck" BuffLocation="Everywhere" BuffCondition="Everytime" />
