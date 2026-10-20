@@ -118,7 +118,7 @@ namespace PureRotation
             BotEvents.Player.OnMapChanged += e =>
                 {
                     // Don't run this handler if we're not the current routine!
-                    if (RoutineManager.Current.Name != Name)
+                    if (RoutineManager.Current == null || RoutineManager.Current.Name != Name)
                         return;
 
                     // Only ever update the context. All our internal handlers will use the context changed event

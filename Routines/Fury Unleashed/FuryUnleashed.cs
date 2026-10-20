@@ -1,4 +1,4 @@
-﻿using FuryUnleashed.Core;
+using FuryUnleashed.Core;
 using FuryUnleashed.Core.Helpers;
 using FuryUnleashed.Core.Managers;
 using FuryUnleashed.Core.Utilities;
@@ -48,6 +48,14 @@ namespace FuryUnleashed
         public Root()
         {
             Instance = this;
+        }
+
+        private static bool _eventsSubscribed;
+
+        private static void SubscribeBotEvents()
+        {
+            if (_eventsSubscribed) return;
+            _eventsSubscribed = true;
             BotEvents.OnBotStopped += Core.Helpers.BotEvents.OnBotStopped;
             BotEvents.OnBotStarted += Core.Helpers.BotEvents.OnBotStarted;
             BotEvents.OnBotChanged += Core.Helpers.BotEvents.OnBotChanged;
@@ -57,6 +65,7 @@ namespace FuryUnleashed
         {
             try
             {
+                SubscribeBotEvents();
                 TreeHooks.Instance.ClearAll();
                 Updater.CheckForUpdate();
 

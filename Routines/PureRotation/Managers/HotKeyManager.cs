@@ -1,4 +1,4 @@
-﻿#region Revision info
+#region Revision info
 
 /*
  * $Author: millz $
@@ -43,7 +43,7 @@ namespace PureRotation.Managers
 
         public static void BotEvents_OnBotStarted(EventArgs args)
         {
-            if (RoutineManager.Current.Name != PureRotationRoutine._name) return;
+            if (RoutineManager.Current == null || RoutineManager.Current.Name != PureRotationRoutine._name) return;
             if (HotkeySettings.Instance.ModeChoice == Mode.Hotkey || HotkeySettings.Instance.ModeChoice == Mode.SemiAuto)
                 RegisterKeys();
             Logger.InfoLog(string.Format("PureRotation Hotkeys registered!"));
@@ -69,7 +69,7 @@ namespace PureRotation.Managers
 
         public static void BotEvents_OnBotStopped(EventArgs args)
         {
-            if (RoutineManager.Current.Name != PureRotationRoutine._name) return;
+            if (RoutineManager.Current == null || RoutineManager.Current.Name != PureRotationRoutine._name) return;
             RemoveAllKeys();
             
             if (DpsMeter.DpsMeterInitialized)

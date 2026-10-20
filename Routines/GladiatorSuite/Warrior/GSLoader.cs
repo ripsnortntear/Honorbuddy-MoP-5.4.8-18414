@@ -1,4 +1,4 @@
-﻿#region Copyright © 2014 Miracle Business Solutions
+#region Copyright © 2014 Miracle Business Solutions
 // All rights are reserved. Reproduction or transmission in whole or in part,
 // any form or by any means, electronic, mechanical or otherwise, is prohibited
 // without the prior written consent of the copyright owner.
@@ -208,6 +208,54 @@ namespace Loader
         ///     Loads the selected routine
         /// </summary>
         /// <returns></returns>
+        private void PatchBotEvents(string botEventsTypeName)
+        {
+            try
+            {
+                if (_ccAssembly == null) return;
+                var botEventsType = _ccAssembly.GetType(botEventsTypeName);
+                if (botEventsType == null) return;
+
+                var onChanged = botEventsType.GetMethod("OnBotChanged", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+                if (onChanged != null)
+                {
+                    var changedDel = (Styx.CommonBot.BotEvents.OnBotChangedDelegate)Delegate.CreateDelegate(
+                        typeof(Styx.CommonBot.BotEvents.OnBotChangedDelegate), onChanged);
+                    Styx.CommonBot.BotEvents.OnBotChanged -= changedDel;
+                }
+
+                var onStarted = botEventsType.GetMethod("OnBotStarted", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+                if (onStarted != null)
+                {
+                    var startedDel = (Styx.CommonBot.BotEvents.OnBotStartDelegate)Delegate.CreateDelegate(
+                        typeof(Styx.CommonBot.BotEvents.OnBotStartDelegate), onStarted);
+                    Styx.CommonBot.BotEvents.OnBotStarted -= startedDel;
+                    Styx.CommonBot.BotEvents.OnBotStarted += args =>
+                    {
+                        if (RoutineManager.Current != null)
+                            startedDel(args);
+                    };
+                }
+
+                var onStopped = botEventsType.GetMethod("OnBotStopped", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+                if (onStopped != null)
+                {
+                    var stoppedDel = (Styx.CommonBot.BotEvents.OnBotStopDelegate)Delegate.CreateDelegate(
+                        typeof(Styx.CommonBot.BotEvents.OnBotStopDelegate), onStopped);
+                    Styx.CommonBot.BotEvents.OnBotStopped -= stoppedDel;
+                    Styx.CommonBot.BotEvents.OnBotStopped += args =>
+                    {
+                        if (RoutineManager.Current != null)
+                            stoppedDel(args);
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteDiagnostic("Exception thrown at GladiatorSuite.PatchBotEvents : {0}", ex);
+            }
+        }
+
         private bool LoadRoutine()
         {
             try
@@ -216,6 +264,7 @@ namespace Loader
                     (CombatRoutine)
                         _ccAssembly.CreateInstance(
                             @"GSWarrior.Root");
+                PatchBotEvents(@"GSWarrior.Core.Helpers.BotEvents");
                 return _cc != null;
             }
             catch (Exception ex)

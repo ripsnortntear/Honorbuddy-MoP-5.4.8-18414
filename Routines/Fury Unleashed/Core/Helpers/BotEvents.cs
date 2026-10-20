@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FuryUnleashed.Core.Managers;
 using FuryUnleashed.Core.Utilities;
 using Styx.CommonBot.Routines;
@@ -9,7 +9,7 @@ namespace FuryUnleashed.Core.Helpers
     {
         public static void OnBotStarted(EventArgs args)
         {
-            if (RoutineManager.Current.Name != Root.FuName) 
+            if (RoutineManager.Current == null || RoutineManager.Current.Name != Root.FuName) 
                 return;
             HotKeyManager.RegisterKeys();
             LuaClass.DisableClickToMove();
@@ -18,7 +18,7 @@ namespace FuryUnleashed.Core.Helpers
 
         public static void OnBotStopped(EventArgs args)
         {
-            if (RoutineManager.Current.Name != Root.FuName) 
+            if (RoutineManager.Current == null || RoutineManager.Current.Name != Root.FuName) 
                 return;
             HotKeyManager.RemoveAllKeys();
             LuaClass.EnableClickToMove();
@@ -27,7 +27,7 @@ namespace FuryUnleashed.Core.Helpers
 
         public static void OnBotChanged(EventArgs args)
         {
-            if (RoutineManager.Current.Name != Root.FuName)
+            if (RoutineManager.Current == null || RoutineManager.Current.Name != Root.FuName)
                 return;
             HotKeyManager.RemoveAllKeys();
             HotKeyManager.RegisterKeys();

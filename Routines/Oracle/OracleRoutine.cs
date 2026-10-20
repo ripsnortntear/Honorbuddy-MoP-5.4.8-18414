@@ -1,4 +1,4 @@
-﻿#region Revision info
+#region Revision info
 
 /*
  * $Author: wulf_ $
@@ -104,7 +104,7 @@ namespace Oracle
                 RoutineManager.Reloaded += (s, e) =>
                     {
                         // Don't run this handler if we're not the current routine!
-                        if (RoutineManager.Current.Name != Name)
+                        if (RoutineManager.Current == null || RoutineManager.Current.Name != Name)
                             return;
 
                         Logger.Output(" Routines were reloaded, re-creating behaviors");
@@ -138,7 +138,7 @@ namespace Oracle
                 OnCombatStateChange += (orig, ne) =>
                     {
                         // Don't run this handler if we're not the current routine!
-                        if (RoutineManager.Current.Name != Name)
+                        if (RoutineManager.Current == null || RoutineManager.Current.Name != Name)
                             return;
 
                         ResetLists();
