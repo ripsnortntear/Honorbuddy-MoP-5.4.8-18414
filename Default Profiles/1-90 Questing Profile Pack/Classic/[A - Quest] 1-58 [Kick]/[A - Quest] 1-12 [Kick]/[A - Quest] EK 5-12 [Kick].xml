@@ -400,9 +400,12 @@
                 X="-9880.63" Y="322.6189" Z="37.74079" />
         <PickUp QuestName="Note to William" QuestId="107" GiverName="Gramma Stonefield" GiverId="248"
                 X="-9880.63" Y="322.6189" Z="37.74079" />
-        <If Condition="HasQuest(62) &amp;&amp; !IsQuestCompleted(62)" >
-            <MoveTo QuestId="62" X="-9794.518" Y="149.2703" Z="24.2468" />
-        </If>
+        <While Condition="HasQuest(62) &amp;&amp; !IsQuestCompleted(62)">
+            <CustomBehavior File="Message" Text="Scouting through the Fargodeep Mine." LogColor="CornflowerBlue" />
+            <MoveTo DestName="Fargodeep Mine Entrance" QuestId="62" X="-9794.518" Y="149.2703" Z="24.2468" />
+            <MoveTo DestName="Fargodeep Mine Tunnel" QuestId="62" X="-9820.0" Y="138.0" Z="15.0" />
+            <MoveTo DestName="Fargodeep Mine Trigger" QuestId="62" X="-9843.54" Y="127.53" Z="5.37" />
+        </While>
         <Objective QuestName="Gold Dust Exchange" QuestId="47" Type="CollectItem" ItemId="773" CollectCount="10" />
         <Objective QuestName="Kobold Candles" QuestId="60" Type="CollectItem" ItemId="772" CollectCount="8" />
         <TurnIn QuestName="Kobold Candles" QuestId="60" TurnInName="William Pestle" TurnInId="253"
@@ -411,10 +414,18 @@
                 X="-9460.302" Y="31.93891" Z="56.96619" />
         <PickUp QuestName="Collecting Kelp" QuestId="112" GiverName="William Pestle" GiverId="253"
                 X="-9460.302" Y="31.93891" Z="56.96619" />
-        <TurnIn QuestName="The Fargodeep Mine" QuestId="62" TurnInName="Marshal Dughan" TurnInId="240"
-                X="-9465.521" Y="74.00694" Z="56.59536" />
-        <PickUp QuestName="The Jasperlode Mine" QuestId="76" GiverName="Marshal Dughan" GiverId="240"
-                X="-9465.521" Y="74.00694" Z="56.59536" />
+        <While Condition="HasQuest(62) &amp;&amp; !IsQuestCompleted(62)">
+            <CustomBehavior File="Message" Text="Heading to Fargodeep Mine to complete scouting objective." LogColor="CornflowerBlue" />
+            <MoveTo DestName="Fargodeep Mine Entrance" QuestId="62" X="-9794.518" Y="149.2703" Z="24.2468" />
+            <MoveTo DestName="Fargodeep Mine Tunnel" QuestId="62" X="-9820.0" Y="138.0" Z="15.0" />
+            <MoveTo DestName="Fargodeep Mine Trigger" QuestId="62" X="-9843.54" Y="127.53" Z="5.37" />
+        </While>
+        <If Condition="HasQuest(62) &amp;&amp; IsQuestCompleted(62)">
+            <TurnIn QuestName="The Fargodeep Mine" QuestId="62" TurnInName="Marshal Dughan" TurnInId="240"
+                    X="-9465.521" Y="74.00694" Z="56.59536" />
+            <PickUp QuestName="The Jasperlode Mine" QuestId="76" GiverName="Marshal Dughan" GiverId="240"
+                    X="-9465.521" Y="74.00694" Z="56.59536" />
+        </If>
         <TurnIn QuestName="Gold Dust Exchange" QuestId="47" TurnInName="Remy &quot;Two Times&quot;" TurnInId="241"
                 X="-9496.319" Y="72.82639" Z="56.41537" />
         <PickUp QuestName="Princess Must Die!" QuestId="88" GiverName="Ma Stonefield" GiverId="244"
@@ -571,11 +582,15 @@
                 X="-9530.045" Y="-1222.585" Z="47.28971" />
         <PickUp QuestName="Hero's Call: Westfall!" QuestId="26378" GiverName="Marshal McCree" GiverId="42256"
                 X="-9468.153" Y="-1305.781" Z="44.15004" />
-        <If Condition="HasQuest(76)">
-            <MoveTo X="-9086.532" Y="-557.8581" Z="60.70144" QuestId="76" />
+        <While Condition="HasQuest(76) &amp;&amp; !IsQuestCompleted(76)">
+            <CustomBehavior File="Message" Text="Heading to Jasperlode Mine to complete scouting objective." LogColor="CornflowerBlue" />
+            <MoveTo DestName="Jasperlode Mine Entrance" QuestId="76" X="-9086.532" Y="-557.8581" Z="60.70144" />
+            <MoveTo DestName="Jasperlode Mine Trigger" QuestId="76" X="-9077.34" Y="-552.925" Z="60.35" />
+        </While>
+        <If Condition="HasQuest(76) &amp;&amp; IsQuestCompleted(76)">
+            <TurnIn QuestName="The Jasperlode Mine" QuestId="76" TurnInName="Marshal Dughan" TurnInId="240"
+                    X="-9465.521" Y="74.00694" Z="56.59536" />
         </If>
-        <TurnIn QuestName="The Jasperlode Mine" QuestId="76" TurnInName="Marshal Dughan" TurnInId="240"
-                X="-9465.521" Y="74.00694" Z="56.59536" />
         <PickUp QuestName="Elmore's Task" QuestId="1097" GiverName="Smith Argus" GiverId="514" />
         <TurnIn QuestName="Elmore's Task" QuestId="1097" TurnInName="Grimand Elmore" TurnInId="1416" />
         <PickUp QuestName="Westbrook Garrison Needs Help!" QuestId="239" GiverName="Marshal Dughan" GiverId="240"

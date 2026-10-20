@@ -153,16 +153,27 @@
 	<PickUp QuestName="The Fargodeep Mine" QuestId="62" GiverName="Marshal Dughan" GiverId="240" />
 
 <!-- The Fargodeep Mine/Gold Dust Exchange/Kobold Candles -->
-	<If Condition="HasQuest(62) &amp;&amp; !IsQuestCompleted(62)" >
-        <MoveTo QuestId="62" X="-9794.518" Y="149.2703" Z="24.2468" />
-    </If>
+	<While Condition="HasQuest(62) &amp;&amp; !IsQuestCompleted(62)">
+		<CustomBehavior File="Message" Text="Scouting through the Fargodeep Mine." LogColor="CornflowerBlue" />
+		<MoveTo DestName="Fargodeep Mine Entrance" QuestId="62" X="-9794.518" Y="149.2703" Z="24.2468" />
+		<MoveTo DestName="Fargodeep Mine Tunnel" QuestId="62" X="-9820.0" Y="138.0" Z="15.0" />
+		<MoveTo DestName="Fargodeep Mine Trigger" QuestId="62" X="-9843.54" Y="127.53" Z="5.37" />
+	</While>
 
 	<Objective QuestName="Kobold Candles" QuestId="60" Type="CollectItem" ItemId="772" CollectCount="8" />
 	<Objective QuestName="Gold Dust Exchange" QuestId="47" Type="CollectItem" ItemId="773" CollectCount="10" />
 
-	
- 	<TurnIn QuestName="The Fargodeep Mine" QuestId="62" TurnInName="Marshal Dughan" TurnInId="240" />
-	<PickUp QuestName="The Jasperlode Mine" QuestId="76" GiverName="Marshal Dughan" GiverId="240" />
+	<While Condition="HasQuest(62) &amp;&amp; !IsQuestCompleted(62)">
+		<CustomBehavior File="Message" Text="Heading to Fargodeep Mine to complete scouting objective." LogColor="CornflowerBlue" />
+		<MoveTo DestName="Fargodeep Mine Entrance" QuestId="62" X="-9794.518" Y="149.2703" Z="24.2468" />
+		<MoveTo DestName="Fargodeep Mine Tunnel" QuestId="62" X="-9820.0" Y="138.0" Z="15.0" />
+		<MoveTo DestName="Fargodeep Mine Trigger" QuestId="62" X="-9843.54" Y="127.53" Z="5.37" />
+	</While>
+
+	<If Condition="HasQuest(62) &amp;&amp; IsQuestCompleted(62)">
+		<TurnIn QuestName="The Fargodeep Mine" QuestId="62" TurnInName="Marshal Dughan" TurnInId="240" />
+		<PickUp QuestName="The Jasperlode Mine" QuestId="76" GiverName="Marshal Dughan" GiverId="240" />
+	</If>
 	<TurnIn QuestName="Kobold Candles" QuestId="60" TurnInName="William Pestle" TurnInId="253" />
 	<PickUp QuestName="A Visit With Maybell" QuestId="26150" GiverName="William Pestle" GiverId="253" />
 	
@@ -207,9 +218,11 @@
 <!-- Note to William/The Jasperlode Mine -->
 	<TurnIn QuestName="Note to William" QuestId="107" TurnInName="William Pestle" TurnInId="253" />
 	<PickUp QuestName="Collecting Kelp" QuestId="112" GiverName="William Pestle" GiverId="253" />
-	<If Condition="HasQuest(76) &amp;&amp; !IsQuestCompleted(76)" >
-		<MoveTo X="-9092.972" Y="-562.9011" Z="61.7988" />
-	</If>
+	<While Condition="HasQuest(76) &amp;&amp; !IsQuestCompleted(76)">
+		<CustomBehavior File="Message" Text="Heading to Jasperlode Mine to complete scouting objective." LogColor="CornflowerBlue" />
+		<MoveTo DestName="Jasperlode Mine Entrance" QuestId="76" X="-9092.972" Y="-562.9011" Z="61.7988" />
+		<MoveTo DestName="Jasperlode Mine Trigger" QuestId="76" X="-9077.34" Y="-552.925" Z="60.35" />
+	</While>
 	<Objective QuestName="Collecting Kelp" QuestId="112" Type="CollectItem" ItemId="1256" CollectCount="4" />
 	<If Condition="HasQuest(112) &amp;&amp; IsQuestCompleted(112)" >
 		<DisableBehavior Name="Pull, Combat" />
@@ -219,7 +232,14 @@
 	</If>
 	<PickUp QuestName="The Escape" QuestId="114" GiverName="William Pestle" GiverId="253" />
 	<TurnIn QuestName="The Escape" QuestId="114" TurnInName="Maybell Maclure" TurnInId="251" />
-	<TurnIn QuestName="The Jasperlode Mine" QuestId="76" TurnInName="Marshal Dughan" TurnInId="240" />
+	<While Condition="HasQuest(76) &amp;&amp; !IsQuestCompleted(76)">
+		<CustomBehavior File="Message" Text="Heading to Jasperlode Mine to complete scouting objective." LogColor="CornflowerBlue" />
+		<MoveTo DestName="Jasperlode Mine Entrance" QuestId="76" X="-9092.972" Y="-562.9011" Z="61.7988" />
+		<MoveTo DestName="Jasperlode Mine Trigger" QuestId="76" X="-9077.34" Y="-552.925" Z="60.35" />
+	</While>
+	<If Condition="HasQuest(76) &amp;&amp; IsQuestCompleted(76)">
+		<TurnIn QuestName="The Jasperlode Mine" QuestId="76" TurnInName="Marshal Dughan" TurnInId="240" />
+	</If>
 	
 	<PickUp QuestName="A Fishy Peril" QuestId="40" GiverName="Remy Two Times" GiverId="241" />
 	<TurnIn QuestName="A Fishy Peril" QuestId="40" TurnInName="Marshal Dughan" TurnInId="240" />
