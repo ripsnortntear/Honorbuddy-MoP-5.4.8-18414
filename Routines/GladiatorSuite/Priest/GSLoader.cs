@@ -176,19 +176,17 @@ namespace Loader
                 {
                     try
                     {
-                        var requestedName = new AssemblyName(e.Name);
-                        switch (requestedName.Name)
+                        AssemblyName requestedName = new AssemblyName(e.Name);
+                        foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
                         {
-                            case "Honorbuddy": //Auto Rebuild on new Honorbuddy.exe
-                                return typeof(StyxWoW).Assembly;
-                            case "GreyMagic": //Auto Rebuild on new GreyMagic.dll
-                                return typeof(GreyMagic.ExternalProcessReader).Assembly;
-                            case "Tripper.Tools": //Auto Rebuild on new Tripper.Tools.dll
-                                return typeof(Tripper.Tools.Math.Vector3).Assembly;
+                            if (string.Equals(a.GetName().Name, requestedName.Name, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return a;
+                            }
                         }
                         return null;
                     }
-                    catch //(System.Exception)
+                    catch
                     {
                         return null;
                     }

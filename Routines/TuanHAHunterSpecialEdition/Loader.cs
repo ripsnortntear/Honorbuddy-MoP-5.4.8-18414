@@ -106,17 +106,16 @@ namespace Loader
                     try
                     {
                         AssemblyName requestedName = new AssemblyName(e.Name);
-                        if (requestedName.Name == "Honorbuddy")
+                        foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
                         {
-                            return typeof(StyxWoW).Assembly;
-                        }
-						if (requestedName.Name == "GreyMagic")
-                        {
-                            return typeof(GreyMagic.ExternalProcessReader).Assembly;
+                            if (string.Equals(a.GetName().Name, requestedName.Name, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return a;
+                            }
                         }
                         return null;
                     }
-                    catch (System.Exception)
+                    catch
                     {
                         return null;
                     }

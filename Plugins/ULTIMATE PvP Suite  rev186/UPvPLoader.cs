@@ -79,20 +79,16 @@ namespace UltimatePvPSuiteLoader
                     try
                     {
                         AssemblyName requestedName = new AssemblyName(e.Name);
-                        Logging.Write(requestedName.FullName);
-                        if (requestedName.Name == "Honorbuddy")
+                        foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
                         {
-                            Logging.Write("Loading " + System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-                            return typeof(StyxWoW).Assembly;
-                        }
-                        if (requestedName.Name == "GreyMagic")
-                        {
-                            Logging.Write("Loading " + Utilities.AssemblyDirectory + @"\GreyMagic.dll");
-                            return typeof(GreyMagic.ExternalProcessReader).Assembly;
+                            if (string.Equals(a.GetName().Name, requestedName.Name, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return a;
+                            }
                         }
                         return null;
                     }
-                    catch (System.Exception)
+                    catch
                     {
                         return null;
                     }
