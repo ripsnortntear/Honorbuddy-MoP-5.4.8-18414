@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SingularSettings>
   <SameSpellThrottle>450</SameSpellThrottle>
   <EnableDebugLoggingGCD>False</EnableDebugLoggingGCD>
   <EnableDebugTrace>False</EnableDebugTrace>
-  <DisableDebugLogging>False</DisableDebugLogging>
+  <DisableDebugLogging>True</DisableDebugLogging>
   <FormHeight>337</FormHeight>
   <FormWidth>378</FormWidth>
   <FormTabIndex>0</FormTabIndex>

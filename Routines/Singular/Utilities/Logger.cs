@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -82,7 +82,7 @@ namespace Singular
 
             if (SingularSettings.Debug)
             {
-                Logging.Write(newColor, "(Singular) " + message, args);
+                Logging.WriteDiagnostic(newColor, "(Singular) " + message, args);
             }
         }
 
@@ -148,7 +148,7 @@ namespace Singular
 
             if (SingularSettings.Debug)
             {
-                Logging.Write(newColor, "(Singular) " + message, args);
+                Logging.WriteDiagnostic(newColor, "(Singular) " + message, args);
             }
             else
             {

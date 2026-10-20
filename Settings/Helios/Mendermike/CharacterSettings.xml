@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <SelectTalents>True</SelectTalents>
   <ClassProfileName>Priest - Holy</ClassProfileName>
@@ -11,7 +11,7 @@
   <RollOnItems>True</RollOnItems>
   <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
   <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
-  <TicksPerSecond>60</TicksPerSecond>
+  <TicksPerSecond>30</TicksPerSecond>
   <FoodAmount>20</FoodAmount>
   <DrinkAmount>20</DrinkAmount>
   <EnabledPlugins>

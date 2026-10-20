@@ -1,4 +1,4 @@
-﻿#define FIND_LOWEST_AT_THE_MOMENT
+#define FIND_LOWEST_AT_THE_MOMENT
 
 using System;
 using System.Linq;
@@ -33,7 +33,9 @@ namespace Singular.ClassSpecific.Priest
         public static Composite CreateHolyRest()
         {
             return new PrioritySelector(
-                CreateHolyDiagnosticOutputBehavior("REST"),
+                new Decorator(
+                    req => SingularRoutine.CurrentWoWContext != WoWContext.Normal,
+                    CreateHolyDiagnosticOutputBehavior("REST")),
 
                 // Heal self before resting. There is no need to eat while we have 100% mana
                 CreateHolyHealOnlyBehavior(true, false),
@@ -672,7 +674,7 @@ VoidShift               Void Shift
             return new Sequence(
                 new Decorator(
                     ret => SingularSettings.Debug,
-                    new ThrottlePasses(1, 1,
+                    new ThrottlePasses(1, 5,
                         new Action(ret =>
                         {
                             WoWAura chakra = Me.GetAllAuras().Where(a => a.Name.Contains("Chakra")).FirstOrDefault();

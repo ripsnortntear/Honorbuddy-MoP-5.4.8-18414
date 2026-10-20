@@ -1,4 +1,4 @@
-﻿
+
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -401,7 +401,7 @@ namespace Singular.Settings
 
         [Browsable(false)]
         [Setting]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         [Category("Debug")]
         [DisplayName("Disable Debug Logging")]
         [Description("Disables debug logging by Singular. Will suppress debug output even when enabled by other means")]
