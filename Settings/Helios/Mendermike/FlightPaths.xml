@@ -7,12 +7,14 @@
       <Connection name="Eastvale Logging Camp, Elwynn" />
       <Connection name="Kharanos, Dun Morogh" />
       <Connection name="Gol'Bolar Quarry, Dun Morogh" />
+      <Connection name="Furlbrow's Pumpkin Farm, Westfall" />
     </Connections>
   </Node>
   <Node name="Ironforge, Dun Morogh" continent="0" x="-4821.78" y="-1155.44" z="502.21">
     <Connections>
       <Connection name="Stormwind, Elwynn" />
       <Connection name="Goldshire, Elwynn" />
+      <Connection name="Furlbrow's Pumpkin Farm, Westfall" />
     </Connections>
   </Node>
   <Node name="Goldshire, Elwynn" continent="0" master="42983" x="-9433.99" y="85.1493" z="56.734">
@@ -22,24 +24,38 @@
       <Connection name="Eastvale Logging Camp, Elwynn" />
       <Connection name="Kharanos, Dun Morogh" />
       <Connection name="Gol'Bolar Quarry, Dun Morogh" />
+      <Connection name="Furlbrow's Pumpkin Farm, Westfall" />
     </Connections>
   </Node>
   <Node name="Eastvale Logging Camp, Elwynn" continent="0" x="-9475.71" y="-1306.74" z="44.1496">
     <Connections>
       <Connection name="Goldshire, Elwynn" />
       <Connection name="Stormwind, Elwynn" />
+      <Connection name="Furlbrow's Pumpkin Farm, Westfall" />
     </Connections>
   </Node>
   <Node name="Kharanos, Dun Morogh" continent="0" x="-5660.8" y="-494.851" z="397.008">
     <Connections>
       <Connection name="Goldshire, Elwynn" />
       <Connection name="Stormwind, Elwynn" />
+      <Connection name="Furlbrow's Pumpkin Farm, Westfall" />
     </Connections>
   </Node>
   <Node name="Gol'Bolar Quarry, Dun Morogh" continent="0" x="-5714.14" y="-1578.64" z="383.204">
     <Connections>
       <Connection name="Goldshire, Elwynn" />
       <Connection name="Stormwind, Elwynn" />
+      <Connection name="Furlbrow's Pumpkin Farm, Westfall" />
+    </Connections>
+  </Node>
+  <Node name="Furlbrow's Pumpkin Farm, Westfall" continent="0" master="42406" x="-9838.51" y="1273.93" z="40.7067">
+    <Connections>
+      <Connection name="Stormwind, Elwynn" />
+      <Connection name="Ironforge, Dun Morogh" />
+      <Connection name="Goldshire, Elwynn" />
+      <Connection name="Eastvale Logging Camp, Elwynn" />
+      <Connection name="Kharanos, Dun Morogh" />
+      <Connection name="Gol'Bolar Quarry, Dun Morogh" />
     </Connections>
   </Node>
 </FlightNodes>
