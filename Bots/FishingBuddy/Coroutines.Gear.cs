@@ -9,6 +9,8 @@ namespace Bots.FishingBuddy
 {
 	static partial class Coroutines
 	{
+		private static readonly Styx.Common.Helpers.WaitTimer EquipThrottleTimer = new Styx.Common.Helpers.WaitTimer(System.TimeSpan.FromMilliseconds(1500));
+
 		static void Gear_OnStart()
 		{
 		}
@@ -36,15 +38,20 @@ namespace Bots.FishingBuddy
 
 			WoWItem pole = Me.CarriedItems
 				.Where(i => i != null && i.IsValid
+				   && i.ItemInfo != null
 				   && i.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole && Utility.HasRequiredSkillLevel(i.ItemInfo))
 				.OrderByDescending(Utility.GetBonusFishingSkillOnEquip)
-				.ThenByDescending(i => i.ItemInfo.Level)
+				.ThenByDescending(i => i.ItemInfo != null ? i.ItemInfo.Level : 0)
 				.FirstOrDefault();
 
 			// We are comparing Entry rather then the WoWItems instance since there can be multiple of the same item
 			if (pole == null || (mainHand != null && pole.Entry == mainHand.Entry))
 				return false;
 
+			if (!EquipThrottleTimer.IsFinished)
+				return false;
+
+			EquipThrottleTimer.Reset();
 			return await EquipItem(pole, WoWInventorySlot.MainHand);
 		}
 

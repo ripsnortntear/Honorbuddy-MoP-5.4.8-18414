@@ -1,4 +1,4 @@
-﻿//!CompilerOption:Optimize:On
+//!CompilerOption:Optimize:On
 
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,8 @@ using Styx.Common;
 using Styx.Common.Helpers;
 using Styx.CommonBot;
 using Styx.CommonBot.Profiles;
+using Styx.Helpers;
+using Styx.Plugins;
 using Styx.TreeSharp;
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
@@ -35,18 +37,22 @@ namespace Bots.FishingBuddy
 	    private static readonly WaitTimer LoadProfileTimer = new WaitTimer(TimeSpan.FromSeconds(1));
         private static DateTime _botStartTime;
 
+        private bool _originalAutoEquipWeapons;
+        private readonly List<string> _disabledPlugins = new List<string>();
+
         public FishingBuddyBot()
         {
             Instance = this;
             BotEvents.Profile.OnNewOuterProfileLoaded += Profile_OnNewOuterProfileLoaded;
             Styx.CommonBot.Profiles.Profile.OnUnknownProfileElement += Profile_OnUnknownProfileElement;
+            BotEvents.Player.OnMapChanged += args => { _root = null; };
         }
 
 		internal bool LootFrameIsOpen { get; private set; }
 	
 		internal bool ShouldFaceWaterNow { get;  set; }
 
-		internal Dictionary<string, uint> FishCaught { get; private set; }
+		internal Dictionary<string, uint> FishCaught { get; set; }
 		
 		internal FishingBuddyProfile Profile { get; private set; }
         internal static FishingBuddyBot Instance { get; private set; }
@@ -100,7 +106,7 @@ namespace Bots.FishingBuddy
 					? StyxWoW.Me.BagItems.FirstOrDefault(i => i.Entry == FishingBuddySettings.Instance.OffHand) 
 					: null;
 
-                if ((mainhand == null || !_2HWeaponTypes.Contains(mainhand.ItemInfo.InventoryType)) && offhand == null)
+                if ((mainhand == null || mainhand.ItemInfo == null || !_2HWeaponTypes.Contains(mainhand.ItemInfo.InventoryType)) && offhand == null)
                     offhand = FindOffhand();
 
 				if (mainhand != null)
@@ -121,6 +127,44 @@ namespace Bots.FishingBuddy
 	        DumpConfiguration();
             _botStartTime = DateTime.Now;
             FishCaught = new Dictionary<string, uint>();
+
+            // Suppress AutoEquip to prevent weapon swap fight with fishing pole
+            try
+            {
+                _originalAutoEquipWeapons = CharacterSettings.Instance.AutoEquipWeapons;
+                if (_originalAutoEquipWeapons)
+                {
+                    Log("Temporarily disabling AutoEquipWeapons to prevent fishing pole weapon swap loops.");
+                    CharacterSettings.Instance.AutoEquipWeapons = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
+
+            try
+            {
+                _disabledPlugins.Clear();
+                if (PluginManager.Plugins != null)
+                {
+                    foreach (var plugin in PluginManager.Plugins)
+                    {
+                        if (plugin != null && plugin.Enabled && !string.IsNullOrEmpty(plugin.Name) &&
+                            (plugin.Name.IndexOf("AutoEquip", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                             plugin.Name.IndexOf("Auto Equip", StringComparison.OrdinalIgnoreCase) >= 0))
+                        {
+                            Log("Temporarily disabling plugin {0} to prevent weapon equip loops.", plugin.Name);
+                            plugin.Enabled = false;
+                            _disabledPlugins.Add(plugin.Name);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
 
 		    Lua.Events.AttachEvent("LOOT_OPENED", LootFrameOpenedHandler);
 		    Lua.Events.AttachEvent("LOOT_CLOSED", LootFrameClosedHandler);
@@ -154,16 +198,54 @@ namespace Bots.FishingBuddy
 
         public override void Stop()
         {
+            // Restore AutoEquip settings and plugins
+            try
+            {
+                if (_originalAutoEquipWeapons)
+                {
+                    Log("Restoring AutoEquipWeapons.");
+                    CharacterSettings.Instance.AutoEquipWeapons = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
+
+            try
+            {
+                if (PluginManager.Plugins != null && _disabledPlugins.Count > 0)
+                {
+                    foreach (var plugin in PluginManager.Plugins)
+                    {
+                        if (plugin != null && _disabledPlugins.Contains(plugin.Name))
+                        {
+                            Log("Re-enabling plugin {0}.", plugin.Name);
+                            plugin.Enabled = true;
+                        }
+                    }
+                    _disabledPlugins.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
+
 			Coroutines.OnStop();
+            _root = null;
 
             Log("In {0} days, {1} hours and {2} minutes we have caught",
                 (DateTime.Now - _botStartTime).Days,
                 (DateTime.Now - _botStartTime).Hours,
                 (DateTime.Now - _botStartTime).Minutes);
 
-            foreach (var kv in FishCaught)
+            if (FishCaught != null)
             {
-                Log("{0} x{1}", kv.Key, kv.Value);
+                foreach (var kv in FishCaught)
+                {
+                    Log("{0} x{1}", kv.Key, kv.Value);
+                }
             }
 
 			LootTargeting.Instance.IncludeTargetsFilter -= LootFilters.IncludeTargetsFilter;
@@ -284,11 +366,11 @@ namespace Bots.FishingBuddy
         private WoWItem FindMainHand()
         {
 			WoWItem mainHand = StyxWoW.Me.Inventory.Equipped.MainHand;
-	        if (mainHand == null || mainHand.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole)
+	        if (mainHand == null || mainHand.ItemInfo == null || mainHand.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole)
 	        {
-		        mainHand = StyxWoW.Me.CarriedItems.OrderByDescending(u => u.ItemInfo.Level).
+		        mainHand = StyxWoW.Me.CarriedItems.Where(u => u != null && u.ItemInfo != null).OrderByDescending(u => u.ItemInfo.Level).
 			        FirstOrDefault(
-				        i => i.IsSoulbound && (i.ItemInfo.InventoryType == InventoryType.WeaponMainHand ||
+				        i => i.IsSoulbound && i.ItemInfo != null && (i.ItemInfo.InventoryType == InventoryType.WeaponMainHand ||
 												i.ItemInfo.InventoryType == InventoryType.TwoHandWeapon) &&
 							StyxWoW.Me.CanEquipItem(i));
 
@@ -311,9 +393,9 @@ namespace Bots.FishingBuddy
 			WoWItem offHand = StyxWoW.Me.Inventory.Equipped.OffHand;
 	        if (offHand == null)
 	        {
-		        offHand = StyxWoW.Me.CarriedItems.OrderByDescending(u => u.ItemInfo.Level).
+		        offHand = StyxWoW.Me.CarriedItems.Where(u => u != null && u.ItemInfo != null).OrderByDescending(u => u.ItemInfo.Level).
 			        FirstOrDefault(
-				        i => i.IsSoulbound && (i.ItemInfo.InventoryType == InventoryType.WeaponOffHand ||
+				        i => i.IsSoulbound && i.ItemInfo != null && (i.ItemInfo.InventoryType == InventoryType.WeaponOffHand ||
 												i.ItemInfo.InventoryType == InventoryType.Weapon ||
 												i.ItemInfo.InventoryType == InventoryType.Shield) &&
 							FishingBuddySettings.Instance.MainHand != i.Entry &&

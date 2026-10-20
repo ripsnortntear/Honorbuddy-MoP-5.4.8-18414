@@ -38,9 +38,10 @@ namespace Bots.FishingBuddy
 
 					var gObjLoc = gObj.Location;
 
-					if (ProfileManager.CurrentProfile != null
-						&& ProfileManager.CurrentProfile.Blackspots != null
-						&& Targeting.IsTooNearBlackspot(ProfileManager.CurrentOuterProfile.Blackspots, gObjLoc))
+					var profile = ProfileManager.CurrentOuterProfile ?? ProfileManager.CurrentProfile;
+					if (profile != null
+						&& profile.Blackspots != null
+						&& Targeting.IsTooNearBlackspot(profile.Blackspots, gObjLoc))
 					{
 						continue;
 					}

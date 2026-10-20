@@ -56,6 +56,13 @@ namespace Bots.FishingBuddy
 			return false;
 		}
 
+		private static async Task<bool> MoveOrFlyTo(WoWPoint destination, string destinationName = null)
+		{
+			if (FishingBuddySettings.Instance.Fly)
+				return await FlyTo(destination, destinationName);
+			return await MoveTo(destination, destinationName);
+		}
+
 		public static async Task<bool> MailItems()
 		{
 			WoWPoint mboxLoc = BotPoi.Current.Location;
@@ -68,8 +75,7 @@ namespace Bots.FishingBuddy
 			{
 				if (Me.Location.DistanceSqr(BotPoi.Current.Location) > 4*4)
 				{
-					Flightor.MoveTo(BotPoi.Current.Location);
-					return true;
+					return await MoveOrFlyTo(BotPoi.Current.Location, "Mailbox");
 				}
 
 				var profile = ProfileManager.CurrentOuterProfile;
@@ -80,10 +86,7 @@ namespace Bots.FishingBuddy
 				return false;
 			}
 			if (!mailbox.WithinInteractRange)
-				return await FlyTo(BotPoi.Current.Location);
-
-			if (!mailbox.WithinInteractRange)
-				return await FlyTo(mailbox.Location, mailbox.SafeName);
+				return await MoveOrFlyTo(mailbox.Location, mailbox.SafeName);
 
 			if (!MailFrame.Instance.IsVisible)
 			{
@@ -108,7 +111,7 @@ namespace Bots.FishingBuddy
 			if (vendor == null)
 			{
 				if (Me.Location.DistanceSqr(BotPoi.Current.Location) > 4*4)
-					return await FlyTo(BotPoi.Current.Location, "Vendor");
+					return await MoveOrFlyTo(BotPoi.Current.Location, "Vendor");
 
 				// just wait at location, maybe vendor got killed by opposite faction
 				return true;
@@ -116,7 +119,7 @@ namespace Bots.FishingBuddy
 
 
 			if (!vendor.WithinInteractRange)
-				return await FlyTo(vendor.Location, vendor.SafeName);
+				return await MoveOrFlyTo(vendor.Location, vendor.SafeName);
 
 			if (GossipFrame.Instance.IsVisible && GossipFrame.Instance.GossipOptionEntries != null)
 			{

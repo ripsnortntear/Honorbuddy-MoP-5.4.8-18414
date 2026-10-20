@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Styx;
@@ -46,7 +46,7 @@ namespace Bots.FishingBuddy
 			LureRecastTimer.Reset();
 			var mainHand = StyxWoW.Me.Inventory.Equipped.MainHand;
 
-			if (mainHand == null || mainHand.ItemInfo.WeaponClass != WoWItemWeaponClass.FishingPole)
+			if (mainHand == null || mainHand.ItemInfo == null || mainHand.ItemInfo.WeaponClass != WoWItemWeaponClass.FishingPole)
 				return false;
 
 			// use any item with a lure effect
@@ -79,7 +79,7 @@ namespace Bots.FishingBuddy
 		{
 			var item = StyxWoW.Me.Inventory.Equipped.MainHand;
 
-			if (item != null && item.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole && HasUsableEffect(item))
+			if (item != null && item.ItemInfo != null && item.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole && HasUsableEffect(item))
 				return item;
 
 			item = StyxWoW.Me.Inventory.Equipped.Head;

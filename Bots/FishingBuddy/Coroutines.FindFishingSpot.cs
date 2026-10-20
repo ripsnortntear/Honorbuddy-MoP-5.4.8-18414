@@ -204,7 +204,7 @@ namespace Bots.FishingBuddy
 					for (int i = 0; i < poolPoints.Count; )
 					{
 						WoWPoint[] testP = Navigator.GeneratePath(StyxWoW.Me.Location, poolPoints[i]);
-						if (testP.Length > 0)
+						if (testP != null && testP.Length > 0)
 						{
 							return true;
 						}

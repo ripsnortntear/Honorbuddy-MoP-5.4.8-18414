@@ -211,15 +211,24 @@ namespace Bots.FishingBuddy
 				// loot everything.
 				if (FishingBuddyBot.Instance.LootFrameIsOpen)
 				{
-					for (int i = 0; i < LootFrame.Instance.LootItems; i++)
+					if (FishingBuddyBot.Instance.FishCaught == null)
+						FishingBuddyBot.Instance.FishCaught = new System.Collections.Generic.Dictionary<string, uint>();
+
+					if (LootFrame.Instance != null && LootFrame.Instance.IsVisible)
 					{
-						LootSlotInfo lootInfo = LootFrame.Instance.LootInfo(i);
-						if (FishingBuddyBot.Instance.FishCaught.ContainsKey(lootInfo.LootName))
-							FishingBuddyBot.Instance.FishCaught[lootInfo.LootName] += (uint)lootInfo.LootQuantity;
-						else
-							FishingBuddyBot.Instance.FishCaught.Add(lootInfo.LootName, (uint)lootInfo.LootQuantity);
+						for (int i = 0; i < LootFrame.Instance.LootItems; i++)
+						{
+							LootSlotInfo lootInfo = LootFrame.Instance.LootInfo(i);
+							if (lootInfo != null && !string.IsNullOrEmpty(lootInfo.LootName))
+							{
+								if (FishingBuddyBot.Instance.FishCaught.ContainsKey(lootInfo.LootName))
+									FishingBuddyBot.Instance.FishCaught[lootInfo.LootName] += (uint)lootInfo.LootQuantity;
+								else
+									FishingBuddyBot.Instance.FishCaught.Add(lootInfo.LootName, (uint)lootInfo.LootQuantity);
+							}
+						}
+						LootFrame.Instance.LootAll();
 					}
-					LootFrame.Instance.LootAll();
 					LootTimer.Stop();
 					await CommonCoroutines.SleepForLagDuration();
 				}

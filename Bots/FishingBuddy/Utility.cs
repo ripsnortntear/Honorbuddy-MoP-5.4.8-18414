@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Styx;
 using Styx.Common;
@@ -51,8 +51,8 @@ namespace Bots.FishingBuddy
 					Logging.Write("Could not find a mainhand weapon to equip");
 					return false;
 				}
-				is2Hand = wantedMainHand.ItemInfo.InventoryType == InventoryType.TwoHandWeapon
-						|| wantedMainHand.ItemInfo.InventoryType == InventoryType.Ranged;
+				is2Hand = wantedMainHand.ItemInfo != null && (wantedMainHand.ItemInfo.InventoryType == InventoryType.TwoHandWeapon
+						|| wantedMainHand.ItemInfo.InventoryType == InventoryType.Ranged);
 				wantedMainHand.UseContainerItem();
 			}
 
@@ -106,7 +106,7 @@ namespace Bots.FishingBuddy
 			// try to find a hat to wear automatically
 			if (FishingBuddySettings.Instance.Hat == 0)
 			{
-				var bestHat = StyxWoW.Me.BagItems.Where(i => i != null && i.IsValid && i.ItemInfo.EquipSlot == InventoryType.Head)
+				var bestHat = StyxWoW.Me.BagItems.Where(i => i != null && i.IsValid && i.ItemInfo != null && i.ItemInfo.EquipSlot == InventoryType.Head)
 					.OrderByDescending(i => i.ItemInfo.Level)
 					.FirstOrDefault();
 				if (bestHat != null)
@@ -176,6 +176,9 @@ namespace Bots.FishingBuddy
 
 		public static bool HasRequiredSkillLevel(ItemInfo itemInfo)
 		{
+			if (itemInfo == null)
+				return false;
+
 			return itemInfo.RequiredSkillId == 0
 				   || itemInfo.RequiredSkillLevel <= StyxWoW.Me.GetSkill(itemInfo.RequiredSkillId).CurrentValue;
 		}

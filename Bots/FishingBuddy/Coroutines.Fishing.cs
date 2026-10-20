@@ -187,12 +187,13 @@ namespace Bots.FishingBuddy
 						return true;
 					}
 					// else lets see if there's a bite
-					if (((WoWFishingBobber)bobber.SubObj).IsBobbing)
+					var fishingBobber = bobber.SubObj as WoWFishingBobber;
+					if (fishingBobber != null && fishingBobber.IsBobbing)
 					{
 						if (await Coroutine.Wait(DelayAfterBobberTriggerMs, () => !bobber.IsValid))
 							return false;
 						_castCounter = 0;
-						bobber.SubObj.Use();
+						fishingBobber.Use();
 						LootTimer.Reset();
 						return true;
 					}
