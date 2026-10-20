@@ -16,6 +16,8 @@ CompiledAssemblies/
 Logs/
 Cache/
 Auth/*.txt
+[Aa]uth/[Mm]esh/
+Mesh/
 *.chw
 *.bak
 *.tmp
