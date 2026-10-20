@@ -39,7 +39,7 @@
   <SelectedBotName>Questing</SelectedBotName>
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
-  <UseRandomMount>False</UseRandomMount>
+  <UseRandomMount>True</UseRandomMount>
   <MailRecipient>Buttermilk</MailRecipient>
   <FoodName>4537</FoodName>
   <DrinkName>159</DrinkName>
