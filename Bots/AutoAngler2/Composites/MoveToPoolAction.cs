@@ -132,7 +132,7 @@ namespace HighVoltz.AutoAngler.Composites
                     for (int i = 0; i < PoolPoints.Count;)
                     {
 						WoWPoint[] testP = Navigator.GeneratePath(StyxWoW.Me.Location, PoolPoints[i]);
-                        if (testP.Length > 0)
+                        if (testP != null && testP.Length > 0)
                         {
                             return true;
                         }

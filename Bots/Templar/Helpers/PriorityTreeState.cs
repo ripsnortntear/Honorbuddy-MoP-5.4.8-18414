@@ -1,8 +1,11 @@
-﻿using Styx;
+using Styx;
+using Styx.CommonBot;
 using Styx.Pathing;
 using Styx.WoWInternals;
+using Styx.WoWInternals.WoWObjects;
 using Templar.GUI.Tabs;
 using Templar.Helpers;
+using System;
 
 namespace Templar.Helpers {
     public class PriorityTreeState {
@@ -22,11 +25,17 @@ namespace Templar.Helpers {
             Mailing,
             Disenchanting,
             MoveToStartLocation,
+            MoveToTarget,
         }
 
         // ===========================================================
         // Fields
         // ===========================================================
+
+        private static DateTime _pullStartTime = DateTime.MinValue;
+        private static WoWUnit _stuckTarget = null;
+        private static State _previousLoggedState = (State)(-1);
+        private static readonly System.Diagnostics.Stopwatch _moveLogStopwatch = new System.Diagnostics.Stopwatch();
 
         public static State TreeState = State.ReadyForTask;
 
@@ -57,6 +66,45 @@ namespace Templar.Helpers {
                 return;
             }
 
+            if (TreeState != _previousLoggedState) {
+                CustomLog.Diagnostic("State: {0}", TreeState);
+                _previousLoggedState = TreeState;
+            }
+
+            // *** DEATH CHECK ***
+            // If the player is dead or a ghost, immediately enter Dead state and bypass all pulse logic.
+            // In zones like Pandaria, corpse retrieval uses a ghost flying mount. We must never attempt
+            // to dismount or initiate pulls/combat while dead or a ghost.
+            if (StyxWoW.Me.IsDead || StyxWoW.Me.IsGhost) {
+                if (TreeState != State.Dead) {
+                    CustomLog.Normal("Player is dead or ghost. Entering Dead state.");
+                    TreeState = State.Dead;
+                }
+
+                Variables.NextMob = null;
+                Variables.LootMob = null;
+                Variables.SkinMob = null;
+                _stuckTarget = null;
+                _pullStartTime = DateTime.MinValue;
+
+                if (StyxWoW.Me.CurrentTarget != null) {
+                    StyxWoW.Me.ClearTarget();
+                }
+                return;
+            }
+
+            // *** EMERGENCY DISMOUNT CHECK ***
+            if (!StyxWoW.Me.IsDead && !StyxWoW.Me.IsGhost && StyxWoW.Me.Mounted && (StyxWoW.Me.Combat || Variables.MobsTargettingMe > 0)) {
+                CustomLog.Normal("EMERGENCY: Dismounting during combat situation.");
+                MountHelper.DismountIfMounted();
+                return;
+            }
+
+            if (StyxWoW.Me.Combat) {
+                _stuckTarget = null;
+                _pullStartTime = DateTime.MinValue;
+            }
+
             if (!Variables.AlteredSettings) {
                 AlterSettings();
                 LogSettings();
@@ -73,8 +121,6 @@ namespace Templar.Helpers {
             TaskManager.HandleCombatBug();
 
             if (TreeState == State.Mailing) {
-                CustomLog.Diagnostic("Mailing State");
-
                 if (Variables.MobsTargettingMe != 0) {
                     return;
                 }
@@ -94,8 +140,6 @@ namespace Templar.Helpers {
             }
 
             if (TreeState == State.Vendoring) {
-                CustomLog.Diagnostic("Vendoring State");
-
                 if (Variables.MobsTargettingMe != 0) {
                     return;
                 }
@@ -115,8 +159,6 @@ namespace Templar.Helpers {
             }
 
             if (TreeState == State.Disenchanting) {
-                CustomLog.Diagnostic("Disenchanting State");
-
                 if (Variables.MobsTargettingMe != 0) {
                     return;
                 }
@@ -154,48 +196,51 @@ namespace Templar.Helpers {
 
             switch (TreeState) {
             case State.Dead:
-                CustomLog.Diagnostic("Dead State");
                 Variables.NextMob = null;
                 Variables.LootMob = null;
                 Variables.SkinMob = null;
+                _stuckTarget = null;
+                _pullStartTime = DateTime.MinValue;
 
-                if (StyxWoW.Me.IsAlive) {
+                if (StyxWoW.Me.IsAlive && !StyxWoW.Me.IsDead && !StyxWoW.Me.IsGhost) {
+                    CustomLog.Normal("Player has resurrected. Returning to ReadyForTask.");
                     TreeState = State.ReadyForTask;
                 }
-
                 break;
 
             case State.ReadyForTask:
                 // Ready to switch states when necessary
-
                 break;
 
             case State.Looting:
                 if (Variables.MobsTargettingMe == 0) {
-                    CustomLog.Diagnostic("Looting State");
                     TaskManager.HandleLooting();
                 } else {
                     TreeState = State.ReadyForTask;
                 }
-
                 break;
 
             case State.Skinning:
                 if (Variables.MobsTargettingMe == 0) {
-                    CustomLog.Diagnostic("Skinning State");
                     TaskManager.HandleSkinning();
                 } else {
                     TreeState = State.ReadyForTask;
                 }
-
                 break;
 
             case State.Pulling:
-                CustomLog.Diagnostic("Pulling State");
+                // If mounted/flying, fly closer until within pull range, then dismount to pull
+                if (!StyxWoW.Me.IsDead && !StyxWoW.Me.IsGhost && StyxWoW.Me.Mounted) {
+                    if (Variables.NextMob != null && Variables.NextMob.Distance > Variables.EffectivePullDistance) {
+                        Flightor.MoveTo(Variables.NextMob.Location, false);
+                        return;
+                    }
+                    CustomLog.Normal("In pull range ({0:F1}yd), dismounting to pull mob.", Variables.NextMob != null ? Variables.NextMob.Distance : 0);
+                    MountHelper.DismountIfMounted();
+                    return;
+                }
 
                 if (GeneralSettings.Instance.MultiPull) {
-                    //CustomLog.Diagnostic("Mobs targetting me: {0}", Variables.MobsTargettingMe);
-
                     Variables.NeedToPull = (StyxWoW.Me.HealthPercent > GeneralSettings.Instance.HealthPercentThreshold &&
                         Variables.MobsTargettingMe < GeneralSettings.Instance.MobThreshold);
                 }
@@ -212,20 +257,75 @@ namespace Templar.Helpers {
                     Variables.NeedToPull = true;
                 }
 
-                //CustomLog.Diagnostic("Need to pull = {0}", Variables.NeedToPull);
-
                 if (!Variables.NeedToPull) {
                     TreeState = State.ReadyForTask;
+                    _stuckTarget = null;
+                    _pullStartTime = DateTime.MinValue;
+                    break;
+                }
+
+                WoWUnit currentTarget = StyxWoW.Me.CurrentTarget;
+                
+                // Reset timer if target is dead or invalid
+                if (currentTarget == null || !currentTarget.IsValid || currentTarget.IsDead) {
+                    _pullStartTime = DateTime.MinValue;
+                } else if (_pullStartTime == DateTime.MinValue) {
+                    _pullStartTime = DateTime.Now;
+                }
+
+                // If targeting mob for 4+ seconds with no combat and not casting, move closer
+                if (currentTarget != null && 
+                    !StyxWoW.Me.Combat && 
+                    !currentTarget.Combat && 
+                    !StyxWoW.Me.IsCasting &&
+                    !StyxWoW.Me.IsChanneling &&
+                    currentTarget.Distance > 5f &&
+                    _pullStartTime != DateTime.MinValue &&
+                    (DateTime.Now - _pullStartTime).TotalSeconds >= 4.0) {
+                    
+                    CustomLog.Normal("Target {0} not engaged after 4s ({1:F1}yd away), moving closer...", 
+                        currentTarget.SafeName, currentTarget.Distance);
+                    _stuckTarget = currentTarget;
+                    TreeState = State.MoveToTarget;
                     break;
                 }
 
                 TaskManager.HandlePulling();
+                break;
 
+            case State.MoveToTarget:
+                if (_stuckTarget == null || 
+                    !_stuckTarget.IsValid || 
+                    _stuckTarget.IsDead || 
+                    StyxWoW.Me.Combat || 
+                    StyxWoW.Me.IsActuallyInCombat ||
+                    StyxWoW.Me.IsCasting ||
+                    StyxWoW.Me.IsChanneling ||
+                    Variables.MobsTargettingMe > 0 ||
+                    (DateTime.Now - _pullStartTime).TotalSeconds > 30) { // 30 second timeout
+                    _stuckTarget = null;
+                    _pullStartTime = DateTime.MinValue;
+                    TreeState = State.ReadyForTask;
+                    break;
+                }
+
+                float distanceToTarget = (float)_stuckTarget.Distance;
+                if (distanceToTarget > 5f) {
+                    if (!_moveLogStopwatch.IsRunning || _moveLogStopwatch.ElapsedMilliseconds >= 3000) {
+                        CustomLog.Diagnostic("Moving closer to {0} ({1:F1}yd away)", _stuckTarget.SafeName, distanceToTarget);
+                        _moveLogStopwatch.Restart();
+                    }
+                    Flightor.MoveTo(_stuckTarget.Location, false);
+                } else {
+                    CustomLog.Normal("Close enough to {0}, resuming pull", _stuckTarget.SafeName);
+                    _stuckTarget = null;
+                    _pullStartTime = DateTime.MinValue;
+                    TreeState = State.Pulling;
+                }
                 break;
 
             case State.MoveToStartLocation:
                 if (!Variables.IsAtStartLocation) {
-                    CustomLog.Normal("Returning to start location.");
                     Flightor.MoveTo(Variables.StartLocation, true);
                 } else {
                     MountHelper.DismountIfMounted();
@@ -236,7 +336,6 @@ namespace Templar.Helpers {
                     }
                 }
                 break;
-
             }
 
             if (TreeState == State.ReadyForTask) {
@@ -274,8 +373,10 @@ namespace Templar.Helpers {
                     }
                 } else {
                     if (!StyxWoW.Me.Combat && !StyxWoW.Me.IsActuallyInCombat && Variables.LootMob == null && Variables.SkinMob == null) {
-                        CustomLog.Normal("No more mobs available, moving back to start location.");
-                        TreeState = State.MoveToStartLocation;
+                        if (!Variables.IsAtStartLocation) {
+                            CustomLog.Normal("No more mobs available, moving back to start location.");
+                            TreeState = State.MoveToStartLocation;
+                        }
                     }
                 }
             }

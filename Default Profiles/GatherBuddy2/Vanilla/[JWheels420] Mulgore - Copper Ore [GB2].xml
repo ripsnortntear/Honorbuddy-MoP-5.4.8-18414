@@ -1,0 +1,78 @@
+<HBProfile>
+  <Name>[JWheels420] Mulgore - Copper Ore [GB2]</Name>
+  <MinDurability>0.4</MinDurability>
+  <MinFreeBagSlots>1</MinFreeBagSlots>
+  
+  <MinLevel>1</MinLevel>
+  <MaxLevel>100</MaxLevel>
+  
+  <MailGrey>False</MailGrey>
+  <MailWhite>False</MailWhite>
+  <MailGreen>False</MailGreen>
+  <MailBlue>False</MailBlue>
+  <MailPurple>False</MailPurple>
+ 
+  <SellGrey>False</SellGrey>
+  <SellWhite>False</SellWhite>
+  <SellGreen>False</SellGreen>
+  <SellBlue>False</SellBlue>
+  <SellPurple>False</SellPurple>
+
+	<Vendors>
+      <Vendor Name="Moorat Longstride" Entry="3076" Type="Food" X="-2247.81" Y="-308.157" Z="-9.424772" />
+      <Vendor Name="Harant Ironbrace" Entry="3080" Type="Repair" X="-2284.47" Y="-310.26" Z="-9.424815" />
+	</Vendors>
+	
+	<Mailboxes>
+		<Mailbox X="-2337.223" Y="-367.3936" Z="-8.448804" />
+	</Mailboxes>
+
+  <Hotspots>
+    <Hotspot X="-1700.563" Y="397.4916" Z="75" />
+    <Hotspot X="-1571.217" Y="268.3266" Z="75" />
+    <Hotspot X="-1417.163" Y="326.0966" Z="75" />
+    <Hotspot X="-1252.21" Y="486.8715" Z="75" />
+    <Hotspot X="-1167.19" Y="594.2366" Z="75" />
+    <Hotspot X="-941.9233" Y="535.3766" Z="75" />
+    <Hotspot X="-798.0433" Y="163.1416" Z="75" />
+    <Hotspot X="-545.1633" Y="101.5566" Z="75" />
+    <Hotspot X="-694.8567" Y="-237.9784" Z="75" />
+    <Hotspot X="-501.5633" Y="-533.9133" Z="75" />
+    <Hotspot X="-465.23" Y="-645.6383" Z="75" />
+    <Hotspot X="-594.5767" Y="-752.4585" Z="75" />
+    <Hotspot X="-732.6433" Y="-784.6133" Z="75" />
+    <Hotspot X="-857.63" Y="-931.2183" Z="75" />
+    <Hotspot X="-893.9633" Y="-1119.243" Z="75" />
+    <Hotspot X="-985.5233" Y="-1210.803" Z="75" />
+    <Hotspot X="-1122.137" Y="-1190.093" Z="75" />
+    <Hotspot X="-1353.217" Y="-1155.758" Z="75" />
+    <Hotspot X="-1302.35" Y="-1042.398" Z="75" />
+    <Hotspot X="-1454.95" Y="-1023.868" Z="75" />
+    <Hotspot X="-1687.483" Y="-897.9733" Z="75" />
+    <Hotspot X="-1847.35" Y="-1010.243" Z="75" />
+    <Hotspot X="-2065.35" Y="-1113.248" Z="75" />
+    <Hotspot X="-2193.243" Y="-1238.053" Z="75" />
+    <Hotspot X="-2180.163" Y="-1484.938" Z="75" />
+    <Hotspot X="-2479.55" Y="-1484.938" Z="75" />
+    <Hotspot X="-2741.15" Y="-1371.033" Z="75" />
+    <Hotspot X="-2736.79" Y="-1099.623" Z="75" />
+    <Hotspot X="-2805.097" Y="-899.6085" Z="75" />
+    <Hotspot X="-2822.537" Y="-699.0484" Z="75" />
+    <Hotspot X="-2729.523" Y="-569.3383" Z="75" />
+    <Hotspot X="-2799.283" Y="-417.8283" Z="75" />
+    <Hotspot X="-2746.963" Y="-223.2634" Z="75" />
+    <Hotspot X="-2832.71" Y="-90.82834" Z="75" />
+    <Hotspot X="-2871.95" Y="72.12656" Z="75" />
+    <Hotspot X="-2998.39" Y="117.3616" Z="75" />
+    <Hotspot X="-3028.91" Y="299.3916" Z="75" />
+    <Hotspot X="-2883.577" Y="347.8965" Z="75" />
+    <Hotspot X="-2758.59" Y="297.7567" Z="75" />
+    <Hotspot X="-2659.763" Y="300.4816" Z="75" />
+    <Hotspot X="-2547.857" Y="308.6566" Z="75" />
+    <Hotspot X="-2399.617" Y="287.9466" Z="75" />
+    <Hotspot X="-2274.63" Y="295.0315" Z="75" />
+    <Hotspot X="-2143.83" Y="295.5766" Z="75" />
+    <Hotspot X="-2040.643" Y="301.5716" Z="75" />
+    <Hotspot X="-1949.083" Y="413.8416" Z="75" />
+  </Hotspots>
+</HBProfile>

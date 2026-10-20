@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Styx;
 using Styx.CommonBot;
@@ -116,7 +116,7 @@ namespace Templar.Helpers {
         }
 
         private static bool IsProtectedItem(WoWObject i) {
-            return ProtectedItemSettings.Instance.ProtectedItems.All(pi => pi.Entry == i.Entry) ||
+            return ProtectedItemSettings.Instance.ProtectedItems.Any(pi => pi.Entry == i.Entry) ||
                    ProtectedItemsManager.GetAllItemIds().Contains(i.Entry) || ForceMailManager.GetAllItemIds().Contains(i.Entry);
         }
 

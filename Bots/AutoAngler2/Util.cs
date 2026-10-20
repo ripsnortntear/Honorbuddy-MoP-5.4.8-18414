@@ -71,7 +71,10 @@ namespace HighVoltz.AutoAngler
             if (mainHand == null || (mainHand.Entry != mainHandID && Utils.IsItemInBag(mainHandID)))
             {
 				var weapon = StyxWoW.Me.BagItems.FirstOrDefault(i => i.Entry == AutoAnglerBot.Instance.MySettings.MainHand);
-                is2Hand = weapon.ItemInfo.InventoryType == InventoryType.TwoHandWeapon || weapon.ItemInfo.InventoryType == InventoryType.Ranged;
+                if (weapon != null && weapon.ItemInfo != null)
+                {
+                    is2Hand = weapon.ItemInfo.InventoryType == InventoryType.TwoHandWeapon || weapon.ItemInfo.InventoryType == InventoryType.Ranged;
+                }
 				Utils.EquipItemByID(AutoAnglerBot.Instance.MySettings.MainHand);
             }
 

@@ -44,7 +44,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(104, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Selecting herbs";
+            this.textBox1.Text = "Choose Millable";
             // 
             // comboBox1
             // 
@@ -58,7 +58,9 @@
             "Briarthorn",
             "Bruiseweed",
             "Cinderbloom",
+            "Copper Ore",
             "Deadnettle",
+            "Desecrated Herb",
             "Dreamfoil",
             "Dreaming Glory",
             "Earthroot",
@@ -90,7 +92,6 @@
             "Purple Lotus",
             "Ragveil",
             "Rain Poppy",
-            "Desecrated Herb",
             "Silkweed",
             "Silver Leaf",
             "Snow Lily",

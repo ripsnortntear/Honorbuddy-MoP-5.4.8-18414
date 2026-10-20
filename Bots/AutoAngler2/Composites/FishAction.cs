@@ -81,16 +81,9 @@ namespace HighVoltz.AutoAngler.Composites
             }
 			if (Me.IsCasting)
             {
-                WoWGameObject bobber = null;
-                try
-                {
-                    bobber = ObjectManager.GetObjectsOfType<WoWGameObject>()
-                        .FirstOrDefault(o => o.IsValid && o.SubType == WoWGameObjectType.FishingNode &&
-											 o.CreatedBy.Guid == Me.Guid);
-                }
-                catch (Exception)
-                {
-                }
+                WoWGameObject bobber = ObjectManager.GetObjectsOfType<WoWGameObject>()
+                    .FirstOrDefault(o => o.IsValid && o.SubType == WoWGameObjectType.FishingNode &&
+                                         o.CreatedByGuid == Me.Guid);
                 if (bobber != null)
                 {
                     // recast line if it's not close enough to pool
@@ -99,19 +92,26 @@ namespace HighVoltz.AutoAngler.Composites
                     {
                         CastLine();
                     }
-                    // else lets see if there's a bite!
-					else if (((WoWFishingBobber)bobber.SubObj).IsBobbing && _bobberInteractionTimer == null)
+                    else
                     {
-						_bobberInteractionTimer = new WaitTimer(DelayAfterBobberTrigger);
-						_bobberInteractionTimer.Reset();
+                        var fishingBobber = bobber.SubObj as WoWFishingBobber;
+                        if (fishingBobber != null)
+                        {
+                            // else lets see if there's a bite!
+                            if (fishingBobber.IsBobbing && _bobberInteractionTimer == null)
+                            {
+                                _bobberInteractionTimer = new WaitTimer(DelayAfterBobberTrigger);
+                                _bobberInteractionTimer.Reset();
+                            }
+                            else if (_bobberInteractionTimer != null && _bobberInteractionTimer.IsFinished)
+                            {
+                                _bobberInteractionTimer = null;
+                                _castCounter = 0;
+                                fishingBobber.Use();
+                                LootAction.WaitingForLootSW.Restart();
+                            }
+                        }
                     }
-					else if (_bobberInteractionTimer != null && _bobberInteractionTimer.IsFinished)
-					{
-						_bobberInteractionTimer = null;
-						_castCounter = 0;
-						bobber.SubObj.Use();
-						LootAction.WaitingForLootSW.Restart();
-					}
                 }
                 return RunStatus.Success;
             }						

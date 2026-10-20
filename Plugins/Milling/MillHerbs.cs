@@ -33,7 +33,7 @@ namespace Milling
 {
     public class MillHerbs : HBPlugin
     {
-        public override string Name { get { return "【PN】Automatic herb grinding insert"; } }
+        public override string Name { get { return "Milling"; } }
         public override string Author { get { return "Pasterke"; } }
         public override Version Version { get { return new Version(1, 0, 0, 0); } }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Styx.Common;
 using Styx.CommonBot;
@@ -161,7 +161,7 @@ namespace Templar.Helpers {
                         Variables.NextMob.Target();
                     }
 
-                    if(Variables.NextMob.Location.Distance(StyxWoW.Me.Location) > 50) {
+                    if(Variables.NextMob.Location.Distance(StyxWoW.Me.Location) > Variables.EffectivePullDistance) {
                         Navigator.MoveTo(Variables.NextMob.Location);
                     } else {
                         if(!Variables.PullBlacklistStopwatch.IsRunning) {

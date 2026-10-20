@@ -1,4 +1,4 @@
-﻿// Botbase created by AknA and Wigglez
+// Botbase created by AknA and Wigglez
 // Features to be added:
 // MailBox Support - Beta
 // Protected Items Support - Beta
@@ -61,9 +61,19 @@ namespace Templar {
             }
         }
 
+        public override void Initialize() {
+            BotEvents.Player.OnMapChanged += HandleMapChanged;
+        }
+
+        private void HandleMapChanged(BotEvents.Player.MapChangedEventArgs args) {
+            _root = null;
+        }
+
         public override void Start() {
             try {
                 CustomLog.Name = "Templar";
+
+                _root = null;
 
                 CustomBlacklist.SweepTimer();
 
@@ -79,7 +89,9 @@ namespace Templar {
 
         public override void Stop() {
             try {
-                CustomBlacklist.RemoveAllNames();
+                _root = null;
+
+                CustomBlacklist.ClearAll();
 
                 Lua.Events.DetachEvent("UI_ERROR_MESSAGE", TaskManager.HandleErrorMessage);
 

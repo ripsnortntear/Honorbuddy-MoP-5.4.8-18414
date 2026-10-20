@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Styx;
@@ -122,6 +122,10 @@ namespace Templar.Helpers {
         }
 
         public static void RemoveExpired() {
+            if(_sweepTimer == null) {
+                SweepTimer();
+            }
+
             if(!_sweepTimer.IsFinished) {
                 return;
             }
@@ -181,6 +185,13 @@ namespace Templar.Helpers {
             foreach(var item in everything) {
                 ItemBlacklist.Remove(item);
             }
+        }
+
+        public static void ClearAll() {
+            RemoveAllGuid();
+            RemoveAllEntries();
+            RemoveAllNames();
+            RemoveAllItems();
         }
 
         // ===========================================================

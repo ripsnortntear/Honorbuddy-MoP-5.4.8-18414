@@ -1,4 +1,4 @@
-﻿using System.Windows.Media;
+using System.Windows.Media;
 using Styx.Common;
 
 namespace Templar.Helpers {
@@ -22,7 +22,8 @@ namespace Templar.Helpers {
 
         private static string PreviousNormal { get; set; }
         private static string PreviousDiagnostic { get; set; }
-        private static object[] PreviousArgs { get; set; }
+        private static object[] PreviousNormalArgs { get; set; }
+        private static object[] PreviousDiagnosticArgs { get; set; }
         public static string Name { get; set; }
 
         // ===========================================================
@@ -33,10 +34,28 @@ namespace Templar.Helpers {
         // Methods
         // ===========================================================
 
+        private static bool ArgsEqual(object[] a, object[] b) {
+            if (a == null && b == null) {
+                return true;
+            }
+            if (a == null || b == null) {
+                return false;
+            }
+            if (a.Length != b.Length) {
+                return false;
+            }
+            for (int i = 0; i < a.Length; i++) {
+                if (!object.Equals(a[i], b[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static void Normal(string message, params object[] args) {
-            if(message == PreviousNormal) {
-                if(args.Length > 0) {
-                    if(args == PreviousArgs) {
+            if (message == PreviousNormal) {
+                if (args.Length > 0) {
+                    if (ArgsEqual(args, PreviousNormalArgs)) {
                         return;
                     }
                 } else {
@@ -44,8 +63,10 @@ namespace Templar.Helpers {
                 }
             }
 
-            if(args.Length > 0) {
-                PreviousArgs = args;
+            if (args.Length > 0) {
+                PreviousNormalArgs = (object[])args.Clone();
+            } else {
+                PreviousNormalArgs = null;
             }
 
             PreviousNormal = message;
@@ -53,9 +74,9 @@ namespace Templar.Helpers {
         }
 
         public static void Diagnostic(string message, params object[] args) {
-            if(message == PreviousDiagnostic) {
-                if(args.Length > 0) {
-                    if(args == PreviousArgs) {
+            if (message == PreviousDiagnostic) {
+                if (args.Length > 0) {
+                    if (ArgsEqual(args, PreviousDiagnosticArgs)) {
                         return;
                     }
                 } else {
@@ -63,8 +84,10 @@ namespace Templar.Helpers {
                 }
             }
 
-            if(args.Length > 0) {
-                PreviousArgs = args;
+            if (args.Length > 0) {
+                PreviousDiagnosticArgs = (object[])args.Clone();
+            } else {
+                PreviousDiagnosticArgs = null;
             }
 
             PreviousDiagnostic = message;

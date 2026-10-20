@@ -1,4 +1,4 @@
-﻿using CommonBehaviors.Actions;
+using CommonBehaviors.Actions;
 using Styx;
 using Styx.CommonBot;
 using Styx.CommonBot.Profiles;
@@ -88,7 +88,7 @@ namespace Tyrael
 
                 TyraelUtilities.PrintLog("------------------------------------------");
                 TyraelUtilities.PrintLog("{0} {1} has been started.", Name, Revision);
-                TyraelUtilities.PrintLog("{0} is loaded.\r\n", RoutineManager.Current.Name);
+                TyraelUtilities.PrintLog("{0} is loaded.\r\n", RoutineManager.Current != null ? RoutineManager.Current.Name : "No Routine");
                 TyraelUtilities.PrintLog("Special thanks to the following persons:");
                 TyraelUtilities.PrintLog("PureRotation Team");
                 TyraelUtilities.PrintLog("-------------------------------------------\r\n");
@@ -109,12 +109,23 @@ namespace Tyrael
                 TyraelUtilities.PrintLog("------------------------------------------");
                 TyraelUtilities.PrintLog("Shutdown - Performing required actions.");
                 StopComponents();
+                _root = null;
                 TyraelUtilities.PrintLog("-------------------------------------------\r\n");
             }
             catch (Exception stopexception)
             {
                 TyraelUtilities.DiagnosticLog("Stop() Error: {0}", stopexception);
             }
+        }
+
+        public override void Initialize()
+        {
+            BotEvents.Player.OnMapChanged += Player_OnMapChanged;
+        }
+
+        private void Player_OnMapChanged(BotEvents.Player.MapChangedEventArgs args)
+        {
+            _root = null;
         }
         #endregion
 
@@ -139,15 +150,39 @@ namespace Tyrael
         /// </summary>
         private static Composite CreateRoot()
         {
-            return new PrioritySelector(
-                new Decorator(ret => IsPaused, new ActionAlwaysSucceed()),
-                new Decorator(ret => SanityCheckCombat(),
-                    SelectLockMethod(
-                        RoutineManager.Current.HealBehavior,
-                        RoutineManager.Current.CombatBuffBehavior ?? new ActionAlwaysFail(),
-                        RoutineManager.Current.CombatBehavior)),
-                    RoutineManager.Current.PreCombatBuffBehavior,
-                    RoutineManager.Current.RestBehavior);
+            System.Collections.Generic.List<Composite> combatBehaviors = new System.Collections.Generic.List<Composite>();
+            if (RoutineManager.Current != null)
+            {
+                if (RoutineManager.Current.HealBehavior != null)
+                    combatBehaviors.Add(RoutineManager.Current.HealBehavior);
+                if (RoutineManager.Current.CombatBuffBehavior != null)
+                    combatBehaviors.Add(RoutineManager.Current.CombatBuffBehavior);
+                if (RoutineManager.Current.CombatBehavior != null)
+                    combatBehaviors.Add(RoutineManager.Current.CombatBehavior);
+            }
+
+            System.Collections.Generic.List<Composite> rootChildren = new System.Collections.Generic.List<Composite>();
+            rootChildren.Add(new Decorator(ret => IsPaused, new ActionAlwaysSucceed()));
+            rootChildren.Add(new Decorator(ret => SanityCheckCombat(), SelectLockMethod(combatBehaviors.ToArray())));
+
+            if (RoutineManager.Current != null)
+            {
+                if (RoutineManager.Current.PreCombatBuffBehavior != null)
+                {
+                    rootChildren.Add(new Decorator(
+                        ret => RoutineManager.Current.NeedPreCombatBuffs,
+                        RoutineManager.Current.PreCombatBuffBehavior));
+                }
+
+                if (RoutineManager.Current.RestBehavior != null)
+                {
+                    rootChildren.Add(new Decorator(
+                        ret => RoutineManager.Current.NeedRest,
+                        RoutineManager.Current.RestBehavior));
+                }
+            }
+
+            return new PrioritySelector(rootChildren.ToArray());
         }
 
         /// <summary>

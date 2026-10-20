@@ -1,4 +1,4 @@
-﻿using Bots.Grind;
+using Bots.Grind;
 using CommonBehaviors.Actions;
 using Levelbot.Actions.Death;
 using Levelbot.Decorators.Death;
@@ -58,22 +58,39 @@ namespace Templar.Helpers {
         }
 
         private static Composite PreCombatRoutine() {
-            return new Decorator(ctx => !StyxWoW.Me.Combat && !StyxWoW.Me.IsActuallyInCombat,
-                new PrioritySelector(
-                    new Sequence(
-                        RoutineManager.Current.RestBehavior,
-                        new ActionAlwaysSucceed()
-                    ),
-                    new Sequence(
-                        RoutineManager.Current.PreCombatBuffBehavior,
-                        new ActionAlwaysSucceed()
-                    )
-                )
+            System.Collections.Generic.List<Composite> children = new System.Collections.Generic.List<Composite>();
+
+            if (RoutineManager.Current != null) {
+                if (RoutineManager.Current.RestBehavior != null) {
+                    children.Add(new Decorator(ctx => RoutineManager.Current.NeedRest,
+                        new Sequence(
+                            RoutineManager.Current.RestBehavior,
+                            new ActionAlwaysSucceed()
+                        )
+                    ));
+                }
+
+                if (RoutineManager.Current.PreCombatBuffBehavior != null) {
+                    children.Add(new Decorator(ctx => RoutineManager.Current.NeedPreCombatBuffs,
+                        new Sequence(
+                            RoutineManager.Current.PreCombatBuffBehavior,
+                            new ActionAlwaysSucceed()
+                        )
+                    ));
+                }
+            }
+
+            return new Decorator(ctx => !StyxWoW.Me.IsDead && !StyxWoW.Me.IsGhost && !StyxWoW.Me.Combat && !StyxWoW.Me.IsActuallyInCombat,
+                new PrioritySelector(children.ToArray())
             );
         }
 
         public static Composite PullRoutine() {
-            return new Decorator(ctx => !StyxWoW.Me.IsFlying,
+            if (RoutineManager.Current == null || RoutineManager.Current.PullBehavior == null) {
+                return new ActionAlwaysFail();
+            }
+
+            return new Decorator(ctx => !StyxWoW.Me.IsDead && !StyxWoW.Me.IsGhost && !StyxWoW.Me.IsFlying,
                 new Decorator(ctx => StyxWoW.Me.CurrentTarget != null && Variables.NextMob != null && StyxWoW.Me.CurrentTarget == Variables.NextMob && PriorityTreeState.TreeState == PriorityTreeState.State.Pulling && Variables.NeedToPull,
                     new Sequence(
                         RoutineManager.Current.PullBehavior,
@@ -84,21 +101,33 @@ namespace Templar.Helpers {
         }
 
         private static Composite CombatRoutine() {
-            return new Decorator(ctx => StyxWoW.Me.Combat,
-                new PrioritySelector(
-                    new Sequence(
+            System.Collections.Generic.List<Composite> children = new System.Collections.Generic.List<Composite>();
+
+            if (RoutineManager.Current != null) {
+                if (RoutineManager.Current.HealBehavior != null) {
+                    children.Add(new Sequence(
                         RoutineManager.Current.HealBehavior,
                         new ActionAlwaysFail()
-                    ),
-                    new Sequence(
+                    ));
+                }
+
+                if (RoutineManager.Current.CombatBuffBehavior != null) {
+                    children.Add(new Sequence(
                         RoutineManager.Current.CombatBuffBehavior,
                         new ActionAlwaysFail()
-                    ),
-                    new Sequence(
+                    ));
+                }
+
+                if (RoutineManager.Current.CombatBehavior != null) {
+                    children.Add(new Sequence(
                         RoutineManager.Current.CombatBehavior,
                         new ActionAlwaysFail()
-                    )
-                )
+                    ));
+                }
+            }
+
+            return new Decorator(ctx => !StyxWoW.Me.IsDead && !StyxWoW.Me.IsGhost && StyxWoW.Me.Combat,
+                new PrioritySelector(children.ToArray())
             );
         }
     }

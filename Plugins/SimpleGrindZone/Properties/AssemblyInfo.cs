@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General information about the assembly is available via the following property sets
 // control. Changing these property values modifies the
 // Information associated with the assembly。
-[assembly: AssemblyTitle("SimpleGrindZone")]
+[assembly: AssemblyTitle("SimpleScriptGenerator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("baosight")]
-[assembly: AssemblyProduct("SimpleGrindZone")]
+[assembly: AssemblyProduct("SimpleScriptGenerator")]
 [assembly: AssemblyCopyright("Copyright © baosight 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

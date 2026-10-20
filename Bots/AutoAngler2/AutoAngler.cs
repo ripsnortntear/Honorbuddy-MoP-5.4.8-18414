@@ -26,6 +26,7 @@ using Styx.CommonBot.Routines;
 using Styx.Helpers;
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
+using Styx.Plugins;
 using Styx.TreeSharp;
 using Action = Styx.TreeSharp.Action;
 using Color = System.Windows.Media.Color;
@@ -48,6 +49,8 @@ namespace HighVoltz.AutoAngler
         public static readonly string BotPath = GetBotPath();
         public readonly Version Version = new Version(2, new Svn().Revision);
         private AutoAnglerSettings _settings;
+        private bool _originalAutoEquipWeapons;
+        private readonly List<string> _disabledPlugins = new List<string>();
 
         public AutoAnglerBot()
         {
@@ -58,7 +61,7 @@ namespace HighVoltz.AutoAngler
 
         public static bool LootFrameIsOpen { get; private set; }
 
-        public static Dictionary<string, uint> FishCaught { get; private set; }
+        public static Dictionary<string, uint> FishCaught { get; internal set; }
         public static AutoAnglerBot Instance { get; private set; }
 
         public AutoAnglerSettings MySettings
@@ -300,6 +303,45 @@ namespace HighVoltz.AutoAngler
             _botStartTime = DateTime.Now;
             _pulseTimestamp = DateTime.Now;
             FishCaught = new Dictionary<string, uint>();
+
+            // Suppress AutoEquip to prevent weapon swap fight with fishing pole
+            try
+            {
+                _originalAutoEquipWeapons = CharacterSettings.Instance.AutoEquipWeapons;
+                if (_originalAutoEquipWeapons)
+                {
+                    Log("Temporarily disabling AutoEquipWeapons to prevent fishing pole weapon swap loops.");
+                    CharacterSettings.Instance.AutoEquipWeapons = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
+
+            try
+            {
+                _disabledPlugins.Clear();
+                if (PluginManager.Plugins != null)
+                {
+                    foreach (var plugin in PluginManager.Plugins)
+                    {
+                        if (plugin != null && plugin.Enabled && !string.IsNullOrEmpty(plugin.Name) &&
+                            (plugin.Name.IndexOf("AutoEquip", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                             plugin.Name.IndexOf("Auto Equip", StringComparison.OrdinalIgnoreCase) >= 0))
+                        {
+                            Log("Temporarily disabling plugin {0} to prevent weapon equip loops.", plugin.Name);
+                            plugin.Enabled = false;
+                            _disabledPlugins.Add(plugin.Name);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
+
             Lua.Events.AttachEvent("LOOT_OPENED", LootFrameOpenedHandler);
             Lua.Events.AttachEvent("LOOT_CLOSED", LootFrameClosedHandler);
         }
@@ -307,6 +349,40 @@ namespace HighVoltz.AutoAngler
 
         public override void Stop()
         {
+            // Restore AutoEquip settings and plugins
+            try
+            {
+                if (_originalAutoEquipWeapons)
+                {
+                    Log("Restoring AutoEquipWeapons.");
+                    CharacterSettings.Instance.AutoEquipWeapons = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
+
+            try
+            {
+                if (PluginManager.Plugins != null && _disabledPlugins.Count > 0)
+                {
+                    foreach (var plugin in PluginManager.Plugins)
+                    {
+                        if (plugin != null && _disabledPlugins.Contains(plugin.Name))
+                        {
+                            Log("Re-enabling plugin {0}.", plugin.Name);
+                            plugin.Enabled = true;
+                        }
+                    }
+                    _disabledPlugins.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteException(ex);
+            }
+
             Log("Equipping weapons");
             Utils.EquipWeapon();
             Log(
@@ -314,9 +390,12 @@ namespace HighVoltz.AutoAngler
                 (DateTime.Now - _botStartTime).Days,
                 (DateTime.Now - _botStartTime).Hours,
                 (DateTime.Now - _botStartTime).Minutes);
-            foreach (var kv in FishCaught)
+            if (FishCaught != null)
             {
-                Log("{0} x{1}", kv.Key, kv.Value);
+                foreach (var kv in FishCaught)
+                {
+                    Log("{0} x{1}", kv.Key, kv.Value);
+                }
             }
             Lua.Events.DetachEvent("LOOT_OPENED", LootFrameOpenedHandler);
             Lua.Events.DetachEvent("LOOT_CLOSED", LootFrameClosedHandler);

@@ -35,7 +35,7 @@ namespace SimpleGrindZone
 
         
         //Plugin Name
-        static public string name = "SimpleGrindZone";
+        static public string name = "SimpleScriptGenerator";
         public override string Name { get { return name + " " + Version.ToString(); } }
         //Author
         public override string Author { get { return "blw"; } }
@@ -43,7 +43,7 @@ namespace SimpleGrindZone
         private readonly Version _version = new Version(1,4 );
         public override Version Version { get { return _version; } }
         //Button name
-        public override string ButtonText { get { return "SimpleGrindZone"; } }
+        public override string ButtonText { get { return "SimpleScriptGenerator"; } }
         //Button required
         public override bool WantButton { get { return true; } }
         //        private static readonly configForm Gui = new configForm();

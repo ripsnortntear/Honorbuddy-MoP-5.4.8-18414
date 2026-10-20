@@ -1,4 +1,4 @@
-﻿using System.Timers;
+using System.Timers;
 using Styx.Common;
 using Styx.CommonBot;
 using Styx.Helpers;
@@ -216,24 +216,11 @@ namespace Tyrael.Shared
         }
 
         /// <summary>
-        /// Used for tracking Tyraels Popularity - No personal information is stored!
+        /// Used for tracking Tyraels Popularity - Disabled for private server use.
         /// </summary>
         internal static void StatCounter()
         {
-            try
-            {
-                var statcounterDate = DateTime.Now.DayOfYear.ToString(CultureInfo.InvariantCulture);
-                if (!statcounterDate.Equals(TyraelSettings.Instance.LastStatCounted))
-                {
-                    Parallel.Invoke(
-                        () => new WebClient().DownloadData("http://c.statcounter.com/9219924/0/e3fed179/1/"),
-                        () => Logging.WriteDiagnostic("Tyrael: StatCounter has been updated!"));
-                    TyraelSettings.Instance.LastStatCounted = statcounterDate;
-                    TyraelSettings.Instance.Save();
-                }
-            }
-            // ReSharper disable once EmptyGeneralCatchClause
-            catch { /* Catch all errors */ }
+            // Statcounter tracking disabled
         }
         #endregion
     }

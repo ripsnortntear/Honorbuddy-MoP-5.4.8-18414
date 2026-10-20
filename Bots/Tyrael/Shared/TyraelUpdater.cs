@@ -1,4 +1,4 @@
-﻿// Thanks to Highvoltz for the autoupdater!
+// Thanks to Highvoltz for the autoupdater!
 
 using Styx.Common;
 using System;
@@ -27,27 +27,8 @@ namespace Tyrael.Shared
             try
             {
                 TyraelUtilities.PrintLog("\r\n------------------------------------------");
-                TyraelUtilities.PrintLog("Checking if the used revision is the latest, updates if it is not.");
-                var remoteRev = GetRevision();
-
-                if (TyraelSettings.Instance.CurrentRevision != remoteRev)
-                {
-                    var logwrt = TyraelSettings.Instance.AutoUpdate ? "Downloading Update - Please wait." : "Please update manually!";
-                    TyraelUtilities.PrintLog("A new version was found.\r\n" + logwrt);
-                    if (!TyraelSettings.Instance.AutoUpdate && checkallow) return;
-
-                    DownloadFilesFromSvn(new WebClient(), TyraelSvnUrl, path);
-                    TyraelSettings.Instance.CurrentRevision = remoteRev;
-                    TyraelSettings.Instance.Save();
-
-                    TyraelUtilities.PrintLog("A new version of Tyrael was installed. Please restart Honorbuddy.");
-                    TyraelUtilities.PrintLog("------------------------------------------");
-                }
-                else
-                {
-                    TyraelUtilities.PrintLog("No updates found.");
-                    TyraelUtilities.PrintLog("------------------------------------------");
-                }
+                TyraelUtilities.PrintLog("Tyrael is up to date (Revision {0}).", Tyrael.Revision);
+                TyraelUtilities.PrintLog("------------------------------------------");
             }
             catch (Exception ex)
             {
@@ -57,18 +38,7 @@ namespace Tyrael.Shared
 
         private static int GetRevision()
         {
-            try
-            {
-                var wc = new WebClient();
-                var webData = wc.DownloadString(TyraelSvnUrl + "version");
-
-                TyraelUtilities.DiagnosticLog("Current SVN version: {0}", int.Parse(webData));
-                return int.Parse(webData);
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            return 564;
         }
 
         private static void DownloadFilesFromSvn(WebClient client, string url, string path)

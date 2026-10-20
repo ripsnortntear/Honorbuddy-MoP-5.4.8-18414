@@ -42,22 +42,22 @@
             this.radioButtonKyparite = new System.Windows.Forms.RadioButton();
             this.radioButtonGhostIron = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButtonCopper = new System.Windows.Forms.RadioButton();
-            this.radioButtonTin = new System.Windows.Forms.RadioButton();
-            this.radioButtonIron = new System.Windows.Forms.RadioButton();
-            this.radioButtonMithril = new System.Windows.Forms.RadioButton();
             this.radioButtonThorium = new System.Windows.Forms.RadioButton();
+            this.radioButtonMithril = new System.Windows.Forms.RadioButton();
+            this.radioButtonIron = new System.Windows.Forms.RadioButton();
+            this.radioButtonTin = new System.Windows.Forms.RadioButton();
+            this.radioButtonCopper = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButtonFelIron = new System.Windows.Forms.RadioButton();
             this.radioButtonAdamantite = new System.Windows.Forms.RadioButton();
+            this.radioButtonFelIron = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButtonCobalt = new System.Windows.Forms.RadioButton();
-            this.radioButtonSaronite = new System.Windows.Forms.RadioButton();
             this.radioButtonTitanium = new System.Windows.Forms.RadioButton();
+            this.radioButtonSaronite = new System.Windows.Forms.RadioButton();
+            this.radioButtonCobalt = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButtonObsidium = new System.Windows.Forms.RadioButton();
-            this.radioButtonElementium = new System.Windows.Forms.RadioButton();
             this.radioButtonPyrite = new System.Windows.Forms.RadioButton();
+            this.radioButtonElementium = new System.Windows.Forms.RadioButton();
+            this.radioButtonObsidium = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDownJump = new System.Windows.Forms.NumericUpDown();
@@ -246,6 +246,7 @@
             this.radioButtonCopper.TabStop = true;
             this.radioButtonCopper.Text = "Copper Ore";
             this.radioButtonCopper.UseVisualStyleBackColor = true;
+            this.radioButtonCopper.CheckedChanged += new System.EventHandler(this.radioButtonCopper_CheckedChanged);
             // 
             // radioButtonTin
             // 
@@ -257,6 +258,7 @@
             this.radioButtonTin.TabStop = true;
             this.radioButtonTin.Text = "Tin Ore";
             this.radioButtonTin.UseVisualStyleBackColor = true;
+            this.radioButtonTin.CheckedChanged += new System.EventHandler(this.radioButtonTin_CheckedChanged);
             // 
             // radioButtonIron
             // 
@@ -268,6 +270,7 @@
             this.radioButtonIron.TabStop = true;
             this.radioButtonIron.Text = "Iron Ore";
             this.radioButtonIron.UseVisualStyleBackColor = true;
+            this.radioButtonIron.CheckedChanged += new System.EventHandler(this.radioButtonIron_CheckedChanged);
             // 
             // radioButtonMithril
             // 
@@ -279,6 +282,7 @@
             this.radioButtonMithril.TabStop = true;
             this.radioButtonMithril.Text = "Mithril Ore";
             this.radioButtonMithril.UseVisualStyleBackColor = true;
+            this.radioButtonMithril.CheckedChanged += new System.EventHandler(this.radioButtonMithril_CheckedChanged);
             // 
             // radioButtonThorium
             // 
@@ -290,6 +294,7 @@
             this.radioButtonThorium.TabStop = true;
             this.radioButtonThorium.Text = "Thorium Ore";
             this.radioButtonThorium.UseVisualStyleBackColor = true;
+            this.radioButtonThorium.CheckedChanged += new System.EventHandler(this.radioButtonThorium_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -311,6 +316,7 @@
             this.radioButtonFelIron.TabStop = true;
             this.radioButtonFelIron.Text = "Fel Iron Ore";
             this.radioButtonFelIron.UseVisualStyleBackColor = true;
+            this.radioButtonFelIron.CheckedChanged += new System.EventHandler(this.radioButtonFelIron_CheckedChanged);
             // 
             // radioButtonAdamantite
             // 
@@ -322,6 +328,7 @@
             this.radioButtonAdamantite.TabStop = true;
             this.radioButtonAdamantite.Text = "Adamantite Ore";
             this.radioButtonAdamantite.UseVisualStyleBackColor = true;
+            this.radioButtonAdamantite.CheckedChanged += new System.EventHandler(this.radioButtonAdamantite_CheckedChanged);
             // 
             // groupBox4
             // 

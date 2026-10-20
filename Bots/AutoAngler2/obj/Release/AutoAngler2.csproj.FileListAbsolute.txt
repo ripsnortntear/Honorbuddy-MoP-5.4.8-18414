@@ -1,0 +1,13 @@
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\AutoAngler.dll
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\AutoAngler.pdb
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\Honorbuddy.exe
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\Tripper.Tools.dll
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\Newtonsoft.Json.dll
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\Tripper.RecastManaged.dll
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\System.Data.SQLite.dll
+D:\Games\GH of HB\Bots\AutoAngler2\bin\Release\System.Data.SQLite.xml
+D:\Games\GH of HB\Bots\AutoAngler2\obj\Release\AutoAngler2.csprojResolveAssemblyReference.cache
+D:\Games\GH of HB\Bots\AutoAngler2\obj\Release\HighVoltz.AutoAngler.MainForm.resources
+D:\Games\GH of HB\Bots\AutoAngler2\obj\Release\AutoAngler2.csproj.GenerateResource.Cache
+D:\Games\GH of HB\Bots\AutoAngler2\obj\Release\AutoAngler.dll
+D:\Games\GH of HB\Bots\AutoAngler2\obj\Release\AutoAngler.pdb

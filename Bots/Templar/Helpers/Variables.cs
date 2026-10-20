@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Styx.Common;
 using Styx;
 using Styx.CommonBot.Database;
 using Styx.CommonBot.ObjectDatabase;
+using Styx.CommonBot.Routines;
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
 using Templar.GUI.Tabs;
@@ -125,6 +127,44 @@ namespace Templar.Helpers {
 
         public static bool IsAtStartLocation {
             get { return Vector3.Distance(StyxWoW.Me.Location, StartLocation) <= 5; }
+        }
+
+        public static bool IsMelee {
+            get {
+                switch (StyxWoW.Me.Class) {
+                    case WoWClass.Warrior:
+                    case WoWClass.Rogue:
+                    case WoWClass.DeathKnight:
+                    case WoWClass.Monk:
+                    case WoWClass.Paladin:
+                        return true;
+                    case WoWClass.Druid:
+                        return StyxWoW.Me.Specialization == WoWSpec.DruidFeral || StyxWoW.Me.Specialization == WoWSpec.DruidGuardian;
+                    case WoWClass.Shaman:
+                        return StyxWoW.Me.Specialization == WoWSpec.ShamanEnhancement;
+                    default:
+                        return false;
+                }
+            }
+        }
+
+        public static double EffectivePullDistance {
+            get {
+                if (IsMelee) {
+                    return 5.0;
+                }
+
+                double dist = GeneralSettings.Instance.PullDistance;
+                if (dist <= 0) {
+                    dist = 25.0;
+                }
+
+                if (RoutineManager.Current != null && RoutineManager.Current.PullDistance.HasValue && RoutineManager.Current.PullDistance.Value > 0) {
+                    return Math.Min(RoutineManager.Current.PullDistance.Value, dist);
+                }
+
+                return dist;
+            }
         }
 
         public static WoWGameObject CloseMailbox {

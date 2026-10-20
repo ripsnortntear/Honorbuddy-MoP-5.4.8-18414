@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tyrael</RootNamespace>
     <AssemblyName>Tyrael Unleashed</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,15 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GreyMagic, Version=2.5.10170.568, Culture=neutral, PublicKeyToken=260525fa2b0e778a, processorArchitecture=x86">
+    <Reference Include="GreyMagic">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\references\GreyMagic.dll</HintPath>
+      <HintPath>..\..\GreyMagic.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Honorbuddy, Version=2.5.10170.568, Culture=neutral, PublicKeyToken=50a565ab5c01ae50, processorArchitecture=x86">
+    <Reference Include="Honorbuddy">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\references\Honorbuddy.exe</HintPath>
+      <HintPath>..\..\Honorbuddy.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="WindowsBase" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,9 +54,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tripper.Tools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c40611ce03f849a2, processorArchitecture=x86">
+    <Reference Include="Tripper.Tools">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\references\Tripper.Tools.dll</HintPath>
+      <HintPath>..\..\Tripper.Tools.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

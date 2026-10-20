@@ -30,15 +30,15 @@
     <Name>Fight Here</Name>
     <TargetMinLevel>2</TargetMinLevel>
     <TargetMaxLevel>91</TargetMaxLevel>
-    <Factions>190 188</Factions>
+    <Factions>7 32 7</Factions>
     <LootRadius>200</LootRadius>
     <MaxDistance>200</MaxDistance>
     <Hotspots>
-        <Hotspot X="1546.514" Y="-4198.124" Z="53.01303" />
-        <Hotspot X="1546.514" Y="-4198.124" Z="53.5130348205566" />
+        <Hotspot X="-8922.021" Y="-134.2679" Z="80.83843" />
+        <Hotspot X="-8922.021" Y="-134.2679" Z="81.3384323120117" />
     </Hotspots>
     <!-- Factions:
-Muddy Crawfish: Count 6, faction 190, entry 42548Dung Beetle: Count 1, faction 188, entry 62115
+Training Dummy: Count 8, faction 7, entry 44548Blackrock Battle Worg: Count 20, faction 32, entry 49871Blackrock Spy: Count 12, faction 7, entry 49874
     -->
 </GrindArea>
 

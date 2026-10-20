@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Styx;
 using Styx.Common;
@@ -33,6 +33,8 @@ namespace Templar.GUI.Tabs {
         public double TimeBetweenSkins = 3;
 
         public int MinimumFreeBagSlots = 2;
+
+        public double PullDistance = 25.0;
 
         // ===========================================================
         // Constructors

@@ -28,8 +28,8 @@ namespace Prospecting
     public partial class Prospecting : HBPlugin
     {
         public override string Name { get { return "Prospecting"; } }
-        public override string Author { get { return "Pasterke"; } }
-        public override Version Version { get { return new Version(1, 1); } }
+        public override string Author { get { return "Pasterke (Updated by: JWheels420)"; } }
+        public override Version Version { get { return new Version(2, 0); } }
         public override bool WantButton { get { return true; } }
         public override string ButtonText { get { return "Prospecting Choice"; } }
         public override void OnButtonPress()
@@ -43,7 +43,7 @@ namespace Prospecting
 
         public override void Initialize()
         {
-            Logging.Write(Colors.Lime, "Prospecting v1.1");
+            Logging.Write(Colors.Lime, "Prospecting v2.0");
         }
         public override void Pulse()
         {

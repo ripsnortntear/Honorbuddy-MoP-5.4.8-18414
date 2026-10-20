@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Jumpy>
   <RandMountJumpSpan>10000</RandMountJumpSpan>
-  <BaseMountJumpSpan>900</BaseMountJumpSpan>
+  <BaseMountJumpSpan>10000</BaseMountJumpSpan>
   <RandWalkJumpSpan>10000</RandWalkJumpSpan>
-  <BaseWalkJumpSpan>850</BaseWalkJumpSpan>
-  <UsePlayerRange>false</UsePlayerRange>
+  <BaseWalkJumpSpan>10000</BaseWalkJumpSpan>
+  <UsePlayerRange>true</UsePlayerRange>
   <CombatRoutines />
   <MountedRoutines />
   <WalkingRoutines />

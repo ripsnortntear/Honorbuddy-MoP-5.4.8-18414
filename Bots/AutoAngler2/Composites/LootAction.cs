@@ -31,15 +31,24 @@ namespace HighVoltz.AutoAngler.Composites
                 // loot everything.
 				if (AutoAnglerBot.LootFrameIsOpen)
                 {
-                    for (int i = 0; i < LootFrame.Instance.LootItems; i++)
+                    if (AutoAnglerBot.FishCaught == null)
+                        AutoAnglerBot.FishCaught = new System.Collections.Generic.Dictionary<string, uint>();
+
+                    if (LootFrame.Instance != null && LootFrame.Instance.IsVisible)
                     {
-                        LootSlotInfo lootInfo = LootFrame.Instance.LootInfo(i);
-						if (AutoAnglerBot.FishCaught.ContainsKey(lootInfo.LootName))
-							AutoAnglerBot.FishCaught[lootInfo.LootName] += (uint)lootInfo.LootQuantity;
-                        else
-							AutoAnglerBot.FishCaught.Add(lootInfo.LootName, (uint)lootInfo.LootQuantity);
+                        for (int i = 0; i < LootFrame.Instance.LootItems; i++)
+                        {
+                            LootSlotInfo lootInfo = LootFrame.Instance.LootInfo(i);
+                            if (lootInfo != null && !string.IsNullOrEmpty(lootInfo.LootName))
+                            {
+                                if (AutoAnglerBot.FishCaught.ContainsKey(lootInfo.LootName))
+                                    AutoAnglerBot.FishCaught[lootInfo.LootName] += (uint)lootInfo.LootQuantity;
+                                else
+                                    AutoAnglerBot.FishCaught.Add(lootInfo.LootName, (uint)lootInfo.LootQuantity);
+                            }
+                        }
+                        LootFrame.Instance.LootAll();
                     }
-                    LootFrame.Instance.LootAll();
                     _lootSw.Reset();
                 }
                 return true;
