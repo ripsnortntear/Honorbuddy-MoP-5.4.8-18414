@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using CommonBehaviors.Actions;
 using Singular.Dynamics;
@@ -268,9 +268,9 @@ namespace Singular.ClassSpecific.Mage
         private static Composite CreateArcaneDiagnosticOutputBehavior(string state = null)
         {
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1, 1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string line = string.Format(".... [{0}] h={1:F1}%/m={2:F1}%, moving={3}, arcchg={4} {5:F0} ms, arcmiss={6} {7:F0} ms",

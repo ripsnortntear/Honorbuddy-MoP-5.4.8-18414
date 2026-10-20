@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -160,7 +160,7 @@ namespace Singular.ClassSpecific.Druid
         private static Composite CreateGuardianTauntBehavior()
         {
             if ( !SingularSettings.Instance.EnableTaunting )
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new Decorator(
                 ret => TankManager.Instance.NeedToTaunt.Any()
@@ -242,9 +242,9 @@ namespace Singular.ClassSpecific.Druid
                 context = "<<" + context + ">>";
 
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string log;

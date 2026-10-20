@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using Singular.Dynamics;
 using Singular.Helpers;
@@ -378,7 +378,9 @@ namespace Singular.ClassSpecific.Warrior
 
         private static Composite CreateDiagnosticOutputBehavior()
         {
-            return new ThrottlePasses( 1,
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
+            return new ThrottlePasses(1, 5,
                 new Decorator(
                     ret => SingularSettings.Debug,
                     new Action(ret =>

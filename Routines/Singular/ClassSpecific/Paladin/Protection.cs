@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Singular.Dynamics;
 using Singular.Helpers;
 using Singular.Managers;
@@ -230,7 +230,7 @@ namespace Singular.ClassSpecific.Paladin
                 return new Action(ret => { return RunStatus.Failure; });
 
             return new Sequence(
-                new ThrottlePasses(1, 1,
+                new ThrottlePasses(1, 5,
                     new Action(ret =>
                     {
                         string sMsg;

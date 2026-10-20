@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommonBehaviors.Actions;
@@ -556,9 +556,9 @@ namespace Singular.ClassSpecific.DeathKnight
                 context = "<<" + context + ">>";
 
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string log;

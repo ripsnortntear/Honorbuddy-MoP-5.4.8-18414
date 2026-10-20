@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Linq;
@@ -574,7 +574,7 @@ namespace Singular.ClassSpecific.Druid
         {
             // disable AOE for PVP
             if (SingularRoutine.CurrentWoWContext == WoWContext.Battlegrounds)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new PrioritySelector(
 
@@ -652,9 +652,9 @@ namespace Singular.ClassSpecific.Druid
                 context = "<<" + context + ">>";
 
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string log;

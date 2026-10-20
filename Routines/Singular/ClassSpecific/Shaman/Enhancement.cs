@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using Singular.Dynamics;
@@ -360,7 +360,9 @@ namespace Singular.ClassSpecific.Shaman
 
         private static Composite CreateEnhanceDiagnosticOutputBehavior()
         {
-            return new ThrottlePasses(1,
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
+            return new ThrottlePasses(1, 5,
                 new Decorator(
                     ret => SingularSettings.Debug,
                     new Action(ret =>

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using CommonBehaviors.Actions;
 using Singular.Dynamics;
 using Singular.Helpers;
@@ -547,9 +547,9 @@ namespace Singular.ClassSpecific.Mage
         private static Composite CreateFrostDiagnosticOutputBehavior(string state = null)
         {
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1, 1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string log;

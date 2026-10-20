@@ -1,4 +1,4 @@
-﻿//#define USE_ISFLEEING
+//#define USE_ISFLEEING
 #define USE_MECHANIC
 
 using System;
@@ -98,7 +98,7 @@ namespace Singular.ClassSpecific.Shaman
         public static Composite CreateTotemsNormalPullBehavior()
         {
             if (Dynamics.CompositeBuilder.CurrentBehaviorType != BehaviorType.Pull)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new PrioritySelector(              
                 // check in case more sophisticated totem cast needed

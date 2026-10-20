@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Singular.Dynamics;
 using Singular.Helpers;
@@ -442,7 +442,9 @@ namespace Singular.ClassSpecific.Monk
 
         private static Composite CreateWindwalkerDiagnosticBehavior()
         {
-            return new ThrottlePasses( 1, 1,
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
+            return new ThrottlePasses(1, 5,
                 new Decorator(
                     ret => SingularSettings.Debug,
                     new Action( ret => {

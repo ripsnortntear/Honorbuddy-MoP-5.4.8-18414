@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Singular.Dynamics;
 using Singular.Helpers;
@@ -191,7 +191,7 @@ namespace Singular.ClassSpecific.Druid
         public static Composite CreateHealingOnlyBehavior(bool selfOnly, bool moveInRange)
         {
             if (SingularRoutine.CurrentWoWContext == WoWContext.Normal)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             HealerManager.NeedHealTargeting = true;
             PrioritizedBehaviorList behavs = new PrioritizedBehaviorList();
@@ -987,9 +987,9 @@ namespace Singular.ClassSpecific.Druid
         private static Composite CreateRestoDiagnosticOutputBehavior()
         {
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1, 1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string log;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -107,11 +107,11 @@ namespace Singular.ClassSpecific.Warrior
             _distanceChargeBehavior = /*Me.CombatReach +*/ (TalentManager.HasGlyph("Long Charge") ? 30f : 25f);
 
             if (!WarriorSettings.UseWarriorCloser)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
 
             if (!WarriorSettings.UseWarriorCloser)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             if (_singletonChargeBehavior == null)
             {
@@ -180,7 +180,7 @@ namespace Singular.ClassSpecific.Warrior
         public static Composite CreateDisarmBehavior()
         {
             if ( !WarriorSettings.UseDisarm )
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             if (SingularRoutine.CurrentWoWContext == WoWContext.Battlegrounds)
             {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
@@ -506,7 +506,7 @@ namespace Singular.ClassSpecific.Warlock
         public static Composite CreateVoidwalkerDisarm()
         {
             if (!WarlockSettings.UseDisarm || GetBestPet() != WarlockPet.Voidwalker)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new Decorator(
                 req => GetCurrentPet() == WarlockPet.Voidwalker,

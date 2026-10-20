@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Singular.Dynamics;
 using Singular.Helpers;
 using Singular.Managers;
@@ -75,9 +75,11 @@ namespace Singular.ClassSpecific.Mage
 
         private static Composite CreateLowbieDiagnosticOutputBehavior(string s)
         {
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             return new Decorator(
                 ret => SingularSettings.Debug,
-                new Throttle(1,
+                new ThrottlePasses(1, 5,
                     new Action(ret =>
                     {
                         string log;

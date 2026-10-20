@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Singular.Dynamics;
 using Singular.Helpers;
 using Singular.Managers;
@@ -308,6 +308,8 @@ namespace Singular.ClassSpecific.Warrior
 
         private static Composite CreateDiagnosticOutputBehavior(string context = null)
         {
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             if (context == null)
                 context = "...";
             else
@@ -315,7 +317,7 @@ namespace Singular.ClassSpecific.Warrior
 
             return new Decorator(
                 ret => SingularSettings.Debug,
-                new ThrottlePasses(1,
+                new ThrottlePasses(1, 5,
                     new Action(ret =>
                     {
                         string log;

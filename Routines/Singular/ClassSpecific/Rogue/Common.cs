@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading;
 using CommonBehaviors.Actions;
 using Singular.Dynamics;
@@ -432,10 +432,10 @@ namespace Singular.ClassSpecific.Rogue
         public static Composite CreateRogueControlNearbyEnemyBehavior()
         {
             if (Dynamics.CompositeBuilder.CurrentBehaviorType != BehaviorType.Pull)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             if (RogueSettings.SapAddDistance == 0)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new Decorator(
                 req => IsStealthed && Me.GotTarget && SpellManager.HasSpell("Sap"),
@@ -640,7 +640,7 @@ namespace Singular.ClassSpecific.Rogue
         public static Composite CreateDismantleBehavior()
         {
             if (!RogueSettings.UseDimantle)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             if (SingularRoutine.CurrentWoWContext == WoWContext.Battlegrounds)
             {
@@ -819,13 +819,13 @@ namespace Singular.ClassSpecific.Rogue
         {
             if (!RogueSettings.UsePickPocket)
             {
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             }
 
             // don't create behavior if pick pocket in combat not enabled
             if (!RogueSettings.AllowPickPocketInCombat && (Dynamics.CompositeBuilder.CurrentBehaviorType == BehaviorType.Combat || Dynamics.CompositeBuilder.CurrentBehaviorType == BehaviorType.CombatBuffs))
             {
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             }
 
             // issue following messagess only for Pull Behavior
@@ -836,19 +836,19 @@ namespace Singular.ClassSpecific.Rogue
                     if (SingularRoutine.CurrentWoWContext == WoWContext.Normal)
                     {
                         Logger.Write(Color.White, "warning:  Cloak and Dagger will be skipped on Pick Pocketable mobs.  Turn off 'Use Pick Pocket' to always use ranged Ambush, Cheap Shot, and Garrote.");
-                        return new ActionAlwaysFail();
+                        return new CommonBehaviors.Actions.ActionAlwaysFail();
                     }
                     else
                     {
                         Logger.Write(Color.White, "warning:  Cloak and Dagger will greatly reduce Pick Pocket usage.");
-                        return new ActionAlwaysFail();
+                        return new CommonBehaviors.Actions.ActionAlwaysFail();
                     }
                 }
 
                 if (!AutoLootIsEnabled())
                 {
                     Logger.Write(Color.White, "warning:  Auto Loot is off, so Pick Pocket disabled - to allow Pick Pocket by Singular, enable your Auto Loot setting");
-                    return new ActionAlwaysFail();
+                    return new CommonBehaviors.Actions.ActionAlwaysFail();
                 }
             }
 
@@ -1152,7 +1152,7 @@ namespace Singular.ClassSpecific.Rogue
         internal static Composite CreateRoguePullPickPocketButDontAttack()
         {
             if (!RogueSettings.PickPocketOnlyPull || !RogueSettings.UsePickPocket)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new PrioritySelector(
                 Common.CreateRoguePickPocket(),

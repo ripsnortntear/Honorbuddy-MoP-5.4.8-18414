@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using Singular.Dynamics;
@@ -285,9 +285,9 @@ namespace Singular.ClassSpecific.Warlock
         private static Composite CreateWarlockDiagnosticOutputBehavior(string s)
         {
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1, 1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string msg;

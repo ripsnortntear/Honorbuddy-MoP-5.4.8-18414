@@ -146,7 +146,7 @@ namespace Singular.ClassSpecific.Priest
         public static Composite CreateRestoPriestHealingOnlyBehavior(bool selfOnly, bool moveInRange)
         {
             if (SingularRoutine.CurrentWoWContext == WoWContext.Normal)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             HealerManager.NeedHealTargeting = true;
             PrioritizedBehaviorList behavs = new PrioritizedBehaviorList();
@@ -671,6 +671,8 @@ VoidShift               Void Shift
 
         private static Composite CreateHolyDiagnosticOutputBehavior( string context)
         {
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             return new Sequence(
                 new Decorator(
                     ret => SingularSettings.Debug,

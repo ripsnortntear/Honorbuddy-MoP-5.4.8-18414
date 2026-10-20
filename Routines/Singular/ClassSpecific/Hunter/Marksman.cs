@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading;
 using Singular.Dynamics;
@@ -200,9 +200,11 @@ namespace Singular.ClassSpecific.Hunter
         
         private static Composite CreateMarksmanDiagnosticOutputBehavior()
         {
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             return new Decorator(
                 ret => SingularSettings.Debug,
-                new Throttle(1,
+                new ThrottlePasses(1, 5,
                     new Action(ret =>
                     {
                         string sMsg;

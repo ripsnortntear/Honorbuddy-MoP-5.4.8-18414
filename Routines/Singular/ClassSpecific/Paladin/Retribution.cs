@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Singular.Dynamics;
 using Singular.Helpers;
 using Singular.Managers;
@@ -325,7 +325,7 @@ namespace Singular.ClassSpecific.Paladin
             return new Sequence(
                 new Action( r => SingularRoutine.UpdateDiagnosticCastingState() ),
                 new Action(r => TMsg.ShowTraceMessages = false),
-                new ThrottlePasses(1, 1, 
+                new ThrottlePasses(1, 5, 
                     new Action(ret =>
                     {
                         TMsg.ShowTraceMessages = true;

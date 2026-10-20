@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <SelectTalents>True</SelectTalents>
   <ClassProfileName>Shaman - Restoration</ClassProfileName>
@@ -11,7 +11,7 @@
   <RollOnItems>True</RollOnItems>
   <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
   <MaxBoEDisenchantQuality>Epic</MaxBoEDisenchantQuality>
-  <TicksPerSecond>80</TicksPerSecond>
+  <TicksPerSecond>30</TicksPerSecond>
   <FoodAmount>0</FoodAmount>
   <DrinkAmount>0</DrinkAmount>
   <!--The last selected index used by the Combobox in the form.-->

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using Singular.Dynamics;
@@ -449,7 +449,7 @@ namespace Singular.ClassSpecific.Warlock
             if (!SingularSettings.Debug)
                 return new Action(ret => { return RunStatus.Failure; });
 
-            return new ThrottlePasses(1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string sMsg;

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using CommonBehaviors.Actions;
 using Singular.Dynamics;
 using Singular.Helpers;
@@ -304,9 +304,9 @@ namespace Singular.ClassSpecific.Mage
         private static Composite CreateFireDiagnosticOutputBehavior()
         {
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new Throttle(1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string line = string.Format(".... h={0:F1}%/m={1:F1}%, moving={2}, heatup={3} {4:F0} ms, pyroblst={5} {6:F0} ms",

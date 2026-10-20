@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Singular.Dynamics;
 using Singular.Helpers;
 using Singular.Managers;
@@ -297,7 +297,7 @@ namespace Singular.ClassSpecific.Priest
         internal static Composite CreateFadeBehavior()
         {
             if (!PriestSettings.UseFade)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             if (SingularRoutine.CurrentWoWContext == WoWContext.Instances)
                 return Spell.BuffSelf("Fade", req => Targeting.GetAggroOnMeWithin(StyxWoW.Me.Location, 30) > 0);
@@ -346,7 +346,7 @@ namespace Singular.ClassSpecific.Priest
                 }
             }
 
-            return new ActionAlwaysFail();
+            return new CommonBehaviors.Actions.ActionAlwaysFail();
         }
     }
 

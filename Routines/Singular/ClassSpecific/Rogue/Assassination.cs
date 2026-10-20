@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -218,7 +218,7 @@ namespace Singular.ClassSpecific.Rogue
             if (!SingularSettings.Debug)
                 return new Action(ret => { return RunStatus.Failure; });
 
-            return new ThrottlePasses(1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     string sMsg;

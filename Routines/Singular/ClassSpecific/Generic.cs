@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 using Styx;
 using Styx.CommonBot;
@@ -137,7 +137,7 @@ namespace Singular.ClassSpecific
 
             // just fail if no combat racials
             if ( !SingularSettings.Instance.UseRacials || !pri.Children.Any() )
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new Throttle(TimeSpan.FromMilliseconds(250), pri );
         }

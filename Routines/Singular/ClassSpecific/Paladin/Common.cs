@@ -1,4 +1,4 @@
-﻿using CommonBehaviors.Actions;
+using CommonBehaviors.Actions;
 using Singular.Dynamics;
 using Singular.Helpers;
 using Singular.Managers;
@@ -177,7 +177,7 @@ namespace Singular.ClassSpecific.Paladin
             if ( HasTalent( PaladinTalents.EternalFlame ))
             {
                 if (onUnit == null)
-                    return new ActionAlwaysFail();
+                    return new CommonBehaviors.Actions.ActionAlwaysFail();
 
                 return new PrioritySelector(
                     ctx => onUnit(ctx),
@@ -219,7 +219,7 @@ namespace Singular.ClassSpecific.Paladin
         public static Composite CreatePaladinBlindingLightBehavior()
         {
             if (SingularRoutine.CurrentWoWContext == WoWContext.Instances)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return Spell.Cast(
                 sp => "Blinding Light",

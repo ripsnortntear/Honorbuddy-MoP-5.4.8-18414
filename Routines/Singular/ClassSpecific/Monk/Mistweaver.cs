@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -231,6 +231,8 @@ namespace Singular.ClassSpecific.Monk
         private static ulong guidLastHealTarget = 0;
         private static Composite ShowHealTarget(UnitSelectionDelegate onUnit)
         {
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             return 
                 new Sequence(
                     new DecoratorContinue( 

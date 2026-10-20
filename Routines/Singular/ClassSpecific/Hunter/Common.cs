@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using CommonBehaviors.Actions;
 using Singular.Dynamics;
@@ -110,7 +110,7 @@ namespace Singular.ClassSpecific.Hunter
         private static Composite CreateGlyphOfFetchBehavior()
         {
             if (!HunterSettings.UseFetch || !TalentManager.HasGlyph("Fetch"))
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new PrioritySelector(
                 ctx => ObjectManager.GetObjectsOfType<WoWUnit>(true,false)
@@ -874,7 +874,7 @@ namespace Singular.ClassSpecific.Hunter
                 }
             }
 
-            return new ActionAlwaysFail();
+            return new CommonBehaviors.Actions.ActionAlwaysFail();
         }
 
         private static Composite CreateSlowMeleeBehaviorForDisengage()
@@ -985,7 +985,7 @@ namespace Singular.ClassSpecific.Hunter
         internal static Composite CreateHunterNormalCrowdControl()
         {
             if (SingularRoutine.CurrentWoWContext == WoWContext.Instances)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new PrioritySelector(
                 new Action(ret =>

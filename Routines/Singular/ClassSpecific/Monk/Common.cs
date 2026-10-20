@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -363,7 +363,7 @@ namespace Singular.ClassSpecific.Monk
         public static Composite CreateGrappleWeaponBehavior()
         {
             if (!MonkSettings.UseGrappleWeapon)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new Throttle(15,
                 Spell.Cast("Grapple Weapon", on =>
@@ -385,7 +385,7 @@ namespace Singular.ClassSpecific.Monk
         public static Composite CreateChiBurstBehavior()
         {
             if ( !HasTalent(MonkTalents.ChiBurst))
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             if (Me.Specialization == WoWSpec.MonkMistweaver && SingularRoutine.CurrentWoWContext != WoWContext.Normal)
             {

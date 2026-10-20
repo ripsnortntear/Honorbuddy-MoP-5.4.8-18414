@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using CommonBehaviors.Actions;
 using Singular.Dynamics;
@@ -493,7 +493,7 @@ namespace Singular.ClassSpecific.DeathKnight
         public static Composite CreateDarkSimulacrumBehavior()
         {
             if (Settings.TargetWithDarkSimulacrum == DarkSimulacrumTarget.None)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             UnitSelectionDelegate onUnit;
             if (Settings.TargetWithDarkSimulacrum == DarkSimulacrumTarget.All || WoWContext.Normal == SingularRoutine.CurrentWoWContext)

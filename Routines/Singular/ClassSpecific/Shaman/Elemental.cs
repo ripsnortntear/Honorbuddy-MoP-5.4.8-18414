@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 using Styx;
 using Styx.CommonBot;
@@ -368,9 +368,9 @@ namespace Singular.ClassSpecific.Shaman
         private static Composite CreateElementalDiagnosticOutputBehavior()
         {
             if (!SingularSettings.Debug)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
-            return new ThrottlePasses(1, 1,
+            return new ThrottlePasses(1, 5,
                 new Action(ret =>
                 {
                     uint stks = 0;

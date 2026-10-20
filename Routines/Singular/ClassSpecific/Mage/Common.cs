@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using CommonBehaviors.Actions;
 using Singular.Dynamics;
 using Singular.Helpers;
@@ -352,7 +352,7 @@ namespace Singular.ClassSpecific.Mage
              */
 #else
             if (!SingularSettings.Instance.KiteAllow)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             return new PrioritySelector(
                 ctx => Unit.NearbyUnfriendlyUnits

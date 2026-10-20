@@ -1,4 +1,4 @@
-﻿#define FIND_LOWEST_AT_THE_MOMENT
+#define FIND_LOWEST_AT_THE_MOMENT
 
 using System;
 using System.Linq;
@@ -88,7 +88,7 @@ namespace Singular.ClassSpecific.Priest
         public static Composite CreateRestoPriestHealingOnlyBehavior(bool selfOnly, bool moveInRange)
         {
             if (SingularRoutine.CurrentWoWContext == WoWContext.Normal)
-                return new ActionAlwaysFail();
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
 
             HealerManager.NeedHealTargeting = true;
             PrioritizedBehaviorList behavs = new PrioritizedBehaviorList();
@@ -845,10 +845,12 @@ namespace Singular.ClassSpecific.Priest
 
         private static Composite CreateDiscDiagnosticOutputBehavior(string context)
         {
+            if (!SingularSettings.Debug)
+                return new CommonBehaviors.Actions.ActionAlwaysFail();
             return new Sequence(
                 new Decorator(
                     ret => SingularSettings.Debug,
-                    new ThrottlePasses(1, 1,
+                    new ThrottlePasses(1, 5,
                         new Action(ret =>
                         {
                             WoWAura chakra = Me.GetAllAuras().Where(a => a.Name.Contains("Chakra")).FirstOrDefault();
