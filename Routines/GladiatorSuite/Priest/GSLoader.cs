@@ -180,11 +180,11 @@ namespace Loader
                         switch (requestedName.Name)
                         {
                             case "Honorbuddy": //Auto Rebuild on new Honorbuddy.exe
-                                return Assembly.LoadFile(Process.GetCurrentProcess().MainModule.FileName);
+                                return typeof(StyxWoW).Assembly;
                             case "GreyMagic": //Auto Rebuild on new GreyMagic.dll
-                                return Assembly.LoadFile(Utilities.AssemblyDirectory + @"\GreyMagic.dll");
+                                return typeof(GreyMagic.ExternalProcessReader).Assembly;
                             case "Tripper.Tools": //Auto Rebuild on new Tripper.Tools.dll
-                                return Assembly.LoadFile(Utilities.AssemblyDirectory + @"\Tripper.Tools.dll");
+                                return typeof(Tripper.Tools.Math.Vector3).Assembly;
                         }
                         return null;
                     }

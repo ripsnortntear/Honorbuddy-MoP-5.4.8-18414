@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -83,12 +83,12 @@ namespace UltimatePvPSuiteLoader
                         if (requestedName.Name == "Honorbuddy")
                         {
                             Logging.Write("Loading " + System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-                            return Assembly.LoadFile(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+                            return typeof(StyxWoW).Assembly;
                         }
                         if (requestedName.Name == "GreyMagic")
                         {
                             Logging.Write("Loading " + Utilities.AssemblyDirectory + @"\GreyMagic.dll");
-                            return Assembly.LoadFile(Utilities.AssemblyDirectory + @"\GreyMagic.dll");
+                            return typeof(GreyMagic.ExternalProcessReader).Assembly;
                         }
                         return null;
                     }

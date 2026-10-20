@@ -1,4 +1,4 @@
-﻿#region Copyright © 2013 Miracle Business Solutions
+#region Copyright © 2013 Miracle Business Solutions
 
 // All rights are reserved. Reproduction or transmission in whole or in part,
 // any form or by any means, electronic, mechanical or otherwise, is prohibited
@@ -143,11 +143,11 @@ namespace Loader
                         switch (requestedName.Name)
                         {
                             case "Honorbuddy":      //Auto Rebuild on new Honorbuddy.exe
-                                return Assembly.LoadFile(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+                                return typeof(StyxWoW).Assembly;
                             case "GreyMagic":       //Auto Rebuild on new GreyMagic.dll
-                                return Assembly.LoadFile(Utilities.AssemblyDirectory + @"\GreyMagic.dll");
+                                return typeof(GreyMagic.ExternalProcessReader).Assembly;
                             case "Tripper.Tools":   //Auto Rebuild on new Tripper.Tools.dll
-                                return Assembly.LoadFile(Utilities.AssemblyDirectory + @"\Tripper.Tools.dll");
+                                return typeof(Tripper.Tools.Math.Vector3).Assembly;
                         }
                         return null;
                     }

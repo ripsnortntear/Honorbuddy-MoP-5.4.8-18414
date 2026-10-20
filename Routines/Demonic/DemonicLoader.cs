@@ -1,4 +1,4 @@
-﻿// Credits to Phelon and Mirabis for making this work without using Assembly redirection.
+// Credits to Phelon and Mirabis for making this work without using Assembly redirection.
 
 using System;
 using System.Globalization;
@@ -78,11 +78,11 @@ namespace Loader
                         AssemblyName requestedName = new AssemblyName(e.Name);
                         if (requestedName.Name == "Honorbuddy")
                         {
-                            return Assembly.LoadFile(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+                            return typeof(StyxWoW).Assembly;
                         }
 						if (requestedName.Name == "GreyMagic")
                         {
-                            return Assembly.LoadFile(Utilities.AssemblyDirectory + @"\GreyMagic.dll");
+                            return typeof(GreyMagic.ExternalProcessReader).Assembly;
                         }
                         return null;
                     }

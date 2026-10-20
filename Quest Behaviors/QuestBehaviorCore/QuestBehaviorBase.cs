@@ -1,4 +1,4 @@
-﻿// Originally contributed by Chinajade.
+// Originally contributed by Chinajade.
 //
 // LICENSE:
 // This work is licensed under the
@@ -260,7 +260,7 @@ namespace Honorbuddy.QuestBehaviorCore
 			get
 			{
 				return _isBehaviorDone // normal completion
-					   || TerminateWhen() // Specified condition in profile
+					   || (TerminateWhen != null && TerminateWhen()) // Specified condition in profile
 					   || CheckTermination(); // Quest/objective ID
 			}
 		}
@@ -649,6 +649,15 @@ namespace Honorbuddy.QuestBehaviorCore
 		/// <returns></returns>
 		public static Func<bool> CompileAttributePredicateExpression(string attributeName, string predicateExpression)
 		{
+			if (string.IsNullOrWhiteSpace(predicateExpression) || predicateExpression.Trim().Equals("false", StringComparison.OrdinalIgnoreCase))
+			{
+				return () => false;
+			}
+			if (predicateExpression.Trim().Equals("true", StringComparison.OrdinalIgnoreCase))
+			{
+				return () => true;
+			}
+
 			var originalProfileDebuggingMode = GlobalSettings.Instance.ProfileDebuggingMode;
 
 			try
@@ -656,7 +665,16 @@ namespace Honorbuddy.QuestBehaviorCore
 				// ParseConditionString() does not actually compile anything, unless
 				// ProfileDebuggingMode is enabled.
 				GlobalSettings.Instance.ProfileDebuggingMode = true;
-				var predicateFunc = ConditionHelper.ParseConditionString(predicateExpression);
+				Func<bool> predicateFunc = null;
+				try
+				{
+					predicateFunc = ConditionHelper.ParseConditionString(predicateExpression);
+				}
+				catch (Exception ex)
+				{
+					QBCLog.ProfileError("Exception evaluating \"{0}\" predicate expression ({1}): {2}",
+										attributeName, predicateExpression, ex.Message);
+				}
 
 				if (predicateFunc == null)
 				{
@@ -664,7 +682,7 @@ namespace Honorbuddy.QuestBehaviorCore
 										attributeName, predicateExpression);
 				}
 
-				return predicateFunc;
+				return predicateFunc ?? (() => false);
 			}
 
 			finally
