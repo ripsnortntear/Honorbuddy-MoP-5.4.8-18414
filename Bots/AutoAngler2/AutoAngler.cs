@@ -145,17 +145,17 @@ namespace HighVoltz.AutoAngler
                     // If bot needs to rest then call the CC rest behavior
                     new Decorator(
                         c =>
-                            RoutineManager.Current.NeedRest && !StyxWoW.Me.IsCasting &&
+                            RoutineManager.Current != null && RoutineManager.Current.NeedRest && !StyxWoW.Me.IsCasting &&
 							!StyxWoW.Me.IsFlying,
                         new PrioritySelector(
                             // if Rest Behavior exists use it..
                             new Decorator(
-                                c => RoutineManager.Current.RestBehavior != null,
+                                c => RoutineManager.Current != null && RoutineManager.Current.RestBehavior != null,
                                 new PrioritySelector(
                                     new Action(
                                         c =>
                                         {
-                                            // reset the autoBlacklist timer since we're stoping to rest.
+                                            // reset the autoBlacklist timer since we are stoping to rest.
                                             if (BotPoi.Current != null &&
                                                 BotPoi.Current.Type ==
                                                 PoiType.Harvest)
@@ -165,20 +165,23 @@ namespace HighVoltz.AutoAngler
                                             }
                                             return RunStatus.Failure;
                                         }),
-                                    RoutineManager.Current.RestBehavior
+                                    new Action(c => RoutineManager.Current != null && RoutineManager.Current.RestBehavior != null
+                                        ? RoutineManager.Current.RestBehavior.Tick(c)
+                                        : RunStatus.Failure)
                                     )),
                             // else call legacy Rest() method
                             new Action(
                                 c =>
                                 {
-                                    // reset the autoBlacklist timer since we're stoping to rest.
+                                    // reset the autoBlacklist timer since we are stoping to rest.
                                     if (BotPoi.Current != null &&
                                         BotPoi.Current.Type == PoiType.Harvest)
                                     {
                                         MoveToPoolAction.MoveToPoolSW.Reset();
                                         MoveToPoolAction.MoveToPoolSW.Start();
                                     }
-                                    RoutineManager.Current.Rest();
+                                    if (RoutineManager.Current != null)
+                                        RoutineManager.Current.Rest();
                                 })
                             )),
                     // mail and repair if bags are full or items have low durability. logout if profile doesn't have mailbox and vendor.
@@ -290,7 +293,8 @@ namespace HighVoltz.AutoAngler
                     ProfileManager.LoadNew(MySettings.LastLoadedProfile);
                 }
                 // check for Autoangler updates
-                new Thread(Updater.CheckForUpdate) {IsBackground = true}.Start();
+                Updater.CheckForUpdate();
+                BotEvents.Player.OnMapChanged += HandleMapChanged;
             }
             catch (Exception ex)
             {
@@ -399,6 +403,12 @@ namespace HighVoltz.AutoAngler
             }
             Lua.Events.DetachEvent("LOOT_OPENED", LootFrameOpenedHandler);
             Lua.Events.DetachEvent("LOOT_CLOSED", LootFrameClosedHandler);
+            _root = null;
+        }
+
+        private void HandleMapChanged(BotEvents.Player.MapChangedEventArgs args)
+        {
+            _root = null;
         }
 
         #endregion
