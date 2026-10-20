@@ -1,4 +1,5 @@
-﻿// Behavior originally contributed by Chinajade.
+//!CompilerOption:AddRef:System.Windows.Forms.dll
+// Behavior originally contributed by Chinajade.
 //
 // LICENSE:
 // This work is licensed under the

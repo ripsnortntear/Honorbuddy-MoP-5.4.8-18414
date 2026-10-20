@@ -1,4 +1,5 @@
-﻿// Behavior originally contributed by Bobby53.
+//!CompilerOption:AddRef:System.Drawing.dll
+// Behavior originally contributed by Bobby53.
 //
 // LICENSE:
 // This work is licensed under the

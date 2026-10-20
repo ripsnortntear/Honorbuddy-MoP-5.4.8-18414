@@ -1,3 +1,4 @@
+//!CompilerOption:AddRef:Tripper.RecastManaged.dll
 // Behavior originally contributed by Chinajade. 
 //
 // LICENSE:

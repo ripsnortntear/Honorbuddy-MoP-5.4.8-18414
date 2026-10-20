@@ -1,3 +1,4 @@
+//!CompilerOption:AddRef:System.Drawing.dll
 // Behavior originally contributed by Caytchen.
 //
 // LICENSE:

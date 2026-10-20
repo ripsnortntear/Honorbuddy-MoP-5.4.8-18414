@@ -1,4 +1,4 @@
-﻿// Behavior originally contributed by HighVoltz.
+// Behavior originally contributed by HighVoltz.
 //
 // LICENSE:
 // This work is licensed under the
@@ -56,7 +56,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
+
 using System.Xml.Linq;
 using Buddy.Coroutines;
 using CommonBehaviors.Actions;

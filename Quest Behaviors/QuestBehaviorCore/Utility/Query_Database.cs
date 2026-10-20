@@ -1,4 +1,6 @@
-﻿// Originally contributed by Chinajade.
+//!CompilerOption:AddRef:System.Data.dll
+//!CompilerOption:AddRef:System.Data.SQLite.dll
+// Originally contributed by Chinajade.
 //
 // LICENSE:
 // This work is licensed under the
