@@ -1,0 +1,28 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+**/bin/
+**/obj/
+
+# Visual Studio files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Compiled temporary assemblies / logs
+CompiledAssemblies/
+Logs/
+
+# Temporary test binaries
+*.exe.config
+Test*.exe
+Test*.pdb
+FindExact*.exe
+FindExact*.pdb
+scratch*
+list_refs*
+PrintStrings*
+Decompile*
+Inspect*

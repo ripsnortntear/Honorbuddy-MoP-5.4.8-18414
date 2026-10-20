@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="Honorbuddy">
       <HintPath>..\..\Honorbuddy.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -54,6 +55,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Tripper.Tools">
       <HintPath>..\..\Tripper.Tools.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
