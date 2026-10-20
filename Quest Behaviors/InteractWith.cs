@@ -1,4 +1,4 @@
-﻿// Behavior originally contributed by Nesox / completely reworked by Chinajade and HighVoltz
+// Behavior originally contributed by Nesox / completely reworked by Chinajade and HighVoltz
 //
 // LICENSE:
 // This work is licensed under the
@@ -384,6 +384,10 @@ using Action = Styx.TreeSharp.Action;
 namespace Honorbuddy.Quest_Behaviors.InteractWith
 {
 	[CustomBehaviorFileName(@"InteractWith")]
+	[CustomBehaviorFileName(@"BasicInteractWith")]
+	[CustomBehaviorFileName(@"BasicUseObject")]
+	[CustomBehaviorFileName(@"UseItemOn")]
+	[CustomBehaviorFileName(@"CastSpellOn")]
 	public class InteractWith : QuestBehaviorBase
 	{
 		#region Constructor and argument processing
@@ -399,7 +403,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWith
 				MobIds = GetAttributeAsArray<int>("MobIds", false, ConstrainAs.MobId, new[] { "NpcIds" }, null);
 
 				if (MobIds != null && MobIds.Count() == 0)
-					MobIds = GetNumberedAttributesAsArray<int>("MobId", 0, ConstrainAs.MobId, new[] { "NpcId" });
+					MobIds = GetNumberedAttributesAsArray<int>("MobId", 0, ConstrainAs.MobId, new[] { "NpcId", "ObjectId" });
 				MobIdIncludesSelf = GetAttributeAsNullable<bool>("MobIdIncludesSelf", false, null, null) ?? false;
 				FactionIds = GetNumberedAttributesAsArray<int>("FactionId", 0, ConstrainAs.MobId, null);
 				NumOfTimes = GetAttributeAsNullable<int>("NumOfTimes", false, ConstrainAs.RepeatCount, null) ?? 1;
@@ -414,7 +418,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWith
 				InteractByBuyingItemId = GetAttributeAsNullable("InteractByBuyingItemId", false, ConstrainAs.ItemId, null)
 										?? GetAttributeAsNullable<int>("BuyItemId", false, ConstrainAs.ItemId, null) /*Legacy name--don't use */
 										?? 0;
-				InteractByCastingSpellId = GetAttributeAsNullable("InteractByCastingSpellId", false, ConstrainAs.SpellId, null) ?? 0;
+				InteractByCastingSpellId = GetAttributeAsNullable("InteractByCastingSpellId", false, ConstrainAs.SpellId, new[] { "SpellId" }) ?? 0;
 				InteractByGossipOptions = GetAttributeAsArray<int>(
 					"InteractByGossipOptions",
 					false,
@@ -439,7 +443,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWith
 					null,
 					null)
 											?? QuestFrameDisposition.TerminateProfile;
-				InteractByUsingItemId = GetAttributeAsNullable<int>("InteractByUsingItemId", false, ConstrainAs.ItemId, null) ?? 0;
+				InteractByUsingItemId = GetAttributeAsNullable<int>("InteractByUsingItemId", false, ConstrainAs.ItemId, new[] { "ItemId" }) ?? 0;
 
 				// Tunables...
                 AttemptCountMax = GetAttributeAsNullable<int>("AttemptCountMax", false, new ConstrainTo.Domain<int>(1,100), null) ?? 7;

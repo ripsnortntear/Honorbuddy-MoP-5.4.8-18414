@@ -32,6 +32,7 @@ using Action = Styx.TreeSharp.Action;
 namespace Honorbuddy.Quest_Behaviors.SpecificQuests.WatersRunRed
 {
 	[CustomBehaviorFileName(@"SpecificQuests\27232-SilverpineForest-WatersRunRed")]
+	[CustomBehaviorFileName(@"27232-TheWatersRunRed")]
 	public class Q27232 : CustomForcedBehavior
 	{
 		public Q27232(Dictionary<string, string> args)

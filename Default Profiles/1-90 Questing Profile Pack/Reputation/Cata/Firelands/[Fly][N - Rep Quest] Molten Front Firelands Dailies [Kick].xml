@@ -274,13 +274,13 @@
 			<If Condition="((HasQuest(29257)) &amp;&amp; (IsQuestCompleted(29257)))" >
 		<TurnIn QuestName="Steal Magmolias" QuestId="29257" TurnInName="Avrilla" TurnInId="52489" />
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
 	
 	

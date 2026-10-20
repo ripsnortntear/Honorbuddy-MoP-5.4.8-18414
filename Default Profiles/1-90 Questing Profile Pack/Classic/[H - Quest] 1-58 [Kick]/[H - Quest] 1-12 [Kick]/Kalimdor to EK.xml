@@ -35,6 +35,6 @@
                         StandOnX="1834.961" StandOnY="-4385.694" StandOnZ="135.0334"
                         GetOffX="2066.773" GetOffY="288.873" GetOffZ="97.03159"
                         />
-        <CustomBehavior File="LoadProfile" ProfileName="..\1-68 Horde Questing" />
+        <CustomBehavior File="LoadProfile" ProfileName="..\[H - Quest] 12-58 K-EK [Kick]" />
     </QuestOrder>
 </HBProfile>

@@ -1235,12 +1235,12 @@
 	</If>
 	
 <!-- Lost Sheepie -->
-  	<If Condition="(HasQuest(31338) &amp;&amp; IsQuestCompleted(31338)) &amp;&amp; Unit(58709, u =gt; u.Distance &lt;= 150)" >
+  	<If Condition="(HasQuest(31338) &amp;&amp; IsQuestCompleted(31338)) &amp;&amp; Unit(58709, u =&gt; u.Distance &lt;= 150) != null" >
 		<TurnIn Nav="Fly" QuestName="Lost Sheepie" QuestId="31338" TurnInName="Chee Chee" TurnInId="58709" />
 	</If>
 	
 <!-- Lost Sheepie... Again -->
-  	<If Condition="(HasQuest(31339) &amp;&amp; IsQuestCompleted(31339)) &amp;&amp; Unit(58709, u =gt; u.Distance &lt;= 150)" >
+  	<If Condition="(HasQuest(31339) &amp;&amp; IsQuestCompleted(31339)) &amp;&amp; Unit(58709, u =&gt; u.Distance &lt;= 150) != null" >
 		<TurnIn Nav="Fly" QuestName="Lost Sheepie... Again" QuestId="31339" TurnInName="Chee Chee" TurnInId="58709" />
 	</If>
 
@@ -1367,7 +1367,7 @@
 		<PickUp QuestName="A Beautiful Brooch" QuestId="31329" GiverType="Item" GiverId="86436" />
 	</If>
 	
-	<If Condition="Unit(58761, u =&gt; u.Distance &lt;= 250)" >
+	<If Condition="Unit(58761, u =&gt; u.Distance &lt;= 250) != null" >
 	<!-- Nice Necklace -->
 		<If Condition="HasQuest(31325)" >
 			<TurnIn Nav="Fly" QuestName="A Very Nice Necklace" QuestId="31325" TurnInName="Tina Mudclaw" TurnInId="58761" X="-239.3049" Y="586.3218" Z="167.5479" />

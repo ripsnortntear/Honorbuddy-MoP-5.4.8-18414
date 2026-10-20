@@ -636,7 +636,7 @@
             </If>
 
             <If Condition="Me.Race == WoWRace.Troll">
-                <CustomBehavior File="LoadProfile" ProfileName="[[H - QO] Argent Tourny - Troll Valiant" />
+                <CustomBehavior File="LoadProfile" ProfileName="[H - QO] Argent Tourny - Troll Valiant" />
             </If>
 
             <If Condition="Me.Race == WoWRace.Undead">

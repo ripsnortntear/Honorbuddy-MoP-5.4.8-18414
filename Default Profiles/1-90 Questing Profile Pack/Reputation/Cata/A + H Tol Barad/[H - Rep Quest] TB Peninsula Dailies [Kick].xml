@@ -1,4 +1,4 @@
-﻿<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>[H - Rep Quest] TB Peninsula Dailies [Kick] ($Rev: 2887 $)</Name>
 	<MinLevel>85</MinLevel>
 	<MaxLevel>200</MaxLevel>
@@ -344,7 +344,7 @@
     <While Condition="(HasQuest(28721)) &amp;&amp; (!IsQuestCompleted(28721))">
 		<RunTo QuestId="28721" X="24.51268" Y="1728.881" Z="28.21425"  />
 		<CustomBehavior File="InteractWith" QuestId="28721" MobId="48309" X="19.70313" Y="1733.854" Z="28.21435" /> 
-		<CustomBehavior File="FollowNpcUntil" NpcId="49443" Location="21.19097 1728.368 36.44616" EndNpcId="48325" />
+		<CustomBehavior File="EscortGroup" QuestId="28721" EscortNpcId="49443" X="21.19097" Y="1728.368" Z="36.44616" />
 		<CustomBehavior File="WaitTimer" QuestId="28721" WaitTime="5000" GoalText="Waiting for  {TimeRemaining}" />
     </While>
 

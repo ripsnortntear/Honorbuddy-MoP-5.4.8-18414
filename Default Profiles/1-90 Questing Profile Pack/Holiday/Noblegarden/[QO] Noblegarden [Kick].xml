@@ -1,4 +1,4 @@
-﻿<HBProfile xsi:noNamespaceSchemaLocation="../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<HBProfile xsi:noNamespaceSchemaLocation="../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>[QO] Noblegarden [Kick] ($Rev: 2887 $)</Name>
    
 	<MinLevel>1</MinLevel>
@@ -135,7 +135,7 @@
 					</Hotspots>
 				</GrindArea>
 			</SetGrindArea>
-		<GrindTo Condition="True" GoalText="Getting Eggs" />
+		<GrindTo Condition="true" GoalText="Getting Eggs" />
 	
 	
 	</QuestOrder>

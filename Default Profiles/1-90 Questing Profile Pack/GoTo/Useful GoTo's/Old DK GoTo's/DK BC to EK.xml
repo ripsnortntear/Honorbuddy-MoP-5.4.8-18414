@@ -68,13 +68,12 @@
                 <PickUp QuestName="Hero's Call: Northrend!" QuestId="28709" GiverName="Hero's Call Board"
                         GiverId="206111" GiverType="Object" X="-8825.209" Y="629.1733" Z="94.38562" />
             </If>
+
+            <CustomBehavior File="FlyTo" X="-8290.925" Y="1405.826" Z="4.721312" DestName="SW dock" />
+            <CustomBehavior File="ForcedDismount" />
         </If>
 
-        <CustomBehavior File="FlyTo" X="-8290.925" Y="1405.826" Z="4.721312" DestName="SW dock" />
-        <CustomBehavior File="ForcedDismount" />
-        </If>
-
-        <CustomBehavior File="LoadProfile" ProfileName="..\GoTo\DK EK to LK" />
+        <CustomBehavior File="LoadProfile" ProfileName="DK EK to LK" />
 
 
     </QuestOrder>

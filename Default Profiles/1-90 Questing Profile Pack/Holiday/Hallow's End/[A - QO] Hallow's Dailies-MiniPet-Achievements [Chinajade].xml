@@ -152,7 +152,7 @@
 			<While Condition="!IsQuestCompleted(29054) &amp;&amp; (Me.ZoneId == 1497)" >
 				<CustomBehavior File="Misc\RunLua" Lua="CastPetAction(1)" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" VariantTime="500" />
-				<If Condition="LegacySpellManager.ClickRemoteLocation(Me.Location)" />
+				<If Condition="SpellManager.ClickRemoteLocation(Me.Location)" />
 				<CustomBehavior File="WaitTimer" WaitTime="3000" VariantTime="1500" />
 			</While>
 			<If Condition="Me.ZoneId == 1497">
@@ -198,7 +198,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="300" VariantTime="800" />
 				<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(69191)" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" VariantTime="500" />
-				<If Condition="LegacySpellManager.ClickRemoteLocation(Me.Location)" />
+				<If Condition="SpellManager.ClickRemoteLocation(Me.Location)" />
 			</If>
 			
 			<If Condition="!IsQuestCompleted(29144)" >
@@ -207,7 +207,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="300" VariantTime="800" />
 				<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(69191)" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" VariantTime="500" />
-				<If Condition="LegacySpellManager.ClickRemoteLocation(Me.Location)" />
+				<If Condition="SpellManager.ClickRemoteLocation(Me.Location)" />
 			</If>
 			
 			<If Condition="!IsQuestCompleted(29144)" >
@@ -216,7 +216,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="300" VariantTime="800" />
 				<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(69191)" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" VariantTime="500" />
-				<If Condition="LegacySpellManager.ClickRemoteLocation(Me.Location)" />
+				<If Condition="SpellManager.ClickRemoteLocation(Me.Location)" />
 			</If>
 			
 			<If Condition="!IsQuestCompleted(29144)" >
@@ -225,7 +225,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="300" VariantTime="800" />
 				<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(69191)" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" VariantTime="500" />
-				<If Condition="LegacySpellManager.ClickRemoteLocation(Me.Location)" />
+				<If Condition="SpellManager.ClickRemoteLocation(Me.Location)" />
 			</If>
 		</While>
 

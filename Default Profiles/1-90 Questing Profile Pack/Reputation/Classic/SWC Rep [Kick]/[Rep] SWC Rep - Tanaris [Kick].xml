@@ -63,7 +63,7 @@
 						</Hotspots>
 					</GrindArea>
 				</SetGrindArea>
-			<GrindTo Condition="False" GoalText="SWC Rep" />
+			<GrindTo Condition="false" GoalText="SWC Rep" />
 
   </QuestOrder>
 

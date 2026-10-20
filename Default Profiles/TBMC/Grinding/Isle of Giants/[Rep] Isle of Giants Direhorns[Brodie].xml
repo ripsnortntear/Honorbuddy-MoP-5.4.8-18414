@@ -132,7 +132,7 @@
 			</Hotspots>
 		</GrindArea>
 	</SetGrindArea>
-	<GrindTo Condition="False" GoalText="Dinosaur Bones" />
+	<GrindTo Condition="false" GoalText="Dinosaur Bones" />
 
 </QuestOrder>
 </HBProfile>  

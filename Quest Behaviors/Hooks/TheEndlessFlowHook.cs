@@ -1,4 +1,4 @@
-﻿//
+//
 // LICENSE:
 // This work is licensed under the
 //     Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
@@ -40,6 +40,7 @@ using Action = Styx.TreeSharp.Action;
 namespace Honorbuddy.Quest_Behaviors.Hooks
 {
 	[CustomBehaviorFileName(@"Hooks\TheEndlessFlowHook")]
+	[CustomBehaviorFileName(@"Hooks\TheEndlessFlowHook-Horde")]
 	public class TheEndlessFlowHook : CustomForcedBehavior
 	{
 		public TheEndlessFlowHook(Dictionary<string, string> args)

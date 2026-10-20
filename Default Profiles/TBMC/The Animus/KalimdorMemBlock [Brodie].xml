@@ -37,7 +37,7 @@
 	<CustomBehavior File="Message" Text="Scanning for Kalimdor Memories..." LogColor="LawnGreen" />
 	
 	<If Condition="!(CanFly())" >
-		<If Condition="!(StyxWoW.FlightChecksDisabled)" >
+		<If Condition="false" >
 			<CustomBehavior File="Message" Text="WARNING: Detected that this HB Account can not fly! Flying mounts will not work!" LogColor="Red" />
 		<ElseIf Condition="Me.GetSkill(Styx.SkillLine.Riding).CurrentValue &lt; 225" >
 			<If Condition="Me.Level &gt;= 60 &amp;&amp; Me.Gold &gt;= 500" >
@@ -67,7 +67,7 @@
 	
 	<If Condition="Me.MapId == 870" > <!-- If in Pandaria, use portal to Exodar/Orgrimmar -->
 		<If Condition="Me.IsAlliance" >
-			<If Condition="Me.Location.Distance(new WoWPoint(827.6292, 179.0341, 519.5684) &gt;= 100)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(827.6292, 179.0341, 519.5684)) &gt;= 100" >
 				<CustomBehavior File="FlyTo" X="862.3105" Y="283.7128" Z="503.678" />
 				<CustomBehavior File="ForcedDismount" />
 			</If>
@@ -80,7 +80,7 @@
 			</If>
 		</If>
 		<If Condition="Me.IsHorde" >
-			<If Condition="Me.Location.Distance(new WoWPoint(1730.643, 922.8421, 470.7326) &gt;= 100)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(1730.643, 922.8421, 470.7326)) &gt;= 100" >
 				<CustomBehavior File="FlyTo" X="1618.411" Y="922.8421" Z="503.678" />
 				<CustomBehavior File="ForcedDismount" />
 			</If>

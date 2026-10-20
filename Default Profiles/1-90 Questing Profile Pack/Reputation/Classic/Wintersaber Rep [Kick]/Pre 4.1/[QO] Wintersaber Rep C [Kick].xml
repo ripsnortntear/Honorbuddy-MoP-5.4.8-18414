@@ -107,7 +107,7 @@
 			<If Condition="Me.GetReputationLevelWith(589) == Styx.WoWUnitReaction.Exalted" >
 			
 			  <If Condition="Me.GetReputationLevelWith(576) &lt; Styx.WoWUnitReaction.Exalted" >
-				<CustomBehavior File="LoadProfile" ProfileName="..\Classic\Timbermaw Rep [Kick]\[QO] Timbermaw Rep - Winterspring B [Kick]" />
+				<CustomBehavior File="LoadProfile" ProfileName="..\..\Timbermaw Rep [Kick]\Timbermaw Rep Farm" />
 			  </If>
 			
 				<CustomBehavior File="UserDialog" Title="title" AllowBotStop="True" SoundCue="Asterisk" SoundCueInterval="1" Text="You have reached Exalted\nIf you liked this profile, +rep is always appreciated" />

@@ -71,6 +71,7 @@ using Action = Styx.TreeSharp.Action;
 namespace Honorbuddy.Quest_Behaviors.UseItem
 {
 	[CustomBehaviorFileName(@"UseItem")]
+	[CustomBehaviorFileName(@"ItemWhileMoving")]
 	public class UseItem : QuestBehaviorBase
 	{
 		public UseItem(Dictionary<string, string> args)

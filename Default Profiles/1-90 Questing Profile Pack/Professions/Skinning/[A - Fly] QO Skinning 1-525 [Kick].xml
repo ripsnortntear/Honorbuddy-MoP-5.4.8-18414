@@ -573,7 +573,7 @@
 		
 				<CustomBehavior File="Message" Text="Compiling BC 300-325 Skinning" LogColor="CornflowerBlue" />
 				
-			<If Condition="((Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 290)">
+			<If Condition="((Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 290))">
 				<CustomBehavior File="UserDialog" StopOnContinue="True" SoundCue="Exclamation" SoundCueInterval="1" Text="This Profile starts in Eastern Kingdoms - Please go there and press start\n\n1-300 is EK, 300-375 is BC, 375-450 is LK, 450-525 is Kalimdor (Hyjal until 500, then Uldum)" />
 				<CustomBehavior File="UserDialog" StopOnContinue="True" SoundCue="Exclamation" SoundCueInterval="2" Text="HEY! YOU NO PRESSY DA BUTTON!!!!111!11ONEONEONEONE11!11!!1" />
 				<CustomBehavior File="UserSettings" StopBot="True" />
@@ -1006,7 +1006,7 @@
 		</SetMailbox>
 	
 		
-			<If Condition="((Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 425)">
+			<If Condition="((Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 425))">
 				<CustomBehavior File="UserDialog" StopOnContinue="True" SoundCue="Exclamation" SoundCueInterval="1" Text="This Profile starts in Eastern Kingdoms - Please go there and press start\n\n1-300 is EK, 300-375 is BC, 375-450 is LK, 450-525 is Kalimdor (Hyjal until 500, then Uldum)" />
 				<CustomBehavior File="UserDialog" StopOnContinue="True" SoundCue="Exclamation" SoundCueInterval="2" Text="HEY! YOU NO PRESSY DA BUTTON!!!!111!11ONEONEONEONE11!11!!1" />
 				<CustomBehavior File="UserSettings" StopBot="True" />

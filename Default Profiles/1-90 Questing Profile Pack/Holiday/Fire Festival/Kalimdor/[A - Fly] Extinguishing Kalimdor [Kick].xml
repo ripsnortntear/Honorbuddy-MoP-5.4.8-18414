@@ -1,4 +1,4 @@
-<<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>[A] Extinguishing Kalimdor [Kick] ($Rev: 2887 $)</Name>
 	<MinLevel>1</MinLevel>
 	<MaxLevel>86</MaxLevel>

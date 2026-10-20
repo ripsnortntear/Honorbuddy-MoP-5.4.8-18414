@@ -667,7 +667,7 @@
 
         <If Condition="Me.IsHorde" >
             <CustomBehavior File="Message" Text="All done in Un'Goro...return to Kick's 12-58 Profile." LogColor="Yellow" />
-            <CustomBehavior File="LoadProfile" ProfileName="[H - Quest] 12-58 K-EK [Kick]" RememberProfile="true" />
+            <CustomBehavior File="LoadProfile" ProfileName="..\[H - Quest] 1-58 [Kick]\[H - Quest] 12-58 K-EK [Kick]" RememberProfile="true" />
         </If>
 
         <CustomBehavior File="Message" Text="All done in Un'Goro." LogColor="Yellow" />

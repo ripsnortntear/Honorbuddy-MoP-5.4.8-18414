@@ -203,7 +203,7 @@
 							(((Me.GetSkill(Styx.SkillLine.Alchemy).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29506) &amp;&amp; GetItemCount(1645) &lt; 5) ||
 							((Me.GetSkill(Styx.SkillLine.Inscription).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29515) &amp;&amp; GetItemCount(39354) &lt; 5) ||
 							((Me.GetSkill(Styx.SkillLine.Leatherworking).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29517) &amp;&amp; (GetItemCount(6529) &lt; 10 || GetItemCount(2320) &lt; 5 || GetItemCount(6260) &lt; 5)) ||
-							((Me.GetSkill(Styx.SkillLine.Tailoring).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29520) &amp;&amp; (GetItemCount(2320) &lt; 1 || GetItemCount(2604) &lt; 1 || GetItemCount(6260) &lt; 1))
+							((Me.GetSkill(Styx.SkillLine.Tailoring).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29520) &amp;&amp; (GetItemCount(2320) &lt; 1 || GetItemCount(2604) &lt; 1 || GetItemCount(6260) &lt; 1)) ||
 							((Me.GetSkill(Styx.SkillLine.Cooking).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29509) &amp;&amp; GetItemCount(30817) &lt; 5))" >
 			<CustomBehavior File="InteractWith" MobId="216776" NonCompeteDistance="0" WaitTime="5000" 
 				TerminateWhen="Me.ZoneId != 5861" X="-4443.104" Y="6329.478" Z="13.26568" />
@@ -290,7 +290,7 @@
 							(((Me.GetSkill(Styx.SkillLine.Alchemy).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29506) &amp;&amp; GetItemCount(1645) &lt; 5) ||
 							((Me.GetSkill(Styx.SkillLine.Inscription).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29515) &amp;&amp; GetItemCount(39354) &lt; 5) ||
 							((Me.GetSkill(Styx.SkillLine.Leatherworking).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29517) &amp;&amp; (GetItemCount(6529) &lt; 10 || GetItemCount(2320) &lt; 5 || GetItemCount(6260) &lt; 5)) ||
-							((Me.GetSkill(Styx.SkillLine.Tailoring).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29520) &amp;&amp; (GetItemCount(2320) &lt; 1 || GetItemCount(2604) &lt; 1 || GetItemCount(6260) &lt; 1))
+							((Me.GetSkill(Styx.SkillLine.Tailoring).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29520) &amp;&amp; (GetItemCount(2320) &lt; 1 || GetItemCount(2604) &lt; 1 || GetItemCount(6260) &lt; 1)) ||
 							((Me.GetSkill(Styx.SkillLine.Cooking).CurrentValue &gt;= 75) &amp;&amp; !IsQuestCompleted(29509) &amp;&amp; GetItemCount(30817) &lt; 5))" >
 			<CustomBehavior File="InteractWith" MobId="216667" NonCompeteDistance="0" WaitTime="5000" 
 				TerminateWhen="Me.ZoneId != 5861" X="-4443.104" Y="6329.478" Z="13.26568" />
@@ -316,7 +316,7 @@
 	</If>
 
 	<!-- Monthy Item TurnIns -->
-	<If Condition="True" > <!-- You can change this to 'False' to ignore using these items -->
+	<If Condition="true" > <!-- You can change this to 'false' to ignore using these items -->
 		<CustomBehavior File="Message" Text="Checking for monthly items to use." LogColor="Green" />
 		<If Condition="HasItem(71637) &amp;&amp; !HasQuest(29445) &amp;&amp; !IsQuestCompleted(29445)" >
 			<PickUp QuestName="An Intriguing Grimoire" QuestId="29445" GiverType="Item" GiverId="71637" />

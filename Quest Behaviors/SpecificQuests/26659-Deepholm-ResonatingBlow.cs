@@ -40,6 +40,7 @@ using Action = Styx.TreeSharp.Action;
 namespace Honorbuddy.Quest_Behaviors.SpecificQuests.ResonatingBlow
 {
 	[CustomBehaviorFileName(@"SpecificQuests\26659-Deepholm-ResonatingBlow")]
+	[CustomBehaviorFileName(@"ResonatingBlow")]
 	public class Steping : CustomForcedBehavior
 	{
 

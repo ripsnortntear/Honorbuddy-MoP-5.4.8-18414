@@ -199,7 +199,7 @@
 <QuestOrder>
 
 	<If Condition="Me.IsAlliance">
-		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] The Level Grind [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\..\[Quest] The Level Grind [Brodie]" />
 	</If>
 
 	<CustomBehavior File="Message" Text="Compiling Undead Starter Quests" LogColor="Green" />

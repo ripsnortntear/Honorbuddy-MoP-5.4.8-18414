@@ -36,6 +36,7 @@ using Action = Styx.TreeSharp.Action;
 namespace Honorbuddy.Quest_Behaviors.SpecificQuests.MrDsWildRide
 {
 	[CustomBehaviorFileName(@"SpecificQuests\26028-Stonetalons-MrDsWildRide")]
+	[CustomBehaviorFileName(@"26028-MrDsWildRide")]
 	public class q26028 : CustomForcedBehavior
 	{      
 		public q26028(Dictionary<string, string> args)

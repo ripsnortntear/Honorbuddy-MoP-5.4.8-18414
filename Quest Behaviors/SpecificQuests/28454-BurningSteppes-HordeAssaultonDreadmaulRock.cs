@@ -35,6 +35,7 @@ using Action = Styx.TreeSharp.Action;
 namespace Honorbuddy.Quest_Behaviors.SpecificQuests.HordeAssaultonDreadmaulRock
 {
 	[CustomBehaviorFileName(@"SpecificQuests\28454-BurningSteppes-HordeAssaultonDreadmaulRock")]
+	[CustomBehaviorFileName(@"SpecificQuests\28320-BurningSteppes-AllianceAssaultonDreadmaulRock")]
 	public class q28454 : CustomForcedBehavior
 	{
 		public q28454(Dictionary<string, string> args)
@@ -64,7 +65,7 @@ namespace Honorbuddy.Quest_Behaviors.SpecificQuests.HordeAssaultonDreadmaulRock
 				new PrioritySelector(
 					
 					
-					new Decorator(ret => me.QuestLog.GetQuestById(28454) !=null && me.QuestLog.GetQuestById(28454).IsCompleted,
+					new Decorator(ret => (me.QuestLog.GetQuestById(28454) != null && me.QuestLog.GetQuestById(28454).IsCompleted) || (me.QuestLog.GetQuestById(28320) != null && me.QuestLog.GetQuestById(28320).IsCompleted),
 						new Sequence(
 							new Action(ret => TreeRoot.StatusText = "Finished!"),
 							new Action(ret => Lua.DoString("CastPetAction({0})", 5)),

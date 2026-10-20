@@ -15,44 +15,44 @@
 
 
 				<!--  Extinguish Horde Bonfire -->
-				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" 
+				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" ObjectType="Gameobject" Range="10" WaitTime="3000" />
+				<CustomBehavior File="InteractWith" MobId="0" ObjectType="Gameobject" Range="10" WaitTime="3000" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Extinguish Horde Bonfire -->
-				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" 
+				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" ObjectType="Gameobject" Range="10" WaitTime="3000" />
+				<CustomBehavior File="InteractWith" MobId="0" ObjectType="Gameobject" Range="10" WaitTime="3000" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Extinguish Horde Bonfire -->
-				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" 
+				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" ObjectType="Gameobject" Range="10" WaitTime="3000" />
+				<CustomBehavior File="InteractWith" MobId="0" ObjectType="Gameobject" Range="10" WaitTime="3000" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Extinguish Horde Bonfire -->
-				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" 
+				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" ObjectType="Gameobject" Range="10" WaitTime="3000" />
+				<CustomBehavior File="InteractWith" MobId="0" ObjectType="Gameobject" Range="10" WaitTime="3000" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Extinguish Horde Bonfire -->
-				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" 
+				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" ObjectType="Gameobject" Range="10" WaitTime="3000" />
+				<CustomBehavior File="InteractWith" MobId="0" ObjectType="Gameobject" Range="10" WaitTime="3000" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Extinguish Horde Bonfire -->
-				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" 
+				<CustomBehavior File="FlyTo" DestName=" Horde Bonfire" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" ObjectType="Gameobject" Range="10" WaitTime="3000" />
+				<CustomBehavior File="InteractWith" MobId="0" ObjectType="Gameobject" Range="10" WaitTime="3000" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 

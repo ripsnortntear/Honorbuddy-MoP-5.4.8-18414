@@ -481,7 +481,7 @@
 		<While Condition="Me.HasAura(65535) &amp;&amp; Unit(34499, u =&gt; u.Distance &lt; 10) != null" />
 		<CustomBehavior File="InteractWith" QuestId="26478" MobId="195111" ProactiveCombatStrategy="ClearMobsTargetingUs" NumOfTimes="100"
 			NonCompeteDistance="0" TerminateWhen="Me.Combat &amp;&amp; Unit(34499, u =&gt; u.Distance &lt; 10) != null" X="2350.687" Y="-1904.886" Z="68.99279" />
-		<If Condition="!Me.HasAura(65535) &amp;&amp; Unit(34499, u =&gt; u.Distance &lt; 10)" >
+		<If Condition="!Me.HasAura(65535) &amp;&amp; Unit(34499, u =&gt; u.Distance &lt; 10) != null" >
 			<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(46720)" WaitTime="3000" />
 		</If>
 	</While>

@@ -320,7 +320,7 @@
 <!-- Brothers In Arms -->
 	<PickUp QuestName="Brothers In Arms" QuestId="26129" GiverName="Lord Darius Crowley" GiverId="35077" />
 	<Objective QuestName="While You're At It" QuestId="24930" Type="KillMob" MobId="35118" KillCount="5" />
-	<If Condition="HasQuest(24930) &amp;&amp; IsQuestCompleted(24930">
+	<If Condition="HasQuest(24930) &amp;&amp; IsQuestCompleted(24930)">
 		<CustomBehavior File="NoCombatMoveTo" X="-1764.218" Y="1351.734" Z="19.78275"  />
 	</If>
 	<TurnIn QuestName="While You're At It" QuestId="24930" TurnInName="Lord Godfrey" TurnInId="35115" />

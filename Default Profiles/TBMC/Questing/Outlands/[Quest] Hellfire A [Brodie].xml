@@ -518,7 +518,7 @@
 		<CustomBehavior File="InteractWith" QuestId="10935" MobId1="22506" MobId2="22507" MobState="Alive"
 			InteractByUsingItemId="31828" IgnoreLoSToTarget="True" Range="20" NumOfTimes="1000" WaitTime="2000"
 			NonCompeteDistance="0" ProactiveCombatStrategy="ClearMobsTargetingUs"
-			TerminateWhen="Unit(22432, u =gt; u.CanGossip) != null" X="-709.876" Y="2749.535" Z="101.5916" />
+			TerminateWhen="Unit(22432, u =&gt; u.CanGossip) != null" X="-709.876" Y="2749.535" Z="101.5916" />
 		<If Condition="Unit(22432, u =&gt; u.CanGossip) != null" >
 			<CustomBehavior File="InteractWith" QuestId="10935" MobId1="22432" MobState="Alive" NonCompeteDistance="0" 
 				ProactiveCombatStrategy="NoClear" WaitTime="1000" TerminateWhen="Unit(22432, u =&gt; u.CanGossip) == null" 

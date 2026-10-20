@@ -223,7 +223,7 @@
 			X="-11800.77" Y="-3170.149" Z="-30.10699" />
 		<CustomBehavior File="InteractWith" QuestId="26174" MobId="203225" IgnoreLoSToTarget="True"
 			NonCompeteDistance="0" ProactiveCombatStrategy="NoClear" WaitTime="1000" NumOfTimes="100"
-			TerminateWhen="HasAura(77360)" CollectionDistance="10" X="-11800.77" Y="-3170.149" Z="-30.10699" />
+			TerminateWhen="Me.HasAura(77360)" CollectionDistance="10" X="-11800.77" Y="-3170.149" Z="-30.10699" />
 	</While>
 	<TurnIn QuestName="Watching Our Back" QuestId="26174" TurnInName="Watch Commander Relthorn Netherwane" TurnInId="16841" />
 	

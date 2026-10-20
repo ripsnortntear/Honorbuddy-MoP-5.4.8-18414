@@ -1,4 +1,4 @@
-﻿<HBProfile>
+<HBProfile>
 	<Name>Children's Week - Outlands (Alliance) ($Rev$)</Name>
    
 	<MinLevel>1</MinLevel>
@@ -41,7 +41,7 @@
 	<!-- Move to the Matron, if we don't already have the whistle in inventory -->
 	<If Condition="!HasItem(31881)" >
 		<If Condition="Me.MapId == 870" > <!-- If in Pandaria, use portal to Shattrath -->
-			<If Condition="Me.Location.Distance(new WoWPoint(827.6292, 179.0341, 519.5684) &gt;= 100)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(827.6292, 179.0341, 519.5684)) &gt;= 100" >
 				<CustomBehavior File="FlyTo" X="862.3105" Y="283.7128" Z="503.678" />
 				<CustomBehavior File="ForcedDismount" />
 			</If>

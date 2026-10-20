@@ -689,7 +689,7 @@
 	<TurnIn Nav="Fly" QuestName="A'dal" QuestId="10210" TurnInName="Adal" TurnInId="18481" />
 
 	<CustomBehavior File="Message" Text="Terokkar Forest Complete" LogColor="Orange" />
-	<CustomBehavior File="LoadProfile" ProfileName="[Quest] Nagrand A [Brodie]" />
+	<CustomBehavior File="LoadProfile" ProfileName="[Quest] Nagrand H [Brodie]" />
 		
 </QuestOrder>
 </HBProfile>

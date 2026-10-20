@@ -369,7 +369,7 @@
 	<TurnIn QuestName="Thistle While You Work" QuestId="27025" TurnInName="Safety Warden Pipsy" TurnInId="44859" />
 	
 	<If Condition="(Me.LevelFraction &gt;= 20) &amp;&amp; Me.GetSkill(Styx.SkillLine.Riding).CurrentValue == 0 &amp;&amp; Me.Gold &gt;= 4" >
-		<CustomBehavior File="LoadProfile" ProfileName="[Quest] Mounts [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] Mounts [Brodie]" />
 	</If>
 	
 <!-- Defcon: Bobcat/Vyrin's Revenge/Bird is the Word -->
@@ -387,14 +387,14 @@
 	<PickUp QuestName="He's That Age" QuestId="27034" GiverName="Bingles Blastenheimer" GiverId="6577" />
 	
 	<If Condition="(Me.LevelFraction &gt;= 20) &amp;&amp; Me.GetSkill(Styx.SkillLine.Riding).CurrentValue == 0 &amp;&amp; Me.Gold &gt;= 4" >
-		<CustomBehavior File="LoadProfile" ProfileName="[Quest] Mounts [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] Mounts [Brodie]" />
 	</If>
 	
 <!-- He's That Age -->
 	<TurnIn QuestName="He's That Age" QuestId="27034" TurnInName="Ando Blastenheimer" TurnInId="44870" />
 	
 	<If Condition="(Me.LevelFraction &gt;= 20) &amp;&amp; Me.GetSkill(Styx.SkillLine.Riding).CurrentValue == 0 &amp;&amp; Me.Gold &gt;= 4" >
-		<CustomBehavior File="LoadProfile" ProfileName="[Quest] Mounts [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] Mounts [Brodie]" />
 	</If>
 	
 <!-- Standing Up -->
@@ -408,7 +408,7 @@
 	<TurnIn QuestName="Standing Up" QuestId="27035" TurnInName="Ando Blastenheimer" TurnInId="44870" />
 	
 	<If Condition="(Me.LevelFraction &gt;= 20) &amp;&amp; Me.GetSkill(Styx.SkillLine.Riding).CurrentValue == 0 &amp;&amp; Me.Gold &gt;= 4" >
-		<CustomBehavior File="LoadProfile" ProfileName="[Quest] Mounts [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] Mounts [Brodie]" />
 	</If>
 	
 	<CustomBehavior File="Message" Text="Compiling Mo'grosh Stronghold Quests" LogColor="CornflowerBlue" />
@@ -418,7 +418,7 @@
 	<TurnIn QuestName="Fight The Hammer" QuestId="27074" TurnInName="Ashlan Stonesmirk" TurnInId="1073" />
 	
 	<If Condition="(Me.LevelFraction &gt;= 20) &amp;&amp; Me.GetSkill(Styx.SkillLine.Riding).CurrentValue == 0 &amp;&amp; Me.Gold &gt;= 4" >
-		<CustomBehavior File="LoadProfile" ProfileName="[Quest] Mounts [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] Mounts [Brodie]" />
 	</If>
 	
 <!-- Servants of Cho'gall/Clutching at Chaos -->
@@ -430,7 +430,7 @@
 	<TurnIn QuestName="Clutching at Chaos" QuestId="27077" TurnInName="Ashlan Stonesmirk" TurnInId="1073" />
 	
 	<If Condition="(Me.LevelFraction &gt;= 20) &amp;&amp; Me.GetSkill(Styx.SkillLine.Riding).CurrentValue == 0 &amp;&amp; Me.Gold &gt;= 4" >
-		<CustomBehavior File="LoadProfile" ProfileName="[Quest] Mounts [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] Mounts [Brodie]" />
 	</If>
 	
 <!-- Gor'Kresh -->
@@ -439,7 +439,7 @@
 	<TurnIn QuestName="Gor'Kresh" QuestId="27078" TurnInName="Ashlan Stonesmirk" TurnInId="1073" />
 	
 	<If Condition="(Me.LevelFraction &gt;= 20) &amp;&amp; Me.GetSkill(Styx.SkillLine.Riding).CurrentValue == 0 &amp;&amp; Me.Gold &gt;= 4" >
-		<CustomBehavior File="LoadProfile" ProfileName="[Quest] Mounts [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] Mounts [Brodie]" />
 	</If>
 	
 <!-- Ando's Call -->

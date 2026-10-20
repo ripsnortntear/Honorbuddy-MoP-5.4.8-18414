@@ -1,4 +1,4 @@
-﻿<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>[QO] Argent Tournament Rep - Crusader Ally [Kick] ($Rev: 2887 $)</Name>
    
 	<MinLevel>1</MinLevel>
@@ -113,9 +113,9 @@
 			<If Condition="((HasQuest(14104)) &amp;&amp; (IsQuestCompleted(14104)))" >
 		<TurnIn QuestName="Ornolf The Scarred" QuestId="14104" TurnInName="High Crusader Adelard" TurnInId="34882" />
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
 		
 			

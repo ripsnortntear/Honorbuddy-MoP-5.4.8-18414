@@ -315,7 +315,7 @@
 			X="-11810.87" Y="-3232.813" Z="-30.11449" />
 		<CustomBehavior File="InteractWith" QuestId="25695" MobId="203226" IgnoreLoSToTarget="True"
 			NonCompeteDistance="0" ProactiveCombatStrategy="NoClear" WaitTime="1000" NumOfTimes="100"
-			TerminateWhen="HasAura(77360)" CollectionDistance="10" X="-11810.87" Y="-3232.813" Z="-30.11449" />
+			TerminateWhen="Me.HasAura(77360)" CollectionDistance="10" X="-11810.87" Y="-3232.813" Z="-30.11449" />
 	</While>
 	<TurnIn QuestName="Watching Our Back" QuestId="25695" TurnInName="Warlord Dar'toon" TurnInId="19254" />
 	

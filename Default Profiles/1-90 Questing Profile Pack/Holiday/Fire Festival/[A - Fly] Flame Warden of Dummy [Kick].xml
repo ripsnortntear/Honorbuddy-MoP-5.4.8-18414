@@ -21,65 +21,65 @@
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 
 				<!--  Flame Warden -->
-				<CustomBehavior File="FlyTo" DestName=" Flame Warden" 
+				<CustomBehavior File="FlyTo" DestName=" Flame Warden" X="0" Y="0" Z="0" />
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="InteractWith" MobId="" />
+				<CustomBehavior File="InteractWith" MobId="25898" />
 				<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 				<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />	
 

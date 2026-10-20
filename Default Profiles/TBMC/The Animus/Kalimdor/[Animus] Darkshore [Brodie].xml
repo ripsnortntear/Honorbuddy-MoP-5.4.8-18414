@@ -91,7 +91,7 @@
 <QuestOrder>
 
 	<If Condition="Me.IsHorde">
-		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] The Level Grind [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\..\Questing\[Quest] The Level Grind [Brodie]" />
 	</If>
 	
 	<CustomBehavior File="Message" Text="Beginning Memory Block: Darkshore" LogColor="Green" />
@@ -253,7 +253,7 @@
 	<PickUp QuestName="Remnants of the Highborne" QuestId="13505" GiverName="Balthule Shadowstrike" GiverId="32966" />
 	<Objective QuestName="Remnants of the Highborne" QuestId="13505" Type="CollectItem" ItemId="44830" CollectCount="8" />
 	<Objective QuestName="Shatterspear Laborers" QuestId="13504" Type="KillMob" MobId="32861" KillCount="10" />
-	<If Condition="!HasItem(44979) &amp;&amp; (!HasQuest(13506) &amp;&amp; !IsQuestCompleted(13506)" >
+	<If Condition="!HasItem(44979) &amp;&amp; (!HasQuest(13506) &amp;&amp; !IsQuestCompleted(13506))" >
 		<CustomBehavior File="CollectThings" CollectItemId="44979" CollectItemCount="1" MobId="32863" HuntingGroundRadius="200" MobState="Alive" >
 			<Hotspot X="7314.286" Y="-856.3969" Z="28.52137" />
 			<Hotspot X="7253.632" Y="-879.3912" Z="33.36388" />
@@ -453,7 +453,7 @@
 	<TurnIn QuestName="Against the Wind" QuestId="13542" TurnInName="Sentinel Selarin" TurnInId="3694" />
 	
 	<If Condition="Me.LevelFraction &gt;= 20" >
-		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] The Level Grind [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\..\Questing\[Quest] The Level Grind [Brodie]" />
 	</If>
 	
 	<CustomBehavior File="Message" Text="Compiling Malfurion Stormrage Quests" LogColor="CornflowerBlue" />
@@ -482,7 +482,7 @@
 	<TurnIn QuestName="Protector of Ameth'Aran" QuestId="13579" TurnInName="Selenn" TurnInId="33112" />
 	
 	<If Condition="Me.LevelFraction &gt;= 20" >
-		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] The Level Grind [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\..\Questing\[Quest] The Level Grind [Brodie]" />
 	</If>
 
 <!-- Calming the Earth -->
@@ -507,7 +507,7 @@
 	<TurnIn QuestName="Mutual Aid" QuestId="13576" TurnInName="Elder Brownpaw" TurnInId="33117" />
 	
 	<If Condition="Me.LevelFraction &gt;= 20" >
-		<CustomBehavior File="LoadProfile" ProfileName="..\[Quest] The Level Grind [Brodie]" />
+		<CustomBehavior File="LoadProfile" ProfileName="..\..\Questing\[Quest] The Level Grind [Brodie]" />
 	</If>
 
 <!-- Soothing the Elements -->

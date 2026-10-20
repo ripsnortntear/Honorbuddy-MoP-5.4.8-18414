@@ -1,4 +1,4 @@
-﻿// Behavior originally contributed by Chinajade.
+// Behavior originally contributed by Chinajade.
 //
 // LICENSE:
 // This work is licensed under the
@@ -40,6 +40,7 @@ using Styx.Helpers;
 namespace Honorbuddy.Quest_Behaviors.UserSettings
 {
 	[CustomBehaviorFileName(@"UserSettings")]
+	[CustomBehaviorFileName(@"SetPullDistance")]
 	class UserSettings : QuestBehaviorBase
 	{
 		#region Constructor and Argument Processing
@@ -52,6 +53,7 @@ namespace Honorbuddy.Quest_Behaviors.UserSettings
 			{
 				// Build the 'presets'...
 				// Note that the "UserOriginal" configuration will also be captured as a preset.
+				if (args != null && args.ContainsKey("Distance") && !args.ContainsKey("PullDistance")) { args["PullDistance"] = args["Distance"]; GetAttributeAsNullable<int>("Distance", false, null, null); }
 				_presetChangeSets = BuildPresets();
 
 				// Behavior-specific attributes...

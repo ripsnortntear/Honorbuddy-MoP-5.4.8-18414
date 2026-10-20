@@ -98,7 +98,7 @@
 			</Hotspots>
 		</GrindArea>
 	</SetGrindArea>
-	<GrindTo Condition="False" GoalText="The Black Prince Rep" />
+	<GrindTo Condition="false" GoalText="The Black Prince Rep" />
 
 </QuestOrder>
 </HBProfile>  

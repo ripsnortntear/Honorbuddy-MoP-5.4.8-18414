@@ -340,7 +340,7 @@
 	<PickUp QuestName="Warn Your People" QuestId="9622" GiverName="High Chief Stillpine" GiverId="17440" />
 	<TurnIn QuestName="The Kurken Hide" QuestId="9571" TurnInName="Moordo" TurnInId="17442" />
 	<TurnIn QuestName="Warn Your People" QuestId="9622" TurnInName="Exarch Menelaous" TurnInId="17116" />
-	<If Condition="HasItem(23910) &amp;&amp; (!HasQuest(9616) &amp;&amp; !IsQuestCompleted(9616)" >
+	<If Condition="HasItem(23910) &amp;&amp; (!HasQuest(9616) &amp;&amp; !IsQuestCompleted(9616))" >
 		<PickUp QuestName="Bandits!" QuestId="9616" GiverType="Item" GiverId="23910" />
 	</If>
 	<If Condition="HasQuest(9616)" >

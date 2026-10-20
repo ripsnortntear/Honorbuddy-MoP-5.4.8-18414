@@ -224,7 +224,7 @@
 
 	<Objective QuestName="For Science!" QuestId="28199" Type="CollectItem" ItemId="63254" CollectCount="6" />
 
-	<If Condition="!HasQuest(28196) &amp;&amp; !IsQuestCompleted(28196) &amp;&amp; " >
+	<If Condition="!HasQuest(28196) &amp;&amp; !IsQuestCompleted(28196)" >
 		<If Condition="!HasItem(63250)" >
 			<CustomBehavior File="Message" Text="Farming for The Battle for Hillsbrad" LogColor="Yellow" />
 			<SetGrindArea>

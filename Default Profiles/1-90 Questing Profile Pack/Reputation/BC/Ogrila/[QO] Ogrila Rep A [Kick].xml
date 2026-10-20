@@ -1,4 +1,4 @@
-﻿<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<HBProfile xsi:noNamespaceSchemaLocation="../../../Schemas/QuestProfileSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>[QO] Ogri'la Rep A [Kick] ($Rev: 2887 $)</Name>
 	<!-- 
 	http://www.wowwiki.com/Ogri'la
@@ -327,7 +327,7 @@
 				<CustomBehavior File="ForcedDismount" />
 		<PickUp QuestName="Bombing Run" QuestId="11010" GiverName="Sky Sergeant Vanderlip" GiverId="23120" />
 			</If>
-			<If Condition="((!HasQuest()) &amp;&amp; (!IsQuestCompleted()))" >
+			<If Condition="((!HasQuest(11061)) &amp;&amp; (!IsQuestCompleted(11061)))" >
 				<CustomBehavior File="FlyTo" X="2337.281" Y="7282.197" Z="365.6186" />
 				<CustomBehavior File="ForcedDismount" />
 		<PickUp QuestName="A Father's Duty" QuestId="11061" GiverName="Torkus" GiverId="23316" />
@@ -501,7 +501,7 @@
 				<CustomBehavior File="ForcedDismount" />
 		<PickUp QuestName="Assault on Bash'ir Landing!" QuestId="11119" GiverName="Sky Commander Keller" GiverId="23334" />
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="((HasQuest(11119)) &amp;&amp; (IsQuestCompleted(11119)))" >
 				<CustomBehavior File="FlyTo" X="2522.303" Y="7328.975" Z="373.4338" />
 				<CustomBehavior File="ForcedDismount" />
 		<TurnIn QuestName="Assault on Bash'ir Landing!" QuestId="11119" TurnInName="Aether-tech Apprentice" TurnInId="23473" />			

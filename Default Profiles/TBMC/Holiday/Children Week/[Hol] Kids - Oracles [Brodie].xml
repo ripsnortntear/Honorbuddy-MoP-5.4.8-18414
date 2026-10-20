@@ -1,4 +1,4 @@
-﻿<HBProfile>
+<HBProfile>
 	<Name>Children's Week (Oracles) ($Rev$)</Name>
    
 	<MinLevel>1</MinLevel>
@@ -57,7 +57,7 @@
 	
 	<If Condition="Me.MapId == 870" > <!-- If in Pandaria, use portal to Dalaran -->
 		<If Condition="Me.IsAlliance" >
-			<If Condition="Me.Location.Distance(new WoWPoint(827.6292, 179.0341, 519.5684) &gt;= 100)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(827.6292, 179.0341, 519.5684)) &gt;= 100" >
 				<CustomBehavior File="FlyTo" X="862.3105" Y="283.7128" Z="503.678" />
 				<CustomBehavior File="ForcedDismount" />
 			</If>
@@ -65,7 +65,7 @@
 			<CustomBehavior File="InteractWith" MobId="215121" NonCompeteDistance="0" TerminateWhen="Me.MapId != 870" X="827.6292" Y="179.0341" Z="519.5684" />
 		</If>
 		<If Condition="Me.IsHorde" >
-			<If Condition="Me.Location.Distance(new WoWPoint(1730.643, 922.8421, 470.7326) &gt;= 100)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(1730.643, 922.8421, 470.7326)) &gt;= 100" >
 				<CustomBehavior File="FlyTo" X="1618.411" Y="922.8421" Z="503.678" />
 				<CustomBehavior File="ForcedDismount" />
 			</If>

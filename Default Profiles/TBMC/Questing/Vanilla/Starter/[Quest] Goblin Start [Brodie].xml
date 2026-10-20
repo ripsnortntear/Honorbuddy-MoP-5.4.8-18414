@@ -341,7 +341,7 @@
 	</If>
 	<If Condition="Me.Class == WoWClass.Warrior" >
 		<PickUp QuestName="Charge" QuestId="14013" GiverName="Warrior-Matic NX-01" GiverId="34697" />
-		<If Condition="HasQuest(14013) &amp;&amp; !IsQuestCompleted(14013)))" >
+		<If Condition="HasQuest(14013) &amp;&amp; !IsQuestCompleted(14013)" >
 			<RunTo QuestId="14013" X="-8416.95" Y="1327.14" Z="102.2866" />
 			<RunTo QuestId="14013" X="-8419.841" Y="1320.548" Z="102.3986" />
 			<CustomBehavior File="NPCAssistance" MobId="48304" X="-8427.5" Y="1305.22" Z="102.3335" />

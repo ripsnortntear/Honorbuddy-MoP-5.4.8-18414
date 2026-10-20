@@ -422,9 +422,9 @@
 			<If Condition="((HasQuest(29248)) &amp;&amp; (IsQuestCompleted(29248)))" >
 		<TurnIn QuestName="Releasing the Pressure" QuestId="29248" TurnInName="Dorda'en Nightweaver" TurnInId="52986" />			
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
-			<If Condition="((HasQuest()) &amp;&amp; (IsQuestCompleted()))" >
+			<If Condition="false" >
 			</If>
 			
 			<If Condition="((HasQuest(29199)) &amp;&amp; (IsQuestCompleted(29199)))" >
