@@ -1,4 +1,4 @@
-﻿//This BotBase was created by Apoc, I take no credit for anything within this code
+//This BotBase was created by Apoc, I take no credit for anything within this code
 //I just changed "!StyxWoW.Me.CurrentTarget.IsFriendly" to "!StyxWoW.Me.CurrentTarget.IsHostile"
 //For the purpose of allowing RaidBot to work within Arenas
 
@@ -17,15 +17,28 @@ namespace RaidBot
 	{
 		private Composite _root;
 		public override string Name { get { return "Raid Bot"; } }
-		public override Composite Root { get { return _root ?? (_root = new PrioritySelector(CreateRootBehavior())); } }
+		public override bool RequiresProfile { get { return false; } }
+		public override Composite Root { get { return _root ?? (_root = CreateRootBehavior()); } }
 		public override PulseFlags PulseFlags { get { return PulseFlags.All & ~(PulseFlags.Targeting | PulseFlags.Looting); } }
 		public bool IsPaused { get; set; }
+
+		public override void Initialize()
+		{
+			BotEvents.Player.OnMapChanged += HandleMapChanged;
+		}
+
+		private void HandleMapChanged(BotEvents.Player.MapChangedEventArgs args)
+		{
+			_root = null;
+		}
+
 		public override void Start()
 		{
+			_root = null;
 			TreeRoot.TicksPerSecond = 30;
-			//if (ProfileManager.CurrentProfile == null)
-				ProfileManager.LoadEmpty();
+			ProfileManager.LoadEmpty();
 
+			HotkeysManager.Unregister("RaidBot Pause");
 			HotkeysManager.Register("RaidBot Pause",
 				Keys.X,
 				ModifierKeys.Alt,
@@ -49,24 +62,41 @@ namespace RaidBot
 
 		private Composite CreateRootBehavior()
 		{
+			var currentRoutine = RoutineManager.Current;
+			Composite preCombat = (currentRoutine != null && currentRoutine.PreCombatBuffBehavior != null)
+				? currentRoutine.PreCombatBuffBehavior
+				: new Action(ret => RunStatus.Failure);
+
+			Composite heal = (currentRoutine != null && currentRoutine.HealBehavior != null)
+				? currentRoutine.HealBehavior
+				: new Action(ret => RunStatus.Failure);
+
+			Composite combatBuff = (currentRoutine != null && currentRoutine.CombatBuffBehavior != null)
+				? currentRoutine.CombatBuffBehavior
+				: new Action(ret => RunStatus.Failure);
+
+			Composite combat = (currentRoutine != null && currentRoutine.CombatBehavior != null)
+				? currentRoutine.CombatBehavior
+				: new Action(ret => RunStatus.Failure);
+
 			return
 				new PrioritySelector(
 					new Decorator(ret => IsPaused,
 						new Action(ret => RunStatus.Success)),
 					new Decorator(ret => !StyxWoW.Me.Combat,
-						new PrioritySelector(
-							RoutineManager.Current.PreCombatBuffBehavior)),
+						new PrioritySelector(preCombat)),
 					new Decorator(ret => StyxWoW.Me.Combat,
 						new LockSelector(
-							RoutineManager.Current.HealBehavior,
+							heal,
 							new Decorator(ret => StyxWoW.Me.GotTarget && !StyxWoW.Me.CurrentTarget.IsFriendly && !StyxWoW.Me.CurrentTarget.IsDead,
 								new PrioritySelector(
-									RoutineManager.Current.CombatBuffBehavior,
-									RoutineManager.Current.CombatBehavior)))));
+									combatBuff,
+									combat)))));
 		}
 
 		public override void Stop()
 		{
+			_root = null;
 			TreeRoot.ResetTicksPerSecond();
 			HotkeysManager.Unregister("RaidBot Pause");
 		}
