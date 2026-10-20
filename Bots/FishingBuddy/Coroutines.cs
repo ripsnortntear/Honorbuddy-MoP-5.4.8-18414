@@ -68,7 +68,7 @@ namespace Bots.FishingBuddy
 
 			if (!StyxWoW.Me.IsAlive
 				|| (StyxWoW.Me.IsActuallyInCombat && Targeting.Instance.FirstUnit != null)
-				|| RoutineManager.Current.NeedRest)
+				|| (RoutineManager.Current != null && RoutineManager.Current.NeedRest))
 			{
 				return false;
 			}
