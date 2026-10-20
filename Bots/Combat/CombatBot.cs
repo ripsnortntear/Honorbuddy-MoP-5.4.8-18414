@@ -66,6 +66,7 @@ namespace Styx.Bot.CustomBots
         private bool _oldLogoutForInactivity;
         public override void Start()
         {
+            _root = null;
             Targeting.Instance.IncludeTargetsFilter += IncludeTargetsFilter;
             _oldLogoutForInactivity = GlobalSettings.Instance.LogoutForInactivity;
             GlobalSettings.Instance.LogoutForInactivity = false;
@@ -73,6 +74,7 @@ namespace Styx.Bot.CustomBots
 
         public override void Stop()
         {
+            _root = null;
             Targeting.Instance.IncludeTargetsFilter -= IncludeTargetsFilter;
             GlobalSettings.Instance.LogoutForInactivity = _oldLogoutForInactivity;
         }
@@ -111,11 +113,11 @@ namespace Styx.Bot.CustomBots
             // Cache for faster access
             return new PrioritySelector(
                 // Out of combat: Rest, Buffs, Pull
-                new Decorator(ret => !StyxWoW.Me.Combat,
+                new Decorator(ret => !StyxWoW.Me.Combat && RoutineManager.Current != null,
                     new PrioritySelector(
                         // Rest
                         new Decorator(ctx =>
-                            RoutineManager.Current.RestBehavior != null && RoutineManager.Current.NeedRest,
+                            RoutineManager.Current != null && RoutineManager.Current.RestBehavior != null && RoutineManager.Current.NeedRest,
                             new Sequence(
                                 new Action(ret => TreeRoot.StatusText = "Resting"),
                                 RoutineManager.Current.RestBehavior
@@ -123,7 +125,7 @@ namespace Styx.Bot.CustomBots
                         ),
                         // PreCombatBuffs
                         new Decorator(ctx =>
-                            RoutineManager.Current.PreCombatBuffBehavior != null && RoutineManager.Current.NeedPreCombatBuffs,
+                            RoutineManager.Current != null && RoutineManager.Current.PreCombatBuffBehavior != null && RoutineManager.Current.NeedPreCombatBuffs,
                             new Sequence(
                                 new Action(ret => TreeRoot.StatusText = "Applying pre-combat buffs"),
                                 RoutineManager.Current.PreCombatBuffBehavior
@@ -132,10 +134,10 @@ namespace Styx.Bot.CustomBots
                         // Pull
                         new Decorator(ret => BotPoi.Current.Type == PoiType.Kill && NeedPull(null),
                             new PrioritySelector(
-                                new Decorator(ctx => RoutineManager.Current.PullBuffBehavior != null,
+                                new Decorator(ctx => RoutineManager.Current != null && RoutineManager.Current.PullBuffBehavior != null,
                                     RoutineManager.Current.PullBuffBehavior
                                 ),
-                                new Decorator(ctx => RoutineManager.Current.PullBehavior != null,
+                                new Decorator(ctx => RoutineManager.Current != null && RoutineManager.Current.PullBehavior != null,
                                     RoutineManager.Current.PullBehavior
                                 ),
                                 new ActionPull()
@@ -144,11 +146,11 @@ namespace Styx.Bot.CustomBots
                     )
                 ),
                 // In combat: Heal, Buffs, Combat
-                new Decorator(ret => StyxWoW.Me.Combat,
+                new Decorator(ret => StyxWoW.Me.Combat && RoutineManager.Current != null,
                     new PrioritySelector(
                         // Heal (only if needed)
                         new Decorator(ctx =>
-                            RoutineManager.Current.HealBehavior != null && RoutineManager.Current.NeedHeal,
+                            RoutineManager.Current != null && RoutineManager.Current.HealBehavior != null && RoutineManager.Current.NeedHeal,
                             new Sequence(
                                 RoutineManager.Current.HealBehavior,
                                 new Action(delegate { return RunStatus.Success; })
@@ -156,14 +158,14 @@ namespace Styx.Bot.CustomBots
                         ),
                         // Combat Buffs (only if needed)
                         new Decorator(ctx =>
-                            RoutineManager.Current.CombatBuffBehavior != null && RoutineManager.Current.NeedCombatBuffs,
+                            RoutineManager.Current != null && RoutineManager.Current.CombatBuffBehavior != null && RoutineManager.Current.NeedCombatBuffs,
                             new Sequence(
                                 RoutineManager.Current.CombatBuffBehavior,
                                 new Action(delegate { return RunStatus.Success; })
                             )
                         ),
                         // Main Combat
-                        new Decorator(ctx => RoutineManager.Current.CombatBehavior != null,
+                        new Decorator(ctx => RoutineManager.Current != null && RoutineManager.Current.CombatBehavior != null,
                             new PrioritySelector(
                                 RoutineManager.Current.CombatBehavior,
                                 new Action(delegate { return RunStatus.Success; })
@@ -171,7 +173,11 @@ namespace Styx.Bot.CustomBots
                         ),
                         new Sequence(
                             new Action(ret => TreeRoot.StatusText = "Combat"),
-                            new Action(ret => RoutineManager.Current.Combat())
+                            new Action(ret => {
+                                if (RoutineManager.Current != null)
+                                    RoutineManager.Current.Combat();
+                                return RunStatus.Success;
+                            })
                         )
                     )
                 )
@@ -223,8 +229,8 @@ namespace Styx.Bot.CustomBots
                 if (_followMe != null && RaFHelper.Leader != null && _followMe.Guid != RaFHelper.Leader.Guid)
                     _followMe = RaFHelper.Leader;
 
-                if (_followMe == null)
-                    Logging.Write("Could not find suitable unit to follow!");
+                // Only follow if target found; avoid log flood per tick
+                // if (_followMe == null) Logging.WriteDiagnostic("Could not find suitable unit to follow!");
 
                 return _followMe;
             }
