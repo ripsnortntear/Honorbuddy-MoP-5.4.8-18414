@@ -93,15 +93,20 @@ namespace Styx.Bot.CustomBots
             Composite lazyRoot = null;
             if (LazyRaiderSettings.Instance.RaidBot)
             {
+                var cur = RoutineManager.Current;
+                Composite heal = (cur != null && cur.HealBehavior != null) ? cur.HealBehavior : new ActionAlwaysFail();
+                Composite combatBuff = (cur != null && cur.CombatBuffBehavior != null) ? cur.CombatBuffBehavior : new ActionAlwaysFail();
+                Composite combat = (cur != null && cur.CombatBehavior != null) ? cur.CombatBehavior : new ActionAlwaysFail();
+
                 lazyRoot = new Decorator(
                     ret => StyxWoW.Me.Combat,
 
                     CreateFrameFactory(
-                        RoutineManager.Current.HealBehavior,
-                        RoutineManager.Current.CombatBuffBehavior ?? new Action(ret => { return RunStatus.Failure; }),
+                        heal,
+                        combatBuff,
                         new Decorator(
                             ret => StyxWoW.Me.GotTarget && !StyxWoW.Me.CurrentTarget.IsFriendly,
-                            RoutineManager.Current.CombatBehavior
+                            combat
                             )
                         )
                     );
@@ -383,9 +388,9 @@ namespace Styx.Bot.CustomBots
                 CreateFrameFactory(
                     new Decorator(ret => StyxWoW.Me.Combat,
                         new PrioritySelector(
-                            RoutineManager.Current.HealBehavior ?? new ActionAlwaysFail(),
-                            RoutineManager.Current.CombatBuffBehavior ?? new ActionAlwaysFail(),
-                            RoutineManager.Current.CombatBehavior
+                            (RoutineManager.Current != null ? RoutineManager.Current.HealBehavior : null) ?? new ActionAlwaysFail(),
+                            (RoutineManager.Current != null ? RoutineManager.Current.CombatBuffBehavior : null) ?? new ActionAlwaysFail(),
+                            (RoutineManager.Current != null ? RoutineManager.Current.CombatBehavior : null) ?? new ActionAlwaysFail()
                             )
                         )
                     ),
@@ -396,8 +401,8 @@ namespace Styx.Bot.CustomBots
 
                         CreateFrameFactory(
                             new PrioritySelector(
-                                RoutineManager.Current.RestBehavior ?? new ActionAlwaysFail(),
-                                RoutineManager.Current.PreCombatBuffBehavior ?? new ActionAlwaysFail()
+                                (RoutineManager.Current != null ? RoutineManager.Current.RestBehavior : null) ?? new ActionAlwaysFail(),
+                                (RoutineManager.Current != null ? RoutineManager.Current.PreCombatBuffBehavior : null) ?? new ActionAlwaysFail()
                                 )
                             ),
 
@@ -415,10 +420,10 @@ namespace Styx.Bot.CustomBots
                             NeedPull,
                             new PrioritySelector(
 
-                                new Decorator(ctx => RoutineManager.Current.PullBuffBehavior != null,
+                                new Decorator(ctx => RoutineManager.Current != null && RoutineManager.Current.PullBuffBehavior != null,
                                     RoutineManager.Current.PullBuffBehavior),
 
-                                new Decorator(ctx => RoutineManager.Current.PullBehavior != null,
+                                new Decorator(ctx => RoutineManager.Current != null && RoutineManager.Current.PullBehavior != null,
                                     RoutineManager.Current.PullBehavior),
 
                                 new ActionPull()
