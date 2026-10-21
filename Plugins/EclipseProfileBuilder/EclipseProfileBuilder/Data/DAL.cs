@@ -1,3 +1,4 @@
+//!CompilerOption:AddRef:System.Data.SQLite.dll
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
