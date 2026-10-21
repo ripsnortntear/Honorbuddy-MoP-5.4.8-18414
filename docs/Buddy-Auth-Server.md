@@ -77,53 +77,51 @@ Located at `Auth/Settings.xml`:
 
 To ensure the auth server is always running silently in the background, starts automatically on Windows boot, and restarts if ever terminated, use **NSSM (Non-Sucking Service Manager)**.
 
-### The `Console.Clear()` Console Handle Issue
+### Recommended Method: NSSM GUI Installer (`nssm.exe install`)
 
-`Buddy_Auth.exe` includes console UI code that calls `Console.Clear()`. When launched as a headless Windows Service without standard I/O streams attached, calling `Console.Clear()` throws:
+The GUI installer is the most reliable way to configure the service because it automatically configures desktop interaction flags (`SERVICE_INTERACTIVE_PROCESS`), providing valid console screen buffers for `Console.Clear()` and `Console.ReadKey()`.
 
-```
-System.IO.IOException: The handle is invalid.
-   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   at System.Console.Clear()
-```
-
-**Solution**: NSSM must be configured with `AppStdout` and `AppStderr` pointing to valid log file paths. This provides valid stream handles and redirects console output to disk, completely resolving the crash.
+1. Open **Command Prompt** as **Administrator**:
+   ```cmd
+   cd /d "D:\Games\GH of HB\Auth"
+   nssm.exe install
+   ```
+2. In the NSSM configuration window:
+   - **Service name**: `BuddyAuth`
+   - **Path**: `D:\Games\GH of HB\Auth\Buddy_Auth.exe`
+   - **Startup directory**: `D:\Games\GH of HB\Auth`
+3. Click **Install service**.
+4. Configure logging and automatic startup:
+   ```cmd
+   nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
+   nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
+   nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
+   nssm.exe set BuddyAuth Start SERVICE_AUTO_START
+   ```
+5. Verify the service is running:
+   ```cmd
+   nssm.exe status BuddyAuth
+   ```
+   Output: `SERVICE_RUNNING`
 
 ---
 
-### Step-by-Step NSSM Installation
+### Command-Line NSSM Installation (CLI)
 
-Open **PowerShell** or **Command Prompt** as **Administrator**:
+If installing strictly via command line, configure stdout/stderr redirection and allow desktop interaction:
 
-#### 1. Navigate to the Auth directory:
-```powershell
-cd "D:\Games\GH of HB\Auth"
-```
+```cmd
+cd /d "D:\Games\GH of HB\Auth"
 
-#### 2. Install the service:
-```powershell
-.\nssm.exe install BuddyAuth "D:\Games\GH of HB\Auth\Buddy_Auth.exe"
-```
+:: 1. Install service with interactive console flag
+nssm.exe install BuddyAuth "D:\Games\GH of HB\Auth\Buddy_Auth.exe"
+nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
+nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
+nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
+nssm.exe set BuddyAuth Start SERVICE_AUTO_START
 
-#### 3. Set the working directory:
-```powershell
-.\nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
-```
-
-#### 4. Configure stdout and stderr redirection (Mandatory):
-```powershell
-.\nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
-.\nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
-```
-
-#### 5. Set startup type to Automatic:
-```powershell
-.\nssm.exe set BuddyAuth Start SERVICE_AUTO_START
-```
-
-#### 6. Start the service:
-```powershell
-.\nssm.exe start BuddyAuth
+:: 2. Start service
+nssm.exe start BuddyAuth
 ```
 
 ---
