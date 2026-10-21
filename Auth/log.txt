@@ -1,0 +1,612 @@
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+An exception raised: There is already a listener on IP endpoint 0.0.0.0:5031. This could happen if there is another application already listening on this endpoint or if you have multiple service endpoints in your service host with the same IP endpoint but with incompatible binding configurations.
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+Do(1, "12345678901234567890", "e66fbb0834e68101d0e41356cfc662c6", "2", "5250673234530925153");
+Do(4, "9618d1e23a33d9abbc56b057c9bb5449", "18670", "2.5.11489.748");
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+Do(1, "12345678901234567890", "e66fbb0834e68101d0e41356cfc662c6", "2", "5250673234713245319");
+Do(4, "af6c9a48a594fe505b24402e925fd01c", "18670", "2.5.11489.748");
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+Do(72, "af6c9a48a594fe505b24402e925fd01c", "2");
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+Do(18, "af6c9a48a594fe505b24402e925fd01c", "System.Byte[]");
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+Do(18, "af6c9a48a594fe505b24402e925fd01c", "System.Byte[]");
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+Do(18, "af6c9a48a594fe505b24402e925fd01c", "System.Byte[]");
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+
+Unhandled Exception: System.IO.IOException: The handle is invalid.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.GetBufferInfo(Boolean throwOnNoConsole, Boolean& succeeded)
+   at System.Console.Clear()
+   at HB_Auth.AuthSvc.Main(String[] args)
+An exception raised: There is already a listener on IP endpoint 0.0.0.0:5031. This could happen if there is another application already listening on this endpoint or if you have multiple service endpoints in your service host with the same IP endpoint but with incompatible binding configurations.
