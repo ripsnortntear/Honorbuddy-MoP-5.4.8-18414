@@ -56,6 +56,11 @@ Honorbuddy interacts with World of Warcraft by hooking into the Direct3D present
   - Recommended: **15 to 30 TPS**.
   - A higher TPS yields faster reaction times (e.g. for PvP kick routines) but increases CPU utilization.
 
+### Incremental Assembly Caching & Startup Optimization
+Honorbuddy features an automatic deterministic assembly caching engine in `Styx.Common.Compiler.CodeCompiler`:
+- **Instant Launch**: On first launch, plugins, routines, and bots are compiled to `CompiledAssemblies\` with deterministic FNV-1a hashes. On subsequent launches, cached assemblies load directly from disk in milliseconds, preventing game stalls or D3D11 frame lock timeouts.
+- **Automatic Recompilation**: If you edit or update any `.cs` source file within a plugin, combat routine, or quest behavior, Honorbuddy automatically detects the modified timestamp and recompiles only that specific component.
+
 ### Graphics Mode Selection (Direct3D 11 vs Direct3D 9)
 - **Direct3D 11** (Recommended): Provides superior multi-threading and lower CPU overhead on modern Windows 10/11 graphics drivers.
 - **Direct3D 9**: Use as a fallback if the D3D11 hook encounters third-party overlay conflicts (e.g. Discord overlay or RivaTuner).
