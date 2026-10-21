@@ -1,0 +1,6 @@
+09:36:36: Some exception raised, check logfile
+09:36:36: An exception raised: Exception has been thrown by the target of an invocation.
+Stack:    at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Buddy_dump.BotBehaviors.Selector.GetBehavior(String BotSig, String MeshPath, String OffsetsPath, String MapListPath)
+   at Buddy_dump.DumperProgram.JustDoIt()
