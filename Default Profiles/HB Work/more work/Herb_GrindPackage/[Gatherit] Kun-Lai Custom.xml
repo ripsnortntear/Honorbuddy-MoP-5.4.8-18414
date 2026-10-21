@@ -1,0 +1,72 @@
+<HBProfile>
+<Name>Gatherit - Kun-Lai Custom - Visit gatherit.blogspot.com for more awesome profiles!</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+
+<MinLevel>85</MinLevel>
+<MaxLevel>99</MaxLevel>
+<Factions>99999</Factions>
+
+<MailGrey>true</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>false</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>false</MailPurple>
+
+<SellGrey>true</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+<Vendors>
+<Vendor Name="Alin der Finder" Entry="65171" Type="Repair" X="2363.516" Y="2973.526" Z="417.234" />
+</Vendors>
+
+<Mailboxes>
+<Mailbox X="2353.41" Y="2994.422" Z="421.1479" />
+</Mailboxes>
+
+<Blackspots>
+<Blackspot X="3719.573" Y="2307.065" Z="836.9625" Radius="22" />
+<Blackspot X="2925.372" Y="1953.978" Z="673.5714" Radius="86.57587" Height="24.31168" />
+<Blackspot X="2961.444" Y="2013.422" Z="668.9512" Radius="23.89481" />
+<Blackspot X="2999.969" Y="1964.813" Z="668.6387" Radius="53.37908" />
+<Blackspot X="2888.285" Y="1980.562" Z="661.3121" Radius="57.90126" />
+<Blackspot X="3014.104" Y="1678.064" Z="682.872" Radius="47.15609" />
+<Blackspot X="2926.466" Y="1722.173" Z="670.9951" Radius="54.89809" />
+<Blackspot X="2989.999" Y="1701.87" Z="676.6926" Radius="77.34692" Height="14.79517" />
+<Blackspot X="3297.104" Y="2636.771" Z="700.3589" Radius="17.9029" />
+<Blackspot X="3298.39" Y="2634.96" Z="710.3105" Radius="18.21825" />
+</Blackspots>
+
+<Hotspots>
+<Hotspot X="3340.299" Y="2750.921" Z="679.447" />
+<Hotspot X="3227.253" Y="2783.14" Z="632.3743" />
+<Hotspot X="3429.258" Y="2657.387" Z="758.1371" />
+<Hotspot X="3355.388" Y="2440.186" Z="867.6929" />
+<Hotspot X="3327.011" Y="2376.767" Z="892.2314" />
+<Hotspot X="3548.402" Y="2406.559" Z="852.6616" />
+<Hotspot X="3704.503" Y="2308.36" Z="870.8298" />
+<Hotspot X="3883.413" Y="2335.158" Z="778.1612" />
+<Hotspot X="4009.989" Y="2341.737" Z="648.5026" />
+<Hotspot X="4069.901" Y="2198.778" Z="703.1728" />
+<Hotspot X="4055.263" Y="2071.6" Z="783.5919" />
+<Hotspot X="3943.614" Y="1818.397" Z="979.7163" />
+<Hotspot X="3728.369" Y="1517.401" Z="863.0994" />
+<Hotspot X="3669.855" Y="1389.156" Z="835.8827" />
+<Hotspot X="3597.063" Y="1246.38" Z="827.9825" />
+<Hotspot X="3556.025" Y="1452.329" Z="883.9426" />
+<Hotspot X="3376.312" Y="1562.458" Z="952.774" />
+<Hotspot X="3305.371" Y="1584.824" Z="906.5735" />
+<Hotspot X="3249.977" Y="1677.065" Z="861.0229" />
+<Hotspot X="3155.61" Y="1649.863" Z="817.196" />
+<Hotspot X="3144.832" Y="1885.905" Z="837.96" />
+<Hotspot X="3136.233" Y="2159.185" Z="861.6882" />
+<Hotspot X="3168.594" Y="2339.487" Z="869.1171" />
+<Hotspot X="3251.13" Y="2416.695" Z="924.0908" />
+<Hotspot X="3331.05" Y="2428.379" Z="872.9203" />
+<Hotspot X="3376.038" Y="2667.389" Z="735.3362" />
+<Hotspot X="3311.54" Y="2756.798" Z="646.9971" />
+</Hotspots>
+</HBProfile>

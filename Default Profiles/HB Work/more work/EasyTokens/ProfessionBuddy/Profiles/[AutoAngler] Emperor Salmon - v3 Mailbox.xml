@@ -1,0 +1,60 @@
+<HBProfile>
+<Name>VoEB Fishing</Name>
+<MinDurability>0.4</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+
+<MinLevel>1</MinLevel>
+<MaxLevel>91</MaxLevel>
+<Factions>99999</Factions>
+
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>false</MailGreen>
+<MailBlue>false</MailBlue>
+<MailPurple>false</MailPurple>
+
+<SellGrey>false</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+<Mailbox X="-207.8559" Y="495.6412" Z="187.2112" />
+</Mailboxes>
+
+<Blackspots>
+<Blackspot X="1.040352" Y="-340.6281" Z="167.6025" Radius="80" Height="25" />
+<Blackspot X="-1056.612" Y="1410.715" Z="16.70936" Radius="200" />
+</Blackspots>
+
+<Hotspots>
+<Hotspot X="704.7975" Y="-801.162" Z="261.4532" />
+<Hotspot X="630.989" Y="-746.9894" Z="279.8828" />
+<Hotspot X="270.5413" Y="-739.0221" Z="257.4578" />
+<Hotspot X="-10.34679" Y="-308.1284" Z="206.9321" />
+<Hotspot X="-611.7606" Y="111.4295" Z="186.2109" />
+<Hotspot X="-698.356" Y="257.122" Z="174.6566" />
+<Hotspot X="-397.8915" Y="396.3487" Z="190.1677" />
+<Hotspot X="-95.78654" Y="357.0029" Z="181.1813" />
+<Hotspot X="197.0896" Y="470.1156" Z="179.9122" />
+<Hotspot X="405.3486" Y="558.6037" Z="171.1245" />
+<Hotspot X="396.6942" Y="822.7858" Z="177.8775" />
+<Hotspot X="350.5437" Y="981.6566" Z="174.814" />
+<Hotspot X="371.1975" Y="1079.347" Z="173.0591" />
+<Hotspot X="416.2422" Y="571.3922" Z="200.7353" />
+<Hotspot X="-52.0352" Y="363.1357" Z="295.749" />
+<Hotspot X="-744.5518" Y="334.4001" Z="167.3031" />
+<Hotspot X="-746.9038" Y="984.5526" Z="164.1167" />
+<Hotspot X="-938.6099" Y="1376.037" Z="169.7336" />
+<Hotspot X="-777.8698" Y="809.7257" Z="231.2104" />
+<Hotspot X="-677.0793" Y="195.1404" Z="188.6386" />
+<Hotspot X="-8.488335" Y="-334.0314" Z="224.9051" />
+<Hotspot X="268.4377" Y="-733.6949" Z="264.5776" />
+<Hotspot X="644.2807" Y="-752.0438" Z="258.312" />
+<Hotspot X="686.1533" Y="-836.4556" Z="243.8523" />
+</Hotspots>
+</HBProfile>

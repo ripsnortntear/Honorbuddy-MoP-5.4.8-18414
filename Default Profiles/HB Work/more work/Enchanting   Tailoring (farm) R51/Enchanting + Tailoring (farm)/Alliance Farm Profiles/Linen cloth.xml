@@ -1,0 +1,103 @@
+<!-- Westfall Linen Cloth farming by infern1k -->
+<HBProfile>
+<Name>Linen-Alliance</Name>
+<MinDurability>0.4</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+
+  
+  <ProtectedItems>
+    <Item Name="Bolt of Netherweawe cloth" Entry="21840" />
+    <Item Name="Bolt of Runecloth" Entry="14048" />
+    <Item Name="Bolt of mageweawe" Entry="4339" />
+    <Item Name="Bolt of Wool cloth" Entry="2997" />
+    <Item Name ="Bolt of Silk cloth" Entry="4305" />
+    <Item Name="Linen Cloth" Entry="2589" />
+    <Item Name="Wool Cloth" Entry="2592" />
+    <Item Name="Silk Cloth" Entry="4306" />
+    <Item Name="Mageweave Cloth" Entry="4338" />
+    <Item Name="Runecloth" Entry="14047" />
+    <Item Name="Netherweave Cloth" Entry="21877" />
+    <Item Name="Frostweave Cloth" Entry="33470" />
+    <Item Name="Embersilk Cloth" Entry="53010" />
+  </ProtectedItems>
+
+
+<MailGrey>false</MailGrey>
+<MailWhite>false</MailWhite>
+<MailGreen>false</MailGreen>
+<MailBlue>false</MailBlue>
+<MailPurple>false</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+<Vendors>
+  <Vendor Name="William McGregor" Entry="1668" Type="Repair" X="-10653.31" Y="996.5868" Z="32.87476" />
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<Blackspots>
+</Blackspots>
+
+  <QuestOrder>
+    <CustomBehavior File="UserSettings" PullDistance="30" FindVendorsAutomatically="False" LootMobs="True"/>
+
+    <While Condition="(Me.Level &gt; 1)" >
+
+      <If Condition="(Me.FreeBagSlots &gt; 10)" >
+
+        <CustomBehavior File="FlyTo"  X="-10657.32" Y="1252.579" Z="45.24769"   DestName="to farm Linen cloth." />
+        <CustomBehavior File="ForcedDismount" />
+
+        <SetGrindArea>
+          <GrindArea>
+            <TargetMinLevel>1</TargetMinLevel>
+            <TargetMaxLevel>86</TargetMaxLevel>
+            <Factions>2365 20</Factions>
+            <!-- [] -->
+            <MaxDistance>35</MaxDistance>
+            <RandomizeHotspots>False</RandomizeHotspots>
+            <Hotspots>
+              <Hotspot x="-11106.25" y="933.3334" z="34" />
+              <Hotspot x="-11175" y="854.1667" z="34" />
+              <Hotspot x="-11060.417" y="833.3334" z="34" />
+              <Hotspot x="-11168.75" y="764.5834" z="34" />
+              <Hotspot x="-11068.75" y="739.5834" z="34" />
+              <Hotspot x="-11145.834" y="658.3334" z="34" />
+            </Hotspots>
+          </GrindArea>
+        </SetGrindArea>
+        <GrindTo Condition="(Me.FreeBagSlots &lt;= 10) || (Me.DurabilityPercent &lt;= 0.3)" GoalText="Farming Linen Cloth." />
+      </If>
+      <If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.DurabilityPercent &lt;= 0.3)" >
+
+        <CustomBehavior File="Message" Text="Sell \ Repair." LogColor="Red" />
+
+        <CustomBehavior File="FlyTo" X="-10645.87" Y="1005.372" Z="49.57254"   DestName="Repair Run" />
+        <CustomBehavior File="ForcedDismount" />
+
+        <SetVendor>
+          <Vendors>
+            <Vendor Name="William McGregor" Entry="1668" Type="Repair" X="-10653.31" Y="996.5868" Z="32.87476" />
+          </Vendors>
+        </SetVendor>
+
+        <CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+
+        <ClearMailbox />
+        <ClearVendor />
+
+      </If>
+
+
+
+    </While>
+
+
+  </QuestOrder>
+</HBProfile>

@@ -1,0 +1,52 @@
+<HBProfile>
+	<Name>[Neutral] Silverpine Forest Meat Farm</Name>
+	<MinDurability>0.3</MinDurability>
+	<MinFreeBagSlots>2</MinFreeBagSlots>
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>False</SellGreen>
+	<MailWhite>False</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MinLevel>1</MinLevel>
+	<MaxLevel>86</MaxLevel>
+	<QuestOrder>
+		<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="35" KillBetweenHotspots="True"/>
+		<CustomBehavior File="Message" Text="HB: *****************************" LogColor="GreenYellow"/>
+		<CustomBehavior File="Message" Text="HB: [Neutral] Silverpine Forest Meat Farm" LogColor="GreenYellow"/>
+		<CustomBehavior File="Message" Text="HB: Thanks to:" LogColor="GreenYellow"/>
+		<CustomBehavior File="Message" Text="HB: *****************************" LogColor="GreenYellow"/>
+		<If Condition="(Me.MapId == 0) &amp;&amp; (Me.GetSkill(Styx.SkillLine.Cooking).CurrentValue &lt; 450)">
+			<CustomBehavior File="Message" Text="HB: Silverpine Forest Meat Farming" LogColor="Orange"/>
+			<CustomBehavior File="FlyTo" x="1169.387" y="1640.22" z="80"/>
+			<CustomBehavior File="ForcedDismount"/>
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Silverpine Forest Meat Farming 435-450</Name>
+					<TargetMinLevel>1</TargetMinLevel>
+					<TargetMaxLevel>90</TargetMaxLevel>
+					<Factions>38</Factions>
+					<Hotspots>
+						<Hotspot X="1169.387" Y="1640.22" Z="80" />
+						<Hotspot X="1208.587" Y="1423.92" Z="80" />
+						<Hotspot X="1223.147" Y="1316.4" Z="80" />
+						<Hotspot X="1180.587" Y="1063.98" Z="80" />
+						<Hotspot X="1272.427" Y="885.0599" Z="80" />
+						<Hotspot X="1088.747" Y="981.6599" Z="80" />
+						<Hotspot X="905.0666" Y="1087.5" Z="80" />
+						<Hotspot X="806.5067" Y="1300.86" Z="80" />
+						<Hotspot X="765.0667" Y="1441.98" Z="80" />
+						<Hotspot X="810.9867" Y="1484.82" Z="80" />
+						<Hotspot X="942.0267" Y="1444.5" Z="80" />
+						<Hotspot X="821.0667" Y="1609.98" Z="80" />
+						<Hotspot X="812.1066" Y="1683.48" Z="80" />
+						<Hotspot X="907.3066" Y="1716.24" Z="80" />
+						<Hotspot X="1000.267" Y="1768.74" Z="80" />
+						<Hotspot X="1038.347" Y="1712.04" Z="80" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="(InbagCount(3173) >= 35)" GoalText="Silverpine Forest Meat Farming. DONE"/>
+		</If>
+	</QuestOrder>
+</HBProfile>

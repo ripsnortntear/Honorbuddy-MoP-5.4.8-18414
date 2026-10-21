@@ -1,0 +1,67 @@
+<HBProfile creator="Gatherit" version="1.0">
+
+    <Name>Gatherit SW Valley Skinning with Meat and Motes - Get more awesome profiles at gatherit.blogspot.com</Name>
+    <MinLevel>85</MinLevel>
+    <MaxLevel>99</MaxLevel>
+   
+    <MinDurability>0.2</MinDurability>
+    <MinFreeBagSlots>2</MinFreeBagSlots>
+   
+   	<SellGrey>True</SellGrey>
+   	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+        
+	<Factions>14 16 190 2136</Factions>
+	
+    <Vendors>
+	<!-- Neutral -->
+    <Vendor Name="Gina Mudclaw" Entry="60423" Type="Repair" X="-256.5601" Y="590.2265" Z="167.5488" />
+	</Vendors>
+   
+    <Mailboxes> 
+	<Mailbox X="-206.6574" Y="493.1057" Z="187.189" />
+	</Mailboxes>
+   
+    <GrindArea>
+		<TargetMinLevel>80</TargetMinLevel>
+		<TargetMaxLevel>99</TargetMaxLevel>
+		<Factions>14 16 190 2136</Factions>
+		<Hotspots>
+<Hotspot X="-1102.784" Y="1488.909" Z="148.2707" />
+<Hotspot X="-857.0494" Y="1491.063" Z="148.4316" />
+<Hotspot X="-754.5591" Y="1536.305" Z="149.7585" />
+<Hotspot X="-663.0391" Y="1780.7" Z="148.6129" />
+<Hotspot X="-614.9876" Y="1898.299" Z="144.6355" />
+<Hotspot X="-647.4986" Y="2009.127" Z="141.1619" />
+<Hotspot X="-733.5585" Y="1999.932" Z="146.3414" />
+<Hotspot X="-795.9111" Y="1986.251" Z="151.2137" />
+<Hotspot X="-861.9664" Y="1988.358" Z="152.0363" />
+<Hotspot X="-763.7136" Y="1859.233" Z="142.5254" />
+<Hotspot X="-901.5286" Y="1830.435" Z="137.96" />
+<Hotspot X="-809.1485" Y="1903.807" Z="137.8463" />
+<Hotspot X="-741.4265" Y="1803.365" Z="150.4593" />
+<Hotspot X="-839.8095" Y="1715.771" Z="148.5505" />
+<Hotspot X="-930.0884" Y="1689.131" Z="155.1132" />
+<Hotspot X="-1011.677" Y="1693.596" Z="148.7363" />
+<Hotspot X="-1044.932" Y="1630.668" Z="149.8637" />
+<Hotspot X="-1029.914" Y="1849.291" Z="149.9495" />
+        </Hotspots>
+    </GrindArea>
+	
+	<Blackspots>
+
+  </Blackspots>
+  
+  <AvoidMobs> 
+  <!-- Don't Attack/Engage!  This is a Rare Mob -->
+  <Mob Name="Morgrinn Crackfang" Entry="50350"/>
+  <!-- Annoying flying mobs -->
+  <Mob Name="Ancient Spirit" Entry="55489"/>
+  </AvoidMobs>
+  
+</HBProfile>

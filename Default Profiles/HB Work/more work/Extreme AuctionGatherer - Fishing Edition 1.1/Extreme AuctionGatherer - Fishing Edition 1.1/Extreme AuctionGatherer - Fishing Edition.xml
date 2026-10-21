@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <While Condition="(InbagCount (88496)) &gt;= 1" IgnoreCanRun="True">
+    <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+  </While>
+  <If Condition="(InbagCount (88496)) &gt;= 1" IgnoreCanRun="True">
+    <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+  </If>
+  <SubRoutine SubRoutineName="Declarations">
+    <Declaration Code="int  EmperorSalmonStacks, GiantMantisShrimpStacks, JadeLungfishStacks, KrasarangPaddlefishStacks, RedbellyMandarinStacks, ReefOctopusStacks, TigerGouramiStacks, JewelDanioStacks, SpinefishStacks;" />
+    <Declaration Code="bool OnlyGather = false;" />
+    <Declaration Code="bool InPandaria, DoTownRun;" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Settings">
+    <!--Amount of Stacks-->
+    <Settings DefaultValue="100" Type="Int16" Name="Emperor Salmon" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Giant Mantis Shrimp" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Krasarang Paddlefish" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Redbelly Mandarin" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Jade Lungfish" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Reef Octopus" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Jewel Danio" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Tiger Gourami" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <Settings DefaultValue="100" Type="Int16" Name="Spinefish" Summary="The bot will not put more than this amount of stacks of each item on AH." Category="Number of Stacks posted on AH - Fish" Global="False" Hidden="False" />
+    <!--Misc-->
+    <Settings DefaultValue="true" Type="Boolean" Name="Do Town Run" Summary="If set to True , when bags fill up the bot will take portal to SW / Orgrimmar and post on AH and Deposit in Bank / Gbank , and then take portal back to Pandaria and continue farming." Category="Misc" Global="False" Hidden="False" />
+    <Settings DefaultValue="false" Type="Boolean" Name="Deposit in Gbank instead of Bank" Summary="Deposits the remaining Fish to the Bank / GBank after posting on AH.  If this Option is False , then the bot will Deposit in Personal Bank , and if Personal Bank is full , it will mail the rest. If this option is True , then the priority will be Gbank -&gt; Personal Bank -&gt; Mail" Category="Misc" Global="False" Hidden="False" />
+  </SubRoutine>
+  <CustomAction Code="EmperorSalmonStacks = (Int16)Settings[&quot;Emperor Salmon&quot;];&#xD;&#xA;GiantMantisShrimpStacks = (Int16)Settings[&quot;Giant Mantis Shrimp&quot;];&#xD;&#xA;JadeLungfishStacks = (Int16)Settings[&quot;Jade Lungfish&quot;];&#xD;&#xA;KrasarangPaddlefishStacks = (Int16)Settings[&quot;Krasarang Paddlefish&quot;];&#xD;&#xA;RedbellyMandarinStacks = (Int16)Settings[&quot;Redbelly Mandarin&quot;];&#xD;&#xA;ReefOctopusStacks = (Int16)Settings[&quot;Reef Octopus&quot;];&#xD;&#xA;TigerGouramiStacks = (Int16)Settings[&quot;Tiger Gourami&quot;];&#xD;&#xA;JewelDanioStacks = (Int16)Settings[&quot;Jewel Danio&quot;];&#xD;&#xA;SpinefishStacks = (Int16)Settings[&quot;Spinefish&quot;];" />
+  <CustomAction Code="DoTownRun = (bool)Settings[&quot;Do Town Run&quot;];" />
+  <If Condition="!(DoTownRun)" IgnoreCanRun="True">
+    <CustomAction Code="OnlyGather = true;" />
+  </If>
+  <SubRoutine SubRoutineName="TownRun">
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="79010" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="GiantMantisShrimpStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="72234" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="EmperorSalmonStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="72237" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="JadeLungfishStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="72235" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="KrasarangPaddlefishStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="89639" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="RedbellyMandarinStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="79011" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="ReefOctopusStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="72238" MinBuyout="1g10s0c" MaxBuyout="300g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="JewelDanioStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="72093" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="SpinefishStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Amount" ItemID="72092" MinBuyout="1g10s0c" MaxBuyout="10g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="TigerGouramiStacks" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Herb" UseCategory="True" RunTime="_12_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="MetalStone" UseCategory="True" RunTime="_12_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_12_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="0" AutoFindMailBox="True" Location="0, 0, 0" />
+    <If Condition="(bool)Settings[&quot;Deposit in Gbank instead of Bank&quot;]" IgnoreCanRun="True">
+      <PutItemInBankAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Deposit="All" UseCategory="True" Bank="Guild" ItemID="" GuildTab="0" NpcEntry="0" Amount="0" AutoFindBank="True" Location="0, 0, 0" />
+    </If>
+    <PutItemInBankAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Deposit="All" UseCategory="True" Bank="Personal" ItemID="" GuildTab="0" NpcEntry="0" Amount="0" AutoFindBank="True" Location="0, 0, 0" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="PortalToTown">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <While Condition="!(Me.MapId == 0 || Me.MapId == 1 )" IgnoreCanRun="False">
+        <If Condition="!(Me.ZoneId == 6142)" IgnoreCanRun="True">
+          <FlyToAction Dismount="False" Location="859.4655, 281.1173, 503.2266" />
+        </If>
+        <MoveToAction Location="827.9862, 177.2762, 519.9348" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <InteractionAction InteractType="GameObject" Entry="215119" InteractDelay="0" GameObjectType="WorldObject" SpellFocus="Anvil" />
+        <WaitAction Condition="false" Timeout="3000" />
+      </While>
+    </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="False">
+      <While Condition="!(Me.MapId == 0 || Me.MapId == 1 )" IgnoreCanRun="False">
+        <If Condition="!(Me.ZoneId == 6141)" IgnoreCanRun="True">
+          <FlyToAction Dismount="False" Location="1629.769, 924.1738, 471.1844" />
+        </If>
+        <MoveToAction Location="1735.073, 873.5676, 487.4114" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <InteractionAction InteractType="GameObject" Entry="215127" InteractDelay="0" GameObjectType="WorldObject" SpellFocus="Anvil" />
+        <WaitAction Condition="false" Timeout="3000" />
+      </While>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="PortalToPandaria">
+    <While Condition="Me.MapId == 0 &amp;&amp; Me.IsAlliance" IgnoreCanRun="False">
+      <FlyToAction Dismount="True" Location="-8199.262, 531.4355, 117.326" />
+      <InteractionAction InteractType="GameObject" Entry="215457" InteractDelay="0" GameObjectType="WorldObject" SpellFocus="Anvil" />
+      <WaitAction Condition="false" Timeout="3000" />
+    </While>
+    <While Condition="Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="False">
+      <FlyToAction Dismount="True" Location="2014.819, -4700.274, 28.62439" />
+      <InteractionAction InteractType="GameObject" Entry="215424" InteractDelay="0" GameObjectType="WorldObject" SpellFocus="Anvil" />
+      <WaitAction Condition="false" Timeout="3000" />
+    </While>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="MoveToMarket">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-8378.115, 640.2366, 94.99358" />
+    </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="1969.626, -4680.478, 31.38253" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="MoveToMailbox">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <MoveToAction Location="863.3191, 284.0312, 503.6776" MoveType="Location" Pathing="Navigator" Entry="0" />
+    </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True">
+      <MoveToAction Location="1629.769, 924.1738, 471.1844" MoveType="Location" Pathing="Navigator" Entry="0" />
+    </If>
+  </SubRoutine>
+  <While Condition="true" IgnoreCanRun="True">
+    <While Condition="(Me.MapId == 0 || Me.MapId == 1 )" IgnoreCanRun="True">
+      <ChangeBotAction BotName="Combat Bot" />
+      <If Condition="DoTownRun" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="MoveToMarket" />
+        <CallSubRoutine SubRoutineName="TownRun" />
+      </If>
+      <CallSubRoutine SubRoutineName="PortalToPandaria" />
+    </While>
+    <While Condition="(Me.FreeBagSlots &gt; 5 || OnlyGather) &amp;&amp; !(Me.MapId == 0 || Me.MapId == 1 )" IgnoreCanRun="False">
+      <While Condition="(InbagCount (88496)) &gt;= 1" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+      </While>
+      <If Condition="(InbagCount (88496)) &gt;= 1" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+      </If>
+      <ChangeBotAction BotName="AutoAngler" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[AA][N] Mega Fishing Profile 2.0 -Pandaria - By Lbniese.xml" />
+    </While>
+    <While Condition="!(Me.FreeBagSlots &gt; 5) &amp;&amp; !(Me.MapId == 0 || Me.MapId == 1 )" IgnoreCanRun="True">
+      <ChangeBotAction BotName="Combat Bot" />
+      <If Condition="DoTownRun" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="PortalToTown" />
+      </If>
+      <If Condition="!DoTownRun" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="MoveToMailbox" />
+        <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+      </If>
+    </While>
+    <While Condition="(InbagCount (88496)) &gt;= 1" IgnoreCanRun="True">
+      <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+    </While>
+    <If Condition="(InbagCount (88496)) &gt;= 1" IgnoreCanRun="True">
+      <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+    </If>
+  </While>
+</Professionbuddy>

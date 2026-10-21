@@ -1,0 +1,48 @@
+<HBProfile>
+	<Name>[Neutral] Uldum Meat Farm</Name>
+	<MinDurability>0.3</MinDurability>
+	<MinFreeBagSlots>2</MinFreeBagSlots>
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>False</SellGreen>
+	<MailWhite>False</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MinLevel>1</MinLevel>
+	<MaxLevel>86</MaxLevel>
+	<QuestOrder>
+		<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="35" KillBetweenHotspots="True"/>
+		<CustomBehavior File="Message" Text="HB: *****************************" LogColor="GreenYellow"/>
+		<CustomBehavior File="Message" Text="HB: [Neutral] Uldum Meat Farm" LogColor="GreenYellow"/>
+		<CustomBehavior File="Message" Text="HB: Thanks to:" LogColor="GreenYellow"/>
+		<CustomBehavior File="Message" Text="HB: *****************************" LogColor="GreenYellow"/>
+		<If Condition="(Me.MapId == 1) &amp;&amp; (Me.GetSkill(Styx.SkillLine.Cooking).CurrentValue &lt; 450)">
+			<CustomBehavior File="Message" Text="HB: Uldum Meat Farming 435-450" LogColor="Orange"/>
+			<CustomBehavior File="FlyTo" x="-9108.947" y="-1416.189" z="95.60325"/>
+			<CustomBehavior File="ForcedDismount"/>
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Uldum Meat Farming 435-450</Name>
+					<TargetMinLevel>82</TargetMinLevel>
+					<TargetMaxLevel>85</TargetMaxLevel>
+					<Factions>38</Factions>
+					<Hotspots>
+						<Hotspots x="-9108.947" y="-1416.189" z="95.60325"/>
+						<Hotspots x="-9205.859" y="-1435.549" z="70.47665"/>
+						<Hotspots x="-9262.931" y="-1457.753" z="65.47747"/>
+						<Hotspots x="-9325.201" y="-1420.797" z="65.5706"/>
+						<Hotspots x="-9395.177" y="-1486.709" z="65.66239"/>
+						<Hotspots x="-9346.133" y="-1553.809" z="65.45198"/>
+						<Hotspots x="-9377.911" y="-1606.029" z="68.82838"/>
+						<Hotspots x="-9261.111" y="-1638.303" z="65.56532"/>
+						<Hotspots x="-9212.645" y="-1723.12" z="66.09262"/>
+						<Hotspots x="-9162.717" y="-1654.608" z="66.14597"/>
+						<Hotspots x="-9091.055" y="-1741.634" z="91.51449"/>
+						<Hotspots x="-9176.618" y="-1551.084" z="66.10966"/>
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="(InbagCount(62778) >= 30)" GoalText="Farming Toughened Flesh, oh yeah..."/>
+		</If>
+	</QuestOrder>
+</HBProfile>

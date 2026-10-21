@@ -1,0 +1,11 @@
+﻿<hbprofile>
+	<name>Set HS for Cicro's Cooking+Fishing PB profile</name>
+	<minlevel>1</minlevel>
+	<maxlevel>86</maxlevel>
+
+	<questorder>
+	<custombehavior file="SetHearthstone" npcid="6727" x="-9224.593" y="-2155.82" z="63.73054"/>
+	<custombehavior file="WaitTimer" waittime="15000"/>
+	</questorder>
+   
+</hbprofile>

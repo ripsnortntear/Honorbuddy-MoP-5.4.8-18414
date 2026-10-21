@@ -22,6 +22,8 @@ Mesh/
 *.bak
 *.tmp
 *.db-journal
+.svn/
+**/.svn/
 
 # Temporary test binaries
 *.exe.config

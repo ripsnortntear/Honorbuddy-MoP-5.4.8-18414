@@ -1,0 +1,13 @@
+<HBProfile>
+  <SubProfile>
+    <Name>Empty Profile</Name>
+    <MinLevel>0</MinLevel>
+    <MaxLevel>86</MaxLevel>
+    <GrindArea>
+	<Factions>51236 44038</Factions>
+		<Hotspots>      
+		<Hotspot X="1360.957" Y="618.3164" Z="77.1197" />
+	</Hotspots>  
+    </GrindArea>
+  </SubProfile>
+</HBProfile>

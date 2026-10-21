@@ -1,0 +1,87 @@
+﻿<HBProfile>
+  <Name>Lost city of Tol'vir embersilk farm</Name>
+  <MinFreeBagSlots>-1</MinFreeBagSlots>
+  
+  <MinLevel>1</MinLevel>
+  <MaxLevel>101</MaxLevel>
+
+  <SellGrey>True</SellGrey>
+  <SellWhite>False</SellWhite>
+  <SellGreen>False</SellGreen>
+  <SellBlue>False</SellBlue>
+  <SellPurple>False</SellPurple>
+
+  <Vendors>
+    <Vendor Name="Кузнец Абаси" Entry="48617" Type="Repair" X="-9404.68" Y="-906.438" Z="112.5412" />
+  </Vendors>
+
+  <AvoidMobs>
+    <Mob Name="Summon Enabler Stalker" Entry="53488" />
+  </AvoidMobs>
+
+
+  <QuestOrder>
+    <CustomBehavior File="UserSettings" LootMobs="True" KillBetweenHotspots="true" PullDistance="35"/>
+    <While Condition="true" >
+      <If Condition="Me.MapId != 755">
+        <If Condition="Me.FreeNormalBagSlots &lt;= 15 || Me.DurabilityPercent &lt;= 0.5" >
+          <CustomBehavior File="Message" Text="Sell \ Repair." LogColor="Red" />
+          <CustomBehavior File="FlyTo" X="-9427.931" Y="-930.978" Z="136.6871" />
+          <CustomBehavior File="FlyTo" Land="true" X="-9407.166" Y="-908.845" Z="112.5403" />
+          <CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+        </If>
+        <If Condition="Me.Location.Distance(new WoWPoint(-10679, -1307, 17)) &gt; 30 || Me.IsFlying" >
+          <CustomBehavior File="FlyTo" Land="true" X="-10677.48" Y="-1306.558" Z="17.28574" />
+        </If>
+        <RunTo X="-10677.26" Y="-1306.213" Z="17.16737" />
+        <CustomBehavior File="MyCTM" X="-10688" Y="-1309.2" Z="17.34" />
+        <CustomBehavior File="WaitTimer" WaitTime="13000" />
+      </If>
+      <If Condition="Me.MapId == 755">
+        <EnableBehavior Name="All" />
+        <If Condition="!Me.HasAura(80263) &amp;&amp; HasItem(58488)">
+          <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(58488)" />
+        </If>
+        <RunTo X="-10751.1" Y="-1374.116" Z="15.35296" />
+        <RunTo X="-10737.69" Y="-1404.611" Z="15.35296" />
+        <RunTo X="-10808.28" Y="-1414.414" Z="15.35296" />
+        <RunTo X="-10858.17" Y="-1405.407" Z="15.35296" />
+        <RunTo X="-10862.81" Y="-1363.162" Z="15.35296" />
+        <RunTo X="-10875.4" Y="-1324.911" Z="15.35296" />
+        <RunTo X="-10787.15" Y="-1292.288" Z="15.35296" />
+        <RunTo X="-10880.56" Y="-1498.833" Z="6.667825" />
+        <RunTo X="-10950.05" Y="-1498.065" Z="6.676423" />
+        <RunTo X="-10963.21" Y="-1569.743" Z="6.772445" />
+        <RunTo X="-10978.37" Y="-1603.933" Z="6.53901" />
+        <RunTo X="-10998.04" Y="-1582.794" Z="6.47439" />
+        <RunTo X="-11000.15" Y="-1504.349" Z="6.665016" />
+        <RunTo X="-11016.07" Y="-1472.285" Z="6.675571" />
+        <RunTo X="-11038.17" Y="-1511.105" Z="6.675026" />
+        <RunTo X="-11105.46" Y="-1548.072" Z="6.677056" />
+        <RunTo X="-11071.51" Y="-1488.421" Z="6.677657" />
+        <RunTo X="-11123.79" Y="-1404.166" Z="10.81572" />
+        <RunTo X="-11157.82" Y="-1384.188" Z="10.80622" />
+        <RunTo X="-11101.83" Y="-1360.65" Z="10.80665" />
+        <RunTo X="-11078.21" Y="-1386.69" Z="10.80667" />
+        <RunTo X="-11058.14" Y="-1381.341" Z="10.80695" />
+        <RunTo X="-11034.07" Y="-1376.063" Z="10.80586" />
+        <RunTo X="-11013.46" Y="-1369.749" Z="10.80586" />
+        <RunTo X="-11020.86" Y="-1314.217" Z="10.80578" />
+        <RunTo X="-11048.2" Y="-1321.221" Z="10.80768" />
+        <RunTo X="-11072.77" Y="-1326.523" Z="10.8288" />
+        <RunTo X="-11094.16" Y="-1334.321" Z="10.80802" />
+        <While Condition="HasItem(67539)">
+          <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(67539)" />
+          <CustomBehavior File="WaitTimer" WaitTime="1500" />
+        </While>
+        <RunTo X="-10691.88" Y="-1310.191" Z="17.65079" />
+        <CustomBehavior File="MyCTM" X="-10686.95" Y="-1308.919" Z="17.60765" />
+        <CustomBehavior File="WaitTimer" WaitTime="13000" />
+        <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+      </If>
+     
+     
+    </While>
+    
+  </QuestOrder>
+</HBProfile>

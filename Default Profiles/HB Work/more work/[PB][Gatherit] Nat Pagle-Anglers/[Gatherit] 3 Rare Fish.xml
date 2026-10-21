@@ -1,0 +1,114 @@
+<HBProfile creator="theswede" version="1.2">
+	<Name>[QO-N-Questing_3fishturnin</Name>
+   
+	<MinLevel>1</MinLevel>
+	<MaxLevel>91</MaxLevel>
+   
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>2</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>False</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>False</TargetElites>
+	
+	<AvoidMobs>
+	</AvoidMobs>
+	
+	<Blackspots>
+	</Blackspots>
+
+	<Mailboxes>
+	</Mailboxes>
+ 
+	<Vendors>
+	</Vendors>
+
+	<Factions></Factions>
+	
+	<ProtectedItems>
+	</ProtectedItems>
+	
+
+<QuestOrder>
+	
+	
+				
+			<CustomBehavior File="UserSettings" LootMobs="False" SkinMobs="False" PullDistance="20" KillBetweenHotspots="False" FindVendorsAutomatically="False" UseFlightPaths="false" LootRadius="35" LogoutForInactivity="True" />
+			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" Text="Author can in no way be held responsible if this profile gets you banned for automated play etc etc." Title="Disclaimer" />
+		
+	
+
+		<While Condition="(!HasQuest(31446)) &amp;&amp; (HasItem(86545))">             
+			<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(86545)" WaitTime="3000" />             
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />			
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameAcceptButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />             
+			<CustomBehavior File="Message" Text="Quest:Mimic Octopus is Accepted" LogColor="Yellow" />            
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />            
+			<CustomBehavior File="InteractWith" MobId="63721" ObjectType="NPC" Range="8" X="-1470.55" Y="-259.85" Z="0.11" /> 
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />             
+			<CustomBehavior File="Message" Text="Quest:Mimic Octopus is done for today" LogColor="Yellow" />            
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />
+			
+		</While>
+		<While Condition="(!HasQuest(31444)) &amp;&amp; (HasItem(86544))">
+			<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(86544)" WaitTime="3000" />             
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />			
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameAcceptButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />             
+			<CustomBehavior File="Message" Text="Quest:Spinefish Alpha is Accepted" LogColor="Yellow" />            
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />             
+			<CustomBehavior File="InteractWith" MobId="63721" ObjectType="NPC" Range="8" X="-1470.55" Y="-259.85" Z="0.11" /> 
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />             
+			<CustomBehavior File="Message" Text="Quest:Spinefish Alpha is done for today" LogColor="Yellow" />            
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />
+			
+		</While>
+
+		<While Condition="(!HasQuest(31443)) &amp;&amp; (HasItem(86542))">
+			<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(86542)" WaitTime="3000" />             
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />			
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameAcceptButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />             
+			<CustomBehavior File="Message" Text="Quest:Flying Tiger Gourami is Accepted" LogColor="Yellow" />            
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />             
+			<CustomBehavior File="InteractWith" MobId="63721" ObjectType="NPC" Range="8" X="-1470.55" Y="-259.85" Z="0.11" /> 
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />             
+			<CustomBehavior File="Message" Text="Quest:Flying Tiger Gourami is done for today" LogColor="Yellow" />            
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />
+			<CustomBehavior File="Message" Text="Nat Pagle quests are done for today. see ya tomorrow" LogColor="Yellow" />
+		</While>
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Asterisk" SoundCueInterval="1" Text="Nat Pagle wants you to stop by again tomorrow, thx for using my profile (Version 1.2)//theswede" />
+</QuestOrder>
+
+
+</HBProfile>
+

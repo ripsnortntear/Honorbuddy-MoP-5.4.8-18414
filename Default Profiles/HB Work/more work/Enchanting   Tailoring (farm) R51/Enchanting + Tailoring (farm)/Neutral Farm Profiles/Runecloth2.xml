@@ -1,0 +1,124 @@
+<HBProfile>
+  <Name>Scarlet monastery silk farm</Name>
+  <MinFreeBagSlots>0</MinFreeBagSlots>
+  <MinDurability>0.1</MinDurability>
+  <MinLevel>1</MinLevel>
+  <MaxLevel>101</MaxLevel>
+
+
+  <SellGrey>True</SellGrey>
+  <SellWhite>False</SellWhite>
+  <SellGreen>False</SellGreen>
+  <SellBlue>False</SellBlue>
+  <SellPurple>False</SellPurple>
+
+  <Vendors>
+    <Vendor Name="Штейгер Милос" Entry="47721" Type="Repair" X="1408.33" Y="-1284.47" Z="61.46688" />
+    <Vendor Name="Эйб Винтерс" Entry="2135" Type="Repair" X="2291.25" Y="213.134" Z="33.72502" />
+  </Vendors>
+
+  <AvoidMobs>
+    <Mob Name="Summon Enabler Stalker" Entry="53488" />
+  </AvoidMobs>
+
+
+  <QuestOrder>
+    <CustomBehavior File="UserSettings" LootMobs="True" />
+    <If Condition="Me.ZoneId == 6109">
+      <RunTo X="1124.369" Y="511.4548" Z="0.9893347" />
+      <CustomBehavior File="MyCTM" X="1124.369" Y="502.4548" Z="0.9893347" />
+      <CustomBehavior File="WaitTimer" WaitTime="13000" />
+      <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+    </If>
+    <While Condition="true" >
+      <If Condition="Me.ZoneId != 6109" >
+        <If Condition="Me.FreeBagSlots &lt;= 20" >
+          <CustomBehavior File="Message" Text="Sell \ Repair." LogColor="Red" />
+          <RunTo X="2912.714" Y="-802.7842" Z="160.333" />
+          <If Condition="Me.IsAlliance">
+            <CustomBehavior File="FlyTo" X="1387.048" Y="-1276.031" Z="75.09314" />
+            <CustomBehavior File="FlyTo" Land="true" X="1398.951" Y="-1286.434" Z="62.18256" />
+            <CustomBehavior File="ForceSetVendor" DoMail="false" DoRepair="True" DoSell="True" />
+          </If>
+          <If Condition="Me.IsHorde">
+            <CustomBehavior File="FlyTo" X="2295.297" Y="229.7094" Z="52.0919" />
+            <CustomBehavior File="FlyTo" Land="true" X="2288.988" Y="214.5514" Z="33.72585" />
+            <CustomBehavior File="ForceSetVendor" DoMail="false" DoRepair="True" DoSell="True" />
+          </If>
+        </If>
+        <If Condition="Me.Location.Distance(new WoWPoint(2911, -803, 160)) &gt; 60 || Me.IsFlying">
+          <CustomBehavior File="FlyTo" DestName="Instance entrance" X="2820.969" Y="-699.184" Z="137.4398" />
+        </If>
+        <RunTo X="2912.148" Y="-802.7239" Z="160.3329" />
+        <CustomBehavior File="MyCTM" X="2919" Y="-798" Z="160" />
+        <CustomBehavior File="WaitTimer" WaitTime="13000" />
+      </If>
+      <If Condition="Me.ZoneId == 6109" >
+        <DisableBehavior Name="Combat" />
+        <RunTo X="1108.992" Y="546.2167" Z="0.01498731" />
+        <CustomBehavior File="InteractWith" CollectionDistance="30" WaitForNpcs="false" MobId="59722" MobState="Alive" NumOfTimes="3"/>
+        <RunTo X="1137.295" Y="557.8047" Z="0.3506696" />
+        <CustomBehavior File="InteractWith" CollectionDistance="30" WaitForNpcs="false" MobId="59722" MobState="Alive" NumOfTimes="3"/>
+        <RunTo X="1169.279" Y="553.2631" Z="0.6556554" />
+        <CustomBehavior File="InteractWith" CollectionDistance="30" WaitForNpcs="false" MobId="59722" MobState="Alive" NumOfTimes="3"/>
+        <RunTo X="1129.293" Y="579.0836" Z="1.033601" />
+        <CustomBehavior File="InteractWith" CollectionDistance="30" WaitForNpcs="false" MobId="59722" MobState="Alive" NumOfTimes="3"/>
+        <RunTo X="1078.283" Y="591.0972" Z="0.6547322" />
+        <CustomBehavior File="InteractWith" CollectionDistance="30" WaitForNpcs="false" MobId="59722" MobState="Alive" NumOfTimes="3"/>
+        <RunTo X="1137.132" Y="614.243" Z="0.3520153" />
+        <CustomBehavior File="InteractWith" CollectionDistance="30" WaitForNpcs="false" MobId="59722" MobState="Alive" NumOfTimes="3"/>
+        <RunTo X="1164.061" Y="675.3868" Z="1.716583" />
+        <RunTo X="1124.524" Y="687.8939" Z="1.248172" />
+        <RunTo X="1090.352" Y="672.4183" Z="-0.2019215" />
+        <CustomBehavior File="InteractWith" WaitForNpcs="false" MobId="59789" MobState="Alive" />
+        <RunTo X="1068.536" Y="652.3461" Z="1.117192" />
+        <EnableBehavior Name="Combat" />
+        <CustomBehavior File="WaitTimer" WaitTime="10000" />
+        <DisableBehavior Name="Combat" />
+        <RunTo X="1049.123" Y="651.805" Z="1.001023" />
+        <RunTo X="1049.453" Y="636.8704" Z="1.004885" />
+        <RunTo X="1034.19" Y="598.5728" Z="0.3450055" />
+        <RunTo X="993.6854" Y="579.8997" Z="1.109905" />
+        <RunTo X="971.0536" Y="568.2581" Z="1.162358" />
+        <RunTo X="946.9051" Y="584.0607" Z="0.6839534" />
+        <RunTo X="984.7917" Y="598.7292" Z="0.6839392" />
+        <RunTo X="985.0377" Y="613.5239" Z="0.6839392" />
+        <RunTo X="998.4688" Y="629.6273" Z="0.8945591" />
+        <RunTo X="971.0559" Y="643.663" Z="1.162393" />
+        <RunTo X="938.1995" Y="626.099" Z="1.160379" />
+        <RunTo X="916.1904" Y="659.9971" Z="11.63725" />
+        <RunTo X="886.3187" Y="630.3783" Z="11.33811" />
+        <RunTo X="861.7603" Y="625.3124" Z="10.0474" />
+        <RunTo X="858.289" Y="603.0611" Z="9.9894" />
+        <RunTo X="859.7465" Y="586.095" Z="9.989426" />
+        <RunTo X="899.8597" Y="564.0836" Z="10.35986" />
+        <RunTo X="915.4436" Y="548.6121" Z="11.63464" />
+        <RunTo X="858.9952" Y="605.564" Z="9.990248" />
+        <CustomBehavior File="InteractWith" WaitForNpcs="false" MobId="59223" MobState="Alive" />
+        <EnableBehavior Name="Combat" />
+        <CustomBehavior File="WaitTimer" WaitTime="10000" />
+        <DisableBehavior Name="Combat" />
+        <RunTo X="820.0768" Y="605.4246" Z="12.80367" />
+        <RunTo X="812.3961" Y="584.0179" Z="12.80523" />
+        <RunTo X="792.3974" Y="584.1494" Z="12.8071" />
+        <RunTo X="786.92" Y="597.3771" Z="12.80176" />
+        <RunTo X="804.9875" Y="614.8657" Z="12.80219" />
+        <RunTo X="811.5844" Y="627.2131" Z="12.80615" />
+        <RunTo X="792.6675" Y="627.1264" Z="12.80704" />
+        <RunTo X="767.5032" Y="625.1726" Z="12.80488" />
+        <RunTo X="761.3093" Y="661.3775" Z="12.80453" />
+        <RunTo X="761.579" Y="548.547" Z="12.80648" />
+        <RunTo X="743.808" Y="550.4557" Z="12.80547" />
+        <EnableBehavior Name="Combat" />
+        <CustomBehavior File="WaitTimer" WaitTime="10000" />
+        <RunTo X="749.5308" Y="605.6639" Z="15" />
+        <RunTo X="1124.369" Y="511.4548" Z="0.9893347" />
+        <CustomBehavior File="MyCTM" X="1124.369" Y="502.4548" Z="0.9893347" />
+        <CustomBehavior File="WaitTimer" WaitTime="13000" />
+        <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+      </If>
+    </While>
+
+  </QuestOrder>
+
+</HBProfile>

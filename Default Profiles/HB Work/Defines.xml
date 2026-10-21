@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PBProfile>
+
+  <!-- This action will attach a SubRoutine to a Treehook. The Subroutine is automatically detached from the TreeHook when bot is stopped or a new Professionbuddy profile is loaded. Calling this action more than once has no effect, the TreeHook is only attached the first time it is executed. The TreeHook will be attached to on profile startup if the 'Attach on Start' property value is set to 'true' -->
+  <AttachToTreeHook SubRoutineName="" TreeHookName="" AttachOnStart="False" />
+  
+  <!-- This action will buy a either a specified item, ingredients that a recipe requires or whatevers in the material list from the Auction house if item is below specified maximum price. Item Entries contain the entries of the items or a recipe entry if buying materials for a recipe.'Bid On Item', if set to true will bid on an item if buyout price &gt; maxBuyout and minBid  &lt;= maxBuyout. 'Item Entries' accepts a comma separated list of Item entries. 'Buy Additively' if set to true will buy axact amount of items regardless of the item count player has in bags -->
+  <BuyItemFromAH ItemListType="Item" ItemID="" MaxBuyout="100g0s0c" Amount="1" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0,0,0" />
+  
+  <!-- This action will buy items from a merchant, either a specific item or any materials the merchant has that are needed for recipes in the action tree. If 'Buy Additively' is set to true this will buy the axact amount of items regardless of the item count player has in bags -->
+  <BuyItem NpcEntry="0" Location="0,0,0" ItemID="" BuyItemType="Material" Count="1" BuyAdditively="True" />
+  
+  <!-- This action will execute a SubRoutine -->
+  <CallSubRoutine SubRoutineName="" />
+  
+  <!-- This action will cancel auctions that matches item entries or all auctions that belong to a category and optionally sub category if they have been undercut. 'Item Entries' takes a comma separated list of item entries. Set 'Use Category' to false and leave 'Item Entries' blank to cancel all undercut auctions. If the competition is at or below 'Min Buyout' than that auction is skipped. -->
+  <CancelAuction UseCategory="False" Category="TradeGoods" SubCategory="None" SubCategoryType="WoWItemTradeGoodsClass" ItemID="0" AutoFindAh="True" MinBuyout="0g0s0c" Location="0,0,0" IgnoreStackSizeBelow="1" />
+  
+  <!-- This action will cast the specified spell. This should only be used for recipes. To cast other spell use a Custom Action and SpellManager.Cast(). Repeat is the amount of times it will be casted depending on the repeat type used. If Repeat type is set to Specific it will cast the spell 'Repeat' times.
+    Craftable means it will automatically set 'Repeat' based on the number of times the recipe can be repeated with current materials in bags. Banker type uses the info from DataStore Wow addon and will repeat the spell based on how many of the crafted items you have on yourself or on your alts/bank/gbank. So if for example you try to keep a stock 20 of each glyph on your bankers, your banker has 15 Glyph of Arcane Blast and you set repeat to 20, it will make 5 glyphs, The DataStore addon is required to used this mode -->
+  <CastSpell RepeatType="Craftable" Repeat="1" Entry="0" CastOnItem="False" ItemType="Chest" ItemId="0" />
+  <ChangeBot BotName="" />
+  <Custom Code="" /> 
+  
+  <!-- This is useful to declare fields, properties, methods, classes or any other types in C# -->
+  <Define Code="" />
+  <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+  <FlyTo Dismount="True" Location="0,0,0" />
+  <GetItemfromBank Withdraw="All" Bank="Personal" MinFreeBagSlots="2" GetItemfromBankType="SpecificItem" ItemID="" NpcEntry="0" Amount="1" AutoFindBank="True" WithdrawAdditively="True" Location="0,0,0" />
+  <GetMail GetMailType="AllItems" ItemID="" CheckNewMail="True" MaxCODAmount="0g0s0c" MinFreeBagSlots="0" AutoFindMailBox="True" Location="0,0,0" />
+  <If Condition="" IgnoreCanRun="True" />
+  <Interact InteractType="GameObject" Entry="0" InteractDelay="0" GameObjectType="Mailbox" SpellFocus="Anvil" />
+  <LoadProfile ProfileType="Honorbuddy" Path="" IsLocalOrFromStore="True" />  
+  <MailItem Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" ItemID="" Amount="0" AutoFindMailBox="True" Location="0,0,0" ItemQuality="Uncommon" ItemSelection="Category" />
+  <MoveTo Location="0,0,0" MoveType="Location" Pathing="Navigator" Entry="0" /> 
+  <PutItemInBank Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Deposit="All" UseCategory="True" Bank="Personal" ItemID="" GuildTab="0" NpcEntry="0" Amount="0" AutoFindBank="True" Location="0,0,0" />
+  <SellItem Sell="All" NpcEntry="0" Location="0,0,0" SellItemType="Specific" ItemID="" Count="0" />
+  <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0,0,0" />
+  <Setting DefaultValue="true" Type="Boolean" Name="Setting Name" Summary="This is a summary of what this setting does" Category="Misc" Global="False" Hidden="False" />
+  <StackItems />
+  <SubRoutine SubRoutineName="" />
+  <TrainSkill NpcEntry="0" Location="0,0,0" />
+  <Wait Condition="false" Timeout="2000" />
+  <While PulseSecondaryBot="True" Condition="" IgnoreCanRun="True" />
+</PBProfile>

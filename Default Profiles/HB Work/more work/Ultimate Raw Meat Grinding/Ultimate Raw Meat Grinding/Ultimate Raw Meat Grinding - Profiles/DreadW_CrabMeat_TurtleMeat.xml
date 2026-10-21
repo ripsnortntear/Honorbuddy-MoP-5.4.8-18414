@@ -1,0 +1,84 @@
+<HBProfile>
+<Name>Crabmeat and Turtlemeat</Name>
+<MinDurability>0.4</MinDurability>
+<MinFreeBagSlots>2</MinFreeBagSlots>
+
+<MinLevel>87</MinLevel>
+<MaxLevel>91</MaxLevel>
+
+   <AvoidMobs>
+       <Mob Name="Elder Seadragon" Entry="58940" />
+	   <Mob Name="Spiny Terrapin" Entry="64800" />
+       <Mob Name="Seadragon Hatchling" Entry="58942" />
+	   <Mob Name="Viseclaw Fry" Entry="61090" />
+   </AvoidMobs>
+
+<TargetElites>False</TargetElites>
+
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<SellGrey>true</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+    <Vendors>
+	<Vendor Name="Master Baiter" Entry="60762" Type="Repair, Vendor" X="-1.489,97" Y="-265.75" Z="5.15" />
+    </Vendors>
+
+<Mailboxes>
+<Mailbox X="-1523.807" Y="-242.3142" Z="15.21149" />
+</Mailboxes>
+
+<Blackspots>
+</Blackspots>
+<QuestOrder>
+	    <If Condition="(Me.Level &lt; 91)">
+        <SetGrindArea>
+          <GrindArea>
+            <TargetMinLevel>1</TargetMinLevel>
+            <TargetMaxLevel>91</TargetMaxLevel>
+			<Factions>190</Factions>
+<Hotspots>
+<Hotspot X="-1198.6" Y="-339.17" Z="0.8636683" />
+<Hotspot X="-1138.08" Y="-330.27" Z="1.3654" />
+<Hotspot X="-1161.47" Y="-401.42" Z="0.6583" />
+<Hotspot X="-1097.69" Y="-410.97" Z="0.2177" />
+<Hotspot X="-1022.76" Y="-423.51" Z="0.19011" />
+<Hotspot X="-1070.83" Y="-481.88" Z="2.0387" />
+<Hotspot X="-1114.29" Y="-446.33" Z="0.72426" />
+<Hotspot X="-1147.15" Y="-480.59" Z="0.83521" />
+<Hotspot X="-1248.55" Y="-592.35" Z="-1.1268" />
+<Hotspot X="-1259.48" Y="-673.21" Z="-0.61248" />
+<Hotspot X="-1210.04" Y="-713.80" Z="0.44693" />
+<Hotspot X="-1124.10" Y="-690.75" Z="5.3617" />
+<Hotspot X="-1075.64" Y="-748.40" Z="2.9499" />
+<Hotspot X="-1012.76" Y="-790.69" Z="-0.70134" />
+<Hotspot X="-958.99" Y="-851.02" Z="-1.6041" />
+<Hotspot X="-970.42" Y="-921.54" Z="-1.4197" />
+<Hotspot X="-994.11" Y="-972.54" Z="-0.68946" />
+<Hotspot X="-1028.57" Y="-1024.42" Z="-1.36759" />
+<Hotspot X="-1048.57" Y="-1071.81" Z="-0.79995" />
+<Hotspot X="-1020.37" Y="-1108.79" Z="2.7549" />
+<Hotspot X="-924.21" Y="-1023.53" Z="6.7589" />
+<Hotspot X="-881.35" Y="-949.36" Z="7.6833" />
+<Hotspot X="-851.12" Y="-880.36" Z="9.0743" />
+<Hotspot X="-860.39" Y="-796.79" Z="6.685" />
+<Hotspot X="-922.50" Y="-747.99" Z="7.4876" />
+<Hotspot X="-1013.39" Y="-698.73" Z="7.3434" />
+<Hotspot X="-1089.01" Y="-677.47" Z="6.1006" />
+<Hotspot X="-1241.4" Y="-704.90" Z="-0.47451" />
+<Hotspot X="-1258.98" Y="-654.56" Z="-0.13077" />
+<Hotspot X="-119.10" Y="-344.85" Z="0.47740" />
+</Hotspots>
+            </GrindArea>
+        </SetGrindArea>
+		        <GrindTo Condition="Me.FreeBagSlots &lt;= 3" GoalText="Farming Leather." />
+      </If>
+</QuestOrder>
+</HBProfile>

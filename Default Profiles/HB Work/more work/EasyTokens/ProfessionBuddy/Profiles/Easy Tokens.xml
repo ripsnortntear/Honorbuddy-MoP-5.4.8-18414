@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <Settings DefaultValue="100" Type="Int16" Name="Stacks of Fishes" Summary="Here you can choose if you want the bot to turn in fish for tokens when it has x amount of stacks of a fish in your bags. This means FULL stacks of 20." Category="How many stacks to fish before we turn them in" Global="False" Hidden="False" />
+  <Declaration Code="int fishes;" />
+  <CustomAction Code="fishes = (Int16)Settings[&quot;Stacks of Fishes&quot;];" />
+  <While Condition="true" IgnoreCanRun="True">
+    <While Condition="Me.FreeNormalBagSlots &gt; 5 &amp;&amp; (InbagCount(74859) / 20 + InbagCount(74865) / 20) &lt; fishes" IgnoreCanRun="False">
+      <ChangeBotAction BotName="AutoAngler" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="[AutoAngler] Emperor Salmon - v3 Mailbox.xml" />
+    </While>
+    <FlyToAction Dismount="True" Location="-273.1903, 599.1669, 167.5487" />
+    <ChangeBotAction BotName="Combat Bot" />
+    <While Condition="InbagCount(74859) &gt; 19" IgnoreCanRun="False">
+      <BuyItemAction NpcEntry="64940" Location="-275.9375, 599.6597, 167.5478" ItemID="87680" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+      <WaitAction Condition="false" Timeout="2000" />
+      <While Condition="InbagCount(87680) &gt; 0 &amp;&amp; InbagCount(74859) &gt; 19" IgnoreCanRun="False">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(87680)&quot;); " />
+        <WaitAction Condition="false" Timeout="2000" />
+      </While>
+    </While>
+    <While Condition="InbagCount(74865) &gt; 19" IgnoreCanRun="False">
+      <BuyItemAction NpcEntry="64940" Location="-275.9375, 599.6597, 167.5478" ItemID="87685" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+      <WaitAction Condition="false" Timeout="2000" />
+      <While Condition="InbagCount(87685) &gt; 0 &amp;&amp; InbagCount(74865) &gt; 19" IgnoreCanRun="False">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(87685)&quot;); " />
+        <WaitAction Condition="false" Timeout="2000" />
+      </While>
+    </While>
+    <While Condition="InbagCount(87557) &gt; 0" IgnoreCanRun="False">
+      <MoveToAction Location="-241.7619, 580.7564, 167.5478" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <WaitAction Condition="false" Timeout="1000" />
+      <InteractionAction InteractType="NPC" Entry="64395" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+      <WaitAction Condition="false" Timeout="2000" />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/script SelectGossipAvailableQuest(1);CompleteQuest();GetQuestReward()&quot;), 0);" />
+      <WaitAction Condition="false" Timeout="2000" />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/script SelectGossipAvailableQuest(1);CompleteQuest();GetQuestReward()&quot;), 0);" />
+      <WaitAction Condition="false" Timeout="2000" />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/script SelectGossipAvailableQuest(1);CompleteQuest();GetQuestReward()&quot;), 0);" />
+      <WaitAction Condition="false" Timeout="2000" />
+    </While>
+  </While>
+</Professionbuddy>

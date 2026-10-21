@@ -1,0 +1,69 @@
+<HBProfile creator="Gatherit" version="1.0">
+
+    <Name>Gatherit Gator Skinning Crock Island Krasarang - Get more awesome profiles at gatherit.blogspot.com</Name>
+    <MinLevel>85</MinLevel>
+    <MaxLevel>99</MaxLevel>
+   
+    <MinDurability>0.2</MinDurability>
+    <MinFreeBagSlots>2</MinFreeBagSlots>
+   
+   	<SellGrey>True</SellGrey>
+   	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+        
+	<Factions>14</Factions>
+	
+    <Vendors>
+	<!-- Neutral -->
+    
+	</Vendors>
+   
+    <Mailboxes> 
+	
+	</Mailboxes>
+   
+    <GrindArea>
+		<TargetMinLevel>80</TargetMinLevel>
+		<TargetMaxLevel>99</TargetMaxLevel>
+		<Factions>14</Factions>
+		<Hotspots>
+<Hotspot X="-2130.763" Y="750.9532" Z="0.736118" />
+<Hotspot X="-2093.769" Y="831.8154" Z="1.380959" />
+<Hotspot X="-2113.43" Y="966.9693" Z="0.318056" />
+<Hotspot X="-2186.062" Y="1015.74" Z="0.4422813" />
+<Hotspot X="-2228.342" Y="1016.825" Z="0.2149211" />
+<Hotspot X="-2321.392" Y="1016.94" Z="0.4349426" />
+<Hotspot X="-2440.121" Y="923.5939" Z="0.9348578" />
+<Hotspot X="-2385.237" Y="821.5645" Z="0.9147215" />
+<Hotspot X="-2367.616" Y="716.962" Z="1.419472" />
+<Hotspot X="-2367.878" Y="656.4106" Z="1.978688" />
+<Hotspot X="-2351.35" Y="603.7896" Z="2.601749" />
+<Hotspot X="-2289.463" Y="582.4224" Z="0.7579796" />
+<Hotspot X="-2216.209" Y="640.8879" Z="0.5293819" />
+<Hotspot X="-2159.907" Y="711.9024" Z="0.5318666" />
+<Hotspot X="-2242.066" Y="736.7582" Z="7.938571" />
+<Hotspot X="-2258.164" Y="693.9277" Z="22.15756" />
+<Hotspot X="-2259.429" Y="799.1959" Z="17.54509" />
+<Hotspot X="-2273.722" Y="859.986" Z="17.51717" />
+<Hotspot X="-2241.854" Y="895.3409" Z="18.66879" />
+<Hotspot X="-2176.964" Y="926.686" Z="28.71965" />
+        </Hotspots>
+    </GrindArea>
+	
+	<Blackspots>
+
+  </Blackspots>
+  
+  <AvoidMobs> 
+  <!-- Don't Attack/Engage!  This is a Rare Mob -->
+  <Mob Name="Morgrinn Crackfang" Entry="50350"/>
+  <!-- Annoying flying mobs -->
+  <Mob Name="Ancient Spirit" Entry="55489"/>
+  </AvoidMobs>
+  
+</HBProfile>

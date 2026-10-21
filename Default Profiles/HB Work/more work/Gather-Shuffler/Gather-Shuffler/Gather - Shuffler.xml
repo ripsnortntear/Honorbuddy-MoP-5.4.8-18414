@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <ChangeBotAction BotName="Combat Bot" />
+  <SubRoutine SubRoutineName="Settings">
+    <Declaration Code="int TokenCount;" />
+    <Declaration Code="int SmeltCount;" />
+    <Declaration Code="bool GoFish;" />
+    <Settings DefaultValue="Enter the name of the Character here" Type="String" Name="Jewelcrafter / Enchanter" Summary="The name's of the shufflers." Category="Character's Names" Global="False" Hidden="False" />
+    <Settings DefaultValue="Enter the name of the Character here" Type="String" Name="Inscriptonist / Alchemist" Summary="The name's of the shufflers." Category="Character's Names" Global="False" Hidden="False" />
+    <Settings DefaultValue="false" Type="Boolean" Name="Go Fishing" Summary="This is a summary of what this setting does" Category="Fishing" Global="False" Hidden="False" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Disenchant">
+    <DisenchantAction ActionType="Disenchant" ItemTarget="Specific" ItemQuality="Uncommon" ItemId="83794" />
+    <DisenchantAction ActionType="Disenchant" ItemTarget="Specific" ItemQuality="Rare" ItemId="90905" />
+    <DisenchantAction ActionType="Disenchant" ItemTarget="Specific" ItemQuality="Rare" ItemId="90904" />
+    <DisenchantAction ActionType="Disenchant" ItemTarget="Specific" ItemQuality="Uncommon" ItemId="83793" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="JC">
+    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="5" AutoFindMailBox="True" Location="0, 0, 0" />
+    <StackItemsAction />
+    <DisenchantAction ActionType="Prospect" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+    <While Condition="InbagCount(90407) &gt; 9" IgnoreCanRun="False">
+      <CustomAction Code="Lua.DoString(&quot;UseItemByName(90407)&quot;); " />
+    </While>
+    <If Condition="InbagCount(52188) &lt; 50" IgnoreCanRun="True">
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <BuyItemAction NpcEntry="50482" Location="2087.52, -4769.45, 27.92935" ItemID="52188" BuyItemType="SpecificItem" Count="100" BuyAdditively="True" />
+      </If>
+    </If>
+    <While Condition="HasMats(122662)" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="122662" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CallSubRoutine SubRoutineName="Disenchant" />
+    </While>
+    <While Condition="HasMats(122661)" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="122661" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CallSubRoutine SubRoutineName="Disenchant" />
+    </While>
+    <While Condition="InbagCount(74252) &gt; 2" IgnoreCanRun="False">
+      <CustomAction Code="Lua.DoString(&quot;UseItemByName(74252)&quot;); " />
+    </While>
+    <While Condition="HasMats(116497)" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="116497" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="HasMats(116498)" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="116498" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <CallSubRoutine SubRoutineName="Disenchant" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="MetalStone" UseCategory="True" RunTime="_12_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="500g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Enchanting" UseCategory="True" RunTime="_12_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="Gem" SubCategoryType="WoWItemGemClass" SubCategory="None" UseCategory="True" RunTime="_12_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="400g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="2068.53, -4666.77, 34.02353" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Inscription">
+    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="5" AutoFindMailBox="True" Location="0, 0, 0" />
+    <StackItemsAction />
+    <DisenchantAction ActionType="Mill" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+    <While Condition="HasMats(111645)" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="111645" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="HasMats(111646)" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="111646" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="HasMats(114783)" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="114783" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Everything" ItemID="72095" MinBuyout="0g10s0c" MaxBuyout="150g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Everything" ItemID="79255" MinBuyout="0g10s0c" MaxBuyout="400g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Everything" ItemID="74661" MinBuyout="0g10s0c" MaxBuyout="400g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Everything" ItemID="74853" MinBuyout="0g10s0c" MaxBuyout="400g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Everything" ItemID="74662" MinBuyout="0g10s0c" MaxBuyout="400g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Everything" ItemID="72238" MinBuyout="0g10s0c" MaxBuyout="300g0s0c" StackSize="1" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="False" RunTime="_12_Hours" AmountType="Everything" ItemID="79254" MinBuyout="0g10s0c" MaxBuyout="300g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="MoveToForge">
+    <FlyToAction Dismount="False" Location="1629.769, 924.1738, 471.1844" />
+    <MoveToAction Location="1705, 987.2623, 470.9242" MoveType="Location" Pathing="Navigator" Entry="0" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="MoveToMailbox">
+    <MoveToAction Location="1629.769, 924.1738, 471.1844" MoveType="Location" Pathing="Navigator" Entry="0" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Smelt">
+    <CustomAction Code="SmeltCount = InbagCount(72092) / 2;" />
+    <While Condition="InbagCount(72092) &gt; SmeltCount" IgnoreCanRun="False">
+      <CastSpellAction RepeatType="Specific" Repeat="0" Entry="102165" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+  </SubRoutine>
+  <If Condition="Jewelcrafting.MaxLevel &gt; 500 || Enchanting.MaxLevel &gt; 500" IgnoreCanRun="True">
+    <ChangeBotAction BotName="Combat Bot" />
+    <CallSubRoutine SubRoutineName="JC" />
+    <While Condition="HasNewMail" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="JC" />
+    </While>
+  </If>
+  <If Condition="Inscription.MaxLevel &gt; 500 || Alchemy.MaxLevel &gt; 500" IgnoreCanRun="True">
+    <ChangeBotAction BotName="Combat Bot" />
+    <CallSubRoutine SubRoutineName="Inscription" />
+    <While Condition="HasNewMail" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Inscription" />
+    </While>
+  </If>
+  <While Condition="Mining.MaxLevel &gt; 500 || Herbalism.MaxLevel &gt; 550" IgnoreCanRun="True">
+    <CustomAction Code="GoFish = true;" />
+    <While Condition="Me.FreeNormalBagSlots &gt; 5" IgnoreCanRun="False">
+      <ChangeBotAction BotName="Gatherbuddy2" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="[Gatherit]Custom Multi-Zone.xml" />
+    </While>
+    <While Condition="Me.FreeNormalBagSlots &lt;= 5" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="MoveToForge" />
+      <CallSubRoutine SubRoutineName="Smelt" />
+      <CallSubRoutine SubRoutineName="MoveToMailbox" />
+      <!--Mail to Inscriptionist / Alchemist-->
+      <CustomAction Code="CharacterSettings.Instance.MailRecipient = (string)Settings[&quot;Inscriptonist / Alchemist&quot;];" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Herb" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="MetalStone" Mail="All" UseCategory="False" ItemID="72096" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+      <!--Mail to Jewelcrafter / Enchanter-->
+      <CustomAction Code="CharacterSettings.Instance.MailRecipient = (string)Settings[&quot;Jewelcrafter / Enchanter&quot;];" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+    </While>
+    <While Condition="GoFish &amp;&amp; (bool)Settings[&quot;Go Fishing&quot;]" IgnoreCanRun="False">
+      <While Condition="Me.FreeNormalBagSlots &gt; 5" IgnoreCanRun="False">
+        <ChangeBotAction BotName="AutoAngler" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="[Gatherit] Ultimate Fishing Valley and Krasarang.xml" />
+      </While>
+      <CustomAction Code="CharacterSettings.Instance.MailRecipient = (string)Settings[&quot;Inscriptonist / Alchemist&quot;];" />
+      <CustomAction Code="TokenCount = 0;" />
+      <ChangeBotAction BotName="Combat Bot" />
+      <FlyToAction Dismount="True" Location="-273.1903, 599.1669, 167.5487" />
+      <SellItemAction Sell="All" NpcEntry="64940" Location="-275.9375, 599.6597, 167.5478" SellItemType="Specific" ItemID="88496" Count="0" />
+      <While Condition="InbagCount(74859) &gt; 19" IgnoreCanRun="False">
+        <If Condition="InbagCount(87680) == 0" IgnoreCanRun="True">
+          <BuyItemAction NpcEntry="64940" Location="-275.9375, 599.6597, 167.5478" ItemID="87680" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+        <WaitAction Condition="false" Timeout="2000" />
+        <While Condition="InbagCount(87680) &gt; 0 &amp;&amp; InbagCount(74859) &gt; 19" IgnoreCanRun="False">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(87680)&quot;); " />
+          <WaitAction Condition="false" Timeout="2000" />
+        </While>
+      </While>
+      <While Condition="InbagCount(74865) &gt; 19" IgnoreCanRun="False">
+        <If Condition="InbagCount(87685) == 0" IgnoreCanRun="True">
+          <BuyItemAction NpcEntry="64940" Location="-275.9375, 599.6597, 167.5478" ItemID="87685" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+        <WaitAction Condition="false" Timeout="2000" />
+        <While Condition="InbagCount(87685) &gt; 0 &amp;&amp; InbagCount(74865) &gt; 19" IgnoreCanRun="False">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(87685)&quot;); " />
+          <WaitAction Condition="false" Timeout="2000" />
+        </While>
+      </While>
+      <While Condition="InbagCount(74857) &gt; 19" IgnoreCanRun="False">
+        <If Condition="InbagCount(87679) == 0" IgnoreCanRun="True">
+          <BuyItemAction NpcEntry="64940" Location="-275.9375, 599.6597, 167.5478" ItemID="87679" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+        <WaitAction Condition="false" Timeout="2000" />
+        <While Condition="InbagCount(87679) &gt; 0 &amp;&amp; InbagCount(74857) &gt; 19" IgnoreCanRun="False">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(87679)&quot;); " />
+          <WaitAction Condition="false" Timeout="2000" />
+        </While>
+      </While>
+      <While Condition="InbagCount(74864) &gt; 19" IgnoreCanRun="False">
+        <If Condition="InbagCount(87684) == 0" IgnoreCanRun="True">
+          <BuyItemAction NpcEntry="64940" Location="-275.9375, 599.6597, 167.5478" ItemID="87684" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+        <WaitAction Condition="false" Timeout="2000" />
+        <While Condition="InbagCount(87684) &gt; 0 &amp;&amp; InbagCount(74864) &gt; 19" IgnoreCanRun="False">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(87684)&quot;); " />
+          <WaitAction Condition="false" Timeout="2000" />
+        </While>
+      </While>
+      <CustomAction Code="TokenCount = InbagCount(87557);" />
+      <While Condition="InbagCount(87557) &gt; 0" IgnoreCanRun="False">
+        <MoveToAction Location="-241.7619, 580.7564, 167.5478" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <WaitAction Condition="false" Timeout="1000" />
+        <InteractionAction InteractType="NPC" Entry="64395" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/script SelectGossipAvailableQuest(1);CompleteQuest();GetQuestReward()&quot;), 0);" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/script SelectGossipAvailableQuest(1);CompleteQuest();GetQuestReward()&quot;), 0);" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/script SelectGossipAvailableQuest(1);CompleteQuest();GetQuestReward()&quot;), 0);" />
+        <WaitAction Condition="false" Timeout="2000" />
+      </While>
+      <While Condition="TokenCount &gt; 0" IgnoreCanRun="False">
+        <BuyItemAction NpcEntry="64395" Location="-245.1719, 578.0278, 167.5478" ItemID="74661" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <CustomAction Code="TokenCount = TokenCount - 1;" />
+        <BuyItemAction NpcEntry="64395" Location="-245.1719, 578.0278, 167.5478" ItemID="74853" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <CustomAction Code="TokenCount = TokenCount - 1;" />
+        <BuyItemAction NpcEntry="64395" Location="-245.1719, 578.0278, 167.5478" ItemID="74662" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <CustomAction Code="TokenCount = TokenCount - 1;" />
+      </While>
+      <MailItemAction Category="Projectile" SubCategoryType="SubCategoryType" SubCategory="None" Mail="All" UseCategory="False" ItemID="74661" Amount="0" AutoFindMailBox="False" Location="-209.5665, 494.9402, 187.103" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" UseCategory="False" ItemID="74853" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" UseCategory="False" ItemID="74662" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+      <CustomAction Code="GoFish = false;" />
+      <WaitAction Condition="false" Timeout="1000" />
+    </While>
+  </While>
+</Professionbuddy>

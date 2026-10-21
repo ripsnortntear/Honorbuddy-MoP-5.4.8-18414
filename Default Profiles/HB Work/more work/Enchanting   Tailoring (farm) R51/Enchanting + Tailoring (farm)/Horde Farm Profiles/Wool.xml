@@ -1,0 +1,106 @@
+<HBProfile>
+<Name>Shadowfang keep wool farm</Name>
+<MinFreeBagSlots>0</MinFreeBagSlots>
+
+<MinLevel>1</MinLevel>
+<MaxLevel>101</MaxLevel>
+
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+		
+	<Vendors>
+    <Vendor Name="Александра Лефевр" Entry="3552" Type="Repair" X="567.634" Y="1576.57" Z="132.2933" />
+  </Vendors>
+  
+		<AvoidMobs>
+	  	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+	
+<QuestOrder>
+  <CustomBehavior File="UserSettings" LootMobs="True" />
+  <EnableBehavior Name="All" />
+  <If Condition="Me.MapId == 33">
+    <RunTo X="-229.5236" Y="2109.173" Z="76.8896" />
+    <CustomBehavior File="MyCTM" X="-231.0653" Y="2104.201" Z="76.89077" />
+    <CustomBehavior File="WaitTimer" WaitTime="13000" />
+    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+  </If>
+<While Condition="true" >
+	<If Condition="Me.MapId != 33" >
+		<While Condition="Me.MapId == 0" >
+      <If Condition="Me.FreeBagSlots &lt;= 20 || Me.LowestDurabilityPercent &lt; 0.2" >
+        <CustomBehavior File="Message" Text="Sell \ Repair." LogColor="Red" />
+        <CustomBehavior File="FlyTo" Land="true" X="550.6803" Y="1572.657" Z="131.5594" />
+        <CustomBehavior File="ForceSetVendor" DoMail="false" DoRepair="True" DoSell="True"  />
+        <RunTo X="550.6803" Y="1572.657" Z="131.5594" />
+      </If>
+      <If Condition="Me.Location.Distance(new WoWPoint(-235, 1561, 76)) &gt; 40 || Me.IsFlying">
+        <CustomBehavior File="FlyTo" Land="true" DestName="Instance entrance." X="-238.7563" Y="1551.076" Z="76.88454" />
+      </If>
+            <RunTo X="-233.2877" Y="1565.964" Z="76.8855" />
+						<CustomBehavior File="MyCTM" X="-232.45" Y="1572.31" Z="76.88" /> 
+						<CustomBehavior File="WaitTimer" WaitTime="13000" />
+		</While>
+	</If>
+  <While Condition="Me.MapId == 33" >
+    <DisableBehavior Name="Combat" />
+    <RunTo X="-192.1401" Y="2132.73" Z="81.50177" />
+    <RunTo X="-201.9851" Y="2141.265" Z="86.49904" />
+    <RunTo X="-235.8371" Y="2151.192" Z="90.62465" />
+    <RunTo X="-245.894" Y="2115.97" Z="87.01023" />
+    <EnableBehavior Name="Combat" />
+    <CustomBehavior File="WaitTimer" WaitTime="10000" />
+    <RunTo X="-249.5629" Y="2143.129" Z="87.01437" />
+    <RunTo X="-255.8753" Y="2118.205" Z="81.17964" />
+    <While Condition="!ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Any(u =&gt; u.Entry == 18895 &amp;&amp; u.State == WoWGameObjectState.Active)">
+      <RunTo X="-241.7898" Y="2155.562" Z="90.62418" />
+      <CustomBehavior File="WaitTimer" WaitTime="5000" />
+    </While>
+    <CustomBehavior File="WaitTimer" WaitTime="5000" />
+    <DisableBehavior Name="Combat" />
+    <RunTo X="-220.647" Y="2164.478" Z="79.76611" />
+    <RunTo X="-209.8949" Y="2187.143" Z="79.76611" />
+    <RunTo X="-210.8369" Y="2211.608" Z="79.7646" />
+    <RunTo X="-191.1723" Y="2218.538" Z="79.76057" />
+    <RunTo X="-180.2063" Y="2236.214" Z="76.24138" />
+    <RunTo X="-205.7397" Y="2261.847" Z="76.20143" />
+    <RunTo X="-229.3565" Y="2285.885" Z="74.9994" />
+    <RunTo X="-249.3982" Y="2283.36" Z="74.99937" />
+    <RunTo X="-266.2944" Y="2293.874" Z="76.1534" />
+    <RunTo X="-289.2514" Y="2302.024" Z="90.60576" />
+    <RunTo X="-285.9918" Y="2326.506" Z="95.86718" />
+    <RunTo X="-250.8059" Y="2309.514" Z="95.86718" />
+    <RunTo X="-220.5186" Y="2304.775" Z="94.67693" />
+    <RunTo X="-303.6098" Y="2282.897" Z="95.86657" />
+    <RunTo X="-249.4226" Y="2253.536" Z="100.8918" />
+    <RunTo X="-251.3863" Y="2240.343" Z="100.8932" />
+    <RunTo X="-224.1806" Y="2258.5" Z="103.9444" />
+    <RunTo X="-259.2379" Y="2263.885" Z="100.6293" />
+    <CustomBehavior File="WaitTimer" WaitTime="5000" />
+    <EnableBehavior Name="Combat" />
+    <CustomBehavior File="WaitTimer" WaitTime="10000" />
+    <DisableBehavior Name="Combat" />
+    <RunTo X="-248.0925" Y="2142.845" Z="100.0293" />
+    <RunTo X="-247.5757" Y="2126.096" Z="100.0293" />
+    <RunTo X="-260.0034" Y="2117.103" Z="100.0293" />
+    <RunTo X="-194.7245" Y="2114.635" Z="97.39106" />
+    <RunTo X="-133.8721" Y="2159.373" Z="94.04167" />
+    <RunTo X="-129.8917" Y="2175.081" Z="94.04394" />
+    <RunTo X="-124.8469" Y="2156.142" Z="101.517" />
+    <RunTo X="-144.2186" Y="2173.972" Z="127.9531" />
+    <EnableBehavior Name="Combat" />
+    <CustomBehavior File="WaitTimer" WaitTime="10000" />
+    <RunTo X="-229.5236" Y="2109.173" Z="76.8896" />
+    <CustomBehavior File="MyCTM" X="-231.0653" Y="2104.201" Z="76.89077" />
+    <CustomBehavior File="WaitTimer" WaitTime="13000" />
+    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+  </While>
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

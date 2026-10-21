@@ -1,0 +1,61 @@
+<HBProfile creator="Gatherit" version="1.0">
+
+    <Name>Gatherit SW Valley Tiger Skinning &amp; Meat - Get more awesome profiles at gatherit.blogspot.com</Name>
+    <MinLevel>85</MinLevel>
+    <MaxLevel>99</MaxLevel>
+   
+    <MinDurability>0.2</MinDurability>
+    <MinFreeBagSlots>2</MinFreeBagSlots>
+   
+   	<SellGrey>True</SellGrey>
+   	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+        
+	<Factions>1711 2136</Factions>
+	
+    <Vendors>
+	<!-- Neutral -->
+    <Vendor Name="Gina Mudclaw" Entry="60423" Type="Repair" X="-256.5601" Y="590.2265" Z="167.5488" />
+	</Vendors>
+   
+    <Mailboxes> 
+	<Mailbox X="-206.6574" Y="493.1057" Z="187.189" />
+	</Mailboxes>
+   
+    <GrindArea>
+		<TargetMinLevel>80</TargetMinLevel>
+		<TargetMaxLevel>99</TargetMaxLevel>
+		<Factions>1711 2136</Factions>
+		<Hotspots>
+<Hotspot X="-678.2514" Y="2134.053" Z="120.1274" />
+<Hotspot X="-733.5513" Y="2145.361" Z="112.2256" />
+<Hotspot X="-740.2015" Y="2089.2" Z="117.5938" />
+<Hotspot X="-810.81" Y="2063.365" Z="126.7868" />
+<Hotspot X="-851.5757" Y="2101.332" Z="108.8011" />
+<Hotspot X="-1007.339" Y="2114.49" Z="108.0117" />
+<Hotspot X="-971.1162" Y="2260.522" Z="96.10011" />
+<Hotspot X="-921.7558" Y="2247.382" Z="101.3367" />
+<Hotspot X="-867.2821" Y="2232.618" Z="106.2003" />
+<Hotspot X="-830.4635" Y="2265.66" Z="126.2314" />
+<Hotspot X="-756.4494" Y="2244.535" Z="135.5159" />
+<Hotspot X="-719.6091" Y="2140.962" Z="115.0238" />
+        </Hotspots>
+    </GrindArea>
+	
+	<Blackspots>
+
+  </Blackspots>
+  
+  <AvoidMobs> 
+  <!-- Don't Attack/Engage!  This is a Rare Mob -->
+  <Mob Name="Morgrinn Crackfang" Entry="50350"/>
+  <!-- Annoying flying mobs -->
+  <Mob Name="Ancient Spirit" Entry="55489"/>
+  </AvoidMobs>
+  
+</HBProfile>

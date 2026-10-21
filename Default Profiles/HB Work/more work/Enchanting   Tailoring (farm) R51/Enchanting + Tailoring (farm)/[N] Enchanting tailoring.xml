@@ -1,0 +1,1927 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PBProfile>
+  <!--Enchanting + Tailoring 1 - 500 >_>-->
+  <!--This profile and all farming profiles are made by Infern1k-->
+  <!--You can find all my products here http://bothaven.com/Products/List/Author/infern1k-->
+  <!--I also make private profiles on demand, if you are interested just add my on skype - Infern1k-->
+  <!--Please do not edit the profile, I will not give support if you modifiy it.-->
+  <CallSubRoutine SubRoutineName="Init" />
+  <SubRoutine SubRoutineName="Init">
+    <!--Common stuff-->
+    <Custom Code="Log(&quot;Welcome to Profession leveling profile.&quot;);" />
+    <Setting DefaultValue="true" Type="Boolean" Name="BindHS" Summary="Bind hearthstone" Category="HS" Global="False" Hidden="False" />
+    <Setting DefaultValue="false" Type="Boolean" Name="Crafting" Summary="duh" Category="Misc" Global="False" Hidden="False" />
+    <Custom Code="foreach (var i in ProtectedItems) { if (!ProtectedItemsManager.Contains((uint)i)) ProtectedItemsManager.Add((uint)i); }" />
+    <Custom Code="if(!(bool)Settings[&quot;Crafting&quot;]) Log(&quot;We are in the FARMING mode.&quot;);" />
+    <Custom Code="if((bool)Settings[&quot;Crafting&quot;]) Log(&quot;We are in the CRAFTING mode.&quot;);" />
+    <If Condition="(bool)Settings[&quot;BindHS&quot;]" IgnoreCanRun="True">
+      <Custom Code="Log(&quot;Binding HearthStone.&quot;);" />
+      <While PulseSecondaryBot="True" Condition="Me.IsAlliance &amp;&amp; Me.HearthstoneAreaId != 5150 || Me.IsHorde &amp;&amp; Me.HearthstoneAreaId != 1637" IgnoreCanRun="True">
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <If Condition="DistanceTo(1950.08, -4200.32, 36.9143) &gt; 60" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="1950.08, -4200.32, 36.9143" />
+          </If>
+          <Custom Code="Mount.Dismount();" />
+          <MoveTo Location="1950.08, -4200.32, 36.9143" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <Interact InteractType="NPC" Entry="44785" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        </If>
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo(-8337, 594.644, 99.62305) &gt; 60" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="-8383.458, 618.2297, 132.8661" />
+          </If>
+          <MoveTo Location="-8365.736, 595.7296, 96.99892" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <Interact InteractType="NPC" Entry="44235" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        </If>
+        <Wait Condition="false" Timeout="2000" />
+        <Custom Code="Lua.DoString(&quot;SelectGossipOption(1)&quot;);" />
+        <Wait Condition="false" Timeout="2000" />
+        <Custom Code="Lua.DoString(&quot;StaticPopup1Button1:Click()&quot;);" />
+        <Wait Condition="false" Timeout="2000" />
+      </While>
+      <Custom Code="Settings[&quot;BindHS&quot;] = false;" />
+    </If>
+    <CallSubRoutine SubRoutineName="declar" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="declar">
+    <Declaration Code="string Name = &quot;PBuddy - Enchanting&quot;;" />
+    <Declaration Code="&#x9;&#x9;string prevLog = &quot;&quot;;&#xD;&#xA;&#x9;&#x9;string prevTarget = &quot;&quot;;&#xD;&#xA;&#x9;&#x9;private void Log(string argument)&#xD;&#xA;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;if (argument != prevLog)&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Logging.Write(Colors.Lime, &quot;[{0}] {1}&quot;, Name, argument);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;prevLog = argument;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;private void Log(string argument, string target)&#xD;&#xA;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;if (target != null)&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (prevLog != argument &amp;&amp; prevTarget != target)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Logging.Write(Colors.Lime, &quot;[{0}] {1} {2}&quot;, Name, argument, target);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;prevLog = argument; prevTarget = target;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (argument != prevLog)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Logging.Write(Colors.Lime, &quot;[{0}] {1}&quot;, Name, argument);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;prevLog = argument;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}" />
+    <Declaration Code="bool InCity { get { return Me.ZoneId == 1519 || Me.ZoneId == 1637; } }" />
+    <Declaration Code="void Deleteitem(params uint[] itemID) { for (int i = 0; i &lt; itemID.Length; i++) { foreach(WoWItem item in StyxWoW.Me.BagItems) { if(item.Entry == itemID[i]) { item.PickUp(); Lua.DoString(&quot;DeleteCursorItem();&quot;); } } } }" />
+    <Declaration Code="int skillTrained;" />
+    <Custom Code="skillTrained = 999;" />
+    <!--Inscription specific stuff-->
+    <Declaration Code="bool NeedTrainEnch { get { if(Ench == 0 || MaxEnch - Ench &lt;= 25) { return true; } else return false; } }" />
+    <Declaration Code="int Ench { get { return Me.GetSkill(Styx.SkillLine.Enchanting).CurrentValue; } }" />
+    <Declaration Code="int MaxEnch { get { return Me.GetSkill(Styx.SkillLine.Enchanting).MaxValue; } }" />
+    <Declaration Code="int Tail { get { return Me.GetSkill(Styx.SkillLine.Tailoring).CurrentValue; } }" />
+    <Declaration Code="int MaxTail { get { return Me.GetSkill(Styx.SkillLine.Tailoring).MaxValue; } }" />
+    <Declaration Code="bool btwn(int first, int second) { if(Ench &gt;= first &amp;&amp; Ench &lt; second) return true; else return false; }" />
+    <Declaration Code="bool NeedTrainTail { get { if(Tail == 0 || MaxTail - Tail &lt;= 25 || Tail &gt;= 250 &amp;&amp; !HasRecipe(18401) || Tail &gt;= 300 &amp;&amp; !HasRecipe(26745) || Tail &gt;= 350 &amp;&amp; !HasRecipe(55899) || Tail &gt;= 175 &amp;&amp; !HasRecipe(3865)) { return true; } else return false; } }" />
+    <Declaration Code="bool profLoaded;" />
+    <Custom Code="profLoaded = false;" />
+    <Declaration Code="bool HasEnchRegs { get { if(Ench &lt; 135 &amp;&amp; InbagCount(10940) &gt;= 134 &amp;&amp; InbagCount(10939) &gt;= 10) return true; return false; } }" />
+    <Declaration Code="bool HasTailRegs&#xD;&#xA; {&#xD;&#xA; get &#xD;&#xA;{ &#xD;&#xA;if(Tail &lt; 75 &amp;&amp; InbagCount(2589) + InbagCount(2996)*2 &gt;= 140) return true;&#xD;&#xA;if(Tail &lt; 125 &amp;&amp; InbagCount(2592) + InbagCount(2997)*3 &gt;= 200) return true;&#xD;&#xA;if(Tail &lt; 175 &amp;&amp; InbagCount(4306) + InbagCount(4305)*4 &gt;= 720) return true;&#xD;&#xA;if(Tail &lt; 250 &amp;&amp; InbagCount(4338) + InbagCount(4339)*4 &gt;= 520) return true;&#xD;&#xA;if(Tail &lt; 300 &amp;&amp; InbagCount(14047)+ InbagCount(14048)*4 &gt;= 780) return true;&#xD;&#xA;if(Tail &lt; 350 &amp;&amp; InbagCount(21877) + InbagCount(21840)*4 &gt;= 900) return true;&#xD;&#xA;if(Tail &lt; 425 &amp;&amp; InbagCount(33470) + InbagCount(41510)*5 &gt;= 1500) return true;&#xD;&#xA;if(Tail &lt; 500 &amp;&amp; InbagCount(53010) + InbagCount(53643)*5 &gt;= 1300) return true;&#xD;&#xA;return false;&#xD;&#xA; } &#xD;&#xA;} " />
+    <Declaration Code="Stopwatch LogTimer = new Stopwatch(); Stopwatch DisTimer = new Stopwatch();" />
+    <Declaration Code="bool NeedToDis &#xD;&#xA;{ get { foreach (WoWItem i in StyxWoW.Me.BagItems) &#xD;&#xA;{ if (i != null &amp;&amp; (i.Quality == WoWItemQuality.Uncommon || i.Quality == WoWItemQuality.Rare) &amp;&amp; (i.ItemInfo.ItemClass == Styx.WoWItemClass.Weapon || i.ItemInfo.ItemClass == Styx.WoWItemClass.Armor)) return true; } return false; } }" />
+    <Declaration Code="bool InInstance &#xD;&#xA;{ get { &#xD;&#xA;if(Me.MapId != 0 &#xD;&#xA;&amp;&amp; Me.MapId != 1&#xD;&#xA;&amp;&amp; Me.MapId != 571&#xD;&#xA;&amp;&amp; Me.MapId != 530) return true; return false; &#xD;&#xA;} }" />
+    <Declaration Code="int StartedSkill = 0;" />
+  </SubRoutine>
+  <While PulseSecondaryBot="True" Condition="true" IgnoreCanRun="True">
+    <While PulseSecondaryBot="True" Condition="StyxWoW.IsInGame" IgnoreCanRun="False">
+      <If Condition="Doras != null" IgnoreCanRun="True">
+        <!--Ingoring Doras, sorry bro-->
+        <Declaration Code="WoWUnit Doras = ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Entry == 3310 &amp;&amp; !Blacklist.Contains(u.Guid)).OrderBy(r =&gt; r.Distance).FirstOrDefault();" />
+        <Custom Code="Blacklist.Add(Doras.Guid, BlacklistFlags.All, TimeSpan.FromSeconds(9000));" />
+      </If>
+      <!--Logging-->
+      <If Condition="!(bool)Settings[&quot;Crafting&quot;]" IgnoreCanRun="False">
+        <Custom Code="if((bool)Settings[&quot;BuyingRecipe&quot;]){ Settings[&quot;BuyingRecipe&quot;] = false; }" />
+        <If Condition="InCity" IgnoreCanRun="True">
+          <If Condition="NeedTrainEnch" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="TrainEnch" />
+          </If>
+          <If Condition="NeedTrainTail" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="TrainTail" />
+          </If>
+          <If Condition="Ench &gt;= 350 &amp;&amp; Tail &gt;= 350" IgnoreCanRun="True">
+            <If Condition="HasItem(22447) || HasItem(22446) || HasItem(22445) || HasItem(21887) || HasItem(22448)" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="ToAH" />
+              <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+            </If>
+          </If>
+          <If Condition="Ench &gt;= 425 &amp;&amp; Tail &gt;= 425" IgnoreCanRun="True">
+            <If Condition="HasItem(41599) || HasItem(42780) || HasItem(34054) || HasItem(34055) || HasItem(34052)" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="ToAH" />
+              <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+              <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="TradeGoods" UseCategory="False" RunTime="_24_Hours" AmountType="Everything" ItemID="41599" MinBuyout="0g10s0c" MaxBuyout="250g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+              <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="TradeGoods" UseCategory="False" RunTime="_24_Hours" AmountType="Everything" ItemID="42780" MinBuyout="0g5s0c" MaxBuyout="1g0s0c" StackSize="200" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+            </If>
+          </If>
+          <If Condition="Tbtwn(425,500)" IgnoreCanRun="True">
+            <Setting DefaultValue="true" Type="Boolean" Name="TreasureFinding" Summary="Buy potion of treasure finding. (Increases embersilk drops in Cata)." Category="Misc" Global="False" Hidden="False" />
+            <If Condition="Me.Gold &gt;= 1000 &amp;&amp; InbagCount(58488) &lt; 5 &amp;&amp; (bool)Settings[&quot;TreausreFinding&quot;]" IgnoreCanRun="False">
+              <CallSubRoutine SubRoutineName="ToAH" />
+              <BuyItemFromAH ItemListType="Item" ItemID="58488" MaxBuyout="100g0s0c" Amount="5" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+              <GetMail GetMailType="Specific" ItemID="58488" CheckNewMail="True" MaxCODAmount="0g0s0c" MinFreeBagSlots="0" AutoFindMailBox="True" Location="0, 0, 0" />
+            </If>
+          </If>
+        </If>
+        <If Condition="HasTailRegs &amp;&amp; !InInstance" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance &amp;&amp; Me.MapId != 0 || Me.IsHorde &amp;&amp; Me.MapId != 1" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="HS" />
+          </If>
+          <Custom Code="Settings[&quot;Crafting&quot;] = true;" />
+        </If>
+        <If Condition="!LogTimer.IsRunning" IgnoreCanRun="True">
+          <Custom Code="LogTimer.Restart();" />
+        </If>
+        <If Condition="InstanceStuckTimer.IsRunning" IgnoreCanRun="True">
+          <If Condition="!InInstance" IgnoreCanRun="True">
+            <Custom Code="InstanceStuckTimer.Reset();" />
+          </If>
+          <If Condition="InstanceStuckTimer.ElapsedMilliseconds &gt; 60 * 20 * 1000 &amp;&amp; HS.Cooldown == 0 &amp;&amp; !Me.Combat" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Restart" />
+          </If>
+        </If>
+        <If Condition="!InstanceStuckTimer.IsRunning &amp;&amp; InInstance" IgnoreCanRun="True">
+          <Custom Code="Log(&quot;Instance Stuck Timer Started.&quot;);" />
+          <Custom Code="InstanceStuckTimer.Restart();" />
+        </If>
+        <If Condition="LogTimer.ElapsedMilliseconds &gt; 45000" IgnoreCanRun="True">
+          <If Condition="Tail &lt; 75" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (140 - InbagCount(2589) - InbagCount(2996)*2) + &quot; more linen cloth.&quot;);" />
+          </If>
+          <If Condition="Tbtwn(75,125)" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (200 - InbagCount(2592) - InbagCount(2997)*3) + &quot; more wool cloth.&quot;);" />
+          </If>
+          <If Condition="Tbtwn(125,175)" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (720 - InbagCount(4306) - InbagCount(4305)*4) + &quot; more silk cloth.&quot;);" />
+          </If>
+          <If Condition="Tbtwn(175,250)" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (520 - InbagCount(4338) - InbagCount(4339)*4) + &quot; more mageweave cloth.&quot;);" />
+          </If>
+          <If Condition="Tbtwn(250,300)" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (780 - InbagCount(14047) - InbagCount(14048)*4) + &quot; more runecloth.&quot;);" />
+          </If>
+          <If Condition="Tbtwn(300,350)" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (900 - InbagCount(21877) - InbagCount(21840)*4) + &quot; more netherweave.&quot;);" />
+          </If>
+          <If Condition="Tbtwn(350,425)" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (1500 - InbagCount(33470) - InbagCount(41510)*5) + &quot; more frostweave.&quot;);" />
+            <Custom Code="Log(&quot;I also have &quot; + InbagCount(34054) + &quot; of infinite dust.&quot;);" />
+          </If>
+          <If Condition="Tbtwn(425,500)" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;I need to farm &quot; + (1300 - InbagCount(53010) - InbagCount(53643)*5) + &quot; more embersilk.&quot;);" />
+            <Custom Code="Log(&quot;I also have &quot; + InbagCount(52555) + &quot; of hypnotic dust.&quot;);" />
+          </If>
+          <Custom Code="LogTimer.Restart();" />
+        </If>
+        <If Condition="!DisTimer.IsRunning" IgnoreCanRun="True">
+          <Custom Code="DisTimer.Restart();" />
+        </If>
+        <If Condition="!Me.Mounted &amp;&amp; !Me.Combat &amp;&amp; !Me.IsGhost &amp;&amp; !Me.IsDead &amp;&amp; Me.FreeBagSlots &gt;= 1" IgnoreCanRun="False">
+          <While PulseSecondaryBot="True" Condition="merchant != null &amp;&amp; NeedToSell &amp;&amp; DistanceTo(merchant.Location) &lt; 20" IgnoreCanRun="False">
+            <If Condition="SecondaryBot.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
+              <ChangeBot BotName="Combat Bot" />
+            </If>
+            <While PulseSecondaryBot="True" Condition="!MerchantFrame.Instance.IsVisible" IgnoreCanRun="True">
+              <Custom Code="if(DistanceTo(merchant.Location) &lt; merchant.InteractRange){if(Me.IsMoving)WoWMovement.MoveStop(); else merchant.Interact();} else Navigator.MoveTo(merchant.Location);" />
+            </While>
+            <Wait Condition="MerchantFrame.Instance.IsVisible" Timeout="5000" />
+            <CallSubRoutine SubRoutineName="Sell" />
+          </While>
+          <If Condition="DisTimer.ElapsedMilliseconds &gt; 120000 &amp;&amp; !Me.IsCasting" IgnoreCanRun="True">
+            <If Condition="NeedToDis" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Time to disenchant!&quot;);" />
+              <While PulseSecondaryBot="True" Condition="Me.IsMoving" IgnoreCanRun="True">
+                <Custom Code="WoWMovement.MoveStop();" />
+                <Wait Condition="false" Timeout="2000" />
+              </While>
+              <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Rare" ItemId="0" />
+              <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Epic" ItemId="0" />
+              <Wait Condition="false" Timeout="2000" />
+            </If>
+            <Custom Code="DisTimer.Restart();" />
+          </If>
+          <If Condition="InbagCount(2589) &gt; 20 &amp;&amp; HasRecipe(2963)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="2963" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="InbagCount(2592) &gt; 20 &amp;&amp; HasRecipe(2964)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="2964" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="InbagCount(4306) &gt; 20 &amp;&amp; HasRecipe(3839)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="3839" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="InbagCount(4338) &gt; 20 &amp;&amp; HasRecipe(3865)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="3865" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="InbagCount(14047) &gt; 20 &amp;&amp; HasRecipe(18401)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="18401" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="InbagCount(21877) &gt; 20 &amp;&amp; HasRecipe(26745)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="26745" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="HasItem(43876) &amp;&amp; !HasRecipe(59390)" IgnoreCanRun="True">
+            <Custom Code="Lua.DoString(&quot;UseItemByName(43876)&quot;);" />
+            <Wait Condition="false" Timeout="10000" />
+            <Custom Code="Deleteitem(43876);" />
+          </If>
+          <If Condition="InbagCount(33470) &gt; 20 &amp;&amp; HasRecipe(55899)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="55899" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="InbagCount(53010) &gt; 20 &amp;&amp; HasRecipe(74964)" IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="74964" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <!--crystals-->
+          <If Condition="InbagCount(37700) &gt;= 10" IgnoreCanRun="True">
+            <Custom Code="Lua.DoString(&quot;UseItemByName(37700)&quot;);" />
+            <Wait Condition="false" Timeout="1000" />
+          </If>
+          <If Condition="InbagCount(37702) &gt;= 10" IgnoreCanRun="True">
+            <Custom Code="Lua.DoString(&quot;UseItemByName(37702)&quot;);" />
+            <Wait Condition="false" Timeout="1000" />
+          </If>
+          <If Condition="InbagCount(37705) &gt;= 10" IgnoreCanRun="True">
+            <Custom Code="Lua.DoString(&quot;UseItemByName(37705)&quot;);" />
+            <Wait Condition="false" Timeout="1000" />
+          </If>
+        </If>
+        <!--Netherweave chest recipe || Ench recipe-->
+        <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+          <If Condition="!HasRecipe(26774) &amp;&amp; !HasItem(21897)" IgnoreCanRun="True">
+            <FlyTo Dismount="False" Location="-2074.096, 5269.769, -37.32356" />
+            <FlyTo Dismount="False" Location="-2074.096, 5269.769, -37.32356" />
+            <BuyItem NpcEntry="19213" Location="-2076.952, 5270.006, -37.32356" ItemID="21897" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          </If>
+          <If Condition="!HasRecipe(28022) &amp;&amp; !HasItem(22565)" IgnoreCanRun="True">
+            <If Condition="DistanceTo(-2092.571, 5308.671, -37.32312) &gt; 60" IgnoreCanRun="True">
+              <FlyTo Dismount="False" Location="-2074.096, 5269.769, -37.32356" />
+              <FlyTo Dismount="True" Location="-2074.096, 5269.769, -37.32356" />
+            </If>
+            <BuyItem NpcEntry="19663" Location="-2092.571, 5308.671, -37.32312" ItemID="22565" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          </If>
+        </If>
+      </If>
+      <If Condition="LogTimer.IsRunning &amp;&amp; (bool)Settings[&quot;Crafting&quot;]" IgnoreCanRun="True">
+        <Custom Code="LogTimer.Reset();" />
+      </If>
+      <!--<<< Crafting >>>-->
+      <If Condition="(bool)Settings[&quot;Crafting&quot;]" IgnoreCanRun="False">
+        <Custom Code="Log(&quot;Switched to CRAFTING mode.&quot;);" />
+        <While PulseSecondaryBot="True" Condition="(bool)Settings[&quot;Crafting&quot;]" IgnoreCanRun="False">
+          <While PulseSecondaryBot="True" Condition="!(bool)Settings[&quot;BuyingRecipe&quot;] &amp;&amp; (Me.IsHorde &amp;&amp; Me.ZoneId != 1637 || Me.IsAlliance &amp;&amp; Me.ZoneId != 1519)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="HS" />
+          </While>
+          <If Condition="SecondaryBot.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
+            <ChangeBot BotName="Combat Bot" />
+            <Custom Code="profLoaded = false;" />
+          </If>
+          <!--Actual profession leveling-->
+          <If Condition="true" IgnoreCanRun="True">
+            <If Condition="Tail &lt; 75" IgnoreCanRun="True">
+              <Custom Code="ThreadType = &quot;Coarse&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <Custom Code="Log(&quot;Tailoring : 1 - 75&quot;);" />
+              <If Condition="NeedToSell" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Sell" />
+              </If>
+              <If Condition="InbagCount(2589) &gt; 1" IgnoreCanRun="True">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="2963" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(40, 45)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(2385)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2320) &lt; 5" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Specific" Repeat="5" Entry="2385" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(45,50)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(8776)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2320) &lt; 5" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Specific" Repeat="5" Entry="8776" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(50,55)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(3914)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2320) &lt; 5" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Specific" Repeat="5" Entry="3914" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(55,60)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(3840)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2320) &lt; 5" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="5" Entry="3840" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(60,75)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(2397)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2320) &lt; 45" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="5" Entry="2397" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tail &gt;= 75" IgnoreCanRun="True">
+                <If Condition="NeedToDis" IgnoreCanRun="True">
+                  <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+                </If>
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+              </If>
+            </If>
+            <If Condition="Tbtwn(75,125)" IgnoreCanRun="True">
+              <Custom Code="ThreadType = &quot;Fine&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <Custom Code="Log(&quot;Tailoring : 75 - 125&quot;);" />
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="InbagCount(2592) &gt; 1" IgnoreCanRun="True">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="2964" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tail &lt; 110" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(2406)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; 5" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(4340) &lt; 5" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.9425" ItemID="4340" BuyItemType="SpecificItem" Count="5 - InbagCount(4340)" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1811.28, -4565.53, 23.00011" ItemID="4340" BuyItemType="SpecificItem" Count="5 - InbagCount(4340)" BuyAdditively="True" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Specific" Repeat="5" Entry="2406" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(110,125)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(3848)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; 30" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Specific" Repeat="15" Entry="3848" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+            </If>
+            <If Condition="Ench &lt; 130 &amp;&amp; Tail &gt;= 125" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Enchanting : 1 - 130&quot;);" />
+              <If Condition="InbagCount(2996) &gt; 1" IgnoreCanRun="True">
+                <If Condition="InbagCount(2320) &lt; InbagCount(2996) / 2" IgnoreCanRun="True">
+                  <Custom Code="ThreadType = &quot;Coarse&quot;;" />
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3840" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="InbagCount(2997) &gt; 1 || InbagCount(2592) &gt;= 6" IgnoreCanRun="True">
+                <If Condition="InbagCount(2592) &gt; 2" IgnoreCanRun="True">
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="2964" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; InbagCount(2997) / 3" IgnoreCanRun="True">
+                  <Custom Code="ThreadType = &quot;Fine&quot;;" />
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3843" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <While PulseSecondaryBot="True" Condition="!HasItem(6218)" IgnoreCanRun="False">
+                <If Condition="!HasItem(6217)" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1318" Location="-8855.897, 805.4798, 96.33455" ItemID="6217" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3346" Location="1919.17, -4434.09, 24.79819" ItemID="6217" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Specific" Repeat="1" Entry="7421" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                <Wait Condition="false" Timeout="2000" />
+              </While>
+              <If Condition="Ebtwn(50,90)" IgnoreCanRun="False">
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="7418" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(90,110)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(7457)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <CallSubRoutine SubRoutineName="BuyScroll" />
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="7457" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(110,115)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(7748)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <CallSubRoutine SubRoutineName="BuyScroll" />
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="7748" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(110,115)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(7748)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <CallSubRoutine SubRoutineName="BuyScroll" />
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="7748" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <While PulseSecondaryBot="True" Condition="InbagCount(11082) &gt; 0" IgnoreCanRun="True">
+                <Custom Code="Lua.DoString(&quot;UseItemByName(11082)&quot;);" />
+                <Wait Condition="false" Timeout="1000" />
+              </While>
+              <If Condition="InbagCount(10998) &gt; 0 &amp;&amp; InbagCount(10940) &gt; 1 &amp;&amp; Ebtwn(105,130)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13378)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <CallSubRoutine SubRoutineName="BuyScroll" />
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13378" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ench &lt; 130 &amp;&amp; CanCraft(7745)" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(7745)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <CallSubRoutine SubRoutineName="BuyScroll" />
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="7745" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <While PulseSecondaryBot="True" Condition="InbagCount(10938) &gt; 2" IgnoreCanRun="True">
+                <Custom Code="Lua.DoString(&quot;UseItemByName(10938)&quot;);" />
+                <Wait Condition="false" Timeout="1000" />
+              </While>
+              <If Condition="Ebtwn(70,130) &amp;&amp; HasItem(10939)" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(14807)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(4470) &lt; InbagCount(10939)" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1318" Location="-8855.897, 805.4798, 96.33467" ItemID="4470" BuyItemType="SpecificItem" Count="InbagCount(10939)" BuyAdditively="True" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="14807" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="Ench &gt;= 130" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Sell" />
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+              </If>
+            </If>
+            <If Condition="Tbtwn(125,175) &amp;&amp; Ench &gt;= 130" IgnoreCanRun="True">
+              <Custom Code="ThreadType = &quot;Fine&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <Custom Code="Log(&quot;Tailoring : 125 - 175&quot;);" />
+              <If Condition="NeedToSell" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Sell" />
+              </If>
+              <If Condition="InbagCount(4306) &gt; 3" IgnoreCanRun="True">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3839" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(145,155)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(8760)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; 10" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(6260) &lt; 20" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.94238" ItemID="6260" BuyItemType="SpecificItem" Count="20" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1811.28, -4565.53, 23.00011" ItemID="6260" BuyItemType="SpecificItem" Count="20" BuyAdditively="True" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="8760" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(155,160)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(8758)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; 15" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(6260) &lt; 10" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.94238" ItemID="6260" BuyItemType="SpecificItem" Count="20" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1811.28, -4565.53, 23.00011" ItemID="6260" BuyItemType="SpecificItem" Count="20" BuyAdditively="True" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="8758" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(160,170)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(8762)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; 30" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="8762" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(170,175)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(3871)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; 5" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(2324) &lt; 10" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.94238" ItemID="2324" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="2324" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3871" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tail &gt;= 175" IgnoreCanRun="True">
+                <If Condition="NeedToDis" IgnoreCanRun="True">
+                  <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+                </If>
+                <CallSubRoutine SubRoutineName="TrainTail" />
+              </If>
+            </If>
+            <If Condition="Ebtwn(130,185) &amp;&amp; Tail &gt;= 175" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Enchanting : 130 - 185&quot;);" />
+              <If Condition="InbagCount(2997) &gt; 1 || InbagCount(2592) &gt;= 6" IgnoreCanRun="False">
+                <If Condition="InbagCount(2592) &gt; 2" IgnoreCanRun="False">
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="2964" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; InbagCount(2997) / 3" IgnoreCanRun="True">
+                  <Custom Code="ThreadType = &quot;Fine&quot;;" />
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3843" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <If Condition="Ebtwn(130,160)" IgnoreCanRun="False">
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13501" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(10940) &gt; 7 &amp;&amp; Ench &gt;= 125" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(7863)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="7863" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(11082) &gt; 1 &amp;&amp; Ench &gt;= 150" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13622)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13622" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(160,180)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13640)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13640" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(11134) &gt; 0 &amp;&amp; Ench &gt;= 165" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13642)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13642" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(180,185)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13640)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13640" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="Ench &gt;= 185" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="TrainEnch" />
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+              </If>
+            </If>
+            <If Condition="Tbtwn(175,250) &amp;&amp; Ench &gt;= 185" IgnoreCanRun="True">
+              <Custom Code="ThreadType = &quot;Fine&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <Custom Code="Log(&quot;Tailoring : 175 - 250&quot;);" />
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="InbagCount(4338) &gt; 3" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3865" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(185,205)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(8791)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(2321) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(2604) &lt; 20" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.94238" ItemID="2604" BuyItemType="SpecificItem" Count="40" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="2604" BuyItemType="SpecificItem" Count="40" BuyAdditively="True" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="8791" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <Custom Code="ThreadType = &quot;Silken&quot;;" />
+              <If Condition="InbagCount(4305) &gt; 3 &amp;&amp; Tail &gt;= 195" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(8799)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(4291) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(2604) &lt; 10" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.94238" ItemID="2604" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1811.28, -4565.53, 23.00011" ItemID="2604" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+                  </If>
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="8799" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(205,220)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(12049)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(4291) &lt; 45" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="12049" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <Custom Code="ThreadType = &quot;ThickSilken&quot;;" />
+              <If Condition="Tbtwn(220,230)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(12053)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(8343) &lt; 30" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="12053" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(230,250)" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(12072)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(8343) &lt; 45" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="12072" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                <Wait Condition="Tail &gt;= 250" Timeout="10000" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tail &gt;= 250" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="TrainTail" />
+                <CallSubRoutine SubRoutineName="Sell" />
+              </If>
+            </If>
+            <If Condition="Ebtwn(185,265) &amp;&amp; Tail &gt;= 250" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Enchanting : 185 - 265&quot;);" />
+              <If Condition="NeedToSell" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Sell" />
+              </If>
+              <If Condition="InbagCount(4338) &gt; 3" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3865" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <While PulseSecondaryBot="True" Condition="InbagCount(4339) &gt; 2" IgnoreCanRun="True">
+                <Custom Code="ThreadType = &quot;ThickSilken&quot;;" />
+                <If Condition="InbagCount(8343) &lt; 45" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="Me.FreeBagSlots &gt;= 5" IgnoreCanRun="False">
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="12072" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <If Condition="Me.FreeBagSlots &lt; 5" IgnoreCanRun="True">
+                  <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+                </If>
+              </While>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <If Condition="InbagCount(4338) &gt; 3" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="3865" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <While PulseSecondaryBot="True" Condition="InbagCount(4339) &gt; 2" IgnoreCanRun="True">
+                <If Condition="InbagCount(8343) &lt; InbagCount(4339) / 1.5" IgnoreCanRun="True">
+                  <Custom Code="ThreadType = &quot;ThickSilken&quot;;" />
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="Me.FreeBagSlots &gt;= 5" IgnoreCanRun="True">
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="12072" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </While>
+              <If Condition="InbagCount(11083) &gt;= 4" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13644)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13644" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(185,220)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13661)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13661" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(220,225)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13746)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13746" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <While PulseSecondaryBot="True" Condition="InbagCount(11175) &gt; 0" IgnoreCanRun="True">
+                <Custom Code="Lua.DoString(&quot;UseItemByName(11175)&quot;);" />
+                <Wait Condition="false" Timeout="1000" />
+              </While>
+              <If Condition="Ebtwn(225,230)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13815)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13815" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(11174) &gt;= 2 &amp;&amp; Ench &lt; 250" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13822)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13822" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(230,250)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13836)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13836" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(11137) &gt; 3 &amp;&amp; InbagCount(11174) &gt; 0 &amp;&amp; Ench &lt; 265" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(63746)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="63746" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(11137) &gt; 2" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13746)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13746" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(11176) &gt; 1 &amp;&amp; InbagCount(11178) &gt; 0 &amp;&amp; Ench &lt; 280" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(13937)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="13937" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ench &gt;= 265" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="TrainEnch" />
+                <CallSubRoutine SubRoutineName="Sell" />
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+              </If>
+            </If>
+            <If Condition="Tbtwn(250,300) &amp;&amp; Ench &gt;= 265" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Tailoring : 250 - 300&quot;);" />
+              <Custom Code="ThreadType = &quot;Rune&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="NeedToSell" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Sell" />
+              </If>
+              <If Condition="InbagCount(14047) &gt; 3" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="18401" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(260,270)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(18402)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="18402" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(270,275)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(18411)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(6260) &lt; 10" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.94238" ItemID="6260" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="6260" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+                  </If>
+                </If>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="18411" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(275,290)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(18417)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="18417" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(290,295)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(18424)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(6260) &lt; 10" IgnoreCanRun="True">
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.94238" ItemID="6260" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="6260" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+                  </If>
+                </If>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="18424" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(295,300)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(18444)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="18444" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tail &gt;= 300" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="TrainTail" />
+                <CallSubRoutine SubRoutineName="Sell" />
+              </If>
+            </If>
+            <If Condition="Ebtwn(265,300) &amp;&amp; Tail &gt;= 300" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Enchanting : 265 - 300&quot;);" />
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <While PulseSecondaryBot="True" Condition="InbagCount(16203) &gt; 0" IgnoreCanRun="True">
+                <Custom Code="Lua.DoString(&quot;UseItemByName(16203)&quot;);" />
+                <Wait Condition="false" Timeout="1000" />
+              </While>
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <If Condition="Ebtwn(255,275)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(20008)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="20008" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(16202) &gt; 1 &amp;&amp; InbagCount(16204) &gt; 2" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(20012)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="20012" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="!HasRecipe(20017)" IgnoreCanRun="False">
+                <Setting DefaultValue="true" Type="Boolean" Name="BuyingRecipe" Summary="DO NOT TOUCH!" Category="misc" Global="False" Hidden="False" />
+                <Custom Code="Settings[&quot;BuyingRecipe&quot;] = true;" />
+                <While PulseSecondaryBot="True" Condition="!HasItem(16217)" IgnoreCanRun="True">
+                  <Custom Code="Log(&quot;Going to buy enchanting recipe.&quot;);" />
+                  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+                    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+                      <FlyTo Dismount="True" Location="-8643.84, 1326.088, 5.537401" />
+                      <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ).Location.Distance(new WoWPoint(-8650.719, 1346, -0.009)) &lt; 1" Timeout="600000" />
+                      <Custom Code="CTM(-8645.14, 1339.8, 6);" />
+                      <Wait Condition="Me.MapId == 1" Timeout="600000" />
+                      <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ).Location.Distance(new WoWPoint(8162.5, 1005.3, -0.04)) &lt; 1" Timeout="600000" />
+                      <Custom Code="CTM(8182, 1002, 7);" />
+                    </If>
+                    <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                      <If Condition="DistanceTo(10113.7, 2293.2, 1331.968) &gt; 30" IgnoreCanRun="True">
+                        <If Condition="Me.Z &lt; 1000" IgnoreCanRun="False">
+                          <MoveTo Location="8383.984, 1000.699, 29.8112" MoveType="Location" Pathing="Navigator" Entry="0" />
+                          <MoveTo Location="8390.984, 1000.699, 29.8112" MoveType="Location" Pathing="Navigator" Entry="0" />
+                        </If>
+                        <FlyTo Dismount="True" Location="10097.97, 2281.244, 1334.012" />
+                      </If>
+                      <BuyItem NpcEntry="4229" Location="10113.7, 2293.2, 1331.968" ItemID="16217" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+                    </If>
+                  </If>
+                  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+                    <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+                    </If>
+                    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+                      <If Condition="Me.IsFlying" IgnoreCanRun="True">
+                        <FlyTo Dismount="True" Location="1878.62, 237.4184, 59.80203" />
+                      </If>
+                      <MoveTo Location="1638.707, 258.7394, -43.10307" MoveType="Location" Pathing="Navigator" Entry="0" />
+                      <BuyItem NpcEntry="4561" Location="1638.707, 258.7394, -43.10307" ItemID="16217" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+                    </If>
+                  </If>
+                </While>
+                <If Condition="HasItem(16217) &amp;&amp; !HasRecipe(20017)" IgnoreCanRun="True">
+                  <Custom Code="Lua.DoString(&quot;UseItemByName(16217)&quot;);" />
+                  <Wait Condition="false" Timeout="10000" />
+                  <CallSubRoutine SubRoutineName="Refresh" />
+                </If>
+              </If>
+              <If Condition="Ebtwn(280,300)" IgnoreCanRun="True">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="20017" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ench &gt;= 300" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="ToAH" />
+                <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+                <If Condition="Me.IsAlliance &amp;&amp; Me.ZoneId == 1657" IgnoreCanRun="True">
+                  <FlyTo Dismount="True" Location="9718.654, 2525.41, 1337.276" />
+                  <MoveTo Location="9661.524, 2513.747, 1331.655" MoveType="Location" Pathing="Navigator" Entry="0" />
+                  <Interact InteractType="GameObject" Entry="195141" InteractDelay="0" GameObjectType="Mailbox" SpellFocus="Anvil" />
+                </If>
+                <If Condition="Me.IsHorde &amp;&amp; Me.ZoneId == 1497" IgnoreCanRun="True">
+                  <MoveTo Location="1770.171, 58.60782, -46.32143" MoveType="Location" Pathing="Navigator" Entry="0" />
+                  <Interact InteractType="GameObject" Entry="195142" InteractDelay="0" GameObjectType="Mailbox" SpellFocus="Anvil" />
+                </If>
+                <Wait Condition="false" Timeout="15000" />
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+              </If>
+            </If>
+            <If Condition="Tbtwn(300,350) &amp;&amp; Ench &gt;= 300" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Tailoring : 300 - 350&quot;);" />
+              <Custom Code="ThreadType = &quot;Rune&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="InbagCount(21877) &gt; 3" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="26745" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(325,335)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(26771)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="26771" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(335,345)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(26772)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(21887) &lt; 20" IgnoreCanRun="False">
+                  <Custom Code="Log(&quot;Going to buy leather from AH.&quot;);" />
+                  <CallSubRoutine SubRoutineName="ToAH" />
+                  <BuyItemFromAH ItemListType="Item" ItemID="21887" MaxBuyout="100g0s0c" Amount="20" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMail GetMailType="Specific" ItemID="21887" CheckNewMail="True" MaxCODAmount="0g0s0c" MinFreeBagSlots="0" AutoFindMailBox="True" Location="0, 0, 0" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="26772" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(345,350)" IgnoreCanRun="False">
+                <While PulseSecondaryBot="True" Condition="HasItem(21897)" IgnoreCanRun="False">
+                  <Custom Code="Lua.DoString(&quot;UseItemByName(21897)&quot;);" />
+                  <Wait Condition="!Me.IsCasting" Timeout="5000" />
+                </While>
+                <If Condition="InbagCount(14341) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="26774" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+            </If>
+            <If Condition="Ebtwn(300,350) &amp;&amp; Tail &gt;= 350" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Enchanting : 300 - 350&quot;);" />
+              <If Condition="InbagCount(21877) &gt; 3" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="26745" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="InbagCount(21840) &gt; 2" IgnoreCanRun="True">
+                <Custom Code="ThreadType = &quot;Rune&quot;;" />
+                <If Condition="InbagCount(14341) &lt; InbagCount(21840) / 3" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="26764" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <If Condition="Ebtwn(300,310)" IgnoreCanRun="False">
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="34002" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(310,335)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(27899)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="27899" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(335,340)" IgnoreCanRun="False">
+                <While PulseSecondaryBot="True" Condition="HasItem(22565)" IgnoreCanRun="True">
+                  <Custom Code="Lua.DoString(&quot;UseItemByName(22565)&quot;);" />
+                  <Wait Condition="!Me.IsCasting" Timeout="5000" />
+                </While>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <If Condition="InbagCount(22448) &gt; 2" IgnoreCanRun="False">
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="28022" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <If Condition="!HasRecipe(44383)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="44383" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="InbagCount(22449) &gt; 0 &amp;&amp; InbagCount(22447) &gt; 3" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="44383" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(340,350)" IgnoreCanRun="False">
+                <While PulseSecondaryBot="True" Condition="InbagCount(22447) &gt; 2" IgnoreCanRun="True">
+                  <Custom Code="Lua.DoString(&quot;UseItemByName(22447)&quot;);" />
+                  <Wait Condition="false" Timeout="2000" />
+                </While>
+                <If Condition="!HasRecipe(33995)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="33995" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="27899" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+                <Wait Condition="Ench &gt;= 350" Timeout="5000" />
+              </If>
+              <If Condition="Ench &gt;= 350" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="ToAH" />
+                <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+              </If>
+            </If>
+            <If Condition="Tbtwn(350,425) &amp;&amp; Ench &gt;= 350" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Tailoring : 350 - 425&quot;);" />
+              <Custom Code="ThreadType = &quot;Ethernium&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="InbagCount(33470) &gt; 4" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="55899" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(375,380)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(55908)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="55908" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Rare" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(380,385)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(55906)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="55906" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(385,395)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(55907)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="55907" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(395,400)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(55914)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="55914" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(400,405)" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(55900)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Specific" Repeat="60 - InbagCount(41511)" Entry="55900" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(405,410)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(55920)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="55920" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(410,415)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(55922)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="55922" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(415,425)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(56007)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <If Condition="InbagCount(41511) &lt; (425 - Tailoring.Level) * 6" IgnoreCanRun="False">
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="55900" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <If Condition="InbagCount(36860) &gt; 1" IgnoreCanRun="False">
+                  <If Condition="!HasRecipe(56003)" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="TrainTail" />
+                  </If>
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="56003" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="56007" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+            </If>
+            <If Condition="Ebtwn(350,425) &amp;&amp; Tail &gt;= 425" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Enchanting : 350 - 425&quot;);" />
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Ebtwn(350,375)" IgnoreCanRun="False">
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="60609" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(375,390)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(44506)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="44506" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(390,396)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(60623)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="HasItem(35622)" IgnoreCanRun="True">
+                  <Custom Code="Lua.DoString(&quot;UseItemByName(35622)&quot;);" />
+                  <Wait Condition="false" Timeout="2000" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="60623" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(396,405)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(44500)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="44500" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(405,411)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(44484)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="44484" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(411,423)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(44488)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="44488" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(423,426)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(60663)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="60663" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <CallSubRoutine SubRoutineName="Sell" />
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <If Condition="Ench &gt;= 425" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="ToAH" />
+                <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+                <SellItemOnAH Category="Money" SubCategoryType="SubCategoryType" SubCategory="None" UseCategory="False" RunTime="_24_Hours" AmountType="Everything" ItemID="41599" MinBuyout="50g10s0c" MaxBuyout="300g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+                <CallSubRoutine SubRoutineName="" />
+              </If>
+            </If>
+            <If Condition="Tbtwn(425,500) &amp;&amp; Ench &gt;= 425" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Tailoring : 425 - 500&quot;);" />
+              <Custom Code="ThreadType = &quot;Ethernium&quot;;" />
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+              <If Condition="InbagCount(53010) &gt; 4" IgnoreCanRun="False">
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74964" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(450,455)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(75248)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75248" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(455,460)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(75251)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75251" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Custom Code="SpellManager.StopCasting();" />
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(460,465)" IgnoreCanRun="False">
+                <If Condition="!HasRecipe(75254)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75254" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(465,470)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(75256)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75256" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Custom Code="SpellManager.StopCasting();" />
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(470,475)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(75258)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75258" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(475,480)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(75261)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75261" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Custom Code="SpellManager.StopCasting();" />
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(480,485)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(75263)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75263" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Tbtwn(485,500)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(75267)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainTail" />
+                </If>
+                <If Condition="InbagCount(38426) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyThread" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="75267" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Custom Code="SpellManager.StopCasting();" />
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <CallSubRoutine SubRoutineName="TrainTail" />
+              <CallSubRoutine SubRoutineName="Sell" />
+            </If>
+            <If Condition="Ebtwn(425,500) &amp;&amp; Tail &gt;= 500" IgnoreCanRun="True">
+              <Custom Code="Log(&quot;Enchanting : 425 - 500&quot;);" />
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <While PulseSecondaryBot="True" Condition="InbagCount(53643) &gt; 2" IgnoreCanRun="True">
+                <Custom Code="ThreadType = &quot;Ethernium&quot;;" />
+                <If Condition="Me.FreeBagSlots &gt; 3" IgnoreCanRun="False">
+                  <If Condition="InbagCount(38426) &lt; InbagCount(53643) / 3" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="BuyThread" />
+                  </If>
+                  <CastSpell RepeatType="Craftable" Repeat="1" Entry="75256" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </While>
+              <If Condition="NeedToDis" IgnoreCanRun="True">
+                <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Uncommon" ItemId="0" />
+              </If>
+              <If Condition="Ebtwn(425,440)" IgnoreCanRun="False">
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74132" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(440,450)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74193)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74193" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <Disenchant ActionType="Disenchant" ItemTarget="All" ItemQuality="Rare" ItemId="0" />
+              <If Condition="Ebtwn(450,460)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74195)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74195" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(460,465)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74198)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74198" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(465,470)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74201)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74201" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(470,475)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74202)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74202" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(475,485)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74214)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74214" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(485,490)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74220)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <While PulseSecondaryBot="True" Condition="InbagCount(52718) &gt; 2" IgnoreCanRun="True">
+                  <Custom Code="Lua.DoString(&quot;UseItemByName(52718)&quot;);" />
+                  <Wait Condition="false" Timeout="1000" />
+                </While>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74220" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(490,495)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74226)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74226" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <If Condition="Ebtwn(495,500)" IgnoreCanRun="False">
+                <Custom Code="SpellManager.StopCasting();" />
+                <If Condition="!HasRecipe(74230)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="TrainEnch" />
+                </If>
+                <If Condition="InbagCount(38682) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="BuyScroll" />
+                </If>
+                <CastSpell RepeatType="Craftable" Repeat="1" Entry="74230" CastOnItem="True" ItemType="Chest" ItemId="38682" />
+              </If>
+              <CallSubRoutine SubRoutineName="Sell" />
+              <CallSubRoutine SubRoutineName="TrainEnch" />
+              <If Condition="Ench &gt;= 500" IgnoreCanRun="True">
+                <Custom Code="Settings[&quot;Crafting&quot;] = false;" />
+              </If>
+            </If>
+          </If>
+          <!--<<<>>>-->
+        </While>
+      </If>
+      <If Condition="!profLoaded || !(bool)Settings[&quot;Crafting&quot;] &amp;&amp; SecondaryBot.Name != &quot;Questing&quot;" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LoadProfile" />
+      </If>
+    </While>
+  </While>
+  <!--movement & traveling-->
+  <If Condition="true" IgnoreCanRun="True">
+    <SubRoutine SubRoutineName="TrainEnch">
+      <If Condition="!(bool)Settings[&quot;BuyingRecipe&quot;]" IgnoreCanRun="True">
+        <Wait Condition="false" Timeout="2000" />
+        <If Condition="skillTrained != Ench" IgnoreCanRun="True">
+          <Custom Code="Log(&quot;Training Enchanting.&quot;);" />
+          <Custom Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/click ClassTrainerFrameCloseButton&quot;));" />
+          <CallSubRoutine SubRoutineName="ToEnch" />
+          <If Condition="Me.MapId == 0 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
+            <TrainSkill NpcEntry="1317" Location="-8858.31, 803.734, 96.33503" />
+          </If>
+          <If Condition="Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
+            <TrainSkill NpcEntry="3345" Location="1912.004, -4436.755, 24.7925" />
+          </If>
+          <Custom Code="skillTrained = (int)Ench;" />
+          <Wait Condition="false" Timeout="2000" />
+        </If>
+        <CallSubRoutine SubRoutineName="Refresh" />
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToEnch">
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <If Condition="DistanceTo(-8855.278, 800.2233, 96.33467) &gt; 40 || Me.IsFlying" IgnoreCanRun="True">
+          <FlyTo Dismount="False" Location="-8839.073, 775.485, 124.8513" />
+          <FlyTo Dismount="True" Location="-8843.814, 783.8165, 97.62669" />
+          <MoveTo Location="-8855.278, 800.2233, 96.33467" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+      </If>
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <If Condition="DistanceTo(1805.621, -4399.604, -18.21453) &lt; 45" IgnoreCanRun="True">
+          <MoveTo Location="1897.109, -4490.934, 23.96251" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="DistanceTo(1912.004, -4436.755, 24.79301) &gt; 100 || Me.IsFlying" IgnoreCanRun="True">
+          <FlyTo Dismount="False" Location="1938.266, -4426.91, 29.40994" />
+          <FlyTo Dismount="True" Location="1930.049, -4428.737, 23.70911" />
+          <MoveTo Location="1914.333, -4434.304, 24.78659" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToTail">
+      <If Condition="Me.MapId == 0 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
+        <If Condition="DistanceTo(-8938.103, 800.7065, 90.94211) &gt; 40 || Me.IsFlying" IgnoreCanRun="True">
+          <FlyTo Dismount="False" Location="-8926.622, 780.0595, 143.4757" />
+          <FlyTo Dismount="True" Location="-8939.598, 774.2148, 95.8976" />
+        </If>
+        <If Condition="DistanceTo(-8943.211, 793.1166, 90.94163) &gt; 30" IgnoreCanRun="True">
+          <MoveTo Location="-8943.211, 793.1166, 90.94163" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+      </If>
+      <If Condition="Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
+        <If Condition="DistanceTo(1805.621, -4399.604, -18.21453) &lt; 45" IgnoreCanRun="True">
+          <MoveTo Location="1897.109, -4490.934, 23.96251" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="DistanceTo(1803.787, -4557.122, 22.99999) &gt; 100 || Me.IsFlying" IgnoreCanRun="True">
+          <FlyTo Dismount="True" Location="1803.176, -4532.127, 27.42358" />
+        </If>
+        <If Condition="DistanceTo(1801.458, -4562.008, 23.00062) &gt; 30" IgnoreCanRun="True">
+          <MoveTo Location="1801.458, -4562.008, 23.00062" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="TrainTail">
+      <Custom Code="Log(&quot;Training Tailoring.&quot;);" />
+      <CallSubRoutine SubRoutineName="ToTail" />
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <TrainSkill NpcEntry="1346" Location="-8938.103, 800.7065, 90.94211" />
+      </If>
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <TrainSkill NpcEntry="3363" Location="1801.01, -4563.08, 23.00007" />
+      </If>
+      <CallSubRoutine SubRoutineName="Refresh" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="To Outlands">
+      <If Condition="Me.MapId == 0 || Me.MapId == 1" IgnoreCanRun="True">
+        <If Condition="Me.IsAlliance &amp;&amp; Me.MapId == 0" IgnoreCanRun="True">
+          <Custom Code="Log(&quot;Летим в Запределье.&quot;);" />
+          <If Condition="Me.ZoneId != 4" IgnoreCanRun="True">
+            <FlyTo Dismount="False" Location="-8993.438, 850.3336, 136.5244" />
+            <MoveTo Location="-9000.422, 862.7349, 130.3995" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            <Custom Code="Mount.Dismount();" />
+            <MoveTo Location="-9006.516, 870.584, 129.6925" MoveType="Location" Pathing="Navigator" Entry="0" />
+            <Interact InteractType="GameObject" Entry="195141" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+            <Wait Condition="Me.ZoneId ==4" Timeout="10000" />
+          </If>
+        </If>
+        <If Condition="Me.IsHorde &amp;&amp; Me.MapId == 1" IgnoreCanRun="True">
+          <If Condition="DistanceTo(1771.438, -4325.646, -8.164066) &gt; 60" IgnoreCanRun="True">
+            <FlyTo Dismount="False" Location="1892.471, -4531.338, 116.0898" />
+            <FlyTo Dismount="False" Location="1892.471, -4488.347, 34.52579" />
+            <FlyTo Dismount="False" Location="1890.895, -4425.936, 18.08089" />
+            <FlyTo Dismount="False" Location="1819.739, -4389.112, 9.789508" />
+            <FlyTo Dismount="True" Location="1792.507, -4325.36, 22.72393" />
+          </If>
+          <MoveTo Location="1771.438, -4325.646, -8.164066" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <Interact InteractType="GameObject" Entry="195142" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+          <Wait Condition="Me.ZoneId ==4" Timeout="10000" />
+        </If>
+        <!--***************-->
+        <FlyTo Dismount="True" Location="-11897.75, -3207.361, -14.69353" />
+        <Custom Code="CTM(-11910.86, -3208.903, -14.75266);" />
+        <While PulseSecondaryBot="True" Condition="!StyxWoW.IsInGame" IgnoreCanRun="True">
+          <Wait Condition="false" Timeout="2000" />
+        </While>
+        <Wait Condition="Me.MapId == 530" Timeout="20000" />
+        <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+          <FlyTo Dismount="False" Location="-215.5635, 1524.325, 224.4397" />
+        </If>
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="To Northrend">
+      <If Condition="Me.MapId == 0 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;To Northrend! (c)&quot;);" />
+        <FlyTo Dismount="True" Location="-8294.98, 1401.778, 21.20104" />
+        <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(-8288.816, 1424.703, -0.04673716)) &lt; 1" Timeout="600000" />
+        <Custom Code="CTM(-8291.125, 1426.749, 9.378994);" />
+        <Wait Condition="Me.MapId == 571" Timeout="600000" />
+        <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(2218.391, 5119.589, -0.04980761)) &lt; 1" Timeout="600000" />
+        <Custom Code="CTM(2230.737, 5131.732, 5.343163);" />
+        <FlyTo Dismount="False" Location="2249.689, 5169.779, 69.98215" />
+      </If>
+      <If Condition="Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;To Northrend! (c)&quot;);" />
+        <FlyTo Dismount="True" Location="1762.38, -4280.612, 192.095" />
+        <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ).Location.Distance(new WoWPoint(1775.066, -4299.745, 151.0326)) &lt; 1" Timeout="600000" />
+        <Custom Code="CTM(1769.266, -4291.776, 133.1643);" />
+        <Wait Condition="Me.MapId == 571" Timeout="600000" />
+        <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ).Location.Distance(new WoWPoint(2837.908, 6187.443, 140.1648)) &lt; 1" Timeout="600000" />
+        <Custom Code="CTM(2835.973, 6184.18, 121.8944);" />
+        <Wait Condition="false" Timeout="2000" />
+        <FlyTo Dismount="False" Location="2941.366, 6073.483, 154.2777" />
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="Kalimdor to EK">
+      <If Condition="Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;Flying to Eastern Kingdoms&quot;);" />
+        <FlyTo Dismount="False" Location="1815.511, -4399.648, 161.2433" />
+        <FlyTo Dismount="True" Location="1842.606, -4392.368, 135.2341" />
+        <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 164871 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 164871 ).Location.Distance(new WoWPoint(1833, -4391.745, 152)) &lt; 3" Timeout="600000" />
+        <Custom Code="CTM(1835.082, -4385.956, 135.021);" />
+        <Wait Condition="Me.MapId == 0" Timeout="600000" />
+        <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 164871 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 164871 ).Location.Distance(new WoWPoint(2062, 292.98, 114.97)) &lt; 1" Timeout="600000" />
+        <Custom Code="CTM(2067, 287, 97);" />
+        <Wait Condition="false" Timeout="2000" />
+        <FlyTo Dismount="False" Location="2011.693, 275.0912, 113.1884" />
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="To Uldum">
+      <Setting DefaultValue="true" Type="Boolean" Name="Uldum portal" Summary="Set to false if your character doesn't have a portal to Uldum." Category="Navigation" Global="False" Hidden="False" />
+      <If Condition="Me.IsAlliance &amp;&amp; Me.MapId == 0" IgnoreCanRun="True">
+        <If Condition="(bool)Settings[&quot;Uldum portal&quot;]" IgnoreCanRun="False">
+          <FlyTo Dismount="True" Location="-8230.155, 418.8318, 117.531" />
+          <Wait Condition="false" Timeout="2000" />
+          <If Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o=&gt; o.Entry == 207695) == null" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;Uldum portal not found. Gonna take a boat.&quot;);" />
+            <Custom Code="Settings[&quot;Ulum portal&quot;] = false;" />
+          </If>
+          <Interact InteractType="GameObject" Entry="207695" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+          <Wait Condition="Me.MapId != 0" Timeout="10000" />
+        </If>
+        <If Condition="!(bool)Settings[&quot;Uldum portal&quot;]" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 0 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;Taking boat to Kalimdor.&quot;);" />
+            <FlyTo Dismount="True" Location="-8643.84, 1326.088, 5.537401" />
+            <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ).Location.Distance(new WoWPoint(-8650.719, 1346, -0.009)) &lt; 1" Timeout="600000" />
+            <Custom Code="CTM(-8645.14, 1339.8, 6);" />
+            <Wait Condition="Me.MapId == 1" Timeout="600000" />
+            <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176310 ).Location.Distance(new WoWPoint(8162.5, 1005.3, -0.04)) &lt; 1" Timeout="600000" />
+            <Custom Code="CTM(8182, 1002, 7);" />
+          </If>
+        </If>
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="HS">
+      <Declaration Code="WoWItem HS { get { return Me.CarriedItems.FirstOrDefault(i =&gt; i.Entry == 6948 || i.Entry == 64488); } }" />
+      <If Condition="HS.Cooldown == 0" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;Using hearthstone.&quot;);" />
+        <If Condition="Me.Mounted" IgnoreCanRun="True">
+          <Custom Code="Lua.DoString(&quot;Dismount()&quot;);" />
+        </If>
+        <Wait Condition="!Me.Mounted &amp;&amp; !Me.IsMoving &amp;&amp; !Me.IsActuallyInCombat" Timeout="2000" />
+        <Custom Code="if(HasItem(6948)) { Lua.DoString(&quot;UseItemByName(6948)&quot;); }" />
+        <Custom Code="if(HasItem(64488)) { Lua.DoString(&quot;UseItemByName(64488)&quot;); }" />
+        <Wait Condition="InCity &amp;&amp; StyxWoW.IsInGame &amp;&amp; !Me.IsCasting" Timeout="15000" />
+      </If>
+      <If Condition="HS.Cooldown &gt; 0" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;Hearthstone is still on cooldown, waiting.&quot;);" />
+        <Wait Condition="HS.Cooldown == 0" Timeout="30000" />
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="BuyThread">
+      <Declaration Code="string ThreadType = &quot;&quot;;" />
+      <CallSubRoutine SubRoutineName="ToTail" />
+      <If Condition="true" IgnoreCanRun="True">
+        <If Condition="ThreadType == &quot;Coarse&quot;" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.9425" ItemID="2320" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <BuyItem NpcEntry="3364" Location="1811.28, -4565.53, 23.00011" ItemID="2320" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+        </If>
+        <If Condition="ThreadType == &quot;Fine&quot;" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.9425" ItemID="2321" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="2321" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+        </If>
+        <If Condition="ThreadType == &quot;Silken&quot;" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.9425" ItemID="4291" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="4291" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+        </If>
+        <If Condition="ThreadType == &quot;ThickSilken&quot;" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.9425" ItemID="8343" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="8343" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+        </If>
+        <If Condition="ThreadType == &quot;Rune&quot;" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.9425" ItemID="14341" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="14341" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+        </If>
+        <If Condition="ThreadType == &quot;Ethernium&quot;" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <BuyItem NpcEntry="1347" Location="-8942.841, 799.5444, 90.9425" ItemID="38426" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <BuyItem NpcEntry="3364" Location="1807.04, -4563.03, 23.00011" ItemID="38426" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          </If>
+        </If>
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="BuyScroll">
+      <Custom Code="Log(&quot;Buying scrolls.&quot;);" />
+      <CallSubRoutine SubRoutineName="ToEnch" />
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <BuyItem NpcEntry="1318" Location="-8855.897, 805.4798, 96.33455" ItemID="38682" BuyItemType="SpecificItem" Count="60 - InbagCount(38682)" BuyAdditively="True" />
+      </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <BuyItem NpcEntry="3346" Location="1919.17, -4434.09, 24.79803" ItemID="38682" BuyItemType="SpecificItem" Count="60 - InbagCount(38682)" BuyAdditively="True" />
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToAH">
+      <If Condition="Me.IsAlliance &amp;&amp; Me.MapId == 0" IgnoreCanRun="True">
+        <FlyTo Dismount="False" Location="-8856.317, 645.365, 104.0814" />
+        <FlyTo Dismount="True" Location="-8843.945, 647.5452, 96.67194" />
+      </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+          <FlyTo Dismount="False" Location="1938.486, -4240.735, 57.46715" />
+          <FlyTo Dismount="True" Location="1922.793, -4228.295, 36.89076" />
+        </If>
+        <If Condition="Me.ZoneId == 1497" IgnoreCanRun="True">
+          <MoveTo Location="1647.433, 259.3335, -56.88693" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+      </If>
+    </SubRoutine>
+  </If>
+  <SubRoutine SubRoutineName="LoadProfile">
+    <Custom Code="Log(&quot;Loading profile.&quot;);" />
+    <LoadProfile ProfileType="Honorbuddy" Path="Neutral Farm Profiles\blank.xml" IsLocalOrFromStore="True" />
+    <If Condition="Tail &lt; 75" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <LoadProfile ProfileType="Honorbuddy" Path="Alliance Farm Profiles\Linen cloth.xml" IsLocalOrFromStore="True" />
+      </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <LoadProfile ProfileType="Honorbuddy" Path="Horde Farm Profiles\Linen.xml" IsLocalOrFromStore="True" />
+      </If>
+    </If>
+    <If Condition="Tail &lt; 125 &amp;&amp; Tail &gt;= 75" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <LoadProfile ProfileType="Honorbuddy" Path="Alliance Farm Profiles\Wool.xml" IsLocalOrFromStore="True" />
+      </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+        <LoadProfile ProfileType="Honorbuddy" Path="Horde Farm Profiles\Wool.xml" IsLocalOrFromStore="True" />
+      </If>
+    </If>
+    <If Condition="Tail &lt; 175 &amp;&amp; Tail &gt;= 125" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+      <LoadProfile ProfileType="Honorbuddy" Path="Alliance Farm Profiles\Silk.xml" IsLocalOrFromStore="True" />
+    </If>
+    <If Condition="Tail &lt; 250 &amp;&amp; Tail &gt;= 175" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+      <LoadProfile ProfileType="Honorbuddy" Path="Alliance Farm Profiles\Mageweave.xml" IsLocalOrFromStore="True" />
+    </If>
+    <If Condition="Tail &lt; 300 &amp;&amp; Tail &gt;= 250" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+      <LoadProfile ProfileType="Honorbuddy" Path="Alliance Farm Profiles\Runecloth.xml" IsLocalOrFromStore="True" />
+    </If>
+    <If Condition="Tail &lt; 350 &amp;&amp; Tail &gt;= 300" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="To Outlands" />
+      <LoadProfile ProfileType="Honorbuddy" Path="Neutral Farm Profiles\Netherweave cloth.xml" IsLocalOrFromStore="True" />
+    </If>
+    <If Condition="Tail &lt; 425 &amp;&amp; Tail &gt;= 350" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="To Northrend" />
+      <LoadProfile ProfileType="Honorbuddy" Path="Neutral Farm Profiles\Frostweave.xml" IsLocalOrFromStore="True" />
+    </If>
+    <If Condition="Tail &lt; 500 &amp;&amp; Tail &gt;= 425" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="To Uldum" />
+      <If Condition="Me.Level &lt; 90 || (Me.Class != WoWClass.Paladin &amp;&amp; Me.Class != WoWClass.DeathKnight)" IgnoreCanRun="True">
+        <LoadProfile ProfileType="Honorbuddy" Path="Neutral Farm Profiles\Embersilk Grind.xml" IsLocalOrFromStore="True" />
+      </If>
+      <If Condition="Me.Level &gt;= 90 &amp;&amp; (Me.Class == WoWClass.Paladin || Me.Class == WoWClass.DeathKnight)" IgnoreCanRun="True">
+        <LoadProfile ProfileType="Honorbuddy" Path="Neutral Farm Profiles\Embersilk.xml" IsLocalOrFromStore="True" />
+      </If>
+    </If>
+    <If Condition="SecondaryBot.Name != &quot;Questing&quot;" IgnoreCanRun="True">
+      <ChangeBot BotName="Questing" />
+    </If>
+    <Custom Code="profLoaded = true;" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Sell">
+    <Declaration Code="WoWUnit merchant { get { return ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u=&gt;!u.IsDead &amp;&amp; !u.IsHostile &amp;&amp; u.IsRepairMerchant &amp;&amp; u.Distance &lt; 15).OrderBy(u=&gt;u.Distance).FirstOrDefault(); } }" />
+    <Declaration Code="List&lt;uint&gt; ProtectedItems = new List&lt;uint&gt;() { 58488,35623,36860,35622,37705,37702,18335,22563,22565,21897,16217,6260,2604,38682,2589, 2996, 2320, 2592, 2997, 2321, 4306, 4305, 4338, 4339, 4291, 8343, 14047, 14048, 14341, 21877, 21840, 33470, 41510, 38426, 41511, 35627, 35625, 36860, 53010, 53643, 72998, 82441, 6218 };" />
+    <Declaration Code="bool NeedToSell { get { foreach (WoWItem i in StyxWoW.Me.BagItems) { if (i != null &amp;&amp; (i.Quality == WoWItemQuality.Poor || !ProtectedItems.Contains(i.Entry) &amp;&amp; i.ItemInfo.ItemClass == Styx.WoWItemClass.Consumable &amp;&amp; i.ItemInfo.SellPrice &gt; 0)) return true; } return false; } }" />
+    <Declaration Code="List&lt;uint&gt; DeleteItems = new List&lt;uint&gt;() { 11732, 14344 };" />
+    <Custom Code=" foreach (WoWItem i in Me.BagItems) { if(i!=null&amp;&amp;DeleteItems.Contains(i.Entry)){Deleteitem(i.Entry);}};" />
+    <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greys" ItemID="" Count="0" />
+    <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Whites" ItemID="" Count="0" />
+    <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="11288,7972,4500,12607,1959,1819,42780" Count="0" />
+    <Wait Condition="false" Timeout="5000" />
+    <If Condition="InbagCount(2996) &lt; 2 &amp;&amp; Tail &gt;= 75" IgnoreCanRun="True">
+      <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="2996,2320,2589" Count="0" />
+    </If>
+    <If Condition="InbagCount(2997) &lt; 3 &amp;&amp; InbagCount(2592) &lt; 6 &amp;&amp; Tail &gt;= 125" IgnoreCanRun="True">
+      <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="2997,2592" Count="0" />
+    </If>
+    <If Condition="Tail &gt;= 250 &amp;&amp; (HasItem(8343) || HasItem(4291))" IgnoreCanRun="True">
+      <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="8343,4291" Count="0" />
+    </If>
+    <If Condition="Tail &gt; 250" IgnoreCanRun="True">
+      <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="4306,2604,4305,8343,4291,2321" Count="0" />
+    </If>
+    <If Condition="Tail &gt; 300" IgnoreCanRun="True">
+      <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="6260" Count="0" />
+    </If>
+    <If Condition="Tail &gt;= 350 &amp;&amp; Ench &gt;= 350" IgnoreCanRun="True">
+      <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="14341,21877,21840" Count="0" />
+    </If>
+    <Custom Code="foreach (WoWItem i in Me.BagItems)&#xD;&#xA;            {&#xD;&#xA;                if (i != null &amp;&amp; !ProtectedItems.Contains(i.Entry) &amp;&amp;&#xD;&#xA;                    (i.ItemInfo.ItemClass == Styx.WoWItemClass.Consumable&#xD;&#xA;                    || i.ItemInfo.ItemClass == Styx.WoWItemClass.Recipe&#xD;&#xA;                    || (i.Quality == WoWItemQuality.Common &amp;&amp;&#xD;&#xA;                    (i.ItemInfo.ItemClass == Styx.WoWItemClass.Weapon&#xD;&#xA;                    || i.ItemInfo.ItemClass == Styx.WoWItemClass.Armor))&#xD;&#xA;                    || i.Quality == WoWItemQuality.Uncommon &amp;&amp;&#xD;&#xA;                    (i.ItemInfo.ItemClass == WoWItemClass.Gem ||i.ItemInfo.ItemClass == WoWItemClass.TradeGoods)&#xD;&#xA;                    || i.ItemInfo.ItemClass == WoWItemClass.Miscellaneous&#xD;&#xA;                    ))&#xD;&#xA;                    &#xD;&#xA;                {&#xD;&#xA;                    Log(&quot;Selling crap.&quot;);&#xD;&#xA;                    i.UseContainerItem();&#xD;&#xA;                }&#xD;&#xA;            }" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Refresh">
+    <Declaration Code="bool Tbtwn(int tMin, int tMax) { if(Me.GetSkill(Styx.SkillLine.Tailoring).CurrentValue &gt;= tMin &amp;&amp; Me.GetSkill(Styx.SkillLine.Tailoring).CurrentValue &lt; tMax) return true; return false;}" />
+    <Declaration Code="bool Ebtwn(int eMin, int eMax) { if(Me.GetSkill(Styx.SkillLine.Enchanting).CurrentValue &gt;= eMin &amp;&amp; Me.GetSkill(Styx.SkillLine.Enchanting).CurrentValue &lt; eMax) return true; return false;}" />
+    <While PulseSecondaryBot="True" Condition="Tail != Tailoring.Level || Ench != Enchanting.Level" IgnoreCanRun="True">
+      <Custom Code="ObjectManager.Update();" />
+      <Wait Condition="false" Timeout="500" />
+    </While>
+    <Wait Condition="false" Timeout="2000" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Restart">
+    <Declaration Code="Stopwatch InstanceStuckTimer = new Stopwatch();" />
+    <Custom Code="Log(&quot;We are stuck in instance for too long, going to use HS and restart it.&quot;);" />
+    <While PulseSecondaryBot="False" Condition="InInstance" IgnoreCanRun="False">
+      <CallSubRoutine SubRoutineName="HS" />
+    </While>
+    <Custom Code="Lua.DoString(&quot;ResetInstances()&quot;);" />
+    <Wait Condition="false" Timeout="2000" />
+    <Custom Code="InstanceStuckTimer.Reset();" />
+    <CallSubRoutine SubRoutineName="LoadProfile" />
+  </SubRoutine>
+</PBProfile>

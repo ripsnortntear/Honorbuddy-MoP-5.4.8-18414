@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PBProfile>
+  <!--Jewelcrafting 1-500-->
+  <!--skype: Infern1k-->
+  <Custom Code="Log(&quot;Welcome to Jewelcrafting leveling profile.&quot;);" />
+  <CallSubRoutine SubRoutineName="Init" />
+  <If Condition="jwc &gt;= 500" IgnoreCanRun="True">
+    <Custom Code="MessageBox.Show(&quot;Done leveling jewelcrafting, now you can prospect Pandaria Ore :).&quot;);TreeRoot.Stop();" />
+  </If>
+  <While PulseSecondaryBot="True" Condition="true" IgnoreCanRun="True">
+    <While PulseSecondaryBot="True" Condition="!(bool)Settings[&quot;CraftingMode&quot;]" IgnoreCanRun="False">
+      <If Condition="SecondaryBot.Name !=&quot;Gatherbuddy2&quot;" IgnoreCanRun="True">
+        <ChangeBot BotName="Gatherbuddy2" />
+      </If>
+      <If Condition="jwc &gt;= 20 &amp;&amp; !HasRecipe(32179)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <If Condition="!Me.Combat &amp;&amp; !Me.IsGhost &amp;&amp; !Me.IsDead" IgnoreCanRun="False">
+        <If Condition="Prospect &amp;&amp; HasOre &amp;&amp; jwc &gt;= 20" IgnoreCanRun="True">
+          <Custom Code="Log(&quot;Prospecting.&quot;);" />
+          <If Condition="Me.Mounted" IgnoreCanRun="False">
+            <Custom Code="" />
+            <Custom Code="WoWMovement.MoveStop();" />
+            <Wait Condition="!Me.IsMoving" Timeout="500" />
+            <Custom Code="Mount.Dismount();" />
+            <Wait Condition="false" Timeout="500" />
+            <Custom Code="Lua.DoString(&quot;Dismount()&quot;);" />
+          </If>
+          <Custom Code="Styx.CommonBot.SpellManager.StopCasting();" />
+          <Custom Code="WoWMovement.MoveStop();" />
+          <If Condition="Me.IsMoving || Me.IsCasting || LootFrame.Instance.IsVisible" IgnoreCanRun="False">
+            <Wait Condition="!Me.IsMoving &amp;&amp; !Me.IsCasting &amp;&amp; LootFrame.Instance.IsVisible" Timeout="3000" />
+          </If>
+          <StackItems />
+          <CallSubRoutine SubRoutineName="Prospect Ore" />
+        </If>
+      </If>
+      <If Condition="jwc &lt; 30" IgnoreCanRun="True">
+        <Custom Code="GotMats = InbagCount(2840) + InbagCount(2770) &gt; 120;" />
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\ElwynnForest.xml" IsLocalOrFromStore="True" />
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\NorthernBarrens.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="jwc &lt; 50 &amp;&amp; jwc &gt;= 30" IgnoreCanRun="True">
+        <Custom Code="GotMats = InbagCount(774) + InbagCount(818) &gt; 19;" />
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\ElwynnForest.xml" IsLocalOrFromStore="True" />
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\NorthernBarrens.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 50 &amp;&amp; jwc &lt; 150" IgnoreCanRun="True">
+        <Custom Code="GotMats = InbagCount(2840) + InbagCount(2770) &gt;= 60 &amp;&amp; InbagCount(3576) + InbagCount(2771) &gt;= 60 &amp;&amp; InbagCount(1210) &gt; 59 &amp;&amp; InbagCount(2838) &gt; 79 &amp;&amp; InbagCount(1206) &gt; 29;" />
+        <Custom Code="Deleteitem(2835,818,2836,1705,774);" />
+        <If Condition="InbagCount(2840) + InbagCount(2770) &lt; 60" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\ElwynnForest.xml" IsLocalOrFromStore="True" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\NorthernBarrens.xml" IsLocalOrFromStore="True" />
+          </If>
+        </If>
+        <If Condition="InbagCount(2840) + InbagCount(2770) &gt; 59" IgnoreCanRun="True">
+          <While PulseSecondaryBot="True" Condition="Mining.MaxLevel &lt; 525 &amp;&amp; Mining.MaxLevel - Mining.Level &lt; 25" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="TrainMining" />
+          </While>
+          <If Condition="InbagCount(1210) &lt; 59 || InbagCount(2771) &lt;= 59" IgnoreCanRun="True">
+            <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+              <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\StranglethornJungle.xml" IsLocalOrFromStore="True" />
+            </If>
+            <If Condition="Me.IsHorde" IgnoreCanRun="True">
+              <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Ashenvale.xml" IsLocalOrFromStore="True" />
+            </If>
+          </If>
+          <If Condition="InbagCount(1210) &gt; 59 &amp;&amp; InbagCount(2771) &gt; 59" IgnoreCanRun="True">
+            <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+              <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\StranglethornJungle.xml" IsLocalOrFromStore="True" />
+            </If>
+            <If Condition="Me.IsHorde" IgnoreCanRun="True">
+              <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\SouthernBarrens.xml" IsLocalOrFromStore="True" />
+            </If>
+          </If>
+          <!--Collecting only tin and iron deposits-->
+          <Custom Code="ObjectManager.Update();" />
+          <Custom Code="foreach (var node in NearbyNodes) { if (node.Entry != 1735 &amp;&amp; node.Entry != 1732) { Blacklist.Add(node.Guid, TimeSpan.FromMinutes(5)); Log(&quot;Node blacklisted!&quot;); } }" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 150 &amp;&amp; jwc &lt; 225" IgnoreCanRun="True">
+        <Custom Code="Deleteitem(1529,2835,818,2836,2838,1206,1210,1705,2770,2775,2771,2840);" />
+        <Custom Code="GotMats = InbagCount(3858) + InbagCount(3860) &gt;= 140 &amp;&amp; InbagCount(7912) &gt;= 80  &amp;&amp; InbagCount(6037) + InbagCount(7911) &gt;= 15 &amp;&amp; InbagCount(3864) &gt;= 25 &amp;&amp; InbagCount(7909) &gt;= 5;" />
+        <If Condition="InbagCount(3864) &lt; 25 || InbagCount(7909) &lt; 5" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\TheCapeOfStranglethorn.xml" IsLocalOrFromStore="True" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\SouthernBarrens.xml" IsLocalOrFromStore="True" />
+          </If>
+        </If>
+        <If Condition="InbagCount(3864) &gt;= 25 &amp;&amp; InbagCount(7909) &gt;= 5" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Mithril and Truesilver Alliance.xml" IsLocalOrFromStore="True" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Felwood.xml" IsLocalOrFromStore="True" />
+          </If>
+        </If>
+        <!--Ignoring all nodes except for truesilver-->
+        <If Condition="InbagCount(3858) + InbagCount(3860) &gt;= 140 &amp;&amp; InbagCount(7912) &gt;= 80 &amp;&amp; InbagCount(3864) &gt;= 25 &amp;&amp; InbagCount(7909) &gt;= 5" IgnoreCanRun="True">
+          <Custom Code="ObjectManager.Update();" />
+          <Custom Code="foreach (var node in NearbyNodes) { if (node.Entry != 2047) { Blacklist.Add(node.Guid, TimeSpan.FromMinutes(5)); Log(node.Name + &quot; blacklisted!&quot;); } }" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 225 &amp;&amp; jwc &lt; 300" IgnoreCanRun="True">
+        <!--Only Thorium Veins-->
+        <Custom Code="ObjectManager.Update();" />
+        <Custom Code="foreach (var node in NearbyNodes) { if (node != null &amp;&amp; node.Entry != 324 &amp;&amp; node.Entry != 175404) { Blacklist.Add(node.Guid, TimeSpan.FromMinutes(5)); Log(&quot;Node blacklisted!&quot;); } }" />
+        <Custom Code="if(HasItem(12365))Deleteitem(12365);" />
+        <If Condition="jwc &lt; 250" IgnoreCanRun="True">
+          <Custom Code="GotMats = InbagCount(10620) + InbagCount(12359) &gt;= 60;" />
+        </If>
+        <If Condition="jwc &gt;= 250" IgnoreCanRun="True">
+          <Custom Code="GotMats = InbagCount(7910) &gt;= 10 &amp;&amp; InbagCount(12799) &gt;= 20 &amp;&amp; InbagCount(12361) &gt;= 3 &amp;&amp; InbagCount(12364) &gt;= 20 &amp;&amp; InbagCount(12800) &gt;= 7;" />
+        </If>
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\SwampOfSorrows.xml" IsLocalOrFromStore="True" />
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Winterspring.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 300 &amp;&amp; jwc &lt; 325" IgnoreCanRun="True">
+        <Custom Code="GotMats = InbagCount(21929) + InbagCount(23077) + InbagCount(23079) + InbagCount(23107) + InbagCount(23112) + InbagCount(23117) &gt;= 60;" />
+        <If Condition="HasItem(22574) || HasItem(23427)" IgnoreCanRun="True">
+          <Custom Code="Deleteitem(22574,23427);" />
+        </If>
+        <If Condition="Me.MapId != 530" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="To Outlands" />
+        </If>
+        <If Condition="Me.IsAlliance || Me.IsHorde" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Feliron ore.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 325 &amp;&amp; jwc &lt; 350" IgnoreCanRun="True">
+        <Custom Code="GotMats = InbagCount(24243) &gt;= 40 &amp;&amp; InbagCount(22452) &gt;= 10 &amp;&amp; InbagCount(23107) &gt;= 15 &amp;&amp; InbagCount(23117) &gt;= 7 &amp;&amp; InbagCount(23446)*2 + InbagCount(23425) &gt;= 20;" />
+        <Custom Code="Deleteitem(22574,23427);" />
+        <If Condition="InbagCount(22573) &gt;= 10" IgnoreCanRun="True">
+          <Custom Code="Lua.DoString(&quot;UseItemByName(22573)&quot;);" />
+        </If>
+        <If Condition="Me.MapId != 530" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="To Outlands" />
+        </If>
+        <If Condition="Me.IsAlliance || Me.IsHorde" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Adamantite Ore.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 350 &amp;&amp; jwc &lt; 415" IgnoreCanRun="True">
+        <Custom Code="Deleteitem(37705);" />
+        <Custom Code="GotMats = InbagCount(36932) + InbagCount(36926) + InbagCount(36917) + InbagCount(36929) + InbagCount(36920) + InbagCount(36923) &gt;= 110;" />
+        <If Condition="Me.MapId != 571" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="To Northrend" />
+        </If>
+        <If Condition="InbagCount(37701) &gt;= 10" IgnoreCanRun="True">
+          <Custom Code="Lua.DoString(&quot;UseItemByName(37701)&quot;);" />
+        </If>
+        <If Condition="InbagCount(37702) &gt;= 10" IgnoreCanRun="True">
+          <Custom Code="Lua.DoString(&quot;UseItemByName(37702)&quot;);" />
+        </If>
+        <If Condition="Me.IsAlliance || Me.IsHorde" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Cobalt Ore.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 415 &amp;&amp; Jewelcrafting.Level &lt; 425" IgnoreCanRun="True">
+        <Custom Code="Deleteitem(37705, 37702, 37700);" />
+        <If Condition="Jewelcrafting.Level &gt;= 420" IgnoreCanRun="True">
+          <Custom Code="GotMats = InbagCount(36910) + InbagCount(41163)*2 &gt;= (425 - Jewelcrafting.Level)*4;" />
+        </If>
+        <If Condition="jwc &lt; 420" IgnoreCanRun="True">
+          <Custom Code="GotMats = InbagCount(36910) + InbagCount(41163)*2 &gt;= (425 - jwc)*4 &amp;&amp; InbagCount(36933) &gt;=8 &amp;&amp; InbagCount(36918) &gt;= 6 &amp;&amp; InbagCount(36930) &gt;= 6 &amp;&amp; InbagCount(36921) &gt;= 2 &amp;&amp; InbagCount(36924) &gt;= 4 &amp;&amp; InbagCount(36927) &gt;= 4;" />
+        </If>
+        <If Condition="CanCraft(58146)" IgnoreCanRun="True">
+          <Custom Code="Mount.Dismount();" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="58146" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <If Condition="Jewelcrafting.Level &gt;= 425" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Professionbuddy" Path="Jewelcrafting 1-500.xml" IsLocalOrFromStore="True" />
+          </If>
+        </If>
+        <If Condition="CanCraft(58145)" IgnoreCanRun="True">
+          <Custom Code="Mount.Dismount();" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="58145" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <If Condition="Jewelcrafting.Level &gt;= 425" IgnoreCanRun="True">
+            <LoadProfile ProfileType="Professionbuddy" Path="Jewelcrafting 1-500.xml" IsLocalOrFromStore="True" />
+          </If>
+        </If>
+        <If Condition="Me.MapId != 571" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="To Northrend" />
+        </If>
+        <If Condition="InbagCount(37701) &gt;= 10" IgnoreCanRun="True">
+          <Custom Code="Lua.DoString(&quot;UseItemByName(37701)&quot;);" />
+        </If>
+        <If Condition="InbagCount(37703) &gt;= 10" IgnoreCanRun="True">
+          <Custom Code="Lua.DoString(&quot;UseItemByName(37703)&quot;);" />
+        </If>
+        <If Condition="Me.IsAlliance || Me.IsHorde" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Saronite Ore.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 425 &amp;&amp; jwc &lt; 500" IgnoreCanRun="True">
+        <Custom Code="GotMats = InbagCount(52182) &gt;= 25 &amp;&amp; InbagCount(52181) &gt;= 24 &amp;&amp; InbagCount(52177) &gt;= 20 &amp;&amp; InbagCount(52179) &gt;= 24 &amp;&amp; InbagCount(52180) &gt;= 26 &amp;&amp; InbagCount(52178) &gt;= 25;" />
+        <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="-8212.574, 404.3221, 150.9051" />
+            <Interact InteractType="GameObject" Entry="207692" InteractDelay="10" GameObjectType="Generic" SpellFocus="Anvil" />
+            <Wait Condition="Me.ZoneId == 616" Timeout="15000" />
+          </If>
+        </If>
+        <If Condition="Me.IsHorde || Me.IsAlliance" IgnoreCanRun="True">
+          <LoadProfile ProfileType="Honorbuddy" Path="Farm Profiles\Obsidian ore.xml" IsLocalOrFromStore="True" />
+        </If>
+      </If>
+      <If Condition="GotMats &amp;&amp; !(bool)Settings[&quot;CraftingMode&quot;]" IgnoreCanRun="True">
+        <Custom Code="Settings[&quot;CraftingMode&quot;] = true;" />
+      </If>
+    </While>
+    <While PulseSecondaryBot="False" Condition="(bool)Settings[&quot;CraftingMode&quot;]" IgnoreCanRun="False">
+      <If Condition="SecondaryBot.Name !=&quot;Combat Bot&quot;" IgnoreCanRun="True">
+        <ChangeBot BotName="Combat Bot" />
+      </If>
+      <While PulseSecondaryBot="True" Condition="Me.IsAlliance &amp;&amp; Me.MapId != 0 || Me.IsHorde &amp;&amp; Me.MapId != 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="HS" />
+      </While>
+      <Custom Code="Log(&quot;Crafting time&quot;);" />
+      <If Condition="Mining.MaxLevel &lt; 525 &amp;&amp; Mining.MaxLevel - Mining.Level &lt; 25" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="TrainMining" />
+      </If>
+      <Custom Code="NeedToSmelt = InbagCount(2770) &gt; 0 || InbagCount(2771) &gt; 0 || InbagCount(3858) &gt; 0 || InbagCount(7911) &gt; 0 || InbagCount(10620) &gt; 0 || InbagCount(23425) &gt; 1 || InbagCount(36910) &gt; 1;" />
+      <If Condition="NeedToSmelt" IgnoreCanRun="False">
+        <Custom Code="Log(&quot;Smelting ore.&quot;);" />
+        <CallSubRoutine SubRoutineName="ToForge" />
+        <CastSpell RepeatType="Craftable" Repeat="1" Entry="2657" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="HasRecipe(3304)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="3304" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="jwc &gt; 49 &amp;&amp; HasRecipe(2659)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="2659" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="HasRecipe(10097)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="10097" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="HasRecipe(2658)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="2658" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="HasRecipe(10098)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="10098" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="HasRecipe(16153)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="16153" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="HasRecipe(29358)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="29358" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="HasRecipe(55211)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="55211" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <Custom Code="NeedToSmelt = false;" />
+      </If>
+      <If Condition="Me.FreeNormalBagSlots &lt; 5" IgnoreCanRun="True">
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="25439,25438" Count="0" />
+      </If>
+      <If Condition="Jewelcrafting.MaxLevel - jwc &lt; 25" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <If Condition="jwc &lt; 30" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;1-30&quot;);" />
+        <If Condition="!HasRecipe(25255)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Specific" Repeat="60" Entry="25255" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <Custom Code="if(jwc&gt;=30) Settings[&quot;CraftingMode&quot;] = false;" />
+      </If>
+      <If Condition="jwc &gt;= 30 &amp;&amp; jwc &lt; 50" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;30-50&quot;);" />
+        <If Condition="!HasRecipe(32179) || !HasRecipe(32178)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="50" Entry="32179" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <CastSpell RepeatType="Craftable" Repeat="50" Entry="32178" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="jwc &gt;= 50" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="25439,25438" Count="100" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 50 &amp;&amp; jwc &lt; 150" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;50-150&quot;);" />
+        <If Condition="jwc &lt; 75" IgnoreCanRun="True">
+          <If Condition="!HasRecipe(25278)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Specific" Repeat="50 - InbagCount(20817)" Entry="25278" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!HasRecipe(25287)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <If Condition="jwc &lt; 100" IgnoreCanRun="False">
+          <If Condition="InbagCount(20817) &lt; InbagCount(20816) / 2" IgnoreCanRun="False">
+            <CastSpell RepeatType="Craftable" Repeat="1" Entry="25278" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="50" Entry="25287" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="20823" Count="0" />
+        <If Condition="!HasRecipe(25318)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="50" Entry="25318" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="20828" Count="0" />
+        <If Condition="!HasRecipe(25317)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="1" Entry="25317" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="20827" Count="0" />
+        <If Condition="!HasRecipe(32807)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <If Condition="InbagCount(2838) &gt;= 8" IgnoreCanRun="False">
+          <CastSpell RepeatType="Craftable" Repeat="50" Entry="32807" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="25881" Count="0" />
+        <CallSubRoutine SubRoutineName="Train" />
+        <CastSpell RepeatType="Craftable" Repeat="1" Entry="25278" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <CastSpell RepeatType="Craftable" Repeat="50" Entry="25610" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="jwc &gt;= 150" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="818,1206,3576,2841,774,20950,25881,20816" Count="0" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 150 &amp;&amp; jwc &lt; 225" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;150-225&quot;);" />
+        <If Condition="jwc &lt; 180" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(25615)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Specific" Repeat="45 - InbagCount(20963)" Entry="25615" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!HasRecipe(32808)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="45" Entry="32808" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="25882,2840,2772,1210,7912" Count="0" />
+        <If Condition="jwc &lt; 215" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(25620)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <If Condition="InbagCount(6037)*2 &gt; InbagCount(20963)" IgnoreCanRun="False">
+            <CastSpell RepeatType="Craftable" Repeat="10" Entry="25615" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <Custom Code="SpellManager.StopCasting();" />
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="25620" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="20960" Count="0" />
+        <If Condition="jwc &lt; 225" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(25621)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Specific" Repeat="25" Entry="25621" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="20961" Count="0" />
+        <If Condition="!HasRecipe(26876)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="10" Entry="25615" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <CastSpell RepeatType="Craftable" Repeat="45" Entry="26876" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="jwc &gt;= 225" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="20963,1705,7912,1206,2841,2838,9262,25882,20960,20961,21755,20963,3860,2864,3864" Count="0" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 225 &amp;&amp; jwc &lt; 250" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;225-250&quot;);" />
+        <If Condition="!HasRecipe(26880)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <If Condition="jwc &lt; 255" IgnoreCanRun="False">
+          <CastSpell RepeatType="Specific" Repeat="60" Entry="26880" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="2838" Count="0" />
+        <If Condition="jwc &gt;= 250" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="20963,1705,7912,1206,2841,2838,9262,25882,20960,20961,21755,20963,3860,2864" Count="0" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 250 &amp;&amp; jwc &lt; 300" IgnoreCanRun="True">
+        <CastSpell RepeatType="Craftable" Repeat="60" Entry="26880" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="jwc &lt; 260" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(26883)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="10" Entry="26883" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="21764" Count="0" />
+        <If Condition="jwc &lt; 280" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(26902)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="20" Entry="26902" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="21767" Count="0" />
+        <If Condition="jwc &lt; 285" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(36526)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="7" Entry="36526" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="30422" Count="0" />
+        <If Condition="jwc &lt; 290" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(34960)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="10" Entry="34960" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="29159" Count="0" />
+        <If Condition="!HasRecipe(34961)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="10" Entry="34961" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="jwc &gt;= 300" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="29160,21767,21764,29159,12799,12361,6037,2840,3864,21752,12363,12364,1210,7909,30422" Count="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="2776,12800,7910,9262,2776" Count="0" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 300 &amp;&amp; jwc &lt; 325" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Train" />
+        <If Condition="jwc &lt; 320" IgnoreCanRun="False">
+          <CastSpell RepeatType="Craftable" Repeat="7" Entry="28905" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CallSubRoutine SubRoutineName="Train" />
+          <CastSpell RepeatType="Craftable" Repeat="7" Entry="28910" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CallSubRoutine SubRoutineName="Train" />
+          <CastSpell RepeatType="Craftable" Repeat="7" Entry="28953" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CallSubRoutine SubRoutineName="Train" />
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="28917" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="jwc &gt;= 320 &amp;&amp; jwc &lt; 325" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(28912)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="28953" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CallSubRoutine SubRoutineName="Train" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="28917" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="jwc &gt;= 325" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="23098,23095,23104,23119" Count="0" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 325 &amp;&amp; jwc &lt; 350" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(38068)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CallSubRoutine SubRoutineName="ToForge" />
+        <CastSpell RepeatType="Specific" Repeat="10" Entry="38068" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <CastSpell RepeatType="Craftable" Repeat="50" Entry="28948" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="jwc &lt; 355" IgnoreCanRun="False">
+          <CastSpell RepeatType="Craftable" Repeat="50" Entry="28936" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!HasRecipe(31052)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <CastSpell RepeatType="Specific" Repeat="10" Entry="31052" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <CallSubRoutine SubRoutineName="Train" />
+        <If Condition="jwc &gt;= 350" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Whites" ItemID="53891,53843,41439,41490,39907,39965" Count="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greens" ItemID="53891,53843,41439,41490,39907,39965" Count="0" />
+          <Custom Code="foreach (WoWItem i in Me.BagItems) { if(i.Entry != 20815 &amp;&amp; (i.ItemInfo.ItemClass == WoWItemClass.TradeGoods || i.ItemInfo.ItemClass == WoWItemClass.Gem)) { i.UseContainerItem(); } }" />
+          <Wait Condition="false" Timeout="2000" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 350  &amp;&amp; jwc &lt; 415" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(53883)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <If Condition="jwc &lt; 415" IgnoreCanRun="False">
+          <CastSpell RepeatType="Craftable" Repeat="20" Entry="53883" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="39957,41502,39983,41467" Count="0" />
+          <If Condition="!HasRecipe(53925)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="20" Entry="53925" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="39957,41502,39983,41467" Count="0" />
+          <If Condition="!HasRecipe(53934)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="20" Entry="53934" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="39919,39905,41434,41441" Count="0" />
+          <If Condition="!HasRecipe(53832)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="20" Entry="53832" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="39919,39905,41434,41441" Count="0" />
+          <If Condition="!HasRecipe(53891)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="20" Entry="53891" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="53891,53843,41439,41490,39907,39965" Count="0" />
+          <If Condition="!HasRecipe(53843)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="20" Entry="53843" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="53891,53843,41439,41490,39907,39965" Count="0" />
+        </If>
+        <CallSubRoutine SubRoutineName="Train" />
+        <Wait Condition="false" Timeout="2000" />
+        <If Condition="jwc &gt;= 415" IgnoreCanRun="True">
+          <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="22573,23077,23111,23426,24243,24078,22452,23116,23437,23439,23424,23119,23436,23079,23112,23104,23095,23441,23438,21929,23440,23098" Count="0" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 415 &amp;&amp; jwc &lt; 425" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(58146)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <While PulseSecondaryBot="True" Condition="jwc &lt; 425" IgnoreCanRun="False">
+          <CallSubRoutine SubRoutineName="Train" />
+          <CastSpell RepeatType="Specific" Repeat="2" Entry="56203" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CastSpell RepeatType="Specific" Repeat="2" Entry="59759" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CastSpell RepeatType="Specific" Repeat="2" Entry="56202" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CastSpell RepeatType="Specific" Repeat="2" Entry="56199" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CastSpell RepeatType="Specific" Repeat="2" Entry="56201" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <If Condition="!HasRecipe(64727)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="64727" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="64725" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="64726" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="64728" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </While>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="36933,36918,36930,36923,36932,36917,36920,36929,36924,36926.36909,36912,36927,36921,42418,37701,37703,36910,35624" Count="0" />
+        <CallSubRoutine SubRoutineName="Train" />
+        <If Condition="jwc &gt;= 425" IgnoreCanRun="True">
+          <Custom Code="foreach (WoWItem i in Me.BagItems) { if(i.Entry != 20815 &amp;&amp; (i.ItemInfo.ItemClass == WoWItemClass.TradeGoods || i.ItemInfo.ItemClass == WoWItemClass.Gem)) { i.UseContainerItem(); } }" />
+          <Wait Condition="false" Timeout="2000" />
+          <Custom Code="Settings[&quot;CraftingMode&quot;] = false;" />
+        </If>
+      </If>
+      <If Condition="jwc &gt;= 425 &amp;&amp; jwc &lt; 500" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(52170)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Train" />
+        </If>
+        <If Condition="HasItem(52178)" IgnoreCanRun="False">
+          <CastSpell RepeatType="Craftable" Repeat="25" Entry="73228" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="52087, 52170" Count="0" />
+        <If Condition="jwc &lt; 485" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(73222)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="73222" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="52081,52176" Count="0" />
+        <If Condition="jwc &lt; 485" IgnoreCanRun="False">
+          <CallSubRoutine SubRoutineName="Train" />
+          <While PulseSecondaryBot="True" Condition="InbagCount(52182) &gt; 0" IgnoreCanRun="False">
+            <Custom Code="jwcs = InbagCount(52182);" />
+            <CallSubRoutine SubRoutineName="Buy JWCS" />
+            <While PulseSecondaryBot="True" Condition="Me.FreeNormalBagSlots &gt; 0" IgnoreCanRun="True">
+              <CastSpell RepeatType="Craftable" Repeat="1" Entry="73494" CastOnItem="False" ItemType="Chest" ItemId="0" />
+            </While>
+            <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="52306,52310" Count="0" />
+          </While>
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="52306,52310" Count="0" />
+        <If Condition="InbagCount(52179) &gt; 1" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(73496)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <Custom Code="jwcs = InbagCount(52179)/2;" />
+          <Wait Condition="false" Timeout="2000" />
+          <CallSubRoutine SubRoutineName="Buy JWCS" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="73496" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="52308,52312" Count="0" />
+        <If Condition="InbagCount(52181) &gt; 1" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(73495)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <Custom Code="jwcs = InbagCount(52181)/2;" />
+          <Wait Condition="false" Timeout="2000" />
+          <CallSubRoutine SubRoutineName="Buy JWCS" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="73495" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="52308,52316" Count="0" />
+        <If Condition="InbagCount(52180) &gt; 1" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(73497)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train" />
+          </If>
+          <Custom Code="jwcs = InbagCount(52180)/2;" />
+          <Wait Condition="false" Timeout="2000" />
+          <CallSubRoutine SubRoutineName="Buy JWCS" />
+          <CastSpell RepeatType="Craftable" Repeat="1" Entry="73497" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="52309,52314" Count="0" />
+        <If Condition="jwc &gt;= 500" IgnoreCanRun="True">
+          <Custom Code="MessageBox.Show(&quot;Done leveling jewelcrafting, now you can prospect Pandaria Ore :).&quot;);TreeRoot.Stop();" />
+        </If>
+      </If>
+    </While>
+  </While>
+  <SubRoutine SubRoutineName="Settings">
+    <Setting DefaultValue="true" Type="Boolean" Name="BindHS" Summary="Bind hearthstone" Category="HS" Global="False" Hidden="False" />
+    <Setting DefaultValue="false" Type="Boolean" Name="CraftingMode" Summary="DO NOT TOUCH!" Category="Do not touch unless author say so! :)" Global="False" Hidden="False" />
+    <Setting DefaultValue="true" Type="Int16" Name="JWCS" Summary="Pandas will save the day!" Category="Misc" Global="False" Hidden="True" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Routines">
+    <SubRoutine SubRoutineName="Init">
+      <Custom Code="var1 = 0;" />
+      <Declaration Code="bool InCity { get { return Me.ZoneId == 1519 || Me.ZoneId == 1637; } }" />
+      <Declaration Code="bool GotMats;" />
+      <Declaration Code="List&lt;WoWGameObject&gt; NearbyNodes { get { return ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(u =&gt; !Blacklist.Contains(u.Guid, BlacklistFlags.Node) &amp;&amp; u.IsMineral).ToList(); } }" />
+      <Declaration Code="bool Prospect&#xD;&#xA;{ get&#xD;&#xA;{&#xD;&#xA;if (jwc &lt; 50) return InbagCount(774) + InbagCount(818) &lt; 20;&#xD;&#xA;if (jwc &gt;= 50 &amp;&amp; jwc &lt; 150) return InbagCount(1206) &lt; 30 || InbagCount(1210) &lt; 60;&#xD;&#xA;if (jwc &gt;= 150 &amp;&amp; jwc &lt; 250) return InbagCount(3864) &lt; 25 || InbagCount(7909) &lt; 5;&#xD;&#xA;if (jwc &gt;= 250 &amp;&amp; jwc &lt; 300) return InbagCount(7910) &lt; 10 || InbagCount(12799) &lt; 20 || InbagCount(12361) &lt; 3 || InbagCount(12364) &lt; 20 || InbagCount(12800) &lt; 7;&#xD;&#xA;if (jwc &gt;= 300 &amp;&amp; jwc &lt; 325) return InbagCount(21929) + InbagCount(23077) + InbagCount(23079) + InbagCount(23107) + InbagCount(23112) + InbagCount(23117) &lt; 60;&#xD;&#xA;if (jwc &gt;= 325 &amp;&amp; jwc &lt; 350) return InbagCount(24243) &lt; 40 || InbagCount(23107) &lt; 15 || InbagCount(23117) &lt; 7;&#xD;&#xA;if (jwc &gt;= 350 &amp;&amp; jwc &lt; 400) return InbagCount(36909) &gt; 19;&#xD;&#xA;if (jwc &gt;= 400 &amp;&amp; jwc &lt; 425) return InbagCount(36912) &gt; 19;&#xD;&#xA;if (jwc &gt;= 425 &amp;&amp; jwc &lt; 500) return InbagCount(53038) &gt; 19;&#xD;&#xA;return false;&#xD;&#xA;}&#xD;&#xA;}" />
+      <Declaration Code="bool HasOre { get { &#xD;&#xA;if(jwc&lt;50) return InbagCount(2770) &gt; 19;&#xD;&#xA;if(jwc&gt;=50 &amp;&amp; jwc &lt; 125) return InbagCount(2771) &gt; 19;&#xD;&#xA;if(jwc&gt;=125 &amp;&amp; jwc &lt; 225) return InbagCount(2771) &gt; 19 || InbagCount(2772) &gt; 19;&#xD;&#xA;if(jwc&gt;=175 &amp;&amp; jwc &lt; 250) return InbagCount(2772) &gt; 19 || InbagCount(3858) &gt; 19;&#xD;&#xA;if(jwc&gt;=250 &amp;&amp; jwc &lt; 300) return InbagCount(3858) &gt; 19 || InbagCount(10620) &gt; 19;&#xD;&#xA;if(jwc&gt;=300 &amp;&amp; jwc&lt;325) return InbagCount(23424) &gt; 19;&#xD;&#xA;if(jwc&gt;=325 &amp;&amp; jwc &lt; 350) return InbagCount(23424) &gt; 19 || InbagCount(23425) &gt; 19;&#xD;&#xA;if(jwc&gt;=350 &amp;&amp; jwc&lt;400) return InbagCount(36909) &gt; 19;&#xD;&#xA;if(jwc&gt;=400 &amp;&amp; jwc&lt;425) return InbagCount(36912) &gt; 19 || InbagCount(36909) &gt; 19;&#xD;&#xA;if(jwc&gt;=425 &amp;&amp; jwc&lt;500) return InbagCount(53038) &gt; 19;&#xD;&#xA;return false; }}" />
+      <Declaration Code="bool NeedToSmelt;" />
+      <Declaration Code="void Deleteitem(params uint[] itemID) { for (int i = 0; i &lt; itemID.Length; i++) { foreach(WoWItem item in StyxWoW.Me.BagItems) { if(item.Entry == itemID[i]) { item.PickUp(); Lua.DoString(&quot;DeleteCursorItem();&quot;); } } } }" />
+      <Declaration Code="uint item;" />
+      <Custom Code="GotMats = false;" />
+      <Declaration Code="int jwc { get { return (int)Jewelcrafting.Level; } }" />
+      <Wait Condition="false" Timeout="5000" />
+      <If Condition="(bool)Settings[&quot;BindHS&quot;]" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;Binding HearthStone.&quot;);" />
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <If Condition="DistanceTo(1950.08, -4200.32, 36.9143) &gt; 60" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="1950.08, -4200.32, 36.9143" />
+          </If>
+          <Custom Code="Mount.Dismount();" />
+          <MoveTo Location="1950.08, -4200.32, 36.9143" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <Interact InteractType="NPC" Entry="44785" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        </If>
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo(-8337, 594.644, 99.62305) &gt; 60" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="-8383.458, 618.2297, 132.8661" />
+          </If>
+          <MoveTo Location="-8365.736, 595.7296, 96.99892" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <Interact InteractType="NPC" Entry="44235" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        </If>
+        <Wait Condition="false" Timeout="2000" />
+        <Custom Code="Lua.DoString(&quot;SelectGossipOption(1)&quot;);" />
+        <Wait Condition="false" Timeout="2000" />
+        <Custom Code="Lua.DoString(&quot;StaticPopup1Button1:Click()&quot;);" />
+        <Wait Condition="false" Timeout="2000" />
+        <Custom Code="Settings[&quot;BindHS&quot;] = false;" />
+      </If>
+      <If Condition="Jewelcrafting.MaxLevel == 0" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;We don't have Jewelcrafting.&quot;);" />
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <While PulseSecondaryBot="True" Condition="InbagCount(20815) == 0" IgnoreCanRun="False">
+        <CallSubRoutine SubRoutineName="To Trainer" />
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <BuyItem NpcEntry="44583" Location="-8710.41, 624.899, 100.9291" ItemID="20815" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <BuyItem NpcEntry="50482" Location="2087.52, -4769.45, 27.92961" ItemID="20815" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+      </While>
+      <If Condition="Mining.MaxLevel == 0" IgnoreCanRun="True">
+        <Custom Code="Log(&quot;We don't have Mining.&quot;);" />
+        <CallSubRoutine SubRoutineName="TrainMining" />
+      </If>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="HS">
+      <Custom Code="Mount.Dismount();" />
+      <If Condition="Me.Mounted" IgnoreCanRun="True">
+        <Custom Code="Lua.DoString(&quot;Dismount()&quot;);" />
+      </If>
+      <Wait Condition="!Me.Mounted &amp;&amp; !Me.IsMoving &amp;&amp; !Me.IsActuallyInCombat" Timeout="2000" />
+      <Custom Code="Lua.DoString(&quot;UseItemByName(6948)&quot;);" />
+      <Wait Condition="InCity" Timeout="15000" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="Travel">
+      <SubRoutine SubRoutineName="To Outlands">
+        <If Condition="Me.MapId == 0 || Me.MapId == 1" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance &amp;&amp; Me.MapId == 0" IgnoreCanRun="True">
+            <Custom Code="Log(&quot;Moving to Outland.&quot;);" />
+            <If Condition="Me.ZoneId != 4" IgnoreCanRun="True">
+              <FlyTo Dismount="True" Location="-8995.905, 860.8934, 128.1037" />
+              <MoveTo Location="-9006.47, 870.1872, 129.6927" MoveType="Location" Pathing="Navigator" Entry="0" />
+              <Interact InteractType="GameObject" Entry="195141" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+              <Wait Condition="Me.ZoneId ==4" Timeout="10000" />
+            </If>
+          </If>
+          <If Condition="Me.IsHorde &amp;&amp; Me.MapId == 1" IgnoreCanRun="True">
+            <If Condition="DistanceTo(1771.438, -4325.646, -8.164066) &gt; 60" IgnoreCanRun="True">
+              <FlyTo Dismount="False" Location="1892.471, -4531.338, 116.0898" />
+              <FlyTo Dismount="False" Location="1892.471, -4488.347, 34.52579" />
+              <FlyTo Dismount="False" Location="1890.895, -4425.936, 18.08089" />
+              <FlyTo Dismount="False" Location="1819.739, -4389.112, 9.789508" />
+              <FlyTo Dismount="True" Location="1792.507, -4325.36, 22.72393" />
+            </If>
+            <MoveTo Location="1771.438, -4325.646, -8.164066" MoveType="Location" Pathing="Navigator" Entry="0" />
+            <Interact InteractType="GameObject" Entry="195142" InteractDelay="1000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+            <Wait Condition="Me.ZoneId ==4" Timeout="10000" />
+          </If>
+          <!--***************-->
+          <FlyTo Dismount="True" Location="-11897.75, -3207.361, -14.69353" />
+          <Custom Code="CTM(-11910.86, -3208.903, -14.75266);" />
+          <While PulseSecondaryBot="True" Condition="!StyxWoW.IsInGame" IgnoreCanRun="True">
+            <Wait Condition="false" Timeout="2000" />
+          </While>
+          <Wait Condition="Me.MapId == 530" Timeout="20000" />
+          <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+            <FlyTo Dismount="False" Location="-215.5635, 1524.325, 224.4397" />
+            <LoadProfile ProfileType="Professionbuddy" Path="Jewelcrafting 1-500.xml" IsLocalOrFromStore="True" />
+          </If>
+        </If>
+      </SubRoutine>
+      <SubRoutine SubRoutineName="To Northrend">
+        <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Shattrath =&gt; City" />
+        </If>
+        <If Condition="Me.MapId == 0 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
+          <Custom Code="Log(&quot;Moving to Northrend&quot;);" />
+          <FlyTo Dismount="True" Location="-8294.98, 1401.778, 21.20104" />
+          <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(-8288.816, 1424.703, -0.04673716)) &lt; 1" Timeout="600000" />
+          <Custom Code="CTM(-8291.125, 1426.749, 9.378994);" />
+          <Wait Condition="Me.MapId == 571" Timeout="600000" />
+          <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(2218.391, 5119.589, -0.04980761)) &lt; 1" Timeout="600000" />
+          <Custom Code="CTM(2230.737, 5131.732, 5.343163);" />
+          <FlyTo Dismount="False" Location="2249.689, 5169.779, 69.98215" />
+          <LoadProfile ProfileType="Professionbuddy" Path="Jewelcrafting 1-500.xml" IsLocalOrFromStore="True" />
+        </If>
+        <If Condition="Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
+          <Custom Code="Log(&quot;Moving to Northrend&quot;);" />
+          <FlyTo Dismount="True" Location="1762.38, -4280.612, 192.095" />
+          <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ).Location.Distance(new WoWPoint(1775.066, -4299.745, 151.0326)) &lt; 1" Timeout="600000" />
+          <Custom Code="CTM(1769.266, -4291.776, 133.1643);" />
+          <Wait Condition="Me.MapId == 571" Timeout="600000" />
+          <Wait Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ).Location.Distance(new WoWPoint(2837.908, 6187.443, 140.1648)) &lt; 1" Timeout="600000" />
+          <Custom Code="CTM(2835.973, 6184.18, 121.8944);" />
+          <Wait Condition="false" Timeout="2000" />
+          <FlyTo Dismount="False" Location="2941.366, 6073.483, 154.2777" />
+          <LoadProfile ProfileType="Professionbuddy" Path="Jewelcrafting 1-500.xml" IsLocalOrFromStore="True" />
+        </If>
+      </SubRoutine>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="CityMovement">
+      <SubRoutine SubRoutineName="To Trainer">
+        <If Condition="Me.IsAlliance &amp;&amp; Me.MapId != 0 || Me.IsHorde &amp;&amp; Me.MapId != 1" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="HS" />
+        </If>
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo(-8704.829, 617.5493, 100.39) &gt; 45" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="-8704.829, 617.5493, 141.9818" />
+          </If>
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <If Condition="DistanceTo(2084.482, -4765.913, 27.92707) &gt; 30" IgnoreCanRun="True">
+              <FlyTo Dismount="True" Location="2059.325, -4766.552, 54.06567" />
+            </If>
+            <MoveTo Location="2086.583, -4765.742, 27.92748" MoveType="Location" Pathing="Navigator" Entry="0" />
+          </If>
+        </If>
+      </SubRoutine>
+      <SubRoutine SubRoutineName="Train">
+        <Custom Code="Log(&quot;Training JC.&quot;);" />
+        <CallSubRoutine SubRoutineName="To Trainer" />
+        <If Condition="Me.MapId != 571" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <TrainSkill NpcEntry="44582" Location="-8712.15, 620.003, 101.5077" />
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <TrainSkill NpcEntry="46675" Location="2088.8, -4767.27, 27.92886" />
+          </If>
+        </If>
+        <Wait Condition="false" Timeout="3000" />
+      </SubRoutine>
+      <SubRoutine SubRoutineName="ToForge">
+        <If Condition="Me.MapId != 571" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+              <FlyTo Dismount="True" Location="-8425.565, 620.4913, 154.1122" />
+            </If>
+          </If>
+          <If Condition="Me.IsHorde" IgnoreCanRun="True">
+            <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+              <FlyTo Dismount="True" Location="2054.842, -4828.996, 54.28549" />
+            </If>
+          </If>
+        </If>
+      </SubRoutine>
+      <SubRoutine SubRoutineName="Buy JWCS">
+        <Declaration Code="int jwcs = 0;" />
+        <Custom Code="Log(&quot;Buying &quot; + jwcs + &quot; jewelcrafting settings.&quot;);" />
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo(-8704.829, 617.5493, 100.39) &gt; 45" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="-8704.829, 617.5493, 141.9818" />
+          </If>
+          <BuyItem NpcEntry="44583" Location="-8710.41, 624.899, 100.93" ItemID="52188" BuyItemType="SpecificItem" Count="jwcs - InbagCount(52188)" BuyAdditively="True" />
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="To Trainer" />
+          <BuyItem NpcEntry="50482" Location="2087.52, -4769.45, 27.92886" ItemID="52188" BuyItemType="SpecificItem" Count="jwcs - InbagCount(52188)" BuyAdditively="True" />
+        </If>
+      </SubRoutine>
+      <SubRoutine SubRoutineName="TrainMining">
+        <Custom Code="Log(&quot;Training Mining.&quot;);" />
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo(-8430.43, 687.1736, 96.31797) &gt; 30" IgnoreCanRun="True">
+            <FlyTo Dismount="True" Location="-8418.67, 673.1368, 128.1692" />
+          </If>
+          <MoveTo Location="-8432.218, 689.4163, 96.31843" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <TrainSkill NpcEntry="5513" Location="-8433.48, 688.922, 96.31898" />
+          <MoveTo Location="-8433.48, 688.922, 96.31898" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="To Trainer" />
+          <TrainSkill NpcEntry="3357" Location="2081.978, -4764.085, 27.92542" />
+        </If>
+      </SubRoutine>
+    </SubRoutine>
+    <SubRoutine SubRoutineName="Sell">
+      <SellItem Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="25439,25438,2835,20823" Count="0" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="Prospect Ore">
+      <If Condition="MerchantFrame.Instance.IsVisible" IgnoreCanRun="False">
+        <Custom Code="Lua.DoString(&quot;CloseMerchant()&quot;);" />
+        <Wait Condition="false" Timeout="2000" />
+      </If>
+      <Declaration Code="void Prosp(WoWItem i) { using (StyxWoW.Memory.AcquireFrame()) { prosp.Cast(); Lua.DoString(&quot;UseContainerItem({0}, {1})&quot;, i.BagIndex +1, i.BagSlot + 1); } }" />
+      <Declaration Code="void ProspectOre()&#xD;&#xA; { foreach(WoWItem i in StyxWoW.Me.BagItems) &#xD;&#xA;{ if(i.ItemInfo.TradeGoodsClass == Styx.WoWItemTradeGoodsClass.MetalStone &amp;&amp; i.ItemInfo.RequiredSkillLevel &gt; 0 &amp;&amp; i.ItemInfo.RequiredSkillLevel &lt;= jwc &amp;&amp; i.StackCount &gt;= 5 &amp;&amp; !ProtectedOre.Contains(i.Entry)) &#xD;&#xA;{Log(&quot;Prospecting &quot; + i.Name); Prosp(i);} }}" />
+      <Declaration Code="WoWSpell prosp = WoWSpell.FromId(31252);" />
+      <Declaration Code="bool CanProspect&#xD;&#xA;        {&#xD;&#xA;            get&#xD;&#xA;            {&#xD;&#xA;                foreach (WoWItem i in StyxWoW.Me.BagItems)&#xD;&#xA;                {&#xD;&#xA;                    if (i.ItemInfo.TradeGoodsClass == Styx.WoWItemTradeGoodsClass.MetalStone &amp;&amp; i.ItemInfo.RequiredSkillLevel &gt; 0 &amp;&amp; i.ItemInfo.RequiredSkillLevel &lt;= jwc &amp;&amp; i.StackCount &gt;= 5 &amp;&amp; !ProtectedOre.Contains(i.Entry)) return true;&#xD;&#xA;                }&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;            }&#xD;&#xA;        }" />
+      <Declaration Code="List&lt;uint&gt; ProtectedOre = new List&lt;uint&gt;() { };" />
+      <If Condition="jwc &gt;= 50 &amp;&amp; !ProtectedOre.Contains(2770)" IgnoreCanRun="True">
+        <Custom Code="ProtectedOre.Add(2770);" />
+      </If>
+      <Declaration Code="uint OreId = 0;" />
+      <While PulseSecondaryBot="True" Condition="!Me.Combat &amp;&amp; !Me.IsDead &amp;&amp; !Me.IsGhost" IgnoreCanRun="False">
+        <While PulseSecondaryBot="False" Condition="CanProspect" IgnoreCanRun="False">
+          <Custom Code="ProspectOre();" />
+          <If Condition="Me.IsCasting || LootFrame.Instance.IsVisible" IgnoreCanRun="False">
+            <Wait Condition="!Me.IsCasting &amp;&amp; !LootFrame.Instance.IsVisible" Timeout="1500" />
+          </If>
+        </While>
+      </While>
+    </SubRoutine>
+  </SubRoutine>
+</PBProfile>

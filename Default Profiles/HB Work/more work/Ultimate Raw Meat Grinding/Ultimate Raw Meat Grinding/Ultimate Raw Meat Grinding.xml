@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <CustomAction Code="CharacterSettings.Instance.LootMobs = true;" />
+  <CustomAction Code="Lua.DoString(&quot;SetCVar(\&quot;AutoLootDefault\&quot;, 1)&quot;);" />
+  <Declaration Code="int crocodile;" />
+  <Settings DefaultValue="5" Type="Int16" Name="Stacks of Crocodile Meat" Summary="Amount of stacks before going to mailbox." Category="How many stacks to farm before we turn them in" Global="False" Hidden="False" />
+  <CustomAction Code="crocodile = (Int16)Settings[&quot;Stacks of Crocodile Meat&quot;];" />
+  <Settings DefaultValue="5" Type="Int16" Name="Stacks of Turtle Meat" Summary="Amount of stacks before going to mailbox." Category="How many stacks to farm before we turn them in" Global="False" Hidden="False" />
+  <Declaration Code="int turtle;" />
+  <CustomAction Code="turtle = (Int16)Settings[&quot;Stacks of Turtle Meat&quot;];" />
+  <Settings DefaultValue="5" Type="Int16" Name="Stacks of Crab Meat" Summary="Amount of stacks before going to mailbox." Category="How many stacks to farm before we turn them in" Global="False" Hidden="False" />
+  <Declaration Code="int crab;" />
+  <Settings DefaultValue="5" Type="Int16" Name="Stacks of Tiger Meat" Summary="Amount of stacks before going to mailbox." Category="How many stacks to farm before we turn them in" Global="False" Hidden="False" />
+  <Declaration Code="int tiger;" />
+  <CustomAction Code="crab = (Int16)Settings[&quot;Stacks of Crab Meat&quot;];" />
+  <CustomAction Code="tiger = (Int16)Settings[&quot;Stacks of Tiger Meat&quot;];" />
+  <Settings DefaultValue="5" Type="Int16" Name="Stacks of Wildfowl Breasts" Summary="Amount of stacks before going to mailbox." Category="How many stacks to farm before we turn them in" Global="False" Hidden="False" />
+  <Declaration Code="int wildfowl;" />
+  <CustomAction Code="wildfowl = (Int16)Settings[&quot;Stacks of Wildfowl Breasts&quot;];" />
+  <SubRoutine SubRoutineName="- Subroutines -">
+    <SubRoutine SubRoutineName="ToCrocodile">
+      <CustomAction Code="Log(Colors.Green,&quot;Moving to: &quot;,Colors.Red,&quot;Crocodile farmspot&quot;);" />
+      <FlyToAction Dismount="False" Location="-2367.38, 604.78, 0.22858" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToTurtle">
+      <CustomAction Code="Log(Colors.Green,&quot;Moving to: &quot;,Colors.Red,&quot;Turtle farmspot&quot;);" />
+      <FlyToAction Dismount="False" Location="-1198.6, -339.17, 0.8636683" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToCrab">
+      <CustomAction Code="Log(Colors.Green,&quot;Moving to: &quot;,Colors.Red,&quot;Crab farmspot&quot;);" />
+      <FlyToAction Dismount="True" Location="-701.8103, 4181.907, 0.2620023" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToTiger">
+      <CustomAction Code="Log(Colors.Green,&quot;Moving to: &quot;,Colors.Red,&quot;Tiger farmspot&quot;);" />
+      <FlyToAction Dismount="True" Location="-990.4023, 2066.482, 130.7903" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToWildfowl">
+      <CustomAction Code="Log(Colors.Green,&quot;Moving to: &quot;,Colors.Red,&quot;Wildfowl farmspot&quot;);" />
+      <FlyToAction Dismount="True" Location="71.55871, 1765.824, 221.9412" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="ToMail">
+      <CustomAction Code="Log(Colors.Green,&quot;Moving to: &quot;,Colors.Red,&quot;Mailbox&quot;);" />
+      <FlyToAction Dismount="True" Location="-209.6374, 496.2202, 187.2195" />
+    </SubRoutine>
+    <SubRoutine SubRoutineName="MailItems">
+      <CustomAction Code="Log(Colors.Blue,&quot;Arrived at: &quot;,Colors.Blue,&quot;Mailbox&quot;);" />
+      <ChangeBotAction BotName="Combat Bot" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Meat" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="False" Location="-209.6374, 496.2202, 187.2195" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Herb" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="False" Location="-209.6374, 496.2202, 187.2195" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="MetalStone" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="False" Location="-209.6374, 496.2202, 187.2195" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Leather" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="False" Location="-209.6374, 496.2202, 187.2195" />
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Cloth" Mail="All" UseCategory="True" ItemID="" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+      <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greys" ItemID="" Count="0" />
+    </SubRoutine>
+  </SubRoutine>
+  <While Condition="true" IgnoreCanRun="True">
+    <While Condition="(InbagCount (72201)) &gt;= 1" IgnoreCanRun="True">
+      <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+    </While>
+    <If Condition="(InbagCount (72201)) &gt;= 1" IgnoreCanRun="True">
+      <CustomAction Code="Lua.DoString(&quot;UseItemByName(88496)&quot;); Thread.Sleep(2000);" />
+    </If>
+    <If Condition="Me.FreeNormalBagSlots &lt;= 5" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Yellow,&quot;Bags are: &quot;,Colors.Red,&quot;Full&quot;);" />
+      <CustomAction Code="Log(Colors.Yellow,&quot;Moving to: &quot;,Colors.Red,&quot;Mailbox&quot;);" />
+      <CallSubRoutine SubRoutineName="ToMail" />
+      <CallSubRoutine SubRoutineName="MailItems" />
+      <CustomAction Code="Log(Colors.Yellow,&quot;Selling:&quot;,Colors.Red,&quot;Completed&quot;);" />
+    </If>
+    <If Condition="((InbagCount(74839) / 20) &gt;= wildfowl &amp;&amp; (InbagCount(74833) / 20) &gt;= tiger &amp;&amp; (InbagCount(74838) / 20) &gt;= crab &amp;&amp; (InbagCount(74837) / 20) &gt;= turtle &amp;&amp; (InbagCount(75014) / 20) &gt;= crocodile)" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Yellow,&quot;Target:&quot;,Colors.Red,&quot;Completed&quot;);" />
+      <CustomAction Code="Log(Colors.Yellow,&quot;Moving to: &quot;,Colors.Red,&quot;Mailbox&quot;);" />
+      <CallSubRoutine SubRoutineName="ToMail" />
+      <CallSubRoutine SubRoutineName="MailItems" />
+      <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="0" AutoFindMailBox="True" Location="0, 0, 0" />
+    </If>
+    <If Condition="(InbagCount(75014) / 20) &lt; crocodile" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Red,&quot;Moving to: &quot;,Colors.Red,&quot;Crocodile farmspot&quot;);" />
+      <CallSubRoutine SubRoutineName="ToCrocodile" />
+      <While Condition="(InbagCount(75014) / 20) &lt; crocodile" IgnoreCanRun="False">
+        <ChangeBotAction BotName="Questing" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="Ultimate Raw Meat Grinding - Profiles\Krasarang_CrocoMeat.xml" />
+      </While>
+    </If>
+    <If Condition="(InbagCount(74838) / 20) &lt; crab" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Red,&quot;Moving to: &quot;,Colors.Red,&quot;Crab farmspot&quot;);" />
+      <CallSubRoutine SubRoutineName="ToCrab" />
+      <While Condition="(InbagCount(74838) / 20) &lt; crab" IgnoreCanRun="False">
+        <ChangeBotAction BotName="Questing" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="Ultimate Raw Meat Grinding - Profiles\DreadW_CrabMeat.xml" />
+      </While>
+    </If>
+    <If Condition="(InbagCount(74833) / 20) &lt; tiger" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Red,&quot;Moving to: &quot;,Colors.Red,&quot;Tiger farmspot&quot;);" />
+      <CallSubRoutine SubRoutineName="ToTiger" />
+      <While Condition="(InbagCount(74833) / 20) &lt; tiger" IgnoreCanRun="False">
+        <ChangeBotAction BotName="Questing" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="Ultimate Raw Meat Grinding - Profiles\FourWinds_TigerMeat.xml" />
+      </While>
+    </If>
+    <If Condition="(InbagCount(74839) / 20) &lt; wildfowl" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Red,&quot;Moving to: &quot;,Colors.Red,&quot;Wildfowl farmspot&quot;);" />
+      <CallSubRoutine SubRoutineName="ToWildfowl" />
+      <While Condition="(InbagCount(74839) / 20) &lt; wildfowl" IgnoreCanRun="True">
+        <ChangeBotAction BotName="Questing" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="Ultimate Raw Meat Grinding - Profiles\FourWinds_WildfowlBreasts.xml" />
+      </While>
+    </If>
+    <If Condition="(InbagCount(74837) / 20) &lt; turtle" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Red,&quot;Moving to: &quot;,Colors.Red,&quot;Turtle farmspot&quot;);" />
+      <CallSubRoutine SubRoutineName="ToTurtle" />
+      <While Condition="(InbagCount(74837) / 20) &lt; turtle" IgnoreCanRun="False">
+        <ChangeBotAction BotName="Questing" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="Ultimate Raw Meat Grinding - Profiles\DreadW_CrabMeat_TurtleMeat.xml" />
+      </While>
+    </If>
+  </While>
+</Professionbuddy>

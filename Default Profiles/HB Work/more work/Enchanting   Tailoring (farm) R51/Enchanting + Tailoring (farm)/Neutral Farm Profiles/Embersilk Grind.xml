@@ -1,0 +1,111 @@
+<HBProfile>
+<Name>Uldum Dynamic Grind</Name> 
+  <MinDurability>0.1</MinDurability>
+  <MinFreeBagSlots>1</MinFreeBagSlots>
+	<TargetingDistance>35</TargetingDistance>
+
+  <SellGrey>True</SellGrey>
+  <SellWhite>false</SellWhite>
+  <SellGreen>false</SellGreen>
+  <SellBlue>false</SellBlue>
+  <SellPurple>false</SellPurple>
+
+  <Vendors>
+   <Vendor Name="Кузнец Абаси" Entry="48617" Type="Repair" X="-9404.68" Y="-906.438" Z="112.5405" />
+  </Vendors>
+  
+  <QuestOrder>
+    <CustomBehavior File="UserSettings" PullDistance="55" LootMobs="True" KillBetweenHotspots="true" UseMount="false"/>
+    <While Condition="true" >
+      <If Condition="(Me.FreeNormalBagSlots &lt;= 5) || (Me.DurabilityPercent &lt;= 0.5)" >
+        <CustomBehavior File="Message" Text="Sell \ Repair." LogColor="Red" />
+        <CustomBehavior File="FlyTo" Land="true" X="-9407.278" Y="-908.2571" Z="112.5414" />
+        <CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+      </If>
+      <If Condition="(Me.FreeBagSlots &gt; 5)" >
+        <!-- Horde route -->
+        <If Condition="Me.IsHorde || Me.IsAlliance">
+          <CustomBehavior File="FlyTo" X="-10546.44" Y="-1156.733" Z="50.60505" />
+          <CustomBehavior File="WaitTimer" WaitTime="3000" />
+          <If Condition="!ObjectManager.GetObjectsOfType&lt;WoWPlayer&gt;().Any( p =&gt; !p.IsMe &amp;&amp; !p.IsFlying &amp;&amp; Me.Location.Distance(p.Location) &lt; 60 &amp;&amp; p.IsAlive)">
+            <CustomBehavior File="ForcedDismount" />
+            <If Condition="!Me.HasAura(80263) &amp;&amp; HasItem(58488)">
+              <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(58488)" WaitTime="5500" />
+            </If>
+            <RunTo X="-10507.23" Y="-1176.741" Z="43.60935" />
+            <RunTo X="-10507.6" Y="-1136.672" Z="43.58072" />
+            <RunTo X="-10543.69" Y="-1154.481" Z="45.8226" />
+            <RunTo X="-10550.84" Y="-1173.288" Z="47.725" />
+            <RunTo X="-10507.23" Y="-1176.741" Z="43.60935" />
+            <RunTo X="-10507.6" Y="-1136.672" Z="43.58072" />
+            <RunTo X="-10543.69" Y="-1154.481" Z="45.8226" />
+            <RunTo X="-10550.84" Y="-1173.288" Z="47.725" />
+            <RunTo X="-10507.23" Y="-1176.741" Z="43.60935" />
+            <RunTo X="-10507.6" Y="-1136.672" Z="43.58072" />
+            <RunTo X="-10543.69" Y="-1154.481" Z="45.8226" />
+            <RunTo X="-10550.84" Y="-1173.288" Z="47.725" />
+            <Else>
+              <CustomBehavior File="Message" Text=" * * It's too crowded here, going to next spot. * *" LogColor="White" />
+            </Else>
+          </If>
+          <CustomBehavior File="FlyTo" X="-10926.79" Y="-739.6418" Z="76.13687" />
+          <CustomBehavior File="WaitTimer" WaitTime="3000" />
+          <If Condition="!ObjectManager.GetObjectsOfType&lt;WoWPlayer&gt;().Any( p =&gt; !p.IsMe &amp;&amp; !p.IsFlying &amp;&amp; Me.Location.Distance(p.Location) &lt; 60 &amp;&amp; p.IsAlive)">
+            <CustomBehavior File="ForcedDismount" />
+            <If Condition="!Me.HasAura(80263) &amp;&amp; HasItem(58488)">
+              <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(58488)" WaitTime="5500" />
+            </If>
+            <RunTo X="-10960.56" Y="-765.13" Z="76.12975" />
+            <RunTo X="-10954.07" Y="-728.5131" Z="76.13074" />
+            <RunTo X="-10986.94" Y="-732.8419" Z="76.13074" />
+            <RunTo X="-11065.94" Y="-721.2492" Z="77.94322" />
+            <RunTo X="-11017.93" Y="-679.3773" Z="77.94323" />
+            <RunTo X="-11062.67" Y="-669.2963" Z="77.94323" />
+            <RunTo X="-11072.53" Y="-643.5393" Z="77.94323" />
+            <RunTo X="-11107.83" Y="-661.3159" Z="78.01297" />
+             <Else>
+              <CustomBehavior File="Message" Text=" * * It's too crowded here, going to next spot. * *" LogColor="White" />
+            </Else>
+          </If>
+          <CustomBehavior File="FlyTo" X="-11207.18" Y="-521.4349" Z="116.7462" />
+          <CustomBehavior File="WaitTimer" WaitTime="3000" />
+          <If Condition="!ObjectManager.GetObjectsOfType&lt;WoWPlayer&gt;().Any( p =&gt; !p.IsMe &amp;&amp; !p.IsFlying &amp;&amp; Me.Location.Distance(p.Location) &lt; 60 &amp;&amp; p.IsAlive)">
+            <CustomBehavior File="ForcedDismount" />
+            <If Condition="!Me.HasAura(80263) &amp;&amp; HasItem(58488)">
+              <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(58488)" WaitTime="5500" />
+            </If>
+            <RunTo X="-11198.7" Y="-493.2112" Z="116.1865" />
+            <RunTo X="-11232.29" Y="-500.9286" Z="118.8222" />
+            <RunTo X="-11268.83" Y="-524.3288" Z="119.0229" />
+            <RunTo X="-11271.18" Y="-472.5936" Z="119.0304" />
+            <RunTo X="-11351.12" Y="-487.9643" Z="106.1219" />
+            <RunTo X="-11348.6" Y="-417.3819" Z="106.1207" />
+            <RunTo X="-11387.65" Y="-415.5261" Z="106.1433" />
+                       <Else>
+              <CustomBehavior File="Message" Text=" * * It's too crowded here, going to next spot. * *" LogColor="White" />
+            </Else>
+          </If>
+          <CustomBehavior File="FlyTo" X="-10781.8" Y="266.8414" Z="20.8902" />
+          <CustomBehavior File="WaitTimer" WaitTime="3000" />
+          <If Condition="!ObjectManager.GetObjectsOfType&lt;WoWPlayer&gt;().Any( p =&gt; !p.IsMe &amp;&amp; !p.IsFlying &amp;&amp; Me.Location.Distance(p.Location) &lt; 60 &amp;&amp; p.IsAlive)">
+            <CustomBehavior File="ForcedDismount" />         
+            <If Condition="!Me.HasAura(80263) &amp;&amp; HasItem(58488)">
+              <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(58488)" WaitTime="5500" />
+            </If>
+            <RunTo X="-10809.73" Y="323.1008" Z="12.52516" />
+            <RunTo X="-10801.91" Y="384.777" Z="26.17857" />
+            <RunTo X="-10793.51" Y="434.9492" Z="24.41316" />
+            <RunTo X="-10749.58" Y="432.2021" Z="24.41126" />
+            <RunTo X="-10714.23" Y="431.3524" Z="20.76263" />
+            <RunTo X="-10645.97" Y="398.2861" Z="24.41311" />
+            <RunTo X="-10647.14" Y="519.7139" Z="24.41198" />
+                       <Else>
+              <CustomBehavior File="Message" Text=" * * It's too crowded here, going to next spot. * *" LogColor="White" />
+            </Else>
+            </If>
+          </If>
+      </If>
+    </While>
+
+  </QuestOrder>
+</HBProfile>

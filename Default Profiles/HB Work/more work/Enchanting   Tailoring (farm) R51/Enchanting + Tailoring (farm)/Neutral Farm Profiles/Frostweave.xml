@@ -1,0 +1,156 @@
+﻿<HBProfile>
+  <Name>Halls of lightning frostweave farm</Name>
+  <MinFreeBagSlots>0</MinFreeBagSlots>
+  <MinDurability>0.1</MinDurability>
+  <MinLevel>1</MinLevel>
+  <MaxLevel>101</MaxLevel>
+
+  <SellGrey>True</SellGrey>
+  <SellWhite>False</SellWhite>
+  <SellGreen>False</SellGreen>
+  <SellBlue>False</SellBlue>
+  <SellPurple>False</SellPurple>
+
+  <Vendors>
+    <Vendor Name="Честер Медноковш" Entry="32477" Type="Food" X="8893.612" Y="-1361.069" Z="1033.906" />
+  </Vendors>
+
+
+  <QuestOrder>
+    <CustomBehavior File="UserSettings" LootMobs="True" KillBetweenHotspots="true"/>
+    <If Condition="Me.MapId == 602">
+      <RunTo X="1331.671" Y="273.8487" Z="52.81072" />
+      <RunTo X="1332" Y="276.7" Z="53.39" />
+      <CustomBehavior File="WaitTimer" WaitTime="13000" TerminateWhen="StyxWoW.IsInWorld &amp;&amp; Me.MapId != 602" />
+      <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+    </If>
+    <While Condition="true" >
+      <If Condition="Me.MapId != 602">
+        <If Condition="Me.ZoneId == 3537">
+          <CustomBehavior File="FlyTo" X="5741.582" Y="5017.856" Z="300.3986" />
+          <CustomBehavior File="FlyTo" X="8549.149" Y="-990.8957" Z="1108.755" />
+        </If>
+        <If Condition="Me.FreeNormalBagSlots &lt;= 20 || Me.DurabilityPercent &lt;= 0.5" >
+          <CustomBehavior File="Message" Text="Sell \ Repair." LogColor="Red" />
+          <CustomBehavior File="FlyTo" Land="true" X="8890.328" Y="-1358.972" Z="1033.732" />
+          <CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+          <CustomBehavior File="WaitTimer" WaitTime="5000" />
+        </If>
+        <If Condition="Me.Location.Distance(new WoWPoint(9182, -1384, 1110)) &gt; 30 || Me.IsFlying" >
+          <CustomBehavior File="FlyTo" Land="true" X="9182.471" Y="-1384.57" Z="1110.215" />
+        </If>
+        <RunTo X="9189" Y="-1390.57" Z="1110.215" />
+        <CustomBehavior File="WaitTimer" WaitTime="13000" TerminateWhen="StyxWoW.IsInWorld &amp;&amp; Me.MapId == 602" />
+      </If>
+      <If Condition="Me.MapId == 602">
+        <If Condition="Me.Level &lt; 90">
+          <CustomBehavior File="Message" Text="Picking *easy* route." LogColor="Yellow" />
+          <EnableBehavior Name="Combat" />
+          <RunTo X="1334.768" Y="157.9612" Z="53.70407" />
+          <RunTo X="1337.275" Y="97.6032" Z="40.18042" />
+          <RunTo X="1359.092" Y="63.53364" Z="45.26262" />
+          <RunTo X="1333.835" Y="-28.65297" Z="40.18063" />
+          <RunTo X="1272.999" Y="-29.42091" Z="34.78055" />
+          <RunTo X="1255.844" Y="57.56161" Z="33.50566" />
+          <RunTo X="1262.075" Y="109.8546" Z="33.50559" />
+          <RunTo X="1330.974" Y="-87.42337" Z="25.567" />
+          <RunTo X="1324.421" Y="-176.582" Z="23.22562" />
+          <RunTo X="1329.633" Y="-109.2952" Z="56.71797" />
+          <RunTo X="1272.424" Y="-163.5436" Z="52.06428" />
+          <RunTo X="1172.427" Y="-246.3511" Z="52.35004" />
+          <RunTo X="1089.859" Y="-261.3051" Z="59.49348" />
+          <RunTo X="1079.506" Y="-261.4143" Z="61.22768" />
+          <RunTo X="1094.162" Y="-243.213" Z="58.36392" />
+          <While Condition="!ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Entry == 28546 &amp;&amp; u.IsDead)">
+            <RunTo X="1087.742" Y="-247.3924" Z="59.19086" />
+            <CustomBehavior File="WaitTimer" WaitTime="5000" />
+          </While>
+          <RunTo X="1083.191" Y="-208.3479" Z="61.19773" />
+          <RunTo X="1089.949" Y="-165.5826" Z="57.06085" />
+          <RunTo X="1099.704" Y="-128.5233" Z="61.24237" />
+          <RunTo X="1115" Y="-111.6509" Z="61.2575" />
+          <RunTo X="1055.632" Y="-173.5988" Z="56.64747" />
+          <RunTo X="1022.511" Y="-132.8207" Z="61.21731" />
+          <RunTo X="1035.303" Y="-114.5721" Z="61.24761" />
+          <RunTo X="1078.318" Y="-39.35936" Z="61.19535" />
+          <RunTo X="1040.902" Y="27.6197" Z="58.34369" />
+          <RunTo X="1048.997" Y="18.31569" Z="56.37533" />
+          <CustomBehavior File="WaitTimer" WaitTime="15000" />
+          <RunTo X="1184.043" Y="33.48006" Z="60.72826" />
+          <CustomBehavior File="WaitTimer" WaitTime="15000" />
+          <RunTo X="1249.153" Y="33.51563" Z="56.98171" />
+          <CustomBehavior File="MyCTM" X="1266.306" Y="33.8489" Z="33.5057" />
+          <While Condition="Me.MapId == 602">
+            <RunTo X="1331.671" Y="273.8487" Z="52.81072" />
+            <RunTo X="1332" Y="276.7" Z="53.39" />
+            <CustomBehavior File="WaitTimer" WaitTime="13000" TerminateWhen="StyxWoW.IsInWorld &amp;&amp; Me.MapId != 602" />
+            <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+          </While>
+        </If>
+        <If Condition="Me.Level &gt;= 90">
+          <CustomBehavior File="Message" Text="Picking *heavy* route." LogColor="Yellow" />
+          <DisableBehavior Name="Combat" />
+          <RunTo X="1334.768" Y="157.9612" Z="53.70407" />
+          <RunTo X="1337.275" Y="97.6032" Z="40.18042" />
+          <RunTo X="1359.092" Y="63.53364" Z="45.26262" />
+          <RunTo X="1445.093" Y="54.30782" Z="56.57198" />
+          <EnableBehavior Name="Combat" />
+          <CustomBehavior File="WaitTimer" WaitTime="15000" />
+          <DisableBehavior Name="Combat" />
+          <RunTo X="1333.835" Y="-28.65297" Z="40.18063" />
+          <RunTo X="1272.999" Y="-29.42091" Z="34.78055" />
+          <RunTo X="1255.844" Y="57.56161" Z="33.50566" />
+          <RunTo X="1262.075" Y="109.8546" Z="33.50559" />
+          <EnableBehavior Name="Combat" />
+          <CustomBehavior File="WaitTimer" WaitTime="15000" />
+          <DisableBehavior Name="Combat" />
+          <RunTo X="1330.974" Y="-87.42337" Z="25.567" />
+          <RunTo X="1324.421" Y="-176.582" Z="23.22562" />
+          <RunTo X="1329.633" Y="-109.2952" Z="56.71797" />
+          <EnableBehavior Name="Combat" />
+          <CustomBehavior File="WaitTimer" WaitTime="20000" />
+          <DisableBehavior Name="Combat" />
+          <RunTo X="1272.424" Y="-163.5436" Z="52.06428" />
+          <RunTo X="1172.427" Y="-246.3511" Z="52.35004" />
+          <RunTo X="1089.859" Y="-261.3051" Z="59.49348" />
+          <RunTo X="1079.506" Y="-261.4143" Z="61.22768" />
+          <RunTo X="1094.162" Y="-243.213" Z="58.36392" />
+          <EnableBehavior Name="Combat" />
+          <CustomBehavior File="WaitTimer" WaitTime="10000" />
+          <While Condition="!ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Entry == 28546 &amp;&amp; u.IsDead)">
+            <RunTo X="1087.742" Y="-247.3924" Z="59.19086" />
+            <CustomBehavior File="WaitTimer" WaitTime="5000" />
+          </While>
+          <CustomBehavior File="WaitTimer" WaitTime="5000" />
+          <DisableBehavior Name="Combat" />
+          <RunTo X="1083.191" Y="-208.3479" Z="61.19773" />
+          <RunTo X="1089.949" Y="-165.5826" Z="57.06085" />
+          <RunTo X="1099.704" Y="-128.5233" Z="61.24237" />
+          <RunTo X="1115" Y="-111.6509" Z="61.2575" />
+          <RunTo X="1055.632" Y="-173.5988" Z="56.64747" />
+          <RunTo X="1022.511" Y="-132.8207" Z="61.21731" />
+          <EnableBehavior Name="Combat" />
+          <CustomBehavior File="WaitTimer" WaitTime="20000" />
+          <DisableBehavior Name="Combat" />
+          <RunTo X="1035.303" Y="-114.5721" Z="61.24761" />
+          <RunTo X="1078.318" Y="-39.35936" Z="61.19535" />
+          <RunTo X="1040.902" Y="27.6197" Z="58.34369" />
+          <RunTo X="1048.997" Y="18.31569" Z="56.37533" />
+          <EnableBehavior Name="Combat" />
+          <CustomBehavior File="WaitTimer" WaitTime="15000" />
+          <RunTo X="1183.487" Y="33.33889" Z="60.72853" />
+          <CustomBehavior File="WaitTimer" WaitTime="15000" />
+          <RunTo X="1250.735" Y="32.71264" Z="56.95626" />
+          <CustomBehavior File="MyCTM" X="1266.167" Y="33.30453" Z="33.50606" />
+          <While Condition="Me.MapId == 602">
+            <RunTo X="1331.671" Y="273.8487" Z="52.81072" />
+            <RunTo X="1332" Y="276.7" Z="53.39" />
+            <CustomBehavior File="WaitTimer" WaitTime="13000" TerminateWhen="StyxWoW.IsInWorld &amp;&amp; Me.MapId != 602" />
+            <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+          </While>
+        </If>
+      </If>
+    </While>
+
+  </QuestOrder>
+</HBProfile>
