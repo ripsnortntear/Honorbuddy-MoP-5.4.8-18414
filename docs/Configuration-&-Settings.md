@@ -7,7 +7,7 @@ Honorbuddy's behavior can be customized globally, per realm, and per character. 
 ## Settings Hierarchy
 
 ```
-D:\Games\GH of HB\Settings\
+<Honorbuddy-Directory>\Settings\
 ├── HonorbuddySettings.xml               # Global bot-wide defaults
 └── [RealmName]\                         # E.g. "Stormrage" or "Localhost"
     └── [CharacterName]\                 # E.g. "Warlord"

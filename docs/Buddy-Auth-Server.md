@@ -39,7 +39,7 @@ When Honorbuddy launches, it contacts the authentication server over Windows Com
 The auth server lives in the `Auth` directory:
 
 ```
-D:\Games\GH of HB\Auth\
+<Honorbuddy-Directory>\Auth\
 ├── Buddy_Auth.exe        # Main auth server executable (.NET 4.0/4.5)
 ├── nssm.exe              # Non-Sucking Service Manager (Windows Service runner)
 ├── Settings.xml          # Configuration file for ports, IP, and mesh directory
@@ -81,29 +81,29 @@ To ensure the auth server is always running silently in the background, starts a
 
 The GUI installer is the most reliable way to configure the service.
 
-1. Open **Command Prompt** as **Administrator**:
+1. Open **Command Prompt** as **Administrator** and navigate to your `Auth` directory:
    ```cmd
-   cd /d "D:\Games\GH of HB\Auth"
+   cd /d "<Path-To-Honorbuddy>\Auth"
    nssm.exe install
    ```
 2. In the NSSM configuration window:
    - **Application tab**:
-     - **Path**: `D:\Games\GH of HB\Auth\Buddy_Auth.exe`
-     - **Startup directory**: `D:\Games\GH of HB\Auth`
+     - **Path**: `<Path-To-Honorbuddy>\Auth\Buddy_Auth.exe`
+     - **Startup directory**: `<Path-To-Honorbuddy>\Auth`
      - **Service name**: `BuddyAuth`
    - **Log on tab** *(CRITICAL)*:
      - > [!IMPORTANT]
      - > Check the box: **"Allow service to interact with desktop"**
      - > *(This is **NOT** checked by default. You **MUST** check it. This sets `SERVICE_INTERACTIVE_PROCESS`, allocating a console screen buffer so `Console.Clear()` and `Console.ReadKey()` will not throw invalid handle exceptions).*
    - **I/O tab** *(Optional but recommended)*:
-     - Output (stdout): `D:\Games\GH of HB\Auth\stdout.log`
-     - Error (stderr): `D:\Games\GH of HB\Auth\stderr.log`
+     - Output (stdout): `<Path-To-Honorbuddy>\Auth\stdout.log`
+     - Error (stderr): `<Path-To-Honorbuddy>\Auth\stderr.log`
 3. Click **Install service**.
 4. Configure logging and automatic startup via CLI:
    ```cmd
-   nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
-   nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
-   nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
+   nssm.exe set BuddyAuth AppDirectory "<Path-To-Honorbuddy>\Auth"
+   nssm.exe set BuddyAuth AppStdout "<Path-To-Honorbuddy>\Auth\stdout.log"
+   nssm.exe set BuddyAuth AppStderr "<Path-To-Honorbuddy>\Auth\stderr.log"
    nssm.exe set BuddyAuth Start SERVICE_AUTO_START
    nssm.exe start BuddyAuth
    ```
@@ -120,14 +120,14 @@ The GUI installer is the most reliable way to configure the service.
 If installing strictly via command line, you must explicitly set the service type to `SERVICE_INTERACTIVE_PROCESS` along with stdout/stderr redirection:
 
 ```cmd
-cd /d "D:\Games\GH of HB\Auth"
+cd /d "<Path-To-Honorbuddy>\Auth"
 
 :: 1. Install service
-nssm.exe install BuddyAuth "D:\Games\GH of HB\Auth\Buddy_Auth.exe"
-nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
+nssm.exe install BuddyAuth "<Path-To-Honorbuddy>\Auth\Buddy_Auth.exe"
+nssm.exe set BuddyAuth AppDirectory "<Path-To-Honorbuddy>\Auth"
 nssm.exe set BuddyAuth Type SERVICE_INTERACTIVE_PROCESS
-nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
-nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
+nssm.exe set BuddyAuth AppStdout "<Path-To-Honorbuddy>\Auth\stdout.log"
+nssm.exe set BuddyAuth AppStderr "<Path-To-Honorbuddy>\Auth\stderr.log"
 nssm.exe set BuddyAuth Start SERVICE_AUTO_START
 
 :: 2. Start service
@@ -159,7 +159,7 @@ Get-NetTCPConnection -LocalPort 5031, 5034 | Select-Object LocalAddress, LocalPo
 You should see both ports in the `Listen` state bound to `127.0.0.1` or `0.0.0.0`.
 
 ### 2. Verify Output Logs
-Inspect `D:\Games\GH of HB\Auth\stdout.log` to confirm startup:
+Inspect `<Path-To-Honorbuddy>\Auth\stdout.log` to confirm startup:
 ```
 [AuthServer] Service initialized.
 [AuthServer] Listening on net.tcp://127.0.0.1:5031/AuthService.svc

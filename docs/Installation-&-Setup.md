@@ -32,8 +32,9 @@ Honorbuddy attaches to the WoW client using process memory injection and Direct3
 
 - Create a desktop shortcut to `WoW.exe` with the argument:
   ```cmd
-  "D:\Games\World of Warcraft 5.4.8\WoW.exe" -noautolaunch64bit
+  "<Path-To-WoW>\WoW.exe" -noautolaunch64bit
   ```
+  *(Example: `"C:\Games\World of Warcraft 5.4.8\WoW.exe" -noautolaunch64bit`)*
 - Alternatively, rename `WoW-64.exe` to `WoW-64.exe.bak` to prevent accidental 64-bit launches.
 
 ### B. Display & Video Settings
@@ -65,7 +66,7 @@ Open WoW, press `Esc` > **Interface**:
 The installation root should contain the following structure:
 
 ```
-D:\Games\GH of HB\
+<Honorbuddy-Directory>\
 ├── Honorbuddy.exe             # Main bot executable
 ├── Honorbuddy.exe.config      # Assembly binding redirects & .NET runtime config
 ├── Styx.dll                   # Core engine & object manager API
