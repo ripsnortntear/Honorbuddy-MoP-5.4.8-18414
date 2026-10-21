@@ -326,7 +326,7 @@ namespace Singular.Helpers
 
             #endregion
 
-            return new ThrottlePasses( 1, TimeSpan.FromMilliseconds(500),  
+            return new ThrottlePasses( 1, TimeSpan.FromMilliseconds(75),  
                 new Sequence(
                     actionSelectTarget,               
                     // majority of these are off GCD, so throttle all to avoid most fail messages
@@ -341,13 +341,13 @@ namespace Singular.Helpers
                 return false;
 
             if (!SingularSettings.Debug)
-                return u.CanInterruptCurrentSpellCast && u.InLineOfSight;
+                return u.CanInterruptCurrentSpellCast && u.InLineOfSpellSight && u.CurrentCastTimeLeft.TotalMilliseconds >= 50;
 
             if (!u.CanInterruptCurrentSpellCast)
                 ;   // Logger.WriteDebug("IsInterruptTarget: {0} casting {1} but CanInterruptCurrentSpellCast == false", u.SafeName(), (u.CastingSpell == null ? "(null)" : u.CastingSpell.Name));
             else if (!u.InLineOfSpellSight)
                 ;   // Logger.WriteDebug("IsInterruptTarget: {0} casting {1} but LoSS == false", u.SafeName(), (u.CastingSpell == null ? "(null)" : u.CastingSpell.Name));
-            else if (u.CurrentCastTimeLeft.TotalMilliseconds < 250)
+            else if (u.CurrentCastTimeLeft.TotalMilliseconds < 50)
                 ;
             else
                 return true;

@@ -1,4 +1,4 @@
-﻿#define NO_LATENCY_ISSUES_WITH_GLOBAL_COOLDOWN
+#define NO_LATENCY_ISSUES_WITH_GLOBAL_COOLDOWN
 #define HONORBUDDY_PENDINGSPELL_WORKING
 //#define HONORBUDDY_GCD_IS_WORKING
 //#define USE_LUA_RANGECHECK
@@ -1419,7 +1419,7 @@ namespace Singular.Helpers
                 // .. instance of the spell.cast behavior.  in other words, if this is for a cast
                 // .. of flame shock, it would only throttle this tree, not any other trees which
                 // .. also cast flame shock
-                new Throttle(TimeSpan.FromMilliseconds(SingularSettings.Instance.SameSpellThrottle),
+                new Throttle(TimeSpan.FromMilliseconds(Math.Min(125, SingularSettings.Instance.SameSpellThrottle)),
 
                     new PrioritySelector(
 
@@ -1513,20 +1513,17 @@ namespace Singular.Helpers
 
                             /// new Action(r => Logger.WriteDebug("Spell.Cast(\"{0}\"): assume we are casting (actual={1}, gcd={2})", name(r), StyxWoW.Me.IsCasting || StyxWoW.Me.IsChanneling, Spell.GlobalCooldown )),
 #else
-                // for instant spell, wait for GCD to start
-                // for non-instant spell, wait for .IsCasting / .IsChanneling to start
+                // for instant spell, return immediately without stalling behavior tree
+                // for non-instant spell, short wait (up to 100ms) for .IsCasting / .IsChanneling to register
                             new WaitContinue(
-                                TimeSpan.FromMilliseconds(350),
+                                TimeSpan.FromMilliseconds(100),
                                 ret =>
                                 {
                                     CastContext cctx = ret.CastContext();
-                                    if (cctx.spell.CastTime == 0 && Spell.GcdTimeLeft.TotalMilliseconds > 750)
+                                    if (cctx.spell.CastTime == 0)
                                         return true;
 
-                                    if (Me.CurrentCastTimeLeft.TotalMilliseconds > 750)
-                                        return true;
-
-                                    if (Me.CurrentChannelTimeLeft.TotalMilliseconds > 750)
+                                    if (Me.IsCasting || Me.IsChanneling)
                                         return true;
 
                                     return false;
@@ -1883,6 +1880,13 @@ namespace Singular.Helpers
         {
             WoWSpell spell = sfr.Override ?? sfr.Original;
             
+            // check total damage immunity
+            if (unit != null && unit.IsHostile && unit.HasTotalDamageImmunity())
+            {
+                if (spell.Name != "Shattering Throw" && spell.Name != "Mass Dispel")
+                    return false;
+            }
+
             // check range
             if (!CanCastHackInRange( spell, unit))
                 return false;
@@ -1895,9 +1899,6 @@ namespace Singular.Helpers
                 return false;
 
             if (!CanCastHackHaveEnoughPower(spell, unit))
-                return false;
-
-            if (CanCastHackIsCastInProgress(spell, unit))
                 return false;
 
             if (SingularSettings.Instance.DisableSpellsWithCooldown != 0)

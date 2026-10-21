@@ -373,7 +373,7 @@ namespace Singular.Settings
 
         [Browsable(false)]
         [Setting]
-        [DefaultValue(450)]
+        [DefaultValue(100)]
         [Category("Advanced")]
         [DisplayName("Spell Throttle")]
         [Description("Time between same instance of spell cast can be repeated")]

@@ -412,7 +412,7 @@ namespace Singular.ClassSpecific.Warrior
 
                         Spell.Cast("Shattering Throw",
                             ret => Me.CurrentTarget.IsPlayer
-                                && Me.CurrentTarget.HasAnyAura("Ice Block", "Hand of Protection")),
+                                && Me.CurrentTarget.HasAnyAura("Divine Shield", "Ice Block", "Hand of Protection")),
 
                         Common.CreateVictoryRushBehavior(),
 

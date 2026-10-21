@@ -16,6 +16,7 @@ using Styx.Common.Helpers;
 using System.Drawing;
 using Styx.WoWInternals.DBC;
 using Styx.CommonBot.POI;
+using Singular.Managers;
 
 namespace Singular.Helpers
 {
@@ -147,17 +148,26 @@ namespace Singular.Helpers
             }
         }
 
+        private static List<WoWPlayer> _cachedFriendlyPlayers = new List<WoWPlayer>();
+        private static DateTime _lastFriendlyScan = DateTime.MinValue;
+
         /// <summary>
-        ///   Gets the nearby friendly players that can be seen
+        ///   Gets the nearby friendly players that can be seen (65ms frame-cached)
         /// </summary>
         /// <value>The nearby friendly players.</value>
         public static IEnumerable<WoWPlayer> FriendlyPlayers(double range = 100.0 )
         {
-            if ( range >= 100.0)
-                return ObjectManager.GetObjectsOfType<WoWPlayer>(false, true).Where(p => p.IsFriendly).ToList();
+            if (DateTime.UtcNow - _lastFriendlyScan > TimeSpan.FromMilliseconds(65))
+            {
+                _cachedFriendlyPlayers = ObjectManager.GetObjectsOfType<WoWPlayer>(false, true).Where(p => p != null && p.IsValid && p.IsFriendly).ToList();
+                _lastFriendlyScan = DateTime.UtcNow;
+            }
 
-            range *= range;
-            return ObjectManager.GetObjectsOfType<WoWPlayer>(false, true).Where(p => p.IsFriendly && p.DistanceSqr < range).ToList();
+            if ( range >= 100.0)
+                return _cachedFriendlyPlayers.Where(p => p.IsValid).ToList();
+
+            double rangeSqr = range * range;
+            return _cachedFriendlyPlayers.Where(p => p.IsValid && p.DistanceSqr < rangeSqr).ToList();
         }
 
         /// <summary>
@@ -172,8 +182,12 @@ namespace Singular.Helpers
             }
         }
 
+        private static List<WoWUnit> _cachedUnfriendlyUnits = new List<WoWUnit>();
+        private static DateTime _lastUnfriendlyScan = DateTime.MinValue;
+        private static int _lastUnfriendlyMaxDist = -1;
+
         /// <summary>
-        ///   Gets the nearby unfriendly units within 40 yards.
+        ///   Gets the nearby unfriendly units within 40 yards (65ms frame-cached).
         /// </summary>
         /// <value>The nearby unfriendly units.</value>
         public static IEnumerable<WoWUnit> UnfriendlyUnits(int maxSpellDist)
@@ -185,23 +199,31 @@ namespace Singular.Helpers
                 return Targeting.Instance.TargetList.Where(u => u != null && ValidUnit(u) && u.SpellDistance() < maxSpellDist);
             }
 
-            Type typeWoWUnit = typeof(WoWUnit);
-            Type typeWoWPlayer = typeof(WoWPlayer);
-            List<WoWUnit> list = new List<WoWUnit>();
-            List<WoWObject> objectList = ObjectManager.ObjectList;
-            for (int i = 0; i < objectList.Count; i++)
+            int scanDist = Math.Max(maxSpellDist, 40);
+            if (DateTime.UtcNow - _lastUnfriendlyScan > TimeSpan.FromMilliseconds(65) || scanDist > _lastUnfriendlyMaxDist)
             {
-                Type type = objectList[i].GetType();
-                if (type == typeWoWUnit || type == typeWoWPlayer)
+                Type typeWoWUnit = typeof(WoWUnit);
+                Type typeWoWPlayer = typeof(WoWPlayer);
+                List<WoWUnit> list = new List<WoWUnit>();
+                List<WoWObject> objectList = ObjectManager.ObjectList;
+                for (int i = 0; i < objectList.Count; i++)
                 {
-                    WoWUnit t = objectList[i] as WoWUnit;
-                    if (t != null && ValidUnit(t) && t.SpellDistance() < maxSpellDist )
+                    Type type = objectList[i].GetType();
+                    if (type == typeWoWUnit || type == typeWoWPlayer)
                     {
-                        list.Add(t);
+                        WoWUnit t = objectList[i] as WoWUnit;
+                        if (t != null && ValidUnit(t) && t.SpellDistance() < scanDist)
+                        {
+                            list.Add(t);
+                        }
                     }
                 }
+                _cachedUnfriendlyUnits = list;
+                _lastUnfriendlyScan = DateTime.UtcNow;
+                _lastUnfriendlyMaxDist = scanDist;
             }
-            return list;
+
+            return _cachedUnfriendlyUnits.Where(u => u.IsValid && !u.IsDead && u.SpellDistance() < maxSpellDist).ToList();
         }
 
         /// <summary>
@@ -268,6 +290,13 @@ namespace Singular.Helpers
             if (p.IsDead)
             {
                 if (showReason) Logger.Write(invalidColor, "invalid attack unit {0} is already Dead", p.SafeName());
+                return false;
+            }
+
+            // Ignore immune targets (Divine Shield, Ice Block, Cyclone, Deterrence, Banish)
+            if (p.HasTotalDamageImmunity())
+            {
+                if (showReason) Logger.Write(invalidColor, "invalid attack unit {0} has Total Damage Immunity", p.SafeName());
                 return false;
             }
 

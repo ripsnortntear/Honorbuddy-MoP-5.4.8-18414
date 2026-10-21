@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
 
@@ -20,6 +21,32 @@ namespace Singular.Managers
         public static bool IsImmune(this WoWUnit unit, WoWSpellSchool school)
         {
             return unit != null && ImmuneNpcs.ContainsKey(unit.Entry) && (ImmuneNpcs[unit.Entry] & school) > 0;
+        }
+
+        /// <summary>
+        /// Checks if a unit currently has complete damage immunity (e.g. Divine Shield, Ice Block, Cyclone, Deterrence, Banish).
+        /// </summary>
+        public static bool HasTotalDamageImmunity(this WoWUnit unit)
+        {
+            if (unit == null || !unit.IsValid)
+                return false;
+
+            try
+            {
+                var auras = unit.ActiveAuras;
+                if (auras == null || auras.Count == 0)
+                    return false;
+
+                return auras.ContainsKey("Divine Shield")
+                    || auras.ContainsKey("Ice Block")
+                    || auras.ContainsKey("Cyclone")
+                    || auras.ContainsKey("Deterrence")
+                    || auras.ContainsKey("Banish");
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
