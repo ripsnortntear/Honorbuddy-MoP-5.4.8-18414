@@ -1,0 +1,174 @@
+# Buddy_Auth Local Authentication Server
+
+`Buddy_Auth.exe` is the self-hosted local authentication and service provider that allows Honorbuddy to operate fully offline without connecting to Bossland GmbH's decommissioned remote servers.
+
+---
+
+## Technical Overview
+
+When Honorbuddy launches, it contacts the authentication server over Windows Communication Foundation (WCF) using the high-performance `NetTcpBinding` protocol. Instead of external telemetry and license validation, `Buddy_Auth.exe` handles:
+
+1. **License Validation**: Authenticates login requests with arbitrary keys (e.g. `12345678901234567890`).
+2. **Memory Offsets Delivery**: Feeds MoP 5.4.8 (Build 18414) memory addresses and function pointers directly to Honorbuddy at runtime.
+3. **Navmesh Server**: Serves navigation mesh (`.mesh` and `.tile`) files from local disk to the bot's pathfinding engine on demand.
+4. **Version Negotiation**: Validates client compatibility against WoW build 18414.
+
+### Network Architecture & WCF Endpoints
+
+| Endpoint | Protocol | Port | Function |
+|---|---|---|---|
+| `net.tcp://localhost:5031/AuthService.svc` | WCF NetTcp | `5031` | Primary authentication, session creation, offset distribution |
+| `net.tcp://localhost:5034/AuthService.svc` | WCF NetTcp | `5034` | Mesh and tile stream transport |
+
+### Internal Opcodes Handled
+
+| Opcode | Handler | Description |
+|---|---|---|
+| `1` | `Login` | Validates serial key, registers session token, unlocks bot capabilities |
+| `2` | `Logout` | Cleans up session state upon Honorbuddy shutdown |
+| `3` | `SendOffsets` | Transmits 32-bit MoP 18414 memory offsets (`CGObjectManager`, `Camera`, `CurMgr`, `TargetGuid`) |
+| `4` | `SendMeshFile` | Streams requested `.mesh` files from the local storage folder |
+| `5` | `SendTileFile` | Streams detailed tile geometry for active navigation grids |
+| `6` | `CheckVersion` | Returns compatible version string for build 18414 |
+| `7` | `FlyTo` | Pathfinding waypoint coordinate resolution |
+
+---
+
+## Directory & File Structure
+
+The auth server lives in the `Auth` directory:
+
+```
+D:\Games\GH of HB\Auth\
+├── Buddy_Auth.exe        # Main auth server executable (.NET 4.0/4.5)
+├── nssm.exe              # Non-Sucking Service Manager (Windows Service runner)
+├── Settings.xml          # Configuration file for ports, IP, and mesh directory
+├── Meshes\               # Local navmesh repository
+│   ├── 0\                # Eastern Kingdoms mesh files
+│   ├── 1\                # Kalimdor mesh files
+│   ├── 530\              # Outland mesh files
+│   ├── 571\              # Northrend mesh files
+│   └── 870\              # Pandaria mesh files
+├── stdout.log            # Service output stream (when run via NSSM)
+└── stderr.log            # Service error stream (when run via NSSM)
+```
+
+### Configuration (`Settings.xml`)
+
+Located at `Auth/Settings.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <ServerIP>127.0.0.1</ServerIP>
+  <ServerPort>5031</ServerPort>
+  <MeshPort>5034</MeshPort>
+  <MeshesPath>Meshes</MeshesPath>
+  <LogLevel>Info</LogLevel>
+</Settings>
+```
+
+> [!NOTE]
+> Ensure `<ServerIP>` remains `127.0.0.1` unless running the auth server on a separate local network server for multi-box setups.
+
+---
+
+## Running as a Background Windows Service (NSSM)
+
+To ensure the auth server is always running silently in the background, starts automatically on Windows boot, and restarts if ever terminated, use **NSSM (Non-Sucking Service Manager)**.
+
+### The `Console.Clear()` Console Handle Issue
+
+`Buddy_Auth.exe` includes console UI code that calls `Console.Clear()`. When launched as a headless Windows Service without standard I/O streams attached, calling `Console.Clear()` throws:
+
+```
+System.IO.IOException: The handle is invalid.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.Console.Clear()
+```
+
+**Solution**: NSSM must be configured with `AppStdout` and `AppStderr` pointing to valid log file paths. This provides valid stream handles and redirects console output to disk, completely resolving the crash.
+
+---
+
+### Step-by-Step NSSM Installation
+
+Open **PowerShell** or **Command Prompt** as **Administrator**:
+
+#### 1. Navigate to the Auth directory:
+```powershell
+cd "D:\Games\GH of HB\Auth"
+```
+
+#### 2. Install the service:
+```powershell
+.\nssm.exe install BuddyAuth "D:\Games\GH of HB\Auth\Buddy_Auth.exe"
+```
+
+#### 3. Set the working directory:
+```powershell
+.\nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
+```
+
+#### 4. Configure stdout and stderr redirection (Mandatory):
+```powershell
+.\nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
+.\nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
+```
+
+#### 5. Set startup type to Automatic:
+```powershell
+.\nssm.exe set BuddyAuth Start SERVICE_AUTO_START
+```
+
+#### 6. Start the service:
+```powershell
+.\nssm.exe start BuddyAuth
+```
+
+---
+
+### Service Management Commands
+
+| Action | Command |
+|---|---|
+| **Check Status** | `.\nssm.exe status BuddyAuth` |
+| **Start Service** | `.\nssm.exe start BuddyAuth` |
+| **Stop Service** | `.\nssm.exe stop BuddyAuth` |
+| **Restart Service** | `.\nssm.exe restart BuddyAuth` |
+| **Edit via GUI** | `.\nssm.exe edit BuddyAuth` |
+| **Uninstall Service** | `.\nssm.exe remove BuddyAuth confirm` |
+
+---
+
+## Verification & Troubleshooting
+
+### 1. Verify Ports are Listening
+Verify that ports `5031` and `5034` are active:
+```powershell
+Get-NetTCPConnection -LocalPort 5031, 5034 | Select-Object LocalAddress, LocalPort, State, OwningProcess
+```
+You should see both ports in the `Listen` state bound to `127.0.0.1` or `0.0.0.0`.
+
+### 2. Verify Output Logs
+Inspect `D:\Games\GH of HB\Auth\stdout.log` to confirm startup:
+```
+[AuthServer] Service initialized.
+[AuthServer] Listening on net.tcp://127.0.0.1:5031/AuthService.svc
+[MeshServer] Listening on net.tcp://127.0.0.1:5034/AuthService.svc
+[AuthServer] Ready for incoming Honorbuddy connections.
+```
+
+### 3. "System.Net.WebException" on Honorbuddy Launch
+When Honorbuddy starts, you may see:
+```
+Logging in...
+System.Net.WebException: The remote server returned an error: (404) Not Found.
+```
+This is expected behavior. Honorbuddy first attempts to query the legacy Bossland web server for announcements and tripwire signatures. When this HTTP check times out or returns 404, Honorbuddy cleanly falls back to the WCF NetTcp local connection (`net.tcp://localhost:5031/AuthService.svc`) and logs in successfully.
+
+### 4. Firewall Settings
+If Honorbuddy cannot communicate with `Buddy_Auth.exe`, ensure Windows Defender Firewall permits local loopback traffic on TCP ports 5031 and 5034:
+```powershell
+New-NetFirewallRule -DisplayName "Buddy Auth Service" -Direction Inbound -LocalPort 5031,5034 -Protocol TCP -Action Allow
+```
