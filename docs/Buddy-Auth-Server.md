@@ -79,7 +79,7 @@ To ensure the auth server is always running silently in the background, starts a
 
 ### Recommended Method: NSSM GUI Installer (`nssm.exe install`)
 
-The GUI installer is the most reliable way to configure the service because it automatically configures desktop interaction flags (`SERVICE_INTERACTIVE_PROCESS`), providing valid console screen buffers for `Console.Clear()` and `Console.ReadKey()`.
+The GUI installer is the most reliable way to configure the service.
 
 1. Open **Command Prompt** as **Administrator**:
    ```cmd
@@ -87,16 +87,25 @@ The GUI installer is the most reliable way to configure the service because it a
    nssm.exe install
    ```
 2. In the NSSM configuration window:
-   - **Service name**: `BuddyAuth`
-   - **Path**: `D:\Games\GH of HB\Auth\Buddy_Auth.exe`
-   - **Startup directory**: `D:\Games\GH of HB\Auth`
+   - **Application tab**:
+     - **Path**: `D:\Games\GH of HB\Auth\Buddy_Auth.exe`
+     - **Startup directory**: `D:\Games\GH of HB\Auth`
+     - **Service name**: `BuddyAuth`
+   - **Log on tab** *(CRITICAL)*:
+     - > [!IMPORTANT]
+     - > Check the box: **"Allow service to interact with desktop"**
+     - > *(This is **NOT** checked by default. You **MUST** check it. This sets `SERVICE_INTERACTIVE_PROCESS`, allocating a console screen buffer so `Console.Clear()` and `Console.ReadKey()` will not throw invalid handle exceptions).*
+   - **I/O tab** *(Optional but recommended)*:
+     - Output (stdout): `D:\Games\GH of HB\Auth\stdout.log`
+     - Error (stderr): `D:\Games\GH of HB\Auth\stderr.log`
 3. Click **Install service**.
-4. Configure logging and automatic startup:
+4. Configure logging and automatic startup via CLI:
    ```cmd
    nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
    nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
    nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
    nssm.exe set BuddyAuth Start SERVICE_AUTO_START
+   nssm.exe start BuddyAuth
    ```
 5. Verify the service is running:
    ```cmd
@@ -108,14 +117,15 @@ The GUI installer is the most reliable way to configure the service because it a
 
 ### Command-Line NSSM Installation (CLI)
 
-If installing strictly via command line, configure stdout/stderr redirection and allow desktop interaction:
+If installing strictly via command line, you must explicitly set the service type to `SERVICE_INTERACTIVE_PROCESS` along with stdout/stderr redirection:
 
 ```cmd
 cd /d "D:\Games\GH of HB\Auth"
 
-:: 1. Install service with interactive console flag
+:: 1. Install service
 nssm.exe install BuddyAuth "D:\Games\GH of HB\Auth\Buddy_Auth.exe"
 nssm.exe set BuddyAuth AppDirectory "D:\Games\GH of HB\Auth"
+nssm.exe set BuddyAuth Type SERVICE_INTERACTIVE_PROCESS
 nssm.exe set BuddyAuth AppStdout "D:\Games\GH of HB\Auth\stdout.log"
 nssm.exe set BuddyAuth AppStderr "D:\Games\GH of HB\Auth\stderr.log"
 nssm.exe set BuddyAuth Start SERVICE_AUTO_START
