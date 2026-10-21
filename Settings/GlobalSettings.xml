@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <GlobalSettings>
   <UICulture>en-US</UICulture>
   <UseFrameLock>True</UseFrameLock>
-  <SendUsageInformation>True</SendUsageInformation>
+  <SendUsageInformation>False</SendUsageInformation>
   <CombatRoutinesPath>Routines</CombatRoutinesPath>
   <ReloadRoutinesOnFileChange>False</ReloadRoutinesOnFileChange>
   <PluginsPath>Plugins</PluginsPath>
@@ -10,8 +10,8 @@
   <BotsPath>Bots</BotsPath>
   <ReloadBotsOnFileChange>False</ReloadBotsOnFileChange>
   <QuestBehaviorsPath>Quest Behaviors</QuestBehaviorsPath>
-  <Username>0Dni2YurEPpVpt+vgMNxeH+tVmd/7UGMt3RivCW2PCg=</Username>
-  <MeshesFolderPath>C:\Users\Ryan\AppData\Local\Bossland\Honorbuddy\Meshes</MeshesFolderPath>
+  <Username>0Dni2YurEPpVpt+vgMNxeAwbIc7Ih+3LqQgTEvclkBY=</Username>
+  <MeshesFolderPath></MeshesFolderPath>
   <KillBetweenHotspots>True</KillBetweenHotspots>
   <AdvancedSettingsMode>True</AdvancedSettingsMode>
   <!--Whether or not we should log out after the bot has detected inactivity.-->
@@ -20,6 +20,6 @@
   <LogoutInactivityTimer>20</LogoutInactivityTimer>
   <LogoutInactivityUseForceQuit>False</LogoutInactivityUseForceQuit>
   <ProfileDebuggingMode>False</ProfileDebuggingMode>
-  <LogLevel>Diagnostic</LogLevel>
+  <LogLevel>Normal</LogLevel>
   <SeperatedLogFolders>True</SeperatedLogFolders>
 </GlobalSettings>

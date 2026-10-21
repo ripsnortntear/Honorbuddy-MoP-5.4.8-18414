@@ -17,6 +17,7 @@ Logs/
 Cache/
 Settings/
 Auth/*.txt
+Auth/*.log
 [Aa]uth/[Mm]esh/
 Mesh/
 *.chw
