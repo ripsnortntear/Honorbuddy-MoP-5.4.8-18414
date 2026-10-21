@@ -176,7 +176,17 @@ System.Net.WebException: The remote server returned an error: (404) Not Found.
 This is expected behavior. Honorbuddy first attempts to query the legacy Bossland web server for announcements and tripwire signatures. When this HTTP check times out or returns 404, Honorbuddy cleanly falls back to the WCF NetTcp local connection (`net.tcp://localhost:5031/AuthService.svc`) and logs in successfully.
 
 ### 4. Firewall Settings
-If Honorbuddy cannot communicate with `Buddy_Auth.exe`, ensure Windows Defender Firewall permits local loopback traffic on TCP ports 5031 and 5034:
+If Honorbuddy cannot communicate with `Buddy_Auth.exe`, ensure Windows Defender Firewall permits local loopback traffic on TCP ports 5031 and 5034.
+
+> [!IMPORTANT]
+> Modifying firewall rules requires administrative privileges. You **MUST** run **PowerShell as Administrator** (or **Command Prompt as Administrator**).
+
+**Option A: PowerShell (Run as Administrator)**
 ```powershell
 New-NetFirewallRule -DisplayName "Buddy Auth Service" -Direction Inbound -LocalPort 5031,5034 -Protocol TCP -Action Allow
+```
+
+**Option B: Command Prompt (Run as Administrator)**
+```cmd
+netsh advfirewall firewall add rule name="Buddy Auth Service" dir=in action=allow protocol=TCP localport=5031,5034
 ```
