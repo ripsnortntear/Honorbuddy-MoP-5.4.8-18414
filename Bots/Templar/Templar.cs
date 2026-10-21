@@ -63,6 +63,7 @@ namespace Templar {
 
         public override void Initialize() {
             BotEvents.Player.OnMapChanged += HandleMapChanged;
+            Styx.CommonBot.Routines.RoutineManager.Reloaded += (s, e) => _root = null;
         }
 
         private void HandleMapChanged(BotEvents.Player.MapChangedEventArgs args) {
