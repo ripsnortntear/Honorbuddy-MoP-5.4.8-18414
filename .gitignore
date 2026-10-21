@@ -15,6 +15,7 @@
 CompiledAssemblies/
 Logs/
 Cache/
+Settings/
 Auth/*.txt
 [Aa]uth/[Mm]esh/
 Mesh/
