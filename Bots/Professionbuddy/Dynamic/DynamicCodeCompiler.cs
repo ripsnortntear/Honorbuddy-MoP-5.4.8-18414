@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,7 +16,7 @@ namespace HighVoltz.Professionbuddy.Dynamic
 {
 	public class DynamicCodeCompiler
 	{
-		private static readonly bool _usingHBLite = Assembly.GetEntryAssembly().GetType("Bots.Gatherbuddy.GatherbuddyBot") == null;
+		private static readonly bool _usingHBLite = Assembly.GetEntryAssembly() == null || Assembly.GetEntryAssembly().GetType("Bots.Gatherbuddy.GatherbuddyBot") == null;
 
 		private static readonly Dictionary<string, IDynamicallyCompiledCode> CsharpCodeDict = new Dictionary<string, IDynamicallyCompiledCode>();
 
@@ -178,14 +178,26 @@ namespace HighVoltz.Professionbuddy.Dynamic
 				var options = new CompilerParameters();
 				foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
 				{
-					if (!asm.GetName().Name.Contains(ProfessionbuddyBot.Instance.Name) && !asm.IsDynamic)
-						options.ReferencedAssemblies.Add(asm.Location);
+					try
+					{
+						if (!asm.IsDynamic && !string.IsNullOrEmpty(asm.Location) &&
+							(ProfessionbuddyBot.Instance == null || !asm.GetName().Name.Contains(ProfessionbuddyBot.Instance.Name)))
+						{
+							if (!options.ReferencedAssemblies.Contains(asm.Location))
+								options.ReferencedAssemblies.Add(asm.Location);
+						}
+					}
+					catch
+					{
+					}
 				}
 
-				options.ReferencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
+				if (!string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location) &&
+					!options.ReferencedAssemblies.Contains(Assembly.GetExecutingAssembly().Location))
+				{
+					options.ReferencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
+				}
 
-				// disabled due to a bug in 2.0.0.3956;
-				//options.GenerateInMemory = true; 
 				options.GenerateExecutable = false;
 				options.TempFiles = new TempFileCollection(TempFolder, false);
 				options.IncludeDebugInformation = false;

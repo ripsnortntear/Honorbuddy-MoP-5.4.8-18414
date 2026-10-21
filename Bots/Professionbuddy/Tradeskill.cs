@@ -1,4 +1,4 @@
-﻿//!CompilerOption:Optimize:On
+//!CompilerOption:Optimize:On
 // Copyright Highvoltz 2013
 
 using System;
@@ -335,11 +335,24 @@ namespace HighVoltz.Professionbuddy
 		{
 			if (spellId <= StyxWoW.Db[ClientDb.Spell].MaxIndex)
 			{
-				if (_knownSpellsPtr == 0)
-					_knownSpellsPtr = StyxWoW.Memory.Read<uint>(new IntPtr(GlobalPBSettings.Instance.KnownSpellsPtr), true);
+				try
+				{
+					if (GlobalPBSettings.Instance != null && GlobalPBSettings.Instance.KnownSpellsPtr != 0)
+					{
+						if (_knownSpellsPtr == 0)
+							_knownSpellsPtr = StyxWoW.Memory.Read<uint>(new IntPtr(GlobalPBSettings.Instance.KnownSpellsPtr), true);
 
-				var value = StyxWoW.Memory.Read<uint>((IntPtr)(_knownSpellsPtr + (spellId >> 5) * 4));
-				return (value & (1 << ((int)spellId & 0x1F))) != 0;
+						if (_knownSpellsPtr != 0)
+						{
+							var value = StyxWoW.Memory.Read<uint>((IntPtr)(_knownSpellsPtr + (spellId >> 5) * 4));
+							return (value & (1 << ((int)spellId & 0x1F))) != 0;
+						}
+					}
+				}
+				catch
+				{
+				}
+				return Styx.CommonBot.SpellManager.HasSpell((int)spellId);
 			}
 			return false;
 		}

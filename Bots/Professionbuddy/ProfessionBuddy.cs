@@ -1,4 +1,4 @@
-﻿//!CompilerOption:Optimize:On
+//!CompilerOption:Optimize:On
 // Professionbuddy botbase by HighVoltz
 
 // SVN http://professionbuddy.googlecode.com/svn/trunk/Professionbuddy/
@@ -866,18 +866,44 @@ namespace HighVoltz.Professionbuddy
 		#endregion
 
 		private static string GetProfessionbuddyPath()
-		{ // taken from Singular.
-			// bit of a hack, but location of source code for assembly is only.
-			string asmName = Assembly.GetExecutingAssembly().GetName().Name;
-			int len = asmName.LastIndexOf("_", StringComparison.Ordinal);
-			string folderName = asmName.Substring(0, len);
-
-			string botsPath = GlobalSettings.Instance.BotsPath;
-			if (!Path.IsPathRooted(botsPath))
+		{
+			try
 			{
-				botsPath = Path.Combine(Utilities.AssemblyDirectory, botsPath);
+				string asmName = Assembly.GetExecutingAssembly().GetName().Name;
+				int len = asmName.LastIndexOf("_", StringComparison.Ordinal);
+				string folderName = len > 0 ? asmName.Substring(0, len) : "Professionbuddy";
+
+				string botsPath = (GlobalSettings.Instance != null && !string.IsNullOrEmpty(GlobalSettings.Instance.BotsPath))
+					? GlobalSettings.Instance.BotsPath
+					: "Bots";
+
+				if (!Path.IsPathRooted(botsPath))
+				{
+					string baseDir = !string.IsNullOrEmpty(Utilities.AssemblyDirectory) 
+						? Utilities.AssemblyDirectory 
+						: AppDomain.CurrentDomain.BaseDirectory;
+					botsPath = Path.Combine(baseDir, botsPath);
+				}
+				string fullPath = Path.Combine(botsPath, folderName);
+				if (Directory.Exists(fullPath))
+					return fullPath;
+
+				string fallbackDir = !string.IsNullOrEmpty(Utilities.AssemblyDirectory) 
+					? Utilities.AssemblyDirectory 
+					: AppDomain.CurrentDomain.BaseDirectory;
+				string directPath = Path.Combine(fallbackDir, "Bots", "Professionbuddy");
+				if (Directory.Exists(directPath))
+					return directPath;
+
+				return fullPath;
 			}
-			return Path.Combine(botsPath, folderName);
+			catch
+			{
+				string fallbackDir = !string.IsNullOrEmpty(Utilities.AssemblyDirectory) 
+					? Utilities.AssemblyDirectory 
+					: AppDomain.CurrentDomain.BaseDirectory;
+				return Path.Combine(fallbackDir, "Bots", "Professionbuddy");
+			}
 		}
 
 		#endregion
