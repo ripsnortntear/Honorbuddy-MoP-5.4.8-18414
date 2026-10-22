@@ -1,0 +1,54 @@
+<HBProfile xsi:noNamespaceSchemaLocation="../Schemas/QuestProfileSchema.xsd"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Name>[Test] Orgrimmar Elevator - Valley of Strength to Flight Master</Name>
+
+    <MinLevel>1</MinLevel>
+    <MaxLevel>1001</MaxLevel>
+
+    <MinDurability>0.1</MinDurability>
+    <MinFreeBagSlots>0</MinFreeBagSlots>
+
+    <QuestOrder IgnoreCheckpoints="true">
+        <!-- Force ground mesh navigation to verify MeshNavigator elevator traversal -->
+        <DisableBehavior Name="Flight" />
+
+        <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
+        <CustomBehavior File="Message" Text="[Elevator Test] Starting Orgrimmar Elevator Verification Profile" LogColor="CornflowerBlue" />
+        <CustomBehavior File="Message" Text="[Elevator Test] Flight disabled to force MeshNavigator ground elevator pathing." LogColor="CornflowerBlue" />
+        <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
+
+        <!-- Round 1: UP to Flight Master Doras -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Navigating to Valley of Strength Auction House..." LogColor="Yellow" />
+        <MoveTo DestName="Valley of Strength Auction House" X="1677.8" Y="-4458.7" Z="16.0" />
+        <CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Moving UP to Flight Master Doras via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Flight Master Doras (Upper Tower)" X="1799.95" Y="-4370.14" Z="102.6434" />
+        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached Flight Master Doras on the upper platform." LogColor="Green" />
+        <CustomBehavior File="WaitTimer" WaitTime="3000" />
+
+        <!-- Round 1: DOWN to Auction House -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Moving DOWN to Auction House via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Valley of Strength Auction House" X="1677.8" Y="-4458.7" Z="16.0" />
+        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached Valley of Strength Auction House." LogColor="Green" />
+        <CustomBehavior File="WaitTimer" WaitTime="2000" />
+
+        <!-- Round 2: UP to Flight Master Doras -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 2: Moving UP to Flight Master Doras via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Flight Master Doras (Upper Tower)" X="1799.95" Y="-4370.14" Z="102.6434" />
+        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached Flight Master Doras on the upper platform (Round 2)." LogColor="Green" />
+        <CustomBehavior File="WaitTimer" WaitTime="3000" />
+
+        <!-- Round 2: DOWN to Auction House -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 2: Moving DOWN to Auction House via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Valley of Strength Auction House" X="1677.8" Y="-4458.7" Z="16.0" />
+        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached Valley of Strength Auction House (Round 2)." LogColor="Green" />
+        <CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+        <!-- Re-enable Flight when done -->
+        <EnableBehavior Name="Flight" />
+        <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
+        <CustomBehavior File="Message" Text="[Elevator Test] All Orgrimmar Elevator tests completed successfully!" LogColor="Green" />
+        <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
+    </QuestOrder>
+</HBProfile>
