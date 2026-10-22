@@ -327,20 +327,10 @@
 <!-- Surveying Equipment/In Search of Bravo Company/Breaking Out is Hard to Do -->
 	<Objective QuestName="Surveying Equipment" QuestId="26569" Type="CollectItem" ItemId="58952" CollectCount="5" />
 	<TurnIn QuestName="In Search of Bravo Company" QuestId="26586" TurnInName="Messner" TurnInId="43270" />
-	<PickUp QuestName="Breaking Out is Hard to Do" QuestId="26587" GiverName="Messner" GiverId="43270" />
-	<While Condition="HasQuest(26587) &amp;&amp; !IsQuestCompleted(26587)" >
-		<CustomBehavior File="WaitForPatrol" AvoidMobId="43341" AvoidDistance="35"
-			X="-9211.345" Y="-2775.24" Z="90.38371" >
-			<FollowPath Strategy="StalkMobAtAvoidDistance" DismissPet="true" EgressDistance="25" >
-				<Hotspot X="-9202.807" Y="-2775.259" Z="90.38366" />
-				<Hotspot X="-9186.497" Y="-2770.601" Z="88.68089" />
-				<Hotspot X="-9165.448" Y="-2743.158" Z="88.74001" />
-			</FollowPath>
-		</CustomBehavior>
-		<CustomBehavior File="InteractWith" QuestId="26587" MobId="204389" ProactiveCombatStrategy="NoClear" 
-			NonCompeteDistance="0" NumOfTimes="1000" WaitTime="1000" X="-9165.448" Y="-2743.158" Z="88.74001" />
-		<MoveTo X="-9193.222" Y="-2799.153" Z="91.95142" />
-	</While>
+	<!-- Abandon 26587 if present and skip suicidal stealth/patrol key pickup -->
+	<If Condition="HasQuest(26587)" >
+		<AbandonQuest QuestName="Breaking Out is Hard to Do" QuestId="26587" Type="All" />
+	</If>
 
 <!-- Weapons of War -->
 	<Objective QuestName="Weapons of War" QuestId="26571" Type="CollectItem" ItemId="58953" CollectCount="1" />

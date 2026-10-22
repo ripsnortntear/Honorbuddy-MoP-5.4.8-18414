@@ -4300,8 +4300,13 @@
             <PickUp QuestName="Surveying Equipment" QuestId="26569" GiverName="Foreman Oslow" GiverId="43194"
                     X="-9277.43" Y="-2240.89" Z="64.03726" />
             <TurnIn QuestName="In Search of Bravo Company" QuestId="26586" TurnInName="Messner" TurnInId="43270" />
-            <PickUp QuestName="Breaking Out is Hard to Do" QuestId="26587" GiverName="Messner" GiverId="43270" />
+            <!-- Quest 26587 (Breaking Out is Hard to Do): Keeshan Key in Cave -->
+            <!-- Abandon if currently in quest log to eliminate death loops -->
+            <If Condition="HasQuest(26587)">
+                <AbandonQuest QuestName="Breaking Out is Hard to Do" QuestId="26587" Type="All" />
+            </If>
 
+            <!-- Complete local Render's Valley quests -->
             <Objective QuestName="Weapons of War" QuestId="26571" Type="CollectItem" ItemId="58953" CollectCount="1" />
             <Objective QuestName="Weapons of War" QuestId="26571" Type="CollectItem" ItemId="58954" CollectCount="1" />
             <While Condition="HasQuest(26571) &amp;&amp; IsQuestCompleted(26571)">
@@ -4309,67 +4314,8 @@
                 <!-- Get 26573 -->
                 <CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for CLQ {TimeRemaining}" />
             </While>
-            <While Condition="HasQuest(26587) &amp;&amp; !IsQuestCompleted(26587)">
-                <DisableBehavior Name="Pull" />
-                <MoveTo X="-9210.281" Y="-2772.708" Z="90.3838" />
-                <MoveTo X="-9210.281" Y="-2772.708" Z="90.3838" />
-                <MoveTo X="-9202.807" Y="-2775.259" Z="90.38366" />
-
-                <CustomBehavior File="WaitForPatrol" AvoidMobId="43341" AvoidDistance="30"
-                                X="-9211.345" Y="-2775.24" Z="90.38371">
-                    <FollowPath Strategy="StalkMobAtAvoidDistance" DismissPet="true" EgressDistance="20">
-                        <Hotspot X="-9196.334" Y="-2773.526" Z="89.93842" />
-                        <Hotspot X="-9184.118" Y="-2767.925" Z="88.67233" />
-                        <Hotspot X="-9178.425" Y="-2760.547" Z="88.66965" />
-                        <Hotspot X="-9167.018" Y="-2745.157" Z="89.01924" />
-                    </FollowPath>
-                </CustomBehavior>
-                <!-- Bag doesn't de-spawn on pickup so no need to yield to other player. We need to pickup the bag right away or get killed -->
-                <CustomBehavior File="InteractWith" NonCompeteDistance="0" MobId="204389" Range="4" CollectionDistance="1000" IgnoreMobsInBlackspots="false"
-                                X="-9165.448" Y="-2743.158" Z="88.74001" />
-                <CustomBehavior File="MyCTM" X="-9178.425" Y="-2760.547" Z="88.66965" />
-                <CustomBehavior File="MyCTM" X="-9184.118" Y="-2767.925" Z="88.67233" />
-                <CustomBehavior File="MyCTM" X="-9196.334" Y="-2773.526" Z="89.93842" />
-                <MoveTo X="-9229.454" Y="-2699.867" Z="89.08669" />
-            </While>
-            <EnableBehavior Name="Pull" />
-            <TurnIn QuestName="Breaking Out is Hard to Do" QuestId="26587" TurnInName="Messner" TurnInId="43270" />
-            <PickUp QuestName="Jorgensen" QuestId="26560" GiverName="Messner" GiverId="43300"
-                    X="-9227.632" Y="-2699.34" Z="89.0862" />
-            <Objective QuestName="Jorgensen" QuestId="26560" Type="CollectItem" ItemId="58969" CollectCount="1" />
-            <TurnIn QuestName="Jorgensen" QuestId="26560" TurnInName="Jorgensen" TurnInId="43272"
-                    X="-8717.22" Y="-2340" Z="156.3321" />
-            <PickUp QuestName="Krakauer" QuestId="26561" GiverName="Jorgensen" GiverId="43305"
-                    X="-8714.949" Y="-2345.598" Z="155.9189" />
-            <Objective QuestName="Krakauer" QuestId="26561" Type="KillMob" MobId="43363" KillCount="1" />
-            <If Condition="HasQuest(26573) &amp;&amp; !IsQuestCompleted(26573)">
-                <Objective QuestName="His Heart Must Be In It" QuestId="26573" Type="CollectItem" ItemId="58956" CollectCount="1" />
-                <Objective QuestName="His Heart Must Be In It" QuestId="26573" Type="CollectItem" ItemId="58957" CollectCount="1" />
-            </If>
-            <TurnIn QuestName="Krakauer" QuestId="26561" TurnInName="Krakauer" TurnInId="43274"
-                    X="-8694.16" Y="-2144.71" Z="159.8133" />
-            <PickUp QuestName="And Last But Not Least... Danforth" QuestId="26562" GiverName="Krakauer" GiverId="43303"
-                    X="-8694.494" Y="-2148.282" Z="158.3958" />
-            <If Condition="HasQuest(26562)">
-                <Objective QuestName="And Last But Not Least... Danforth" QuestId="26562" Type="KillMob" MobId="43369" KillCount="1" />
-                <Objective QuestName="And Last But Not Least... Danforth" QuestId="26562" Type="CollectItem"
-                           ItemId="59033" CollectCount="1" />
-                <MoveTo X="-8820.554" Y="-2192.231" Z="138.4767" />
-                <CustomBehavior File="InteractWith" MobId="204403" CollectionDistance="50"
-                                NonCompeteDistance="0" X="-8820.554" Y="-2192.231" Z="138.4767" />
-            </If>
-            <TurnIn QuestName="And Last But Not Least... Danforth" QuestId="26562" TurnInName="Danforth" TurnInId="43275"
-                    X="-8805.089" Y="-2206.237" Z="130.9454" />
-            <PickUp QuestName="Return of the Bravo Company" QuestId="26563" GiverName="Danforth" GiverId="43302" X="-8806.528"
-                    Y="-2204.096" Z="132.3716" />
             <Objective QuestName="Surveying Equipment" QuestId="26569" Type="CollectItem" ItemId="58952" CollectCount="5" />
             <Objective QuestName="Render's Army" QuestId="26570" Type="KillMob" MobId="615" KillCount="20" />
-            <TurnIn QuestName="Return of the Bravo Company" QuestId="26563" TurnInName="Colonel Troteman" TurnInId="43221" />
-            <If Condition="HasQuest(26573)">
-                <TurnIn QuestName="His Heart Must Be In It" QuestId="26573" TurnInName="Colonel Troteman" TurnInId="43221"
-                        X="-9212.22" Y="-2215.35" Z="66.18016" />
-            </If>
-            <PickUp QuestName="They Drew First Blood" QuestId="26607" GiverName="Colonel Troteman" GiverId="43221" />
             <TurnIn QuestName="Surveying Equipment" QuestId="26569" TurnInName="Foreman Oslow" TurnInId="43194"
                     X="-9277.43" Y="-2240.89" Z="64.03726" />
             <If Condition="HasQuest(26571) &amp;&amp; IsQuestCompleted(26571)">
@@ -4379,60 +4325,100 @@
             <TurnIn QuestName="Render's Army" QuestId="26570" TurnInName="Marshal Marris" TurnInId="382"
                     X="-9283.36" Y="-2297.5" Z="67.4972" />
 
+            <!-- If Bravo Company was completed manually, execute subsequent rescue turn-ins -->
+            <If Condition="IsQuestCompleted(26587)">
+                <PickUp QuestName="Jorgensen" QuestId="26560" GiverName="Messner" GiverId="43300"
+                        X="-9227.632" Y="-2699.34" Z="89.0862" />
+                <Objective QuestName="Jorgensen" QuestId="26560" Type="CollectItem" ItemId="58969" CollectCount="1" />
+                <TurnIn QuestName="Jorgensen" QuestId="26560" TurnInName="Jorgensen" TurnInId="43272"
+                        X="-8717.22" Y="-2340" Z="156.3321" />
+                <PickUp QuestName="Krakauer" QuestId="26561" GiverName="Jorgensen" GiverId="43305"
+                        X="-8714.949" Y="-2345.598" Z="155.9189" />
+                <Objective QuestName="Krakauer" QuestId="26561" Type="KillMob" MobId="43363" KillCount="1" />
+                <If Condition="HasQuest(26573) &amp;&amp; !IsQuestCompleted(26573)">
+                    <Objective QuestName="His Heart Must Be In It" QuestId="26573" Type="CollectItem" ItemId="58956" CollectCount="1" />
+                    <Objective QuestName="His Heart Must Be In It" QuestId="26573" Type="CollectItem" ItemId="58957" CollectCount="1" />
+                </If>
+                <TurnIn QuestName="Krakauer" QuestId="26561" TurnInName="Krakauer" TurnInId="43274"
+                        X="-8694.16" Y="-2144.71" Z="159.8133" />
+                <PickUp QuestName="And Last But Not Least... Danforth" QuestId="26562" GiverName="Krakauer" GiverId="43303"
+                        X="-8694.494" Y="-2148.282" Z="158.3958" />
+                <If Condition="HasQuest(26562)">
+                    <Objective QuestName="And Last But Not Least... Danforth" QuestId="26562" Type="KillMob" MobId="43369" KillCount="1" />
+                    <Objective QuestName="And Last But Not Least... Danforth" QuestId="26562" Type="CollectItem"
+                               ItemId="59033" CollectCount="1" />
+                    <MoveTo X="-8820.554" Y="-2192.231" Z="138.4767" />
+                    <CustomBehavior File="InteractWith" MobId="204403" CollectionDistance="50"
+                                    NonCompeteDistance="0" X="-8820.554" Y="-2192.231" Z="138.4767" />
+                </If>
+                <TurnIn QuestName="And Last But Not Least... Danforth" QuestId="26562" TurnInName="Danforth" TurnInId="43275"
+                        X="-8805.089" Y="-2206.237" Z="130.9454" />
+                <PickUp QuestName="Return of the Bravo Company" QuestId="26563" GiverName="Danforth" GiverId="43302" X="-8806.528"
+                        Y="-2204.096" Z="132.3716" />
+                <TurnIn QuestName="Return of the Bravo Company" QuestId="26563" TurnInName="Colonel Troteman" TurnInId="43221" />
+                <If Condition="HasQuest(26573)">
+                    <TurnIn QuestName="His Heart Must Be In It" QuestId="26573" TurnInName="Colonel Troteman" TurnInId="43221"
+                            X="-9212.22" Y="-2215.35" Z="66.18016" />
+                </If>
+                <PickUp QuestName="They Drew First Blood" QuestId="26607" GiverName="Colonel Troteman" GiverId="43221" />
+            </If>
+
             <!-- <If Condition="!HasQuest(28564) &amp;&amp; !IsQuestCompleted(28564)" > -->
             <!--     <PickUp QuestName="Hero's Call: Duskwood!" QuestId="26728" GiverName="Bailiff Conacher" -->
             <!--             GiverId="900" X="-9215.916" Y="-2215.907" Z="66.1816" /> -->
             <!-- </If> -->
 
-            <TurnIn QuestName="They Drew First Blood" QuestId="26607" TurnInName="John J. Keeshan" TurnInId="43184"
-                    X="-9202.604" Y="-2156.271" Z="57.18705" />
-            <PickUp QuestName="It's Never Over" QuestId="26616" GiverName="John J. Keeshan" GiverId="43184"
-                    X="-9202.604" Y="-2156.271" Z="57.18705" />
-            <If Condition="HasQuest(26616)">
-                <MoveTo X="-9298.489" Y="-2365.299" Z="55.21254" />
-                <CustomBehavior File="ForcedDismount" />
-                <CustomBehavior File="Vehicles\MountVehOnly" VehicleMountId="43443" X="-9298.489" Y="-2365.299" Z="55.21254" />
-                <CustomBehavior File="WaitTimer" WaitTime="90000" />
+            <If Condition="HasQuest(26607) || HasQuest(26616)">
+                <TurnIn QuestName="They Drew First Blood" QuestId="26607" TurnInName="John J. Keeshan" TurnInId="43184"
+                        X="-9202.604" Y="-2156.271" Z="57.18705" />
+                <PickUp QuestName="It's Never Over" QuestId="26616" GiverName="John J. Keeshan" GiverId="43184"
+                        X="-9202.604" Y="-2156.271" Z="57.18705" />
+                <If Condition="HasQuest(26616)">
+                    <MoveTo X="-9298.489" Y="-2365.299" Z="55.21254" />
+                    <CustomBehavior File="ForcedDismount" />
+                    <CustomBehavior File="Vehicles\MountVehOnly" VehicleMountId="43443" X="-9298.489" Y="-2365.299" Z="55.21254" />
+                    <CustomBehavior File="WaitTimer" WaitTime="90000" />
+                </If>
+                <TurnIn QuestName="It's Never Over" QuestId="26616" TurnInName="John J. Keeshan" TurnInId="43458"
+                        X="-9463.47" Y="-2829.04" Z="65.27885" />
+                <PickUp QuestName="Point of Contact: Brubaker" QuestId="26639" GiverName="John J. Keeshan" GiverId="43458"
+                        X="-9463.47" Y="-2829.04" Z="65.27885" />
+                <PickUp QuestName="Bravo Company Field Kit: Camouflage" QuestId="26636" GiverName="Krakauer" GiverId="43461"
+                        X="-9463.47" Y="-2825.29" Z="65.27988" />
+                <PickUp QuestName="Hunting the Hunters" QuestId="26638" GiverName="Danforth" GiverId="43462"
+                        X="-9465.97" Y="-2828.57" Z="65.27937" />
+                <PickUp QuestName="Bravo Company Field Kit: Chloroform" QuestId="26637" GiverName="Messner" GiverId="43459"
+                        X="-9465.68" Y="-2826.04" Z="65.27885" />
+
+                <!-- Underwater not meshed so no MoveTo -->
+                <!-- <MoveTo DestName="Bravo Company Field Kit: Chloroform" QuestId="26637" -->
+                <!-- X="-9439.734" Y="-2735.542" Z="29.80945" /> -->
+
+                <CustomBehavior File="CollectThings" QuestId="26637" MobId="43532" CollectItemCount="8" CollectItemId="59156"
+                                HuntingGroundRadius="200">
+                    <Hotspot X="-9439.734" Y="-2735.542" Z="40.80945" />
+                    <Hotspot X="-9481.312" Y="-2699.283" Z="40.28662" />
+                    <Hotspot X="-9500.638" Y="-2725.891" Z="40.08533" />
+                    <Hotspot X="-9510.041" Y="-2688.4" Z="40.78786" />
+                    <Hotspot X="-9481.312" Y="-2699.283" Z="40.28662" />
+                    <Hotspot X="-9457.739" Y="-2625.551" Z="40.71744" />
+                    <Hotspot X="-9427.805" Y="-2613.83" Z="40.26799" />
+                    <Hotspot X="-9434.402" Y="-2546.08" Z="40.07222" />
+                    <Hotspot X="-9417.82" Y="-2459.362" Z="40.63365" />
+                    <Hotspot X="-9396.652" Y="-2546.202" Z="40.43667" />
+                    <Hotspot X="-9477.887" Y="-2774.782" Z="40.89754" />
+                </CustomBehavior>
+
+                <If Condition="HasQuest(26637) &amp;&amp; IsQuestCompleted(26637)">
+                    <CustomBehavior File="AscendInWater" />
+                    <MoveTo X="-9486.276" Y="-2808.799" Z="56.73034" />
+                    <TurnIn QuestName="Bravo Company Field Kit: Chloroform" QuestId="26637" TurnInName="Messner" TurnInId="43459" />
+                </If>
+                <TurnIn QuestName="Point of Contact: Brubaker" QuestId="26639" TurnInName="Brubaker" TurnInId="43508"
+                        X="-9676.19" Y="-2841.93" Z="54.28123" />
+                <PickUp QuestName="Unspeakable Atrocities" QuestId="26640" GiverName="Brubaker" GiverId="43508"
+                        X="-9676.19" Y="-2841.93" Z="54.28123" />
             </If>
-            <TurnIn QuestName="It's Never Over" QuestId="26616" TurnInName="John J. Keeshan" TurnInId="43458"
-                    X="-9463.47" Y="-2829.04" Z="65.27885" />
-            <PickUp QuestName="Point of Contact: Brubaker" QuestId="26639" GiverName="John J. Keeshan" GiverId="43458"
-                    X="-9463.47" Y="-2829.04" Z="65.27885" />
-            <PickUp QuestName="Bravo Company Field Kit: Camouflage" QuestId="26636" GiverName="Krakauer" GiverId="43461"
-                    X="-9463.47" Y="-2825.29" Z="65.27988" />
-            <PickUp QuestName="Hunting the Hunters" QuestId="26638" GiverName="Danforth" GiverId="43462"
-                    X="-9465.97" Y="-2828.57" Z="65.27937" />
-            <PickUp QuestName="Bravo Company Field Kit: Chloroform" QuestId="26637" GiverName="Messner" GiverId="43459"
-                    X="-9465.68" Y="-2826.04" Z="65.27885" />
-
-            <!-- Underwater not meshed so no MoveTo -->
-            <!-- <MoveTo DestName="Bravo Company Field Kit: Chloroform" QuestId="26637" -->
-            <!-- X="-9439.734" Y="-2735.542" Z="29.80945" /> -->
-
-            <CustomBehavior File="CollectThings" QuestId="26637" MobId="43532" CollectItemCount="8" CollectItemId="59156"
-                            HuntingGroundRadius="200">
-                <Hotspot X="-9439.734" Y="-2735.542" Z="40.80945" />
-                <Hotspot X="-9481.312" Y="-2699.283" Z="40.28662" />
-                <Hotspot X="-9500.638" Y="-2725.891" Z="40.08533" />
-                <Hotspot X="-9510.041" Y="-2688.4" Z="40.78786" />
-                <Hotspot X="-9481.312" Y="-2699.283" Z="40.28662" />
-                <Hotspot X="-9457.739" Y="-2625.551" Z="40.71744" />
-                <Hotspot X="-9427.805" Y="-2613.83" Z="40.26799" />
-                <Hotspot X="-9434.402" Y="-2546.08" Z="40.07222" />
-                <Hotspot X="-9417.82" Y="-2459.362" Z="40.63365" />
-                <Hotspot X="-9396.652" Y="-2546.202" Z="40.43667" />
-                <Hotspot X="-9477.887" Y="-2774.782" Z="40.89754" />
-            </CustomBehavior>
-
-            <If Condition="HasQuest(26637) &amp;&amp; IsQuestCompleted(26637)">
-                <CustomBehavior File="AscendInWater" />
-                <MoveTo X="-9486.276" Y="-2808.799" Z="56.73034" />
-                <TurnIn QuestName="Bravo Company Field Kit: Chloroform" QuestId="26637" TurnInName="Messner" TurnInId="43459" />
-            </If>
-            <TurnIn QuestName="Point of Contact: Brubaker" QuestId="26639" TurnInName="Brubaker" TurnInId="43508"
-                    X="-9676.19" Y="-2841.93" Z="54.28123" />
-            <PickUp QuestName="Unspeakable Atrocities" QuestId="26640" GiverName="Brubaker" GiverId="43508"
-                    X="-9676.19" Y="-2841.93" Z="54.28123" />
         </If>
         <If Condition="HasQuest(26636) &amp;&amp; !IsQuestCompleted(26636)">
             <Objective QuestName="Bravo Company Field Kit: Camouflage" QuestId="26636" Type="CollectItem"
@@ -4604,6 +4590,11 @@
 
         <!-- Duskwood -->
         <Checkpoint Level="21" />
+
+        <!-- Clean up leftover Redridge quests if any remain -->
+        <If Condition="HasQuest(26587)">
+            <AbandonQuest QuestName="Breaking Out is Hard to Do" QuestId="26587" Type="All" />
+        </If>
 
         <!-- BEGIN: Checkpoint Block
              This code needs to be replicated after every checkpoint.
