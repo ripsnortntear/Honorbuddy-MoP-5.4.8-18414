@@ -49,6 +49,14 @@ namespace Singular
         {
             SingularSettings.Initialize();
 
+            // Preload .NET runtime facades into AppDomain so HB DevTools Console can compile scripts without CS0012
+            try
+            {
+                System.Reflection.Assembly.Load("System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+                System.Reflection.Assembly.Load("System.Threading.Tasks, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+            }
+            catch { }
+
             WriteSupportInfo();
 
             _lastLogLevel = GlobalSettings.Instance.LogLevel;
