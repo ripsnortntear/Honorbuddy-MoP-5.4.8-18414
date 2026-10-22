@@ -1031,3 +1031,92 @@ During unattended overnight leveling in Redridge Mountains, bots became permanen
 3. **Validation & Deployment**:
    - Validated complete XML schema tree integrity across both profiles.
    - Committed (`1ff970bc`) and synchronized across GitHub (`origin`) and GitLab (`oldsmarchaos`).
+
+
+---
+
+## 30. Movement & Transport Subsystem Overhaul (Orgrimmar Elevators, CTM Jitter Elimination, Flightor Smoothness)
+
+### 30.1 Problem Statement
+- **Elevator Traversal Failures (Orgrimmar & WMO Transports)**: When navigating vertical terrain requiring elevators (notably Orgrimmar's central elevators connecting the Valley of Strength with the upper mesa and zeppelin towers, as well as Thunder Bluff and Undercity lifts), Honorbuddy would abort navigation, logging `"There is no elevator around. Something is wrong"` and failing movement.
+- **In-Game Movement Jitter & Robotic Twitches**: Ground movement exhibited persistent micro-stuttering, rapid character shoulder twitches, and heading oscillation while traversing normal waypoints.
+- **Flightor Frame Lag & Thread Freezes**: 3D aerial navigation via Flightor suffered from 50% dropped update frames and synchronous thread sleeps that caused visible stuttering during flight.
+- **Transport Docking Abandonment**: In `Quest Behaviors\UseTransport.cs`, zeppelin and boat boarding frequently timed out or stranded the character on board indefinitely due to microscopic distance tolerance thresholds.
+
+---
+
+### 30.2 Root Cause Analysis
+
+#### 1. Orgrimmar Elevators Ignored by `MeshNavigator`
+- Honorbuddy's `MeshNavigator.smethod_8` (the elevator GameObject filter predicate) strictly checked:
+  ```cil
+  callvirt WoWGameObjectType WoWGameObject::get_SubType()
+  ldc.i4.s 11 // WoWGameObjectType.Transport
+  bne.un.s IL_0028 // Return false
+  ```
+- In World of Warcraft (Cataclysm 4.3.4 and Mists of Pandaria 5.4.8), Orgrimmar's central elevators are categorized by the game engine as `WoWGameObjectType.MapObjectTransport` (enum value `15`), *not* `Transport` (`11`).
+- Because `smethod_8` returned `false` for subtype `15`, `MeshNavigator.method_10` never located the elevator GameObject (`woWGameObject == null`), failed elevator traversal, and returned `MoveResult.Failed`.
+- Furthermore, in `MeshNavigator.method_10`, the vertical Z arrival tolerance (`Math.Abs(currentZ - elevatorZ) <= 2.0f`) was too restrictive for Cataclysm/MoP WMO elevator models where the platform visual surface is ~2.5 to 3.5 yards above the GameObject origin point.
+
+#### 2. Ground Movement Jitter & CTM Packet Flooding
+- In `Styx.WoWInternals.WoWMovement.ClickToMove(WoWPoint)`:
+  ```cil
+  call Styx.WoWPoint::DistanceSqr(Styx.WoWPoint)
+  conv.r8
+  ldc.r8 0.05 // 0.22 yards
+  bgt.un.s IL_0036 // Re-issue ClickToMoveType.Move
+  ```
+- `MeshNavigator.method_15` runs on a high-frequency pulse (10–20 Hz) and projects the target waypoint forward by `Navigator.PathPrecision`. As the character runs, the calculated waypoint shifts by small fractions of a yard (0.1–0.4 yards).
+- Because `0.05` sq yards (0.22 yards) is microscopically small, `DistanceSqr > 0.05` evaluated to `true` on **every single tick**, re-issuing `ClickToMoveType.Move` repeatedly.
+- Re-issuing CTM to the WoW client at 10–20 Hz resets the game client's internal turning interpolation and camera heading damping, creating severe visual jitter and character shoulder twitching.
+
+#### 3. Flightor Frame Skipping & Synchronous Freezes
+- In `Styx.Pathing.Flightor.MoveTo`:
+  - `int_0 % 2 == 0` discarded every alternate pulse (`brfalse.s ...; ret`), halving the effective responsiveness of the flight engine.
+  - Waypoint navigation and takeoff contained multiple synchronous `StyxWoW.Sleep(100)` invocations (`IL_0a5f`, `IL_0c3c`, `IL_0c4d`) that blocked the primary bot thread, freezing the execution tree and causing hitching during flight.
+
+#### 4. `Quest Behaviors\UseTransport.cs` Docking Radius
+- Boarding and disembarking logic enforced `TransportLocation.DistanceSqr(Location) < 1.5 * 1.5` (1.5 yards = 4.5 feet).
+- Because ships and zeppelins pitch, roll, and bob on water/air, or come to a halt slightly outside 1.5 yards of the nominal waypoint, the bot failed to detect docking, riding back and forth across continents indefinitely.
+
+---
+
+### 30.3 Remediation Applied
+
+#### 1. Binary IL Patching via Mono.Cecil (`Honorbuddy.exe`)
+- **`MeshNavigator.smethod_8` (Elevator SubType Filter)**:
+  - Replaced the strict SubType check with an expanded check accepting both `Transport` (`11`) and `MapObjectTransport` (`15`):
+    ```cil
+    ldarg.0
+    callvirt WoWGameObject::get_SubType()
+    stloc V_0
+    ldloc V_0
+    ldc.i4.s 11
+    beq.s IL_001a
+    ldloc V_0
+    ldc.i4.s 15
+    bne.un.s IL_0038
+    // Proceed to Entry blacklist checks
+    ```
+- **`MeshNavigator.method_10` (Elevator Z-Tolerances)**:
+  - Broadened exit Z tolerance from `2.0f` to `4.0f`.
+  - Broadened arrival/wait Z tolerance from `2.0f` to `4.5f`.
+  - Ensures reliable boarding and disembarking on Orgrimmar, Thunder Bluff, and Undercity elevators without getting stuck at the edge.
+- **`WoWMovement.ClickToMove` (Jitter Suppression)**:
+  - Increased destination change threshold from `ldc.r8 0.05` (0.22 yards) to `ldc.r8 2.25` (1.5 yards squared).
+  - While running along a path, minor micro-adjustments do not flood CTM commands into the WoW client, allowing the client's built-in movement smoothing to produce fluid, human-like straight-line running.
+- **`Flightor.MoveTo` (Flight Engine Optimization)**:
+  - Replaced `brfalse.s` with `Pop` and `ret` with `Nop` on the remainder calculation, allowing Flightor to pulse at full 100% frame rate without dropping frames.
+  - Replaced 3 blocking `StyxWoW.Sleep(100)` thread stalls at `IL_0a5f`, `IL_0c3c`, and `IL_0c4d` with `Nop` instructions, eliminating flight stutter.
+
+#### 2. `Quest Behaviors\UseTransport.cs` Overhaul
+- Broadened transport arrival check from 1.5 yards 3D to 2D tolerance (`Distance2DSqr < 5.0 * 5.0`) with 3D fallback (`DistanceSqr < 6.0 * 6.0`).
+- Broadened get-off waypoint arrival from `2.0 * 2.0` to `3.5 * 3.5`.
+- Broadened waiting spot proximity check from `2.0 * 2.0` to `3.5 * 3.5`, preventing continuous micro-readjustments while waiting on transport docks.
+
+---
+
+### 30.4 Verification & Validation
+- **IL Structure Verification**: Mono.Cecil disassembled and verified all modified instruction sequences and branch target offsets.
+- **CLR JIT Validation**: A dedicated 32-bit x86 harness executed `RuntimeHelpers.PrepareMethod` across all modified methods (`MeshNavigator.smethod_8`, `MeshNavigator.method_10`, `WoWMovement.ClickToMove`, and `Flightor.MoveTo`). All methods JIT-compiled with 100% success and zero verification errors.
+- **Clean Repository State**: Synchronized and deployed into production `Honorbuddy.exe` and `Quest Behaviors\UseTransport.cs`.

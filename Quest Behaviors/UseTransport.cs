@@ -133,7 +133,7 @@ namespace Honorbuddy.Quest_Behaviors.UseTransport
 			return _root ?? (_root =
 				new PrioritySelector(
 					new Decorator(
-						ret => GetOffLocation != WoWPoint.Empty && Me.Location.DistanceSqr(GetOffLocation) < 2*2,
+						ret => GetOffLocation != WoWPoint.Empty && Me.Location.DistanceSqr(GetOffLocation) < 3.5*3.5,
 						new Sequence(
 							new Action(ret => _usedTransport = false),
 							new Action(ret => QBCLog.Info("Successfully used the transport.")),
@@ -142,7 +142,7 @@ namespace Honorbuddy.Quest_Behaviors.UseTransport
 						ret => Me.IsOnTransport || _usedTransport,
 						new PrioritySelector(
 							 new Decorator(
-								ret => TransportLocation != WoWPoint.Empty && TransportLocation.DistanceSqr(EndLocation) < 1.5*1.5,
+								ret => TransportLocation != WoWPoint.Empty && (TransportLocation.Distance2DSqr(EndLocation) < 5.0*5.0 || TransportLocation.DistanceSqr(EndLocation) < 6.0*6.0),
 								new Sequence(
 									new Action(ret => QBCLog.Info("Moving out of transport")),
 									new Action(ret => Navigator.PlayerMover.MoveTowards(GetOffLocation)))),
@@ -156,12 +156,12 @@ namespace Honorbuddy.Quest_Behaviors.UseTransport
 						ret => !Me.IsMoving,
 						new PrioritySelector(
 							new Decorator(
-								ret => TransportLocation != WoWPoint.Empty && TransportLocation.DistanceSqr(StartLocation) < 1.5*1.5 && WaitAtLocation.DistanceSqr(Me.Location) < 2 * 2,
+								ret => TransportLocation != WoWPoint.Empty && (TransportLocation.Distance2DSqr(StartLocation) < 5.0*5.0 || TransportLocation.DistanceSqr(StartLocation) < 6.0*6.0) && WaitAtLocation.DistanceSqr(Me.Location) < 3.5*3.5,
 								new Sequence(
 									new Action(ret => QBCLog.Info("Moving inside transport")),
 									new Action(ret => Navigator.PlayerMover.MoveTowards(StandLocation)))),
 							new Decorator(
-								ret => WaitAtLocation.DistanceSqr(Me.Location) > 2 * 2,
+								ret => WaitAtLocation.DistanceSqr(Me.Location) > 3.0*3.0,
 								new Sequence(
 									new Action(ret => QBCLog.Info("Moving to wait location")),
 									new Action(ret => Navigator.MoveTo(WaitAtLocation)))),
