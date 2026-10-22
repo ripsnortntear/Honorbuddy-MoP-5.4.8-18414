@@ -11,7 +11,7 @@
 		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[HD] Nemesis Raiment (RC)" />
 	<ElseIf Condition="(!HasItem(28374)) || (!HasItem(28317)) || (!HasItem(27902))" >
 		<CustomBehavior File="Message" Text="Normal items missing, starting normal farm." LogColor="Lime" />
-		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[ND] Nemesis Raiment (RC)" />
+		<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" Text="Normal mode farming for Nemesis Raiment (RC) was not implemented by the profile author. Heroic pieces are available in Scripts/[HD] Nemesis Raiment (RC)." />
 	</ElseIf>
 	</If>
 	<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="15" ExpiryTime="30" ExpiryAction="InputEnabled_Continue" Text="If you're seeing this message, that means that every item this profile farms is already in your inventory.\n If you'd like to re-farm, simply put the items you want to re-farm into your bank so the bot cannot detect them." />

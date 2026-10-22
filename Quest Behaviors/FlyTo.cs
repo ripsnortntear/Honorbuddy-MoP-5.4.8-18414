@@ -200,6 +200,7 @@ using Styx.WoWInternals;
 namespace Honorbuddy.Quest_Behaviors.FlyTo
 {
 	[CustomBehaviorFileName(@"FlyTo")]
+	[CustomBehaviorFileName(@"Fly To")]
 	class FlyTo : QuestBehaviorBase
 	{
 		#region Constructor and Argument Processing

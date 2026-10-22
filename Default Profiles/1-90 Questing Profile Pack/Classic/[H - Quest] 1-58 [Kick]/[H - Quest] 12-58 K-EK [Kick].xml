@@ -71,6 +71,7 @@
                    Radius="50" Height="20" />
         <Blackspot Name="Tanaris - Lost Rigger Cove - Bugged Southsea Swashbuckler NPC" X="-8027.293" Y="-5202.893" Z="5.187109"
                    Radius="5" Height="1" />
+	    <Blackspot X="-11609.08" Y="-698.0812" Z="31.00017" Radius="11.00117" />
     </Blackspots>
 
 

@@ -1,3 +1,4 @@
+#pragma warning disable 0618, 0672
 // Behavior originally contributed by Natfoth.
 // Modified By mjj23 in order to use ranged pet abilities, specifically for Chess Event in Karazhan.
 // DOCUMENTATION:
@@ -313,6 +314,7 @@ namespace Honorbuddy.Quest_Behaviors.Chess
         }
 
 
+        [Obsolete("Use OnFinished instead.")]
         public override void Dispose()
         {
             Dispose(true);

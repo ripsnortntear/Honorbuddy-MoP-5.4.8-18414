@@ -388,6 +388,8 @@ namespace Honorbuddy.Quest_Behaviors.InteractWith
 	[CustomBehaviorFileName(@"BasicUseObject")]
 	[CustomBehaviorFileName(@"UseItemOn")]
 	[CustomBehaviorFileName(@"CastSpellOn")]
+	[CustomBehaviorFileName(@"UseGameObject")]
+	[CustomBehaviorFileName(@"InteractWithEscort")]
 	public class InteractWith : QuestBehaviorBase
 	{
 		#region Constructor and argument processing

@@ -1,5 +1,5 @@
 <HBProfile>
-	//Created by EchoTiger of the BuddyForums.
+	<!-- Created by EchoTiger of the BuddyForums. -->
 	<Name>Statter! - A LUA Gold Monitor [$Rev$]</Name>
 	<QuestOrder>
 		<CustomBehavior File="Misc\RunLUA" Lua="
@@ -26,7 +26,7 @@
 				for bagslotscounter = 1, bagslots do
 				itemID = GetContainerItemID(i, bagslotscounter)
 
-				if (itemID == nil)  or (itemSellPrice == nill) then
+				if (itemID == nil)  or (itemSellPrice == nil) then
 					else
 						itemSellPrice = select(11, GetItemInfo(itemID))
 						if (itemSellPrice == nil) then

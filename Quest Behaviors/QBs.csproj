@@ -133,6 +133,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Azyul\Aeonus.cs" />
+    <Compile Include="Azyul\Chess.cs" />
+    <Compile Include="Azyul\KillOrder.cs" />
+    <Compile Include="Azyul\SwitchTarget.cs" />
     <Compile Include="AbandonQuest.cs" />
     <Compile Include="ArgentTournament\AtTheEnemysGates.cs" />
     <Compile Include="ArgentTournament\BattleofTheCitadel.cs" />

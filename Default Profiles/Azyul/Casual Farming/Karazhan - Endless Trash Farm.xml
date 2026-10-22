@@ -672,12 +672,8 @@
       <If Condition="Me.FreeBagSlots &lt;= 15" >
                   <CustomBehavior File="Message" Text="\nWe are going to town and dump our bags." LogColor="Coral" />
                 </If>
-<<<<<<< .mine
                   <CustomBehavior File="InteractWith" MobId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
                   <CustomBehavior File="Misc\InstanceTimer" Timer="Check" /> 
-=======
-                  <CustomBehavior File="InteractWith" MobId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
->>>>>>> .r519
                   <CustomBehavior File="MyCTM" X="-11110" Y="-2006" Z="49.85" /> 
                   <CustomBehavior File="WaitTimer" WaitTime="15000" />
                   <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 

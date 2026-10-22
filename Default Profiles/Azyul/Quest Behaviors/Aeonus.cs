@@ -1,3 +1,4 @@
+#pragma warning disable 0618, 0672
 ﻿// Behavior originally contributed by mastahg Heavily modified by mjj23
 // ==
 // DOCUMENTATION:
@@ -21,10 +22,10 @@ using Styx.WoWInternals.WoWObjects;
 using Action = Styx.TreeSharp.Action;
 
 
-namespace Honorbuddy.Quest_Behaviors.KillOrder
+namespace Honorbuddy.Quest_Behaviors.Aeonus
 {
-    [CustomBehaviorFileName(@"KillOrder")]
-    public class KillOrd : CustomForcedBehavior
+    [CustomBehaviorFileName(@"Aeonus")]
+    public class BlackMorass : CustomForcedBehavior
     {
         /// <summary>
         /// This is only used when you get a quest that Says, Kill anything x times. Or on the chance the wowhead ID is wrong
@@ -35,7 +36,7 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
         /// AuraId: Aura that causes us to switch from the boss to the adds
         /// </summary>
         /// 
-        public KillOrd(Dictionary<string, string> args)
+        public BlackMorass(Dictionary<string, string> args)
             : base(args)
         {
             try
@@ -47,12 +48,6 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
                 AuraId = GetAttributeAsNullable<int>("AuraId", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
                 BossId = GetAttributeAsNullable<int>("BossId", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
                 AddIds = GetNumberedAttributesAsArray<int>("AddId", 0, ConstrainAs.MobId, new[] { "NpcId" });
-                KillOrder1 = GetAttributeAsNullable<int>("KillOrder1", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
-                KillOrder2 = GetAttributeAsNullable<int>("KillOrder2", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
-                KillOrder3 = GetAttributeAsNullable<int>("KillOrder3", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
-                KillOrder4 = GetAttributeAsNullable<int>("KillOrder4", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
-                KillOrder5 = GetAttributeAsNullable<int>("KillOrder5", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
-                KillOrder6 = GetAttributeAsNullable<int>("KillOrder6", false, ConstrainAs.MobId, new[] { "NpcId", "NpcID" }) ?? 0;
             }
 
             catch (Exception except)
@@ -75,13 +70,6 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
         private int[] AddIds { get; set; }
         private int BossId { get; set; }
         private int AuraId { get; set; }
-        private int KillOrder1 { get; set; }
-        private int KillOrder2 { get; set; }
-        private int KillOrder3 { get; set; }
-        private int KillOrder4 { get; set; }
-        private int KillOrder5 { get; set; }
-        private int KillOrder6 { get; set; }
-
 
 
         // Private variables for internal state
@@ -95,38 +83,17 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
             get { return (StyxWoW.Me); }
         }
 
-        private WoWUnit KillFirst
+
+
+
+        private List <WoWUnit> AddsCheck
         {
-            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Distance < 50 && !u.IsDead).FirstOrDefault(u => u.Entry == KillOrder1)); }
+            get
+            {
+                return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => AddIds.Contains((int)u.Entry) && !u.IsDead).OrderBy(
+                        u => u.Distance).ToList());
+            }
         }
-
-        private WoWUnit KillSecond
-        {
-            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Distance < 50 && !u.IsDead).FirstOrDefault(u => u.Entry == KillOrder2)); }
-        }
-
-        private WoWUnit KillThird
-        {
-            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Distance < 50 && !u.IsDead).FirstOrDefault(u => u.Entry == KillOrder3)); }
-        }
-
-        private WoWUnit KillFourth
-        {
-            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Distance < 50 && !u.IsDead).FirstOrDefault(u => u.Entry == KillOrder4)); }
-        }
-
-        private WoWUnit KillFifth
-        {
-            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Distance < 50 && !u.IsDead).FirstOrDefault(u => u.Entry == KillOrder5)); }
-        }
-
-        private WoWUnit KillSixth
-        {
-            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Distance < 50 && !u.IsDead).FirstOrDefault(u => u.Entry == KillOrder6)); }
-        }
-
-
-
 
         private WoWUnit Adds
         {
@@ -137,13 +104,24 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
             }
         }
 
+
+        private List<WoWUnit> BossCheck
+        {
+            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Entry == BossId && u.IsDead).ToList()); }
+        }
+
+        private List<WoWUnit> BossKill
+        {
+            get { return (ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Entry == BossId && u.IsAlive).ToList()); }
+        }
+
         private WoWUnit Boss
         {
             get { return (ObjectManager.GetObjectsOfType<WoWUnit>().FirstOrDefault(u => u.Entry == BossId)); }
         }
 
 
-        ~KillOrd()
+        ~BlackMorass()
         {
             Dispose(false);
         }
@@ -182,11 +160,11 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
 
 
 
-        public bool IsMobDead()
+        public bool AeonusDead()
         {
-            var interestingmobs = ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => (u.Distance < 50 && !u.IsDead && (u.Entry == KillOrder1 || u.Entry == KillOrder2 || u.Entry == KillOrder3 || u.Entry == KillOrder4 || u.Entry == KillOrder5 || u.Entry == KillOrder6))).OrderBy(
-                        u => u.Distance).FirstOrDefault();
-            return interestingmobs == null;
+            if (BossCheck.Any())
+            { return true; }
+            return false;
         }
 
         public Composite DoneYet
@@ -194,7 +172,7 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
             get
             {
                 return
-                    new Decorator(ret => IsMobDead(), new Action(delegate
+                    new Decorator(ret => AeonusDead(), new Action(delegate
                     {
 
                         TreeRoot.StatusText = "Finished!";
@@ -220,10 +198,10 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
         {
             get
             {
-                return new Decorator(r => Adds != null && Boss.HasAura(AuraId), new PrioritySelector(
+                return new Decorator(r => AddsCheck.Any(), new PrioritySelector(
 
 
-                    new Decorator(r => !Me.GotTarget || Me.CurrentTarget != Adds || Me.CurrentTarget.IsDead, new Action(r => Adds.Target())),
+                    new Decorator(r => !Me.GotTarget || Me.CurrentTarget != Adds, new Action(r => Adds.Target())),
                     DoDps
 
 
@@ -232,35 +210,12 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
             }
         }
 
-        public Composite KillOrder
-        {
-            get
-            {
-                return new Decorator(r => (!Me.GotTarget || Me.Combat) && (KillOrder1 != null || KillOrder2 != null || KillOrder3 != null || KillOrder4 != null || KillOrder5 != null || KillOrder6 != null), new PrioritySelector(
-
-                    new Decorator(r => !Me.GotTarget || (Me.CurrentTarget != KillFirst && !KillFirst.IsDead && KillFirst != null), new Action(r => KillFirst.Target())),
-                    new Decorator(r => Me.CurrentTarget == KillFirst && !KillFirst.IsDead && KillFirst != null, DoDps),
-                    new Decorator(r => !Me.GotTarget || (Me.CurrentTarget != KillSecond && !KillSecond.IsDead && KillSecond != null), new Action(r => KillSecond.Target())),
-                    new Decorator(r => Me.CurrentTarget == KillSecond && !KillSecond.IsDead && KillSecond != null, DoDps),
-                    new Decorator(r => !Me.GotTarget || (Me.CurrentTarget != KillThird && !KillThird.IsDead && KillThird != null), new Action(r => KillThird.Target())),
-                    new Decorator(r => Me.CurrentTarget == KillThird && !KillThird.IsDead && KillThird != null, DoDps),
-                    new Decorator(r => !Me.GotTarget || (Me.CurrentTarget != KillFourth && !KillFourth.IsDead && KillFourth != null), new Action(r => KillFourth.Target())),
-                    new Decorator(r => Me.CurrentTarget == KillFourth && !KillFourth.IsDead && KillFourth != null, DoDps),
-                    new Decorator(r => !Me.GotTarget || (Me.CurrentTarget != KillFifth && !KillFifth.IsDead && KillFifth != null), new Action(r => KillFifth.Target())),
-                    new Decorator(r => Me.CurrentTarget == KillFifth && !KillFifth.IsDead && KillFifth != null, DoDps),
-                    new Decorator(r => !Me.GotTarget || (Me.CurrentTarget != KillFifth && !KillSixth.IsDead && KillSixth != null), new Action(r => KillSixth.Target())),
-                    new Decorator(r => Me.CurrentTarget == KillSixth && !KillSixth.IsDead && KillSixth != null, DoDps)
-
-            ));
-            }
-        }
-
 
         public Composite KillBoss
         {
             get
             {
-                return new Decorator(r => Boss != null && !Boss.HasAura(AuraId), new PrioritySelector(
+                return new Decorator(r => BossKill.Any(), new PrioritySelector(
 
 
                     new Decorator(r => !Me.GotTarget || Me.CurrentTarget != Boss, new Action(r => Boss.Target())),
@@ -275,10 +230,11 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
 
         protected override Composite CreateBehavior()
         {
-            return _root ?? (_root = new Decorator(ret => !_isBehaviorDone, new PrioritySelector(DoneYet, KillOrder, KillAdds, KillBoss)));
+            return _root ?? (_root = new Decorator(ret => !_isBehaviorDone, new PrioritySelector(DoneYet, KillAdds, KillBoss)));
         }
 
 
+        [Obsolete("Use OnFinished instead.")]
         public override void Dispose()
         {
             Dispose(true);

@@ -1,3 +1,4 @@
+#pragma warning disable 0618, 0672
 ﻿// Behavior originally contributed by mastahg Heavily modified by mjj23
 // ==
 // DOCUMENTATION:
@@ -233,6 +234,7 @@ namespace Honorbuddy.Quest_Behaviors.Aeonus
         }
 
 
+        [Obsolete("Use OnFinished instead.")]
         public override void Dispose()
         {
             Dispose(true);
