@@ -23,7 +23,7 @@ namespace RaresAndChests
         {
         }
 
-        [Setting, DefaultValue(true)]
+        [Setting, DefaultValue(false)]
         public bool CombatLooter { get; set; }
 
         [Setting, DefaultValue(true)]

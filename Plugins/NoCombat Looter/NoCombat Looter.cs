@@ -64,7 +64,7 @@ namespace NoCombatLooter
         }
         public override void Pulse()
         {
-            if (Me.Combat || Me.IsCasting || Lootables.Count() == 0 || Me.IsMoving)
+            if (Styx.CommonBot.POI.BotPoi.Current.Type != Styx.CommonBot.POI.PoiType.None || Me.Combat || Me.IsCasting || Lootables.Count() == 0 || Me.IsMoving)
                 return;
             if (LootFrame.Instance != null && LootFrame.Instance.IsVisible && !Me.Combat)
             {

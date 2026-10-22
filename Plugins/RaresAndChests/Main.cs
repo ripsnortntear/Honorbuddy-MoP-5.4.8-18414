@@ -64,51 +64,60 @@ namespace RaresAndChests
         {
             try
             {
-                if (!StyxWoW.Me.IsCasting && Lootables.Count() > 0 && !StyxWoW.Me.IsMoving && !StyxWoW.Me.Combat && P.myPrefs.CombatLooter && AutoBot)
-                {
-                    if (LootFrame.Instance != null && LootFrame.Instance.IsVisible)
-                    {
-                        LootFrame.Instance.LootAll();
-                    }
-                    var lootTarget = Lootables.FirstOrDefault();
+                if (!AutoBot)
+                    return;
 
-                    if (lootTarget.Distance > lootTarget.InteractRange)
-                    {
-                        Logging.Write("Moving to loot {0}.", lootTarget.Name);
-                        Navigator.MoveTo(lootTarget.Location);
-                    }
-                    else
-                    {
-                        lootTarget.Interact();
-                    }
-                }
-                // Loot chests
-                if (BotPoi.Current.Type == PoiType.None && P.myPrefs.ChestFinder && AutoBot)
+                // Do not interrupt active casts, channeling, or combat
+                if (StyxWoW.Me.IsCasting || StyxWoW.Me.IsChanneling || StyxWoW.Me.Combat)
+                    return;
+
+                // If an active POI is already in progress (e.g. harvesting a node or looting a corpse), let it finish
+                if (BotPoi.Current.Type != PoiType.None)
+                    return;
+
+                // 1. Loot chests (Exclude herbs and mineral nodes; herbs and minerals are handled by the harvesting engine)
+                if (P.myPrefs.ChestFinder)
                 {
                     List<WoWGameObject> chests = ObjectManager.GetObjectsOfTypeFast<WoWGameObject>().Where(c => c != null
                                                   && c.Distance <= Range
                                                   && c.SubType == WoWGameObjectType.Chest
+                                                  && !c.IsHerb && !c.IsMineral
                                                   && !Blacklist.Contains(c.Guid, BlacklistFlags.All)
-                                                  && c.Distance <= Range
                                                   && c.CanLoot == true).OrderBy(c => c.Distance).ToList();
-                    if (chests.Count() > 0)
+                    if (chests.Count > 0)
                     {
-                        WoWObject chestItem = chests.FirstOrDefault();
-                        string lastChest = "Moving towards lootable " + chestItem.Name + " at Distance: " + System.Math.Round(chestItem.Distance, 0);
-                        if (lastChestLog != lastChest)
+                        WoWGameObject chestItem = chests.FirstOrDefault();
+                        if (chestItem != null)
                         {
-                            Logging.Write(Colors.CornflowerBlue, lastChest);
-                            lastChestLog = lastChest;
+                            string lastChest = "Moving towards chest " + chestItem.Name + " at Distance: " + System.Math.Round(chestItem.Distance, 0);
+                            if (lastChestLog != lastChest)
+                            {
+                                Logging.Write(Colors.CornflowerBlue, lastChest);
+                                lastChestLog = lastChest;
+                            }
+                            BotPoi.Current = new BotPoi(chestItem, PoiType.Harvest);
+                            return;
                         }
-                        BotPoi.Current = new BotPoi(chestItem, PoiType.Loot);
                     }
-                    return;
                 }
-                if (searchRares().Count() > 0 && (P.myPrefs.EliteRares || P.myPrefs.NormalRares))
+
+                // 2. Combat looter (Route safely through POI system instead of raw Navigator.MoveTo in Pulse)
+                if (P.myPrefs.CombatLooter && Lootables.Any())
+                {
+                    var lootTarget = Lootables.FirstOrDefault();
+                    if (lootTarget != null && !Blacklist.Contains(lootTarget, BlacklistFlags.Loot))
+                    {
+                        BotPoi.Current = new BotPoi(lootTarget, PoiType.Loot);
+                        return;
+                    }
+                }
+
+                // 3. Rare mobs
+                if (searchRares().Count > 0 && (P.myPrefs.EliteRares || P.myPrefs.NormalRares))
                 {
                     WoWUnit myTarget = searchRares().FirstOrDefault();
 
-                    if (myTarget != null && !Blacklist.Contains(myTarget, BlacklistFlags.All) && AutoBot)
+                    if (myTarget != null && !Blacklist.Contains(myTarget, BlacklistFlags.All))
                     {
                         string LogMsg = "Moving towards rare " + myTarget.Name + " at Distance: " + System.Math.Round(myTarget.Distance, 0);
                         if (myTarget.Distance > 30 && LastLog != LogMsg)
@@ -117,6 +126,7 @@ namespace RaresAndChests
                             LastLog = LogMsg;
                         }
                         BotPoi.Current = new BotPoi(myTarget, PoiType.Kill);
+                        return;
                     }
                 }
 
