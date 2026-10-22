@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <GlobalSettings>
   <UICulture>en-US</UICulture>
   <UseFrameLock>True</UseFrameLock>
@@ -10,8 +10,8 @@
   <BotsPath>Bots</BotsPath>
   <ReloadBotsOnFileChange>False</ReloadBotsOnFileChange>
   <QuestBehaviorsPath>Quest Behaviors</QuestBehaviorsPath>
-  <Username>0Dni2YurEPpVpt+vgMNxeAwbIc7Ih+3LqQgTEvclkBY=</Username>
-  <MeshesFolderPath></MeshesFolderPath>
+  <Username>0Dni2YurEPpVpt+vgMNxeEp6gSZzn7C7MoEzqauB4C4=</Username>
+  <MeshesFolderPath>C:\Users\catch\AppData\Local\Bossland\Honorbuddy\Meshes</MeshesFolderPath>
   <KillBetweenHotspots>True</KillBetweenHotspots>
   <AdvancedSettingsMode>True</AdvancedSettingsMode>
   <!--Whether or not we should log out after the bot has detected inactivity.-->
