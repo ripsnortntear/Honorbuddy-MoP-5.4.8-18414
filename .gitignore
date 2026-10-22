@@ -14,6 +14,8 @@
 # Compiled temporary assemblies / logs
 CompiledAssemblies/
 Logs/
+Auth/*.log
+Auth/*.txt
 Cache/
 Settings/
 Mesh/
