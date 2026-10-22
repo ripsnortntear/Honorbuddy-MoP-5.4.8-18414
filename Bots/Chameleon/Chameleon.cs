@@ -35,14 +35,17 @@ namespace Chameleon
 
         static ChameleonBot()
         {
-            // Ensure any reference to Honorbuddy or Chameleon resolves dynamically
-            AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs args)
+            ResolveEventHandler resolveHandler = delegate(object sender, ResolveEventArgs args)
             {
-                if (args.Name.StartsWith("Honorbuddy"))
+                if (args.Name.IndexOf(".resources", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return null;
+                }
+                if (args.Name.StartsWith("Honorbuddy,", StringComparison.OrdinalIgnoreCase) || args.Name.Equals("Honorbuddy", StringComparison.OrdinalIgnoreCase))
                 {
                     return typeof(BotBase).Assembly;
                 }
-                if (args.Name.StartsWith("Chameleon"))
+                if (args.Name.StartsWith("Chameleon,", StringComparison.OrdinalIgnoreCase) || args.Name.Equals("Chameleon", StringComparison.OrdinalIgnoreCase))
                 {
                     string path = Path.Combine(BotFolder, "Chameleon.dll");
                     if (File.Exists(path))
@@ -56,6 +59,8 @@ namespace Chameleon
             string filename = "Chameleon.dll";
             try
             {
+                AppDomain.CurrentDomain.AssemblyResolve += resolveHandler;
+
                 string dllPath = Path.Combine(BotFolder, filename);
                 if (!File.Exists(dllPath))
                 {
@@ -91,6 +96,10 @@ namespace Chameleon
                 Logging.WriteQuiet(System.Windows.Media.Colors.Red, "[Chameleon] Error loading bot: {0}", ex.Message);
                 Logging.WriteDiagnostic(ex.ToString());
                 Success = false;
+            }
+            finally
+            {
+                AppDomain.CurrentDomain.AssemblyResolve -= resolveHandler;
             }
         }
 
