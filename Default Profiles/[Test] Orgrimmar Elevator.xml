@@ -17,33 +17,34 @@
         <CustomBehavior File="Message" Text="[Elevator Test] Starting Orgrimmar Elevator Verification Profile" LogColor="CornflowerBlue" />
         <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
 
-        <!-- Round 1: UP to Flight Master Upper Deck -->
-        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Navigating to Valley of Strength Auction House..." LogColor="Yellow" />
-        <MoveTo DestName="Valley of Strength Auction House" X="1677.8" Y="-4458.7" Z="16.0" />
-        <CustomBehavior File="WaitTimer" WaitTime="1500" />
-
-        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Moving UP to Flight Master Deck via Central Elevator..." LogColor="Yellow" />
-        <MoveTo DestName="Flight Master Upper Deck" X="1780.0" Y="-4380.0" Z="102.5" />
-        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached upper flight deck via elevator." LogColor="Green" />
-        <CustomBehavior File="WaitTimer" WaitTime="3000" />
-
-        <!-- Round 1: DOWN to Auction House -->
-        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Moving DOWN to Auction House via Central Elevator..." LogColor="Yellow" />
-        <MoveTo DestName="Valley of Strength Auction House" X="1677.8" Y="-4458.7" Z="16.0" />
-        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached Valley of Strength Auction House via elevator." LogColor="Green" />
+        <!-- Round 1: Move to Valley of Strength Center -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Navigating to Valley of Strength Center..." LogColor="Yellow" />
+        <MoveTo DestName="Valley of Strength Center" X="1573.266" Y="-4439.158" Z="16.05683" />
         <CustomBehavior File="WaitTimer" WaitTime="2000" />
 
-        <!-- Round 2: UP to Flight Master Upper Deck -->
-        <CustomBehavior File="Message" Text="[Elevator Test] Round 2: Moving UP to Flight Master Deck via Central Elevator..." LogColor="Yellow" />
-        <MoveTo DestName="Flight Master Upper Deck" X="1780.0" Y="-4380.0" Z="102.5" />
-        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached upper flight deck via elevator (Round 2)." LogColor="Green" />
+        <!-- Round 1: UP via Elevator to Upper Flight Deck -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Moving UP to Flight Deck via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Upper Flight Deck" X="1775.355" Y="-4364.016" Z="102.5204" />
+        <CustomBehavior File="Message" Text="[Elevator Test] Reached upper flight deck via elevator (Round 1)." LogColor="Green" />
         <CustomBehavior File="WaitTimer" WaitTime="3000" />
 
-        <!-- Round 2: DOWN to Auction House -->
-        <CustomBehavior File="Message" Text="[Elevator Test] Round 2: Moving DOWN to Auction House via Central Elevator..." LogColor="Yellow" />
-        <MoveTo DestName="Valley of Strength Auction House" X="1677.8" Y="-4458.7" Z="16.0" />
-        <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached Valley of Strength Auction House via elevator (Round 2)." LogColor="Green" />
-        <CustomBehavior File="WaitTimer" WaitTime="1500" />
+        <!-- Round 1: DOWN via Elevator to Valley of Strength Center -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 1: Moving DOWN to Valley of Strength via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Valley of Strength Center" X="1573.266" Y="-4439.158" Z="16.05683" />
+        <CustomBehavior File="Message" Text="[Elevator Test] Reached Valley of Strength via elevator (Round 1)." LogColor="Green" />
+        <CustomBehavior File="WaitTimer" WaitTime="3000" />
+
+        <!-- Round 2: UP via Elevator to Upper Flight Deck -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 2: Moving UP to Flight Deck via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Upper Flight Deck" X="1775.355" Y="-4364.016" Z="102.5204" />
+        <CustomBehavior File="Message" Text="[Elevator Test] Reached upper flight deck via elevator (Round 2)." LogColor="Green" />
+        <CustomBehavior File="WaitTimer" WaitTime="3000" />
+
+        <!-- Round 2: DOWN via Elevator to Valley of Strength Center -->
+        <CustomBehavior File="Message" Text="[Elevator Test] Round 2: Moving DOWN to Valley of Strength via Central Elevator..." LogColor="Yellow" />
+        <MoveTo DestName="Valley of Strength Center" X="1573.266" Y="-4439.158" Z="16.05683" />
+        <CustomBehavior File="Message" Text="[Elevator Test] Reached Valley of Strength via elevator (Round 2)." LogColor="Green" />
+        <CustomBehavior File="WaitTimer" WaitTime="2000" />
 
         <!-- Re-enable FlightPath behavior -->
         <EnableBehavior Name="FlightPath" />
