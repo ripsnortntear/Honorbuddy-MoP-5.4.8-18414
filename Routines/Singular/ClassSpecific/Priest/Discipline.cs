@@ -561,28 +561,83 @@ namespace Singular.ClassSpecific.Priest
         }
 
 
+        private static int AttackingMobCount
+        {
+            get
+            {
+                return Unit.NearbyUnfriendlyUnits.Count(u => u.IsAlive && u.Combat && (u.IsTargetingMeOrPet || u.ThreatInfo.ThreatValue > 0 || u.Aggro || (u.GotTarget && u.CurrentTargetGuid == Me.Guid)));
+            }
+        }
+
+        public static Composite CreateDiscSoloHealBehavior()
+        {
+            return new PrioritySelector(
+                ctx => Me,
+
+                // 1. Emergency instant heals
+                Spell.BuffSelf("Desperate Prayer", ret => Me.Combat && Me.HealthPercent < PriestSettings.DesperatePrayerHealth),
+
+                // 2. Power Word: Shield (absorbs damage and prevents spell pushback)
+                Spell.BuffSelf("Power Word: Shield", ret => Me.Combat
+                    && CanWePwsUnit(Me)
+                    && (Me.HealthPercent < PriestSettings.ShieldHealthPercent || AttackingMobCount >= 2)),
+
+                // 3. Multi-mob crowd control (Psychic Scream when 2+ mobs are attacking and in close range, or emergency)
+                Spell.Cast("Psychic Scream", ret => Me.Combat
+                    && PriestSettings.UsePsychicScream
+                    && SpellManager.HasSpell("Psychic Scream")
+                    && ((AttackingMobCount >= PriestSettings.PsychicScreamAddCount && Unit.NearbyUnfriendlyUnits.Any(u => u.IsAlive && u.Combat && u.SpellDistance() <= 8))
+                        || (Me.HealthPercent < 60 && Unit.NearbyUnfriendlyUnits.Any(u => u.IsAlive && u.Combat && u.SpellDistance() <= 8)))),
+
+                // 4. Penance on Self when low on health (powerful channeled heal!)
+                new Decorator(
+                    ret => Me.Combat && Me.HealthPercent < (AttackingMobCount >= 2 ? 80 : 70) && Spell.CanCastHack("Penance", Me),
+                    new PrioritySelector(
+                        Movement.CreateEnsureMovementStoppedBehavior(reason: "to cast Penance heal"),
+                        Spell.Cast("Penance", mov => true, on => Me, req => true)
+                    )
+                ),
+
+                // 5. Keep Renew ticking while in combat
+                Spell.BuffSelf("Renew", ret => Me.Combat && !Me.HasAura("Renew") && (Me.HealthPercent <= 90 || AttackingMobCount >= 2)),
+
+                // 6. Prayer of Mending (if available)
+                Spell.BuffSelf("Prayer of Mending", ret => Me.Combat && !Me.HasAura("Prayer of Mending") && Me.HealthPercent <= 90),
+
+                // 7. Flash Heal when health is low or under attack
+                new Decorator(
+                    ret => {
+                        int flashThreshold = PriestSettings.DiscHeal.FlashHeal == 0 ? 75 : PriestSettings.DiscHeal.FlashHeal;
+                        if (AttackingMobCount >= 2)
+                            flashThreshold = Math.Max(85, flashThreshold);
+                        return Me.HealthPercent < flashThreshold && !SkipForSpiritShell(Me);
+                    },
+                    new PrioritySelector(
+                        Movement.CreateEnsureMovementStoppedBehavior(reason: "to cast Flash Heal"),
+                        Spell.Cast("Flash Heal", mov => true, on => Me, req => true)
+                    )
+                ),
+
+                // 8. Regular Heal if only 1 mob and health is under Heal threshold
+                new Decorator(
+                    ret => SpellManager.HasSpell("Heal") && Me.HealthPercent < PriestSettings.DiscHeal.Heal && AttackingMobCount < 2 && !SkipForSpiritShell(Me),
+                    new PrioritySelector(
+                        Movement.CreateEnsureMovementStoppedBehavior(reason: "to cast Heal"),
+                        Spell.Cast("Heal", mov => true, on => Me, req => true)
+                    )
+                )
+            );
+        }
+
         [Behavior(BehaviorType.Heal, WoWClass.Priest, WoWSpec.PriestDiscipline)]
         public static Composite CreateDiscHeal()
         {
             return new Decorator(
                 ret => !Unit.NearbyGroupMembers.Any(m => m.IsAlive && !m.IsMe),
                 new PrioritySelector(
-                    Spell.Cast("Desperate Prayer", ret => Me, ret => Me.Combat && Me.HealthPercent < PriestSettings.DesperatePrayerHealth),
-                    Spell.BuffSelf("Power Word: Shield", ret => Me.Combat && Me.HealthPercent < PriestSettings.ShieldHealthPercent && CanWePwsUnit((WoWUnit) ret)),
+                    CreateDiscSoloHealBehavior(),
 
-                    // keep heal buffs on if glyphed
-                    Spell.BuffSelf("Prayer of Mending", ret => Me.Combat && Me.HealthPercent <= 90),
-                    Spell.BuffSelf("Renew", ret => Me.Combat && Me.HealthPercent <= 90),
-
-                    Spell.Cast("Psychic Scream", ret => Me.Combat
-                        && PriestSettings.UsePsychicScream
-                        && Me.HealthPercent <= PriestSettings.ShadowFlashHealHealth
-                        && (Unit.NearbyUnfriendlyUnits.Count(u => u.DistanceSqr < 10 * 10) >= PriestSettings.PsychicScreamAddCount || (SingularRoutine.CurrentWoWContext == WoWContext.Battlegrounds && Unit.NearbyUnfriendlyUnits.Any(u => Me.SpellDistance(u) < 8)))),
-
-                    Spell.Cast("Flash Heal",
-                        ctx => Me,
-                        ret => Me.HealthPercent <= PriestSettings.ShadowFlashHealHealth && !SkipForSpiritShell(Me)),
-
+                    // Out-of-combat top off
                     Spell.Cast("Flash Heal",
                         ctx => Me,
                         ret => !Me.Combat && Me.GetPredictedHealthPercent(true) <= 85 && !SkipForSpiritShell(Me))
@@ -657,12 +712,20 @@ namespace Singular.ClassSpecific.Priest
         {
             return new PrioritySelector(
 
+                // Solo self-healing & multi-mob defense before DPS!
+                new Decorator(
+                    ret => Me.HealthPercent < (AttackingMobCount >= 2 ? 85 : 75)
+                        || (CanWePwsUnit(Me) && Me.HealthPercent < PriestSettings.ShieldHealthPercent)
+                        || (AttackingMobCount >= 2 && (!Me.HasAura("Renew") || Unit.NearbyUnfriendlyUnits.Any(u => u.SpellDistance() <= 8))),
+                    CreateDiscSoloHealBehavior()
+                    ),
+
                 Helpers.Common.EnsureReadyToAttackFromMediumRange(),
                 Movement.CreateFaceTargetBehavior(),
                 Spell.WaitForCastOrChannel(),
 
                 new Decorator(
-                    ret => !Spell.IsGlobalCooldown(),
+                    ret => !Spell.IsGlobalCooldown() && HealerManager.AllowHealerDPS(),
                     new PrioritySelector(
                         CreateDiscDiagnosticOutputBehavior(Dynamics.CompositeBuilder.CurrentBehaviorType.ToString()),
 
@@ -675,9 +738,9 @@ namespace Singular.ClassSpecific.Priest
                             WoWUnit unit = Unit.NearbyUnfriendlyUnits.FirstOrDefault(u => u.Guid != Me.CurrentTargetGuid && u.IsTargetingMeOrPet && !u.HasMyAura("Shadow Word: Pain") && !u.IsCrowdControlled());
                             return unit;
                         }),
-                        Spell.Cast("Penance", mov => true, on => Me.CurrentTarget, req => true, cancel => false),
+                        Spell.Cast("Penance", mov => true, on => Me.CurrentTarget, req => true, cancel => HealerManager.CancelHealerDPS()),
                         Common.CreateHolyFireBehavior(),
-                        Spell.Cast("Smite", mov => true, on => Me.CurrentTarget, req => true, cancel => false)
+                        Spell.Cast("Smite", mov => true, on => Me.CurrentTarget, req => true, cancel => HealerManager.CancelHealerDPS())
                         )
                     )
                 );

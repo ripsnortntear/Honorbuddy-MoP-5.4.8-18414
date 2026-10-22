@@ -345,7 +345,16 @@ namespace Singular.Managers
         {
             WoWContext ctx = SingularRoutine.CurrentWoWContext;
             if (ctx == WoWContext.Normal)
+            {
+                if (Me.HealthPercent < 65)
+                    return false;
+
+                int attackers = Unit.NearbyUnfriendlyUnits.Count(u => u.IsAlive && u.Combat && (u.IsTargetingMeOrPet || u.ThreatInfo.ThreatValue > 0 || u.Aggro || (u.GotTarget && u.CurrentTargetGuid == Me.Guid)));
+                if (attackers >= 2 && Me.HealthPercent < 80)
+                    return false;
+
                 return true;
+            }
 
             if (Me.GroupInfo.IsInRaid)
                 return false;
@@ -373,10 +382,19 @@ namespace Singular.Managers
             if (!SingularSettings.Instance.HealerCombatAllow)
                 return false;
 
-            // always let DPS casts while solo complete
             WoWContext ctx = SingularRoutine.CurrentWoWContext;
             if (ctx == WoWContext.Normal)
+            {
+                int attackers = Unit.NearbyUnfriendlyUnits.Count(u => u.IsAlive && u.Combat && (u.IsTargetingMeOrPet || u.ThreatInfo.ThreatValue > 0 || u.Aggro || (u.GotTarget && u.CurrentTargetGuid == Me.Guid)));
+                int cancelThreshold = attackers >= 2 ? 75 : 60;
+                if (Me.HealthPercent < cancelThreshold)
+                {
+                    Logger.WriteDebug("CancelHealerDPS: /cancel solo DPS cast because Health={0:F1}% fell below {1}% (attackers={2})",
+                        Me.HealthPercent, cancelThreshold, attackers);
+                    return true;
+                }
                 return false;
+            }
 
             // allow casts that are close to finishing to finish regardless
             if (Spell.IsCastingOrChannelling() && Me.CurrentCastTimeLeft.TotalMilliseconds < 333)
