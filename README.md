@@ -64,17 +64,24 @@ This repository provides a self-contained automation and botting environment fea
 
 ## Prerequisites
 
-Before launching Honorbuddy, ensure the following Microsoft runtime libraries are installed on your system:
+Before launching Honorbuddy, ensure the following runtime libraries are installed on your system:
 
-1. **[.NET Framework 4.5.1](https://dotnet.microsoft.com/download/dotnet-framework/net451)** or higher (e.g. .NET Framework 4.8 / 4.8.1).
+1. **[.NET Framework 4.5.1](https://dotnet.microsoft.com/download/dotnet-framework/net451)** or higher (e.g. .NET Framework 4.8 / 4.8.1, typically preinstalled on Windows 10/11).
 2. **Microsoft Visual C++ Redistributable Packages (x86 / 32-bit)**:
-   - Visual C++ 2010 Redistributable (x86)
-   - Visual C++ 2012 Redistributable (x86)
-   - Visual C++ 2013 Redistributable (x86)
-   - Visual C++ 2015–2022 Redistributable (x86)
+   - 🌟 **Recommended (All-in-One)**: **[TechPowerUp Visual C++ Redistributable Runtimes All-in-One](https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/)**
+     - Extracts and installs every Visual C++ runtime version (2005, 2008, 2010, 2012, 2013, and 2015–2022) for both **x86** and **x64** in a single automated step via `install_all.bat`.
+     - Prevents missing DLL errors (`MSVCR100.dll`, `MSVCR110.dll`, `MSVCR120.dll`, `VCRUNTIME140.dll`) required by native modules (`GreyMagic.dll`, `SlimDX.dll`, `Tripper.RecastManaged.dll`, and `RemoteASMNative.dll`).
+   - **Manual Microsoft Standalone Installers** (if installing individually):
+     - [Visual C++ 2010 SP1 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=26999) *(Strictly required by SlimDX & GreyMagic)*
+     - [Visual C++ 2012 Update 4 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=30679)
+     - [Visual C++ 2013 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=40784)
+     - [Visual C++ 2015–2022 Redistributable (x86)](https://aka.ms/vs/17/release/vc_redist.x86.exe)
+3. **[DirectX End-User Runtimes (June 2010)](https://www.microsoft.com/en-us/download/details.aspx?id=8109)**:
+   - Provides legacy DirectX 9 and DirectX 11 helper libraries (`d3dx9_43.dll`, `d3dx11_43.dll`) required by `SlimDX.dll` for game screen hooks and overlays. Windows 10 and 11 do not include these legacy DirectX components out of the box.
 
 > [!IMPORTANT]
-> You **must** install the **x86 (32-bit)** versions of the Visual C++ Redistributables even if you are on a 64-bit Windows system, because both `Wow.exe` (32-bit) and `Honorbuddy.exe` execute as 32-bit processes.
+> **Strict 32-bit (x86) Requirement**:
+> You **must** ensure the **x86 (32-bit)** versions of all runtimes are installed even on 64-bit Windows systems. Both `Wow.exe` (32-bit) and `Honorbuddy.exe` execute as 32-bit processes. Using the **TechPowerUp All-in-One** package is strongly advised as it installs both architectures automatically.
 
 ---
 
@@ -273,6 +280,12 @@ Honorbuddy-MoP-5.4.8-18414/
 ### 5. "Missing Navigation Meshes / Cannot Navigate"
 - **Cause**: Tilemaps for the current zone are missing from the mesh cache.
 - **Solution**: Ensure the mesh files are present in `Auth/Mesh/HB2/` or allow Honorbuddy to download them through the local Auth server. Meshes can also be placed in `%LocalAppData%\Bossland\Honorbuddy\Meshes\`.
+
+### 6. "System.DllNotFoundException / Missing MSVCR*.dll or D3DX*.dll on Launch"
+- **Cause**: Missing 32-bit (x86) Visual C++ redistributable runtimes or legacy DirectX 9/11 libraries required by `SlimDX.dll` and `GreyMagic.dll`.
+- **Solution**:
+  - Download and run the **[TechPowerUp Visual C++ All-in-One](https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/)** installer (`install_all.bat` as Administrator).
+  - Install the **[DirectX End-User Runtimes (June 2010)](https://www.microsoft.com/en-us/download/details.aspx?id=8109)** to restore missing `d3dx9_43.dll` / `d3dx11_43.dll`.
 
 ---
 
