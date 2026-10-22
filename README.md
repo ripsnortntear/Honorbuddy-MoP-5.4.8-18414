@@ -3,7 +3,7 @@
 [![WoW Version](https://img.shields.io/badge/World%20of%20Warcraft-MoP%205.4.8%20(18414)-blue.svg)](#system-requirements)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20x86%20(32--bit)-orange.svg)](#system-requirements)
 [![Target Framework](https://img.shields.io/badge/.NET%20Framework-4.5.1%2B-purple.svg)](#prerequisites)
-[![License](https://img.shields.io/badge/License-Bossland%20%2F%20Community-green.svg)](#credits--acknowledgments)
+[![License](https://img.shields.io/badge/License-Bossland%20%2F%20Community-green.svg)](#authors--credits)
 
 The modernized, stabilized, and fully autonomous release of **Honorbuddy v2.5.11489.748** engineered for **World of Warcraft: Mists of Pandaria (Patch 5.4.8, Build 18414)**. 
 
@@ -26,7 +26,7 @@ This repository provides a self-contained automation and botting environment fea
 - [Repository Directory Structure](#repository-directory-structure)
 - [Troubleshooting & FAQ](#troubleshooting--faq)
 - [Documentation Index](#documentation-index)
-- [Credits & Acknowledgments](#credits--acknowledgments)
+- [Authors & Credits](#authors--credits)
 
 ---
 
@@ -290,11 +290,18 @@ Comprehensive guides and architectural references are available in the [`docs/`]
 
 ---
 
-## Credits & Acknowledgments
+## Authors & Credits
 
-- **Bossland GmbH**: Original architecture, Styx API, and TreeSharp behavior engine.
-- **Community Profile & Routine Developers**: Kickazz006, Millz, Brodie, Cava, Vitalic, Echo, Twist, Akna, and countless others whose work powers the MoP botting ecosystem.
-- **Reverse Engineering & Modernization**: Contributors who de-obfuscated binaries, patched authentication routines, restored assembly caching, and maintained compatibility for private servers.
+### Original Authors
+- **Bossland GmbH**: Original creators of Honorbuddy, Styx API, and the TreeSharp behavior engine (Apoc, Nesox, Hawker, and the Bossland development team).
+
+### Core Contributors & Reverse Engineering
+- **Vo1d, Err0r, Manjaro**: Core reverse engineering, authentication server emulation, binary patching, and fork stabilization for World of Warcraft 5.4.8 (Build 18414).
+- **Téxy**: Initial community fork packaging and maintenance.
+
+### Profile, Routine & Plugin Developers
+Many thanks to the developers of Honorbuddy content whose profiles, routines, and plugins make this bot possible:
+- **Kickazz006**, **Akna**, **Brodie**, **Cava**, **Vitalic**, **Twist**, **Echo**, **Millz**, and the wider community creators.
 
 ---
 
