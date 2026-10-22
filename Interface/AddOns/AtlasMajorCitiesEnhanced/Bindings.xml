@@ -1,0 +1,25 @@
+<!--
+<Bindings>
+	<Binding name="AMC_ZONE" header="AMC_TITLE">
+		AtlasMajorCities_SetZone();
+	</Binding>
+	<Binding name="AMC_CREATE">
+		AtlasMajorCities_SetPosition();
+	</Binding>
+	<Binding name="AMC_ASSIGN">
+		AtlasMajorCities_AssignShop();
+	</Binding>
+	<Binding name="AMC_LABEL">
+		AtlasMajorCities_SetLabel();
+	</Binding>
+	<Binding name="AMC_SIGN">
+		AtlasMajorCities_SetSign();
+	</Binding>
+	<Binding name="AMC_TITLE">
+		AtlasMajorCities_SetTitle();
+	</Binding>
+	<Binding name="AMC_COMMENT">
+		AtlasMajorCities_SetComment();
+	</Binding>
+</Bindings>
+-->

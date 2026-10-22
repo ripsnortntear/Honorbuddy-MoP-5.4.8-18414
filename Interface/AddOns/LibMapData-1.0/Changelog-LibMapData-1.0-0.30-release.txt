@@ -1,0 +1,20 @@
+------------------------------------------------------------------------
+r139 | kagaro | 2013-09-10 10:45:15 +0000 (Tue, 10 Sep 2013) | 1 line
+Changed paths:
+   A /tags/0.30-release (from /trunk:138)
+
+Tagging as 0.30-release
+------------------------------------------------------------------------
+r138 | kagaro | 2013-09-10 10:37:56 +0000 (Tue, 10 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/LibMapData-1.0.toc
+   M /trunk/library.lua
+
+updated for 5.4 map data
+------------------------------------------------------------------------
+r137 | funkydude | 2013-07-07 00:56:50 +0000 (Sun, 07 Jul 2013) | 1 line
+Changed paths:
+   M /trunk/library.lua
+
+don't set a global "rmap"
+------------------------------------------------------------------------

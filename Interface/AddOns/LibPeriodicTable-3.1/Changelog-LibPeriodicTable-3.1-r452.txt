@@ -1,0 +1,60 @@
+------------------------------------------------------------------------
+r452 | muffinmanken | 2014-08-04 04:48:33 +0000 (Mon, 04 Aug 2014) | 5 lines
+Changed paths:
+   M /trunk/LibPeriodicTable-3.1-Consumable/LibPeriodicTable-3.1-Consumable.lua
+   M /trunk/data.lua
+
+Updated Consumable.Food.Feast:
+ - Added Bountiful Feast
+ - Noodle Carts
+ - level for sorting
+
+------------------------------------------------------------------------
+r451 | elkano | 2014-07-12 15:39:30 +0000 (Sat, 12 Jul 2014) | 1 line
+Changed paths:
+   M /trunk/LibPeriodicTable-3.1-GearSet/LibPeriodicTable-3.1-GearSet.lua
+   M /trunk/data.lua
+   M /trunk/dataminer.lua
+
+fixed some data for Tier 9 and 10
+------------------------------------------------------------------------
+r450 | elkano | 2014-07-11 11:42:00 +0000 (Fri, 11 Jul 2014) | 1 line
+Changed paths:
+   M /trunk/LibPeriodicTable-3.1-GearSet/LibPeriodicTable-3.1-GearSet.lua
+   M /trunk/LibPeriodicTable-3.1-Misc/LibPeriodicTable-3.1-Misc.lua
+   M /trunk/data.lua
+   M /trunk/dataminer.lua
+
+more fixes for the Tier Sets
+------------------------------------------------------------------------
+r449 | elkano | 2014-07-11 10:05:40 +0000 (Fri, 11 Jul 2014) | 1 line
+Changed paths:
+   M /trunk/LibPeriodicTable-3.1-Misc/LibPeriodicTable-3.1-Misc.lua
+   M /trunk/data.lua
+
+fixed missing comma in "Misc.Currency.Tier Sets.Class.Death Knight"
+------------------------------------------------------------------------
+r448 | elkano | 2014-07-11 09:52:35 +0000 (Fri, 11 Jul 2014) | 2 lines
+Changed paths:
+   M /trunk/LibPeriodicTable-3.1-GearSet/LibPeriodicTable-3.1-GearSet.lua
+   M /trunk/LibPeriodicTable-3.1-Misc/LibPeriodicTable-3.1-Misc.lua
+   M /trunk/data.lua
+
+added Tier 16
+fixed "Misc.Currency.Tier Sets" for Tier 14/15/16
+------------------------------------------------------------------------
+r447 | elkano | 2014-07-11 08:25:57 +0000 (Fri, 11 Jul 2014) | 1 line
+Changed paths:
+   M /trunk/LibPeriodicTable-3.1-GearSet/LibPeriodicTable-3.1-GearSet.lua
+   M /trunk/data.lua
+
+fixed set names for Tier 14 Priest and Warlock
+------------------------------------------------------------------------
+r446 | elkano | 2014-07-10 15:20:28 +0000 (Thu, 10 Jul 2014) | 1 line
+Changed paths:
+   M /trunk/LibPeriodicTable-3.1/LibPeriodicTable-3.1.lua
+   M /trunk/LibPeriodicTable-3.1-GearSet/LibPeriodicTable-3.1-GearSet.lua
+   M /trunk/data.lua
+
+fixed set names for Tier 14 and 15
+------------------------------------------------------------------------

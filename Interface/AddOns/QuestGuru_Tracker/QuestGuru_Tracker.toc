@@ -1,0 +1,14 @@
+## Interface: 50400
+## Title: QuestGuru Tracker
+## Notes: Quest Tracker replacement
+## Author: MrOBrian/Gregity
+## Version: 2.2.18-50400
+## SavedVariablesPerCharacter: QGT_WatchList, QGT_WatchHeaders, QGT_WatchQuests, QGT_WatchAchievements, QGT_Settings
+localization.lua
+localization.DE.lua
+localization.FR.lua
+localization.RU.lua
+localization.TW.lua
+localization.CN.lua
+QuestGuru_Tracker_Templates.xml
+QuestGuru_Tracker.xml

@@ -1,0 +1,14 @@
+tag v1.5
+10845caede8d111a4b08098faf8dc3618e04307d
+John Pasula <ackis@shaw.ca>
+2010-10-15 10:36:37 -0600
+
+Tagging as v1.5
+
+
+--------------------
+
+John Pasula:
+	- Update for zhTW translation.
+	- Update koKR translation.
+	- ToC and version bump.

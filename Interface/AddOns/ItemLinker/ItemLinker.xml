@@ -1,0 +1,355 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+  http://wowprogramming.com/FrameXML/UI.xsd">
+
+<!-- TEMPLATE FOR BUTTON HEADER -->
+<Button name="ItemLinkerEntry1" virtual="true" hidden="true">
+	<Scripts>
+		<OnClick>
+			PlaySound("igMainMenuOptionCheckBoxOn")
+		</OnClick>
+
+		<OnEnter>
+			getglobal(self:GetName().."BG"):SetTexture(1,1,0,0.4)
+		</OnEnter>
+
+		<OnLeave>
+			getglobal(self:GetName().."BG"):SetTexture(0.4,0.4,0.4,0.4)
+		</OnLeave>
+
+		<OnLoad>
+			self:GetScript("OnLeave")(self)
+		</OnLoad>
+	</Scripts>
+	<Size>
+		<AbsDimension x="240" y="21"/>
+	</Size>
+	<ButtonText>
+		<Anchors>
+			<Anchor point="LEFT">
+				<Offset>
+					<AbsDimension x="4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</ButtonText>
+
+	<NormalFont style="GameFontHighlight"/>
+	<HighlightFont style="GameFontNormal"/>
+	<NormalTexture name="$parentBG">
+		<Color r="0.4" g="0.4" b="0.4" a="0.4"/>
+	</NormalTexture>
+</Button>
+
+<!-- TEMPLATE FOR BUTTON HEADER ODD -->
+<Button name="ItemLinkerEntry2" virtual="true" hidden="true">
+	<Scripts>
+		<OnClick>
+			PlaySound("igMainMenuOptionCheckBoxOn")
+		</OnClick>
+
+		<OnEnter>
+			getglobal(self:GetName().."BG"):SetTexture(1,1,0,0.4)
+		</OnEnter>
+
+		<OnLeave>
+			getglobal(self:GetName().."BG"):SetTexture(0.7,0.7,0.7,0.4)
+		</OnLeave>
+
+		<OnLoad>
+			self:GetScript("OnLeave")(self)
+
+		</OnLoad>
+	</Scripts>
+	<Size>
+		<AbsDimension x="240" y="21"/>
+	</Size>
+	<ButtonText>
+		<Anchors>
+			<Anchor point="LEFT">
+				<Offset>
+					<AbsDimension x="4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</ButtonText>
+
+	<NormalFont style="GameFontHighlight"/>
+	<HighlightFont style="GameFontNormal"/>
+	<NormalTexture name="$parentBG">
+		<Color r="0.7" g="0.7" b="0.7" a="0.4"/>
+	</NormalTexture>
+</Button>
+
+<Frame name="ItemLinker" parent="UIParent" movable="true" enableMouse="true" hidden="true"
+		clampedToScreen="true">
+
+		<Anchors>
+			<Anchor point="LEFT" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="200" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Size>
+			<AbsDimension x="320" y="295"/>
+		</Size>
+
+		<Backdrop bgFile="Interface\ChatFrame\ChatFrameBackground" tile="true"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border">
+
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<Color a="0.85" r="0" g="0" b="0"/>
+		</Backdrop>
+
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTitle" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="375" y="64"/>
+					</Size>
+
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<FontString inherits="GameFontNormal" text="ITEMLINKER_TITLE">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentTitle">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<Scripts>
+			<OnLoad>
+				self:RegisterForDrag("LeftButton")
+				self:SetUserPlaced(1)
+
+				SLASH_ITEMLINKER1 = "/il"
+				SLASH_ITEMLINKER2 = "/itemlinker"
+				SlashCmdList["ITEMLINKER"] = function(msg, editbox)
+					if msg == "" then
+						_G["ItemLinker"]:Show()
+					elseif msg == "hide" then
+						_G["ItemLinker"]:Hide()
+					elseif msg == "help" then
+						print("/il - to show itemlinker menu")
+						print("/il hide - to hide itemlinker menu")
+						print("/il [text] - to search for [text]")
+					else
+						_G["ItemLinker"]:Show()
+						search(msg)
+					end
+				end
+			</OnLoad>
+
+			<OnDragStart>
+				self:StartMoving()
+			</OnDragStart>
+
+			<OnDragStop>
+				self:StopMovingOrSizing()
+			</OnDragStop>
+		</Scripts>
+
+		<Frames>
+
+			<!-- TABLE OF ITEMS -->
+			<Frame name="$parentTableList">
+				<Size>
+					<AbsDimension x="265" y="174"/>
+				</Size>
+
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="50"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+
+				<Backdrop bgFile="Interface\ChatFrame\ChatFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<Color r="0" g="0" b="0" a="0.5"/>
+				</Backdrop>
+
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentInfo" inherits="GameFontNormalLarge">
+							<Anchors>
+								<Anchor point="CENTER" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="$parentTip" inherits="GameFontNormalSmall">
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame name="$parentScrollFrame" inherits="FauxScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="24" y="166"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-27" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+
+						<Scripts>
+							<OnVerticalScroll>
+								FauxScrollFrame_OnVerticalScroll(self,offset,21,TableBrowser.Update)
+							</OnVerticalScroll>
+						</Scripts>
+					</ScrollFrame>
+				</Frames>
+
+				<Scripts>
+					<OnMouseWheel>
+						ScrollFrameTemplate_OnMouseWheel(ItemLinkerTableListScrollFrame, delta)
+					</OnMouseWheel>
+				</Scripts>
+			</Frame>
+
+			<!-- SEARCH BOX -->
+			<EditBox name="$parentSearchBox" inherits="SearchBoxTemplate">
+				<Size>
+					<AbsDimension x="140" y="45"/>
+				</Size>
+
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="LEFT" relativeto="$parentTableList">
+						<Offset>
+							<AbsDimension x="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+
+				<Scripts>
+
+				</Scripts>
+			</EditBox>
+
+			<!-- THIS IS SEARCH BUTTON -->
+			<Button name="$parentSearchButton" text="ITEMLINKER_SEARCH_BUTTON" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="64" y="24"/>
+				</Size>
+
+				<Anchors>
+					<Anchor point="RIGHT" relativeto="$parentSearchBox">
+						<Offset>
+							<AbsDimension x="72" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+
+				<Scripts>
+					<OnLoad>
+
+					</OnLoad>
+
+					<OnClick>
+						local searchtext = _G["ItemLinkerSearchBox"]:GetText()
+						_G["ItemLinkerSearchBox"]:ClearFocus()
+						_G["ItemLinkerTableListInfo"]:SetText("")
+						for i = 1,#TableBrowser do
+							TableBrowser[i] = nil
+						end
+
+						for i = 1,#TableBrowser_Temp do
+							if ((TableBrowser_Temp[i]) == (searchtext)) == true then
+								table.insert(TableBrowser,TableBrowser_Temp[i])
+							end
+						end
+
+						if #TableBrowser > 0 then
+							TableBrowser.Update()
+						else
+							_G["ItemLinkerTableListInfo"]:SetText("No result for "..searchtext..".\n Please refine your search...")
+						end
+
+
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<!-- THIS IS THE CLOSE BUTTON -->
+			<Button name="$parentClose" text="ITEMLINKER_CLOSE" inherits="UIPanelCloseButton">
+				<Size>
+					<AbsDimension x="34" y="34"/>
+				</Size>
+
+				<Anchors>
+					<Anchor point="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOP">
+					</Anchor>
+				</Anchors>
+
+				<Scripts>
+					<OnLoad>
+						self:RegisterForClicks(
+							"LeftButtonUp"
+						)
+					</OnLoad>
+
+					<OnClick>
+						self:GetParent():Hide()
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+
+</Ui>

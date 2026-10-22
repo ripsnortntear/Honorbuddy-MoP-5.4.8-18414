@@ -1,0 +1,21 @@
+## Interface: 50400
+## Title: GoGoMount
+## Version: 5.4.15
+## Notes: One-key solution for mounting/dismounting, supports spells, shapeshifting
+## Notes-enGB: One-key solution for mounting/dismounting, supports spells, shapeshifting
+## Notes-deDE: Ein-Tasten-Lösung für das Auf- und Absitzen von Reittieren, unterstützt auch Zaubersprüche und Gestaltwandlung
+## Notes-esES: Una clave para la solución de montaje / desmontaje, apoya hechizos, shapeshifting
+## Notes-esMX: Una clave para la solución de montaje / desmontaje, apoya hechizos, shapeshifting
+## Notes-frFR: Une solution clé pour le montage / démontage, soutient sorts, shapeshifting
+## Notes-ruRU: Одним из ключей решения для монтажа / демонтажа, поддерживает заклинаний, shapeshifting
+## Notes-zhTW: 一鍵上下馬，支援召喚和變形
+## Notes-koKR: 탈것의 타기/내리기를 위한 1 키 해결, 주문, 변신 지원
+## Author: Gadgets (Tiker) @ Bleeding Hollow
+## SavedVariablesPerCharacter: GoGo_Prefs GoGo_DebugLog
+## SavedVariables: GoGo_Prefs_Template
+## X-Curse-Packaged-Version: 5.4.15
+## X-Curse-Project-Name: GoGoMount
+## X-Curse-Project-ID: gogomount
+## X-Curse-Repository-ID: wow/gogomount/mainline
+
+GoGoMount.xml

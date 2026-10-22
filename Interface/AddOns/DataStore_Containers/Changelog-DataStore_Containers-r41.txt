@@ -1,0 +1,14 @@
+------------------------------------------------------------------------
+r41 | lombra | 2014-02-17 11:17:47 +0000 (Mon, 17 Feb 2014) | 1 line
+Changed paths:
+   M /trunk/DataStore_Containers.lua
+
+Scan void storage data when moving items around within it
+------------------------------------------------------------------------
+r40 | lombra | 2014-01-12 22:53:42 +0000 (Sun, 12 Jan 2014) | 2 lines
+Changed paths:
+   M /trunk/DataStore_Containers.lua
+
+Fixed full links sometimes not getting stored for items whose ID ends in 0
+Fixed GetContainerSize for container IDs that aren't numbers
+------------------------------------------------------------------------

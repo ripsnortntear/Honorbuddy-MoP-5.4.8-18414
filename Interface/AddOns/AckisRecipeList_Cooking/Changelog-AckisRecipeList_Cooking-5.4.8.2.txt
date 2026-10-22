@@ -1,0 +1,11 @@
+tag 5.4.8.2
+332549334013a263f91b471ae231bf33fa62156f
+James D. Callahan III <jcallahan@curse.com>
+2014-06-05 07:34:34 -0500
+
+
+
+--------------------
+
+James D. Callahan III:
+	- Nuked libs; ARL will already have these loaded.

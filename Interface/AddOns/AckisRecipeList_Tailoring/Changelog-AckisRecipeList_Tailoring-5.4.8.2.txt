@@ -1,0 +1,12 @@
+tag 5.4.8.2
+50a38d98e87848e3df60cc66bf3f4112e8efa855
+Ressy <resa1983@hotmail.com>
+2014-07-10 18:58:57 -0400
+
+2nd release for 5.4.8
+
+
+--------------------
+
+Ressy:
+	- To override Skill Levels for Tailoring threads & embroidery

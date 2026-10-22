@@ -1,0 +1,34 @@
+------------------------------------------------------------------------
+r53 | thaoky | 2013-10-06 07:12:54 +0000 (Sun, 06 Oct 2013) | 2 lines
+Changed paths:
+   D /trunk/embeds.xml
+
+Removed embeds.xml
+
+------------------------------------------------------------------------
+r52 | thaoky | 2013-10-06 07:07:04 +0000 (Sun, 06 Oct 2013) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/DataStore_Crafts.lua
+   M /trunk/DataStore_Crafts.toc
+
+Removed support for LibPeriodicTable
+------------------------------------------------------------------------
+r51 | thaoky | 2013-09-17 16:18:43 +0000 (Tue, 17 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Crafts.lua
+
+Fixed profession levels reported as 0
+------------------------------------------------------------------------
+r50 | thaoky | 2013-09-11 15:28:40 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Crafts.toc
+
+5.4.001 Commit
+------------------------------------------------------------------------
+r49 | thaoky | 2013-08-01 12:52:23 +0000 (Thu, 01 Aug 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Crafts.lua
+
+Fixed scanning of profession cooldowns
+------------------------------------------------------------------------

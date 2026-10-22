@@ -1,0 +1,6 @@
+<Bindings>
+	<Binding name="QGT_TOGGLE_TRACKER_KB" description="Toggle Tracker" header="QGT_HEADER">
+		QGT_ShowTracker = not QGT_ShowTracker;
+		WatchFrame_Update();
+	</Binding>
+</Bindings>

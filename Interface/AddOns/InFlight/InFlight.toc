@@ -1,0 +1,22 @@
+## Interface: 50400
+## Title: InFlight
+## Notes: Statusbar timer for your flightpaths.
+## Version: 1.0.0-fondlez
+## Author: fondlez
+## X-Website: http://github.com/fondlez/InFlight-Taxi-Timer
+## X-Category: Map and Minimap
+## Original-Author: TotalPackage
+## Original-Version: 5.4.001
+## DefaultState: enabled
+
+## SavedVariables: InFlightVars, InFlightDB
+## SavedVariablesPerCharacter: InFlightCharDB
+## Dependencies: InFlight_Load
+## OptionalDeps: LibSharedMedia-3.0
+
+## LoadOnDemand: 1
+
+embeds.xml
+
+InFlight.lua
+Defaults.lua

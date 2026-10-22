@@ -1,0 +1,18 @@
+﻿## Interface: 50400
+## Title: Atlas |r|cFF0099FF[World Events]|r
+## Title-zhCN: Atlas |r|cFF0099FF[世界事件]|r
+## Title-zhTW: |r|cFF0099FF[地圖]|rAtlas 世界事件地圖集
+## Notes: An Atlas Plugin that displays world events maps.
+## Notes-zhCN: Atlas 世界事件地图插件。
+## Notes-zhTW: Atlas 世界事件地圖集, 顯示重要世界事件任務目標點地圖
+## Version: 3.07
+## X-Date: Jul. 06, 2014
+## X-Category: Map
+## RequiredDeps: Atlas
+## X-Curse-Packaged-Version: v3.07
+## X-Curse-Project-Name: Atlas World Events
+## X-Curse-Project-ID: atlas-worldevents
+## X-Curse-Repository-ID: wow/atlas-worldevents/mainline
+
+Locale\Locales.xml
+Atlas_WorldEvents.lua

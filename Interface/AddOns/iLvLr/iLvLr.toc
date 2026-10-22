@@ -1,0 +1,25 @@
+## Interface: 50400
+## Title: iLvLr
+## Author: JerichoHM / Troox
+## Version: 2.1.102
+## Notes: Tool to help gearing a character
+## Dependancies:
+## SavedVariablesPerCharacter: iDuraState
+## X-Curse-Packaged-Version: 2.1.0
+## X-Curse-Project-Name: iLvLr
+## X-Curse-Project-ID: ilvlr
+## X-Curse-Repository-ID: wow/ilvlr/mainline
+## X-Curse-Packaged-Version: 2.1.0
+## X-Curse-Project-Name: iLvLr
+## X-Curse-Project-ID: ilvlr
+## X-Curse-Repository-ID: wow/ilvlr/mainline
+## X-Curse-Packaged-Version: 2.1.0
+## X-Curse-Project-Name: iLvLr
+## X-Curse-Project-ID: ilvlr
+## X-Curse-Repository-ID: wow/ilvlr/mainline
+## X-Curse-Packaged-Version: 2.1.102
+## X-Curse-Project-Name: iLvLr
+## X-Curse-Project-ID: ilvlr
+## X-Curse-Repository-ID: wow/ilvlr/mainline
+
+iLvLr.lua

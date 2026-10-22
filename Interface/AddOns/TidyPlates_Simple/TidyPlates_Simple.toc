@@ -1,0 +1,8 @@
+## Interface: 50400
+## Title: TidyPlates_Simple
+## Notes: Simple TidyPlates skin with some built-in Healer functionality.
+## Author: FunkyCold
+## Version: 5.0.0
+## Dependencies: TidyPlates
+
+TidyPlates_Simple.lua

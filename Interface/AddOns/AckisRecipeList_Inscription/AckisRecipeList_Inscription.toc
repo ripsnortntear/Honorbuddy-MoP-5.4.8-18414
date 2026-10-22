@@ -1,0 +1,22 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Inscription
+## Notes: Inscription data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.2
+## X-Revision: 8a0153e
+## X-Date: 2014-06-01T05:26:59Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.2
+## X-Curse-Project-Name: Ackis Recipe List: Inscription
+## X-Curse-Project-ID: arl-inscription
+## X-Curse-Repository-ID: wow/arl-inscription/mainline
+
+Core.lua
+Filters.lua
+Discoveries.lua
+MobDrops.lua
+Quests.lua
+Trainers.lua
+Vendors.lua
+Recipes.lua

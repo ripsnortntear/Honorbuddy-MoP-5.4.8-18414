@@ -1,0 +1,7 @@
+## Interface: 50400
+## Title: RoutesGatherMate2IntegrationFix
+## Version: 1.0.0
+## Author: thelorius
+## Notes: Fixex Gathermate2 integration into routes
+
+Fix.lua

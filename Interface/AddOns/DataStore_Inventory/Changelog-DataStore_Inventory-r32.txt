@@ -1,0 +1,14 @@
+------------------------------------------------------------------------
+r32 | lombra | 2014-01-12 22:55:19 +0000 (Sun, 12 Jan 2014) | 2 lines
+Changed paths:
+   M /trunk/DataStore_Inventory.lua
+
+Fixed full links sometimes not getting stored for items whose ID ends in 0
+GetAverageItemLevel now returns overall average item level as the second return value
+------------------------------------------------------------------------
+r31 | thaoky | 2013-09-11 15:29:00 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Inventory.toc
+
+5.4.001 Commit
+------------------------------------------------------------------------

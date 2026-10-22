@@ -1,0 +1,38 @@
+﻿-- French localization
+
+local L = LibStub("AceLocale-3.0"):NewLocale("ErrorFilter", "frFR")
+if not L then return end
+
+L["Add a new string."] = "Ajouter une nouvelle chaîne."
+L["Allowed errors"] = "Erreurs admis"
+L["Allow only ..."] = "Autoriser uniquement ..."
+L["Choose how do you want ErrorFilter to work."] = "Choisissez comment vous voulez que ErrorFilter fonctionne."
+L["Choose the errors you do not want to see:"] = "Choisissez les erreurs que vous ne voulez pas voir:"
+L["Choose the errors you want to see:"] = "Choisissez les erreurs que vous voulez voir:"
+L["Delete"] = "Supprimer"
+L["Delete a string from the list"] = "Supprimer une chaîne de la liste"
+L["Do nothing"] = "Ne rien faire"
+L["Filter all errors"] = "Filtrer toutes les erreurs"
+L["Filtered errors"] = "Erreurs filtrée"
+L["Filter only ..."] = "Filtre seulement ..."
+-- L["Filter only in combat."] = ""
+L["Filters"] = "Filtres"
+L["General Settings"] = "Paramètre générale"
+L["Manage custom allows:"] = "Gérer les personnalisation permet:"
+L["Manage custom filters:"] = "Gérer des filtres personnalisés:"
+L["New"] = "Nouveau"
+L["Open the menu to set custom filters."] = "Ouvrez le menu permet de définir des filtres personnalisés."
+L["Operation mode:"] = "Mode d'opération:"
+-- L["Output"] = ""
+L["Profiles"] = "Profiles"
+L["Remove UIErrorFrame"] = "Supprimer UIErrorFrame"
+L["Set filters"] = "Configuration des filtres"
+-- L["Throttle"] = ""
+-- L["Throttle messages."] = ""
+-- L["Toggle to allow each message only once every 5 seconds."] = ""
+L["Toggle to allow this error."] = "Cocher pour permettre cette erreur."
+L["Toggle to filter this error."] = "Cocher pour filtrer cette erreur."
+-- L["Toggle to stop filtering while out of combat."] = ""
+L["Warning! This will prevent all error messages from appearing in the UI Error Frame."] = "Attention! Cela permettra d'éviter tous les messages d'erreur d'apparaître dans le UI Error Frame."
+L["Warning! This will prevent any message from appearing in the UI Error Frame, including quest updates text."] = "Attention! Cela permettra d'éviter tout message d'apparaître dans le UI Error Frame, y compris les mises à jour quête texte."
+

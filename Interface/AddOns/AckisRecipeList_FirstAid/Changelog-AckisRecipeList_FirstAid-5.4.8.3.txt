@@ -1,0 +1,12 @@
+tag 5.4.8.3
+4ce4d33406f7c05ce96f209892426d5df453752d
+Ressy <resa1983@hotmail.com>
+2014-07-13 12:20:04 -0400
+
+3rd update for 5.4.8
+
+
+--------------------
+
+Ressy:
+	- Fix Ticket 1630, add 2nd version of Doc Zapnozzle to list of trainers

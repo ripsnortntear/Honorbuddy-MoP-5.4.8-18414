@@ -1,0 +1,206 @@
+2014-09-21  sylvanaar  <sylvanaar@mindspring.com>
+
+[7883efe39d71] [tip]
+* Merge
+
+
+[c178aa3da4ea]
+* services/chatsections.lua:
+
+Advance tip to build the right branch for distribution
+
+
+[25e66e110341]
+* services/chatsections.lua:
+
+Call Ambiguate for guild chat
+
+
+2014-08-09  sylvanaar  <sylvanaar@mindspring.com>
+
+[1dbcd02b5e43]
+* Merge
+
+
+[f71f4d019240]
+* modules/Editbox.lua:
+
+Merge in code to better separate concerns between the editbox and history modules
+
+
+2013-12-01  sylvanaar  <sylvanaar@mindspring.com>
+
+[8d0f73b33d79]
+* modules/Editbox.lua, modules/History.lua:
+
+Better separation of command history saved data from the editbox module
+
+
+2014-07-22  sylvanaar  <sylvanaar@mindspring.com>
+
+[abd3ef3914e6]
+* Prat-3.0.toc:
+
+Advance tip to build the right branch for distribution
+
+
+2014-07-20  sylvanaar  <sylvanaar@mindspring.com>
+
+[0daf8cda2d1e]
+* modules/PlayerNames.lua:
+
+Guard against totally unreasonable API call restriction (again)
+
+
+[7872688fa2f8]
+* services/chatsections.lua:
+
+Guard against totally unreasonable API call restriction
+
+
+[d3d41b15f601]
+* Prat-3.0.toc, pullouts/!AddMsgFilterReport/!AddMsgFilterReport.toc, pullouts/Prat-3.0_Debug/Prat-3.0_Debug.toc, pullouts/Prat-3.0_Experimental/Prat-3.0_Experimental.toc, pullouts/Prat-3.0_HighCPUUsageModules/Prat-3.0_HighCPUUsageModules.toc, pullouts/Prat-3.0_Loader/Prat-3.0_Loader.toc, samples/MyGuildAlts/MyGuildAlts.toc:
+
+TOC 60000 for WoD beta, not working super-great, but functional.
+
+
+2014-05-13  sylvanaar  <sylvanaar@mindspring.com>
+
+[620dccdfb95b]
+* .hgtags:
+
+Added tag 3.5.8 for changeset 2da075585786
+
+
+2014-02-20  nebula  <nebula@the-syn.com>
+
+[2da075585786] [3.5.8]
+* modules/ServerNames.lua, services/chatsections.lua:
+
+revert last and Ambiguate in the event handler
+
+
+[8defe69665c6]
+* modules/ServerNames.lua:
+
+now with more upvalues
+
+
+[cd239e6def4a]
+* modules/ServerNames.lua:
+
+strip server from sender for same server messages
+
+
+2014-01-10  pompachomp  <pompachomp>
+
+[39db22a291fc]
+* modules/TellTarget.lua:
+
+no not! from prev fix
+
+
+[709fc507268c]
+* modules/TellTarget.lua:
+
+Hopefully fix an outstanding bug in TellTarget module.  Use UnitRealmRelationship("target") ~= LE_REALM_RELATION_SAME instead of UnitIsSameServer("player", "target")
+
+
+2013-12-15  sylvanaar  <sylvanaar@mindspring.com>
+
+[fa2f25805f4b]
+* Prat.iml, modules/Editbox.lua:
+
+reverse up and down meaning in chat command history
+
+
+2013-12-01  sylvanaar  <sylvanaar@mindspring.com>
+
+[1df1e5e2be63]
+* modules/Editbox.lua:
+
+Handle empty cmdhistory in already pushed code
+
+
+[7ea08a1b9f48]
+* modules/Editbox.lua:
+
+Based on code suggested by Torhal (perhaps from CrappyChatFix), but uses the
+updated command history supplied by the history module
+
+
+[47e0a3d14b5e]
+* modules/History.lua:
+
+Rework editbox history to be per-frame.
+
+
+2013-09-24  sylvanaar  <sylvanaar@mindspring.com>
+
+[dc67592f1e08]
+* addon/options.lua, modules/AddonMessages.lua, modules/Alias.lua, modules/Buttons.lua, modules/ChatFrames.lua, modules/ChatLog.lua, modules/ChatTabs.lua, modules/Clear.lua, modules/CopyChat.lua, modules/Filtering.lua, modules/Font.lua, modules/OriginalButtons.lua, modules/OriginalEditbox.lua, modules/Paragraph.lua, modules/PopupMessage.lua, modules/Scroll.lua, modules/Substitutions.lua:
+
+added localizations for itIT and ptBR
+
+
+[3f95c872554a]
+* modules/Editbox.lua:
+
+Added localized note about ALT key requirement.
+
+
+[880cd2fecd91]
+* .idea/compiler.xml, Prat.iml, modules/ChannelSticky.lua, modules/Editbox.lua:
+
+Instance chat sticky name corrections. fixes #673
+
+
+2013-09-11  sylvanaar  <sylvanaar@mindspring.com>
+
+[e12c86917973]
+* modules/CopyChat.lua:
+
+Use wipe to clear the lines arrays in every case to be consistent.
+
+
+[22b759aba83e]
+* addon/addon.lua:
+
+Prevent string overflow when using /pratdebugmsg with a chatframe besides
+chatframe1 active.
+
+
+[ed43118b1d13]
+* services/chatsections.lua:
+
+Support raid groups in chat, ie {g1} etc
+
+
+2013-09-10  sylvanaar  <sylvanaar@mindspring.com>
+
+[1f8efbf3d35a]
+* .hgtags:
+
+Added tag 3.5.7 for changeset 60bf58c958a0
+
+
+[60bf58c958a0] [3.5.7]
+* Prat-3.0.toc, libraries/Prat-3.0_Libraries.toc, pullouts/!AddMsgFilterReport/!AddMsgFilterReport.toc, pullouts/Prat-3.0_Debug/Prat-3.0_Debug.toc, pullouts/Prat-3.0_Experimental/Prat-3.0_Experimental.toc, pullouts/Prat-3.0_HighCPUUsageModules/Prat-3.0_HighCPUUsageModules.toc, pullouts/Prat-3.0_Loader/Prat-3.0_Loader.toc, samples/MyGuildAlts/MyGuildAlts.toc:
+
+TOC 50400
+
+
+2013-05-22  sylvanaar  <sylvanaar@mindspring.com>
+
+[914976b80480]
+* .hgtags:
+
+Added tag 3.5.6 for changeset ff0d8159f7fa
+
+
+[ff0d8159f7fa] [3.5.6]
+* Prat-3.0.toc, libraries/Prat-3.0_Libraries.toc, pullouts/!AddMsgFilterReport/!AddMsgFilterReport.toc, pullouts/Prat-3.0_Debug/Prat-3.0_Debug.toc, pullouts/Prat-3.0_Experimental/Prat-3.0_Experimental.toc, pullouts/Prat-3.0_HighCPUUsageModules/Prat-3.0_HighCPUUsageModules.toc, pullouts/Prat-3.0_Loader/Prat-3.0_Loader.toc, samples/MyGuildAlts/MyGuildAlts.toc:
+
+TOC 50300
+
+

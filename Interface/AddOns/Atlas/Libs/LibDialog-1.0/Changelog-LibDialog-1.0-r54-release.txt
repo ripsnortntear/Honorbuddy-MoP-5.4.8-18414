@@ -1,0 +1,8 @@
+2013-03-18  James D. Callahan III  <jcallahan@curse.com>
+
+[9330716b2440] [r54-release]
+* .docmeta, .hgtags, .pkgmeta, LibDialog-1.0.lua, lib.xml:
+
+Fix bug when hiding a dialog.
+
+

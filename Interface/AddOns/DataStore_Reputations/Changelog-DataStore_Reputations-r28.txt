@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+r28 | thaoky | 2013-09-11 15:29:39 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Reputations.toc
+
+5.4.001 Commit
+------------------------------------------------------------------------
+r27 | thaoky | 2013-08-01 12:52:40 +0000 (Thu, 01 Aug 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Reputations.lua
+
+Added missing reputations
+------------------------------------------------------------------------

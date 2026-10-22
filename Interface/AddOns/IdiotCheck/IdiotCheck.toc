@@ -1,0 +1,32 @@
+## Interface: 50400
+## Title: IdiotCheck
+## Description: Checks your gear before bosses and yells at you if you're an idiot
+## Notes: Checks your gear before bosses and yells at you if you're an idiot
+## Author: oscarucb
+## Credits: Gunnery Sgt. R. Lee Ermey, Troxed, Faelagund, Silver Letomi
+## Version: 4.3.9
+## X-Build: 258
+## X-ReleaseDate: 2014-01-25T09:15:13Z
+## X-Revision: $Revision: 244 $
+## SavedVariables: IdiotCheckDB 
+## SavedVariablesPerCharacter: 
+## OptionalDeps: Ace3, LibDualSpec-1.0, LibTalentQuery-1.0, LibGroupTalents-1.0
+## LoadManagers: AddonLoader
+## X-LoadOn-Instance: true
+## X-LoadOn-Slash: /idiotcheck, /ic
+## X-LoadOn-LDB-Launcher: Interface\AddOns\IdiotCheck\icon
+## X-LoadOn-Events: READY_CHECK
+## X-LoadOn-READY_CHECK:  AddonLoader:LoadAddOn('IdiotCheck'); IdiotCheck:RunCheck("player")
+## X-LoadOn-Hooks: InspectUnit
+## X-LoadOn-InspectUnit: if not IsAddOnLoaded("IdiotCheck") then AddonLoader:LoadAddOn('IdiotCheck') end
+## X-Curse-Packaged-Version: 4.3.9
+## X-Curse-Project-Name: IdiotCheck
+## X-Curse-Project-ID: idiotcheck
+## X-Curse-Repository-ID: wow/idiotcheck/mainline
+
+embeds.xml
+
+locale.lua
+glyphdata.lua
+
+core.lua

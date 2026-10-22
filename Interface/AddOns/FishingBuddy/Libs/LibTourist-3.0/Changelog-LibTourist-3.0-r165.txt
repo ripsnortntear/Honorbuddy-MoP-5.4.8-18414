@@ -1,0 +1,22 @@
+------------------------------------------------------------------------
+r165 | Odica | 2013-09-11 20:49:05 +0000 (Wed, 11 Sep 2013) | 3 lines
+Changed paths:
+   M /trunk/LibTourist-3.0.lua
+   M /trunk/LibTourist-3.0.toc
+
+- updated TOC to 50400
+- added Timeless Isle
+
+------------------------------------------------------------------------
+r164 | Odica | 2013-08-19 21:50:53 +0000 (Mon, 19 Aug 2013) | 1 line
+Changed paths:
+   M /trunk/LibTourist-3.0.lua
+
+Fixed all translations for The Tiger's Peak
+------------------------------------------------------------------------
+r163 | Odica | 2013-08-15 11:53:03 +0000 (Thu, 15 Aug 2013) | 1 line
+Changed paths:
+   M /trunk/LibTourist-3.0.lua
+
+Fixed two zhCN translations for ticket #39, thanx to paulscholes
+------------------------------------------------------------------------

@@ -1,0 +1,20 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Smelting
+## Notes: Smelting data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.1
+## X-Revision: 9ec5ad0
+## X-Date: 2014-06-01T07:40:09Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.1
+## X-Curse-Project-Name: Ackis Recipe List: Smelting
+## X-Curse-Project-ID: arl-smelting
+## X-Curse-Repository-ID: wow/arl-smelting/mainline
+
+Core.lua
+Filters.lua
+MobDrops.lua
+Quests.lua
+Trainers.lua
+Recipes.lua

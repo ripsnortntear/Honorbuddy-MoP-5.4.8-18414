@@ -1,0 +1,16 @@
+## Title: Auc:Util:Search UI
+## Notes: Auctioneer utility module that aids in the search for items posted on the Auction House.  Extremely flexible, with multiple, fully configurable Searchers to quickly and easily find specific items to use, resell, craft, and more.
+##
+## Interface: 50400
+## Dependencies: Auc-Advanced, Stubby
+##
+## Version: 5.19.5445 (QuiescentQuoll)
+## Revision: $Id: Auc-Util-SearchUI.toc 5432 2013-09-10 07:59:18Z brykrys $
+## Author: Norganna's AddOns
+## X-Part-Of: Auctioneer
+## X-Category: Auction House
+## X-Max-Interface: 50400
+## X-URL: http://auctioneeraddon.com/
+## X-Feedback: http://forums.norganna.org
+##
+Embed.xml

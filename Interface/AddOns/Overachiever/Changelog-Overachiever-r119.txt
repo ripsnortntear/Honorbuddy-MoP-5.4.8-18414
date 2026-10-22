@@ -1,0 +1,12 @@
+------------------------------------------------------------------------
+r119 | tuhljin | 2014-10-16 04:03:27 +0000 (Thu, 16 Oct 2014) | 1 line
+Changed paths:
+   M /trunk/Overachiever.lua
+   M /trunk/Overachiever.toc
+   M /trunk/Overachiever_Tabs/Overachiever_Tabs.toc
+   M /trunk/Overachiever_Tabs/Suggestions.lua
+   M /trunk/Overachiever_Trade/Overachiever_Trade.toc
+   M /trunk/readme.txt
+
+- Updated for WoW patch 6.0.x. (Some issues still remain but this should be enough for basic usage.)
+------------------------------------------------------------------------

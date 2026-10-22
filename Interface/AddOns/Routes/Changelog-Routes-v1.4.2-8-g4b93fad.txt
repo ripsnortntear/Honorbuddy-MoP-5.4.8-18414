@@ -1,0 +1,15 @@
+Sal Scotto:
+	- toc update
+	- Fix for ticket #74
+durcyn:
+	- clean up leaked 'node' global on Routes.lua:2877
+Sal Scotto:
+	- added some microdungeon checks and map zoom checks
+Znuff:
+	- Bumping .toc, everything else seems to be working just fine.
+David Lynch:
+	- One-line change to make external plugins a possibility.
+durcyn:
+	- 5.0.5 Fishing spell ID compatability
+Xinhuan:
+	- Fix two more cases over division by 0 that was overlooked.

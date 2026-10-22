@@ -1,0 +1,22 @@
+------------------------------------------------------------------------
+r88 | Resike | 2014-07-28 16:23:02 +0000 (Mon, 28 Jul 2014) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/LibBossIDs-1.0.lua
+
+- Code clean up.
+------------------------------------------------------------------------
+r87 | Resike | 2014-07-28 14:07:40 +0000 (Mon, 28 Jul 2014) | 1 line
+Changed paths:
+   M /trunk/LibBossIDs-1.0.lua
+
+- Code clean up.
+------------------------------------------------------------------------
+r86 | zarnivoop | 2013-09-13 17:09:48 +0000 (Fri, 13 Sep 2013) | 2 lines
+Changed paths:
+   M /trunk/LibBossIDs-1.0.lua
+   M /trunk/LibBossIDs-1.0.toc
+
+.toc update
+added SoO bosses (from theondry)
+------------------------------------------------------------------------

@@ -1,0 +1,18 @@
+## Interface: 50400
+## Title: Prospect
+#@debug@
+# ## Title: |cffff0088EBG|r Prospect
+#@end-debug@
+## Notes: Prospect ore by right clicking on it
+## Author: egingell
+## Version: v201210250038
+## SavedVariables: ProspectOreHerbsTable, ProspectOptions
+## X-Curse-Packaged-Version: v201210250038
+## X-Curse-Project-Name: Prospect
+## X-Curse-Project-ID: prospect
+## X-Curse-Repository-ID: wow/prospect/mainline
+
+#@debug@
+# ##Prospect.new.lua
+#@end-debug@
+Prospect.lua

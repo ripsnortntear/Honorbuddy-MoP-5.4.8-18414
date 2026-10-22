@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="ZYGORGUIDES_OPENGUIDE" description="Toggle Zygor's Guides" header="ZYGORGUIDES">
+		ZygorGuidesViewer:ToggleFrame()
+	</Binding>
+	<Binding name="ZYGORGUIDES_PREV" description="Previous Step" header="ZYGORGUIDES">
+		ZygorGuidesViewerFrame_Border_Guides_PrevButton:GetScript("OnClick")(ZygorGuidesViewerFrame_Border_Guides_PrevButton,"LeftButton")
+	</Binding>
+	<Binding name="ZYGORGUIDES_NEXT" description="Next Step" header="ZYGORGUIDES">
+		ZygorGuidesViewerFrame_Border_Guides_NextButton:GetScript("OnClick")(ZygorGuidesViewerFrame_Border_Guides_NextButton,"LeftButton")
+  </Binding>
+</Bindings>

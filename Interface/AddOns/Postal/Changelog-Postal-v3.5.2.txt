@@ -1,0 +1,14 @@
+------------------------------------------------------------------------
+r377 | torhal | 2014-09-25 03:56:46 +0000 (Thu, 25 Sep 2014) | 1 line
+Changed paths:
+   A /tags/v3.5.2 (from /trunk:376)
+
+Tagging as v3.5.2
+------------------------------------------------------------------------
+r376 | oscarucb | 2014-07-06 17:09:54 +0000 (Sun, 06 Jul 2014) | 2 lines
+Changed paths:
+   M /trunk/Modules/BlackBook.lua
+
+include the realm name when auto-completing a cross-realm alt
+
+------------------------------------------------------------------------

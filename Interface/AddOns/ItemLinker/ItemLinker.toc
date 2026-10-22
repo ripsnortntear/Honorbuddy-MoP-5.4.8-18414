@@ -1,0 +1,8 @@
+## Interface: 50400
+## Title: ItemLinker
+## Version: 1.2
+
+localization.en.lua
+ItemLinker.xml
+ItemLinker.lua
+

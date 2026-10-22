@@ -1,0 +1,22 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Blacksmithing
+## Notes: Blacksmithing data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.3
+## X-Revision: 7c368ae
+## X-Date: 2014-06-01T00:31:18Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.3
+## X-Curse-Project-Name: Ackis Recipe List: Blacksmithing
+## X-Curse-Project-ID: arl-blacksmithing
+## X-Curse-Repository-ID: wow/arl-blacksmithing/mainline
+
+Core.lua
+Filters.lua
+Discoveries.lua
+MobDrops.lua
+Quests.lua
+Trainers.lua
+Vendors.lua
+Recipes.lua

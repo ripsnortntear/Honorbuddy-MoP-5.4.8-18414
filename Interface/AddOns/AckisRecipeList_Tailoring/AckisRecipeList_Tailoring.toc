@@ -1,0 +1,24 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Tailoring
+## Notes: Tailoring data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.2
+## X-Revision: 63e40cc
+## X-Date: 2014-06-01T11:24:38Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.2
+## X-Curse-Project-Name: Ackis Recipe List: Tailoring
+## X-Curse-Project-ID: arl-tailoring
+## X-Curse-Repository-ID: wow/arl-tailoring/mainline
+
+Core.lua
+Filters.lua
+Discoveries.lua
+MobDrops.lua
+Quests.lua
+Trainers.lua
+Vendors.lua
+Recipes.lua
+
+

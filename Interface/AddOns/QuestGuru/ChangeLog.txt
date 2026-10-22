@@ -1,0 +1,132 @@
+QuestGuru ChangeLog
+===================
+
+Version 2.2.18-50400
+-------------
+QuestGuru
+  (no changes)
+QuestGuru_Tracker
+* Normalizing the version numbers between QuestGuru & QuestGuru_Tracker to the same value.  This will be the main change log henceforth.
+* fix Achievement to ignore update events that happen during portals (between leaving and entering world events)
+  The update event would fire, but Blizzard was reporting no achievements during that time so the QGT would
+  "UnTrack" the Achievements and so there would be none when the display tried to update (and therefore currLine was zero and j was nil)
+* Look at the oldChangeLog in QuestGuru_Tracker for older updates to the tracker
+
+Version 2.2.17-50400 (QuestGuru)
+-------------
+* Changing the Version number so Curse will see that it's different
+
+Version 2.2.16-50400 (QuestGuru)
+-------------
+* Removed a bit of diagnostic code accidently left in.
+
+Version 2.2.15-50400 (QuestGuru)
+-------------
+* Change logic around QuestLog_OnShow to use secure hook functions to resolve
+  a taint issue introduced by patch 5.4.1 (Shame on you Blizzard).
+
+Version 2.2.14-50400 (QuestGuru)
+-------------
+* TOC change for patch 5.4
+
+Version 2.2.14-50300 (QuestGuru)
+-------------
+* TOC change for patch 5.3
+
+Version 2.2.13-50001 (QuestGuru)
+-------------
+* Added a new sound option to announce (Thank you Drizt)
+* Added a snippet of code to fix a rare QuestLog layout problem.  Drizt ran into this again in MoP & kindly shared his fix for the issue.
+* Fixed a few more places where party handling was changed in MoP/Patch 5.0.4.
+* Changed the Debug message for the objectives not returning data to be sensitive to the debug setting.
+
+Version 2.2.12-50001 (QuestGuru)
+-------------
+* Blizzard API GetQuestLogLeaderBoard is failing to return information for the identified objective & quest on some quests.
+    I changed the code to look for no information return and simply bypass processing for that objective after dumping some info into the chatlog.
+    I've added a slashcommand to invoke the routine at will:  "/qg testui1"
+    For me, it's failing on "Shadow Wardens" and perhaps that's because the world tree marks are currency, not "items".
+    If the quest is an event quest (get 150 marks) then the type of quest should be event and the numObjectives should be zero.
+
+Version 2.2.11-50001 (QuestGuru)
+-------------
+* Error being reported by some @ line 410 of QuestGuru.lua.  Added some diagnostic code when text == nil
+
+Version 2.2.10-50001 (QuestGuru)
+-------------
+* Removed some leftover diagnostic messages
+
+Version 2.2.9-50001
+-------------
+* forgot to change version number inside the TOC itself
+* fixed indexing problem in Gossip Show event handling.  MoP changed the number of elements for Active and Available quests from 4 & 5 to 5 & 6 respectively
+
+Version 2.2.8-50001
+-------------
+* Toc Change for MoP Beta
+* Change GetNumPartyMembers to GetNumGroupMembers in every place I found it.
+
+Version 2.2.7-40300
+-------------
+* Latest revision of the Russian localization now incorporated.  Thank you again StingerSoft!
+* Removed some unused code. Frame "QG_QuestLogTitleMenu"
+
+Version 2.2.6-40300
+-------------
+* Made several localization changes.  Enabled $substitution variables in announcer to be localized as well.
+* Incorporated a brand new localization for Chinese(zhCN).  Credit to Honooon with many thanks.
+* Incorporated an updated localization for Russian(ruRU).  Credit to StingerSoft with many thanks also.
+* Updated all of the localizations (even the new ones) to synchronize variable names
+*   I based the updates upon the default (American) localization file.
+*   I removed variables that were no longer in the base localization file (most moved to the QuestGuru_Tracer localization)
+*     and added missing variables (in American)
+* We now have localizations for German, French, Russian, and Chinese (zhCN & zhTW).
+* I would really appreciate it if speakers of those languages sent me updates to them.  
+*   There are some new variables in the localizations that need translation!
+
+Version 2.2.5-40300
+-------------
+* The History button call to QuestCompletist has been fixed.
+
+Version 2.2.4-40300
+-------------
+* Fixed the TOC for 4.3 cata
+* MrObrien has asked that somebody pickup and work on the QuestGuru so I will try and do some updates as I can't play without this mod.
+  Addon home is www.wowinterface.com and you can PM me there if you like.  Gregity is the name.
+  I will be making small changes to get used to the codebase before I try anything like a major update.
+
+Version 2.2.3
+-------------
+* Fixes for when scrolling the quest log
+* The quest log frame will now remember where it was when moved
+
+Version 2.2.2
+-------------
+* Tracker achievement bug fixes and flashing for completed remote quests
+
+Version 2.2.1
+-------------
+* Tracker bug fix that was causing game crashes
+
+Version 2.2
+-----------
+* Added quest levels to NPC dialogs where possible
+* Added "Sound\\Creature\\Peasant\\PeasantWhat3.wav" to the list of sound options
+
+Version 2.1
+-----------
+* Removed the History, I recommend using Quest Completist
+* Fixes for Cataclysm
+* Special thanks to Dridzy and Cartman for their invaluable contributions
+
+Version 2.0 Beta 2
+------------------
+* QuestGuru now modifies the quest log to add quest level and checkboxes for tracking quests (like previous versions of QuestGuru)
+
+Version 2.0 Beta 1
+------------------
+* Incorporated History function, QuestGuru History is no longer a separate module
+* QuestGuru is now a modification of the built-in quest log, rather than a replacement
+* History is no longer stored on your computer but is retrieved from the server instead
+* Removed some features that were causing problems and slimmed down the addon to reduce memory usage
+* Upgraded to ChatThrottleLib v21

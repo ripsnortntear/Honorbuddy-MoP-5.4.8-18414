@@ -1,0 +1,8 @@
+package-as: Atlas
+
+manual-changelog:
+    filename: Docs/ChangeLog.txt
+    markup-type: plain
+    
+enable-nolib-creation: no
+

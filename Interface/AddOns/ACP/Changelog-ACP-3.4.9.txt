@@ -1,0 +1,9 @@
+2014-08-09  sylvanaar  <sylvanaar@mindspring.com>
+
+[c77b7f08d727] [3.4.9]
+* ACP.lua:
+
+Remove the checking for LoadOnDemand when automatically enabling an
+addon's standalone libraries.
+
+

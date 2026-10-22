@@ -1,0 +1,24 @@
+------------------------------------------------------------------------
+r129 | stanzilla | 2013-11-01 23:45:31 +0000 (Fri, 01 Nov 2013) | 1 line
+Changed paths:
+   M /trunk/AddonLoader.toc
+   M /trunk/Conditions.lua
+
+less copy pasta, more toc update
+------------------------------------------------------------------------
+r128 | stanzilla | 2013-11-01 23:35:47 +0000 (Fri, 01 Nov 2013) | 1 line
+Changed paths:
+   M /trunk/Conditions.lua
+
+add X-LoadOn-Reforge
+------------------------------------------------------------------------
+r127 | oscarucb | 2013-03-17 21:23:06 +0000 (Sun, 17 Mar 2013) | 5 lines
+Changed paths:
+   M /trunk/AddonLoader.lua
+
+ticket 20: fix time limit errors from trying to automatically load addons in combat
+Delay all addon loading from "automatic" conditions that trigger during combat until after combat,
+unless the addon is specifically flagged for X-LoadOn-Combat. 
+The user can still initiate "manual" loading in combat via X-LoadOn-LDB-Launcher or X-LoadOn-Slash.
+
+------------------------------------------------------------------------

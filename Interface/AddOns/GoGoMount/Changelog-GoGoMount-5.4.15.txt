@@ -1,0 +1,14 @@
+------------------------------------------------------------------------
+r439 | tiker | 2014-08-31 01:41:38 +0000 (Sun, 31 Aug 2014) | 1 line
+Changed paths:
+   A /tags/5.4.15 (from /trunk:438)
+
+Tagging as 5.4.15
+------------------------------------------------------------------------
+r438 | tiker | 2014-08-31 01:39:40 +0000 (Sun, 31 Aug 2014) | 1 line
+Changed paths:
+   M /trunk/GoGoMount.lua
+   M /trunk/GoGoMount.toc
+
+- Now summoning flying mounts in the water away from Timeless Isle where flying is allowed (even though you still have the "Temperal Anomaly" saying you can't fly)
+------------------------------------------------------------------------

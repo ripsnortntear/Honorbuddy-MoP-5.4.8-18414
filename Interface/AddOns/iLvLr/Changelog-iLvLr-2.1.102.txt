@@ -1,0 +1,16 @@
+------------------------------------------------------------------------
+r45 | lownignitus | 2014-05-27 04:00:04 +0000 (Tue, 27 May 2014) | 2 lines
+Changed paths:
+   A /tags/2.1.102 (from /trunk:44)
+
+Tagging as 2.1.102
+Updated upgrade iLvl table
+------------------------------------------------------------------------
+r44 | jerichohm | 2014-05-27 03:59:25 +0000 (Tue, 27 May 2014) | 2 lines
+Changed paths:
+   M /trunk/iLvLr.lua
+   M /trunk/iLvLr.toc
+
+Updated upgrade iLvl table
+Changed revision to 2.1.102
+------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+------------------------------------------------------------------------
+r1109 | nevcairiel | 2014-02-19 16:54:33 +0000 (Wed, 19 Feb 2014) | 1 line
+Changed paths:
+   A /tags/Release-r1109 (from /trunk:1108)
+
+Tag as Release-r1109
+------------------------------------------------------------------------
+r1108 | nevcairiel | 2014-02-19 16:53:49 +0000 (Wed, 19 Feb 2014) | 1 line
+Changed paths:
+   M /trunk/changelog.txt
+
+Update changelog
+------------------------------------------------------------------------
+r1107 | nevcairiel | 2014-02-19 16:40:32 +0000 (Wed, 19 Feb 2014) | 1 line
+Changed paths:
+   M /trunk/AceComm-3.0/AceComm-3.0.lua
+
+AceComm-3.0: Remove support for WoW versions without addon message prefixes (pre-4.1)
+------------------------------------------------------------------------
+r1106 | funkydude | 2014-02-19 09:05:31 +0000 (Wed, 19 Feb 2014) | 1 line
+Changed paths:
+   M /trunk/AceComm-3.0/AceComm-3.0.lua
+
+AceComm: Ambiguate addon comm
+------------------------------------------------------------------------
+r1105 | nevcairiel | 2013-12-08 22:11:58 +0000 (Sun, 08 Dec 2013) | 3 lines
+Changed paths:
+   M /trunk/AceConfig-3.0/AceConfigRegistry-3.0/AceConfigRegistry-3.0.lua
+
+AceConfigRegistry-3.0: Added an option to skip options table validation on registering
+
+This can be used to avoid the slowdown on extremely huge option tables this function involves.
+------------------------------------------------------------------------

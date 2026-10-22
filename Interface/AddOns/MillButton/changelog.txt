@@ -1,0 +1,70 @@
+29 May 2014 - Changes by flow0284:
+Split internal herb database from corecode into extra file "herb_db.lua"
+Prepared Database with herbs from latest WoD Alpha Build, there are many new Petals, Stems, Leafs and more for "old" content.
+For example: Cinderbloom Petal, Tiger Lily Petal, Gromsblood Leaf
+Updated translations and we need some translators for: French, Italian, Korean, Russian, Simplified and Traditional Chinese, Spanish and Latin American Spanish. If you are a good translator, so please visit http://wow.curseforge.com/addons/millbutton/localization/ and help us to translate these few phrases.
+increment version to v1.35
+
+11 May 2014 - Changes by flow0284:
+Fixed the latest issue that the addon stopped working when MillButtonSetup().
+Re-compact the aliok's changes in the code.
+Also tested the changes in german and english WoW client. If MillButtonSetup() was used the user gets NO information about skipped herbs and the addon mills the millable herbs in the users bags. If MillButtonSetup2() was used the user gets the informatin about skipped herbs with ItemLink in Mainchatwindow and the addon mills the millable herbs in the users bags.
+Increment version to v1.34b for Beta testing.
+If there were no errors for other users we release the version.
+Please do not hesitate to leave feedback in the comments! Or use the Ticketsystem on http://wow.curseforge.com/addons/millbutton/tickets/ 
+
+10 May 2014 - Changes by aliok:
+Fixes an issue with MillButtonSetup() which may have been introduced when MillButtonSetup2() was added for users wanting a report of any herbs skipped. Code probably isn't as compact as it could be, will look into consolidating. Please do not hesitate to leave feedback! You can leave a message on the addon's page at curse.com or contact me directly at Curse (aliok), MMO-Champion (Aliok), or Twitter (AliokWOWDB).
+increment to v1.33
+
+v1.32 - Changes by flow0284:
+In my last changes I forgot to remove some tested functions, sorry my fault.
+Now MillButton is again able to mill herbs. Huge SORRY!
+
+Removed localization for macro_spell "milling", now we use Blizzards SpellID
+
+ToDo: Restack function for herbs in our bags and maybe a sortbag function.
+
+v1.31 - Changes by flow:
+Some code cleanup and moved localizations into a subfolder called "locales".
+Added changelog file into Addonfolder.
+Added to Curseforge our localizationsstrings, there are some localizations that needs some review.
+Added support for AddonLoader Addon
+
+ToDo: Restack function for herbs in our bags and maybe a sortbag function.
+
+
+03 May 2014 - Changes by flow0284: 
+Removed translations for ItemType "Herb", "Desecrated Herb" and for each partial herb. 
+Added AceLocale-3.0 Support for better translations (if needed in future).
+Added internal table for ignored herbs that cannot be milled like Golden Lotus and partial herbs. 
+Added second table for millable herbs like Desecrated Herb. (Already prepared for WoD)
+ - Both tables now use Blizzards ItemIDs so we dont need herb translations again.
+Added information in DefaultChat for skipped herbs that cannot be milled.
+ - If you want to use it, change your macro to /run MillButtonSetup2() /click MillButton
+
+ToDo: Restack function for herbs in our bags and maybe a sortbag function.
+
+
+29 Apr 2014 - MillButton now supports the locale ruRU! Thank you Black_Mokona for providing the translation. Also, HUGE thanks to flow0284 for sharing his modifications to the addon - it now will ignore any herbs that cannot be milled, like Golden Lotus and partial herbs (ex: Torn Green Tea Leaf). As always, if you experience a problem with the addon you may comment on the Curse addon page for MillButton or send me a PM.
+
+
+28 Feb 2014 - MillButton now supports additional locales: deDE, esES/esMX, frFR, itIT, and ptBR. Thank you to flow0284 for helping make this happen! As a side note, I need French and Italian translators. Don't worry, it's only for a single line - "No more herbs in stacks of 5 or more." Any Russian speakers? flow0284 provided framework for adding ruRU but I need a Russian translator to verify that the translations are correct. Additionally, if anyone else wants a locale not listed here, please send me a PM at Curse.com. I'll do my best to add it, but I make no guarantee on fast it will happen. I hope everyone is enjoying the new year!
+
+
+14 Sep 2013 - ToC bump and inclusion of readme.txt (just so there is off-line documentation of how to use the add-on). I also want to take this opportunity to inform users that MillButton is 100% within the rules laid down by Blizzard Entertainment for add-ons. There was incident in which a former user claimed it got his account banned and, on appeal, instead suspended. This had nothing to do with the add-on and everything to do with what the user was doing. If a player sits down and continuously mills hundreds and hundreds of herbs for hour or two then that is going to trigger an automated response by Blizzard's anti-botting system regardless of the add-on being used. I am sorry that the incident occurred but I am not responsible for its occurrence. On to a lighter note: I hope everyone is enjoying Patch 5.4 - especially all the new glyphs!
+
+
+22 May 2013 - ToC bump. Everything is working (including Desecrated Herb). I hope everyone is enjoying the 5.3 patch!
+
+
+17 Apr 2013 - Fixed MillButton so that it mills Desecrated Herb. Big thank you to Puxx and Ro! (Also, I noticed that I wrote the wrong year for the previous entry in the change log, so I fixed that, too.)
+
+
+05 Mar 2013 - Everything still works, so I am bumping the TOC to 5.2. For those who may be interested, orchaceus posted a modified macro in the comments section of the addon page on Curse that allows you to turn autoloot on/off. ( http://www.curse.com/addons/wow/millbutton?comment=2 ) Also in the comments section is a Prospecting version of MillButton, if you are interested in that.
+
+
+10 Dec 2012 - Bumping the TOC since Patch 5.1.0a made the addon show as out of date.
+
+
+11 Nov 2012 - Discovered that Curseforge.com actually had accepted the addon way-back-when. So embarrassed. The only change is a bump to the TOC so that it should no longer shows as "out of date" even though it works fine. If you have recently experienced an error using MillButton, it is very likely that another addon is the actual culprit.

@@ -1,0 +1,29 @@
+﻿## Interface: 50400
+## Title: AtlasMajorCities Enhanced
+## Notes: Major Cities NPC Browser
+## Notes-deDE: Großstadt NPC Browser
+## Title-zhTW: |r|cFF0099FF[地圖]|rAtlas 主城地圖
+## Notes-zhTW: 顯示主城各 NPC 與設施位置圖 (AtlasMajorCities Enhanced)
+## Version: v1.02
+## RequiredDeps: Atlas
+## SavedVariables: AtlasMajorCities_DB, AtlasMajorCities_Continent, AtlasMajorCities_City, AtlasMajorCities_Zone, AtlasMajorCities_Shop, AtlasMajorCities_Title, AtlasMajorCities_NPC, AtlasMajorCities_Comment, AtlasMajorCities_Adds
+## X-Curse-Packaged-Version: v1.02-5.4.0
+## X-Curse-Project-Name: AtlasMajorCities Enhanced
+## X-Curse-Project-ID: atlasmajorcities-enhanced
+## X-Curse-Repository-ID: wow/atlasmajorcities-enhanced/mainline
+
+-- Localisation --
+Locale\AtlasMajorCities_enUS.lua
+Locale\AtlasMajorCities_deDE.lua
+Locale\AtlasMajorCities_esES.lua
+Locale\AtlasMajorCities_frFR.lua
+Locale\AtlasMajorCities_ruRU.lua
+Locale\AtlasMajorCities_zhCN.lua
+Locale\AtlasMajorCities_zhTW.lua
+
+-- Main Code --
+AtlasMajorCities_loc.lua
+AtlasMajorCities.lua
+AtlasMajorCities_db.lua
+AtlasMajorCities_edit.lua
+AtlasMajorCities_zones.lua

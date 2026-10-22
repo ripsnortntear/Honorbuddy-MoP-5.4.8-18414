@@ -1,0 +1,16 @@
+## Title: Babylonian |cff224477(lib)
+## Notes: Provides the facilites to support languages other than those supported by the client locale.
+##
+## Interface: 50400
+## LoadOnDemand: 0
+##
+## Version: 5.19.5445 (QuiescentQuoll)
+## Revision: $Id: Babylonian.toc 357 2013-09-10 08:25:55Z brykrys $
+## Author: Norganna's AddOns
+## X-Part-Of: Libraries
+## X-Category: Library
+## X-Max-Interface: 50400
+## X-URL: http://zip.norganna.org/libs/Babylonian/
+## X-Feedback: http://forums.norganna.org
+##
+Load.xml

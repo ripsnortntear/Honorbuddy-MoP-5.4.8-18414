@@ -1,0 +1,21 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Jewelcrafting
+## Notes: Jewelcrafting data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.1
+## X-Revision: ea4e292
+## X-Date: 2014-06-01T07:00:23Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.1
+## X-Curse-Project-Name: Ackis Recipe List: Jewelcrafting
+## X-Curse-Project-ID: arl-jewelcrafting
+## X-Curse-Repository-ID: wow/arl-jewelcrafting/mainline
+
+Core.lua
+Filters.lua
+Discoveries.lua
+MobDrops.lua
+Trainers.lua
+Vendors.lua
+Recipes.lua

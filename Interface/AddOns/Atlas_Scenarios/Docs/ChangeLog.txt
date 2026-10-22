@@ -1,0 +1,72 @@
+$Id: ChangeLog.txt 2086 2013-09-09 14:50:18Z arithmandar $
+
+Atlas, a World of Warcraft instance map browser
+Copyright 2013 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+
+==============
+= Change Log =
+==============
+
+v1.26.00 (Sep. 09, 2013)
+-----------------------
+- TOC update to support WoW 5.4
+- Translation update:
+    - esES/esMX (maqjav)
+    - ruRU (StingerSoft)
+- Fixed esES and esMX Scenario DB now to look up correct localized values
+
+v1.25.01 (May 24, 2013)
+-----------------------
+- Maps update:
+    - Dagger in the Dark: map revamp
+    - Domination Point: map revamp
+    - Lion's Landing: map revamp
+    - Assault on Zan'vess: map revamp
+- Translation update:
+    - deDE (Dynaletik)
+    - esES/esMX (maqjav)
+    - ruRU (StingerSoft)
+    
+v1.25.00 (May 21, 2013)
+-----------------------
+- TOC update to support WoW 5.3
+- Maps update:
+    - Troves of the Thunder King: 
+        - added God-Hulk Gulkan, Tenwu of the Red Smoke and Lever locations
+    - Lion's Landing
+- Maps added:
+    - Battle on the High Seas
+    - Blood in the Snow
+    - Dark Heart of Pandaria
+    - The Secrets of Ragefire
+
+v1.24.00 (Mar. 05, 2013)
+-----------------------
+- TOC update to support WoW 5.2
+- Map update:
+    - Theramore's Fall (Horde)
+- Maps added:
+    - A Little Patience
+    - Assault on Zan'vess
+    - Dagger in the Dark
+    - Domination Point
+    - Lion's Landing
+    - Troves of the Thunder King
+
+v1.23.0 (Dec. 07, 2012)
+-----------------------
+- TOC update to support WoW 5.1
+- Map update:
+    - revamp Brewing Storm map
+- Map legend update:
+    - Crypt of Forgotten Kings
+    
+v1.22.2 (Nov. 01, 2012)
+- All Maps and legend information updated
+- Maps added: 
+    - Arena of Annihilation
+    - Crypt of Forgotten Kings
+
+v1.22.1 (Oct. 10, 2012)
+-----------------------
+- Initial version as Scenarios were introduced in WoW 5.0

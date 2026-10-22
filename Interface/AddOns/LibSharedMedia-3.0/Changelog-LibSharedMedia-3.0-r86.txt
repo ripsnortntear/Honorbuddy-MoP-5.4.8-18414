@@ -1,0 +1,25 @@
+------------------------------------------------------------------------
+r86 | funkydude | 2013-12-01 13:20:36 +0000 (Sun, 01 Dec 2013) | 1 line
+Changed paths:
+   M /trunk/LibSharedMedia-3.0/LibSharedMedia-3.0.lua
+
+improve the comments
+------------------------------------------------------------------------
+r85 | funkydude | 2013-11-28 22:28:51 +0000 (Thu, 28 Nov 2013) | 1 line
+Changed paths:
+   M /trunk/LibSharedMedia-3.0/LibSharedMedia-3.0.lua
+
+It seems the Cyrillic version of frizqt doesn't support special European characters (é, ï, ö). Reverting previous change which unfortunately will bring back the "???" issue in mixed European/Russian groups.
+------------------------------------------------------------------------
+r84 | funkydude | 2013-11-28 14:24:51 +0000 (Thu, 28 Nov 2013) | 1 line
+Changed paths:
+   M /trunk/lib.xml
+
+poke to wake Curse Client.
+------------------------------------------------------------------------
+r83 | funkydude | 2013-11-28 02:34:51 +0000 (Thu, 28 Nov 2013) | 1 line
+Changed paths:
+   M /trunk/LibSharedMedia-3.0/LibSharedMedia-3.0.lua
+
+Swap to using FRIZQT___CYR.TTF by default on western clients. The font is available for use, and since we already use the Cyrillic versions of other fonts by default, we should do so with Friz too. This will fix countless addons displaying "????" when in a mixed European/Russian group.
+------------------------------------------------------------------------

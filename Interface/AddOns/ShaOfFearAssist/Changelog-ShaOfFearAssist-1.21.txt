@@ -1,0 +1,86 @@
+------------------------------------------------------------------------
+r16 | maat | 2013-01-11 15:56:36 +0000 (Fri, 11 Jan 2013) | 1 line
+Changed paths:
+   A /tags/1.21 (from /trunk:15)
+
+Tagging as 1.21
+------------------------------------------------------------------------
+r15 | maat | 2013-01-11 15:56:17 +0000 (Fri, 11 Jan 2013) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/ShaOfFearAssist.lua
+   M /trunk/ShaOfFearAssist.toc
+
+fix missing lib
+------------------------------------------------------------------------
+r13 | Maat | 2012-12-19 23:26:42 +0000 (Wed, 19 Dec 2012) | 1 line
+Changed paths:
+   M /trunk/ShaOfFearAssist.lua
+
+set offset level for the myblip texture so it is always above everything
+------------------------------------------------------------------------
+r12 | Maat | 2012-12-18 14:55:20 +0000 (Tue, 18 Dec 2012) | 1 line
+Changed paths:
+   A /trunk/Locales/deDE.lua
+   A /trunk/Locales/esES.lua
+   A /trunk/Locales/esMX.lua
+   A /trunk/Locales/frFR.lua
+   A /trunk/Locales/itIT.lua
+   A /trunk/Locales/koKR.lua
+   A /trunk/Locales/ptBR.lua
+   A /trunk/Locales/ruRU.lua
+   A /trunk/Locales/zhCN.lua
+   A /trunk/Locales/zhTW.lua
+   M /trunk/ShaOfFearAssist.toc
+
+add localization files
+------------------------------------------------------------------------
+r11 | Maat | 2012-12-18 14:38:24 +0000 (Tue, 18 Dec 2012) | 1 line
+Changed paths:
+   M /trunk/ShaOfFearAssist.lua
+
+fix the coloring order
+------------------------------------------------------------------------
+r10 | gabestah | 2012-12-18 02:15:39 +0000 (Tue, 18 Dec 2012) | 2 lines
+Changed paths:
+   M /trunk/Locales/enUS.lua
+   M /trunk/ShaOfFearAssist.lua
+
+ADDED: Pattern > Globe Pickup - Default: Encourages a rotational safety pattern to maximize allowable movement to safely pickup Sha Globes while always maintaining at least a 2 second margin of error for any future Dread Spray appearing in a currently safe-marked pie.
+ADDED: Pattern > Globe Pickup - Front & Globe Pickup - Back: Identical to the above for Kun and Kang platforms, but splits the Guoshi safety pattern from Globe Pickup - Default into two unique quadrants, one starting at the front of the room and one starting at the back, respectively.  This may prove useful since a single player using Globe Pickup - Default will be required to travel back and forth across the center point where the Crossbowman is standing, as the normal rotation of one side will not complete a full circle during the Dread Spray duration.  Conversely, two unique players, each using one of Globe Pickup - Front and Globe Pickup - Back respectively, will have full platform coverage during the Dread Spray duration.
+------------------------------------------------------------------------
+r9 | gabestah | 2012-12-17 08:20:05 +0000 (Mon, 17 Dec 2012) | 3 lines
+Changed paths:
+   M /trunk/Locales/enUS.lua
+   M /trunk/ShaOfFearAssist.lua
+
+ADDED: Config > Pattern option to allow for a selectable variety of patterns for the player to follow outside of the default pattern provided.
+ADDED: Pattern - Minimal Movement: Tries to eliminate all extraneous movement for a player by moving as early as possible from the initial safety zone and only moving to a nearby pie section (one left or one right), and therefore purposely allowing a maximum of one Dread Spray hit in the process.
+UPDATED: setPieColor() now accepts multiple pies (as a table value) as well as a single pie index, to allow patterns to highlight multiple safety pies if needed. Only implemented in Test > Pattern - Minimal Movement at the moment but planned for use in a future orb collection pattern.
+------------------------------------------------------------------------
+r8 | Maat | 2012-12-16 14:08:11 +0000 (Sun, 16 Dec 2012) | 1 line
+Changed paths:
+   M /trunk/ShaOfFearAssist.lua
+
+use OVERLAY as layer for some of the textures to hopefully prevent some weird alpha behavior
+------------------------------------------------------------------------
+r7 | Maat | 2012-12-15 18:25:15 +0000 (Sat, 15 Dec 2012) | 3 lines
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/Locales/enUS.lua
+   M /trunk/ShaOfFearAssist.lua
+   M /trunk/ShaOfFearAssist.toc
+   M /trunk/Textures/1.tga
+   M /trunk/Textures/2.tga
+   M /trunk/Textures/3.tga
+   M /trunk/Textures/4.tga
+   M /trunk/Textures/5.tga
+   M /trunk/Textures/6.tga
+   M /trunk/Textures/7.tga
+   M /trunk/Textures/8.tga
+   M /trunk/Textures/alert_circle.tga
+
+add options menu
+add full coloring option and customization
+try and fix some issues related to the texture alpha being random (not quite fixed)
+------------------------------------------------------------------------

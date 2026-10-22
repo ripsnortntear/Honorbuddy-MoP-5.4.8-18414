@@ -1,0 +1,16 @@
+
+Copyright (c) 2009 - 2012 Ackis <John Pasula>
+
+All Rights Reserved unless otherwise explicitly stated.
+
+This means you cannot host, modify/update/change, or do anything with
+this addon without the explicit permission of Ackis with the exception
+of use with the current official version of World of Warcraft.
+
+The libraries in use with this addon follow their own licenses which
+also must be followed.
+
+The localizations used within this addon are free for use.
+
+If Ackis is otherwise unreachable, all rights pass to Torhal <James D.
+Callahan III>.

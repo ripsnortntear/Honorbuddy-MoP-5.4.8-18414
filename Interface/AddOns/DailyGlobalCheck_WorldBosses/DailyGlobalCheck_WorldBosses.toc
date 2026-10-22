@@ -1,0 +1,9 @@
+## Interface: 50400
+## Title: DGC - World Bosses
+## Author: Fluffies  EU-Well of Eternity
+## Notes: A |cff00FF00Daily Global Check|r plugin that tracks the weekly world boss kills for your current character
+## eMail: n_rhygar@yahoo.it
+## Dependencies: DailyGlobalCheck
+## DefaultState: Enabled
+## LoadOnDemand: 0
+DailyGlobalCheck_WorldBosses.lua

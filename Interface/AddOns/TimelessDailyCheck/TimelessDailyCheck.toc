@@ -1,0 +1,9 @@
+## Interface: 50400
+## Title: DGC - Timeless Isle
+## Author: Fluffies  EU-Well of Eternity
+## Notes: A |cff00FF00Daily Global Check|r plugin that tracks your character's weekly business in the Timeless Isle
+## eMail: n_rhygar@yahoo.it
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: DGC_TDCLocalizedStrings
+TimelessDailyCheck.lua

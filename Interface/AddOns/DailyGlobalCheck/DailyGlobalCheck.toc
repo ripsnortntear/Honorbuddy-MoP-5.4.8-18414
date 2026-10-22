@@ -1,0 +1,16 @@
+## Interface: 50400
+## Title: DGC - Daily Global Check 
+## Author: Fluffies
+## Notes: Tracks the completion of daily quests of choice
+## eMail: n_rhygar@yahoo.it
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: DailyGlobalCheck_Options,DGC_CustomLists
+lib\LibStub.lua
+lib\CallbackHandler-1.0.lua
+lib\LibDataBroker-1.1.lua
+lib\LibDBIcon-1.0.lua
+localization.lua
+constructors.lua
+plugins.lua
+DailyGlobalCheck.lua

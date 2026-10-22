@@ -1,0 +1,159 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Button name="QuestLogObjectiveItemTemplate" inherits="QuestItemTemplate" virtual="true">
+		<Scripts>
+			<OnEnter>
+				if (( self:GetAlpha() > 0 ) and self.link) then
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+					GameTooltip:SetHyperlink(self.link);
+					GameTooltip_ShowCompareItem();
+				end
+				CursorUpdate();
+			</OnEnter>
+			<OnUpdate>
+				if (( self:GetAlpha() > 0 ) and self.link) then
+					if (self.timerEnabled) then
+						local name, link, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, texture = GetItemInfo(self.link);
+						if (texture) then
+							self.timerEnabled = nil;
+							SetItemButtonTexture(self, texture);
+							_G[self:GetName().."Name"]:SetText(name);
+							self:Show();
+						end
+					end
+				end
+			</OnUpdate>
+		</Scripts>
+	</Button>
+
+	<Button name="QuestGuru_ColorPickerButtonTemplate" virtual="true">
+		<Size x="16" y="16"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentSwatch">
+					<Size x="12" y="12"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="1.0" a="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				if ( self.tooltipText ) then
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+					GameTooltip:SetText(self.tooltipText, nil, nil, nil, nil, 1);
+				end
+				if ( self.tooltipRequirement ) then
+					GameTooltip:AddLine(self.tooltipRequirement, "", 1.0, 1.0, 1.0);
+					GameTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave function="GameTooltip_Hide" />
+		</Scripts>
+	</Button>
+
+	<Button name="QuestGuru_QuestLogStartFinishTemplate" virtual="true">
+		<Size x="285" y="14"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentLabel" inherits="QuestFont" justifyH="LEFT">
+					<Size x="0" y="0"/>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentPos" inherits="QuestFontNormalSmall" justifyH="LEFT">
+					<Size x="0" y="0"/>
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLeave>
+				QuestGuru_QuestStartInfoFrame:Hide();
+			</OnLeave>
+		</Scripts>
+		<ButtonText name="$parentNPCName" nonspacewrap="true">
+			<Size x="0" y="10"/>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parentLabel" relativePoint="RIGHT">
+					<Offset x="2" y="0"/>
+				</Anchor>
+			</Anchors> 
+		</ButtonText>
+		<NormalFont style="QuestFontLeft" />
+		<HighlightFont style="QuestFontLeft" />
+		<DisabledFont style="QuestFontLeft" />
+	</Button>
+	
+	<CheckButton name="QuestGuru_InterfaceOptionsBaseCheckButtonTemplate" virtual="true">
+		<Size x="26" y="26"/>
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnShow>
+				self:SetHitRectInsets(0, -_G[self:GetName().."Text"]:GetWidth(), 0, 0);
+			</OnShow>
+			<OnMouseUp>
+				if ( self:GetChecked() ) then
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				else
+					PlaySound("igMainMenuOptionCheckBoxOff");
+				end
+			</OnMouseUp>
+			<OnEnter>
+				if ( self.tooltipText ) then
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+					GameTooltip:SetText(self.tooltipText, nil, nil, nil, nil, 1);
+				end
+				if ( self.tooltipRequirement ) then
+					GameTooltip:AddLine(self.tooltipRequirement, "", 1.0, 1.0, 1.0);
+					GameTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave function="GameTooltip_Hide" />
+		</Scripts>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+	 	<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>		
+	</CheckButton>
+	<CheckButton name="QuestGuru_InterfaceOptionsCheckButtonTemplate" virtual="true" inherits="QuestGuru_InterfaceOptionsBaseCheckButtonTemplate">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset x="0" y="1" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+	<CheckButton name="QuestGuru_InterfaceOptionsSmallCheckButtonTemplate" virtual="true" inherits="QuestGuru_InterfaceOptionsBaseCheckButtonTemplate">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset x="0" y="1" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+</Ui>

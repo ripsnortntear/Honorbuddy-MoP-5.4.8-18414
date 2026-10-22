@@ -1,0 +1,22 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Engineering
+## Notes: Engineering data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.2
+## X-Revision: 60c9f0c
+## X-Date: 2014-06-01T04:09:53Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.2
+## X-Curse-Project-Name: Ackis Recipe List: Engineering
+## X-Curse-Project-ID: arl-engineering
+## X-Curse-Repository-ID: wow/arl-engineering/mainline
+
+Core.lua
+Filters.lua
+Discoveries.lua
+MobDrops.lua
+Quests.lua
+Trainers.lua
+Vendors.lua
+Recipes.lua

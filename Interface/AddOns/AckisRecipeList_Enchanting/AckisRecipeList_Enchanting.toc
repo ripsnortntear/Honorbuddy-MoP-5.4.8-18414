@@ -1,0 +1,20 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Enchanting
+## Notes: Enchanting data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.4
+## X-Revision: 8ffb531
+## X-Date: 2014-06-01T02:56:03Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.4
+## X-Curse-Project-Name: Ackis Recipe List: Enchanting
+## X-Curse-Project-ID: arl-enchanting
+## X-Curse-Repository-ID: wow/arl-enchanting/mainline
+
+Core.lua
+Filters.lua
+MobDrops.lua
+Trainers.lua
+Vendors.lua
+Recipes.lua

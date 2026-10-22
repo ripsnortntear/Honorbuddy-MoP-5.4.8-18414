@@ -1,0 +1,9 @@
+## Interface: 50400
+## Title: DGC - Isle of Thunder
+## Author: Fluffies  EU-Well of Eternity
+## Notes: A |cff00FF00Daily Global Check|r plugin that tracks the daily/weekly Isle of Thunder business for your characters
+## eMail: n_rhygar@yahoo.it
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: DGC_IoTLocalizedStrings
+IoTWeeklyCheck.lua

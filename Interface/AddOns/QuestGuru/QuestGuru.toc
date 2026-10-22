@@ -1,0 +1,19 @@
+## Interface: 50400
+## Title: QuestGuru
+## Notes: Quest Log Enhancement
+## Author: MrOBrian/Gregity
+## Version: 2.2.18-50400
+## SavedVariables: QuestGuru_Items, QuestGuru_Settings
+## SavedVariablesPerCharacter: 
+ChatThrottleLib.lua
+localization.lua
+localization.DE.lua
+localization.FR.lua
+localization.RU.lua
+localization.TW.lua
+localization.CN.lua
+QuestGuruComm.lua
+QuestGuru_Templates.xml
+QuestGuru.xml
+QuestGuruOptions.lua
+QuestGuruAnnounce.lua

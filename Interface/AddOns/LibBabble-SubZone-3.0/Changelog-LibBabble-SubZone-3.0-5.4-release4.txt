@@ -1,0 +1,42 @@
+------------------------------------------------------------------------
+r167 | arith | 2014-10-14 14:31:23 +0000 (Tue, 14 Oct 2014) | 1 line
+Changed paths:
+   A /tags/5.4-release4 (from /trunk:166)
+
+Tagging as 5.4-release4
+------------------------------------------------------------------------
+r166 | arith | 2014-10-14 14:30:19 +0000 (Tue, 14 Oct 2014) | 1 line
+Changed paths:
+   M /trunk/LibBabble-SubZone-3.0.lua
+   A /trunk/LibBabble-SubZone-3.0_deDE.lua
+   A /trunk/LibBabble-SubZone-3.0_esES.lua
+   A /trunk/LibBabble-SubZone-3.0_esMX.lua
+   A /trunk/LibBabble-SubZone-3.0_frFR.lua
+   A /trunk/LibBabble-SubZone-3.0_itIT.lua
+   A /trunk/LibBabble-SubZone-3.0_koKR.lua
+   A /trunk/LibBabble-SubZone-3.0_ptBR.lua
+   A /trunk/LibBabble-SubZone-3.0_ruRU.lua
+   A /trunk/LibBabble-SubZone-3.0_zhCN.lua
+   A /trunk/LibBabble-SubZone-3.0_zhTW.lua
+   M /trunk/lib.xml
+
+split subzones table into languages
+------------------------------------------------------------------------
+r164 | arith | 2014-10-13 18:54:49 +0000 (Mon, 13 Oct 2014) | 1 line
+Changed paths:
+   M /trunk/LibBabble-SubZone-3.0.lua
+
+temporary remove itIT and several entries to resolve the file too long issue. will need to find other solution to resolve it.
+------------------------------------------------------------------------
+r162 | arith | 2014-10-13 16:21:49 +0000 (Mon, 13 Oct 2014) | 1 line
+Changed paths:
+   M /trunk/LibBabble-SubZone-3.0.lua
+
+added zone names for WoW 6.0.2.19005
+------------------------------------------------------------------------
+r161 | arith | 2014-10-07 14:07:15 +0000 (Tue, 07 Oct 2014) | 1 line
+Changed paths:
+   M /trunk/LibBabble-SubZone-3.0.lua
+
+added new zone name from WoW 6.0.2.18988
+------------------------------------------------------------------------

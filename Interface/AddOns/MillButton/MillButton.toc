@@ -1,0 +1,30 @@
+## Interface: 50400
+## Version: 1.35
+## Title: MillButton
+## Description: Addon for easy milling
+## Notes: Addon for easy milling
+## Notes-ptBR: Addon para moer facilmente
+## Authors: Aliok, flow0284
+## X-Credits: Ro, flow0284, Black_Mokona
+## OptionalDeps: Ace3
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
+
+#@no-lib-strip@
+lib\LibStub\LibStub.lua
+#@end-no-lib-strip@
+
+#@no-lib-strip@
+lib\AceLocale-3.0\AceLocale-3.0.xml
+#@end-no-lib-strip@
+
+locales\locale.enUS.lua
+locales\locale.deDE.lua
+locales\locale.esES.lua
+locales\locale.frFR.lua
+locales\locale.itIT.lua
+locales\locale.ptBR.lua
+locales\locale.ruRU.lua
+
+herb_db.lua
+MillButton.lua

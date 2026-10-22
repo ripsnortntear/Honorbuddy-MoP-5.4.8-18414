@@ -1,0 +1,27 @@
+﻿## Interface: 50400
+## Title: RatingBuster
+## Notes: Item stat breakdown, analysis and comparison
+## Notes-zhTW: 裝備數值解析與比較
+## Author: Whitetooth
+## Version: r398
+## X-eMail: hotdogee [at] gmail [dot] com
+## SavedVariables: RatingBusterDB
+## OptionalDeps: WoWUnit, Ace3, LibTipHooker-1.1, LibStatLogic-1.2, LibBabble-Inventory-3.0, LibDualSpec-1.0, TankPoints, UTF8
+## X-Embeds: Ace3, LibTipHooker-1.1, LibStatLogic-1.2, LibBabble-Inventory-3.0, LibDualSpec-1.0, UTF8
+## X-Category: Interface Enhancements
+## X-RelSite-WoWI: 5819
+## X-RelSite-Curse: 4991
+## X-License: GPL v2
+## X-Encoding: UTF-8
+## X-Curse-Packaged-Version: r398
+## X-Curse-Project-Name: RatingBuster
+## X-Curse-Project-ID: rating-buster
+## X-Curse-Repository-ID: wow/rating-buster/mainline
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+locales\locales.xml
+
+RatingBuster.lua

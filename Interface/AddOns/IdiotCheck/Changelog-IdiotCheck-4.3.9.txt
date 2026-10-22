@@ -1,0 +1,21 @@
+------------------------------------------------------------------------
+r259 | oscarucb | 2014-01-25 09:16:32 +0000 (Sat, 25 Jan 2014) | 1 line
+Changed paths:
+   A /tags/4.3.9 (from /trunk:258)
+
+Tagging as 4.3.9
+------------------------------------------------------------------------
+r258 | oscarucb | 2014-01-25 09:15:13 +0000 (Sat, 25 Jan 2014) | 2 lines
+Changed paths:
+   M /trunk/core.lua
+
+fix ilvl calculation to accomodate garrosh heirlooms
+
+------------------------------------------------------------------------
+r256 | oscarucb | 2013-12-24 04:50:23 +0000 (Tue, 24 Dec 2013) | 2 lines
+Changed paths:
+   M /trunk/core.lua
+
+fix false negative hit overages caused by Wisdom of Yu'lon buff from Time-Lost Shrine
+
+------------------------------------------------------------------------

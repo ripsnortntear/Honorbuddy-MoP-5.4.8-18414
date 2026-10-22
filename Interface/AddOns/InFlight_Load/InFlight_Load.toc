@@ -1,0 +1,16 @@
+## Interface: 50400
+## Title: InFlight_Load
+## Notes: Loader for InFlight and/or shows flightmaster locations for Cartographer_Notes and HandyNotes
+## Notes-zhTW: InFlight 的載入器，自動載入預設的 Cartographer 飛行管理員圖示。
+## Notes-zhCN: 显示各地飞行点
+## Author: TotalPackage
+## Version: 5.4.001
+
+## SavedVariablesPerCharacter: InFlightCartoDB
+## OptionalDeps: Cartographer, Cartographer_Notes, HandyNotes, LibBabble-Zone-3.0
+## X-Category: Interface Enhancements
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
+
+InFlight_Load.lua

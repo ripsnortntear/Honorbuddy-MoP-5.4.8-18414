@@ -1,0 +1,42 @@
+------------------------------------------------------------------------
+r7 | vladinator | 2014-03-02 13:38:17 +0000 (Sun, 02 Mar 2014) | 1 line
+Changed paths:
+   A /tags/1.0.2 release (from /trunk:6)
+
+Tagging as v1.0.2 release
+------------------------------------------------------------------------
+r6 | vladinator | 2014-03-02 13:38:00 +0000 (Sun, 02 Mar 2014) | 3 lines
+Changed paths:
+   M /trunk/TaxiTimer.toc
+   M /trunk/core.lua
+   M /trunk/locale.lua
+
++ Added more locale options for future localization.
++ Other various tweaks.
+
+------------------------------------------------------------------------
+r4 | vladinator | 2014-03-01 17:24:58 +0000 (Sat, 01 Mar 2014) | 1 line
+Changed paths:
+   M /trunk/TaxiTimer.toc
+   M /trunk/core.lua
+
++ Fixed a "typo"
+------------------------------------------------------------------------
+r2 | vladinator | 2014-03-01 17:20:12 +0000 (Sat, 01 Mar 2014) | 2 lines
+Changed paths:
+   A /trunk/TaxiTimer.toc
+   A /trunk/core.lua
+   A /trunk/db.lua
+   A /trunk/locale.lua
+
++ Initial commit.
+
+------------------------------------------------------------------------
+r1 | svn | 2014-03-01 17:15:01 +0000 (Sat, 01 Mar 2014) | 1 line
+Changed paths:
+   A /branches
+   A /tags
+   A /trunk
+
+taxitimer/mainline: Initial Import
+------------------------------------------------------------------------

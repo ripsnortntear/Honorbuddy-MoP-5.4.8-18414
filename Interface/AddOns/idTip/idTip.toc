@@ -1,0 +1,6 @@
+## Interface: 50400
+## Title: idTip RecallWoW
+## Version: 5.4.8
+## Notes: Añade Spell IDs (IDs de hechizos), Item IDs (IDs de objetos) y NPC IDs a las diferentes ventanas de información del juego.
+## Author: Silverwind. Readaptado para Firestorm por LegnaX.
+core.lua

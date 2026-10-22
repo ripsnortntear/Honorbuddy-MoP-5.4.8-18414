@@ -1,0 +1,12 @@
+tag 5.4.8.3
+26b19751e9b1bddacde06264ab925b1713455d59
+Ressy <resa1983@hotmail.com>
+2014-07-10 19:00:56 -0400
+
+3rd release for 5.4.8
+
+
+--------------------
+
+Ressy:
+	- To override skill levels for auto learn recipes

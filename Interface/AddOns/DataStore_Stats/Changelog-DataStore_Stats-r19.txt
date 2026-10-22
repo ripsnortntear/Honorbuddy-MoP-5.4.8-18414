@@ -1,0 +1,19 @@
+------------------------------------------------------------------------
+r19 | thaoky | 2013-09-11 15:29:57 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Stats.toc
+
+5.4.001 Commit
+------------------------------------------------------------------------
+r18 | kemayo | 2013-09-11 04:49:38 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Stats.lua
+
+Stop erroring about GetArenaTeam
+------------------------------------------------------------------------
+r17 | thaoky | 2013-05-28 17:15:24 +0000 (Tue, 28 May 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Stats.toc
+
+TOC Update
+------------------------------------------------------------------------

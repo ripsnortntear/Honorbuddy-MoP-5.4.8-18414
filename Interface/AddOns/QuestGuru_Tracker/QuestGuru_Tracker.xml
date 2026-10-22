@@ -1,0 +1,20 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="QuestGuru_Tracker.lua" />
+	<Script file="QGT_Quests.lua" />
+	<Script file="QGT_Achievements.lua" />
+	<Frame name="QGT_QuestWatchTitleMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnLoad>
+				UIDropDownMenu_Initialize(self, QGT_QuestWatchTitleMenu_OnLoad, "MENU");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="QGT_QuestsTitleMenu" inherits="UIDropDownMenuTemplate" id="1">
+		<Scripts>
+			<OnLoad>
+				UIDropDownMenu_Initialize(self, QGT_QuestsTitleMenu_OnLoad, "MENU");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

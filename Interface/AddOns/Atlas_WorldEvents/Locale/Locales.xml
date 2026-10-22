@@ -1,0 +1,11 @@
+<!-- $Id: Locales.xml 64 2013-09-10 13:36:41Z arith $ -->
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="Atlas_WorldEvents-enUS.lua"/>
+	<Script file="Atlas_WorldEvents-deDE.lua"/>
+<!--	<Script file="Atlas_WorldEvents-esES.lua"/>  -->
+<!--	<Script file="Atlas_WorldEvents-frFR.lua"/>  -->
+<!--	<Script file="Atlas_WorldEvents-koKR.lua"/>  -->
+	<Script file="Atlas_WorldEvents-zhCN.lua"/>
+	<Script file="Atlas_WorldEvents-zhTW.lua"/>
+	<Script file="Atlas_WorldEvents-ruRU.lua"/> 
+</Ui>

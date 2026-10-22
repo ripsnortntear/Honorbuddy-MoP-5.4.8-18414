@@ -1,0 +1,2 @@
+Hendrik Leppkes:
+	- Remove 5.4 taint protection hack, which was fixed in 5.4.2

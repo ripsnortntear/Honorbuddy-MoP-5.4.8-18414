@@ -1,0 +1,15 @@
+tag 5.4.8.1
+6c181a146c36217038a0f766c9c5a73136d5f367
+James D. Callahan III <jcallahan@curse.com>
+2014-06-03 21:45:35 -0500
+
+
+
+--------------------
+
+James D. Callahan III:
+	- Removed embeds.xml from ToC.
+	- Nuked libs; ARL will already have these loaded.
+	- Added quests. Well, a quest.
+	- Added Alchemy-only Discoveries, Mob Drops, and Vendors.
+	- Initial commit.

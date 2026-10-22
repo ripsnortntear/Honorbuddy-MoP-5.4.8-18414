@@ -1,0 +1,11 @@
+tag 5.4.0.-1.0.8
+e5c3f43396bc3a17fd26a4fc6f4427987f6a1dcb
+James D. Callahan III <jcallahan@curse.com>
+2013-09-24 19:42:37 -0500
+
+
+
+--------------------
+
+James D. Callahan III:
+	- Update ToC interface version to 50400.

@@ -1,0 +1,65 @@
+------------------------------------------------------------------------
+r113 | zensunim | 2014-09-30 07:12:03 +0000 (Tue, 30 Sep 2014) | 6 lines
+Changed paths:
+   A /tags/4.34.1 (from /trunk:112)
+
+4.34.1
+* Added Traditional Chinese localization - Thanks BNSSNB
+* Added Pandaria spells for Siege of Orgrimmar (Heroic)
+* Added WoD spells for Highmaul
+* Added WoD spells for Blackrock Foundry
+* Added WoD spells for Iron Docks
+------------------------------------------------------------------------
+r112 | zensunim | 2014-09-30 07:10:47 +0000 (Tue, 30 Sep 2014) | 1 line
+Changed paths:
+   M /trunk/GTFO.lua
+   M /trunk/GTFO_FF_WOD.lua
+   M /trunk/GTFO_Fail_WOD.lua
+   M /trunk/GTFO_Spells_Generic.lua
+   M /trunk/GTFO_Spells_MP.lua
+   M /trunk/GTFO_Spells_WOD.lua
+
+Preparing for 4.34.1 release
+------------------------------------------------------------------------
+r111 | zensunim | 2014-09-28 17:27:32 +0000 (Sun, 28 Sep 2014) | 1 line
+Changed paths:
+   M /trunk/GTFO_Fail_WOD.lua
+
+Fixed LUA error
+------------------------------------------------------------------------
+r110 | zensunim | 2014-09-28 17:19:02 +0000 (Sun, 28 Sep 2014) | 1 line
+Changed paths:
+   M /trunk/GTFO_FF_WOD.lua
+   M /trunk/GTFO_Fail_WOD.lua
+   M /trunk/GTFO_Spells_WOD.lua
+
+Added additional Blackrock Foundry and Highmaul alerts
+------------------------------------------------------------------------
+r109 | zensunim | 2014-09-13 08:54:12 +0000 (Sat, 13 Sep 2014) | 1 line
+Changed paths:
+   M /trunk/GTFO.lua
+   M /trunk/GTFO_Fail_MP.lua
+   M /trunk/GTFO_Fail_WOD.lua
+   M /trunk/GTFO_Ignore.lua
+   M /trunk/GTFO_Spells_MP.lua
+   M /trunk/GTFO_Spells_WOD.lua
+
+Slagworks LFR & Some SoO
+------------------------------------------------------------------------
+r108 | zensunim | 2014-09-02 15:57:11 +0000 (Tue, 02 Sep 2014) | 1 line
+Changed paths:
+   M /trunk/GTFO.lua
+   M /trunk/GTFO_Fail_WOD.lua
+   M /trunk/GTFO_Ignore.lua
+   M /trunk/GTFO_Spells_WOD.lua
+
+Added WoD spells for Highmaul
+------------------------------------------------------------------------
+r107 | zensunim | 2014-08-28 14:44:06 +0000 (Thu, 28 Aug 2014) | 1 line
+Changed paths:
+   M /trunk/GTFO.lua
+   M /trunk/GTFO.toc
+   M /trunk/Localization/zhTW.lua
+
+Added Traditional Chinese localization - Thanks BNSSNB
+------------------------------------------------------------------------

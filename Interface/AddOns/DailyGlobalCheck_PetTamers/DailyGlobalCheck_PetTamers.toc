@@ -1,0 +1,10 @@
+## Interface: 50400
+## Title: DGC - Pet Tamers
+## Author: Fluffies  EU-Well of Eternity
+## Notes: A |cff00FF00Daily Global Check|r plugin that tracks your daily pet tamers business
+## eMail: n_rhygar@yahoo.it
+## Dependencies: DailyGlobalCheck
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: DGC_PTLocalizedStrings
+DailyGlobalCheck_PetTamers.lua

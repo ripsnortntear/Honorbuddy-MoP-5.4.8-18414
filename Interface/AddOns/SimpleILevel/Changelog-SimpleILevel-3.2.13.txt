@@ -1,0 +1,62 @@
+------------------------------------------------------------------------
+r213 | scotepi | 2014-06-12 16:56:28 +0000 (Thu, 12 Jun 2014) | 1 line
+Changed paths:
+   A /tags/3.2.13 (from /trunk:212)
+
+Tagging as 3.2.13
+------------------------------------------------------------------------
+r210 | scotepi | 2014-06-07 00:23:08 +0000 (Sat, 07 Jun 2014) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/Libs
+   M /trunk/SimpleILevel.lua
+   M /trunk/embeds.xml
+   M /trunk/settings.lua
+
+Added LibItemUpgradeInfo for item upgrades
+------------------------------------------------------------------------
+r208 | scotepi | 2014-06-06 01:26:42 +0000 (Fri, 06 Jun 2014) | 1 line
+Changed paths:
+   M /trunk/settings.lua
+
+Added /sil leveladj [item link] to get the adjustment id
+------------------------------------------------------------------------
+r207 | scotepi | 2014-06-06 01:23:36 +0000 (Fri, 06 Jun 2014) | 1 line
+Changed paths:
+   M /trunk/SimpleILevel_Resilience/SimpleILevel_Resilience.lua
+
+Added support for lower level items that still have ITEM_MOD_RESILIENCE_RATING_SHORT
+------------------------------------------------------------------------
+r206 | scotepi | 2014-06-06 01:14:36 +0000 (Fri, 06 Jun 2014) | 1 line
+Changed paths:
+   M /trunk/SimpleILevel_Resilience/SimpleILevel_Resilience.lua
+   M /trunk/SimpleILevel_Resilience/SimpleILevel_Resilience.toc
+
+SIL_Resilience is back!
+------------------------------------------------------------------------
+r204 | scotepi | 2014-05-28 01:20:58 +0000 (Wed, 28 May 2014) | 2 lines
+Changed paths:
+   M /trunk/SimpleILevel.lua
+   M /trunk/SimpleILevel.toc
+   M /trunk/SimpleILevel_Group/SimpleILevel_Group.toc
+   M /trunk/SimpleILevel_Resilience/SimpleILevel_Resilience.toc
+   M /trunk/SimpleILevel_Social/SimpleILevel_Social.toc
+
+Updated toc localizations for the addon menus
+Slimed down the localization notice to the ones that are still in need of help
+------------------------------------------------------------------------
+r203 | scotepi | 2014-05-28 00:58:52 +0000 (Wed, 28 May 2014) | 1 line
+Changed paths:
+   A /trunk/Locals/esES.lua
+   A /trunk/Locals/esMX.lua
+   A /trunk/Locals/inIT.lua
+   M /trunk/SimpleILevel.xml
+
+Added missing locals
+------------------------------------------------------------------------
+r201 | scotepi | 2014-05-27 02:13:36 +0000 (Tue, 27 May 2014) | 1 line
+Changed paths:
+   M /trunk/SimpleILevel.lua
+
+Updated item upgrades for 5.4.8
+------------------------------------------------------------------------

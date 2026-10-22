@@ -1,0 +1,93 @@
+Atlas World Events, a World of Warcraft world events map browser plug-in for Atlas
+Copyright 2011 ~ 2013 - Arith Hsu
+
+==============
+= Change Log =
+==============
+* 3.07 (2014/07/06)
+	- Minor updates with zhTW and deDE translation
+	- Harvest Festival date update
+
+* 3.06 (2013/12/20)
+    - Added Feast of Winter Veil map
+
+* 3.05 (2013/09/10)
+    - TOC update to support WoW 5.4
+    - Added Harvest Festival map.
+
+* 3.04 (2013/07/01)
+    - Added MidSummer Pandaria map.
+
+* 3.03 (2013/05/24)
+    - Update the coming holidays' dates until Feb. 2014.
+
+* 3.02 (2013/05/21)
+    - TOC update to support WoW 5.3
+    - Remove BabbleFaction Library
+
+* 3.01 (2013/03/05)
+    - TOC update to support WoW 5.2
+
+* 3.00 (2013/02/18)
+    - Update version number to prevent from blocking by Atlas
+
+* 2.10 (2013/02/17)
+    - Added "Love is in the Air" event
+    - Update Lunar Festival duration info
+    - Update Brewfest duration info
+    - Minor tuining for string IDs
+
+* 2.9 (2012/12/08)
+    - TOC update to support WoW 5.1
+
+* 2.8 (2012/10/04)
+    - Added Brewfest maps
+    - Translation Update
+	- Simplified Chinese (ananhaid) 
+	- Traditional Chinese (ananhaid) 
+	
+* 2.7 (2012/09/26)
+    - TOC update to support WoW 5.0
+    - Translation Added
+        - German (heinzschen)
+    - Translation Update
+	- Simplified Chinese (ananhaid) 
+	- Traditional Chinese (ananhaid) 
+    
+* 2.6 (2011/12/08)
+    - Added Darkmoon Faire
+
+* 2.5 (2011/12/05)
+    - TOC update to support WoW 4.3
+    - Translation Update
+        - Added Simplified Chinese (dh0000)
+	- Traditional Chinese typo fixed
+
+* 2.4 (2011/10/16)
+    - Added Hallow's End questline info
+    - Added Russian translation (partial)
+    
+* 2.3 (2011/06/27)
+    - TOC update to support WoW 4.2
+    
+* 2.2 (2011/06/23)
+    - Update Mid-Summer Festival maps for year 2011
+
+* 2.1 (2011/04/28)
+    - TOC update to support WoW 4.1
+
+* 2.0 (2011/02/13)
+    - Added MidSummer Fire Festival maps
+    - Lunar Festival maps' info minor changes: 
+        - Time inverval info
+	- Marks color changed
+	
+* 1.0 (2011/01/26)
+    - Added Lunar_Northrend map
+
+* 0.2 (2011/01/25)
+    - Added Lunar_Kalimdor map
+
+* 0.1 (2011/01/24)
+    - Addon initiated
+    - Added Lunar_Azeroth map

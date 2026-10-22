@@ -1,0 +1,12 @@
+tag 5.4.8.2
+a30768b8ed36d3dd3849b32fdcae7b36014d9f63
+Ressy <resa1983@hotmail.com>
+2014-07-13 12:19:30 -0400
+
+2nd update for 5.4.8
+
+
+--------------------
+
+Ressy:
+	- Fix Glyph of Eternal Earth drop, per Lufunpsy in Comments

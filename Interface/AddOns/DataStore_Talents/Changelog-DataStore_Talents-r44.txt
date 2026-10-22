@@ -1,0 +1,14 @@
+------------------------------------------------------------------------
+r44 | thaoky | 2013-09-11 15:30:06 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore_Talents.toc
+
+5.4.001 Commit
+------------------------------------------------------------------------
+r43 | thaoky | 2013-08-01 12:52:55 +0000 (Thu, 01 Aug 2013) | 1 line
+Changed paths:
+   M /trunk/Data/ItemIDToGlyphID.lua
+   M /trunk/DataStore_Talents.lua
+
+Added missing glyphs
+------------------------------------------------------------------------

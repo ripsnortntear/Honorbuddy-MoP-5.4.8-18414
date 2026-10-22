@@ -1,0 +1,153 @@
+Changelog for TopFit
+====================
+
+5.3v1 - 2013/07/03
+  - fixed +80 Stats enchant
+  - removed Ace and other Libraries we were hardly using
+  - rewrote set handling and calculation to use classes for a cleaner API
+  - new configuration UI accessed through a button in the character panel
+  - updated gem data
+  - added handling for upgraded items
+  - forced items are now managed in the character frame by holding down the Alt-key while hovering an equipment slot and using the checkboxes in the resulting flyout-box
+  - when switching talent specializations, the respective auto-update set is no longer calculated, just equipped (which is usually what you want and much faster)
+  - added Lib-Unfit-1.0 to limit showing tooltips and auto-updating to items you can actually wear
+
+5.1v1 - 2012/11/28
+  - updated toc for 5.1
+  - added MoP Enchants (including Inscription, Leatherworking and Tailoring)
+  - updated presets for monks
+
+5.0v2 - 2012/11/04
+  - fixed an error with the set dropdown on classes that have no weight presets
+  - added rudimentary weight presets for monk class (based on druid weights)
+  - fixed trying to dual wield ranged weapons
+  - fixed monk dual wielding
+  - when auto-update is enabled and a new equipment item is put into the player's bags, TopFit will only do a full calculation if that item is actually relevant for the auto-update-set
+  - added MoP Cogwheel gems
+  - TopFit is now finally aware of unique-equipped items and unique gems (like jeweler's and cogwheels) and will not try to equip more than possible
+
+5.0v1 - 2012/09/04
+  - If an auto-update-set is set for your current spec, it will now automatically be selected in the ui on login
+  - added new epic gems
+  - fixed an error that occured when creating a new set
+  - fixed an error when trying to delete a set
+  - Compatible with WoW Patch 5.0.4
+  - Updated gems for WoW 5.0.4
+  - moved Set Dropdown and Calculate button in Character Frame to not collide with default UI elements
+  - When calculating a set, slots that have forced items in them are shown with a red outline on their virtual item buttons
+
+4.3v1 - 2011/12/04
+  - you can now calculate all your sets at once by shift-clicking the calculate button
+  - added an option to calculate auto-update sets on switching talent specs
+
+4.2v2 - 2011/09/24
+  - removed old files
+  - fixed small bug caused by calling an old function
+  - fixed forced items that are no longer in your inventory not showing in force item flyout
+  - fixed 2h-weapons still being equipped when an offhand is forced
+  - fixed dual-wielding for hunters only from level 20
+  - updated presets to match cataclysm specs (see wowhead.com/items, 2011/09/24)
+  - added stats for melee/ranged weapon speeds as well as melee/ranged dps
+  - added level 85 PvP enchants and some missing armor kits as well as "Flintlocke's Woodchucker" (whee!) to enchant data
+
+4.2v1 - 2011/07/10
+  - added API function to check if an item is interesting to the player
+  - fixed a bug in the hit-for-spirit calculation where hit rating would not be granted to the raw item value
+  - items and score cache is now cleared on talent change
+  - this should also fix items sometimes not being granted hit-for-spirit values directly after login
+  - you can now specify a second automatic update set which will be equipped when your second talent specialization is active
+  - reworked set management interface to integrate nicely with the character frame
+  - added option to force you classes specialization armor type
+  - added some scanning of Trinket on-use and on-proc effects (thanks ckaotik!)
+  - updated gem list with theoretically all missing Cata gems for 4.1 (thanks ckaotik!)
+  - added a small number of enchants (notably leg armor), might still be missing some
+  - fixed warnings about missing enchant data being printed even though the data was there
+  - You can now force multiple items per inventory slot - TopFit will consider any forced items for a slot if set
+
+4.0v2 - 2010/12/09
+  - updated toc version
+  - dual wield and titan's grip should be detected correctly again - if for some class it isn't, tell me, please
+  - spririt-to-hit talents for priests, shamans, druids and paladins will internally add hit rating to an item's score as a hotfix for calculating correct hit rating caps - again, if it doesn't work for a class, I will need a notice from you
+
+4.0v1 - 2010/12/04
+  - compatible with WoW 4.0.3
+  - reforged stats should be recognized correctly
+  - mastery rating added to stats
+  - armor penetration, attack power, defense rating and block value removed from stats
+  - localization support, though only english locale exists for now (thanks to ckaotik)
+  - module tabs have been made prettier (thanks to ckaotik)
+  - a module for importing and exporting pawn strings has been added (thanks to ckaotik) it also shows gearscore of the selected set
+  - gem stats have been updated (thanks to ckaotik, once again!)
+  - enchant stats have been updated
+  - some cataclysm enchants and gems have been included (those that were on WoWHead already)
+  - updated presets to use the current values from wowhead (though they are not very good, especially concerning the changes to spirit for all casters - they just added mastery rating at 10 value, and kept all other stats the same from WoW 3.3)
+  - presets currently have no caps assigned, since I don't know the current values
+  - added arms warrior preset
+  - removed blood DPS and frost tank presets for death knights
+  - when creating or renaming sets, TopFit will now make sure set names are always unique
+
+3.3v6 - 2010/08/21
+  - fixed items with the same itemID showing up multiple times in the force item menu
+  - fixed forced slots not being correctly updated when adding or deleting a set in the options frame
+  - fixed bug when trying to calculate blood tank preset. Again, if you get an error with it from before this version, click the defense cap value, and overwrite it with <Enter>
+  - Deathknights can now Dualwield. D'oh
+  - Added first parts of plugin API. Documentation can be found at http://github.com/Mirroar/TopFit/wiki/API
+  - Stats / Caps editor and virtual items UI use the new plugin functions.
+  - Virtual items can now be included in set calculation, to see what would happen if you had a certain item. Items are not sanitized (you can calculate with a level 80 item or a plate item as a level 70 priest) and any calculation including virtual items will result in the set not being equipped.
+  - Shamans and Warriors can now choose to simulate dual wielding or Titan's Grip for a set, indifferent of their current spec.
+
+3.3v5 - 2010/07/17
+  - fixed a bug with the preset protection paladin set - if you stil get an error calculating that set, update the defense cap value and it should work
+  - fixed a bug where you could not select item sets as values to add
+  - added a tooltip to TopFit's button in the character frame
+  - automatic set update will now also happen on level up (to equip items you previosly could not because of level)
+  - plate heirlooms should now correctly be chosen to equip for warriors, paladins and deathknights below level 40, same for mail heirlooms and hunters / shamans
+  - items will no longer be tried to be equipped while you are dead
+  - fixed scrollbars in options frame... again
+  - the options frame will now move to the top level of the UI when you click it
+  - you can now exclude individual sets from item tooltips (useful if you have multiple sets for different hitcaps, for example)
+
+3.3v5 beta - 2010/06/24
+  - items will no longer be equipped while you are in combat
+  - item information is now properly cached, resulting in a performance increase
+  - looking at the tooltip for an item that is not yet in the client's itemCache should no longer cause an error
+  - comparing with items from your sets that are not in the client's itemCache should no longer cause an error
+  - comparison tooltips for weapons expanded - comparison of two-handed weapons with one-hand + off-hand combinations should be greatly improved
+
+3.3v4b - 2010/05/26
+  - fixed a bug that caused unusable items to be included in set calculation
+
+3.3v4 - 2010/05/24
+  - added set values to ItemRefTooltip and ShoppingTooltips
+  - added comparison value to toolip that shows how much of an improvement over currently equipped items another item is
+  - when selecting an existing set in the calculations frame, the shown score will now correctly take enchantments and gems into account
+  - fixed a couple of small bugs
+  - fixed incompatibility with Skinner and similar addons
+
+3.3v3b - 2010/04/16
+  - fixed errors on login when an automatic update set had been set
+
+3.3v3 - 2010/04/15
+  - fixed bug where a new item would not be equipped if you already had an item with the same item-ID equipped e.g. [xxx of the Whale] and [xxx of the Bandit]
+  - fixed bug with detecting BoE-items and accidentally trying to equip them if you had no other options for that slot
+  - fixed a bug where fishing poles were considered One-Handed for Titan's Grip
+  - rewrote calculation function for easier maintenance. This should also fix the swap-bug and any problems with invalid main- / offhand combinations
+  - major options overhaul - set weights, forced items, etc. are now set in the calculations frame (expand the options by clicking the button labeled ">>")
+  - added a button to the character frame which lets you open the calculations frame
+  - added a button to the calculations frame which opens the addon's options
+  - the calculations frame will now show wether caps have been reached or not
+  - support for set pieces
+  - added slash commands (/tf show, /tf options)
+  - removed profiles from options (there should be no real need for those)
+  - switched to tekKonfig for options (the few that remain)
+
+3.3v2 - 2010/03/13
+  - calculations frame can now be closed by pressing the ESC key
+  - Binds-on-Equip-Items will no longer be included in set calculations - bind the item first if you intend to use it
+  - added predefined sets from WoWHead (with very slight scores for armor and dps, so you can even use it starting at level 1)
+  - added option to choose a set that will be updated whenever you get new equipment (will not show calculation frame or any output, designed for carefree questing)
+  - fixed bug where statlist in progress frame would not show correctly if you had no item with a chosen stat
+  - fixed bug when determining wether a weapon can be used for Titan's Grip
+
+3.3v1 - 2010/03/11
+  - initial release version

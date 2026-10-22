@@ -1,0 +1,17 @@
+------------------------------------------------------------------------
+r18 | mysticalos | 2013-09-09 18:31:13 +0000 (Mon, 09 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DBM-Archaeology.toc
+
+TOC
+------------------------------------------------------------------------
+r17 | mysticalos | 2013-07-23 05:09:34 +0000 (Tue, 23 Jul 2013) | 5 lines
+Changed paths:
+   M /trunk/Archaeology.lua
+
+##Significant cpu optimizing (not that it was a cpu hog before but was certainly inefficient)
+*No longer uses CLEU for anything
+*Now uses RegisterUnitEvent instead of RegisterEvent since we only need player events for UNIT_SPELLCAST_SUCCEEDED
+*Refactored some code to reduce redundancy
+*No longer scans loot in instances since keystones can't be found there
+------------------------------------------------------------------------

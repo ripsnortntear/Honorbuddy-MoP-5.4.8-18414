@@ -1,0 +1,20 @@
+------------------------------------------------------------------------
+r37 | andymon | 2013-09-15 17:45:12 +0000 (Sun, 15 Sep 2013) | 1 line
+Changed paths:
+   A /tags/v1.02-5.4.0 (from /trunk:36)
+
+Tagging as v1.02-5.4.0
+------------------------------------------------------------------------
+r36 | andymon | 2013-09-15 17:41:54 +0000 (Sun, 15 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/AtlasMajorCitiesEnhanced.toc
+   M /trunk/AtlasMajorCities_db.lua
+   M /trunk/AtlasMajorCities_edit.lua
+   M /trunk/Locale/AtlasMajorCities_deDE.lua
+   M /trunk/Locale/AtlasMajorCities_enUS.lua
+   M /trunk/Locale/AtlasMajorCities_esES.lua
+   M /trunk/Locale/AtlasMajorCities_frFR.lua
+   M /trunk/Locale/AtlasMajorCities_ruRU.lua
+
+* database updates for Orgrimmar
+------------------------------------------------------------------------

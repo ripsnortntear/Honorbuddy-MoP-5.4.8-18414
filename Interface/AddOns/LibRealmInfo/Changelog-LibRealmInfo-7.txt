@@ -1,0 +1,14 @@
+tag 7
+9124d8fe8fe3658eafbf98ab1826fbf9493192a8
+Phanx <addons@phanx.net>
+2014-10-06 11:45:19 -0700
+
+Tag 7
+
+
+--------------------
+
+Phanx:
+	- TOC version 7
+	- Remove comments about planned US connections that appear to have been cancelled
+	- Update EU connected realm data for 30 September

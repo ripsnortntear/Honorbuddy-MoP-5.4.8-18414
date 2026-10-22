@@ -1,0 +1,22 @@
+## Interface: 50400
+## Title: Ackis Recipe List: Alchemy
+## Notes: Alchemy data for Ackis Recipe List.
+## Author: Ackis, Pompy, Ressy, Torhal
+## Version: 5.4.8.1
+## X-Revision: 5458e18
+## X-Date: 2014-06-01T07:43:37Z
+## Dependencies: AckisRecipeList
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: 5.4.8.1
+## X-Curse-Project-Name: Ackis Recipe List: Alchemy
+## X-Curse-Project-ID: arl-alchemy
+## X-Curse-Repository-ID: wow/arl-alchemy/mainline
+
+Core.lua
+Filters.lua
+Discoveries.lua
+MobDrops.lua
+Quests.lua
+Trainers.lua
+Vendors.lua
+Recipes.lua

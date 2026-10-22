@@ -1,0 +1,20 @@
+## Interface: 50400
+## Title: Bagnon
+## Author: Tuller & Jaliborc (João Cardoso)
+## Notes: Single window displays for your inventory and bank
+## SavedVariablesPerCharacter: BagnonFrameSettings
+## SavedVariables: BagnonGlobalSettings
+
+## OptionalDeps: BagBrother, ItemRack, Wardrobe, WoWUnit
+## Version: 5.4.15
+
+libs\libs.xml
+localization\localization.xml
+main.lua
+
+core\core.xml
+events\events.xml
+info\info.xml
+
+settings\settings.xml
+components\components.xml

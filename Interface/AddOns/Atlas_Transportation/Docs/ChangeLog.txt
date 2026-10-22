@@ -1,0 +1,142 @@
+Atlas, a World of Warcraft instance map browser
+Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
+Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+Copyright 2011 ~ 2013 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+
+==============
+= Change Log =
+==============
+
+v1.26.04 (Dec. 31, 2013)
+-----------------------
+- Update Pandaria map
+    - Update Violet Rise and Dawnseeker Promontory portals' positions
+    - Added portal from Shado-Pan Garrison to Shan'ze Dao
+
+
+v1.26.03 (Dec. 22, 2013)
+-----------------------
+- Added portal for Sparkrocket Outpost <-> Ruins of Ogudei
+- Added comment to Lion's Landing and Domination Point
+- Added portal for Lion's Landing <-> The SkyFire and Stormwind City
+- Added portal for Thunder Cleft <-> Shrine of Two Moons, Ruins of Ogudei, and Orgrimmar
+
+v1.26.02 (Dec. 06, 2013)
+-----------------------
+- Update Pandaria map to add transportation to Ratchet
+
+v1.26.01 (Nov. 27, 2013)
+-----------------------
+- Update Pandaria Alliance map - Lion's Landing position;
+  also added the transportation from Lions' Landing to Shrine of Seven Stars
+- Update Pandaria Horde map - added the transportation from Thunder Cleft to Shrine of Two Moons
+
+v1.26.00 (Sep. 09, 2013)
+-----------------------
+- TOC update to support WoW 5.4
+- Pandaria map update to include Timeless Isle
+- Added transportation nodes on Timeless Isle
+
+v1.25.01 (May 24, 2013)
+-----------------------
+- Fixed Isle of Thunder portal destinations
+
+v1.25.00 (May 21, 2013)
+-----------------------
+- TOC update to support WoW 5.3
+- Update Pandaria transportation nodes
+
+v1.24.00 (Mar. 05, 2013)
+-----------------------
+- TOC update to support WoW 5.2
+- Pandaria maps updated
+    - Updated with new land base image
+    - Added Alliance new portal - Violet Rise (Isle of Thunder)
+    - Added Alliance new flight node - Lion's Landing (Krasarang Wilds), Beeble's Wreck (Isle Of Giants)
+    - Added Horde new portal - Dawnseeker Promontory (Isle of Thunder)
+    - Added Horde new flight node - Domination Point (Krasarang Wilds), Bozzle's Wreck (Isle Of Giants)
+    - Changed Horde's FP Hellscream's Fist (Townlong Steppes) to Serpent's Spine (Kun-Lai Summit)
+
+v1.23.0 (Dec. 07, 2012)
+-----------------------
+- TOC update to support WoW 5.1
+- Update Pandaria maps:
+    - Added Shado-Pan Rope position
+- Update Outland maps:
+    - Added portal from Shattrath City to Stormwind and Orgrimmar
+
+v1.22.2 (Oct. 17, 2012)
+-----------------------
+- Update Pandaria map:
+    - Added the ropes and Abandoned Kite trabsportation nodes
+    - Added the Whispercloud's Balloon nodes
+    - Added transportation portal path from Shrine of Seven Stars to 
+      Shattrath City and Dalaran
+
+v1.22.1 (Oct. 10, 2012)
+-----------------------
+- Update Pandaria maps and legend info
+
+v1.22.0 (Sep. 25, 2012)
+-----------------------
+- Update TOC to support WoW 5.0
+- Added Pandaria transportation maps
+
+v1.21.1 (Dec. 06, 2011)
+-----------------------
+- Added Darkmoon Faire Island map and transportation information
+
+v1.21.0 (Nov. 29, 2011)
+-----------------------
+- Update TOC to support WoW 4.3
+- Splitted from core Atlas addon to be a separated plugin addon
+- Transportation maps updated:
+    - Northrend - Alliance: Added portal from Dalaran to Stormwind City
+    - Northrend - Horde: Added portal from Dalaran to Ogrimmar
+    - Kalimdor - Alliance: Fixed the portal mark from Darnassus / Exodar to
+      the Dark Portal
+
+v1.20.1 (Sep. 09, 2011)
+-----------------------
+
+v1.20.0 (Jun. 28, 2011)
+-----------------------
+- TOC update to support WoW 4.2
+- Maps added / updated:
+    - Transportation maps update (arith)
+
+v1.19.2 (May 30, 2011)
+-----------------------
+- Transportation map update:
+  - Added flight point - Vendetta Point (Horde) in Southern Barrens, Kalimdor
+
+v1.19.1 (May 06, 2011)
+-----------------------
+
+v1.19.0 (Apr. 28, 2011)
+-----------------------
+- Support WoW 4.1
+
+v1.18.3 (Apr. 13, 2011)
+-----------------------
+- Transportation maps update
+
+v1.18.2 (Jan. 28, 2011)
+-----------------------
+
+v1.18.1 (Jan. 06, 2011)
+-----------------------
+  
+v1.18.0 (Dec. 07, 2010)
+-----------------------
+- Prepared Atlas for the Cataclysm Maps
+
+v1.17.2 (Oct. 18, 2010)
+-----------------------
+
+v1.17.1 (Oct. 13, 2010)
+-----------------------
+- support WoW 4.0
+
+v1.17.0 (Aug. 15, 2010)
+-----------------------

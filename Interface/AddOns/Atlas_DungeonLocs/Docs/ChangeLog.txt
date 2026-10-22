@@ -1,0 +1,107 @@
+Atlas, a World of Warcraft instance map browser
+Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
+Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+Copyright 2011 ~ 2013 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+
+==============
+= Change Log =
+==============
+
+v1.26.00 (Sep. 09, 2013)
+-----------------------
+- TOC update to support WoW 5.4
+    - Pandaria
+	- Added location of Siege of Orgrimmar
+
+v1.25.00 (May 21, 2013)
+-----------------------
+- TOC update to support WoW 5.3
+- Map update: 
+    - Pandaria: added Deepwind Gorge battleground location
+
+v1.24.00 (Mar. 05, 2013)
+-----------------------
+- TOC update to support WoW 5.2
+- Map update:
+    - Pandaria
+        - replace with new world map images
+	- Added location of Throne of Thunder
+
+v1.23.0 (Dec. 07, 2012)
+-----------------------
+- TOC update to support WoW 5.1
+
+v1.22.0 (Sep. 25, 2012)
+-----------------------
+- Update TOC to support WoW 5.0
+- Added Pandaria dungeon locations
+
+v1.21.0 (Nov. 29, 2011)
+-----------------------
+- Update TOC to support WoW 4.3
+- Splitted from core Atlas addon to be a separated plugin addon
+- New maps added:
+    - The Dragon Soul (dubca7)
+    - Well of Eternity (dubca7)
+    - Hour of Twilight (dubca7)
+    - End Time (dubca7)
+
+v1.20.1 (Sep. 09, 2011)
+-----------------------
+
+v1.20.0 (Jun. 28, 2011)
+-----------------------
+- TOC update to support WoW 4.2
+- Maps added / updated:
+    - New raid map - Firelands (dubca7, Dynaletik)
+    - Dungeon location map update (dubca7, Dynaletik)
+
+v1.19.2 (May 30, 2011)
+-----------------------
+
+v1.19.1 (May 06, 2011)
+-----------------------
+
+v1.19.0 (Apr. 28, 2011)
+-----------------------
+- Support WoW 4.1
+- Added Zul'Gurub dungeon map
+
+v1.18.3 (Apr. 13, 2011)
+-----------------------
+
+v1.18.2 (Jan. 28, 2011)
+-----------------------
+
+v1.18.1 (Jan. 06, 2011)
+-----------------------
+  
+v1.18.0 (Dec. 07, 2010)
+-----------------------
+- Prepared Atlas for the Cataclysm Maps
+- Added Baradin Hold
+- Added Blackrock Caverns
+- Added Blackwing Descent
+- Added Grim Batol
+- Added Halls of Origination
+- Added Lost City of the Tol'vir
+- Added The Bastion of Twilight
+- Added The Stonecore
+- Added The Vortex Pinnacle
+- Added Throne of the Four Winds
+- Added Throne of the Tides
+- Added Battleground maps
+  - The Battle For Gilneas
+  - Tol Barad
+  - Twin Peaks
+- Revamped and updated all old maps
+
+v1.17.2 (Oct. 18, 2010)
+-----------------------
+
+v1.17.1 (Oct. 13, 2010)
+-----------------------
+- support WoW 4.0
+
+v1.17.0 (Aug. 15, 2010)
+-----------------------

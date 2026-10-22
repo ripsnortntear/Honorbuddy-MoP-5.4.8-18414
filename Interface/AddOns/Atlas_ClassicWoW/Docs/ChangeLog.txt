@@ -1,0 +1,48 @@
+Atlas, a World of Warcraft instance map browser
+Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
+Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+Copyright 2011 ~ 2013 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+
+==============
+= Change Log =
+==============
+
+v1.26.00 (Sep. 09, 2013)
+-----------------------
+- TOC update to support WoW 5.4
+
+v1.25.00 (May 21, 2013)
+-----------------------
+- TOC update to support WoW 5.3
+
+v1.24.00 (Mar. 05, 2013)
+-----------------------
+- TOC update to support WoW 5.2
+
+v1.23.0 (Dec. 07, 2012)
+-----------------------
+- TOC update to support WoW 5.1
+
+v1.22.1 (Oct. 10, 2012)
+-----------------------
+- Map update
+    - Stratholme - Crusaders' Square
+    - Stratholme - The Gauntlet
+
+v1.22.0 (Sep. 25, 2012)
+-----------------------
+- Update TOC to support WoW 5.0
+- Entrance map now moved to core addon
+- Removed Scarlet Monastery Entrance, SM Armory, SM Cathedral, SM Graveyard, SM Libraray, Scholomance maps
+- Maps updated:
+    - Ragefire Chasm
+    - Maraudon
+    - Razorfen Kraul
+    - Shadowfang Keep
+    - The Deadmines
+
+v1.21.0 (Nov. 29, 2011)
+-----------------------
+- Splitted from Atlas core addon
+- Maps updated: 
+    - The Sunken Temple Instance/Entrance (dubca7, Dynaletik, Celellach)

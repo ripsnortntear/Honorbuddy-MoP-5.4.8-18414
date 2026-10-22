@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+r178 | nevcairiel | 2014-05-21 10:04:11 +0000 (Wed, 21 May 2014) | 1 line
+Changed paths:
+   A /tags/5.4-release-15 (from /trunk:177)
+
+Weekly Tag - #-15
+------------------------------------------------------------------------
+r177 | nevcairiel | 2014-05-21 10:00:18 +0000 (Wed, 21 May 2014) | 1 line
+Changed paths:
+   M /trunk/LibBabble-Inventory-3.0.lua
+
+Automated LibBabble re-generation from the localization system
+------------------------------------------------------------------------

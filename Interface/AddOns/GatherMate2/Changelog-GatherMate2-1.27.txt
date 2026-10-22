@@ -1,0 +1,14 @@
+tag 1.27
+e54520a844b7f75d26b12a5bc29bbed5550ac14a
+Sal Scotto <sal.scotto@gmail.com>
+2013-09-10 06:46:17 -0400
+
+1.27
+
+
+--------------------
+
+Sal Scotto:
+	- 5.4 Toc
+Phanx:
+	- Improved Broker plugin. Right-click for options, click to toggle minimap icons, shift-click to toggle minimap icons.

@@ -1,0 +1,295 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<!-- Autoloading of included guides. Add your Guide##.lua files here as you please. -->
+
+		<Script>
+		___TG = debugprofilestop()
+		</Script>
+
+		<Script file="Images\Images.lua"/>
+	
+	<!-- INCLUDES -->
+		<Script file="ZygorIncludesAlliance.lua"/>
+		<Script file="ZygorIncludesHorde.lua"/>
+
+		<Script file="ZygorCommon.lua"/>
+
+	<!-- LEVELING -->
+		<!-- WOTLK -->
+		<Script file="Leveling\ZygorLevelingHordeWOTLK_MASTER.lua"/>
+		<Script file="Leveling\ZygorLevelingHordeWOTLK.lua"/>
+		<Script file="Leveling\ZygorLevelingHordeWOTLKTrial.lua"/>
+
+		<Script file="Leveling\ZygorLevelingAllianceWOTLK_MASTER.lua"/>
+		<Script file="Leveling\ZygorLevelingAllianceWOTLK.lua"/>
+		<Script file="Leveling\ZygorLevelingAllianceWOTLKTrial.lua"/>
+	
+		<!-- CATA -->
+		<Script file="Leveling\ZygorLevelingAllianceCATA_MASTER.lua"/>
+		<Script file="Leveling\ZygorLevelingAllianceCATA.lua"/>
+		<Script file="Leveling\ZygorLevelingAllianceCATATrial.lua"/>
+
+		<Script file="Leveling\ZygorLevelingHordeCATA_MASTER.lua"/>
+		<Script file="Leveling\ZygorLevelingHordeCATA.lua"/>
+		<Script file="Leveling\ZygorLevelingHordeCATATrial.lua"/>
+
+		<!-- MOP -->
+		<Script file="Leveling\ZygorLevelingPandaStarterMOP_MASTER.lua"/>
+		<Script file="Leveling\ZygorLevelingPandaStarterMOP.lua"/>
+		<Script file="Leveling\ZygorLevelingPandaStarterMOPTrial.lua"/>
+
+		<Script file="Leveling\ZygorLevelingAllianceMOP_MASTER.lua"/>
+		<Script file="Leveling\ZygorLevelingAllianceMOP.lua"/>
+		<Script file="Leveling\ZygorLevelingAllianceMOPTrial.lua"/>
+
+		<Script file="Leveling\ZygorLevelingHordeMOP_MASTER.lua"/>
+		<Script file="Leveling\ZygorLevelingHordeMOP.lua"/>
+		<Script file="Leveling\ZygorLevelingHordeMOPTrial.lua"/>
+
+	<!-- DAILIES -->
+		<!-- CATA -->
+		<Script file="Dailies\ZygorDailiesAllianceCATA_MASTER.lua"/>
+		<Script file="Dailies\ZygorDailiesAllianceCATA.lua"/>
+		<Script file="Dailies\ZygorDailiesAllianceCATATrial.lua"/>
+
+		<Script file="Dailies\ZygorDailiesHordeCATA_MASTER.lua"/>
+		<Script file="Dailies\ZygorDailiesHordeCATA.lua"/>
+		<Script file="Dailies\ZygorDailiesHordeCATATrial.lua"/>
+
+		<!-- MOP -->
+		<Script file="Dailies\ZygorDailiesHordeMOP_Master.lua"/>
+		<Script file="Dailies\ZygorDailiesHordeMOP.lua"/>
+		<Script file="Dailies\ZygorDailiesHordeMOPTrial.lua"/>
+		
+		<Script file="Dailies\ZygorDailiesAllianceMOP_Master.lua"/>
+		<Script file="Dailies\ZygorDailiesAllianceMOP.lua"/>
+		<Script file="Dailies\ZygorDailiesAllianceMOPTrial.lua"/>
+	
+	<!-- DUNGEONS -->
+		<Script file="Dungeons\ZygorDungeonAllianceMOP_MASTER.lua"/>
+		<Script file="Dungeons\ZygorDungeonAllianceMOP.lua"/>
+		<Script file="Dungeons\ZygorDungeonAllianceMOPTrial.lua"/>
+
+		<Script file="Dungeons\ZygorDungeonHordeMOP_MASTER.lua"/>
+		<Script file="Dungeons\ZygorDungeonHordeMOP.lua"/>
+		<Script file="Dungeons\ZygorDungeonHordeMOPTrial.lua"/>
+		
+		<Script file="Dungeons\ZygorDungeonScenariosAlliance_MoP_MASTER.lua"/>
+		<Script file="Dungeons\ZygorDungeonScenariosAlliance_MoP.lua"/>
+		<Script file="Dungeons\ZygorDungeonScenariosHorde_MoP_MASTER.lua"/>
+		<Script file="Dungeons\ZygorDungeonScenariosHorde_MoP.lua"/>
+
+		<Script file="Dungeons\ZygorGearHorde_MASTER.lua"/>
+		<Script file="Dungeons\ZygorGearHorde.lua"/>
+		<Script file="Dungeons\ZygorGearHordeTrial.lua"/>
+
+		<Script file="Dungeons\ZygorGearAlliance_MASTER.lua"/>
+		<Script file="Dungeons\ZygorGearAlliance.lua"/>
+		<Script file="Dungeons\ZygorGearAllianceTrial.lua"/>
+
+		<Script file="Dungeons\ZygorGearCommon_MASTER.lua"/>
+		<Script file="Dungeons\ZygorGearCommon.lua"/>
+		<Script file="Dungeons\ZygorGearCommonTrial.lua"/>
+
+	<!-- PROFESSIONS -->
+		<!-- CATA -->
+		<Script file='Professions\ZygorProfessionsCommon.lua'/> <!-- Everyone gets this -->
+		<Script file='Professions\ZygorProfessionsCommonMOP.lua'/> <!-- Everyone on MOP gets this -->
+
+		<Script file="Professions\ZygorProfessionsAllianceCATA_MASTER.lua"/>
+		<Script file="Professions\ZygorProfessionsAllianceCATA.lua"/>
+		<Script file="Professions\ZygorProfessionsAllianceCATATrial.lua"/>
+
+		<Script file="Professions\ZygorProfessionsHordeCATA_MASTER.lua"/>
+		<Script file="Professions\ZygorProfessionsHordeCATA.lua"/>
+		<Script file="Professions\ZygorProfessionsHordeCATATrial.lua"/>
+		
+		<!-- MOP -->
+		<Script file="Professions\ZygorProfessionsHordeMOP_MASTER.lua"/>
+		<Script file="Professions\ZygorProfessionsHordeMOP.lua"/>
+		<Script file="Professions\ZygorProfessionsHordeMOPTrial.lua"/>
+
+		<Script file="Professions\ZygorProfessionsAllianceMOP_MASTER.lua"/>
+		<Script file="Professions\ZygorProfessionsAllianceMOP.lua"/>
+		<Script file="Professions\ZygorProfessionsAllianceMOPTrial.lua"/>
+
+	<!-- ACHIEVEMENTS -->
+		<!-- CATA -->
+		<Script file="Achievements\ZygorAchievementsCommon.lua"/> <!-- Everyone gets this -->
+
+		<Script file="Achievements\ZygorAchievementsAllianceCATA_MASTER.lua"/>
+		<Script file="Achievements\ZygorAchievementsAllianceCATA.lua"/>
+		<Script file="Achievements\ZygorAchievementsAllianceCATATrial.lua"/>
+
+		<Script file="Achievements\ZygorAchievementsHordeCATA_MASTER.lua"/>
+		<Script file="Achievements\ZygorAchievementsHordeCATA.lua"/>
+		<Script file="Achievements\ZygorAchievementsHordeCATATrial.lua"/>
+
+		<!-- MOP -->
+		<Script file="Achievements\ZygorAchievementsHordeMOP_MASTER.lua"/>
+		<Script file="Achievements\ZygorAchievementsHordeMOP.lua"/>
+		<Script file="Achievements\ZygorAchievementsHordeMOPTrial.lua"/>
+
+		<Script file="Achievements\ZygorAchievementsAllianceMOP_MASTER.lua"/>
+		<Script file="Achievements\ZygorAchievementsAllianceMOP.lua"/>
+		<Script file="Achievements\ZygorAchievementsAllianceMOPTrial.lua"/>
+
+	<!-- PETS AND MOUNTS -->
+		<!-- All Pets  Order for these matters-->
+		<!--MOP PETS-->
+		<Script file="PetsMounts\ZygorPetsAllianceMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorPetsAllianceMOP.lua"/>
+		<Script file="PetsMounts\ZygorPetsAllianceMOPTrial.lua"/>
+
+		<Script file="PetsMounts\ZygorPetsHordeMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorPetsHordeMOP.lua"/>
+		<Script file="PetsMounts\ZygorPetsHordeMOPTrial.lua"/>
+
+		<Script file="PetsMounts\ZygorPetsCommonMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorPetsCommonMOP.lua"/>
+		<Script file="PetsMounts\ZygorPetsCommonMOPTrial.lua"/>
+
+		<!--CATA PETS-->
+		<Script file="PetsMounts\ZygorPetsAllianceCATA_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorPetsAllianceCATA.lua"/>
+		<Script file="PetsMounts\ZygorPetsAllianceCATATrial.lua"/>
+		
+		<Script file="PetsMounts\ZygorPetsHordeCATA_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorPetsHordeCATA.lua"/>
+		<Script file="PetsMounts\ZygorPetsHordeCATATrial.lua"/>
+
+		<Script file="PetsMounts\ZygorPetsCommonCATA_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorPetsCommonCATA.lua"/>
+		<Script file="PetsMounts\ZygorPetsCommonCATATrial.lua"/>
+			
+		<!-- CATA -->		
+		<Script file="PetsMounts\ZygorHunterPetHordeCATA_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetHordeCATA.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetHordeCATATrial.lua"/>
+
+		<Script file="PetsMounts\ZygorHunterPetAllianceCATA_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetAllianceCATA.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetAllianceCATATrial.lua"/>
+		
+		<Script file="PetsMounts\ZygorMountsHordeCATA_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorMountsHordeCATA.lua"/>
+		<Script file="PetsMounts\ZygorMountsHordeCATATrial.lua"/>
+
+		<Script file="PetsMounts\ZygorMountsAllianceCATA_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorMountsAllianceCATA.lua"/>
+		<Script file="PetsMounts\ZygorMountsAllianceCATATrial.lua"/>
+
+		<!-- MOP -->
+		<Script file="PetsMounts\ZygorHunterPetHordeMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetHordeMOP.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetHordeMOPTrial.lua"/>
+
+		<Script file="PetsMounts\ZygorHunterPetAllianceMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetAllianceMOP.lua"/>
+		<Script file="PetsMounts\ZygorHunterPetAllianceMOPTrial.lua"/>
+		
+		<Script file="PetsMounts\ZygorMountsHordeMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorMountsHordeMOP.lua"/>
+		<Script file="PetsMounts\ZygorMountsHordeMOPTrial.lua"/>
+
+		<Script file="PetsMounts\ZygorMountsAllianceMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorMountsAllianceMOP.lua"/>
+		<Script file="PetsMounts\ZygorMountsAllianceMOPTrial.lua"/>
+
+		<Script file="PetsMounts\ZygorBattlePetQuestsHordeMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorBattlePetQuestsHordeMOP.lua"/>
+		<Script file="PetsMounts\ZygorBattlePetQuestsHordeMOPTrial.lua"/>
+
+		<Script file="PetsMounts\ZygorBattlePetQuestsAllianceMOP_MASTER.lua"/>
+		<Script file="PetsMounts\ZygorBattlePetQuestsAllianceMOP.lua"/>
+		<Script file="PetsMounts\ZygorBattlePetQuestsAllianceMOPTrial.lua"/>
+
+	<!-- TITLES -->
+		<!-- CATA -->
+		<Script file="Titles\ZygorTitlesHordeCATA_MASTER.lua"/>
+		<Script file="Titles\ZygorTitlesHordeCATA.lua"/>
+		<Script file="Titles\ZygorTitlesHordeCATATrial.lua"/>
+
+		<Script file="Titles\ZygorTitlesAllianceCATA_MASTER.lua"/>
+		<Script file="Titles\ZygorTitlesAllianceCATA.lua"/>
+		<Script file="Titles\ZygorTitlesAllianceCATATrial.lua"/>
+
+		<!-- MOP -->
+		<Script file="Titles\ZygorTitlesHordeMOP_MASTER.lua"/>
+		<Script file="Titles\ZygorTitlesHordeMOP.lua"/>
+		<Script file="Titles\ZygorTitlesHordeMOPTrial.lua"/>
+
+		<Script file="Titles\ZygorTitlesAllianceMOP_MASTER.lua"/>
+		<Script file="Titles\ZygorTitlesAllianceMOP.lua"/>
+		<Script file="Titles\ZygorTitlesAllianceMOPTrial.lua"/>
+
+	<!-- REPUTATIONS -->
+		<!-- CATA -->	
+		<Script file="Reputations\ZygorReputationsHordeCATA_MASTER.lua"/>
+		<Script file="Reputations\ZygorReputationsHordeCATA.lua"/>
+		<Script file="Reputations\ZygorReputationsHordeCATATrial.lua"/>
+
+		<Script file="Reputations\ZygorReputationsAllianceCATA_MASTER.lua"/>
+		<Script file="Reputations\ZygorReputationsAllianceCATA.lua"/>
+		<Script file="Reputations\ZygorReputationsAllianceCATATrial.lua"/>
+
+		<!-- MOP -->
+		<Script file="Reputations\ZygorReputationsHordeMOP_MASTER.lua"/>
+		<Script file="Reputations\ZygorReputationsHordeMOP.lua"/>
+		<Script file="Reputations\ZygorReputationsHordeMOPTrial.lua"/>
+
+		<Script file="Reputations\ZygorReputationsAllianceMOP_MASTER.lua"/>
+		<Script file="Reputations\ZygorReputationsAllianceMOP.lua"/>
+		<Script file="Reputations\ZygorReputationsAllianceMOPTrial.lua"/>
+
+	<Script file="ZygorMacros.lua"/>
+	
+	<Include file="Autoload-dev.xml" />
+
+	<!-- user guides -->
+	<Script file="Guide01.lua"/>
+	<Script file="Guide02.lua"/>
+	<Script file="Guide03.lua"/>
+	<Script file="Guide04.lua"/>
+	<Script file="Guide05.lua"/>
+	<Script file="Guide06.lua"/>
+	<Script file="Guide07.lua"/>
+	<Script file="Guide08.lua"/>
+	<Script file="Guide09.lua"/>
+	<Script file="Guide10.lua"/>
+	<Script file="Guide11.lua"/>
+	<Script file="Guide12.lua"/>
+	<Script file="Guide13.lua"/>
+	<Script file="Guide14.lua"/>
+	<Script file="Guide15.lua"/>
+	<Script file="Guide16.lua"/>
+	<Script file="Guide17.lua"/>
+	<Script file="Guide18.lua"/>
+	<Script file="Guide19.lua"/>
+	<Script file="Guide20.lua"/>
+	<Script file="Guide21.lua"/>
+	<Script file="Guide22.lua"/>
+	<Script file="Guide23.lua"/>
+	<Script file="Guide24.lua"/>
+	<Script file="Guide25.lua"/>
+	<Script file="Guide26.lua"/>
+	<Script file="Guide27.lua"/>
+	<Script file="Guide28.lua"/>
+	<Script file="Guide29.lua"/>
+	<Script file="Guide30.lua"/>
+	<Script file="Guide31.lua"/>
+	<Script file="Guide32.lua"/>
+	<Script file="Guide33.lua"/>
+	<Script file="Guide34.lua"/>
+	<Script file="Guide35.lua"/>
+	<Script file="Guide36.lua"/>
+	<Script file="Guide37.lua"/>
+	<Script file="Guide38.lua"/>
+	<Script file="Guide39.lua"/>
+	<Script file="Guide40.lua"/>
+
+		<Script>
+		ZGV.loading_time_guides = debugprofilestop()-___TG
+		___TG=nil
+		</Script>
+</Ui>

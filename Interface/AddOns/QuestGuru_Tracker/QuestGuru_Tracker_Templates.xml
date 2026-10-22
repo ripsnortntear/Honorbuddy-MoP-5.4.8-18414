@@ -1,0 +1,279 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Button name="QGT_QuestWatchButtonTemplate" virtual="true">
+		<Size x="240" y="14"/>
+		<Attributes>
+			<Attribute name="qID" type="text" value="" />
+		</Attributes>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHighlight" file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD" hidden="true"/>
+				<FontString name="$parentTag" inherits="GameFontNormal" justifyH="RIGHT">
+					<Size x="0" y="16"/>
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset x="-2" y="0"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				QGT_QuestWatchButton_OnClick(self, button, down);
+			</OnClick>
+			<OnEnter>
+				QGT_QuestWatchButton_OnEnter(self, motion);
+				QGT_QuestWatchFrameSlider:SetScript("OnMouseUp", nil);
+				QGT_ShowQuestTrackerSlider(self, true);
+			</OnEnter>
+			<OnLeave>
+				QGT_QuestWatchButton_OnLeave(self, motion);
+			</OnLeave>
+		</Scripts>
+		<NormalTexture name="$parentArrow" file="Interface\Buttons\UI-SortArrow">
+			<Size x="8" y="8" />
+			<Anchors>
+				<Anchor point="LEFT" />
+			</Anchors>
+			<TexCoords left="0" right="0.5" top="0" bottom="1"/>
+		</NormalTexture>
+		<ButtonText name="$parentNormalText" nonspacewrap="true">
+			<Size x="0" y="10"/>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset x="0" y="0"/>
+				</Anchor>
+			</Anchors> 
+		</ButtonText>
+		<NormalFont style="GameFontNormalLeft" />
+		<HighlightFont style="GameFontHighlightLeft" />
+		<DisabledFont style="GameFontHighlightLeft" />
+	</Button>
+
+	<StatusBar name="AchievementProgressBarTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="212" y="14"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBG">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<Color r="0" g="0" b="0" a=".4"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontHighlightSmall" text="700/700" justifyV="TOP">
+					<Size x="0" y="0"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</FontString>			
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentBorderLeft" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+					<Size x="16" y="0"/>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-6" y="5"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="-6" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.0625" top="0" bottom="0.75"/>
+				</Texture>
+				<Texture name="$parentBorderRight" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+					<Size x="16" y="0"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="6" y="5"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="6" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.812" right="0.8745" top="0" bottom="0.75"/>
+				</Texture>
+				<Texture name="$parentBorderCenter" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+					<Size x="16"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentBorderLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentBorderRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.0625" right="0.812" top="0" bottom="0.75"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				self:SetStatusBarColor(0, .6, 0, 1);
+				self:SetMinMaxValues(0, 100);
+				self:SetValue(0);
+				self.text = _G[self:GetName() .. "Text"];
+				self:GetStatusBarTexture():SetDrawLayer("BORDER");
+			</OnLoad>
+		</Scripts>
+		<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+	</StatusBar>
+	<Button name="QGT_AchievementWatchButtonTemplate" virtual="true" inherits="WatchFrameLineTemplate">
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHighlight" file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD" hidden="true"/>
+				<FontString name="$parentTimer" inherits="GameFontNormal" justifyH="RIGHT">
+					<Size x="0" y="16"/>
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset x="-2" y="0"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<StatusBar name="$parentStatusBar" inherits="AchievementProgressBarTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="10" y="0"/>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset x="-16" y="0"/>
+					</Anchor>
+				</Anchors>
+			</StatusBar>
+		</Frames>
+		<ButtonText name="$parentNormalText" nonspacewrap="true">
+			<Size x="0" y="10"/>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset x="0" y="0"/>
+				</Anchor>
+			</Anchors> 
+		</ButtonText>
+		<NormalFont style="GameFontNormalLeft" />
+		<HighlightFont style="GameFontHighlightLeft" />
+		<DisabledFont style="GameFontHighlightLeft" />
+	</Button>
+
+	<Button name="QGT_QuestWatchMiniButtonTemplate" virtual="true">
+		<Size x="16" y="16" />
+		<ButtonText name="$parentText" nonspacewrap="true">
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset x="0" y="0"/>
+				</Anchor>
+			</Anchors>
+		</ButtonText>
+		<NormalTexture name="$parentNormalTexture" file="Interface\Buttons\UI-Quickslot2">
+			<Size x="25" y="25"/>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset x="0" y="-1"/>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+		<NormalFont style="GameFontNormalLeft" />
+		<HighlightFont style="GameFontHighlightLeft" />
+		<DisabledFont style="GameFontHighlightLeft" />
+	</Button>
+	<CheckButton name="QGT_InterfaceOptionsBaseCheckButtonTemplate" virtual="true">
+		<Size x="26" y="26"/>
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnShow>
+				self:SetHitRectInsets(0, -getglobal(self:GetName().."Text"):GetWidth(), 0, 0);
+			</OnShow>
+			<OnMouseUp>
+				if ( self:GetChecked() ) then
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				else
+					PlaySound("igMainMenuOptionCheckBoxOff");
+				end
+			</OnMouseUp>
+			<OnEnter>
+				if ( self.tooltipText ) then
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+					GameTooltip:SetText(self.tooltipText, nil, nil, nil, nil, 1);
+				end
+				if ( self.tooltipRequirement ) then
+					GameTooltip:AddLine(self.tooltipRequirement, "", 1.0, 1.0, 1.0);
+					GameTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+	 	<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>		
+	</CheckButton>
+	<CheckButton name="QGT_InterfaceOptionsCheckButtonTemplate" virtual="true" inherits="QGT_InterfaceOptionsBaseCheckButtonTemplate">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+	<Button name="QGT_ColorPickerButtonTemplate" virtual="true">
+		<Size x="16" y="16"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentSwatch">
+					<Size x="12" y="12"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="1.0" a="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				if ( self.tooltipText ) then
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+					GameTooltip:SetText(self.tooltipText, nil, nil, nil, nil, 1);
+				end
+				if ( self.tooltipRequirement ) then
+					GameTooltip:AddLine(self.tooltipRequirement, "", 1.0, 1.0, 1.0);
+					GameTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+</Ui>

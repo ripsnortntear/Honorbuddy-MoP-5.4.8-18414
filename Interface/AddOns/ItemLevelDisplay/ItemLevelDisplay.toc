@@ -1,0 +1,29 @@
+## Interface: 50400
+## Title: ItemLevelDisplay
+## Notes: Useful automation routines
+## Author: Alar of Daggerspine
+## Version: 1.3.2 r66
+## X-Version: 1.3.2
+## eMail: alar@aspide.it
+## RequiredDeps:
+## OptionalDeps: AlarArtRemover
+## X-Embeds: 
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: dbILD
+## SavedVariablesPerCharacter: localdbILD
+## X-ID: ILD
+## X-Database: dbILD
+## X-Revision: $Revision: 64 $
+## X-Category: Bags and Inventory
+## X-License: GPL v3
+## X-eMail: alar@aspide.it
+## X-Date: 2014-09-02T19:14:31Z
+## X-Curse-Packaged-Version: 1.3.2
+## X-Curse-Project-Name: ItemLevelDisplay
+## X-Curse-Project-ID: itemleveldisplay
+## X-Curse-Repository-ID: wow/itemleveldisplay/mainline
+embeds.xml
+localization.lua
+ItemLevelDisplay.lua
+RelNotes.lua

@@ -1,0 +1,12 @@
+tag v2.10
+22e9a5a7b5e6dd273b1f8df12528da3dea0e2e1e
+iceeagle <ciprianmihai.coman@gmail.com>
+2014-08-11 06:51:03 +0300
+
+Tag as v2.10
+
+
+--------------------
+
+iceeagle:
+	- update for 5.4.8; update libs

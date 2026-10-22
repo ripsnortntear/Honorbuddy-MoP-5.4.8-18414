@@ -1,0 +1,40 @@
+## Interface: 50400
+## X-Curse-Packaged-Version: r129
+## X-Curse-Project-Name: AddonLoader
+## X-Curse-Project-ID: addon-loader
+## X-Curse-Repository-ID: wow/addon-loader/mainline
+
+## Title: Addon Loader
+## Notes: Load manager for AddOns
+## Title-zhTW: Addon Loader 插件載入
+## Notes-zhTW: 插件載入訊息
+## Title-zhCN: Addon Loader 插件载入
+## Notes-zhCN: 插件加载讯息
+
+## Author: Ammo, Cladhaire, Joshborke
+## X-Credits: Nymbia, Mikk for the original AddonLoader
+
+## Version: 2.0.1
+## X-Website: http://www.wowpedia.org/wiki/AddonLoader
+
+## SavedVariables: AddonLoaderSV
+
+#@no-lib-strip@
+LibStub\LibStub.lua
+CallbackHandler-1.0\CallbackHandler-1.0.lua
+#@end-no-lib-strip@
+
+LibDataBroker-1.1\LibDataBroker-1.1.lua
+
+AddonLoader.lua
+
+locale\enUS.lua
+locale\deDE.lua
+locale\esES.lua
+locale\zhCN.lua
+locale\zhTW.lua
+locale\koKR.lua
+locale\ruRU.lua
+
+Conditions.lua
+Overrides.lua

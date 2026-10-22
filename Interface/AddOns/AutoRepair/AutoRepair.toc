@@ -1,0 +1,9 @@
+## Interface: 50400
+
+## Title: AutoRepair
+## Notes: Automaticaly repairs all items when a merchant window is opened
+## Author: Markyxl (Viruss@Drak'thul EU)
+## Dependencies:
+## SavedVariablesPerCharacter: armode
+AutoRepair.lua
+AutoRepair.xml

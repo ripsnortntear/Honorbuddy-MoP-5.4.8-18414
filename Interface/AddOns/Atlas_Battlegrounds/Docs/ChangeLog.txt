@@ -1,0 +1,102 @@
+Atlas, a World of Warcraft instance map browser
+Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert@gmail.com>
+Copyright 2010 - Lothaer <lothayer@gmail.com>, Atlas Team
+Copyright 2011 ~ 2013 - Arith Hsu, Atlas Team <atlas.addon@gmail.com>
+
+==============
+= Change Log =
+==============
+
+v1.26.00 (Sep. 09, 2013)
+-----------------------
+- TOC update to support WoW 5.4
+
+v1.25.01 (May 24, 2013)
+-----------------------
+- Maps update:
+    - Silvershard Mines: map revamp
+    - Temple of Kotmogu: map revamp
+
+v1.25.00 (May 21, 2013)
+-----------------------
+- TOC update to support WoW 5.3
+- Maps added:
+    - Deepwind Gorge
+
+v1.24.00 (Mar. 05, 2013)
+-----------------------
+- TOC update to support WoW 5.2
+
+v1.23.0 (Dec. 07, 2012)
+-----------------------
+- TOC update to support WoW 5.1
+
+v1.22.1 (Oct. 10, 2012)
+-----------------------
+- Battleground information update
+    - Temple of Kotmogu
+    - Silvershard Mines
+
+v1.22.0 (Sep. 25, 2012)
+-----------------------
+- Update TOC to support WoW 5.0
+- Maps added:
+    - Temple of Kotmogu
+    - Silvershard Mines
+
+v1.21.1 (Dec. 05, 2011)
+-----------------------
+- zhCN translation update (dh0000)
+
+v1.21.0 (Nov. 29, 2011)
+-----------------------
+- Update TOC to support WoW 4.3
+- Splitted from core Atlas addon to be a separated plugin addon
+
+v1.20.1 (Sep. 09, 2011)
+-----------------------
+
+v1.20.0 (Jun. 28, 2011)
+-----------------------
+- Map updated:
+    - Eye of the Storm (dubca7)
+
+v1.19.2 (May 30, 2011)
+-----------------------
+
+v1.19.1 (May 06, 2011)
+-----------------------
+
+v1.19.0 (Apr. 28, 2011)
+-----------------------
+
+v1.18.3 (Apr. 13, 2011)
+-----------------------
+- TolBarad 3 cell blocks added
+
+v1.18.2 (Jan. 28, 2011)
+-----------------------
+
+v1.18.1 (Jan. 06, 2011)
+-----------------------
+
+v1.18.0 (Dec. 07, 2010)
+-----------------------
+- Prepared Atlas for the Cataclysm Maps
+- Added Battleground maps
+  - The Battle For Gilneas
+  - Tol Barad
+  - Twin Peaks
+- Revamped and updated all old maps
+- Battleground Level info updated
+
+v1.17.2 (Oct. 18, 2010)
+-----------------------
+
+v1.17.1 (Oct. 13, 2010)
+-----------------------
+
+v1.17.0 (Aug. 15, 2010)
+-----------------------
+- new maps: Halaa PvP, Hellfire Peninsula PvP, Zangarmarsh PvP, 
+            Terokkar Forest PvP, Wintergrasp PvP, Game of Tower, Silithyst Must Flow (arith)

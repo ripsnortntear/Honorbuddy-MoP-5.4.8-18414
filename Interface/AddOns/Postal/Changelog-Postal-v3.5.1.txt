@@ -1,0 +1,25 @@
+------------------------------------------------------------------------
+r372 | stanzilla | 2012-12-20 16:40:14 +0000 (Thu, 20 Dec 2012) | 1 line
+Changed paths:
+   A /tags/v3.5.1 (from /trunk:371)
+
+Tagging as v3.5.1
+------------------------------------------------------------------------
+r371 | stanzilla | 2012-12-20 16:38:08 +0000 (Thu, 20 Dec 2012) | 1 line
+Changed paths:
+   M /trunk/Postal.toc
+
+bump version number, too
+------------------------------------------------------------------------
+r370 | stanzilla | 2012-12-20 10:42:41 +0000 (Thu, 20 Dec 2012) | 1 line
+Changed paths:
+   M /trunk/Postal.toc
+
+Bring peace to the world and bump this toc!
+------------------------------------------------------------------------
+r369 | xinhuan | 2012-08-31 01:23:51 +0000 (Fri, 31 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/Modules/BlackBook.lua
+
+Remove same-faction check when recording/updating an alt of the same name and realm in the BlackBook module.
+------------------------------------------------------------------------

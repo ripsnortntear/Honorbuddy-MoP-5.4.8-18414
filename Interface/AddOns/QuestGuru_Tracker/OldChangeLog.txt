@@ -1,0 +1,179 @@
+QuestGuru_Tracker ChangeLog
+===========================
+
+Version 2.2.18-50400 (QuestGuru_Tracker)
+-------------
+* Check the ChangeLog.txt in the QuestGuru folder.  Updates going forward will be in there.
+* fix Achievement to ignore update events that happen during portals (between leaving and entering world events)
+  The update event would fire, but Blizzard was reporting no achievements during that time so the QGT would
+  "UnTrack" the Achievements and so there would be none when the display tried to update (and therefore currLine was zero and j was nil)
+
+Version 1.5.16-50400 (QuestGuru_Tracker)
+-------------
+* fix QGT_Achievement.lua to handle Blizzard not returning an integer value on the slider
+
+Version 1.5.15-50400 (QuestGuru_Tracker)
+-------------
+* TOC change for patch 5.4
+
+Version 1.5.15-50300 (QuestGuru_Tracker)
+-------------
+* TOC change for patch 5.3
+* Fixed a problem in QGT_Achievements that caused the Tracker to fail (Tracker)
+* Big thanks to CMTitan who provided code to handle Scenarios that came out with MoP (Tracker)
+
+Version 1.5.14-50001 (QuestGuru_Tracker)
+-------------
+* Fixed another place where party handling was changed in MoP/Patch 5.0.4.
+
+Version 1.5.13-50001 (QuestGuru_Tracker)
+-------------
+* Fixed a problem with the Achievement Tracking
+
+Version 1.5.12-50001
+-------------
+* forgot to change version number inside the TOC itself
+
+Version 1.5.11-50001
+-------------
+* Toc Change for MoP Beta
+* Change GetNumPartyMembers to GetNumGroupMembers in every place I found it.
+* More work on the binding issue.  Used a time delay if I don't succeed in setting the binding at login.
+  If I can't bind it after three attempts one second apart, forget it and move on.
+
+Version 1.5.10-40300
+-------------
+* Latest revision of the Russian localization now incorporated.  Thank you again StingerSoft!
+* Fixed the SetBindings problem that would cause all bindings to occassionally get lost.
+
+Version 1.5.9-40300
+-------------
+* Made several localization changes.  Enabled $substitution variables in announcer to be localized as well.
+* Incorporated a brand new localization for Chinese(zhCN).  Credit to Honooon with many thanks.
+* Incorporated an updated localization for Russian(ruRU).  Credit to StingerSoft with many thanks also.
+* Updated all of the localizations (even the new ones) to synchronize variable names
+*   I based the updates upon the default (American) localization file.
+*   I removed variables that were no longer in the base localization file (most had be copied from to the QuestGuru localization)
+*     and added missing variables (in American)
+* We now have localizations for German, French, Russian, and Chinese (zhCN & zhTW).
+* I would really appreciate it if speakers of those languages sent me updates to them.  
+*   There are some new variables in the localizations that need translation!
+
+Version 1.5.8-40300
+-------------
+* Refixed an issue in QGT_Quests.lua where SaveBindings sometimes received an invalid value because GetCurrentBindingSet() would return other than nil, 1, or 2.
+
+Version 1.5.7-40300
+-------------
+* Changed TOC version for 4.3 cata
+* MrObrien has asked that somebody pickup and work on the QuestGuru so I will try and do some updates as I can't play without this mod.
+  Addon home is www.wowinterface.com and you can PM me there if you like.  Gregity is the name.
+  I will be making small changes to get used to the codebase before I try anything like a major update.
+* Fixed an issue in QGT_Quests.lua where SaveBindings sometimes received an invalid value because GetCurrentBindingSet() would return nil
+
+Version 1.5.6
+-------------
+* Fixed achievements not working quite right (thanks to FineWolf)
+* Added a flashing effect to quests that can be remotely completed
+
+Version 1.5.5
+-------------
+* Fixed a bug that was causing the game to crash (oops)
+
+Version 1.5.4
+-------------
+* Fixed a bug when trying to track an achievement that no longer exists (usually on login)
+* Removed UIFrame calls that could potentially cause taint
+
+Version 1.5.3
+-------------
+* Thanks to Cartman, added ability to finish certain quests directly from the tracker
+
+Version 1.5.2
+-------------
+* Removed ability to sort by proximity for now
+* More bug fixes to better support Cataclysm
+
+Version 1.5.1
+-------------
+* Bug fixes
+
+Version 1.5
+-----------
+* Added ability to sort watched quests by proximity (may not work exactly right...)
+* Shift-L Key Binding is now saved properly
+* Bug fixes
+* Updates to better support Cataclysm
+
+Version 1.4.4
+-------------
+* Fixes for Blizzard's new chat frame
+
+Version 1.4.3
+-------------
+* Added option to hide tracker(s) during combat
+
+Version 1.4.2
+-------------
+* More minor bug fixes
+
+Version 1.4.1
+-------------
+* Minor bug fix
+
+Version 1.4
+-----------
+* Updated for patch 3.3
+* Minor bug fixes
+
+Version 1.3
+-----------
+* Updated to be compatible with WoW 3.2
+
+Version 1.2.3
+-------------
+* Achievements no longer auto-track, this feature was too buggy and annoying
+* Shift-clicking an achievement in the tracker will now untrack the achievement
+* Fixed tooltip display issues
+* Added Russian localization
+
+Version 1.2.2
+-------------
+* Added quest timers in the tracker
+* Achievement tracker should now update properly on achievement progress
+* In the Achievement tracker, shift-clicking an achievement will now add a link to the chat frame
+* Auto-tracking of achievements in chains when one step is completed has been added
+* As always, more bug fixes
+
+Version 1.2.1
+-------------
+* Bug fixes
+
+Version 1.2
+-----------
+* Added button to toggle Quest and Achievement trackers with option to show both
+* Some more bug fixes
+
+Version 1.1.1
+-------------
+* A bunch of bug fixes
+
+Version 1.1
+-----------
+* Added Achievement tracking
+* Bug fix with quest item icon size
+
+Version 1.0.2
+-------------
+* Added quest item icons
+* Added option to pin tracker
+* Fixed shift-right-click menu for quest titles
+* More bug fixes
+
+Version 1.0.1
+-------------
+* Bug fixes
+
+Version 1.0
+-----------
+* First release as a separate addon

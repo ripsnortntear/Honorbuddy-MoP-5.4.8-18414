@@ -1,0 +1,41 @@
+## Title: Sha of Fear Assist
+## X-Curse-Packaged-Version: 1.21
+## X-Curse-Project-Name: ShaOfFearAssist
+## X-Curse-Project-ID: shaoffearassist
+## X-Curse-Repository-ID: wow/shaoffearassist/mainline
+
+## Notes: Assistance to the dance during Dread Spray
+
+## Author: Caleb
+
+## Interface: 50400
+## Version: 1.21
+## SavedVariables: ShaAssistDB
+
+## X-Credits: BigWigs Proximity display
+
+#@no-lib-strip@
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\AceLocale-3.0\AceLocale-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceTimer-3.0\AceTimer-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\AceConsole-3.0\AceConsole-3.0.xml
+#@end-no-lib-strip@
+
+Locales\enUS.lua
+Locales\deDE.lua
+Locales\esES.lua
+Locales\esMX.lua
+Locales\frFR.lua
+Locales\itIT.lua
+Locales\ptBR.lua
+Locales\ruRU.lua
+Locales\zhCN.lua
+Locales\zhTW.lua
+Locales\koKR.lua
+
+ShaOfFearAssist.lua
+

@@ -1,0 +1,21 @@
+------------------------------------------------------------------------
+r42 | thaoky | 2013-10-06 07:06:32 +0000 (Sun, 06 Oct 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore.lua
+
+Version number updated.
+------------------------------------------------------------------------
+r41 | thaoky | 2013-09-11 15:27:44 +0000 (Wed, 11 Sep 2013) | 1 line
+Changed paths:
+   M /trunk/DataStore.toc
+
+5.4.001 Commit
+------------------------------------------------------------------------
+r40 | thaoky | 2013-05-28 17:12:44 +0000 (Tue, 28 May 2013) | 2 lines
+Changed paths:
+   M /trunk/DataStore.toc
+   M /trunk/Export/ExportToXML.lua
+
+- TOC Update
+- Minor change to export script
+------------------------------------------------------------------------

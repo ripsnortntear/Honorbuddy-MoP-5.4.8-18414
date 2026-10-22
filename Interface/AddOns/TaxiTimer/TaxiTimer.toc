@@ -1,0 +1,12 @@
+## Interface: 50400
+## Title: TaxiTimer
+## Notes: Letting you know how long it takes the taxi to get there.
+## Version: 1.0.2
+## SavedVariables: 
+## X-Curse-Packaged-Version: 1.0.2 release
+## X-Curse-Project-Name: TaxiTimer
+## X-Curse-Project-ID: taxitimer
+## X-Curse-Repository-ID: wow/taxitimer/mainline
+locale.lua
+db.lua
+core.lua

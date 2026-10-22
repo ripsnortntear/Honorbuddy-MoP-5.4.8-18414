@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="QuestGuru.lua" />
+	<Button name="QuestGuru_HistoryShowButton" inherits="UIPanelButtonTemplate" text="QG_SHOWHISTORY" parent="QuestLogFrame">
+		<Size x="100" y="22"/>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset x="-260" y="13"/>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				QuestGuru_ShowHistory();
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem1" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem2" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem3" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem4" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem5" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem6" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem7" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem8" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem9" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+	<Anchors>
+		<Anchor point="TOPLEFT"/>
+	</Anchors>
+	</Button>
+	<Button name="QuestGuru_QuestLogObjectiveItem10" inherits="QuestLogObjectiveItemTemplate" hidden="true" parent="QuestInfoObjectivesFrame">
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Button>
+</Ui>

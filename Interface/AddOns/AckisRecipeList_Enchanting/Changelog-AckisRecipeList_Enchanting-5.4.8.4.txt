@@ -1,0 +1,11 @@
+tag 5.4.8.4
+ab0b9dc1824ff01d8cfce9f5cf3eba1b7fbf72ed
+James D. Callahan III <jcallahan@curse.com>
+2014-08-08 20:06:30 -0500
+
+
+
+--------------------
+
+Ressy:
+	- Revert last change. Neither way is working properly, but they're all removed with WoD, so doesn't matter either way
