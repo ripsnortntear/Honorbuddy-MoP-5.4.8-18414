@@ -9,12 +9,11 @@
     <MinFreeBagSlots>0</MinFreeBagSlots>
 
     <QuestOrder IgnoreCheckpoints="true">
-        <!-- Force ground mesh navigation to verify MeshNavigator elevator traversal -->
-        <DisableBehavior Name="Flight" />
+        <!-- Ensure dismounted to start cleanly -->
+        <CustomBehavior File="ForcedDismount" />
 
         <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
         <CustomBehavior File="Message" Text="[Elevator Test] Starting Orgrimmar Elevator Verification Profile" LogColor="CornflowerBlue" />
-        <CustomBehavior File="Message" Text="[Elevator Test] Flight disabled to force MeshNavigator ground elevator pathing." LogColor="CornflowerBlue" />
         <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
 
         <!-- Round 1: UP to Flight Master Doras -->
@@ -45,8 +44,6 @@
         <CustomBehavior File="Message" Text="[Elevator Test] SUCCESS! Reached Valley of Strength Auction House (Round 2)." LogColor="Green" />
         <CustomBehavior File="WaitTimer" WaitTime="1500" />
 
-        <!-- Re-enable Flight when done -->
-        <EnableBehavior Name="Flight" />
         <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
         <CustomBehavior File="Message" Text="[Elevator Test] All Orgrimmar Elevator tests completed successfully!" LogColor="Green" />
         <CustomBehavior File="Message" Text="======================================================" LogColor="CornflowerBlue" />
