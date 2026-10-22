@@ -3,6 +3,7 @@
 [![WoW Version](https://img.shields.io/badge/World%20of%20Warcraft-MoP%205.4.8%20(18414)-blue.svg)](#system-requirements)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20x86%20(32--bit)-orange.svg)](#system-requirements)
 [![Target Framework](https://img.shields.io/badge/.NET%20Framework-4.5.1%2B-purple.svg)](#prerequisites)
+[![Upstream](https://img.shields.io/badge/Upstream-Likon69%2FHonorbuddy--MoP--5.4.8--18414-blue.svg)](https://github.com/Likon69/Honorbuddy-MoP-5.4.8-18414)
 [![License](https://img.shields.io/badge/License-Bossland%20%2F%20Community-green.svg)](#authors--credits)
 
 The modernized, stabilized, and fully autonomous release of **Honorbuddy v2.5.11489.748** engineered for **World of Warcraft: Mists of Pandaria (Patch 5.4.8, Build 18414)**. 
@@ -295,12 +296,14 @@ Comprehensive guides and architectural references are available in the [`docs/`]
 ### Original Authors
 - **Bossland GmbH**: Original creators of Honorbuddy, Styx API, and the TreeSharp behavior engine (Apoc, Nesox, Hawker, and the Bossland development team).
 
+### Upstream Repository & Packaging
+- **[Likon69 (Téxy)](https://github.com/Likon69/Honorbuddy-MoP-5.4.8-18414)**: Creator and maintainer of the base upstream repository ([Likon69/Honorbuddy-MoP-5.4.8-18414](https://github.com/Likon69/Honorbuddy-MoP-5.4.8-18414)), who preserved, packaged, and initially published this working 5.4.8 release.
+
 ### Core Contributors & Reverse Engineering
-- **Vo1d, Err0r, Manjaro**: Core reverse engineering, authentication server emulation, binary patching, and fork stabilization for World of Warcraft 5.4.8 (Build 18414).
-- **Téxy**: Initial community fork packaging and maintenance.
+- **Vo1d, Err0r, Manjaro**: Core reverse engineering, authentication server emulation (Buddy_Auth.exe), binary patching, and fork stabilization for World of Warcraft 5.4.8 (Build 18414).
 
 ### Profile, Routine & Plugin Developers
-Many thanks to the developers of Honorbuddy content whose profiles, routines, and plugins make this bot possible:
+Many thanks to the community developers of Honorbuddy content whose profiles, routines, and plugins make this bot possible:
 - **Kickazz006**, **Akna**, **Brodie**, **Cava**, **Vitalic**, **Twist**, **Echo**, **Millz**, and the wider community creators.
 
 ---
