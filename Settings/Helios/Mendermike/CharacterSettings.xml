@@ -1,19 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
-  <SelectTalents>True</SelectTalents>
-  <ClassProfileName>Priest - Holy</ClassProfileName>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+  <TicksPerSecond>30</TicksPerSecond>
   <AutoEquip>True</AutoEquip>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <SelectTalents>True</SelectTalents>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <LootRadius>45</LootRadius>
+  <DrinkAmount>20</DrinkAmount>
+  <FoodAmount>20</FoodAmount>
+  <MailRecipient>Buttermilk</MailRecipient>
+  <FoodName>8948</FoodName>
+  <DrinkName>4791</DrinkName>
+  <MountName></MountName>
+  <FlyingMountName></FlyingMountName>
+  <UseRandomMount>True</UseRandomMount>
+  <MountDistance>60</MountDistance>
+  <ClassProfileName>Priest - Shadow</ClassProfileName>
   <AutoEquipBags>True</AutoEquipBags>
   <AutoEquipWeapons>True</AutoEquipWeapons>
   <AutoEquipArmor>True</AutoEquipArmor>
-  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
   <WeaponStyle>Automatic</WeaponStyle>
-  <RollOnItems>True</RollOnItems>
-  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
   <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
-  <TicksPerSecond>30</TicksPerSecond>
-  <FoodAmount>20</FoodAmount>
-  <DrinkAmount>20</DrinkAmount>
   <EnabledPlugins>
     <Entry>Anti Drown</Entry>
     <Entry>Find Rares and Chests</Entry>
@@ -39,22 +53,8 @@
   <SelectedBotName>Questing</SelectedBotName>
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
-  <UseRandomMount>True</UseRandomMount>
-  <MailRecipient>Buttermilk</MailRecipient>
-  <FoodName>4537</FoodName>
-  <DrinkName>159</DrinkName>
-  <MountName></MountName>
-  <FlyingMountName></FlyingMountName>
-  <LootMobs>True</LootMobs>
-  <SkinMobs>False</SkinMobs>
-  <NinjaSkin>False</NinjaSkin>
   <LootChests>True</LootChests>
-  <HarvestMinerals>False</HarvestMinerals>
-  <HarvestHerbs>False</HarvestHerbs>
   <UseMount>True</UseMount>
   <PullDistance>100</PullDistance>
-  <LootRadius>45</LootRadius>
   <LastUsedPath>D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] EK 12-58 [Kick].xml</LastUsedPath>
-  <MountDistance>60</MountDistance>
-  <RessAtSpiritHealers>False</RessAtSpiritHealers>
 </CharacterSettings>

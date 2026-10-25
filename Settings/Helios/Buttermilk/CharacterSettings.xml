@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <SelectTalents>True</SelectTalents>
   <ClassProfileName>Warlock - Destruction</ClassProfileName>
@@ -31,7 +31,7 @@
   </RecentProfiles>
   <!--The last selected index used by the Combobox in the form.-->
   <SelectedBotIndex>-1</SelectedBotIndex>
-  <SelectedBotName>Questing</SelectedBotName>
+  <SelectedBotName>Tyrael</SelectedBotName>
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>True</UseRandomMount>

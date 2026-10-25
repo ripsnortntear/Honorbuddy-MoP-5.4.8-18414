@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <SelectTalents>True</SelectTalents>
   <ClassProfileName>Paladin - Protection</ClassProfileName>
@@ -14,16 +14,19 @@
   <TicksPerSecond>30</TicksPerSecond>
   <FoodAmount>0</FoodAmount>
   <DrinkAmount>0</DrinkAmount>
+  <RecentProfiles>
+    <Entry>[Fly][A - Quest] 68-80 [Kick] ($Rev: 3214 $)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\LK\[Fly][A - Quest] LK 68-80 [Kick].xml</Entry>
+  </RecentProfiles>
   <!--The last selected index used by the Combobox in the form.-->
   <SelectedBotIndex>-1</SelectedBotIndex>
-  <SelectedBotName>Tyrael</SelectedBotName>
+  <SelectedBotName>Questing</SelectedBotName>
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>True</UseRandomMount>
   <MailRecipient></MailRecipient>
   <FoodName>33454</FoodName>
   <DrinkName>33444</DrinkName>
-  <MountName>Chestnut Mare</MountName>
+  <MountName>White Ram</MountName>
   <FlyingMountName>Ebon Gryphon</FlyingMountName>
   <LootMobs>True</LootMobs>
   <SkinMobs>False</SkinMobs>
@@ -34,7 +37,7 @@
   <UseMount>True</UseMount>
   <PullDistance>100</PullDistance>
   <LootRadius>45</LootRadius>
-  <LastUsedPath></LastUsedPath>
+  <LastUsedPath>D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\LK\[Fly][A - Quest] LK 68-80 [Kick].xml</LastUsedPath>
   <MountDistance>200</MountDistance>
   <RessAtSpiritHealers>False</RessAtSpiritHealers>
 </CharacterSettings>
