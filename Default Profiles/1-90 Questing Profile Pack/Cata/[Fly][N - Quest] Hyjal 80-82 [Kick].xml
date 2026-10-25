@@ -562,8 +562,6 @@
             <MoveTo DestName="Ysera" X="5488.991" Y="-3561.047" Z="1569.241" />
             <TurnIn QuestName="As Hyjal Burns" QuestId="25316" TurnInName="Ysera" TurnInId="40289"
                     X="5490.67" Y="-3563.557" Z="1569.245" />
-            <CustomBehavior File="RunMacro"
-                            Macro="/run for i=1,GetNumQuestLogEntries() do SelectQuestLogEntry(i); SetAbandonQuest(); AbandonQuest(); end" />
             <CustomBehavior File="DeleteItems" Ids="38624" />
             <PickUp QuestName="Protect the World Tree" GiverName="Ysera" QuestId="25317" GiverId="40289"
                     X="5490.67" Y="-3563.557" Z="1569.245" />
@@ -945,10 +943,8 @@
             <If Condition="HasQuest(25328) &amp;&amp; IsQuestCompleted(25328)">
                 <TurnIn QuestName="Gar'gol's Gotta Go" QuestId="25328" TurnInName="Kristoff Manheim" TurnInId="39640"
                         X="5038.081" Y="-2084.975" Z="1276.445" />
-                <If Condition="Object(39640) != null">
                     <PickUp QuestName="Get Me Outta Here!" QuestId="25332" GiverName="Kristoff Manheim" GiverId="39640"
                             X="5038.081" Y="-2084.975" Z="1276.445" />
-                </If>
             </If>
             <If Condition="!HasQuest(25332) &amp;&amp; !IsQuestCompleted(25332)">
                 <CustomBehavior File="FlyTo" DestName="Pickup Quest" Land="true" X="5187.642" Y="-2086.129"
@@ -1068,7 +1064,7 @@
                         TurnInId="39627" />
                 <PickUp QuestName="Into the Maw!" QuestId="25618" GiverName="Spirit of Goldrinn" GiverId="39627" />
             </If>
-            <If Condition="!HasQuest(25618) &amp;&amp; !IsQuestCompleted(25618) &amp;&amp; !HasQuest(25623) &amp;&amp; !IsQuestCompleted(25623) &amp;&amp; Unit(39627) != null">
+            <If Condition="!HasQuest(25618) &amp;&amp; !IsQuestCompleted(25618) &amp;&amp; !HasQuest(25623) &amp;&amp; !IsQuestCompleted(25623)">
                 <CustomBehavior File="ForcedDismount" />
                 <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(52853)" WaitTime="1000" />
                 <CustomBehavior File="WaitTimer" WaitTime="3000" />
@@ -2193,11 +2189,11 @@
         <If Condition="!HasQuest(25830) &amp;&amp; !IsQuestCompleted(25830)">
             <CustomBehavior File="FlyTo" DestName="Nordrassil doorway" X="5581.133" Y="-3609.819" Z="1570.599" />
             <MoveTo DestName="Ysera" X="5488.991" Y="-3561.047" Z="1569.241" />
+            <If Condition="HasQuest(25316) &amp;&amp; IsQuestCompleted(25316)">
             <TurnIn QuestName="As Hyjal Burns" QuestId="25316" TurnInName="Ysera" TurnInId="40289"
                     X="5490.67" Y="-3563.557" Z="1569.245" />
-            <CustomBehavior File="RunMacro"
-                            Macro="/run for i=1,GetNumQuestLogEntries() do SelectQuestLogEntry(i); SetAbandonQuest(); AbandonQuest(); end" />
             <CustomBehavior File="DeleteItems" Ids="38624" />
+            </If>
             <PickUp QuestName="The Last Living Lorekeeper" QuestId="25830" GiverName="Ysera" GiverId="40289"
                     X="5490.67" Y="-3563.557" Z="1569.245" />
         </If>
@@ -2890,7 +2886,7 @@
             </While>
 
             <CustomBehavior File="WaitTimer" WaitTime="15000" GoalText="Waiting for  {TimeRemaining}" />
-            <CustomBehavior File="Misc\RunLua" Lua="OverrideActionBarButtonClick()" WaitTime="1000" />
+            <CustomBehavior File="Misc\RunLua" Lua="if OverrideActionBarButton5 then OverrideActionBarButton5:Click() end" WaitTime="1000" />
 
             <!--
                 <CustomBehavior File="ButtonPress\ButtonPressOnChat" QuestId="25315" MobId="202996"
