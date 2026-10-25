@@ -1,4 +1,4 @@
-﻿// Behavior originally contributed by Unknown / rework by chinajade
+// Behavior originally contributed by Unknown / rework by chinajade
 //
 // LICENSE:
 // This work is licensed under the
@@ -214,7 +214,7 @@ namespace Honorbuddy.Quest_Behaviors.FlyTo
 				DefaultAllowedVariance = GetAttributeAsNullable<double>("AllowedVariance", false, new ConstrainTo.Domain<double>(0.0, 50.0), null)
 					?? 0.0;
                 DefaultArrivalTolerance = GetAttributeAsNullable<double>("ArrivalTolerance", false, new ConstrainTo.Domain<double>(1.5, 30.0), new string[] { "Distance" })
-					?? 1.5;
+					?? (double)Navigator.PathPrecision;
 				DefaultDestination = GetAttributeAsNullable<WoWPoint>("", false, ConstrainAs.WoWPointNonEmpty, null);
 				DefaultDestinationName = GetAttributeAs<string>("DestName", false, ConstrainAs.StringNonEmpty, new[] { "Name" })
 										 ?? ((DefaultDestination != null) ? DefaultDestination.ToString() : string.Empty);
@@ -224,10 +224,6 @@ namespace Honorbuddy.Quest_Behaviors.FlyTo
 				// Make certain ArrivalTolerance is coherent with Navigator.PathPrecision...
 				if (DefaultArrivalTolerance < Navigator.PathPrecision)
 				{
-					QBCLog.DeveloperInfo("ArrivalTolerance({0:F1}) is less than PathPrecision({1:F1})."
-										 + "  Setting ArrivalTolerance to be PathPrecision to prevent navigational issues.",
-										 DefaultArrivalTolerance,
-										 Navigator.PathPrecision);
 					DefaultArrivalTolerance = Navigator.PathPrecision;
 				}
 			}
@@ -386,7 +382,35 @@ namespace Honorbuddy.Quest_Behaviors.FlyTo
 			}
 
 			// Move closer to destination...
-			Flightor.MoveTo(immediateDestination, !IgnoreIndoors);
+			var moveTarget = immediateDestination;
+			var myLoc = activeMover.Location;
+			float dist2D = myLoc.Distance2D(immediateDestination);
+
+			// If destination is far away, advance using cruising waypoints to prevent
+			// Flightor from continuously climbing over distant mountain peaks up to the world ceiling.
+			if (dist2D > 180f)
+			{
+				float stepDist = 140f;
+				var dir = immediateDestination - myLoc;
+				dir = new Styx.WoWPoint(dir.X, dir.Y, 0);
+				if (dir.Length > 0.1f)
+				{
+					dir.Normalize();
+					var intermediate = myLoc + (dir * stepDist);
+					float groundHeight;
+					if (Styx.Pathing.Navigator.FindHeight(intermediate.X, intermediate.Y, out groundHeight))
+					{
+						intermediate.Z = Math.Max(groundHeight + 45f, myLoc.Z - 15f);
+					}
+					else
+					{
+						intermediate.Z = myLoc.Z;
+					}
+					moveTarget = intermediate;
+				}
+			}
+
+			Flightor.MoveTo(moveTarget, !IgnoreIndoors);
 			return true;
 		}
 		#endregion
@@ -430,7 +454,7 @@ namespace Honorbuddy.Quest_Behaviors.FlyTo
 				return false;
 
 			var zTolerance = Math.Max(4.5f, RoughDestination.ArrivalTolerance);
-			return Math.Abs(otherPos.Z - otherPos.Z) < zTolerance;
+			return Math.Abs(myPos.Z - otherPos.Z) < zTolerance;
 		}
 		#endregion
 	}
