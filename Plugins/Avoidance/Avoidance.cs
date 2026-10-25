@@ -455,7 +455,9 @@ namespace Avoidance
                 }
             }
 
-            // 3. Check Harmful Ground Debuffs / Ticking DoTs on player
+            // 3. Check Harmful Environmental Ground Auras on player (e.g. standing in slime/tar/lava)
+            // Note: Timed status debuffs/DoTs afflicted on the character (e.g. Searing Touch, Rend, Corruption)
+            // travel with the player; running away does not remove them and causes endless running.
             if (Settings.AvoidGroundAuras)
             {
                 foreach (var aura in Me.GetAllAuras())
@@ -463,9 +465,12 @@ namespace Avoidance
                     if (!aura.IsHarmful)
                         continue;
 
-                    // If a debuff on the player is harmful and dealing damage, it is ticking HP away!
-                    // Only skip if explicitly in user's custom whitelist
-                    if (IsCustomWhitelisted(aura.SpellId, aura.Name))
+                    // Skip personal status debuffs/DoTs: anything with a duration/time-left is an affliction on the player
+                    if (aura.Duration > 0 || aura.TimeLeft > TimeSpan.Zero)
+                        continue;
+
+                    // Skip whitelisted spells
+                    if (IsCustomWhitelisted(aura.SpellId, aura.Name) || IsWhitelisted(aura.SpellId, aura.Name))
                         continue;
 
                     bool isGroundDamage = false;
@@ -476,10 +481,9 @@ namespace Avoidance
                             if (effect == null)
                                 continue;
 
+                            // Only true persistent environmental area auras (no duration, active only while standing inside)
                             if (effect.EffectType == WoWSpellEffectType.PersistentAreaAura ||
-                                effect.EffectType == WoWSpellEffectType.ApplyAreaAuraEnemy ||
-                                effect.AuraType == WoWApplyAuraType.PeriodicDamage ||
-                                effect.AuraType == WoWApplyAuraType.PeriodicDamagePercent)
+                                effect.EffectType == WoWSpellEffectType.ApplyAreaAuraEnemy)
                             {
                                 isGroundDamage = true;
                                 break;
@@ -489,7 +493,6 @@ namespace Avoidance
 
                     if (isGroundDamage)
                     {
-                        // Any harmful aura actively ticking damage away is bad!
                         if (!_currentHazards.Any(h => h.SpellId == aura.SpellId))
                         {
                             float radius = 4.0f + Settings.SafetyBuffer;

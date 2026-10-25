@@ -107,7 +107,7 @@ namespace Avoidance
 
             _chkAvoidGroundAuras = new CheckBox
             {
-                Text = "Avoid harmful ticking ground auras / DoTs on player",
+                Text = "Avoid environmental ground auras on player (excludes status debuffs/DoTs)",
                 Location = new Point(20, y),
                 AutoSize = true
             };
