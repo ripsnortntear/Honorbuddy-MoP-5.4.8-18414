@@ -46,24 +46,128 @@ namespace Avoidance
             "Questbot_Main"
         };
 
-        // Whitelist of beneficial ground effects that should NEVER be avoided
+        // Whitelist of beneficial ground effects and player-class AoE ground spells that should NOT be avoided when cast by allies
         private static readonly HashSet<int> FriendlySpellWhitelist = new HashSet<int>
         {
-            26573, 81297, 110701, 118283, // Consecration (Paladin)
-            73920, 73921,            // Healing Rain (Shaman)
-            81262, 81269, 145205,    // Efflorescence (Druid)
-            88685, 88686,            // Holy Word: Sanctuary (Priest)
-            62618,                   // Power Word: Barrier (Priest)
-            116844,                  // Ring of Peace (Monk)
-            724, 126135,             // Lightwell / Lightspring (Priest)
-            115460,                  // Healing Sphere (Monk)
-            116011,                  // Rune of Power (Mage)
-            114158,                  // Light's Hammer (Paladin)
-            114018,                  // Shroud of Concealment (Rogue)
-            76577,                   // Smoke Bomb (Rogue)
-            698,                     // Ritual of Summoning (Warlock)
-            29893,                   // Create Soulwell (Warlock)
-            114192, 114198, 114207   // Banners (Warrior)
+            // Paladin
+            26573, 81297, 110701, 118283, // Consecration
+            114158,                  // Light's Hammer
+
+            // Warlock
+            5740, 42223, 104232, 104233, // Rain of Fire
+            1949,                    // Hellfire
+            30283,                   // Shadowfury
+            48018, 48020,            // Demonic Circle
+            111771, 113902,          // Demonic Gateway
+            698,                     // Ritual of Summoning
+            29893,                   // Create Soulwell
+
+            // Mage
+            10, 42208, 110959, 110960,   // Blizzard
+            2120, 44461,             // Flamestrike
+            82676, 113724,           // Ring of Frost
+            84714, 84721,            // Frozen Orb
+            116011,                  // Rune of Power
+
+            // Death Knight
+            43265, 52212,            // Death and Decay
+            51052, 50461, 145629,    // Anti-Magic Zone
+            108201,                  // Desecrated Ground
+            108200,                  // Remorseless Winter
+
+            // Druid
+            16914, 42231,            // Hurricane
+            127663,                  // Astral Storm
+            78675,                   // Solar Beam
+            102793,                  // Ursol's Vortex
+            88747, 102791, 102792,   // Wild Mushroom
+            81262, 81269, 145205,    // Efflorescence
+
+            // Hunter
+            1543,                    // Flare
+            1499, 60192,             // Freezing Trap
+            13809,                   // Ice Trap
+            13813,                   // Explosive Trap
+            34600,                   // Snake Trap
+            109248, 117405,          // Binding Shot
+
+            // Priest
+            88685, 88686,            // Holy Word: Sanctuary
+            62618,                   // Power Word: Barrier
+            724, 126135,             // Lightwell / Lightspring
+            78203,                   // Shadowy Apparition
+
+            // Shaman
+            73920, 73921,            // Healing Rain
+            61882, 77478,            // Earthquake
+            8190,                    // Magma Totem
+            98008, 98007,            // Spirit Link Totem
+            108280,                  // Healing Tide Totem
+            2484, 51485, 6474,       // Earthbind / Earthgrab Totem
+            108269,                  // Capacitor Totem
+
+            // Monk
+            115460,                  // Healing Sphere
+            116844,                  // Ring of Peace
+            101546,                  // Spinning Crane Kick
+            116847,                  // Rushing Jade Wind
+            115313, 115315,          // Black Ox Statue / Jade Serpent Statue
+
+            // Rogue
+            76577,                   // Smoke Bomb
+            114018,                  // Shroud of Concealment
+
+            // Warrior
+            114192, 114198, 114207,  // Banners (Demoralizing, Mocking, Skull)
+            118000, 107570           // Ravager / Dragon Roar
+        };
+
+        private static readonly string[] FriendlySpellNameKeywords = new[]
+        {
+            "Consecration",
+            "Rain of Fire",
+            "Hellfire",
+            "Shadowfury",
+            "Demonic Circle",
+            "Demonic Gateway",
+            "Blizzard",
+            "Flamestrike",
+            "Ring of Frost",
+            "Frozen Orb",
+            "Rune of Power",
+            "Death and Decay",
+            "Anti-Magic Zone",
+            "Desecrated Ground",
+            "Remorseless Winter",
+            "Hurricane",
+            "Astral Storm",
+            "Solar Beam",
+            "Ursol's Vortex",
+            "Wild Mushroom",
+            "Efflorescence",
+            "Flare",
+            "Freezing Trap",
+            "Ice Trap",
+            "Explosive Trap",
+            "Snake Trap",
+            "Binding Shot",
+            "Light's Hammer",
+            "Sanctuary",
+            "Power Word: Barrier",
+            "Lightwell",
+            "Lightspring",
+            "Healing Rain",
+            "Earthquake",
+            "Spirit Link",
+            "Healing Tide",
+            "Healing Sphere",
+            "Ring of Peace",
+            "Spinning Crane Kick",
+            "Rushing Jade Wind",
+            "Smoke Bomb",
+            "Shroud of Concealment",
+            "Banner",
+            "Dragon Roar"
         };
         #endregion
 
@@ -359,8 +463,9 @@ namespace Avoidance
                     if (!aura.IsHarmful)
                         continue;
 
-                    // Skip whitelisted spells (e.g. Consecration)
-                    if (IsWhitelisted(aura.SpellId, aura.Name))
+                    // If a debuff on the player is harmful and dealing damage, it is ticking HP away!
+                    // Only skip if explicitly in user's custom whitelist
+                    if (IsCustomWhitelisted(aura.SpellId, aura.Name))
                         continue;
 
                     bool isGroundDamage = false;
@@ -384,7 +489,7 @@ namespace Avoidance
 
                     if (isGroundDamage)
                     {
-                        // Only add if not already captured by DynamicObject / AreaTrigger with same spell ID
+                        // Any harmful aura actively ticking damage away is bad!
                         if (!_currentHazards.Any(h => h.SpellId == aura.SpellId))
                         {
                             float radius = 4.0f + Settings.SafetyBuffer;
@@ -397,6 +502,75 @@ namespace Avoidance
             return _currentHazards.Count > 0;
         }
 
+        private static bool IsPartyOrFriendly(ulong casterGuid, WoWUnit caster)
+        {
+            if (casterGuid == Me.Guid)
+                return true;
+
+            // Direct check against group / raid member GUIDs
+            if (Me.GroupInfo != null)
+            {
+                var partyGuids = Me.GroupInfo.PartyMemberGuids;
+                if (partyGuids != null && partyGuids.Contains(casterGuid))
+                    return true;
+
+                var raidGuids = Me.GroupInfo.RaidMemberGuids;
+                if (raidGuids != null && raidGuids.Contains(casterGuid))
+                    return true;
+            }
+
+            if (caster == null && casterGuid != 0)
+            {
+                caster = ObjectManager.GetObjectByGuid<WoWUnit>(casterGuid);
+            }
+
+            if (caster != null)
+            {
+                // Friendly player or pet created by player
+                if (caster.IsFriendly && (caster.IsPlayer || caster.CreatedByUnitGuid == Me.Guid))
+                    return true;
+
+                // Pet or minion created by party/raid member
+                if (caster.CreatedByUnitGuid != 0 && Me.GroupInfo != null)
+                {
+                    var partyGuids = Me.GroupInfo.PartyMemberGuids;
+                    if (partyGuids != null && partyGuids.Contains(caster.CreatedByUnitGuid))
+                        return true;
+
+                    var raidGuids = Me.GroupInfo.RaidMemberGuids;
+                    if (raidGuids != null && raidGuids.Contains(caster.CreatedByUnitGuid))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsCustomWhitelisted(int spellId, string spellName)
+        {
+            if (string.IsNullOrEmpty(Settings.CustomWhitelist))
+                return false;
+
+            var tokens = Settings.CustomWhitelist.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var t in tokens)
+            {
+                var trimmed = t.Trim();
+                int id;
+                if (int.TryParse(trimmed, out id))
+                {
+                    if (spellId != 0 && id == spellId)
+                        return true;
+                }
+                else if (!string.IsNullOrEmpty(spellName) &&
+                         spellName.IndexOf(trimmed, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private static bool IsWhitelisted(int spellId, string spellName)
         {
             if (spellId != 0 && FriendlySpellWhitelist.Contains(spellId))
@@ -404,62 +578,40 @@ namespace Avoidance
 
             if (!string.IsNullOrEmpty(spellName))
             {
-                if (string.Equals(spellName, "Consecration", StringComparison.OrdinalIgnoreCase) ||
-                    spellName.IndexOf("Consecration", StringComparison.OrdinalIgnoreCase) >= 0)
+                foreach (var kw in FriendlySpellNameKeywords)
                 {
-                    return true;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(Settings.CustomWhitelist))
-            {
-                var tokens = Settings.CustomWhitelist.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var t in tokens)
-                {
-                    var trimmed = t.Trim();
-                    int id;
-                    if (int.TryParse(trimmed, out id))
-                    {
-                        if (spellId != 0 && id == spellId)
-                            return true;
-                    }
-                    else if (!string.IsNullOrEmpty(spellName) &&
-                             (string.Equals(spellName, trimmed, StringComparison.OrdinalIgnoreCase) ||
-                              spellName.IndexOf(trimmed, StringComparison.OrdinalIgnoreCase) >= 0))
-                    {
+                    if (spellName.IndexOf(kw, StringComparison.OrdinalIgnoreCase) >= 0)
                         return true;
-                    }
                 }
             }
 
-            return false;
+            return IsCustomWhitelisted(spellId, spellName);
         }
 
         private static bool IsFriendlyHelpful(WoWSpell spell, WoWUnit caster, ulong casterGuid)
         {
+            // 1. You or your pet cast it
             if (casterGuid == Me.Guid)
                 return true;
 
+            // 2. If the caster is known and hostile, it is an ENEMY attack -> NOT safe to stand in!
+            if (caster != null && caster.IsHostile)
+                return false;
+
+            // 3. Anything cast by a party member, raid member, or friendly unit is safe
+            if (IsPartyOrFriendly(casterGuid, caster))
+                return true;
+
+            // 4. Healing / beneficial buff spells
+            if (spell != null && spell.IsHealingSpell)
+                return true;
+
+            // 5. Whitelisted player class ground AoE (when not cast by a hostile enemy)
             int spellId = spell != null ? spell.Id : 0;
             string spellName = spell != null ? spell.Name : null;
 
             if (IsWhitelisted(spellId, spellName))
                 return true;
-
-            if (spell != null && spell.IsHealingSpell)
-                return true;
-
-            if (caster != null)
-            {
-                if (caster.IsFriendly && (caster.IsPlayer || caster.CreatedByUnitGuid == Me.Guid))
-                    return true;
-            }
-            else if (casterGuid != 0)
-            {
-                // Check if caster is a group/raid member
-                if (Me.GroupInfo != null && Me.GroupInfo.RaidMembers.Any(m => m.Guid == casterGuid))
-                    return true;
-            }
 
             return false;
         }
