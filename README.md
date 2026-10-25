@@ -119,9 +119,9 @@ Keep this window open while running Honorbuddy. *(For background service install
 3. Honorbuddy will attach to the active `Wow.exe` process, load all cached assemblies instantly, and present the main interface.
 
 ### Step 5: Select BotBase & Profile
-1. Select your desired **BotBase** from the drop-down menu (e.g., `Questing`, `Gatherbuddy2`, `Grind Bot`, `Combat`).
-2. Click **Load Profile** and select a profile from the `Default Profiles/` directory.
-3. Select your active combat routine using the **Routine** menu or the **Routine Manager** button.
+1. Select your active combat routine using the **Routine** menu (You can change your **Routine** Later with the **Routine Manager** button).
+2. Select your desired **BotBase** from the drop-down menu (e.g., `Questing`, `Gatherbuddy2`, `Grind Bot`, `Combat`).
+3. Click **Load Profile** and select a profile from the `Default Profiles/` directory.
 4. Click **Start**.
 
 ---
