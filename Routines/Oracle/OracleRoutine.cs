@@ -1,4 +1,4 @@
-#region Revision info
+﻿#region Revision info
 
 /*
  * $Author: wulf_ $
@@ -86,7 +86,7 @@ namespace Oracle
             try
             {
                 GroupCount = 0;
-                Logger.StatCounter();
+                // Logger.StatCounter(); // Disabled: defunct StatCounter endpoint
                 Logger.Output(" The {0} is watching...", RoutineManager.Current.Name);
                 Logging.WriteDiagnostic(" [Oracle D] {0:F1} days since Windows was started.", TimeSpan.FromMilliseconds(Environment.TickCount).TotalHours / 24.0);
                 Logging.WriteDiagnostic("[Oracle D] {0} ms Latency in WoW.", StyxWoW.WoWClient.Latency);

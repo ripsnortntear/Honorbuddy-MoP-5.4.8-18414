@@ -1,4 +1,4 @@
-using Action = Styx.TreeSharp.Action;
+﻿using Action = Styx.TreeSharp.Action;
 using Styx;
 using Styx.Common;
 using Styx.CommonBot;
@@ -35,7 +35,7 @@ namespace Boomkin
 
         public override void Initialize()
         { 
-            Updater.CheckForUpdate();
+            // Updater.CheckForUpdate(); // Disabled: defunct SVN endpoint
             Lua.Events.AttachEvent("MODIFIER_STATE_CHANGED", HandleModifierStateChanged);
         }
 
@@ -57,7 +57,7 @@ namespace Boomkin
                     && !Me.Mounted
                     && !MeInGroup
                     && !Me.IsDead
-                    && Me.IsGhost)
+                    && !Me.IsGhost)
                 {
                     return true;
                 }
@@ -67,7 +67,7 @@ namespace Boomkin
                     && !Me.Mounted
                     && !MeInGroup
                     && !Me.IsDead
-                    && Me.IsGhost)
+                    && !Me.IsGhost)
                 {
                     return true;
                 }
@@ -75,7 +75,7 @@ namespace Boomkin
                     && !Me.Mounted
                     && !MeInGroup
                     && !Me.IsDead
-                    && Me.IsGhost
+                    && !Me.IsGhost
                     && !Me.IsSwimming)
                 {
                     return true;
@@ -84,7 +84,7 @@ namespace Boomkin
                     && !Me.Mounted
                     && !MeInGroup
                     && !Me.IsDead
-                    && Me.IsGhost
+                    && !Me.IsGhost
                     && !Me.IsSwimming)
                 {
                     return true;
@@ -102,7 +102,7 @@ namespace Boomkin
                     && !Me.Mounted
                     && !MeInGroup
                     && !Me.IsDead
-                    && Me.IsGhost)
+                    && !Me.IsGhost)
             {
                 SpellManager.Cast("Rejuvenation", Me);
                 LogMsg("Rejuvenation", 2);
@@ -113,7 +113,7 @@ namespace Boomkin
                 && !Me.Mounted
                 && !MeInGroup
                 && !Me.IsDead
-                && Me.IsGhost)
+                && !Me.IsGhost)
             {
                 SpellManager.Cast("Healing Touch", Me);
                 LogMsg("Healing Touch", 2);
@@ -122,7 +122,7 @@ namespace Boomkin
                 && !Me.Mounted
                 && !MeInGroup
                 && !Me.IsDead
-                && Me.IsGhost
+                && !Me.IsGhost
                 && !Me.IsSwimming)
             {
                 Styx.CommonBot.Rest.Feed();
@@ -131,7 +131,7 @@ namespace Boomkin
                 && !Me.Mounted
                 && !MeInGroup
                 && !Me.IsDead
-                && Me.IsGhost
+                && !Me.IsGhost
                 && !Me.IsSwimming)
             {
                 Styx.CommonBot.Rest.Feed();

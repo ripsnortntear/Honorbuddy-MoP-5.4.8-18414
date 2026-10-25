@@ -74,13 +74,8 @@ namespace PureRotation.Helpers
         /// <returns>Humming Crystal Support</returns>
         public static Composite HandleTortosHC()
         {
-            return new PrioritySelector(
-                new Decorator(ret => true,
-                              new PrioritySelector(
-                                  //TODO: Copy over from leaves.
-                                  )));
+            return new Action(ret => RunStatus.Failure);
         }
-
         #region Tanking Encounter Specific checks
 
         // Terrace of Endless Spring - Lei Shi

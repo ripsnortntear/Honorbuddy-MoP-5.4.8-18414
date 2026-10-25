@@ -302,7 +302,7 @@ namespace Superbad
             Logging.Write("");
             EventHandlers.Init();
             if (SuperbadSettings.Instance.Update)
-                Updater.CheckForUpdate();
+                // Updater.CheckForUpdate(); // Disabled: defunct GoogleCode SVN endpoint
             TalentManager.Update();
             Lua.Events.AttachEvent("MODIFIER_STATE_CHANGED", HandleModifierStateChanged);
             //  Lua.Events.AttachEvent("UNIT_POWER", grabUnitPower);

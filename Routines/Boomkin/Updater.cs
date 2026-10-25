@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -64,6 +64,12 @@ namespace Boomkin
         }
 
         public static void CheckForUpdate()
+        {
+            // Auto-updater disabled: SVN endpoint is defunct
+            return;
+        }
+
+        private static void UnusedCheckForUpdate()
         {
             try
             {

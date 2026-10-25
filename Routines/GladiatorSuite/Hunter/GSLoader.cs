@@ -1,4 +1,4 @@
-#region Copyright © 2014 Miracle Business Solutions
+﻿#region Copyright © 2014 Miracle Business Solutions
 // All rights are reserved. Reproduction or transmission in whole or in part,
 // any form or by any means, electronic, mechanical or otherwise, is prohibited
 // without the prior written consent of the copyright owner.
@@ -35,33 +35,6 @@ namespace Loader
     public class GladiatorSuiteHunter : CombatRoutine
     {
         #region Tidy : Properties
-        public void SlimCheck()
-        {
-            string SlimDll = Path.Combine(Utilities.AssemblyDirectory, "SlimDX.dll");
-            string SlimXml = Path.Combine(Utilities.AssemblyDirectory, "SlimDX.xml");
-
-            if (!File.Exists(SlimDll) || !File.Exists(SlimXml))
-            {
-                MessageBox.Show("Downloading missing DLL's for Gladiator Suite");
-
-                WebClient client = new WebClient();
-
-                try
-                {
-                    if (!File.Exists(SlimDll))
-                        client.DownloadFile(new Uri(@"http://gladiatorsuite.com/SlimDX/SlimDX.dll"), SlimDll);
-
-                    if (!File.Exists(SlimXml))
-                        client.DownloadFile(new Uri(@"http://gladiatorsuite.com/SlimDX/SlimDX.xml"), SlimXml);
-                }
-                catch (WebException e)
-                {
-                    MessageBox.Show("Error downloading missing dlls.\nMessage: " + e.Message + "\n\nResponse: " + e.Response);
-                    return;
-                }
-                MessageBox.Show("Download complete");
-            }
-        }
 
         private static readonly string SDir = Path.Combine(Utilities.AssemblyDirectory,
             @"Routines\GladiatorSuite\Hunter");
@@ -83,6 +56,15 @@ namespace Loader
         #endregion
 
         #region Tidy : Helpers
+        public void SlimCheck()
+        {
+            string SlimDll = Path.Combine(Utilities.AssemblyDirectory,  "SlimDX.dll");
+            string SlimXml = Path.Combine(Utilities.AssemblyDirectory, "SlimDX.xml");
+            if (!File.Exists(SlimDll) || !File.Exists(SlimXml))
+            {
+                Styx.Common.Logging.WriteDiagnostic("[GladiatorSuite] Warning: SlimDX.dll or SlimDX.xml not found in root.");
+            }
+        }
 
         public GladiatorSuiteHunter()
         {

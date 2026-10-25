@@ -1,4 +1,4 @@
-using FuryUnleashed.Core;
+﻿using FuryUnleashed.Core;
 using FuryUnleashed.Core.Helpers;
 using FuryUnleashed.Core.Managers;
 using FuryUnleashed.Core.Utilities;
@@ -67,7 +67,7 @@ namespace FuryUnleashed
             {
                 SubscribeBotEvents();
                 TreeHooks.Instance.ClearAll();
-                Updater.CheckForUpdate();
+                // Updater.CheckForUpdate(); // Disabled: defunct SVN endpoint
 
                 Unleash();
             }
@@ -134,7 +134,7 @@ namespace FuryUnleashed
             Item.RefreshSecondaryStats();
 
             /* Gather required information */
-            Logger.StatCounter();
+            // Logger.StatCounter(); // Disabled: defunct tracking endpoint
             Logger.LogTimer(500);
 
             /* Start Combat */

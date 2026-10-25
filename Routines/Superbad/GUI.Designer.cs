@@ -1526,7 +1526,7 @@ this.groupBox24.TabStop = false;
 this.groupBox24.Text = "Nature's Guardian";
 
 // pictureBox18
-this.pictureBox18.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/achievement_zone_feralas.jpg";
+// this.pictureBox18.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/achievement_zone_feralas.jpg";
 this.pictureBox18.Location = new System.Drawing.Point(4, 16);
 this.pictureBox18.Name = "pictureBox18";
 this.pictureBox18.Size = new System.Drawing.Size(56, 56);
@@ -1564,7 +1564,7 @@ this.checkBox25.UseVisualStyleBackColor = true;
 this.checkBox25.CheckedChanged += new System.EventHandler(this.checkBox25_CheckedChanged);
 
 // pictureBox12
-this.pictureBox12.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_dreamstate.jpg";
+// this.pictureBox12.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_dreamstate.jpg";
 this.pictureBox12.Location = new System.Drawing.Point(6, 16);
 this.pictureBox12.Name = "pictureBox12";
 this.pictureBox12.Size = new System.Drawing.Size(56, 56);
@@ -1593,7 +1593,7 @@ this.checkBox36.UseVisualStyleBackColor = true;
 this.checkBox36.CheckedChanged += new System.EventHandler(this.checkBox36_CheckedChanged);
 
 // pictureBox6
-this.pictureBox6.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_holy_blessingofagility.jpg";
+// this.pictureBox6.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_holy_blessingofagility.jpg";
 this.pictureBox6.Location = new System.Drawing.Point(3, 16);
 this.pictureBox6.Name = "pictureBox6";
 this.pictureBox6.Size = new System.Drawing.Size(56, 56);
@@ -1621,7 +1621,7 @@ this.groupBox27.TabStop = false;
 this.groupBox27.Text = "Mighty Bash";
 
 // pictureBox17
-this.pictureBox17.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_bash.jpg";
+// this.pictureBox17.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_bash.jpg";
 this.pictureBox17.Location = new System.Drawing.Point(4, 16);
 this.pictureBox17.Name = "pictureBox17";
 this.pictureBox17.Size = new System.Drawing.Size(56, 56);
@@ -1649,7 +1649,7 @@ this.groupBox28.TabStop = false;
 this.groupBox28.Text = "Ursol's Vortex";
 
 // pictureBox11
-this.pictureBox11.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_ursolsvortex.jpg";
+// this.pictureBox11.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_ursolsvortex.jpg";
 this.pictureBox11.Location = new System.Drawing.Point(6, 16);
 this.pictureBox11.Name = "pictureBox11";
 this.pictureBox11.Size = new System.Drawing.Size(56, 56);
@@ -1675,7 +1675,7 @@ this.groupBox29.TabStop = false;
 this.groupBox29.Text = "Frightening Roar";
 
 // pictureBox5
-this.pictureBox5.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_demoralizingroar.jpg";
+// this.pictureBox5.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_demoralizingroar.jpg";
 this.pictureBox5.Location = new System.Drawing.Point(3, 16);
 this.pictureBox5.Name = "pictureBox5";
 this.pictureBox5.Size = new System.Drawing.Size(56, 56);
@@ -1703,7 +1703,7 @@ this.groupBox18.TabStop = false;
 this.groupBox18.Text = "Force of Nature";
 
 // pictureBox16
-this.pictureBox16.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_forceofnature.jpg";
+// this.pictureBox16.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_forceofnature.jpg";
 this.pictureBox16.Location = new System.Drawing.Point(4, 16);
 this.pictureBox16.Name = "pictureBox16";
 this.pictureBox16.Size = new System.Drawing.Size(56, 56);
@@ -1732,7 +1732,7 @@ this.groupBox19.TabStop = false;
 this.groupBox19.Text = "Incarnation";
 
 // pictureBox10
-this.pictureBox10.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_incarnation.jpg";
+// this.pictureBox10.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_incarnation.jpg";
 this.pictureBox10.Location = new System.Drawing.Point(6, 16);
 this.pictureBox10.Name = "pictureBox10";
 this.pictureBox10.Size = new System.Drawing.Size(56, 56);
@@ -1761,7 +1761,7 @@ this.groupBox20.TabStop = false;
 this.groupBox20.Text = "Sylvan Tree";
 
 // pictureBox4
-this.pictureBox4.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_manatree.jpg";
+// this.pictureBox4.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_manatree.jpg";
 this.pictureBox4.Location = new System.Drawing.Point(3, 16);
 this.pictureBox4.Name = "pictureBox4";
 this.pictureBox4.Size = new System.Drawing.Size(56, 56);
@@ -1788,7 +1788,7 @@ this.groupBox21.TabStop = false;
 this.groupBox21.Text = "Typhoon";
 
 // pictureBox15
-this.pictureBox15.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_typhoon.jpg";
+// this.pictureBox15.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_typhoon.jpg";
 this.pictureBox15.Location = new System.Drawing.Point(4, 16);
 this.pictureBox15.Name = "pictureBox15";
 this.pictureBox15.Size = new System.Drawing.Size(56, 56);
@@ -1815,7 +1815,7 @@ this.groupBox22.TabStop = false;
 this.groupBox22.Text = "Mass Entanglement";
 
 // pictureBox9
-this.pictureBox9.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_massentanglement.jpg";
+// this.pictureBox9.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_massentanglement.jpg";
 this.pictureBox9.Location = new System.Drawing.Point(6, 16);
 this.pictureBox9.Name = "pictureBox9";
 this.pictureBox9.Size = new System.Drawing.Size(56, 56);
@@ -1842,7 +1842,7 @@ this.groupBox23.TabStop = false;
 this.groupBox23.Text = "Elune's Swarm";
 
 // pictureBox3
-this.pictureBox3.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_swarm.jpg";
+// this.pictureBox3.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_swarm.jpg";
 this.pictureBox3.Location = new System.Drawing.Point(3, 16);
 this.pictureBox3.Name = "pictureBox3";
 this.pictureBox3.Size = new System.Drawing.Size(56, 56);
@@ -1870,7 +1870,7 @@ this.groupBox15.TabStop = false;
 this.groupBox15.Text = "Cenarion Ward";
 
 // pictureBox14
-this.pictureBox14.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_naturalperfection.jpg";
+// this.pictureBox14.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/ability_druid_naturalperfection.jpg";
 this.pictureBox14.Location = new System.Drawing.Point(4, 17);
 this.pictureBox14.Name = "pictureBox14";
 this.pictureBox14.Size = new System.Drawing.Size(56, 56);
@@ -1906,7 +1906,7 @@ this.groupBox16.Text = "Renewal";
             // 
             // pictureBox8
             // 
-            this.pictureBox8.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_nature_natureblessing.jpg";
+// this.pictureBox8.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_nature_natureblessing.jpg";
             this.pictureBox8.Location = new System.Drawing.Point(6, 19);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(56, 56);
@@ -1943,7 +1943,7 @@ this.groupBox17.Text = "Gift of Elune";
 
 // pictureBox2
 // 
-this.pictureBox2.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/inv_misc_head_dragon_green.jpg";
+// this.pictureBox2.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/inv_misc_head_dragon_green.jpg";
 this.pictureBox2.Location = new System.Drawing.Point(3, 17);
 this.pictureBox2.Name = "pictureBox2";
 this.pictureBox2.Size = new System.Drawing.Size(56, 56);
@@ -1972,7 +1972,7 @@ this.groupBox14.Text = "Wild Charge";
 
 // pictureBox13
 // 
-this.pictureBox13.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_wildcharge.jpg";
+// this.pictureBox13.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_wildcharge.jpg";
 this.pictureBox13.Location = new System.Drawing.Point(4, 16);
 this.pictureBox13.Name = "pictureBox13";
 this.pictureBox13.Size = new System.Drawing.Size(56, 56);
@@ -2003,7 +2003,7 @@ this.groupBox13.Text = "Wild Displacement";
 
 // pictureBox7
 // 
-this.pictureBox7.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_displacement.jpg";
+// this.pictureBox7.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_displacement.jpg";
 this.pictureBox7.Location = new System.Drawing.Point(6, 16);
 this.pictureBox7.Name = "pictureBox7";
 this.pictureBox7.Size = new System.Drawing.Size(56, 56);
@@ -2034,7 +2034,7 @@ this.groupBox12.Text = "Feline Swiftness";
 
 // pictureBox1
 // 
-this.pictureBox1.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_tirelesspursuit.jpg";
+// this.pictureBox1.ImageLocation = "http://wow.zamimg.com/images/wow/icons/large/spell_druid_tirelesspursuit.jpg";
 this.pictureBox1.Location = new System.Drawing.Point(6, 16);
 this.pictureBox1.Name = "pictureBox1";
 this.pictureBox1.Size = new System.Drawing.Size(56, 56);

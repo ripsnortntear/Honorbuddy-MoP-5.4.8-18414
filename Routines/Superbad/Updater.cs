@@ -105,7 +105,7 @@ namespace Superbad
             Logging.Write("Cleanup completed. You need to reconfigure Superbad!");
         }
 
-        public static void CheckForUpdate()
+        public static void CheckForUpdate() { return; } private static void UnusedCheckForUpdate()
         {
             try
             {

@@ -496,7 +496,7 @@ namespace Singular.Helpers
         private static RunStatus BeginJumpTurn()
         {
             // find safespot
-            throw new NotImplementedException();
+            return RunStatus.Failure;
         }
 
         public static RunStatus EndJumpTurn(string s)

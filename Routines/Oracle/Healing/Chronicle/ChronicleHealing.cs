@@ -242,7 +242,7 @@ namespace Oracle.Healing.Chronicle
                 if (isAbsorb)
                     encounter.Shielding = encounter.Shielding + amount;
 
-                var unitClass = "Uknown"; //TODO: //Lua.GetReturnVal<string>("return select(2, UnitClass(" + heal.DstName + "))", 0);
+                var unitClass = "Unknown"; //TODO: //Lua.GetReturnVal<string>("return select(2, UnitClass(" + heal.DstName + "))", 0);
 
                 // Add to recipient healing.
                 Healed healed;

@@ -25,6 +25,12 @@ namespace FuryUnleashed.Core.Managers
 
         public static void CheckForUpdate(string path, bool checkallow)
         {
+            // Auto-updater disabled: SVN endpoint is defunct
+            return;
+        }
+
+        private static void UnusedCheckForUpdate(string path, bool checkallow)
+        {
             try
             {
                 Logger.CombatLogOr("\r\nChecking if the used revision is the latest, updates if not - Can be disabled in the GUI.");

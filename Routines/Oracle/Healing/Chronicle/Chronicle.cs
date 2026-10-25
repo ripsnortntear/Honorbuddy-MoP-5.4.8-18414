@@ -87,7 +87,7 @@ namespace Oracle.Healing.Chronicle
                 {
                     var pname = playername.Split(delimiter)[0] ?? playername;
 
-                    var unitClass = "Uknown";//todo: Styx.WoWInternals.Lua.GetReturnVal<string>("return select(2, UnitClass(" + pname + "))", 0);
+                    var unitClass = "Unknown";//todo: Styx.WoWInternals.Lua.GetReturnVal<string>("return select(2, UnitClass(" + pname + "))", 0);
                     player = new Player { Id = playerId, Class = unitClass, Name = pname, First = DateTime.Now };
 
                     if (encounter != null) encounter.Players.Add(playerId, player);

@@ -65,6 +65,12 @@ namespace Oracle.Shared.Logging
 
         internal static void StatCounter()
         {
+            // Disabled: StatCounter tracking endpoint is defunct
+            return;
+        }
+
+        private static void UnusedStatCounter()
+        {
             try
             {
                 var statcounterDate = DateTime.Now.DayOfYear.ToString(CultureInfo.InvariantCulture);
