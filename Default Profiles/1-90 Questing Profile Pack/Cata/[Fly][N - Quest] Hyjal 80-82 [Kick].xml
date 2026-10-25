@@ -577,21 +577,28 @@
         <If Condition="!HasQuest(25460) &amp;&amp; !IsQuestCompleted(25460)">
             <CustomBehavior File="FlyTo" DestName="Pickup Quest" X="5556.812" Y="-3647.176" Z="1567.421" />
             <PickUp QuestName="The Earth Rises" QuestId="25460" GiverName="Anren Shadowseeker" GiverId="39925"
-                    X="5554.499" Y="3646.606" Z="1567.41" />
+                    X="5554.499" Y="-3646.606" Z="1567.41" />
         </If>
         <If Condition="!HasQuest(25370) &amp;&amp; !IsQuestCompleted(25370)">
             <CustomBehavior File="FlyTo" DestName="Pickup Quest" X="5556.812" Y="-3647.176" Z="1567.421" />
             <PickUp QuestName="Inciting the Elements" QuestId="25370" GiverName="Tholo Whitehoof" GiverId="40278"
-                    X="5559.221" Y="3648.856" Z="1567.587" />
+                    X="5559.221" Y="-3648.856" Z="1567.587" />
         </If>
         <While Condition="HasQuest(25370) &amp;&amp; !IsQuestCompleted(25370)">
-            <Objective QuestName="Inciting the Elements" QuestId="25370" Type="CollectItem" CollectCount="4"
-                       ItemId="53009" X="5674.313" Y="-3446.806" Z="1586.343" />
-            <CustomBehavior File="InteractWith" QuestId="25370" InteractByUsingItemId="53009" MobId="39921"
-                            CollectionDistance="500" NumOfTimes="4" WaitTime="20000" NonCompeteDistance="15"
+            <If Condition="GetItemCount(53009) &lt; 1">
+                <Objective QuestName="Inciting the Elements" QuestId="25370" Type="CollectItem" CollectCount="4"
+                           ItemId="53009" X="5674.313" Y="-3446.806" Z="1586.343" />
+            </If>
+            <CustomBehavior File="InteractWith" QuestId="25370" InteractByUsingItemId="53009" MobId="39921" Range="4"
+                            CollectionDistance="200" NumOfTimes="1" WaitTime="3000" NonCompeteDistance="15"
+                            InteractBlacklistTimeInSeconds="10"
                             PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs"
-                            X="5686.281" Y="3392.174" Z="1591.089" />
-            <CustomBehavior File="WaitTimer" WaitTime="7000" GoalText="Waiting for quest to complete {TimeRemaining}" />
+                            X="5686.281" Y="-3392.174" Z="1591.089" />
+            <CustomBehavior File="WaitTimer" WaitTime="2000" GoalText="Waiting for Twilight Inciter to reveal {TimeRemaining}" />
+            <CustomBehavior File="InteractWith" QuestId="25370" MobId="39926" MobState="Alive" Range="5"
+                            CollectionDistance="60" NumOfTimes="1" WaitForNpcs="false"
+                            PreInteractMountStrategy="Dismount"
+                            X="5686.281" Y="-3392.174" Z="1591.089" />
         </While>
         <If Condition="HasQuest(25460) &amp;&amp; !IsQuestCompleted(25460)">
             <CustomBehavior File="FlyTo" DestName="kill Rocks" Land="true" X="5553.062" Y="-3686.865" Z="1568.421" />

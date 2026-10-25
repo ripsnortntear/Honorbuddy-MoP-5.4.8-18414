@@ -1003,12 +1003,15 @@ namespace Honorbuddy.Quest_Behaviors.InteractWith
 				// Interact by casting spell...
 				if (InteractByUsingItemId > 0)
 				{
-					await UtilityCoroutine.UseItemOnTarget(
+					if (!await UtilityCoroutine.UseItemOnTarget(
 							InteractByUsingItemId,
 							SelectedTarget,
 							() =>
 								BehaviorDone(
-									string.Format("Terminating behavior due to missing {0}", Utility.GetItemNameFromId(InteractByUsingItemId))));
+									string.Format("Terminating behavior due to missing {0}", Utility.GetItemNameFromId(InteractByUsingItemId)))))
+					{
+						return false;
+					}
 				}
 
 				// Interact by right-click..
