@@ -49,6 +49,7 @@ namespace Avoidance
         // Whitelist of beneficial ground effects that should NEVER be avoided
         private static readonly HashSet<int> FriendlySpellWhitelist = new HashSet<int>
         {
+            26573, 81297, 110701, 118283, // Consecration (Paladin)
             73920, 73921,            // Healing Rain (Shaman)
             81262, 81269, 145205,    // Efflorescence (Druid)
             88685, 88686,            // Holy Word: Sanctuary (Priest)
@@ -296,8 +297,9 @@ namespace Avoidance
                     if (dyn.CasterGuid == Me.Guid)
                         continue;
 
-                    // Skip friendly beneficial effects
-                    if (IsFriendlyHelpful(dyn.Spell, dyn.Caster, dyn.CasterGuid))
+                    // Skip friendly beneficial effects or whitelisted spells (e.g. Consecration)
+                    if (IsWhitelisted(dyn.SpellId, dyn.Spell != null ? dyn.Spell.Name : null) ||
+                        IsFriendlyHelpful(dyn.Spell, dyn.Caster, dyn.CasterGuid))
                         continue;
 
                     float radius = dyn.Radius;
@@ -325,7 +327,9 @@ namespace Avoidance
                     if (at.CasterGuid == Me.Guid)
                         continue;
 
-                    if (IsFriendlyHelpful(at.Spell, at.Caster as WoWUnit, at.CasterGuid))
+                    // Skip friendly beneficial effects or whitelisted spells (e.g. Consecration)
+                    if (IsWhitelisted(at.SpellId, at.Spell != null ? at.Spell.Name : null) ||
+                        IsFriendlyHelpful(at.Spell, at.Caster as WoWUnit, at.CasterGuid))
                         continue;
 
                     float radius = 3.5f;
@@ -353,6 +357,10 @@ namespace Avoidance
                 foreach (var aura in Me.GetAllAuras())
                 {
                     if (!aura.IsHarmful)
+                        continue;
+
+                    // Skip whitelisted spells (e.g. Consecration)
+                    if (IsWhitelisted(aura.SpellId, aura.Name))
                         continue;
 
                     bool isGroundDamage = false;
@@ -389,19 +397,57 @@ namespace Avoidance
             return _currentHazards.Count > 0;
         }
 
+        private static bool IsWhitelisted(int spellId, string spellName)
+        {
+            if (spellId != 0 && FriendlySpellWhitelist.Contains(spellId))
+                return true;
+
+            if (!string.IsNullOrEmpty(spellName))
+            {
+                if (string.Equals(spellName, "Consecration", StringComparison.OrdinalIgnoreCase) ||
+                    spellName.IndexOf("Consecration", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(Settings.CustomWhitelist))
+            {
+                var tokens = Settings.CustomWhitelist.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var t in tokens)
+                {
+                    var trimmed = t.Trim();
+                    int id;
+                    if (int.TryParse(trimmed, out id))
+                    {
+                        if (spellId != 0 && id == spellId)
+                            return true;
+                    }
+                    else if (!string.IsNullOrEmpty(spellName) &&
+                             (string.Equals(spellName, trimmed, StringComparison.OrdinalIgnoreCase) ||
+                              spellName.IndexOf(trimmed, StringComparison.OrdinalIgnoreCase) >= 0))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private static bool IsFriendlyHelpful(WoWSpell spell, WoWUnit caster, ulong casterGuid)
         {
             if (casterGuid == Me.Guid)
                 return true;
 
-            if (spell != null)
-            {
-                if (FriendlySpellWhitelist.Contains(spell.Id))
-                    return true;
+            int spellId = spell != null ? spell.Id : 0;
+            string spellName = spell != null ? spell.Name : null;
 
-                if (spell.IsHealingSpell)
-                    return true;
-            }
+            if (IsWhitelisted(spellId, spellName))
+                return true;
+
+            if (spell != null && spell.IsHealingSpell)
+                return true;
 
             if (caster != null)
             {

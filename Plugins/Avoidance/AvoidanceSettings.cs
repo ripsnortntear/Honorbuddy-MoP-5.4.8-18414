@@ -46,5 +46,8 @@ namespace Avoidance
 
         [Setting, DefaultValue(150)]
         public int ThrottleMs { get; set; }
+
+        [Setting, DefaultValue("26573, 81297, 110701, 118283, Consecration")]
+        public string CustomWhitelist { get; set; }
     }
 }

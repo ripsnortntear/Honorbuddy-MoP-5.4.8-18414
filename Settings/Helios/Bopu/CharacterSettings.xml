@@ -14,20 +14,25 @@
   <TicksPerSecond>30</TicksPerSecond>
   <FoodAmount>0</FoodAmount>
   <DrinkAmount>0</DrinkAmount>
+  <EnabledPlugins>
+    <Entry>Anti Drown</Entry>
+    <Entry>Avoidance</Entry>
+    <Entry>Refreshment Detection</Entry>
+  </EnabledPlugins>
   <RecentProfiles>
     <Entry>[Fly][A - Quest] 68-80 [Kick] ($Rev: 3214 $)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\LK\[Fly][A - Quest] LK 68-80 [Kick].xml</Entry>
   </RecentProfiles>
   <!--The last selected index used by the Combobox in the form.-->
   <SelectedBotIndex>-1</SelectedBotIndex>
-  <SelectedBotName>Tyrael</SelectedBotName>
+  <SelectedBotName>Questing</SelectedBotName>
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>True</UseRandomMount>
   <MailRecipient></MailRecipient>
   <FoodName>33454</FoodName>
   <DrinkName>33444</DrinkName>
-  <MountName>White Ram</MountName>
-  <FlyingMountName>Ebon Gryphon</FlyingMountName>
+  <MountName>Striped Nightsaber</MountName>
+  <FlyingMountName>Golden Gryphon</FlyingMountName>
   <LootMobs>True</LootMobs>
   <SkinMobs>False</SkinMobs>
   <NinjaSkin>False</NinjaSkin>

@@ -15,6 +15,7 @@ namespace Avoidance
         private CheckBox _chkAvoidGroundAuras;
         private CheckBox _chkOnlyInCombat;
         private CheckBox _chkDebugLogging;
+        private TextBox _txtWhitelist;
         private Button _btnSave;
         private Button _btnCancel;
 
@@ -31,7 +32,7 @@ namespace Avoidance
             MaximizeBox = false;
             MinimizeBox = false;
             StartPosition = FormStartPosition.CenterParent;
-            ClientSize = new Size(380, 360);
+            ClientSize = new Size(380, 420);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 
             var y = 15;
@@ -129,6 +130,23 @@ namespace Avoidance
                 AutoSize = true
             };
             Controls.Add(_chkDebugLogging);
+            y += 30;
+
+            var lblWhitelist = new Label
+            {
+                Text = "Spell Whitelist (IDs or names, comma separated):",
+                Location = new Point(20, y),
+                AutoSize = true
+            };
+            Controls.Add(lblWhitelist);
+            y += 20;
+
+            _txtWhitelist = new TextBox
+            {
+                Location = new Point(22, y),
+                Width = 338
+            };
+            Controls.Add(_txtWhitelist);
             y += 35;
 
             _btnSave = new Button
@@ -168,6 +186,7 @@ namespace Avoidance
             _chkAvoidGroundAuras.Checked = s.AvoidGroundAuras;
             _chkOnlyInCombat.Checked = s.OnlyInCombat;
             _chkDebugLogging.Checked = s.DebugLogging;
+            _txtWhitelist.Text = s.CustomWhitelist ?? "26573, 81297, 110701, 118283, Consecration";
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -182,6 +201,7 @@ namespace Avoidance
             s.AvoidGroundAuras = _chkAvoidGroundAuras.Checked;
             s.OnlyInCombat = _chkOnlyInCombat.Checked;
             s.DebugLogging = _chkDebugLogging.Checked;
+            s.CustomWhitelist = _txtWhitelist.Text.Trim();
             s.Save();
             Close();
         }
