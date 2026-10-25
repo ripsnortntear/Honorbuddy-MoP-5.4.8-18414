@@ -142,6 +142,9 @@ namespace Honorbuddy.QuestBehaviorCore
 			WoWPoint destination,
 			NavType navType = NavType.Fly)
 		{
+			if (!Flightor.CanFly)
+				navType = NavType.Run;
+
 			var activeMover = WoWMovement.ActiveMover;
 			// NB: Do not 'dismount' for CtM.  We may be using it for aerial navigation, also.
 			if (await SetMountState(destination, navType))
@@ -162,6 +165,9 @@ namespace Honorbuddy.QuestBehaviorCore
 		private static async Task<bool> TryFlightor(WoWPoint destination)
 		{
 			// If a toon can't fly, skip this...
+			if (!Flightor.CanFly)
+				return false;
+
 			// NB: Although Flightor will fall back to Navigator, there are side-effects.
 			// Flightor will mount even if UseMount is disabled.  So, if we don't want to mount
 			// we don't want to even try Flightor; otherwise, unexpected side-effects can ensue.

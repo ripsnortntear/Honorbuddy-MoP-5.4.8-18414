@@ -1,4 +1,4 @@
-// Behavior originally contributed by Unknown / rework by chinajade
+﻿// Behavior originally contributed by Unknown / rework by chinajade
 //
 // LICENSE:
 // This work is licensed under the
@@ -383,6 +383,12 @@ namespace Honorbuddy.Quest_Behaviors.FlyTo
 
 			// Move closer to destination...
 			var moveTarget = immediateDestination;
+
+			if (!Flightor.CanFly)
+			{
+				Navigator.MoveTo(moveTarget);
+				return true;
+			}
 			var myLoc = activeMover.Location;
 			float dist2D = myLoc.Distance2D(immediateDestination);
 
