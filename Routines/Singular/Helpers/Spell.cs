@@ -1,4 +1,4 @@
-#define NO_LATENCY_ISSUES_WITH_GLOBAL_COOLDOWN
+﻿#define NO_LATENCY_ISSUES_WITH_GLOBAL_COOLDOWN
 #define HONORBUDDY_PENDINGSPELL_WORKING
 //#define HONORBUDDY_GCD_IS_WORKING
 //#define USE_LUA_RANGECHECK
@@ -1445,6 +1445,10 @@ namespace Singular.Helpers
                                     return RunStatus.Failure;
 
                                 cctx.spell = sfr.Override ?? sfr.Original;
+                                if (SingularSettings.Instance.AllowFacing && cctx.unit != null && !cctx.unit.IsMe && !Me.IsSafelyFacing(cctx.unit, 70f))
+                                {
+                                    cctx.unit.Face();
+                                }
 
                                 if (checkMovement(cctx.context) && Me.IsMoving && !AllowMovingWhileCasting(cctx.spell))
                                 {

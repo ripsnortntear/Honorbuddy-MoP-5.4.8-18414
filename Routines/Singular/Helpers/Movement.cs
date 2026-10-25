@@ -154,10 +154,9 @@ namespace Singular.Helpers
         public static Composite CreateFaceTargetBehavior(UnitSelectionDelegate toUnit, float viewDegrees = 100f, bool waitForFacing = true)
         {
             return new Decorator(
-                ret => !MovementManager.IsMovementDisabled 
-                    && toUnit != null && toUnit(ret) != null 
-                    && !Me.IsMoving 
-                    && !toUnit(ret).IsMe 
+                ret => SingularSettings.Instance.AllowFacing
+                    && toUnit != null && toUnit(ret) != null
+                    && !toUnit(ret).IsMe
                     && !Me.IsSafelyFacing(toUnit(ret), viewDegrees),
                 new Action( ret => 
                 {
@@ -256,7 +255,7 @@ namespace Singular.Helpers
                 ret => !MovementManager.IsMovementDisabled,
                 new Action(ret => {
                     WoWUnit unit = onUnit == null ? null : onUnit(ret);
-                    if ( unit != null && unit.SpellDistance() > range)
+                    if (unit != null && (unit.SpellDistance() > range || (range <= 5 && !unit.IsWithinMeleeRange)))
                     {
                         MoveResult moveRes = Navigator.MoveTo(unit.Location);
                         Logger.WriteDebug(Color.White, "MoveToUnit[{0}]: moving within {1:F1} yds of {2} @ {3:F1} yds", moveRes, range, unit.SafeName(), unit.SpellDistance());
@@ -733,8 +732,11 @@ namespace Singular.Helpers
         public MoveContext(WoWUnit unit)
         {
             Unit = unit;
-            Location = Unit.Location;
-            Result = Navigator.MoveTo(Location);
+            if (Unit != null && Unit.IsValid)
+            {
+                Location = Unit.Location;
+                Result = Navigator.MoveTo(Location);
+            }
         }
 
         public MoveContext(WoWPoint loc)

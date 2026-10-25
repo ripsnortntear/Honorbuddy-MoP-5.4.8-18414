@@ -462,7 +462,7 @@ namespace Singular.Helpers
                 Movement.CreateMoveToLosBehavior(),
                 Movement.CreateFaceTargetBehavior(),
                 new Decorator(
-                    req => Me.GotTarget && Me.CurrentTarget.Distance < SingularSettings.Instance.MeleeDismountRange,
+                    req => Me.GotTarget && (Me.CurrentTarget.Distance < SingularSettings.Instance.MeleeDismountRange || Me.Combat),
                     Helpers.Common.CreateDismount( Dynamics.CompositeBuilder.CurrentBehaviorType.ToString())   // should be Pull or Combat 99% of the time
                     )
                 );
@@ -509,8 +509,8 @@ namespace Singular.Helpers
                 Movement.CreateMoveToLosBehavior(),
                 Movement.CreateFaceTargetBehavior(),
                 Helpers.Common.CreateDismount(Dynamics.CompositeBuilder.CurrentBehaviorType.ToString()),   // should be Pull or Combat 99% of the time
-                Movement.CreateMoveToUnitBehavior(on => Me.CurrentTarget, 30, 25),
-                Movement.CreateEnsureMovementStoppedBehavior(25f)
+                Movement.CreateMoveToUnitBehavior(on => Me.CurrentTarget, 28, 23),
+                Movement.CreateEnsureMovementStoppedBehavior(23f)
                 );
         }
 
@@ -525,8 +525,8 @@ namespace Singular.Helpers
                 Movement.CreateMoveToLosBehavior(),
                 Movement.CreateFaceTargetBehavior(),
                 Helpers.Common.CreateDismount(Dynamics.CompositeBuilder.CurrentBehaviorType.ToString()),   // should be Pull or Combat 99% of the time
-                Movement.CreateMoveToUnitBehavior(on => Me.CurrentTarget, 40, 36),
-                Movement.CreateEnsureMovementStoppedBehavior(36f)
+                Movement.CreateMoveToUnitBehavior(on => Me.CurrentTarget, 35, 30),
+                Movement.CreateEnsureMovementStoppedBehavior(30f)
                 );
         }
 

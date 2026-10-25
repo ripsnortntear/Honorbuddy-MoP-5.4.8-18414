@@ -160,9 +160,7 @@ namespace Singular.Helpers
                                     // Look for agrroed mobs next. prioritize by IsPlayer, Relative Distance, then Health
                                     var target = ObjectManager.GetObjectsOfType<WoWUnit>(false, false)
                                         .Where(
-                                            p => p.SpellDistance() < 10
-                                            && Unit.ValidUnit(p)
-                                            && (p.Aggro || p.PetAggro)
+                                            p => p.SpellDistance() < 40 && Unit.ValidUnit(p) && (p.Aggro || p.PetAggro || (p.Combat && p.GotTarget && (p.IsTargetingMeOrPet || p.IsTargetingMyRaidMember)))
                                             && p.InLineOfSpellSight 
                                             )
                                         // .OrderBy(u => CalcDistancePriority(u)).ThenBy(u => u.HealthPercent)
@@ -380,30 +378,19 @@ namespace Singular.Helpers
                                             return target;
                                         }
 
-    /*
-                                        // Cache this query, since we'll be using it for 2 checks. No need to re-query it.
+                                        // Fallback: search for hostile mobs attacking us or party if Bot TargetList is empty
                                         var agroMob =
                                             ObjectManager.GetObjectsOfType<WoWUnit>(false, false)
                                                 .Where(p => !Blacklist.Contains(p, BlacklistFlags.Combat) && p.IsHostile && !p.IsDead
-                                                        && !p.Mounted && p.DistanceSqr <= 70 * 70 && p.IsPlayer && p.Combat && (p.IsTargetingMeOrPet || p.IsTargetingMyRaidMember))
+                                                        && !p.Mounted && p.DistanceSqr <= 45 * 45 && (p.Aggro || p.PetAggro || (p.Combat && p.GotTarget && (p.IsTargetingMeOrPet || p.IsTargetingMyRaidMember))))
                                                 .OrderBy(u => u.DistanceSqr)
                                                 .FirstOrDefault();
 
                                         if (agroMob != null)
                                         {
-                                            if (!agroMob.IsPet || agroMob.SummonedByUnit == null)
-                                            {
-                                                Logger.Write(targetColor, "Current target invalid. Switching to player attacking us " + agroMob.SafeName() + "!");
-                                            }
-                                            else
-                                            {
-                                                Logger.Write(targetColor, "Current target invalid. Enemy player pet {0} attacking us, switching to player {1}!", agroMob.SafeName(), agroMob.SummonedByUnit.SafeName());
-                                                agroMob = agroMob.SummonedByUnit;
-                                            }
-
+                                            Logger.Write(targetColor, "Current target invalid. Switching to mob attacking us " + agroMob.SafeName() + "!");
                                             return agroMob;
                                         }
-    */
                                         // And there's nothing left, so just return null, kthx.
                                         // ... but show a message about botbase still calling our Combat behavior with nothing to kill
                                         if ( DateTime.Now >= _timeNextInvalidTargetMessage)

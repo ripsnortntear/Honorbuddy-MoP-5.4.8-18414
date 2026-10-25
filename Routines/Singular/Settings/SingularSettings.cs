@@ -1,4 +1,4 @@
-
+﻿
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -437,6 +437,13 @@ namespace Singular.Settings
         [DisplayName("Allow Movement")]
         [Description("Controls movement allowed within the CC. None: prevent all movement; ClassSpecificOnly: only Charge/HeroicThrow/Blink/Disengage/etc; All: all movement allowed; Auto: same as None if LazyRaider used, otherwise same as All")]
         public AllowMovementType AllowMovement { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        [Category("Movement")]
+        [DisplayName("Allow Facing Target")]
+        [Description("Controls whether Singular will automatically turn your character to face your combat target. (Independent of Allow Movement)")]
+        public bool AllowFacing { get; set; }
 
         [Setting]
         [DefaultValue(12)]
