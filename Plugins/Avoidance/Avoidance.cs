@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Styx;
 using Styx.Common;
 using Styx.CommonBot;
@@ -71,9 +72,12 @@ namespace Avoidance
             Settings.Load();
             Log("Avoidance v{0} initialized.", Version);
 
+            BotEvents.OnBotStarted += BotEventsOnBotStarted;
             BotEvents.OnBotStopped += BotEventsOnBotStopped;
+            BotEvents.OnBotChanged += BotEventsOnBotChanged;
             TreeHooks.Instance.HooksCleared += TreeHooksOnHooksCleared;
 
+            EnsureBotBasePulsing();
             InstallHooks();
         }
 
@@ -81,7 +85,9 @@ namespace Avoidance
         {
             RemoveHooks();
 
+            BotEvents.OnBotStarted -= BotEventsOnBotStarted;
             BotEvents.OnBotStopped -= BotEventsOnBotStopped;
+            BotEvents.OnBotChanged -= BotEventsOnBotChanged;
             TreeHooks.Instance.HooksCleared -= TreeHooksOnHooksCleared;
 
             RestoreCtmIfNeeded();
@@ -91,6 +97,7 @@ namespace Avoidance
         public override void OnEnable()
         {
             Settings.Load();
+            EnsureBotBasePulsing();
             InstallHooks();
             Log("Avoidance enabled.");
         }
@@ -109,6 +116,18 @@ namespace Avoidance
             form.ShowDialog();
         }
 
+        private void BotEventsOnBotStarted(EventArgs args)
+        {
+            EnsureBotBasePulsing();
+            InstallHooks();
+        }
+
+        private void BotEventsOnBotChanged(BotEvents.BotChangedEventArgs args)
+        {
+            EnsureBotBasePulsing();
+            InstallHooks();
+        }
+
         private void BotEventsOnBotStopped(EventArgs args)
         {
             StopAvoidance("Bot stopped");
@@ -119,6 +138,41 @@ namespace Avoidance
         {
             _hooksInstalled = false;
             InstallHooks();
+        }
+
+        /// <summary>
+        /// Ensures that BotBases with manual user control (such as Tyrael or LazyRaider)
+        /// have PulseFlags.Plugins enabled, allowing Avoidance to monitor hazards even
+        /// when rotation routines have movement disabled.
+        /// </summary>
+        private void EnsureBotBasePulsing()
+        {
+            try
+            {
+                var bot = TreeRoot.Current;
+                if (bot == null)
+                    return;
+
+                if ((bot.PulseFlags & PulseFlags.Plugins) == 0)
+                {
+                    var botType = bot.GetType();
+                    var flagsField = botType.GetField("_pulseFlags", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
+                    if (flagsField != null)
+                    {
+                        var flags = (PulseFlags)flagsField.GetValue(bot);
+                        if ((flags & PulseFlags.Plugins) == 0)
+                        {
+                            flags |= PulseFlags.Plugins;
+                            flagsField.SetValue(bot, flags);
+                            Log("Enabled Plugin Pulsing on [{0}] so Avoidance can operate with manual control.", bot.Name);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogDebug("EnsureBotBasePulsing exception: {0}", ex.Message);
+            }
         }
         #endregion
 
