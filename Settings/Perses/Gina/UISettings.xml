@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <UISettings>
   <EnhancedMode>True</EnhancedMode>
   <DevToolsWindowLocationX>-1085</DevToolsWindowLocationX>
@@ -10,7 +10,7 @@
   <MainWindowLocationY>531</MainWindowLocationY>
   <MainWindowWidth>1096</MainWindowWidth>
   <MainWindowHeight>1888</MainWindowHeight>
-  <MainWindowState>Maximized</MainWindowState>
+  <MainWindowState>Normal</MainWindowState>
   <PluginsWindowLocationX>16</PluginsWindowLocationX>
   <PluginsWindowLocationY>30</PluginsWindowLocationY>
   <PluginsWindowWidth>301</PluginsWindowWidth>
