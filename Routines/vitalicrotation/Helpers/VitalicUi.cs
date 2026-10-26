@@ -82,10 +82,10 @@ VitalicBanner.orig = { zf=zf, zs=zs, zflag=zflag, pf=pf, ps=ps, pflag=pflag };
 -- Applique ou restaure les fontes
 VitalicBanner.ApplyFonts = function(apply)
   if apply then
-        -- Parité v.zip (fonts calibrib/FRIZ gérées ailleurs via EnsureZoneTextAssets)
-        ZoneTextString:SetFont([[Fonts\\calibrib.ttf]], 28, 'OUTLINE');
-        PVPInfoTextString:SetFont([[Fonts\\calibrib.ttf]], 20, 'OUTLINE');
-  else
+        local ok = ZoneTextString:SetFont([[Fonts\\calibrib.ttf]], 28, 'OUTLINE');
+        if not ok or not ZoneTextString:GetFont() then ZoneTextString:SetFont(VitalicBanner.orig.zf or STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 28, 'OUTLINE'); end
+        local ok2 = PVPInfoTextString:SetFont([[Fonts\\calibrib.ttf]], 20, 'OUTLINE');
+        if not ok2 or not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(VitalicBanner.orig.pf or STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 20, 'OUTLINE'); end
     ZoneTextString:SetFont(VitalicBanner.orig.zf, VitalicBanner.orig.zs, VitalicBanner.orig.zflag);
     PVPInfoTextString:SetFont(VitalicBanner.orig.pf, VitalicBanner.orig.ps, VitalicBanner.orig.pflag);
   end
@@ -94,6 +94,9 @@ end
 -- Affiche un texte via ZoneTextFrame avec fade/hold natif
 VitalicBanner.ShowZoneText = function(msg, r, g, b, hold)
   if not msg or msg == '' then return end
+  if not ZoneTextString:GetFont() then
+    ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 28, 'OUTLINE');
+  end
   ZoneTextFrame:Hide();
   ZoneTextString:SetText(msg);
   if r and g and b then ZoneTextString:SetTextColor(r, g, b) end
@@ -107,6 +110,9 @@ end
 -- Affiche un texte via PVPInfoTextFrame (plus petit)
 VitalicBanner.ShowPvpText = function(msg, r, g, b, hold)
   if not msg or msg == '' then return end
+  if not PVPInfoTextString:GetFont() then
+    PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 20, 'OUTLINE');
+  end
   PVPInfoTextFrame:Hide();
   PVPInfoTextString:SetText(msg);
   if r and g and b then PVPInfoTextString:SetTextColor(r, g, b) end
@@ -145,6 +151,9 @@ VitalicBanner.ShowMiniSimple = function(msg, hold)
   local f  = VitalicBanner.MiniFrame
   local fs = VitalicBanner.MiniString
   if not f or not fs then return end
+  if not fs:GetFont() then
+    fs:SetFont(STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 24, 'OUTLINE');
+  end
   fs:SetText(msg)
   if fs.SetTextColor then fs:SetTextColor(1, 0.82, 0) end
   f:Show()
@@ -203,7 +212,13 @@ end
                 // Applique les fontes comme dans l'original: calibrib quand AlertFontsEnabled, sinon FRIZ par défaut
                 if (VitalicSettings.Instance.AlertFontsEnabled)
                 {
-                    Lua.DoString("ZoneTextString:SetFont([[Fonts\\calibrib.ttf]], 28, 'OUTLINE'); PVPInfoTextString:SetFont([[Fonts\\calibrib.ttf]], 20, 'OUTLINE'); SubZoneTextString:SetFont([[Fonts\\calibrib.ttf]], 20, 'OUTLINE'); UIErrorsFrame:SetFont([[Fonts\\calibrib.ttf]], 16, 'OUTLINE')");
+                    Lua.DoString(@"
+                        local f = [[Fonts\calibrib.ttf]]
+                        if not ZoneTextString:SetFont(f, 28, 'OUTLINE') or not ZoneTextString:GetFont() then ZoneTextString:SetFont([[Fonts\FRIZQT__.TTF]], 28, 'THICKOUTLINE') end
+                        if not PVPInfoTextString:SetFont(f, 20, 'OUTLINE') or not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont([[Fonts\FRIZQT__.TTF]], 22, 'OUTLINE, THICKOUTLINE') end
+                        if not SubZoneTextString:SetFont(f, 20, 'OUTLINE') or not SubZoneTextString:GetFont() then SubZoneTextString:SetFont([[Fonts\FRIZQT__.TTF]], 26, 'THICKOUTLINE') end
+                        if not UIErrorsFrame:SetFont(f, 16, 'OUTLINE') or not UIErrorsFrame:GetFont() then UIErrorsFrame:SetFont([[Fonts\FRIZQT__.TTF]], 16) end
+                    ");
                 }
                 else
                 {
@@ -219,15 +234,17 @@ end
             try
             {
                 Lua.DoString(@"
-    -- Font 'v' strictement identique à v.zip
+    -- Font 'v' strictement identique à v.zip avec fallback si calibrib.ttf n'existe pas
     if not v then
         CreateFont('v')
-        v:SetFont('Fonts\\calibrib.ttf', 12, 'OUTLINE')
-        v:SetJustifyH('LEFT')
-    else
-        v:SetFont('Fonts\\calibrib.ttf', 12, 'OUTLINE')
-        v:SetJustifyH('LEFT')
     end
+    local fontOk = v:SetFont('Fonts\\calibrib.ttf', 12, 'OUTLINE')
+    if not fontOk or not v:GetFont() then
+        if not v:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 12, 'OUTLINE') then
+            v:SetFont('Fonts\\FRIZQT__.TTF', 12, 'OUTLINE')
+        end
+    end
+    v:SetJustifyH('LEFT')
 
     -- Status frame (sf) : même taille/strata/drag
     if not sf then
@@ -238,13 +255,24 @@ end
         f:SetMovable(true)
         f:RegisterForDrag('LeftButton')
         f:SetScript('OnDragStart', function(self) self:StartMoving() end)
-    f:SetScript('OnDragStop',  function(self) self:StopMovingOrSizing(); StatusFrameMoved = true end)
+        f:SetScript('OnDragStop',  function(self) self:StopMovingOrSizing(); StatusFrameMoved = true end)
         f.text = f:CreateFontString(nil,'BACKGROUND','v')
+        if not f.text:GetFont() then
+            f.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 12, 'OUTLINE')
+        end
         f.text:SetAllPoints()
         sf = f
+    else
+        if sf.text and not sf.text:GetFont() then
+            sf.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 12, 'OUTLINE')
+        end
     end
     sf:ClearAllPoints()
-    sf:SetPoint('CENTER', GeneralDockManager, -26, 20)
+    if GeneralDockManager then
+        sf:SetPoint('CENTER', GeneralDockManager, -26, 20)
+    else
+        sf:SetPoint('CENTER', UIParent, 'CENTER', -220, -180)
+    end
 ");
             }
             catch { }
@@ -254,7 +282,7 @@ end
         {
             if (coloredText == null) coloredText = string.Empty;
             var s = coloredText.Replace("\\", "\\\\").Replace("'", "\\'");
-            try { Lua.DoString("if sf then sf.text:SetText('" + s + "') end"); } catch { }
+            try { Lua.DoString("if sf and sf.text then if not sf.text:GetFont() then sf.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\\\FRIZQT__.TTF', 12, 'OUTLINE') end sf.text:SetText('" + s + "') end"); } catch { }
         }
 
         public static void StatusFrameMove_Exact(double left, double bottom)
@@ -434,12 +462,15 @@ end");
                 Lua.DoString(@"
                     if not v then
                         CreateFont('v')
-                        v:SetFont('Fonts\\calibrib.ttf', 12, 'OUTLINE')
-                        v:SetJustifyH('LEFT')
-                    else
-                        v:SetFont('Fonts\\calibrib.ttf', 12, 'OUTLINE')
-                        v:SetJustifyH('LEFT')
                     end
+                    local fontOk = v:SetFont('Fonts\\calibrib.ttf', 12, 'OUTLINE')
+                    if not fontOk or not v:GetFont() then
+                        if not v:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 12, 'OUTLINE') then
+                            v:SetFont('Fonts\\FRIZQT__.TTF', 12, 'OUTLINE')
+                        end
+                    end
+                    v:SetJustifyH('LEFT')
+
                     if not sf then
                         local f = CreateFrame('Frame','sf',UIParent)
                         f:SetHeight(12)
@@ -454,8 +485,15 @@ end");
                             StatusFrameMoved = true
                         end)
                         f.text = f:CreateFontString(nil, 'BACKGROUND', 'v')
+                        if not f.text:GetFont() then
+                            f.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 12, 'OUTLINE')
+                        end
                         f.text:SetAllPoints()
                         f:Hide()
+                    else
+                        if sf.text and not sf.text:GetFont() then
+                            sf.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 12, 'OUTLINE')
+                        end
                     end
 
                     if sf and (not VitalicStatusFrameApplied) then
@@ -492,13 +530,17 @@ end");
                         f:SetFrameStrata('FULLSCREEN_DIALOG')
                         f.text = f:CreateFontString(nil,'OVERLAY','GameFontHighlightHuge')
                         f.text:SetPoint('CENTER', 0, 0)
+                        f.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 28, 'OUTLINE')
                         f.text:SetText('')
-                        f.text:SetFont(STANDARD_TEXT_FONT, 28, 'OUTLINE')
                         f.text:SetShadowColor(0,0,0,0)
                         f:ClearAllPoints()
                         f:SetPoint('TOP', UIParent, 'TOP', 0, -60)
                         f:Hide()
                         ff = f
+                    else
+                        if ff.text and not ff.text:GetFont() then
+                            ff.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\FRIZQT__.TTF', 28, 'OUTLINE')
+                        end
                     end
                 ");
                 Lua.DoString("VitalicNotify = ff");
@@ -548,6 +590,8 @@ end");
             {
                 var msg = EscapeLua(text);
                 Lua.DoString(@"
+if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
+if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
 PVPInfoTextString:SetText('')
 if ZoneTextFrame.icon then ZoneTextFrame.icon:SetTexture(nil); ZoneTextFrame.icon:Hide() end
 ZoneTextString:SetText('" + msg + @"')
@@ -568,6 +612,8 @@ ZoneTextFrame:Show()");
                 Lua.DoString(@"
 local id = " + spellId + @"
 local name,_,icon = GetSpellInfo(id)
+if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
+if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
 PVPInfoTextString:SetText('')
 if ZoneTextFrame.icon then
     if icon then ZoneTextFrame.icon:SetTexture(icon); ZoneTextFrame.icon:Show() else ZoneTextFrame.icon:Hide() end
@@ -594,6 +640,8 @@ ZoneTextFrame:Show()");
                 string s = seconds.ToString("F2", CultureInfo.InvariantCulture);
 
                 Lua.DoString(@"
+if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
+if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
 PVPInfoTextString:SetText('')
 if ZoneTextFrame.icon then ZoneTextFrame.icon:SetTexture(nil); ZoneTextFrame.icon:Hide() end
 ZoneTextString:SetText('" + safe + @"')
@@ -708,7 +756,7 @@ ZoneTextFrame:Show()");
                 // No extra suffixes in original line
 
                 string safe = line.Replace("\\", "\\\\").Replace("'", "\\'");
-                Lua.DoString("if sf and sf.text then sf.text:SetText('" + safe + "'); sf:Show(); end");
+                Lua.DoString("if sf and sf.text then if not sf.text:GetFont() then sf.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\\\FRIZQT__.TTF', 12, 'OUTLINE') end sf.text:SetText('" + safe + "'); sf:Show(); end");
             }
             catch { }
         }
@@ -822,7 +870,8 @@ ZoneTextFrame:Show()");
 
                 // MoP parity: no C_Timer; do simple OnUpdate-based auto-hide
                 Lua.DoString(
-                    "if ff then\n" +
+                    "if ff and ff.text then\n" +
+                    "    if not ff.text:GetFont() then ff.text:SetFont(STANDARD_TEXT_FONT or 'Fonts\\\\FRIZQT__.TTF', 28, 'OUTLINE') end\n" +
                     "    ff.text:SetText('" + safe + "')\n" +
                     "    ff.text:SetTextColor(1, 0.82, 0)\n" +
                     "    ff:Show()\n" +
