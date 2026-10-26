@@ -17,6 +17,7 @@
   <EnabledPlugins>
     <Entry>MIR2</Entry>
     <Entry>Refreshment Detection</Entry>
+    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <RecentProfiles>
     <Entry>Hellfire Peninsula - Herbs@@!@@C:\Users\Ryan\Desktop\Herbs\The Burning Crusade\Hellfire Peninsula - Herbs[HB].xml</Entry>
@@ -27,9 +28,11 @@
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>False</UseRandomMount>
-  <MailRecipient></MailRecipient>
+  <MailRecipient>
+  </MailRecipient>
   <FoodName>27854</FoodName>
-  <DrinkName></DrinkName>
+  <DrinkName>
+  </DrinkName>
   <MountName>Felsteed</MountName>
   <FlyingMountName>Tawny Wind Rider</FlyingMountName>
   <LootMobs>True</LootMobs>

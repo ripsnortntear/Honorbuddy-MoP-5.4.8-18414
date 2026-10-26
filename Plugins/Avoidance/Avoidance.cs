@@ -6,6 +6,7 @@ using System.Reflection;
 using Styx;
 using Styx.Common;
 using Styx.CommonBot;
+using Styx.Helpers;
 using Styx.Pathing;
 using Styx.Plugins;
 using Styx.TreeSharp;
@@ -177,6 +178,7 @@ namespace Avoidance
             Settings.Load();
             Log("Avoidance v{0} initialized.", Version);
 
+            EnsureCharacterSettingsEnabled();
             BotEvents.OnBotStarted += BotEventsOnBotStarted;
             BotEvents.OnBotStopped += BotEventsOnBotStopped;
             BotEvents.OnBotChanged += BotEventsOnBotChanged;
@@ -202,6 +204,7 @@ namespace Avoidance
         public override void OnEnable()
         {
             Settings.Load();
+            EnsureCharacterSettingsEnabled();
             EnsureBotBasePulsing();
             InstallHooks();
             Log("Avoidance enabled.");
@@ -213,6 +216,30 @@ namespace Avoidance
             StopAvoidance("Plugin disabled");
             RestoreCtmIfNeeded();
             Log("Avoidance disabled.");
+        }
+
+        private void EnsureCharacterSettingsEnabled()
+        {
+            try
+            {
+                var settings = CharacterSettings.Instance;
+                if (settings != null)
+                {
+                    var plugins = settings.EnabledPlugins;
+                    if (plugins == null || !plugins.Contains(Name))
+                    {
+                        var list = plugins != null ? new List<string>(plugins) : new List<string>();
+                        list.Add(Name);
+                        settings.EnabledPlugins = list.ToArray();
+                        settings.Save();
+                        LogDebug("Added Avoidance to character's EnabledPlugins configuration.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogDebug("EnsureCharacterSettingsEnabled exception: {0}", ex.Message);
+            }
         }
 
         public override void OnButtonPress()

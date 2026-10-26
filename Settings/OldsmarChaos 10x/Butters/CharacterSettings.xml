@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <SelectTalents>True</SelectTalents>
   <ClassProfileName>Warlock - Destruction</ClassProfileName>
@@ -16,6 +16,7 @@
   <DrinkAmount>0</DrinkAmount>
   <EnabledPlugins>
     <Entry>TurnOffCTM</Entry>
+    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <!--The last selected index used by the Combobox in the form.-->
   <SelectedBotIndex>-1</SelectedBotIndex>
@@ -23,11 +24,14 @@
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>True</UseRandomMount>
-  <MailRecipient></MailRecipient>
+  <MailRecipient>
+  </MailRecipient>
   <FoodName>81413</FoodName>
   <DrinkName>81413</DrinkName>
-  <MountName></MountName>
-  <FlyingMountName></FlyingMountName>
+  <MountName>
+  </MountName>
+  <FlyingMountName>
+  </FlyingMountName>
   <LootMobs>True</LootMobs>
   <SkinMobs>False</SkinMobs>
   <NinjaSkin>False</NinjaSkin>
@@ -37,7 +41,8 @@
   <UseMount>True</UseMount>
   <PullDistance>100</PullDistance>
   <LootRadius>45</LootRadius>
-  <LastUsedPath></LastUsedPath>
+  <LastUsedPath>
+  </LastUsedPath>
   <MountDistance>60</MountDistance>
   <RessAtSpiritHealers>False</RessAtSpiritHealers>
 </CharacterSettings>

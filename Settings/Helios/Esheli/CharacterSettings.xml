@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <SelectTalents>True</SelectTalents>
   <ClassProfileName>Warlock - Destruction</ClassProfileName>
@@ -19,6 +19,7 @@
     <Entry>Refreshment Detection</Entry>
     <Entry>RoutesBuddy2</Entry>
     <Entry>TurnOffCTM</Entry>
+    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <RecentProfiles>
     <Entry>Hellfire-mining[HB]@@!@@D:\Games\GH of HB\Default Profiles\Herbs\Hellfire-mining[HB].xml</Entry>
@@ -33,7 +34,8 @@
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>False</UseRandomMount>
-  <MailRecipient></MailRecipient>
+  <MailRecipient>
+  </MailRecipient>
   <FoodName>81412</FoodName>
   <DrinkName>81412</DrinkName>
   <MountName>Dreadsteed</MountName>

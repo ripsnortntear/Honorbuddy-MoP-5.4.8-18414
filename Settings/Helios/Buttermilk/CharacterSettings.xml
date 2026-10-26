@@ -21,6 +21,7 @@
     <Entry>Pandaria Dailies v2</Entry>
     <Entry>Refreshment Detection</Entry>
     <Entry>RoutesBuddy2</Entry>
+    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <RecentProfiles>
     <Entry>[PB][Gatherit] Nat Pagle-Anglers@@!@@C:\Users\catch\Desktop\HB Work\more work\[PB][Gatherit] Nat Pagle-Anglers\[PB][Gatherit] Nat Pagle-Anglers.xml</Entry>
@@ -35,7 +36,8 @@
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>True</UseRandomMount>
-  <MailRecipient></MailRecipient>
+  <MailRecipient>
+  </MailRecipient>
   <FoodName>81414</FoodName>
   <DrinkName>81414</DrinkName>
   <MountName>Dreadsteed</MountName>

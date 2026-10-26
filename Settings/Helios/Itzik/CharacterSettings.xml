@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <RessAtSpiritHealers>False</RessAtSpiritHealers>
   <TicksPerSecond>30</TicksPerSecond>
@@ -15,11 +15,14 @@
   <LootRadius>45</LootRadius>
   <DrinkAmount>0</DrinkAmount>
   <FoodAmount>0</FoodAmount>
-  <MailRecipient></MailRecipient>
+  <MailRecipient>
+  </MailRecipient>
   <FoodName>1707</FoodName>
   <DrinkName>1708</DrinkName>
-  <MountName></MountName>
-  <FlyingMountName></FlyingMountName>
+  <MountName>
+  </MountName>
+  <FlyingMountName>
+  </FlyingMountName>
   <UseRandomMount>True</UseRandomMount>
   <MountDistance>60</MountDistance>
   <ClassProfileName>Death Knight - Blood</ClassProfileName>
@@ -31,6 +34,7 @@
   <EnabledPlugins>
     <Entry>Refreshment Detection</Entry>
     <Entry>TurnOffCTM</Entry>
+    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <RecentProfiles>
     <Entry>Death Knight Starting Zone ($Rev$)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\DK Start Zone.xml</Entry>

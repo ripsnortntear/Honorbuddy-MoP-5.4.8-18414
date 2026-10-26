@@ -16,6 +16,7 @@
   <DrinkAmount>0</DrinkAmount>
   <EnabledPlugins>
     <Entry>Refreshment Detection</Entry>
+    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <RecentProfiles>
     <Entry>[GB2] Mount Hyjal - Mining Obsidium@@!@@C:\Users\catch\Desktop\Hyjal-Mining[HB].xml</Entry>
@@ -30,7 +31,8 @@
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>True</UseRandomMount>
-  <MailRecipient></MailRecipient>
+  <MailRecipient>
+  </MailRecipient>
   <FoodName>4604</FoodName>
   <DrinkName>159</DrinkName>
   <MountName>Dreadsteed</MountName>

@@ -18,8 +18,10 @@
   <MailRecipient>Buttermilk</MailRecipient>
   <FoodName>8948</FoodName>
   <DrinkName>4791</DrinkName>
-  <MountName></MountName>
-  <FlyingMountName></FlyingMountName>
+  <MountName>
+  </MountName>
+  <FlyingMountName>
+  </FlyingMountName>
   <UseRandomMount>True</UseRandomMount>
   <MountDistance>60</MountDistance>
   <ClassProfileName>Priest - Shadow</ClassProfileName>
@@ -40,6 +42,7 @@
     <Entry>RepCollector</Entry>
     <Entry>Timeless Buffs</Entry>
     <Entry>TurnOffCTM</Entry>
+    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <RecentProfiles>
     <Entry>[A - Quest] EK 12-58 [Kick] ($Rev$)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] EK 12-58 [Kick].xml</Entry>

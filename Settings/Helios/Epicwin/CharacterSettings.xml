@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <SelectTalents>True</SelectTalents>
   <ClassProfileName>Warlock - Destruction</ClassProfileName>
@@ -14,7 +14,9 @@
   <TicksPerSecond>30</TicksPerSecond>
   <FoodAmount>0</FoodAmount>
   <DrinkAmount>0</DrinkAmount>
-  <EnabledPlugins />
+  <EnabledPlugins>
+    <Entry>Avoidance</Entry>
+  </EnabledPlugins>
   <RecentProfiles>
     <Entry>Fight Here@@!@@C:\HB\HB - Main\Plugins\FightHere\FightHere.xml</Entry>
   </RecentProfiles>
@@ -24,7 +26,8 @@
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>False</UseRandomMount>
-  <MailRecipient></MailRecipient>
+  <MailRecipient>
+  </MailRecipient>
   <FoodName>81414</FoodName>
   <DrinkName>81414</DrinkName>
   <MountName>Black Skeletal Horse</MountName>
