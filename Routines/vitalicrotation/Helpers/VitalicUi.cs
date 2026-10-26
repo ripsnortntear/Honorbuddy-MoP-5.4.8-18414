@@ -75,25 +75,35 @@ namespace VitalicRotation.UI
 VitalicBanner = VitalicBanner or {};
 
 -- Sauvegarde des fontes actuelles pour restoration
-local zf, zs, zflag = ZoneTextString:GetFont();
-local pf, ps, pflag = PVPInfoTextString:GetFont();
+local zf, zs, zflag = ZoneTextString and ZoneTextString:GetFont() or nil;
+local pf, ps, pflag = PVPInfoTextString and PVPInfoTextString:GetFont() or nil;
 VitalicBanner.orig = { zf=zf, zs=zs, zflag=zflag, pf=pf, ps=ps, pflag=pflag };
 
 -- Applique ou restaure les fontes
 VitalicBanner.ApplyFonts = function(apply)
   if apply then
+    if ZoneTextString then
         local ok = ZoneTextString:SetFont([[Fonts\\calibrib.ttf]], 28, 'OUTLINE');
-        if not ok or not ZoneTextString:GetFont() then ZoneTextString:SetFont(VitalicBanner.orig.zf or STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 28, 'OUTLINE'); end
+        if not ok or not ZoneTextString:GetFont() then ZoneTextString:SetFont((VitalicBanner.orig and VitalicBanner.orig.zf) or STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 28, 'OUTLINE'); end
+    end
+    if PVPInfoTextString then
         local ok2 = PVPInfoTextString:SetFont([[Fonts\\calibrib.ttf]], 20, 'OUTLINE');
-        if not ok2 or not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(VitalicBanner.orig.pf or STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 20, 'OUTLINE'); end
-    ZoneTextString:SetFont(VitalicBanner.orig.zf, VitalicBanner.orig.zs, VitalicBanner.orig.zflag);
-    PVPInfoTextString:SetFont(VitalicBanner.orig.pf, VitalicBanner.orig.ps, VitalicBanner.orig.pflag);
+        if not ok2 or not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont((VitalicBanner.orig and VitalicBanner.orig.pf) or STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 20, 'OUTLINE'); end
+    end
+  else
+    if ZoneTextString and VitalicBanner.orig and VitalicBanner.orig.zf then
+        ZoneTextString:SetFont(VitalicBanner.orig.zf, VitalicBanner.orig.zs, VitalicBanner.orig.zflag);
+    end
+    if PVPInfoTextString and VitalicBanner.orig and VitalicBanner.orig.pf then
+        PVPInfoTextString:SetFont(VitalicBanner.orig.pf, VitalicBanner.orig.ps, VitalicBanner.orig.pflag);
+    end
   end
 end
 
 -- Affiche un texte via ZoneTextFrame avec fade/hold natif
 VitalicBanner.ShowZoneText = function(msg, r, g, b, hold)
   if not msg or msg == '' then return end
+  if not ZoneTextFrame or not ZoneTextString then return end
   if not ZoneTextString:GetFont() then
     ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 28, 'OUTLINE');
   end
@@ -101,15 +111,21 @@ VitalicBanner.ShowZoneText = function(msg, r, g, b, hold)
   ZoneTextString:SetText(msg);
   if r and g and b then ZoneTextString:SetTextColor(r, g, b) end
   -- Timings d'animation
-    ZoneTextFrame.fadeInTime = 0;
-    ZoneTextFrame.holdTime   = hold or 1.0;
-    ZoneTextFrame.fadeOutTime= 2.0;
+  ZoneTextFrame.fadeInTime = 0;
+  ZoneTextFrame.holdTime   = hold or 1.0;
+  ZoneTextFrame.fadeOutTime= 2.0;
   ZoneTextFrame:Show();
 end
 
 -- Affiche un texte via PVPInfoTextFrame (plus petit)
 VitalicBanner.ShowPvpText = function(msg, r, g, b, hold)
   if not msg or msg == '' then return end
+  if not PVPInfoTextFrame or not PVPInfoTextString then
+    if VitalicBanner.ShowMiniSimple then
+      VitalicBanner.ShowMiniSimple(msg, hold);
+    end
+    return
+  end
   if not PVPInfoTextString:GetFont() then
     PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\\FRIZQT__.TTF]], 20, 'OUTLINE');
   end
@@ -202,7 +218,7 @@ end
             {
                 Lua.DoString(@"
 -- icône sur ZoneTextFrame (v.zip)
-if not ZoneTextFrame.icon then
+if ZoneTextFrame and not ZoneTextFrame.icon then
     ZoneTextFrame.icon = ZoneTextFrame:CreateTexture('ZoneTextFrameIcon', 0);
     ZoneTextFrame:SetScript('OnHide', function() ZoneTextFrame.icon:SetTexture(nil) end);
     ZoneTextFrame.icon:SetWidth(35); ZoneTextFrame.icon:SetHeight(35);
@@ -222,7 +238,12 @@ end
                 }
                 else
                 {
-                    Lua.DoString("ZoneTextString:SetFont([[Fonts\\FRIZQT__.TTF]], 28, 'THICKOUTLINE'); PVPInfoTextString:SetFont([[Fonts\\FRIZQT__.TTF]], 22, 'OUTLINE, THICKOUTLINE'); SubZoneTextString:SetFont([[Fonts\\FRIZQT__.TTF]], 26, 'THICKOUTLINE'); UIErrorsFrame:SetFont([[Fonts\\FRIZQT__.TTF]], 16)");
+                    Lua.DoString(@"
+                        if ZoneTextString then ZoneTextString:SetFont([[Fonts\FRIZQT__.TTF]], 28, 'THICKOUTLINE') end
+                        if PVPInfoTextString then PVPInfoTextString:SetFont([[Fonts\FRIZQT__.TTF]], 22, 'OUTLINE, THICKOUTLINE') end
+                        if SubZoneTextString then SubZoneTextString:SetFont([[Fonts\FRIZQT__.TTF]], 26, 'THICKOUTLINE') end
+                        if UIErrorsFrame then UIErrorsFrame:SetFont([[Fonts\FRIZQT__.TTF]], 16) end
+                    ");
                 }
             }
             catch { }
@@ -443,8 +464,8 @@ end");
                 VitalicBanner.frame = nil;
             end
             VitalicBanner = nil;
-            ZoneTextFrame:Hide();
-            PVPInfoTextFrame:Hide();
+            if ZoneTextFrame then ZoneTextFrame:Hide() end
+            if PVPInfoTextFrame then PVPInfoTextFrame:Hide() end
         ");
             }
             catch { }
@@ -590,15 +611,21 @@ end");
             {
                 var msg = EscapeLua(text);
                 Lua.DoString(@"
-if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
-if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
-PVPInfoTextString:SetText('')
-if ZoneTextFrame.icon then ZoneTextFrame.icon:SetTexture(nil); ZoneTextFrame.icon:Hide() end
-ZoneTextString:SetText('" + msg + @"')
-ZoneTextFrame.startTime = GetTime()
-ZoneTextFrame.fadeInTime = 0; ZoneTextFrame.holdTime = 1; ZoneTextFrame.fadeOutTime = 2
-ZoneTextString:SetTextColor(1, 0.82, 0)
-ZoneTextFrame:Show()");
+if PVPInfoTextString then
+    if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
+    PVPInfoTextString:SetText('')
+end
+if ZoneTextFrame and ZoneTextFrame.icon then ZoneTextFrame.icon:SetTexture(nil); ZoneTextFrame.icon:Hide() end
+if ZoneTextString then
+    if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
+    ZoneTextString:SetText('" + msg + @"')
+    ZoneTextString:SetTextColor(1, 0.82, 0)
+end
+if ZoneTextFrame then
+    ZoneTextFrame.startTime = GetTime()
+    ZoneTextFrame.fadeInTime = 0; ZoneTextFrame.holdTime = 1; ZoneTextFrame.fadeOutTime = 2
+    ZoneTextFrame:Show()
+end");
             }
             catch { }
         }
@@ -612,22 +639,28 @@ ZoneTextFrame:Show()");
                 Lua.DoString(@"
 local id = " + spellId + @"
 local name,_,icon = GetSpellInfo(id)
-if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
-if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
-PVPInfoTextString:SetText('')
-if ZoneTextFrame.icon then
+if PVPInfoTextString then
+    if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
+    PVPInfoTextString:SetText('')
+end
+if ZoneTextFrame and ZoneTextFrame.icon then
     if icon then ZoneTextFrame.icon:SetTexture(icon); ZoneTextFrame.icon:Show() else ZoneTextFrame.icon:Hide() end
 end
 local txt = '" + msg + @"'; if txt=='' then txt = (name or '') end
-ZoneTextString:SetText(txt)
-ZoneTextFrame.startTime = GetTime()
-ZoneTextFrame.fadeInTime = 0; ZoneTextFrame.holdTime = 1; ZoneTextFrame.fadeOutTime = 2
-ZoneTextString:SetTextColor(1, 0.82, 0)
-if ZoneTextFrame.icon and ZoneTextString and ZoneTextString.GetWidth then
-  ZoneTextFrame.icon:ClearAllPoints();
-  ZoneTextFrame.icon:SetPoint('LEFT', ZoneTextString, ((ZoneTextString:GetWidth() / 2) - (ZoneTextString:GetStringWidth() / 2) - 43), 1)
+if ZoneTextString then
+    if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
+    ZoneTextString:SetText(txt)
+    ZoneTextString:SetTextColor(1, 0.82, 0)
 end
-ZoneTextFrame:Show()");
+if ZoneTextFrame then
+    ZoneTextFrame.startTime = GetTime()
+    ZoneTextFrame.fadeInTime = 0; ZoneTextFrame.holdTime = 1; ZoneTextFrame.fadeOutTime = 2
+    if ZoneTextFrame.icon and ZoneTextString and ZoneTextString.GetWidth then
+      ZoneTextFrame.icon:ClearAllPoints();
+      ZoneTextFrame.icon:SetPoint('LEFT', ZoneTextString, ((ZoneTextString:GetWidth() / 2) - (ZoneTextString:GetStringWidth() / 2) - 43), 1)
+    end
+    ZoneTextFrame:Show()
+end");
             }
             catch { }
         }
@@ -640,15 +673,21 @@ ZoneTextFrame:Show()");
                 string s = seconds.ToString("F2", CultureInfo.InvariantCulture);
 
                 Lua.DoString(@"
-if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
-if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
-PVPInfoTextString:SetText('')
-if ZoneTextFrame.icon then ZoneTextFrame.icon:SetTexture(nil); ZoneTextFrame.icon:Hide() end
-ZoneTextString:SetText('" + safe + @"')
-ZoneTextFrame.startTime = GetTime()
-ZoneTextFrame.fadeInTime = 0; ZoneTextFrame.holdTime = " + s + @"; ZoneTextFrame.fadeOutTime = 2
-ZoneTextString:SetTextColor(1, 0.82, 0)
-ZoneTextFrame:Show()");
+if PVPInfoTextString then
+    if not PVPInfoTextString:GetFont() then PVPInfoTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 20, 'OUTLINE') end
+    PVPInfoTextString:SetText('')
+end
+if ZoneTextFrame and ZoneTextFrame.icon then ZoneTextFrame.icon:SetTexture(nil); ZoneTextFrame.icon:Hide() end
+if ZoneTextString then
+    if not ZoneTextString:GetFont() then ZoneTextString:SetFont(STANDARD_TEXT_FONT or [[Fonts\FRIZQT__.TTF]], 28, 'OUTLINE') end
+    ZoneTextString:SetText('" + safe + @"')
+    ZoneTextString:SetTextColor(1, 0.82, 0)
+end
+if ZoneTextFrame then
+    ZoneTextFrame.startTime = GetTime()
+    ZoneTextFrame.fadeInTime = 0; ZoneTextFrame.holdTime = " + s + @"; ZoneTextFrame.fadeOutTime = 2
+    ZoneTextFrame:Show()
+end");
             }
             catch { }
         }
