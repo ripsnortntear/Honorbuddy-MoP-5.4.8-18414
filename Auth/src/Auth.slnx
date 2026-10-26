@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Buddy_Auth/Buddy_Auth.csproj" />
+  <Project Path="Buddy_dump/Buddy_dump.csproj" />
+  <Project Path="Buddy_lib/Buddy_lib.csproj" />
+</Solution>

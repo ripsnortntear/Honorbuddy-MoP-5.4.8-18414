@@ -91,10 +91,10 @@ The GUI installer is the most reliable way to configure the service.
      - **Path**: `<Path-To-Honorbuddy>\Auth\Buddy_Auth.exe`
      - **Startup directory**: `<Path-To-Honorbuddy>\Auth`
      - **Service name**: `BuddyAuth`
-   - **Log on tab** *(CRITICAL)*:
-     - > [!IMPORTANT]
-     - > Check the box: **"Allow service to interact with desktop"**
-     - > *(This is **NOT** checked by default. You **MUST** check it. This sets `SERVICE_INTERACTIVE_PROCESS`, allocating a console screen buffer so `Console.Clear()` and `Console.ReadKey()` will not throw invalid handle exceptions).*
+   - **Log on tab**:
+     - > [!TIP]
+     - > In Buddy_Auth.exe v1.5.0+, the server automatically detects headless service mode versus interactive console mode via SafeConsole. It runs reliably as a standard background service without requiring interactive desktop permissions (SERVICE_INTERACTIVE_PROCESS), eliminating the IOException: The handle is invalid crash that plagued older versions.
+
    - **I/O tab** *(Optional but recommended)*:
      - Output (stdout): `<Path-To-Honorbuddy>\Auth\stdout.log`
      - Error (stderr): `<Path-To-Honorbuddy>\Auth\stderr.log`
