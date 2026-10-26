@@ -44,6 +44,11 @@ namespace PureRotation
 
                 SetRotation(); // set the new rotation
                 Logger.DebugLog("LfgDungeonId: {0}", StyxWoW.Me.GroupInfo.LfgDungeonId);
+                if (_currentRotation == null)
+                {
+                    Logger.FailLog("No rotation matching character spec: {0}. Combat behaviors remain idle.", TalentManager.CurrentSpec);
+                    return false;
+                }
                 if (_combatBehavior != null) _combatBehavior = new Decorator(ret => AllowPulse && (Me.CurrentTarget != null ), new PrioritySelector(CurrentWoWContext == WoWContext.Battleground ? _currentRotation.PVPRotation : _currentRotation.PVERotation));
                 if (_combatBuffBehavior != null) _combatBuffBehavior = new Decorator(ret => AllowPulse, new PrioritySelector(Medic));
                 if (_preCombatBuffBehavior != null) _preCombatBuffBehavior = new Decorator(ret => AllowPulse, new PrioritySelector(PreCombat));
@@ -86,6 +91,14 @@ namespace PureRotation
                             }
                         }
                     }
+                    if (_currentRotation == null && _rotations.Count > 0)
+                    {
+                        _currentRotation = _rotations[0];
+                        Logger.InfoLog(" Character has no matching spec ({0}). Defaulting to fallback rotation: {1}",
+                            TalentManager.CurrentSpec, _currentRotation.Name);
+                        PulseEvent = null;
+                        PulseEvent += _currentRotation.OnPulse;
+                    }
                 }
                 else
                 {
@@ -125,6 +138,13 @@ namespace PureRotation
                             // Logger.FailLog(" Skipping " + rotation.Name + " rotation. Character is not in " + rotation.KeySpec);
                         }
                     }
+                }
+                if (_currentRotation == null && _rotations.Count > 0)
+                {
+                    _currentRotation = _rotations[0];
+                    Logger.InfoLog(" Character has no matching spec ({0}). Defaulting to fallback rotation: {1}",
+                        TalentManager.CurrentSpec, _currentRotation.Name);
+                    PulseEvent += _currentRotation.OnPulse;
                 }
             }
             catch (ReflectionTypeLoadException ex)

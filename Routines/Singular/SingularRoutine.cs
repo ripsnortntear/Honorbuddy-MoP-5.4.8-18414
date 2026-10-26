@@ -563,5 +563,43 @@ namespace Singular
             }
             return retVal;
         }
+
+        public override void ShutDown()
+        {
+            CleanupHooks();
+            base.ShutDown();
+        }
+
+        private void CleanupHooks()
+        {
+            try
+            {
+                string[] singularHooks = new[]
+                {
+                    "Singular.Combat",
+                    "Singular.Pull",
+                    "Singular.Rest",
+                    "Singular.CombatBuffs",
+                    "Singular.Heal",
+                    "Singular.PullBuffs",
+                    "Singular.PreCombatBuffs",
+                    "Singular.Death",
+                    "Singular.LossOfControl",
+                    "Singular.KitingBehavior"
+                };
+
+                foreach (var hook in singularHooks)
+                {
+                    if (TreeHooks.Instance.Hooks.ContainsKey(hook))
+                    {
+                        TreeHooks.Instance.Hooks.Remove(hook);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteFile("Error cleaning up Singular hooks: " + ex);
+            }
+        }
     }
 }

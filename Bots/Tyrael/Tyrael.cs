@@ -78,6 +78,7 @@ namespace Tyrael
         {
             try
             {
+                _root = null;
                 InitializeComponents();
                 InitializePlugins();
 
@@ -122,6 +123,7 @@ namespace Tyrael
         public override void Initialize()
         {
             BotEvents.Player.OnMapChanged += Player_OnMapChanged;
+            RoutineManager.Reloaded += (s, e) => { _root = null; };
         }
 
         private void Player_OnMapChanged(BotEvents.Player.MapChangedEventArgs args)
@@ -151,6 +153,10 @@ namespace Tyrael
         /// </summary>
         private static Composite CreateRoot()
         {
+            TyraelUtilities.PrintLog("[Tyrael] CreateRoot() binding active routine: {0} ({1})",
+                RoutineManager.Current != null ? RoutineManager.Current.Name : "None",
+                RoutineManager.Current != null ? RoutineManager.Current.GetType().FullName : "None");
+
             System.Collections.Generic.List<Composite> combatBehaviors = new System.Collections.Generic.List<Composite>();
             if (RoutineManager.Current != null)
             {
