@@ -144,38 +144,39 @@ namespace Loader
         {
             get
             {
-                return CC.Name;
+                return CC != null ? CC.Name : "Insanity (not loaded)";
             }
         }
 
         public override void Initialize()
         {
-            CC.Initialize();
+            if (CC != null)
+                CC.Initialize();
         }
 
         public override Composite CombatBehavior
         {
-            get { return CC.CombatBehavior; }
+            get { return CC != null ? CC.CombatBehavior : null; }
         }
 
         public override Composite PreCombatBuffBehavior
         {
-            get { return CC.PreCombatBuffBehavior; }
+            get { return CC != null ? CC.PreCombatBuffBehavior : null; }
         }
 
         public override Composite PullBehavior
         {
-            get { return CC.PullBehavior; }
+            get { return CC != null ? CC.PullBehavior : null; }
         }
 
         public override Composite RestBehavior
         {
-            get { return CC.RestBehavior; }
+            get { return CC != null ? CC.RestBehavior : null; }
         }
 		
 		public override Composite DeathBehavior
         {
-            get { return CC.DeathBehavior; }
+            get { return CC != null ? CC.DeathBehavior : null; }
         }
 
         public override WoWClass Class
@@ -188,24 +189,26 @@ namespace Loader
 
         public override void OnButtonPress()
         {
-            CC.OnButtonPress();
+            if (CC != null)
+                CC.OnButtonPress();
         }
 
         public override void Pulse()
         {
-            CC.Pulse();
+            if (CC != null)
+                CC.Pulse();
         }
 
         public override bool WantButton
         {
-            get { return true; }
+            get { return CC != null && CC.WantButton; }
         }
 		
 		public override bool NeedPreCombatBuffs
         {
             get
             {
-                return CC.NeedPreCombatBuffs;
+                return CC != null && CC.NeedPreCombatBuffs;
             }
         }
         #endregion
