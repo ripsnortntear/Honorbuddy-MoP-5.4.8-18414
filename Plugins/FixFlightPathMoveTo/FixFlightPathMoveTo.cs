@@ -7,15 +7,18 @@ using Styx.Plugins;
 
 namespace HBCoreFixes
 {
-    // HB 5.4.8 core bug workaround:
-    // Styx.CommonBot.FlightPaths.smethod_0 can throw
-    // InvalidOperationException("Sequence contains no matching element")
-    // when the nearest start flight node has no connected destination in the
-    // filtered continent node list. MeshNavigator.MoveTo calls
-    // ShouldTakeFlightpath/smethod_0 directly, which can crash BotBase.Root.Tick.
+    // HB 5.4.8 core bug workarounds:
+    // 1) Styx.CommonBot.FlightPaths.smethod_0 can throw
+    //    InvalidOperationException("Sequence contains no matching element") when
+    //    MeshNavigator.MoveTo evaluates ShouldTakeFlightpath with no connected
+    //    destination node in the filtered continent node list.
+    // 2) Tripper/Styx path generation can throw "Failed to generate path" /
+    //    NullReferenceException inside obfuscated MeshNavigator/WowNavigator,
+    //    causing repeated BotBase.Root.Tick crashes and POI loops.
     //
-    // This plugin wraps the active navigation provider and catches that specific
-    // failure so the bot can continue (returns MoveResult.Failed for that tick).
+    // This plugin wraps the active navigation provider and catches these
+    // HB-core navigation crashes so the bot can continue with safe failures
+    // (MoveResult.Failed / empty path / false) instead of crash-looping.
     public class FixFlightPathMoveTo : HBPlugin
     {
         private static readonly object Sync = new object();
@@ -24,7 +27,7 @@ namespace HBCoreFixes
 
         public override string Name { get { return "HB Core Fix: FlightPath MoveTo"; } }
         public override string Author { get { return "repo maintenance"; } }
-        public override Version Version { get { return new Version(1, 0, 0, 0); } }
+        public override Version Version { get { return new Version(1, 1, 0, 0); } }
         public override bool WantButton { get { return false; } }
 
         public override void Initialize()
@@ -139,13 +142,20 @@ namespace HBCoreFixes
                         return MoveResult.Failed;
                     return _inner.MoveTo(location);
                 }
-                catch (InvalidOperationException ex)
+                catch (Exception ex)
                 {
                     if (IsFlightPathSequenceBug(ex))
                     {
-                        LogOnce("Caught HB core FlightPaths.smethod_0 Sequence-contains-no-matching-element bug during MoveTo; returning Failed for this tick. " + ex.Message);
+                        LogOnce("Caught HB core FlightPaths Sequence-contains-no-matching-element bug during MoveTo; returning Failed for this tick. " + ex.Message);
                         return MoveResult.Failed;
                     }
+
+                    if (IsPathGenerationCrash(ex))
+                    {
+                        LogOnce("Caught HB core path-generation crash during MoveTo; returning Failed for this tick. " + Describe(ex));
+                        return MoveResult.Failed;
+                    }
+
                     throw;
                 }
             }
@@ -153,41 +163,67 @@ namespace HBCoreFixes
             public bool Clear()
             {
                 try { return _inner != null && _inner.Clear(); }
-                catch (InvalidOperationException ex)
+                catch (Exception ex)
                 {
-                    if (IsFlightPathSequenceBug(ex)) return false;
+                    if (IsFlightPathSequenceBug(ex) || IsPathGenerationCrash(ex))
+                    {
+                        LogOnce("Caught HB core navigation crash during Clear; returning false. " + Describe(ex));
+                        return false;
+                    }
                     throw;
                 }
             }
 
             public WoWPoint[] GeneratePath(WoWPoint from, WoWPoint to)
             {
-                if (_inner == null)
-                    return new WoWPoint[0];
-                return _inner.GeneratePath(from, to);
+                try
+                {
+                    if (_inner == null)
+                        return new WoWPoint[0];
+                    var path = _inner.GeneratePath(from, to);
+                    return path ?? new WoWPoint[0];
+                }
+                catch (Exception ex)
+                {
+                    if (IsFlightPathSequenceBug(ex) || IsPathGenerationCrash(ex))
+                    {
+                        LogOnce("Caught HB core path-generation crash during GeneratePath; returning empty path. " + Describe(ex));
+                        return new WoWPoint[0];
+                    }
+                    throw;
+                }
             }
 
             public bool CanNavigateFully(WoWPoint from, WoWPoint to, int maxHops)
             {
                 try { return _inner != null && _inner.CanNavigateFully(from, to, maxHops); }
-                catch (InvalidOperationException ex)
+                catch (Exception ex)
                 {
-                    if (IsFlightPathSequenceBug(ex)) return false;
+                    if (IsFlightPathSequenceBug(ex) || IsPathGenerationCrash(ex))
+                    {
+                        LogOnce("Caught HB core navigation crash during CanNavigateFully; returning false. " + Describe(ex));
+                        return false;
+                    }
                     throw;
                 }
             }
 
             public bool AtLocation(WoWPoint point1, WoWPoint point2)
             {
-                return _inner != null && _inner.AtLocation(point1, point2);
+                try { return _inner != null && _inner.AtLocation(point1, point2); }
+                catch (Exception ex)
+                {
+                    if (IsFlightPathSequenceBug(ex) || IsPathGenerationCrash(ex)) return false;
+                    throw;
+                }
             }
 
-            private static bool IsFlightPathSequenceBug(InvalidOperationException ex)
+            private static bool IsFlightPathSequenceBug(Exception ex)
             {
                 if (ex == null)
                     return false;
                 string msg = ex.Message ?? string.Empty;
-                string trace = ex.StackTrace ?? string.Empty;
+                string trace = ex.ToString() ?? string.Empty;
                 // "Sequence contains no matching element" from Enumerable.First(predicate)
                 // inside Styx.CommonBot.FlightPaths (obfuscated smethod_0).
                 if (msg.IndexOf("Sequence contains no matching element", StringComparison.OrdinalIgnoreCase) >= 0
@@ -197,6 +233,44 @@ namespace HBCoreFixes
                     && msg.IndexOf("no matching element", StringComparison.OrdinalIgnoreCase) >= 0)
                     return true;
                 return false;
+            }
+
+            private static bool IsPathGenerationCrash(Exception ex)
+            {
+                if (ex == null)
+                    return false;
+
+                string text = ex.ToString() ?? string.Empty;
+                if (text.IndexOf("Tripper.Navigation.WowNavigator", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+                if (text.IndexOf("Styx.Pathing.MeshNavigator", StringComparison.OrdinalIgnoreCase) >= 0
+                    && (text.IndexOf("Failed to generate path", StringComparison.OrdinalIgnoreCase) >= 0
+                        || text.IndexOf("System.NullReferenceException", StringComparison.OrdinalIgnoreCase) >= 0
+                        || text.IndexOf("FindPath", StringComparison.OrdinalIgnoreCase) >= 0))
+                    return true;
+                if (ex.Message != null && ex.Message.IndexOf("Failed to generate path", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+                return false;
+            }
+
+            private static string Describe(Exception ex)
+            {
+                try
+                {
+                    if (ex == null) return "(null)";
+                    string msg = ex.Message ?? ex.GetType().Name;
+                    Exception inner = ex.InnerException;
+                    if (inner != null && !string.IsNullOrEmpty(inner.Message))
+                        msg = ex.GetType().Name + ": " + msg + " ---> " + inner.GetType().Name + ": " + inner.Message;
+                    else
+                        msg = ex.GetType().Name + ": " + msg;
+                    return msg;
+                }
+                catch
+                {
+                    try { return ex.GetType().Name; }
+                    catch { return "exception"; }
+                }
             }
 
             private static void LogOnce(string message)
