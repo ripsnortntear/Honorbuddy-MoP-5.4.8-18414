@@ -60,7 +60,8 @@ namespace Loader
             {
                 _loaded = false;
                 MessageBox.Show(
-                    "Leaves.ValidateInstallation Failed : Please take a look at http://www.mirabis.nl/faqs/how-to-install-the-routines/");
+                    "Leaves could not validate its installation. Ensure Routines\\Leaves\\Leaves.dll and Leaves.cs are present.",
+                    "Leaves installation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -72,7 +73,8 @@ namespace Loader
                 {
                     _loaded = false;
                     MessageBox.Show(
-                        "Leaves.LoadRoutine Failed : Please contact an administrator at http://www.mirabis.nl/contact/");
+                        "Leaves failed to load Leaves.dll. Check the Honorbuddy log for details.",
+                        "Leaves load failure", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -85,10 +87,9 @@ namespace Loader
         {
             try
             {
-                //Compile("Leaves", _dllPath);
                 if (File.Exists(_dllPath)) return true;
                 MessageBox.Show(
-                    "Dll not found -- Please take a look at http://www.mirabis.nl/faqs/how-to-install-the-routines/ for installation instructions",
+                    "Leaves.dll was not found in Routines\\Leaves\\. Verify the routine files are installed correctly.",
                     "Leaves is not installed correctly", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -196,7 +197,7 @@ namespace Loader
         /// </summary>
         public override string Name
         {
-            get { return _loaded ? _cc.Name : "Unknown"; }
+            get { return (_loaded && _cc != null) ? _cc.Name : "Leaves (not loaded)"; }
         }
 
         /// <summary>
@@ -207,12 +208,22 @@ namespace Loader
             get { return WoWClass.Druid; }
         }
 
+        public override Composite CombatBehavior
+        {
+            get { return (_loaded && _cc != null) ? _cc.CombatBehavior : base.CombatBehavior; }
+        }
+
+        public override Composite PullBehavior
+        {
+            get { return (_loaded && _cc != null) ? _cc.PullBehavior : base.PullBehavior; }
+        }
+
         /// <summary>
         ///     Behavior used when healing
         /// </summary>
         public override Composite HealBehavior
         {
-            get { return _loaded ? _cc.HealBehavior : base.HealBehavior; }
+            get { return (_loaded && _cc != null) ? _cc.HealBehavior : base.HealBehavior; }
         }
 
         /// <summary>
@@ -220,7 +231,27 @@ namespace Loader
         /// </summary>
         public override Composite PreCombatBuffBehavior
         {
-            get { return _loaded ? _cc.PreCombatBuffBehavior : base.PreCombatBuffBehavior; }
+            get { return (_loaded && _cc != null) ? _cc.PreCombatBuffBehavior : base.PreCombatBuffBehavior; }
+        }
+
+        public override Composite RestBehavior
+        {
+            get { return (_loaded && _cc != null) ? _cc.RestBehavior : base.RestBehavior; }
+        }
+
+        public override Composite DeathBehavior
+        {
+            get { return (_loaded && _cc != null) ? _cc.DeathBehavior : base.DeathBehavior; }
+        }
+
+        public override bool NeedPreCombatBuffs
+        {
+            get { return (_loaded && _cc != null) ? _cc.NeedPreCombatBuffs : base.NeedPreCombatBuffs; }
+        }
+
+        public override bool NeedRest
+        {
+            get { return (_loaded && _cc != null) ? _cc.NeedRest : base.NeedRest; }
         }
 
         /// <summary>
@@ -228,7 +259,7 @@ namespace Loader
         /// </summary>
         public override bool WantButton
         {
-            get { return _loaded ? _cc.WantButton : base.WantButton; }
+            get { return (_loaded && _cc != null) ? _cc.WantButton : base.WantButton; }
         }
 
         /// <summary>
@@ -236,7 +267,10 @@ namespace Loader
         /// </summary>
         public override void Initialize()
         {
-            _cc.Initialize();
+            if (_loaded && _cc != null)
+                _cc.Initialize();
+            else
+                base.Initialize();
         }
 
         /// <summary>
@@ -244,7 +278,7 @@ namespace Loader
         /// </summary>
         public override void OnButtonPress()
         {
-            if (_loaded)
+            if (_loaded && _cc != null)
                 _cc.OnButtonPress();
             base.OnButtonPress();
         }
@@ -254,7 +288,7 @@ namespace Loader
         /// </summary>
         public override void Pulse()
         {
-            if (_loaded)
+            if (_loaded && _cc != null)
                 _cc.Pulse();
             base.Pulse();
         }
@@ -264,7 +298,7 @@ namespace Loader
         /// </summary>
         public override void ShutDown()
         {
-            if (_loaded)
+            if (_loaded && _cc != null)
                 _cc.ShutDown();
             base.ShutDown();
         }
