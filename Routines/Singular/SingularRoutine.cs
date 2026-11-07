@@ -595,7 +595,17 @@ namespace Singular
             try { if (_routineReloadedHandler != null) RoutineManager.Reloaded -= _routineReloadedHandler; } catch { }
             try { EventHandlers.Shutdown(); } catch { }
             try { TalentManager.Shutdown(); } catch { }
-            try { Managers.SoulstoneManager.Shutdown(); } catch { }
+            try
+            {
+                // SoulstoneManager.Init() is not currently called; detach defensively if present.
+                var t = Type.GetType("Singular.Managers.SoulstoneManager");
+                if (t != null)
+                {
+                    var m = t.GetMethod("Shutdown", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+                    if (m != null) m.Invoke(null, null);
+                }
+            }
+            catch { }
             try { PVP.DetachStartTimer(); } catch { }
             try { ShutdownContext(); } catch { }
             CleanupHooks();
