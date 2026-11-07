@@ -22,6 +22,11 @@ namespace Singular.Managers
             Lua.Events.AttachEvent("PLAYER_DEAD", HandlePlayerDead);
         }
 
+        internal static void Shutdown()
+        {
+            try { Lua.Events.DetachEvent("PLAYER_DEAD", HandlePlayerDead); } catch { }
+        }
+
         private static void HandlePlayerDead(object sender, LuaEventArgs args)
         {
             // Since we hooked this in ctor, make sure we are the selected CC

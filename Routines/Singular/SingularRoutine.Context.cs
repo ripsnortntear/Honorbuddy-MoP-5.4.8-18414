@@ -111,14 +111,29 @@ namespace Singular
         public static WoWContext TrainingDummyBehaviors { get; set; }
 
         private bool _contextEventSubscribed;
+        private Action<EventArgs> _battlegroundEnteredHandler;
+        private EventHandler<SingularBotEventArg> _singularBotEventHandler;
+
+        private void ShutdownContext()
+        {
+            if (!_contextEventSubscribed)
+                return;
+            try { if (_battlegroundEnteredHandler != null) BotEvents.Battleground.OnBattlegroundEntered -= _battlegroundEnteredHandler; } catch { }
+            try { if (_singularBotEventHandler != null) SingularRoutine.OnBotEvent -= _singularBotEventHandler; } catch { }
+            _battlegroundEnteredHandler = null;
+            _singularBotEventHandler = null;
+            _contextEventSubscribed = false;
+        }
+
         private void UpdateContext()
         {
             // Subscribe to the map change event, so we can automatically update the context.
             if (!_contextEventSubscribed)
             {
                 // Subscribe to OnBattlegroundEntered. Just 'cause.
-                BotEvents.Battleground.OnBattlegroundEntered += e => UpdateContext();
-                SingularRoutine.OnBotEvent += (src, arg) =>
+                _battlegroundEnteredHandler = e => UpdateContext();
+                BotEvents.Battleground.OnBattlegroundEntered += _battlegroundEnteredHandler;
+                _singularBotEventHandler = (src, arg) =>
                 {
                     if (arg.Event == SingularBotEvent.BotStart || arg.Event == SingularBotEvent.BotChanged)
                     {
@@ -131,6 +146,7 @@ namespace Singular
                         }
                     }
                 };
+                SingularRoutine.OnBotEvent += _singularBotEventHandler;
                 _contextEventSubscribed = true;
             }
 

@@ -35,6 +35,20 @@ namespace Singular.Managers
             Lua.Events.AttachEvent("LEARNED_SPELL_IN_TAB", UpdateTalentManager);
         }
 
+        public static void Shutdown()
+        {
+            try
+            {
+                Lua.Events.DetachEvent("PLAYER_LEVEL_UP", UpdateTalentManager);
+                Lua.Events.DetachEvent("CHARACTER_POINTS_CHANGED", UpdateTalentManager);
+                Lua.Events.DetachEvent("GLYPH_UPDATED", UpdateTalentManager);
+                Lua.Events.DetachEvent("ACTIVE_TALENT_GROUP_CHANGED", UpdateTalentManager);
+                Lua.Events.DetachEvent("PLAYER_SPECIALIZATION_CHANGED", UpdateTalentManager);
+                Lua.Events.DetachEvent("LEARNED_SPELL_IN_TAB", UpdateTalentManager);
+            }
+            catch { }
+        }
+
         public static WoWSpec CurrentSpec { get; private set; }
 
         public static List<Talent> Talents { get; private set; }

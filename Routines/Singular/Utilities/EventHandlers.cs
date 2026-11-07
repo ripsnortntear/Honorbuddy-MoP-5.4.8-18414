@@ -25,6 +25,7 @@ namespace Singular.Utilities
     {
         private static bool _combatLogAttached;
         private static bool _combatFilterAdded;
+        private static bool _eventHandlersInitialized;
 
         public static void Init()
         {
@@ -41,18 +42,30 @@ namespace Singular.Utilities
                 AttachCombatLogEvent();
 
             // add context handler that reacts to context change with above rules for logging
-            SingularRoutine.OnWoWContextChanged += HandleContextChanged;
-
-            // hook PVP start timer so we can identify end of prep phase
-            PVP.AttachStartTimer();
-
-            // also hook wow error messages
-            Lua.Events.AttachEvent("UI_ERROR_MESSAGE", HandleErrorMessage);
+            if (!_eventHandlersInitialized)
+            {
+                SingularRoutine.OnWoWContextChanged += HandleContextChanged;
+                PVP.AttachStartTimer();
+                Lua.Events.AttachEvent("UI_ERROR_MESSAGE", HandleErrorMessage);
+                Lua.Events.AttachEvent("END_BOUND_TRADEABLE", HandleEndBoundTradeable);
+                _eventHandlersInitialized = true;
+            }
 
             // hook LOOT_BIND_CONFIRM to handle popup appearing when applying certain spells to weapon
             // Lua.Events.AttachEvent("AUTOEQUIP_BIND_CONFIRM", HandleLootBindConfirm);
             // Lua.Events.AttachEvent("LOOT_BIND_CONFIRM", HandleLootBindConfirm);
-            Lua.Events.AttachEvent("END_BOUND_TRADEABLE", HandleEndBoundTradeable);
+        }
+
+        public static void Shutdown()
+        {
+            try { DetachCombatLogEvent(); } catch { }
+            if (!_eventHandlersInitialized)
+                return;
+            try { SingularRoutine.OnWoWContextChanged -= HandleContextChanged; } catch { }
+            try { PVP.DetachStartTimer(); } catch { }
+            try { Lua.Events.DetachEvent("UI_ERROR_MESSAGE", HandleErrorMessage); } catch { }
+            try { Lua.Events.DetachEvent("END_BOUND_TRADEABLE", HandleEndBoundTradeable); } catch { }
+            _eventHandlersInitialized = false;
         }
 
         private static void InitializeLocalizedValues()

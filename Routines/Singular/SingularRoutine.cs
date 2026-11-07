@@ -29,6 +29,11 @@ namespace Singular
 
         public static SingularRoutine Instance { get; private set; }
 
+        private static Action _hooksClearedHandler;
+        private static System.ComponentModel.PropertyChangedEventHandler _globalSettingsChangedHandler;
+        private static EventHandler<WoWContextEventArg> _wowContextChangedHandler;
+        private static EventHandler _routineReloadedHandler;
+
         public override string Name { get { return GetSingularRoutineName(); } }
 
         public override WoWClass Class { get { return StyxWoW.Me.Class; } }
@@ -76,6 +81,8 @@ namespace Singular
 
             //Logger.Write("Combat log event handler started.");
             // Do this now, so we ensure we update our context when needed.
+            // OnMapChanged delegate type varies across HB builds; keep existing subscription
+            // (UpdateContext also guards repeated setup) to avoid a compile-time type mismatch.
             BotEvents.Player.OnMapChanged += e =>
             {
                 // Don't run this handler if we're not the current routine!
@@ -87,7 +94,9 @@ namespace Singular
                 UpdateContext();
             };
 
-            TreeHooks.Instance.HooksCleared += () =>
+            if (_hooksClearedHandler != null)
+                TreeHooks.Instance.HooksCleared -= _hooksClearedHandler;
+            _hooksClearedHandler = () =>
             {
                 // Don't run this handler if we're not the current routine!
                 if (!WeAreTheCurrentCombatRoutine)
@@ -97,8 +106,11 @@ namespace Singular
                 RebuildBehaviors(silent: true);
                 Spell.GcdInitialize();   // probably not needed, but quick
             };
+            TreeHooks.Instance.HooksCleared += _hooksClearedHandler;
 
-            GlobalSettings.Instance.PropertyChanged += (sender, e) =>
+            if (_globalSettingsChangedHandler != null)
+                GlobalSettings.Instance.PropertyChanged -= _globalSettingsChangedHandler;
+            _globalSettingsChangedHandler = (sender, e) =>
             {
                 // Don't run this handler if we're not the current routine!
                 if (!WeAreTheCurrentCombatRoutine)
@@ -116,6 +128,7 @@ namespace Singular
                     Spell.GcdInitialize();   // probably not needed, but quick
                 }
             };
+            GlobalSettings.Instance.PropertyChanged += _globalSettingsChangedHandler;
 
             // install botevent handler so we can consolidate validation on whether 
             // .. local botevent handlers should be called or not
@@ -139,19 +152,26 @@ namespace Singular
             UpdateContext();
 
             // NOTE: Hook these events AFTER the context update.
-            OnWoWContextChanged += (orig, ne) =>
+            if (_wowContextChangedHandler != null)
+                OnWoWContextChanged -= _wowContextChangedHandler;
+            _wowContextChangedHandler = (orig, ne) =>
                 {
                     Logger.Write(Color.White, "Context changed, re-creating behaviors");
                     RebuildBehaviors();
                     Spell.GcdInitialize();
                     Singular.Lists.BossList.Init();
                 };
-            RoutineManager.Reloaded += (s, e) =>
+            OnWoWContextChanged += _wowContextChangedHandler;
+
+            if (_routineReloadedHandler != null)
+                RoutineManager.Reloaded -= _routineReloadedHandler;
+            _routineReloadedHandler = (s, e) =>
                 {
                     Logger.Write(Color.White, "Routines were reloaded, re-creating behaviors");
                     RebuildBehaviors(silent:true);
                     Spell.GcdInitialize();
                 };
+            RoutineManager.Reloaded += _routineReloadedHandler;
 
 
             // create silently since Start button will create a context change (at least first Start)
@@ -301,8 +321,10 @@ namespace Singular
 
         public static string GetHonorBuddyFolder()
         {
-            string hbpath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            return hbpath;
+            var entry = System.Reflection.Assembly.GetEntryAssembly();
+            if (entry != null && !string.IsNullOrWhiteSpace(entry.Location))
+                return Path.GetDirectoryName(entry.Location);
+            return Utilities.AssemblyDirectory;
         }
 
         public static bool WeAreTheCurrentCombatRoutine
@@ -566,6 +588,16 @@ namespace Singular
 
         public override void ShutDown()
         {
+            try { SingularBotEventShutdown(); } catch { }
+            try { if (_hooksClearedHandler != null) TreeHooks.Instance.HooksCleared -= _hooksClearedHandler; } catch { }
+            try { if (_globalSettingsChangedHandler != null) GlobalSettings.Instance.PropertyChanged -= _globalSettingsChangedHandler; } catch { }
+            try { if (_wowContextChangedHandler != null) OnWoWContextChanged -= _wowContextChangedHandler; } catch { }
+            try { if (_routineReloadedHandler != null) RoutineManager.Reloaded -= _routineReloadedHandler; } catch { }
+            try { EventHandlers.Shutdown(); } catch { }
+            try { TalentManager.Shutdown(); } catch { }
+            try { SoulstoneManager.Shutdown(); } catch { }
+            try { PVP.DetachStartTimer(); } catch { }
+            try { ShutdownContext(); } catch { }
             CleanupHooks();
             base.ShutDown();
         }
