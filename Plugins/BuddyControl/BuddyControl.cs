@@ -30,8 +30,6 @@ using Styx.CommonBot.Profiles;
 using Styx.Helpers;
 using Styx.Plugins;
 using Styx.WoWInternals;
-using DefaultValue = Styx.Helpers.DefaultValueAttribute;
-
 namespace BuddyControl
 {
 	public class BuddyControl : HBPlugin
@@ -228,13 +226,13 @@ namespace BuddyControl
 		public BuddyControlSettings()
 			: base(Path.Combine(Utilities.AssemblyDirectory, string.Format("Settings/BuddyControl.xml", StyxWoW.Me.Name))) {}
 
-		[Setting, DefaultValue(true)]
+		[Setting, Styx.Helpers.DefaultValue(true)]
 		[Category("Settings")]
 		[DisplayName("Ingame-Message")]
 		[Description("Display a WOW ingame message to inform you that a hotkey action (start/stop/pause/resume) is executed")]
 		public bool BuddyControlReportWithinWOW { get; set; }
 
-		[Setting, DefaultValue(Keys.Q)]
+		[Setting, Styx.Helpers.DefaultValue(Keys.Q)]
 		[Category("Settings")]
 		[DisplayName("Hotkey")]
 		[Description("Hotkey to be used with ALT (pause/resume) or CTRL (start/stop) the bot")]

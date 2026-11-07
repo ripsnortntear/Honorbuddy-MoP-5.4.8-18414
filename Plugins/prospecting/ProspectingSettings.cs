@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,6 @@ using System.IO;
 using Styx;
 using Styx.Common;
 using System.ComponentModel;
-using DefaultValue = Styx.Helpers.DefaultValueAttribute;
 using Styx.TreeSharp;
 
 namespace Prospecting //replace Pasteur with the namespace name of your main cs file.
@@ -22,7 +21,7 @@ namespace Prospecting //replace Pasteur with the namespace name of your main cs 
         }
 
         //use to check string value. example : use spell if (ThatSpellToUse == "always")
-        [Setting, DefaultValue(5)]
+        [Setting, Styx.Helpers.DefaultValue(5)]
         public int Jump { get; set; }
 
          

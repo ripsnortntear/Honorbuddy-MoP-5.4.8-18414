@@ -1,4 +1,4 @@
-﻿using Styx;
+using Styx;
 using Styx.Common;
 using Styx.CommonBot;
 using Styx.CommonBot.Frames;
@@ -21,8 +21,6 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Xml;
 using System.Xml.Linq;
-using DefaultValue = Styx.Helpers.DefaultValueAttribute;
-
 namespace BrodiesPlugin
 {
     public partial class BrodiesPluginUI : Form
@@ -333,59 +331,59 @@ namespace BrodiesPlugin
                 : base(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Plugins\BrodiesPlugin\Settings\Char-Settings-{0}-{1}.xml", StyxWoW.Me.RealmName, StyxWoW.Me.Name)))
             {
             }
-            [Setting, DefaultValue(0)]
+            [Setting, Styx.Helpers.DefaultValue(0)]
             public int lastUsedPath { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active1 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile1 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active2 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile2 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active3 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile3 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active4 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile4 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active5 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile5 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active6 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile6 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active7 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile7 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active8 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile8 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active9 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile9 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active10 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile10 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active11 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile11 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active12 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string Profile12 { get; set; }
-			[Setting, DefaultValue(false)]
+			[Setting, Styx.Helpers.DefaultValue(false)]
             public bool Active13 { get; set; }
-			[Setting, DefaultValue("")]
+			[Setting, Styx.Helpers.DefaultValue("")]
             public string dailiesDirName { get; set; }
         }
 
@@ -396,11 +394,11 @@ namespace BrodiesPlugin
                 : base(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Plugins\BrodiesPlugin\Settings\Main-Settings.xml")))
             {
             }
-            [Setting, DefaultValue(false)]
+            [Setting, Styx.Helpers.DefaultValue(false)]
             public bool AllowUpdate { get; set; }
-            [Setting, DefaultValue(false)]
+            [Setting, Styx.Helpers.DefaultValue(false)]
             public bool Allowlaunch { get; set; }
-            [Setting, DefaultValue(0)]
+            [Setting, Styx.Helpers.DefaultValue(0)]
             public int BaseProfileToLaunch { get; set; }
         }
 

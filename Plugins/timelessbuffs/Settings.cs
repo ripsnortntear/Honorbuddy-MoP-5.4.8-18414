@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,6 @@ using System.IO;
 using Styx;
 using Styx.Common;
 using System.ComponentModel;
-using DefaultValue = Styx.Helpers.DefaultValueAttribute;
 using Styx.TreeSharp;
 
 namespace TimelessBuffs
@@ -22,7 +21,7 @@ namespace TimelessBuffs
         }
 
         [Setting]
-        [DefaultValue(true)]
+        [Styx.Helpers.DefaultValue(true)]
         [Category("Crystal of Insanity")]
         [DisplayName("Crystal of Insanity")]
         [Description("Auto Buff Crystal of Insanity Everywhere")]

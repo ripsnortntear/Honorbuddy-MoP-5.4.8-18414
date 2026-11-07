@@ -1120,3 +1120,20 @@ During unattended overnight leveling in Redridge Mountains, bots became permanen
 - **IL Structure Verification**: Mono.Cecil disassembled and verified all modified instruction sequences and branch target offsets.
 - **CLR JIT Validation**: A dedicated 32-bit x86 harness executed `RuntimeHelpers.PrepareMethod` across all modified methods (`MeshNavigator.smethod_8`, `MeshNavigator.method_10`, `WoWMovement.ClickToMove`, and `Flightor.MoveTo`). All methods JIT-compiled with 100% success and zero verification errors.
 - **Clean Repository State**: Synchronized and deployed into production `Honorbuddy.exe` and `Quest Behaviors\UseTransport.cs`.
+
+---
+
+### 31. HB Dynamic-Compiler Ambiguity Conventions (Routines/Plugins)
+Honorbuddy compiles many routine/plugin `.cs` files at runtime (C# 5 / .NET 4.5.1 / x86). A single ambiguity compile error can prevent a routine/plugin from appearing in HB's available list. **When a routine disappears, check the newest character log for `Compiler Error`** (e.g. `Logs/<Realm> - <Character>/*.txt`).
+
+* **`Action` ambiguity (`CS0104`) — `System.Action` vs `Styx.TreeSharp.Action`**:
+  - Common when a file has both `using System;` and `using Styx.TreeSharp;` (needed for `Composite`/behavior trees). Unqualified `new Action(...)` becomes ambiguous.
+  - **Rule**: qualify explicitly. Use `System.Action` for plain delegates/callbacks (e.g. WinForms `BeginInvoke`, timers, event helpers). Use `Styx.TreeSharp.Action` (or `new Styx.TreeSharp.Action(...)`) for TreeSharp behavior nodes. Alternatively, use a deliberate alias (`using Action = Styx.TreeSharp.Action;`) only when the file exclusively needs the TreeSharp action and never a `System.Action` — but prefer explicit qualification in mixed/loader code.
+  - **Fixed example**: `Routines/Demonic/DemonicLoader.cs` used `new Action(...)` for a WinForms dialog callback; changed to `new System.Action(...)`.
+
+* **`DefaultValue` attribute ambiguity (`CS1614`) — `Styx.Helpers.DefaultValueAttribute`**:
+  - HB's dynamic compiler can report `CS1614: 'DefaultValue' is ambiguous between 'Styx.Helpers.DefaultValueAttribute' and 'Styx.Helpers.DefaultValueAttribute'` (especially with duplicate assembly references in the compile context). Alias patterns like `using DefaultValue = Styx.Helpers.DefaultValueAttribute;` combined with `using Styx.Helpers;` are fragile in this environment.
+  - **Rule**: avoid the `using DefaultValue = ...Attribute` alias in HB-compiled settings files. Use fully qualified `[Styx.Helpers.DefaultValue(...)]` (or `[DefaultValueAttribute(...)]` only when unambiguous). Keep `using Styx.Helpers;` for `Settings`/base types as needed.
+  - **Fixed examples**: `Routines/Boomkin/BoomSettings.cs`; plugins `BrodiesPlugin/BrodiesPluginUI.cs`, `BuddyControl/BuddyControl.cs`, `Milling/PluginSetings.cs`, `prospecting/ProspectingSettings.cs`, `timelessbuffs/Settings.cs`, `timelessbuffs/UpdateSettings.cs`.
+
+* **General**: keep HB-compiled code C# 5 / .NET 4.5.1 safe (see section 1). After changes, recompile/reload routines in HB and verify no `Compiler Error` lines appear for the touched files.
