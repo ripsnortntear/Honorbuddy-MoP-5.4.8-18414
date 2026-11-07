@@ -6,6 +6,12 @@ namespace Superbad
     // implementation could delete/overwrite local files. Kept as safe no-op stubs.
     internal class Updater
     {
+        // Legacy changelog UI compatibility.
+        public static string NewString
+        {
+            get { return string.Empty; }
+        }
+
         public static void CheckForUpdate()
         {
         }

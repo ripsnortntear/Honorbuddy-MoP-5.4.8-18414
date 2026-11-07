@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -111,7 +111,7 @@ namespace Singular
         public static WoWContext TrainingDummyBehaviors { get; set; }
 
         private bool _contextEventSubscribed;
-        private Action<EventArgs> _battlegroundEnteredHandler;
+        private BotEvents.Battleground.BattlegroundEnterDelegate _battlegroundEnteredHandler;
         private EventHandler<SingularBotEventArg> _singularBotEventHandler;
 
         private void ShutdownContext()

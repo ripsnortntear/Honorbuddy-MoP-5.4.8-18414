@@ -35,7 +35,8 @@ namespace Superbad
             {
                 if (_combatLogFilterAdded)
                 {
-                    Lua.Events.RemoveFilter("COMBAT_LOG_EVENT_UNFILTERED", CombatLogFilter);
+                    // HB 5.4.8 Lua.Events.RemoveFilter takes only the event name.
+                    Lua.Events.RemoveFilter("COMBAT_LOG_EVENT_UNFILTERED");
                     _combatLogFilterAdded = false;
                 }
             }

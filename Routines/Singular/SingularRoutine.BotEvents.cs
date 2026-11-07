@@ -32,11 +32,12 @@ namespace Singular
         public static event EventHandler<SingularBotEventArg> OnBotEvent;
 
         private static bool _botEventSubscribed;
-        private static Action<EventArgs> _botChangedHandler;
-        private static Action<EventArgs> _botStartHandler;
-        private static Action<EventArgs> _botStartedHandler;
-        private static Action<EventArgs> _botStopHandler;
-        private static Action<EventArgs> _botStoppedHandler;
+        // HB 5.4.8 uses specific BotEvents delegate types (not Action<EventArgs>).
+        private static BotEvents.OnBotChangedDelegate _botChangedHandler;
+        private static BotEvents.OnBotStartDelegate _botStartHandler;
+        private static BotEvents.OnBotStartDelegate _botStartedHandler;
+        private static BotEvents.OnBotStopDelegate _botStopHandler;
+        private static BotEvents.OnBotStopDelegate _botStoppedHandler;
 
         private void SingularBotEventInitialize()
         {
@@ -72,7 +73,9 @@ namespace Singular
             }
             catch { }
 
-            _botChangedHandler = _botStartHandler = _botStartedHandler = _botStopHandler = _botStoppedHandler = null;
+            _botChangedHandler = null;
+            _botStartHandler = _botStartedHandler = null;
+            _botStopHandler = _botStoppedHandler = null;
             _botEventSubscribed = false;
         }
 

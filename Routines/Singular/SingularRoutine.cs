@@ -324,7 +324,7 @@ namespace Singular
             var entry = System.Reflection.Assembly.GetEntryAssembly();
             if (entry != null && !string.IsNullOrWhiteSpace(entry.Location))
                 return Path.GetDirectoryName(entry.Location);
-            return Utilities.AssemblyDirectory;
+            return Styx.Common.Utilities.AssemblyDirectory;
         }
 
         public static bool WeAreTheCurrentCombatRoutine
@@ -595,7 +595,7 @@ namespace Singular
             try { if (_routineReloadedHandler != null) RoutineManager.Reloaded -= _routineReloadedHandler; } catch { }
             try { EventHandlers.Shutdown(); } catch { }
             try { TalentManager.Shutdown(); } catch { }
-            try { SoulstoneManager.Shutdown(); } catch { }
+            try { Managers.SoulstoneManager.Shutdown(); } catch { }
             try { PVP.DetachStartTimer(); } catch { }
             try { ShutdownContext(); } catch { }
             CleanupHooks();
