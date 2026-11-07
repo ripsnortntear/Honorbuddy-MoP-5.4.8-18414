@@ -1,4 +1,4 @@
-// Credits to Phelon and Mirabis for making this work without using Assembly redirection.
+﻿// Credits to Phelon and Mirabis for making this work without using Assembly redirection.
 
 using System;
 using System.Globalization;
@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 using System.Windows.Media;
 using Styx;
 using Styx.Common;
@@ -19,89 +18,77 @@ namespace Loader
     public class Loader : CombatRoutine
     {
         private CombatRoutine CC;
+        private bool _loggedUnavailable;
 
         private readonly String[] Keep = new[] { "Loader.cs", "TuanHA_Combat_Routine.dll", "Settings", "User Settings", "Files", "Please Read - Installation Guide.txt", ".svn", "ChangeLog.txt" };
 
         public Loader()
         {
             string settingsDirectory = Path.Combine(Utilities.AssemblyDirectory, "Routines\\TuanHAWarriorPatronEdition");
-
-            string path = settingsDirectory + @"\TuanHA_Combat_Routine.dll";
+            string path = Path.Combine(settingsDirectory, "TuanHA_Combat_Routine.dll");
 
             if (!File.Exists(path))
             {
-                MessageBox.Show("TuanHAWarriorPatronEdition is not installed correctly! Ensure files look like;" + 
-                            Environment.NewLine + 
-                            Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/Files/<.doc .jpg>" +
-							Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/Preset/<XML Files>" +
-							Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/Settings/<XML Files>" +
-							Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/User Settings/<XML Files>" +
-							Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/ChangeLog.txt" +
-                            Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/Loader.cs" + 
-                            Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/Please Read - Installation Guide.txt" +
-                            Environment.NewLine +
-                            "<Honorbuddy>/Routines/TuanHAWarriorPatronEdition/TuanHA_Combat_Routine.dll");
+                Logging.Write(Colors.DarkRed, "TuanHAWarriorPatronEdition: TuanHA_Combat_Routine.dll not found in " + settingsDirectory + ". Loader will remain inactive.");
                 return;
             }
 
-            string pathTemp = settingsDirectory + @"\Files\TuanHA_Combat_Routine.dll.update";
-            string pathTemp2 = settingsDirectory + @"\Files\TuanHA_Combat_Routine.dll";
+            string pathTemp = Path.Combine(settingsDirectory, "Files", "TuanHA_Combat_Routine.dll.update");
+            string pathTemp2 = Path.Combine(settingsDirectory, "Files", "TuanHA_Combat_Routine.dll");
 
             if (File.Exists(pathTemp))
             {
-                if (File.Exists(path))
-                {
-                    try
-                    {
-                        //Logging.Write("Deleting " + path);
-                        File.Delete(path);
-                    }
-                    catch (IOException ex)
-                    {
-                        Logging.Write(ex.ToString()); // Write error
-                    }
-                }
-
                 try
                 {
-                    //Logging.Write("Moving " + pathTemp + " to " + path);
+                    if (File.Exists(path))
+                        File.Delete(path);
+                    if (File.Exists(pathTemp2))
+                        File.Delete(pathTemp2);
                     File.Move(pathTemp, pathTemp2);
-                    File.Copy(pathTemp2, path);
+                    File.Copy(pathTemp2, path, true);
                 }
                 catch (IOException ex)
                 {
-                    Logging.Write(ex.ToString()); // Write error
+                    Logging.Write("TuanHAWarriorPatronEdition: update swap failed: " + ex.Message);
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Logging.Write("TuanHAWarriorPatronEdition: update swap failed: " + ex.Message);
                 }
             }
 
-            bool removed = false;
-            var DInfo = new DirectoryInfo(settingsDirectory);
-            foreach (FileInfo file in DInfo.GetFiles())
+            try
             {
-                if (!Keep.Contains(file.Name))
+                var DInfo = new DirectoryInfo(settingsDirectory);
+                if (DInfo.Exists)
                 {
-                    removed = true;
-                    Logging.Write("Removing " + file.Name + " from TuanHAWarriorPatronEdition directory");
-                    file.Delete();
+                    foreach (FileInfo file in DInfo.GetFiles())
+                    {
+                        if (!Keep.Contains(file.Name))
+                        {
+                            try
+                            {
+                                Logging.Write("Removing " + file.Name + " from TuanHAWarriorPatronEdition directory");
+                                file.Delete();
+                            }
+                            catch (Exception ex)
+                            {
+                                Logging.Write("TuanHAWarriorPatronEdition: could not remove " + file.Name + ": " + ex.Message);
+                            }
+                        }
+                    }
                 }
             }
-            //if (removed)
-            //{
-            //    MessageBox.Show("Removed unnecessary files from TuanHAWarriorPatronEdition directory, if TuanHAWarriorPatronEdition fails to work please restart honorbuddy.");
-            //}
+            catch (Exception ex)
+            {
+                Logging.Write("TuanHAWarriorPatronEdition: cleanup failed: " + ex.Message);
+            }
 
             try
             {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-				AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs e)
+                AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs e)
                 {
                     try
                     {
@@ -109,9 +96,7 @@ namespace Loader
                         foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
                         {
                             if (string.Equals(a.GetName().Name, requestedName.Name, StringComparison.OrdinalIgnoreCase))
-                            {
                                 return a;
-                            }
                         }
                         return null;
                     }
@@ -126,12 +111,16 @@ namespace Loader
 
                 foreach (Type t in asm.GetTypes())
                 {
-                    if (t.IsSubclassOf(typeof(CombatRoutine)) && t.IsClass)
+                    if (t.IsSubclassOf(typeof(CombatRoutine)) && t.IsClass && !t.IsAbstract)
                     {
                         object obj = Activator.CreateInstance(t);
                         CC = (CombatRoutine)obj;
+                        break;
                     }
                 }
+
+                if (CC == null)
+                    Logging.Write(Colors.DarkRed, "TuanHAWarriorPatronEdition: loaded DLL but no CombatRoutine subclass was found.");
             }
             catch (ThreadAbortException)
             {
@@ -142,21 +131,18 @@ namespace Loader
                 var sb = new StringBuilder();
                 foreach (Exception exSub in ex.LoaderExceptions)
                 {
+                    if (exSub == null) continue;
                     sb.AppendLine(exSub.Message);
-                    if (exSub is FileNotFoundException)
+                    var exFileNotFound = exSub as FileNotFoundException;
+                    if (exFileNotFound != null && !string.IsNullOrEmpty(exFileNotFound.FusionLog))
                     {
-                        var exFileNotFound = exSub as FileNotFoundException;
-                        if (!string.IsNullOrEmpty(exFileNotFound.FusionLog))
-                        {
-                            sb.AppendLine("Fusion Log:");
-                            sb.AppendLine(exFileNotFound.FusionLog);
-                        }
+                        sb.AppendLine("Fusion Log:");
+                        sb.AppendLine(exFileNotFound.FusionLog);
                     }
                     sb.AppendLine();
                 }
-                string errorMessage = sb.ToString();
-                //Display or log the error based on your application.
-                Logging.Write(errorMessage);
+                Logging.Write(Colors.DarkRed, "TuanHAWarriorPatronEdition: ReflectionTypeLoadException while loading routine.");
+                Logging.Write(sb.ToString());
             }
             catch (Exception e)
             {
@@ -165,67 +151,77 @@ namespace Loader
             }
         }
 
+        private bool EnsureLoaded(string member)
+        {
+            if (CC != null)
+                return true;
+            if (!_loggedUnavailable)
+            {
+                _loggedUnavailable = true;
+                Logging.Write(Colors.DarkRed, "TuanHAWarriorPatronEdition: compiled routine unavailable; skipped " + member + ".");
+            }
+            return false;
+        }
+
         #region Overrides of CombatRoutine
 
         public override string Name
         {
-            get
-            {
-                return CC.Name;
-            }
+            get { return CC != null ? CC.Name : "TuanHAWarriorPatronEdition (Unavailable)"; }
         }
 
         public override void Initialize()
         {
-            CC.Initialize();
+            if (EnsureLoaded("Initialize()"))
+                CC.Initialize();
+        }
+
+        public override void ShutDown()
+        {
+            if (CC != null)
+                CC.ShutDown();
         }
 
         public override Composite CombatBehavior
         {
-            get { return CC.CombatBehavior; }
+            get { return CC != null ? CC.CombatBehavior : null; }
         }
 
         public override Composite PreCombatBuffBehavior
         {
-            get { return CC.PreCombatBuffBehavior; }
+            get { return CC != null ? CC.PreCombatBuffBehavior : null; }
         }
-
-        //public override Composite PullBehavior
-        //{
-        //    get { return CC.PullBehavior; }
-        //}
 
         public override Composite RestBehavior
         {
-            get { return CC.RestBehavior; }
+            get { return CC != null ? CC.RestBehavior : null; }
         }
-		
-		public override Composite DeathBehavior
+
+        public override Composite DeathBehavior
         {
-            get { return CC.DeathBehavior; }
+            get { return CC != null ? CC.DeathBehavior : null; }
         }
 
         public override WoWClass Class
         {
-            get
-            {
-                return WoWClass.Warrior;
-            }
+            get { return WoWClass.Warrior; }
         }
 
         public override void OnButtonPress()
         {
-            CC.OnButtonPress();
+            if (EnsureLoaded("OnButtonPress()"))
+                CC.OnButtonPress();
         }
 
         public override void Pulse()
         {
-            CC.Pulse();
+            if (CC != null)
+                CC.Pulse();
         }
 
         public override bool WantButton
         {
-            get { return true; }
+            get { return CC != null; }
         }
 
         #endregion
