@@ -101,7 +101,9 @@ namespace Oracle
 
                 BaseStats.Instance.Initialize();
 
-                RoutineManager.Reloaded += (s, e) =>
+                if (_reloadedHandler != null)
+                    RoutineManager.Reloaded -= _reloadedHandler;
+                _reloadedHandler = (s, e) =>
                     {
                         // Don't run this handler if we're not the current routine!
                         if (RoutineManager.Current == null || RoutineManager.Current.Name != Name)
@@ -110,6 +112,7 @@ namespace Oracle
                         Logger.Output(" Routines were reloaded, re-creating behaviors");
                         BuildBehaviors();
                     };
+                RoutineManager.Reloaded += _reloadedHandler;
 
                 // Build Behaviors
                 if (!BuildBehaviors()) { StopBot(" Could not build behaviors"); }
@@ -135,7 +138,9 @@ namespace Oracle
                 OracleLineOfSight.Initialize();
 
 
-                OnCombatStateChange += (orig, ne) =>
+                if (_combatStateHandler != null)
+                    OnCombatStateChange -= _combatStateHandler;
+                _combatStateHandler = (orig, ne) =>
                     {
                         // Don't run this handler if we're not the current routine!
                         if (RoutineManager.Current == null || RoutineManager.Current.Name != Name)
@@ -150,6 +155,7 @@ namespace Oracle
                         OracleSettings.Instance.EnableProvingGrounds = (StyxWoW.Me.RealZoneText == "Proving Grounds");
                         OracleSettings.Instance.MAX_AOE_HP = Specialization == WoWSpec.DruidRestoration ? 99 : OracleSettings.Instance.MAX_AOE_HP;
                     };
+                OnCombatStateChange += _combatStateHandler;
 
                 ClusterManager.Pulse();
                 DispelManager.Initialize();
@@ -168,9 +174,26 @@ namespace Oracle
 
         public override void ShutDown()
         {
+            try
+            {
+                if (_reloadedHandler != null)
+                {
+                    RoutineManager.Reloaded -= _reloadedHandler;
+                    _reloadedHandler = null;
+                }
+                if (_combatStateHandler != null)
+                {
+                    OnCombatStateChange -= _combatStateHandler;
+                    _combatStateHandler = null;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Output("{0}", e);
+            }
+
             Chronicle.Shutdown();
             OracleLineOfSight.Shutdown();
-           
         }
 
         public override void Pulse()
@@ -252,6 +275,8 @@ namespace Oracle
         public override bool WantButton { get { return true; } }
 
         private Form _newtempui;
+        private static EventHandler _reloadedHandler;
+        private static EventHandler<CombatStateEventArgs> _combatStateHandler;
 
         public override void OnButtonPress()
         {

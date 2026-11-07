@@ -20,6 +20,7 @@ using Oracle.Core.Managers;
 using Oracle.Core.Spells;
 using Oracle.Core.Spells.Auras;
 using Oracle.Core.WoWObjects;
+using Oracle.Shared.Logging;
 using Oracle.UI.Settings;
 using Styx;
 using Styx.Common.Helpers;
@@ -75,7 +76,7 @@ namespace Oracle.Classes.Priest
             {
                 return new PrioritySelector(
 
-                    //HandleLightWell(),
+                    HandleLightWell(),
 
                     DispelManager.CreateDispelBehavior(),
 
@@ -182,51 +183,69 @@ namespace Oracle.Classes.Priest
 
         #region LightWell/LightSpring
 
-        private static readonly WaitTimer LightWellTimer = new WaitTimer(TimeSpan.FromSeconds(PriestCommon.HolyLightwellWaitTime));
+        private static readonly WaitTimer LightWellTimer = new WaitTimer(TimeSpan.FromSeconds(10));
+
+        private static bool HasLightspringGlyph()
+        {
+            return TalentManager.HasGlyph("Lightspring");
+        }
+
+        private static int LightWellOrSpringSpellId()
+        {
+            return HasLightspringGlyph() ? Lightspring : Lightwell;
+        }
+
+        private static WoWUnit MyActiveLightWell()
+        {
+            return ObjectManager.GetObjectsOfTypeFast<WoWUnit>().FirstOrDefault(p =>
+                p != null && p.IsValid && p.CreatedByUnitGuid == Me.Guid &&
+                (p.Entry == 31897 || p.Entry == 126135 || p.Entry == 64571));
+        }
+
+        private static WoWPoint GetLightWellPlacement()
+        {
+            if (OracleRoutine.IsViable(Tank))
+                return WoWMathHelper.CalculatePointFrom(Me.Location, Tank.Location, 5f);
+
+            if (OracleRoutine.IsViable(HealTarget))
+                return WoWMathHelper.CalculatePointFrom(Me.Location, HealTarget.Location, 5f);
+
+            return Me.Location;
+        }
 
         private static bool NeedLightWell()
         {
-            // Dont do shit if its not been x seconds.
-            //if (!LightWellTimer.IsFinished)
-            //    return false;
+            if (!PriestCommon.HolyEnableLightwellUsage)
+                return false;
 
-            // derp..
+            if (!LightWellTimer.IsFinished)
+                return false;
+
             if (!Me.Combat || Me.IsMoving)
                 return false;
 
-            // Spell on cooldown derp..
-            if (TalentManager.HasGlyph("Lightspring") ? CooldownTracker.SpellOnCooldown(Lightspring) : CooldownTracker.SpellOnCooldown(Lightwell))
+            var spellId = LightWellOrSpringSpellId();
+            if (CooldownTracker.SpellOnCooldown(spellId) || Spell.SpellOnCooldown(spellId))
                 return false;
 
-            const int lightspringObject = 64571;
-            const int lightwellObject = 31897;
-
-            var entry = TalentManager.HasGlyph("Lightspring") ? lightspringObject : lightwellObject;
-
-            // Grab dat..fast!
-            var myLightwell = ObjectManager.GetObjectsOfTypeFast<WoWUnit>().FirstOrDefault(p => p.CreatedByUnitGuid == Me.Guid && p.Entry == entry);
-
-            // if we dont have one..then get dat shit.
+            var myLightwell = MyActiveLightWell();
             if (myLightwell == null)
-            {
-                LightWellTimer.Reset();
                 return true;
-            }
 
-            // Distance...
             if (myLightwell.Distance > PriestCommon.HolyMaxLightwellDistance)
-            {
-                LightWellTimer.Reset();
                 return true;
-            }
 
             return false;
         }
 
         private static Composite HandleLightWell()
         {
-            return new Decorator(ret => PriestCommon.HolyEnableLightwellUsage && NeedLightWell(),
-                CooldownTracker.CastOnGround(TalentManager.HasGlyph("Lightspring") ? Lightspring : Lightwell, on => WoWMathHelper.CalculatePointFrom(StyxWoW.Me.Location, Tank.Location, 5f), ret => OracleRoutine.IsViable(Tank), 0, false, true, false)); // && !Tank.IsMe
+            return new Decorator(ret => NeedLightWell(),
+                new Sequence(
+                    new Action(ret => LightWellTimer.Reset()),
+                    CooldownTracker.CastOnGround(LightWellOrSpringSpellId(), on => GetLightWellPlacement(), ret => true, 0, false, true, false),
+                    new Action(ret => Logger.Output(HasLightspringGlyph() ? " Placing Lightspring." : " Placing Lightwell."))
+                ));
         }
 
         #endregion LightWell/LightSpring

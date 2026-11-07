@@ -270,7 +270,14 @@ namespace Oracle.Healing.Chronicle
                     spell.Healing = spell.Healing + amount;
 
                     if (heal.Critical)
+                    {
                         spell.Critical = spell.Critical + 1;
+                    }
+                    else if (amount > 0)
+                    {
+                        spell.NonCritHits = spell.NonCritHits + 1;
+                        spell.NonCritAmountSum = spell.NonCritAmountSum + amount;
+                    }
 
                     spell.Overhealing = spell.Overhealing + heal.Overhealing;
 
@@ -286,10 +293,13 @@ namespace Oracle.Healing.Chronicle
                     if (spell.Max == 0 || amount > spell.Max)
                         spell.Max = amount;
 
-                    // Total amount the heal hit for + overhealing
-                    var averageHeal = (spell.Min + spell.Max) / 2;
-                    if (spell.MaxHeal == 0 || averageHeal > spell.MaxHeal)
-                        spell.MaxHeal = averageHeal;
+                    // Conservative estimate: prefer typical non-crit heal so crit samples don't
+                    // overstate deficit coverage (TODO: crit skew caused cheap heals on low tanks).
+                    var typicalHeal = spell.NonCritHits > 0
+                        ? (int)(spell.NonCritAmountSum / spell.NonCritHits)
+                        : (spell.Hits > 0 ? spell.Healing / spell.Hits : amount);
+                    if (spell.MaxHeal == 0 || typicalHeal > spell.MaxHeal)
+                        spell.MaxHeal = typicalHeal;
                 }
                 else
                 {
@@ -311,7 +321,14 @@ namespace Oracle.Healing.Chronicle
                     spell.Healing = spell.Healing + amount;
 
                     if (heal.Critical)
+                    {
                         spell.Critical = spell.Critical + 1;
+                    }
+                    else if (amount > 0)
+                    {
+                        spell.NonCritHits = spell.NonCritHits + 1;
+                        spell.NonCritAmountSum = spell.NonCritAmountSum + amount;
+                    }
 
                     spell.Overhealing = spell.Overhealing + heal.Overhealing;
 
@@ -327,10 +344,13 @@ namespace Oracle.Healing.Chronicle
                     if (spell.Max == 0 || amount > spell.Max)
                         spell.Max = amount;
 
-                    // Total amount the heal hit for + overhealing
-                    var averageHeal = (spell.Min + spell.Max) / 2;
-                    if (spell.MaxHeal == 0 || averageHeal > spell.MaxHeal)
-                        spell.MaxHeal = averageHeal;
+                    // Conservative estimate: prefer typical non-crit heal so crit samples don't
+                    // overstate deficit coverage (TODO: crit skew caused cheap heals on low tanks).
+                    var typicalHeal = spell.NonCritHits > 0
+                        ? (int)(spell.NonCritAmountSum / spell.NonCritHits)
+                        : (spell.Hits > 0 ? spell.Healing / spell.Hits : amount);
+                    if (spell.MaxHeal == 0 || typicalHeal > spell.MaxHeal)
+                        spell.MaxHeal = typicalHeal;
                 }
 
                 player.Healingspells[heal.Spellname] = spell;

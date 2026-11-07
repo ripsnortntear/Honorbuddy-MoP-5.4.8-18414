@@ -36,8 +36,7 @@ namespace Oracle.UI
             var dy = 20;
 
             var y = 0;
-            var wieght = OracleHealTargeting.weightsPG.OrderByDescending(w => w.Item1); 
-
+            var wieght = OracleHealTargeting.WeightsPG.OrderByDescending(w => w.Item1);
             var col1 = 10;
             var col2 = (int)(col1 + (W - 20.0) * 0.6);
             //var col3 = (int)(col2 + (W - 20.0) * 0.4 / 2.0);

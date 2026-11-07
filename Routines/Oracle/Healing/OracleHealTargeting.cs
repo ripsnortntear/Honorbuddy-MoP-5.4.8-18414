@@ -58,12 +58,12 @@ namespace Oracle.Healing
             HealingPrioritiesPG = new List<WoWUnit>(); // BUG: REMOVE ASAAP
         }
 
-        # region ProvingGrounds
-        // BUG: Remove this hackish shit
+        #region ProvingGrounds
 
         public static List<WoWUnit> HealingPrioritiesPG { get; private set; }
 
-        public static List<Tuple<double, WoWUnit>> weightsPG = new List<Tuple<double, WoWUnit>>(); // BUG: REMOVE ASAAP
+        internal static readonly List<Tuple<double, WoWUnit>> WeightsPG = new List<Tuple<double, WoWUnit>>();
+        public static List<Tuple<double, WoWUnit>> weightsPG { get { return WeightsPG; } }
 
         #endregion
 

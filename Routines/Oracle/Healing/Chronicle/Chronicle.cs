@@ -93,10 +93,9 @@ namespace Oracle.Healing.Chronicle
                     if (encounter != null) encounter.Players.Add(playerId, player);
                 }
 
-                //  The total encounter clears out first and last timestamps.
-                if (player.First.HasValue) player.First = DateTime.Now;
-
-                player.First = DateTime.Now;
+                player.Last = DateTime.Now;
+                if (!player.First.HasValue)
+                    player.First = DateTime.Now;
 
                 return player;
             }
@@ -468,6 +467,12 @@ namespace Oracle.Healing.Chronicle
             public int Max { get; set; }
 
             public int MaxHeal { get; set; }
+
+            // Conservative heal estimation: crits can heavily skew Min/Max averages and cause
+            // Chronicle to overestimate deficit coverage (e.g. pick a cheap heal on a low tank).
+            public int NonCritHits { get; set; }
+
+            public long NonCritAmountSum { get; set; }
         }
 
         internal struct Heal
