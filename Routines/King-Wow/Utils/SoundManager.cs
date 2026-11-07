@@ -17,28 +17,21 @@ namespace KingWoW
         
         public static void LoadSoundFilePath(string path)
         {
-            // Make sure we check for existence of the the
-            // selected file.
-            var fileExists = File.Exists(Utilities.AssemblyDirectory + path);
+            var fullPath = Path.Combine(Utilities.AssemblyDirectory, path.TrimStart('\\', '/'));
+            if (!File.Exists(fullPath))
+            {
+                Logging.Write("Sound manager: can't load sound " + fullPath);
+                return;
+            }
 
             try
             {
-                // Check the file exists.
-                if (fileExists)
-                {
-                    // Assign the selected file's path to
-                    // the SoundPlayer object.
-                    player.SoundLocation = Utilities.AssemblyDirectory + path;
-                }
-                else
-                    Logging.Write("Sound manager: Cant load sound " + Utilities.AssemblyDirectory + path);
-
-                // Load the .wav file.
+                player.SoundLocation = fullPath;
                 player.Load();
             }
             catch (Exception e)
             {
-                Logging.Write("Sound manager: exception on sound " + Utilities.AssemblyDirectory + path);
+                Logging.Write("Sound manager: exception loading sound " + fullPath);
                 Logging.Write(e.ToString());
             }
         }

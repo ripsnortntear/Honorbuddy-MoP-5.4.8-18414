@@ -204,28 +204,16 @@ namespace KingWoW
         #region _spellsThatBreakCrowdControl
 
         /// <summary>
-        /// Please add spells which can break movement imparing effects here
+        /// Spells/abilities which can break crowd control or movement impairing effects (MoP 5.4.8).
+        /// Extend as needed; keep names exact for SpellManager lookups.
         /// </summary>
         private static readonly HashSet<string> _spellsThatBreakCrowdControl = new HashSet<string>
         {
             "Berserker Rage",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "Will of the Forsaken",
+            "Every Man for Himself",
+            "Escape Artist",
+            "Ice Block", // mage: immune/break via cast in some cases; kept for callers that check spell presence
         };
 
         #endregion _spellsThatBreakCrowdControl
@@ -279,89 +267,43 @@ namespace KingWoW
 
         public bool UseAlchemyFlask()
         {
-            if (ExtraUtilsSettings.Instance.UseAlchemyFlask)
-            {
+            if (!ExtraUtilsSettings.Instance.UseAlchemyFlask || Me == null || Me.Mounted || Me.Combat)
+                return false;
 
-                if (!StyxWoW.Me.Auras.Any(aura => aura.Key.StartsWith("Enhanced ") || aura.Key.StartsWith("Flask of ")) && !Me.Mounted)
-                {
-                    foreach (WoWItem item in Me.BagItems)
-                    {
-                        if (item != null)
-                        {
-                            switch (ExtraUtilsSettings.Instance.FlaskTypeToUse)
-                            {
-                                case ExtraUtilsSettings.FlaskType.Intellect:
-                                    {
-                                        WoWItem flask = Me.BagItems.FirstOrDefault(o => o.Entry == INTELLECT_1000);
-                                        if(flask==null)
-                                            flask = Me.BagItems.FirstOrDefault(o => o.Entry == INTELLECT_300);          
-                                        if (flask != null)
-                                        {
-                                            flask.Use();
-                                            Logging.Write("Use "+ flask.Name);
-                                            return true;
-                                        }
-                                    }
-                                    break;
-                                case ExtraUtilsSettings.FlaskType.Spirit:
-                                    {
-                                        WoWItem flask = Me.BagItems.FirstOrDefault(o => o.Entry == SPIRIT_1000);
-                                        if (flask == null)
-                                            flask = Me.BagItems.FirstOrDefault(o => o.Entry == SPIRIT_300);                      
-                                        if (flask != null)
-                                        {
-                                            flask.Use();
-                                            Logging.Write("Use " + flask.Name);
-                                            return true;
-                                        }
-                                    }
-                                    break;
-                                case ExtraUtilsSettings.FlaskType.Strenght:
-                                    {
-                                        WoWItem flask = Me.BagItems.FirstOrDefault(o => o.Entry == STRENGHT_1000);
-                                        if (flask == null)
-                                            flask = Me.BagItems.FirstOrDefault(o => o.Entry == STRENGHT_300);                           
-                                        if (flask != null)
-                                        {
-                                            flask.Use();
-                                            Logging.Write("Use " + flask.Name);
-                                            return true;
-                                        }
-                                    }
-                                    break;
-                                case ExtraUtilsSettings.FlaskType.Agility:
-                                    {
-                                        WoWItem flask = Me.BagItems.FirstOrDefault(o => o.Entry == AGILITY_1000);
-                                        if (flask == null)
-                                            flask = Me.BagItems.FirstOrDefault(o => o.Entry == AGILITY_300);                                
-                                        if (flask != null)
-                                        {
-                                            flask.Use();
-                                            Logging.Write("Use " + flask.Name);
-                                            return true;
-                                        }
-                                    }
-                                    break;
-                                case ExtraUtilsSettings.FlaskType.Stamina:
-                                    {
-                                        WoWItem flask = Me.BagItems.FirstOrDefault(o => o.Entry == STAMINA_1500);
-                                        if (flask == null)
-                                            flask = Me.BagItems.FirstOrDefault(o => o.Entry == STAMINA_450);                                   
-                                        if (flask != null)
-                                        {
-                                            flask.Use();
-                                            Logging.Write("Use " + flask.Name);
-                                            return true;
-                                        }
-                                    }
-                                    break;
-                            }
-                        }
-                    }
-                    return false;
-                }
+            if (Me.Auras.Any(aura => aura.Key.StartsWith("Enhanced ") || aura.Key.StartsWith("Flask of ")))
+                return false;
+
+            WoWItem flask = null;
+            switch (ExtraUtilsSettings.Instance.FlaskTypeToUse)
+            {
+                case ExtraUtilsSettings.FlaskType.Intellect:
+                    flask = Me.BagItems.FirstOrDefault(o => o.Entry == INTELLECT_1000)
+                         ?? Me.BagItems.FirstOrDefault(o => o.Entry == INTELLECT_300);
+                    break;
+                case ExtraUtilsSettings.FlaskType.Spirit:
+                    flask = Me.BagItems.FirstOrDefault(o => o.Entry == SPIRIT_1000)
+                         ?? Me.BagItems.FirstOrDefault(o => o.Entry == SPIRIT_300);
+                    break;
+                case ExtraUtilsSettings.FlaskType.Strenght:
+                    flask = Me.BagItems.FirstOrDefault(o => o.Entry == STRENGHT_1000)
+                         ?? Me.BagItems.FirstOrDefault(o => o.Entry == STRENGHT_300);
+                    break;
+                case ExtraUtilsSettings.FlaskType.Agility:
+                    flask = Me.BagItems.FirstOrDefault(o => o.Entry == AGILITY_1000)
+                         ?? Me.BagItems.FirstOrDefault(o => o.Entry == AGILITY_300);
+                    break;
+                case ExtraUtilsSettings.FlaskType.Stamina:
+                    flask = Me.BagItems.FirstOrDefault(o => o.Entry == STAMINA_1500)
+                         ?? Me.BagItems.FirstOrDefault(o => o.Entry == STAMINA_450);
+                    break;
             }
-            return false;
+
+            if (flask == null || !flask.IsValid || flask.CooldownTimeLeft.TotalMilliseconds > 0)
+                return false;
+
+            flask.Use();
+            Logging.Write("Use " + flask.Name);
+            return true;
         }
         #endregion
 
@@ -543,7 +485,7 @@ namespace KingWoW
             {
                 foreach (WoWSpell r in CurrentRacials.Where(racial => SpellManager.CanCast(racial.Name) && RacialUsageSatisfied(racial)))
                 {
-                    Logging.Write(DateTime.Now.ToString("ss:fff") + "[Racial Abilitie] " + r.Name);
+                    Logging.Write(DateTime.Now.ToString("ss:fff") + " [Racial Ability] " + r.Name);
                     return SpellManager.Cast(r.Name);
                 }
             }
@@ -553,30 +495,30 @@ namespace KingWoW
 
         public bool LifeSpirit()
         {
-            if (Me.Combat && Me.HealthPercent <= ExtraUtilsSettings.Instance.LifeSpiritHP)
-            {
-                WoWItem lspirit = Me.BagItems.FirstOrDefault(h => h.Entry == 89640);
-                if (lspirit != null && lspirit.CooldownTimeLeft.TotalMilliseconds <= 0)
-                {
-                    lspirit.Use();
-                    Logging.Write("Using Life Spirit");
-                }
-            }
-            return false;
+            if (!Me.Combat || Me.HealthPercent > ExtraUtilsSettings.Instance.LifeSpiritHP)
+                return false;
+
+            WoWItem lspirit = Me.BagItems.FirstOrDefault(h => h.Entry == 89640);
+            if (lspirit == null || !lspirit.IsValid || lspirit.CooldownTimeLeft.TotalMilliseconds > 0)
+                return false;
+
+            lspirit.Use();
+            Logging.Write("Using Life Spirit");
+            return true;
         }
         
         public bool WaterSpirit()
         {
-            if (Me.Combat && Me.ManaPercent <= ExtraUtilsSettings.Instance.WaterSpiritMANA)
-            {
-                WoWItem wspirit = Me.BagItems.FirstOrDefault(h => h.Entry == 89641);
-                if (wspirit != null && wspirit.CooldownTimeLeft.TotalMilliseconds <= 0)
-                {
-                    wspirit.Use();
-                    Logging.Write("Using Water Spirit");
-                }
-            }
-            return false;
+            if (!Me.Combat || Me.ManaPercent > ExtraUtilsSettings.Instance.WaterSpiritMANA)
+                return false;
+
+            WoWItem wspirit = Me.BagItems.FirstOrDefault(h => h.Entry == 89641);
+            if (wspirit == null || !wspirit.IsValid || wspirit.CooldownTimeLeft.TotalMilliseconds > 0)
+                return false;
+
+            wspirit.Use();
+            Logging.Write("Using Water Spirit");
+            return true;
         }
 
         private bool CanUseEquippedItem(WoWItem item)
@@ -592,35 +534,32 @@ namespace KingWoW
 
         public bool UseEngineeringGloves()
         {
-            if (Me.Combat && StyxWoW.Me.Inventory.Equipped.Hands!=null && CanUseEquippedItem(StyxWoW.Me.Inventory.Equipped.Hands) && StyxWoW.Me.Inventory.Equipped.Hands.Usable && StyxWoW.Me.Inventory.Equipped.Hands.CooldownTimeLeft.Milliseconds <= 0)
+            var hands = Me.Inventory.Equipped.Hands;
+            if (!Me.Combat || hands == null || !hands.IsValid || !CanUseEquippedItem(hands) || !hands.Usable || hands.CooldownTimeLeft.TotalMilliseconds > 0)
+                return false;
+
+            if (ExtraUtilsSettings.Instance.UseGloves_OnCondition == ExtraUtilsSettings.GenericUseType.OnBoss && IsTargetBoss())
             {
-                if (ExtraUtilsSettings.Instance.UseGloves_OnCondition == ExtraUtilsSettings.GenericUseType.OnBoss && IsTargetBoss())
-                {
-                    StyxWoW.Me.Inventory.Equipped.Hands.Use();
-                    return true;
-                }
-                else if (ExtraUtilsSettings.Instance.UseGloves_OnCondition == ExtraUtilsSettings.GenericUseType.Always)
-                {
-                    StyxWoW.Me.Inventory.Equipped.Hands.Use();
-                    return true;
-                }
+                hands.Use();
+                return true;
+            }
+            if (ExtraUtilsSettings.Instance.UseGloves_OnCondition == ExtraUtilsSettings.GenericUseType.Always)
+            {
+                hands.Use();
+                return true;
             }
             return false;
         }
 
         public bool UseLifeblood()
         {
-            if (Me.Combat && SpellManager.CanCast("Lifeblood") && SpellManager.Spells["Lifeblood"].CooldownTimeLeft.Milliseconds <= 0)
-            {
-                if (ExtraUtilsSettings.Instance.UseLifeblood_OnCondition == ExtraUtilsSettings.GenericUseType.OnBoss && IsTargetBoss())
-                {
-                    return SpellManager.Cast("Lifeblood");
-                }
-                else if (ExtraUtilsSettings.Instance.UseLifeblood_OnCondition == ExtraUtilsSettings.GenericUseType.Always)
-                {
-                    return SpellManager.Cast("Lifeblood");
-                }
-            }
+            if (!Me.Combat || !SpellManager.HasSpell("Lifeblood") || !SpellManager.CanCast("Lifeblood"))
+                return false;
+
+            if (ExtraUtilsSettings.Instance.UseLifeblood_OnCondition == ExtraUtilsSettings.GenericUseType.OnBoss && IsTargetBoss())
+                return SpellManager.Cast("Lifeblood");
+            if (ExtraUtilsSettings.Instance.UseLifeblood_OnCondition == ExtraUtilsSettings.GenericUseType.Always)
+                return SpellManager.Cast("Lifeblood");
             return false;
         }
 

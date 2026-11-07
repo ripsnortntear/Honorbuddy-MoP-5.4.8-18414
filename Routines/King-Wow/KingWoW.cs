@@ -43,93 +43,82 @@ namespace KingWoW
             }
         }
         private WoWSpec CurrentSpec = WoWSpec.None;
+        private WoWSpec _lastSpec = WoWSpec.None;
 
-        private KingWoWUtility utils = new KingWoWUtility();
+        private readonly KingWoWUtility utils = new KingWoWUtility();
   
-        private static KingWoWAbstractBaseClass KingWoWBaseClass;
+        private KingWoWAbstractBaseClass KingWoWBaseClass;
         public Styx.Helpers.Settings settingsBase;
         public string activePath;
-        private KingWoWUtility u = new KingWoWUtility();
         private KingHealSettingsGUIFORM Settings_Form = null;
+
+        private void EnsureCurrentSpec()
+        {
+            if (Me == null || !Me.IsValid)
+                return;
+
+            var spec = Me.Specialization;
+            if (spec == _lastSpec && KingWoWBaseClass != null)
+            {
+                CurrentSpec = spec;
+                return;
+            }
+
+            // Spec changed or class not initialized: reset cached spec-specific state.
+            CurrentSpec = spec;
+            _lastSpec = spec;
+            KingWoWBaseClass = null;
+            settingsBase = null;
+            activePath = null;
+        }
 
         public KingWoWAbstractBaseClass ActiveKingWoWClass
         {
             get
             {
-                // SPEC
-                CurrentSpec = StyxWoW.Me.Specialization;
-                
+                EnsureCurrentSpec();
+                if (KingWoWBaseClass != null)
+                    return KingWoWBaseClass;
+
                 switch (CurrentSpec)
                 {
                     case WoWSpec.ShamanRestoration:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new RestorationShamanCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new RestorationShamanCombatClass();
+                        break;
                     case WoWSpec.ShamanEnhancement:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new EnhancementShamanCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new EnhancementShamanCombatClass();
+                        break;
                     case WoWSpec.MageFrost:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new FrostMageCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new FrostMageCombatClass();
+                        break;
                     case WoWSpec.MageArcane:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new ArcaneMageCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new ArcaneMageCombatClass();
+                        break;
                     case WoWSpec.MageFire:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new FireMageCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new FireMageCombatClass();
+                        break;
                     case WoWSpec.PriestDiscipline:
-                        {
-                            if(KingWoWBaseClass==null)
-                                KingWoWBaseClass = new DiscPriestCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new DiscPriestCombatClass();
+                        break;
                     case WoWSpec.PriestHoly:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new HolyPriestCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new HolyPriestCombatClass();
+                        break;
                     case WoWSpec.PriestShadow:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new ShadowPriestCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new ShadowPriestCombatClass();
+                        break;
                     case WoWSpec.PaladinProtection:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new ProtPaladinCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new ProtPaladinCombatClass();
+                        break;
                     case WoWSpec.PaladinRetribution:
-                        {
-                            if (KingWoWBaseClass == null)
-                                KingWoWBaseClass = new RetriPaladinCombatClass();
-                            break;
-                        }
+                        KingWoWBaseClass = new RetriPaladinCombatClass();
+                        break;
                     default:
-                        {
-                            KingWoWBaseClass = null;
-                            break;
-                        }
+                        KingWoWBaseClass = null;
+                        break;
                 }
                 if (KingWoWBaseClass == null)
                 {
-                    utils.LogActivity("Current spec: "+CurrentSpec.ToString()+" not Supported Spec atm stay tuned for update");
+                    utils.LogActivity("Current spec: " + CurrentSpec.ToString() + " is not supported (MoP 5.4.8).");
                 }
                 
                 return KingWoWBaseClass;
@@ -140,78 +129,49 @@ namespace KingWoW
         {
             get
             {
+                EnsureCurrentSpec();
+                if (settingsBase != null)
+                    return settingsBase;
+
                 switch (CurrentSpec)
                 {
                     case WoWSpec.ShamanRestoration:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = RestorationShamanSettings.Instance;
-                            break;
-                        }    
+                        settingsBase = RestorationShamanSettings.Instance;
+                        break;
                     case WoWSpec.ShamanEnhancement:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = EnhancementShamanSettings.Instance;
-                            break;
-                        }    
+                        settingsBase = EnhancementShamanSettings.Instance;
+                        break;
                     case WoWSpec.MageFrost:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = FrostMageSettings.Instance;
-                            break;
-                        }
+                        settingsBase = FrostMageSettings.Instance;
+                        break;
                     case WoWSpec.MageArcane:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = ArcaneMageSettings.Instance;
-                            break;
-                        }
+                        settingsBase = ArcaneMageSettings.Instance;
+                        break;
                     case WoWSpec.MageFire:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = FireMageSettings.Instance;
-                            break;
-                        }
+                        settingsBase = FireMageSettings.Instance;
+                        break;
                     case WoWSpec.PriestDiscipline:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = DiscPriestSettings.Instance;
-                            break;
-                        }
+                        settingsBase = DiscPriestSettings.Instance;
+                        break;
                     case WoWSpec.PriestHoly:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = HolyPriestSettings.Instance;
-                            break;
-                        }
+                        settingsBase = HolyPriestSettings.Instance;
+                        break;
                     case WoWSpec.PriestShadow:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = ShadowPriestSettings.Instance;
-                            break;
-                        }
+                        settingsBase = ShadowPriestSettings.Instance;
+                        break;
                     case WoWSpec.PaladinProtection:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = ProtPaladinSettings.Instance;
-                            break;
-                        }
+                        settingsBase = ProtPaladinSettings.Instance;
+                        break;
                     case WoWSpec.PaladinRetribution:
-                        {
-                            if (settingsBase == null)
-                                settingsBase = RetriPaladinSettings.Instance;
-                            break;
-                        }
+                        settingsBase = RetriPaladinSettings.Instance;
+                        break;
                     default:
-                        {
-                            settingsBase = null;
-                            break;
-                        }
+                        settingsBase = null;
+                        break;
                 }
                 if (settingsBase == null)
                 {
-                    utils.LogActivity("No Setting for this spec please stay tuned for updates");
-                    TreeRoot.Stop();
+                    utils.LogActivity("No settings available for spec: " + CurrentSpec.ToString());
                 }
 
                 return settingsBase;   
@@ -222,78 +182,49 @@ namespace KingWoW
         {
             get
             {
+                EnsureCurrentSpec();
+                if (activePath != null)
+                    return activePath;
+
                 switch (CurrentSpec)
                 {
                     case WoWSpec.ShamanRestoration:
-                        {
-                            if (activePath == null)
-                                activePath = RestorationShamanSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = RestorationShamanSettings.Instance.path_name;
+                        break;
                     case WoWSpec.ShamanEnhancement:
-                        {
-                            if (activePath == null)
-                                activePath = EnhancementShamanSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = EnhancementShamanSettings.Instance.path_name;
+                        break;
                     case WoWSpec.MageFrost:
-                        {
-                            if (activePath == null)
-                                activePath = FrostMageSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = FrostMageSettings.Instance.path_name;
+                        break;
                     case WoWSpec.MageArcane:
-                        {
-                            if (activePath == null)
-                                activePath = ArcaneMageSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = ArcaneMageSettings.Instance.path_name;
+                        break;
                     case WoWSpec.MageFire:
-                        {
-                            if (activePath == null)
-                                activePath = FireMageSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = FireMageSettings.Instance.path_name;
+                        break;
                     case WoWSpec.PriestDiscipline:
-                        {
-                            if (activePath == null)
-                                activePath = DiscPriestSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = DiscPriestSettings.Instance.path_name;
+                        break;
                     case WoWSpec.PriestHoly:
-                        {
-                            if (activePath == null)
-                                activePath = HolyPriestSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = HolyPriestSettings.Instance.path_name;
+                        break;
                     case WoWSpec.PriestShadow:
-                        {
-                            if (activePath == null)
-                                activePath = ShadowPriestSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = ShadowPriestSettings.Instance.path_name;
+                        break;
                     case WoWSpec.PaladinProtection:
-                        {
-                            if (activePath == null)
-                                activePath = ProtPaladinSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = ProtPaladinSettings.Instance.path_name;
+                        break;
                     case WoWSpec.PaladinRetribution:
-                        {
-                            if (activePath == null)
-                                activePath = RetriPaladinSettings.Instance.path_name;
-                            break;
-                        }
+                        activePath = RetriPaladinSettings.Instance.path_name;
+                        break;
                     default:
-                        {
-                            activePath = null;
-                            break;
-                        }
+                        activePath = null;
+                        break;
                 }
                 if (activePath == null)
                 {
-                    utils.LogActivity("No Setting path for this spec please stay tuned for updates");
-                    TreeRoot.Stop();
+                    utils.LogActivity("No settings path available for spec: " + CurrentSpec.ToString());
                 }
 
                 return activePath;
@@ -302,51 +233,58 @@ namespace KingWoW
 
         public override void Combat()
         {
-            if (ActiveKingWoWClass.Combat) return;
+            var cc = ActiveKingWoWClass;
+            if (cc != null && cc.Combat) return;
         }
 
         public override bool WantButton
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
 
         public override void OnButtonPress()
         {
-            if (Settings_Form == null || Settings_Form.IsDisposed || Settings_Form.Disposing)
+            try
             {
-                Settings_Form = new KingHealSettingsGUIFORM(ActiveSettings, ActivePath, ExtraUtilsSettings.Instance.path_name);
+                var settings = ActiveSettings;
+                var path = ActivePath;
+                if (settings == null || string.IsNullOrEmpty(path))
+                {
+                    utils.LogActivity("KingWoW: no settings available for current spec.");
+                    return;
+                }
+
+                if (Settings_Form == null || Settings_Form.IsDisposed || Settings_Form.Disposing)
+                {
+                    Settings_Form = new KingHealSettingsGUIFORM(settings, path, ExtraUtilsSettings.Instance.path_name);
+                }
+                Settings_Form.ShowDialog();
             }
-            if (Settings_Form != null)
+            catch (Exception ex)
             {
-                try
-                {
-                    Settings_Form.ShowDialog();
-                }
-                catch (Exception )
-                {
-                    Logging.Write("Exception Thrown (Calling Settings_Form): ");
-                }
+                Logging.Write("KingWoW: exception opening settings form: " + ex.Message);
+                Logging.WriteDiagnostic(ex.ToString());
             }
         }
 
         public override void Pulse()
         {
-            if (ActiveKingWoWClass.Pulse) return;
+            var cc = ActiveKingWoWClass;
+            if (cc != null && cc.Pulse) return;
         }
 
         public override void Initialize()
         {
-            if (ActiveKingWoWClass.Initialize) return;
+            var cc = ActiveKingWoWClass;
+            if (cc != null && cc.Initialize) return;
         }
 
         public override bool NeedRest
         {
             get
             {
-                return ActiveKingWoWClass.NeedRest;
+                var cc = ActiveKingWoWClass;
+                return cc != null && cc.NeedRest;
             }
         }
 
@@ -354,7 +292,8 @@ namespace KingWoW
         {
             get
             {
-                return ActiveKingWoWClass.NeedCombatBuffs;
+                var cc = ActiveKingWoWClass;
+                return cc != null && cc.NeedCombatBuffs;
             }
         }
 
@@ -362,7 +301,8 @@ namespace KingWoW
         {
             get
             {
-                return ActiveKingWoWClass.NeedPreCombatBuffs;
+                var cc = ActiveKingWoWClass;
+                return cc != null && cc.NeedPreCombatBuffs;
             }
         }
 
@@ -370,13 +310,15 @@ namespace KingWoW
         {
             get
             {
-                return ActiveKingWoWClass.NeedPullBuffs;
+                var cc = ActiveKingWoWClass;
+                return cc != null && cc.NeedPullBuffs;
             }
         }
 
         public override void Pull()
         {
-            if(ActiveKingWoWClass.Pull) return;
+            var cc = ActiveKingWoWClass;
+            if (cc != null && cc.Pull) return;
         }
 
     }
