@@ -24,6 +24,25 @@ namespace Loader
 
         private readonly String[] Keep = new[] { "PortalLoader.cs", "Portal.dll", "Settings", "Changelog.txt" };
 
+        private static void DisableDefunctStatCounter()
+        {
+            try
+            {
+                // Portal.Portal.StatCounter() skips network calls when a daily marker file exists.
+                // This also avoids the legacy vk.com credential check that follows in that method.
+                string statDir = Path.Combine(Utilities.AssemblyDirectory, "Settings", "Portal", "StatCounter");
+                if (!Directory.Exists(statDir))
+                    Directory.CreateDirectory(statDir);
+                string marker = Path.Combine(statDir, DateTime.Now.DayOfYear.ToString(CultureInfo.InvariantCulture));
+                if (!File.Exists(marker))
+                    File.Create(marker).Dispose();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteDiagnostic("PortalLoader: unable to pre-create StatCounter marker: " + ex.Message);
+            }
+        }
+
         public PortalLoader()
         {
             string settingsDirectory = Path.Combine(Utilities.AssemblyDirectory, "Routines\\Portal");
@@ -60,16 +79,17 @@ namespace Loader
             {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-                // Ensure modern TLS protocols are enabled before any network calls in Demonic.dll
+                // Enable modern TLS for any legacy network calls inside the compiled routine.
 				try
 				{
 					ServicePointManager.Expect100Continue = true;
-					// Added TLS 1.2, 1.1, and 1.0 support even on older .NET versions where enums may be missing
 					ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072; // Tls12
 					ServicePointManager.SecurityProtocol |= (SecurityProtocolType)768;  // Tls11
 					ServicePointManager.SecurityProtocol |= (SecurityProtocolType)192;  // Tls
 				}
 				catch { }
+
+				DisableDefunctStatCounter();
 
 				AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs e)
                 {
@@ -144,38 +164,39 @@ namespace Loader
         {
             get
             {
-                return CC.Name;
+                return CC != null ? CC.Name : "Portal (not loaded)";
             }
         }
 
         public override void Initialize()
         {
-            CC.Initialize();
+            if (CC != null)
+                CC.Initialize();
         }
 
         public override Composite CombatBehavior
         {
-            get { return CC.CombatBehavior; }
+            get { return CC != null ? CC.CombatBehavior : null; }
         }
 
         public override Composite PreCombatBuffBehavior
         {
-            get { return CC.PreCombatBuffBehavior; }
+            get { return CC != null ? CC.PreCombatBuffBehavior : null; }
         }
 
         public override Composite PullBehavior
         {
-            get { return CC.PullBehavior; }
+            get { return CC != null ? CC.PullBehavior : null; }
         }
 
         public override Composite RestBehavior
         {
-            get { return CC.RestBehavior; }
+            get { return CC != null ? CC.RestBehavior : null; }
         }
 		
 		public override Composite DeathBehavior
         {
-            get { return CC.DeathBehavior; }
+            get { return CC != null ? CC.DeathBehavior : null; }
         }
 
         public override WoWClass Class
@@ -188,24 +209,26 @@ namespace Loader
 
         public override void OnButtonPress()
         {
-            CC.OnButtonPress();
+            if (CC != null)
+                CC.OnButtonPress();
         }
 
         public override void Pulse()
         {
-            CC.Pulse();
+            if (CC != null)
+                CC.Pulse();
         }
 
         public override bool WantButton
         {
-            get { return true; }
+            get { return CC != null && CC.WantButton; }
         }
 		
 		public override bool NeedPreCombatBuffs
         {
             get
             {
-                return CC.NeedPreCombatBuffs;
+                return CC != null && CC.NeedPreCombatBuffs;
             }
         }
         #endregion
