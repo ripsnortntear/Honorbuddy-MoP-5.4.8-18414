@@ -21,7 +21,7 @@ namespace DWCC
         [DllImport("user32.dll")]
         static extern short GetAsyncKeyState(Keys vKey);
 
-        private static WoWPlayer Me = StyxWoW.Me;
+        private static LocalPlayer Me { get { return StyxWoW.Me; } }
         private static WoWUnit Target; 
         private static int Cone = 40;  
 

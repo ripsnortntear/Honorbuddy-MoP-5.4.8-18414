@@ -74,14 +74,13 @@ namespace DWCC
 
         public Composite CreateSpellCheckAndCast(string name, CanRunDecoratorDelegate extra, bool RunStatusSuccess)
         {
-            return new Decorator(ret => extra(ret) && SpellManager.HasSpell(name) && SpellManager.CanCast(name) && Me.IsFacing(Me.CurrentTarget) && Me.CurrentTarget.IsWithinMeleeRange,
+            return new Decorator(ret => extra(ret) && SpellManager.HasSpell(name) && SpellManager.CanCast(name) && Me.CurrentTarget != null && Me.CurrentTarget.IsValid && Me.IsFacing(Me.CurrentTarget) && Me.CurrentTarget.IsWithinMeleeRange,
                                  new Action(delegate
                                  {
+                                     if (Me.CurrentTarget == null || !Me.CurrentTarget.IsValid)
+                                         return RunStatus.Failure;
                                      SpellManager.Cast(name);
                                      Logging.Write("[DWCC]: " + name);
-                                     Logging.WriteDiagnostic("[DWCC]: Attempting to cast " + name + " on " + Me.CurrentTarget.Class.ToString() + " @ " + Me.CurrentTarget.CurrentHealth + "/" + Me.CurrentTarget.MaxHealth + " (" + Math.Round(Me.CurrentTarget.HealthPercent, 2) + "%)");
-                                     Logging.WriteDiagnostic("[DWCC]: Target: IsCasting: " + Me.CurrentTarget.IsCasting + " | IsPlayer: " + Me.CurrentTarget.IsPlayer + " | Distance: " + Math.Round(Me.CurrentTarget.Distance, 2) + " | Level: " + Me.CurrentTarget.Level + " | IsElite: " + Me.CurrentTarget.Elite + " | Adds: " + detectAdds().Count);
-                                     Logging.WriteDiagnostic("[DWCC]: We are in: " + Me.ZoneText + " | Instance: " + Me.IsInInstance + " | Outdoors: " + Me.IsOutdoors + " | Battleground: " + Styx.WoWInternals.Battlegrounds.IsInsideBattleground + " | Indoors: " + Me.IsIndoors + " | Party: " + Me.GroupInfo.IsInParty + " | Raid: " + Me.GroupInfo.IsInRaid + " | Members: " + Me.PartyMembers.Count + "/" + Me.RaidMembers.Count + " | Health: " + Me.CurrentHealth + "/" + Me.MaxHealth + " (" + Math.Round(Me.HealthPercent, 2) + "%) | BattleStance: " + BattleStance + " | DefStance: " + DefStance + " | BerserkerStance: " + BersiStance);
                                      return RunStatus.Failure;
                                  }
                                      ));
@@ -92,9 +91,8 @@ namespace DWCC
         #region New Helpers
         public uint Stacks(string aura)
         {
-            if (Me.HasAura(aura))
-                return Me.GetAuraByName(aura).StackCount;
-            return 0;
+            var a = Me.GetAuraByName(aura);
+            return a != null ? a.StackCount : 0u;
         }
 
         public bool UnitHasMyAura(WoWUnit unit, string aura)
@@ -150,9 +148,8 @@ namespace DWCC
         {
             get
             {
-                if (Me.HasAura("Taste for Blood"))
-                    return Me.GetAuraByName("Taste for Blood").StackCount;
-                return 0;
+                var aura = Me.GetAuraByName("Taste for Blood");
+                return aura != null ? aura.StackCount : 0u;
             }
         }
         //---------------------------------------------------------------------------------------------------------
@@ -160,12 +157,18 @@ namespace DWCC
         {
             get
             {
-                if (Me.HasAura("Raging Blow"))
-                    return Me.GetAuraByName("Raging Blow!").StackCount;
-                return 0;
+                var aura = Me.GetAuraByName("Raging Blow!") ?? Me.GetAuraByName("Raging Blow");
+                return aura != null ? aura.StackCount : 0u;
             }
         }
-        public double RagingBlowTimeLeft { get { return Me.GetAuraByName("Raging Blow!").TimeLeft.TotalMilliseconds; } }
+        public double RagingBlowTimeLeft
+        {
+            get
+            {
+                var aura = Me.GetAuraByName("Raging Blow!") ?? Me.GetAuraByName("Raging Blow");
+                return aura != null ? aura.TimeLeft.TotalMilliseconds : 0;
+            }
+        }
 
         public bool BloodsurgeAura { get { return Me.HasAura("Bloodsurge"); } }
 
@@ -174,9 +177,8 @@ namespace DWCC
 
         public double AuraTimeLeft(string aura)
         {
-            if (Me.HasAura(aura))
-                return Me.GetAuraByName(aura).TimeLeft.TotalMilliseconds;
-            return 0;
+            var a = Me.GetAuraByName(aura);
+            return a != null ? a.TimeLeft.TotalMilliseconds : 0;
         }
         #endregion
         #endregion
@@ -909,24 +911,33 @@ namespace DWCC
         {
             get
             {
-                if (!StyxWoW.Me.GroupInfo.IsInParty)
-                    return new List<WoWPlayer>(); ;
+                if (StyxWoW.Me == null || (!StyxWoW.Me.GroupInfo.IsInParty && !StyxWoW.Me.GroupInfo.IsInRaid))
+                    return new List<WoWPlayer>();
 
-                return StyxWoW.Me.GroupInfo.RaidMembers.Where(p => p.HasRole(WoWPartyMember.GroupRole.Healer))
+                return StyxWoW.Me.GroupInfo.RaidMembers.Union(StyxWoW.Me.GroupInfo.PartyMembers)
+                    .Where(p => p != null && p.HasRole(WoWPartyMember.GroupRole.Healer))
                     .Select(p => p.ToPlayer())
-                    .Where(p => p != null && p.IsAlive && p.IsFriendly && (!p.HasAura(130774) || !p.HasAura(116040) || !p.HasAura(116583) || !p.HasAura(116586) || !p.HasAura(116924) || !p.HasAura(119610) || !p.HasAura(13810) || !p.HasAura(43265)) && Navigator.CanNavigateFully(Me.Location, p.Location)).ToList();
+                    .Where(p => p != null && p.IsValid && p.IsAlive && p.IsFriendly
+                        && !p.HasAura(130774) && !p.HasAura(116040) && !p.HasAura(116583) && !p.HasAura(116586)
+                        && !p.HasAura(116924) && !p.HasAura(119610) && !p.HasAura(13810) && !p.HasAura(43265)
+                        && Navigator.CanNavigateFully(Me.Location, p.Location))
+                    .Distinct()
+                    .ToList();
             }
         }
         #endregion
         #region MoveOut
         public Composite MoveOutOfAoE()
         {
-            return new Decorator(ret => AreaSpells() && !DunatanksSettings.Instance.DisableMovement && !(Me.Specialization == WoWSpec.WarriorProtection) && DunatanksSettings.Instance.MoveOutOfAoE,
+            return new Decorator(ret => AreaSpells() && !DunatanksSettings.Instance.DisableMovement && !(Me.Specialization == WoWSpec.WarriorProtection) && DunatanksSettings.Instance.MoveOutOfAoE && Healers.FirstOrDefault() != null,
                                  new Action(delegate
                                  {
+                                     var healer = Healers.FirstOrDefault();
+                                     if (healer == null || !healer.IsValid)
+                                         return RunStatus.Failure;
                                      Logging.Write("[DWCC]: Moving out of AoE.");
-                                     //Logging.Write("[DWCC]: Healer: " + Healers.FirstOrDefault().ToString() + " | CanNav: " + Navigator.CanNavigateFully(Me.Location, Healers.FirstOrDefault().Location));
-                                     Navigator.PlayerMover.MoveTowards(Healers.FirstOrDefault().Location);
+                                     Navigator.PlayerMover.MoveTowards(healer.Location);
+                                     return RunStatus.Failure;
                                  }
                                 ));
         }
@@ -1127,23 +1138,23 @@ namespace DWCC
 
         public Composite EquipOneHanderAndShield(CanRunDecoratorDelegate extra)
         {
-            return new Decorator(ret => extra(ret) && HaveShield() && HaveOneHander() && StoreTwoHander() && Me.Inventory.Equipped.MainHand != OneHander,
+            return new Decorator(ret => extra(ret) && HaveShield() && HaveOneHander() && StoreTwoHander() && Shield != null && OneHander != null && Me.Inventory.Equipped.MainHand != OneHander,
                                 new Action(delegate
                                 {
-                                    new Action(ret => EquipItem(OneHander, 16));
-                                    new Action(ret => EquipItem(Shield, 17));
-                                    new Action(ret => Logging.Write("[DWCC]: Equipping 1H + Shield"));
+                                    EquipItem(OneHander, 16);
+                                    EquipItem(Shield, 17);
+                                    Logging.Write("[DWCC]: Equipping 1H + Shield");
                                     return RunStatus.Success;
                                 }
                                     ));
         }
         public Composite EquipTwoHander(CanRunDecoratorDelegate extra)
         {
-            return new Decorator(ret => extra(ret) && StoreTwoHander() && Me.Inventory.Equipped.MainHand != TwoHander,
+            return new Decorator(ret => extra(ret) && StoreTwoHander() && TwoHander != null && Me.Inventory.Equipped.MainHand != TwoHander,
                                 new Action(delegate
                                 {
-                                    new Action(ret => EquipItem(TwoHander, 16));
-                                    new Action(ret => Logging.Write("[DWCC]: Equipping 2H"));
+                                    EquipItem(TwoHander, 16);
+                                    Logging.Write("[DWCC]: Equipping 2H");
                                     return RunStatus.Success;
                                 }
                                     ));
@@ -1153,7 +1164,9 @@ namespace DWCC
         #region Equip Item
         private static void EquipItem(WoWItem item, int targetSlot)
         {
-            Lua.DoString("RunMacroText(\"/equipslot " + targetSlot + " " + item.Name);
+            if (item == null || !item.IsValid)
+                return;
+            Lua.DoString("RunMacroText(\"/equipslot " + targetSlot + " " + item.Name.Replace("\"", "\\\"") + "\")");
         }
         #endregion
         #endregion
