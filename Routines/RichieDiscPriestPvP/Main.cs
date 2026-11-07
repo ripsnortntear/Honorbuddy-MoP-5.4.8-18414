@@ -57,6 +57,9 @@ namespace RichieDiscPriestPvP {
 
         public override void Initialize() {
 
+            // Prevent duplicate subscriptions on re-init.
+            BotEvents.OnBotStarted -= BotEvents_OnBotStarted;
+
             Lua.Events.AttachEvent("PLAYER_TALENT_UPDATE", UpdateMyTalentOrGlyphEvent);
             Lua.Events.AttachEvent("GLYPH_ADDED", UpdateMyTalentOrGlyphEvent);
             
@@ -81,6 +84,16 @@ namespace RichieDiscPriestPvP {
             } else {
                 SmiteRange = 30;
             }
+        }
+
+        public override void ShutDown() {
+            try
+            {
+                BotEvents.OnBotStarted -= BotEvents_OnBotStarted;
+                Lua.Events.DetachEvent("PLAYER_TALENT_UPDATE", UpdateMyTalentOrGlyphEvent);
+                Lua.Events.DetachEvent("GLYPH_ADDED", UpdateMyTalentOrGlyphEvent);
+            }
+            catch { }
         }
 
         public override void OnButtonPress() {

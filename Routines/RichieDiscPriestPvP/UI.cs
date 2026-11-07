@@ -171,11 +171,11 @@ namespace RichieDiscPriestPvP {
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) {
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E6RB38DW4EVGA");
+            System.Windows.Forms.MessageBox.Show("External donation links have been removed in this maintained fork.", "Richie CR", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("http://richiecr.blogspot.hu/");
+            System.Windows.Forms.MessageBox.Show("External legacy links have been removed in this maintained fork.", "Richie CR", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
         }
     }
 }

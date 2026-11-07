@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -23,228 +23,228 @@ namespace RichieShadowPriestPvP
 
         public static bool IsDebugMode { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool Cascade { get; set; }
 
-        [Setting, DefaultValue(60)]
+        [Setting, Styx.Helpers.DefaultValue(60)]
         public int DesperatePrayer { get; set; }
 
-        [Setting, DefaultValue(45)]
+        [Setting, Styx.Helpers.DefaultValue(45)]
         public int UseFadeAsDefensiveCDBelow { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool AutoBurst { get; set; }
 
-        [Setting, DefaultValue(15)]
+        [Setting, Styx.Helpers.DefaultValue(15)]
         public int DispersionMana { get; set; }
 
-        [Setting, DefaultValue(30)]
+        [Setting, Styx.Helpers.DefaultValue(30)]
         public int DispersionHP { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool AutoFace { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool FadeAuto { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool Lvl90SafeCheck { get; set; }
 
-        [Setting, DefaultValue(2)]
+        [Setting, Styx.Helpers.DefaultValue(2)]
         public int Lvl90MinUnits { get; set; }
 
-        [Setting, DefaultValue(35)]
+        [Setting, Styx.Helpers.DefaultValue(35)]
         public int HealthstonePercent { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool PowerWordFortitude { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UseShadowFiend { get; set; }
 
-        [Setting, DefaultValue(20)]
+        [Setting, Styx.Helpers.DefaultValue(20)]
         public int AoEMana { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool CastLevitate { get; set; }
 
-        [Setting, DefaultValue(3000)]
+        [Setting, Styx.Helpers.DefaultValue(3000)]
         public int SWPRefresh { get; set; }
 
-        [Setting, DefaultValue(70)]
+        [Setting, Styx.Helpers.DefaultValue(70)]
         public int VampiricEmbracePercent { get; set; }
 
-        [Setting, DefaultValue(3000)]
+        [Setting, Styx.Helpers.DefaultValue(3000)]
         public int VampiricTouchRefresh { get; set; }
 
-        [Setting, DefaultValue(400)]
+        [Setting, Styx.Helpers.DefaultValue(400)]
         public int SearchInterval { get; set; }
 
-        [Setting, DefaultValue(80)]
+        [Setting, Styx.Helpers.DefaultValue(80)]
         public int InstantHealBelowHp { get; set; }
 
-        [Setting, DefaultValue(35)]
+        [Setting, Styx.Helpers.DefaultValue(35)]
         public int CastedHealsBelowHp { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool GriefPpl { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool Multidot { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool HealOthers { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool FearWardSelf { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool AutoMassDispel { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UsePowerInfusion { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool LeapOfFaithOnScatteredTeammate { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UseRacial { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool RightClickMovementOff { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UseTrinketWithDP { get; set; }
 
-        [Setting, DefaultValue(13)]
+        [Setting, Styx.Helpers.DefaultValue(13)]
         public int TrinketSlotNumber { get; set; }
 
-        [Setting, DefaultValue(false)]
+        [Setting, Styx.Helpers.DefaultValue(false)]
         public bool OnlyHealVIP { get; set; }
 
-        [Setting, DefaultValue(50)]
+        [Setting, Styx.Helpers.DefaultValue(50)]
         public int VTHighPrioBelowManaPercent { get; set; }
 
-        [Setting, DefaultValue(10)]
+        [Setting, Styx.Helpers.DefaultValue(10)]
         public int AngelicFeatherDelay { get; set; }
 
-        [Setting, DefaultValue(4)]
+        [Setting, Styx.Helpers.DefaultValue(4)]
         public int DispelDelay { get; set; }
 
-        [Setting, DefaultValue(5)]
+        [Setting, Styx.Helpers.DefaultValue(5)]
         public int DefensiveCDDelay { get; set; }
 
-        [Setting, DefaultValue(40)]
+        [Setting, Styx.Helpers.DefaultValue(40)]
         public int DispelAboveHp { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool HealPets { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool StopCastOnInterrupt { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool CounteractPoly { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool CastFailedUserInitiatedSpell { get; set; }    
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool CollectStatistics { get; set; }
         /*
         Never = 0
         Only hotkeys = 1
         Automatic(Every 6 sec) + Hotkeys = 2
         Automatic(Every 10 sec) + Hotkeys = 3*/
-        [Setting, DefaultValue(1)]
+        [Setting, Styx.Helpers.DefaultValue(1)]
         public int AngelicFeatherUsage { get; set; }
         /*
         High = 0
         Low = 1*/
-        [Setting, DefaultValue(0)]
+        [Setting, Styx.Helpers.DefaultValue(0)]
         public int AngelicFeatherPriority { get; set; }
 
 
-        [Setting, DefaultValue(50)]
+        [Setting, Styx.Helpers.DefaultValue(50)]
         public int PeelBelow { get; set; }
 
-        [Setting, DefaultValue(false)]
+        [Setting, Styx.Helpers.DefaultValue(false)]
         public bool DisablePeeling { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UseVoidTendrils { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UsePsychicScream { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UsePsyfiend { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UseSpectralGuise { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UsePsychicHorrorPeel { get; set; }
 
-        [Setting, DefaultValue(100)]
+        [Setting, Styx.Helpers.DefaultValue(100)]
         public int DefCDsBelow { get; set; }
 
         
 
-        [Setting, DefaultValue(false)]
+        [Setting, Styx.Helpers.DefaultValue(false)]
         public bool DisableCC { get; set; }
 
-        [Setting, DefaultValue(35)]
+        [Setting, Styx.Helpers.DefaultValue(35)]
         public int CCFocusOrHealerBelow { get; set; }
 
-        [Setting, DefaultValue(4)]
+        [Setting, Styx.Helpers.DefaultValue(4)]
         public int CCDelay { get; set; }
 
-        [Setting, DefaultValue(false)]
+        [Setting, Styx.Helpers.DefaultValue(false)]
         public bool CCWhenBursting { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UsePsychicScreamCC { get; set; }
         
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UseSilenceCC { get; set; }
 
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UsePsyfiendCC { get; set; }
        
-        [Setting, DefaultValue(true)]
+        [Setting, Styx.Helpers.DefaultValue(true)]
         public bool UsePsychicHorrorCC { get; set; }
 
 
 /*Hotkeys*/
-        [Setting, DefaultValue(ModifierKeys.NoRepeat)]
+        [Setting, Styx.Helpers.DefaultValue(ModifierKeys.NoRepeat)]
         public ModifierKeys ModBurst { get; set; }
 
-        [Setting, DefaultValue(Keys.None)]
+        [Setting, Styx.Helpers.DefaultValue(Keys.None)]
         public Keys KeyBurst { get; set; }
 
-        [Setting, DefaultValue(ModifierKeys.NoRepeat)]
+        [Setting, Styx.Helpers.DefaultValue(ModifierKeys.NoRepeat)]
         public ModifierKeys ModPsyfiendTarget { get; set; }
         
-        [Setting, DefaultValue(Keys.None)]
+        [Setting, Styx.Helpers.DefaultValue(Keys.None)]
         public Keys KeyPsyfiendTarget { get; set; }
 
-        [Setting, DefaultValue(ModifierKeys.NoRepeat)]
+        [Setting, Styx.Helpers.DefaultValue(ModifierKeys.NoRepeat)]
         public ModifierKeys ModPsyfiendFocus { get; set; }
 
-        [Setting, DefaultValue(Keys.None)]
+        [Setting, Styx.Helpers.DefaultValue(Keys.None)]
         public Keys KeyPsyfiendFocus { get; set; }
 
-        [Setting, DefaultValue(ModifierKeys.NoRepeat)]
+        [Setting, Styx.Helpers.DefaultValue(ModifierKeys.NoRepeat)]
         public ModifierKeys ModAngelicFeather { get; set; }
 
-        [Setting, DefaultValue(Keys.None)]
+        [Setting, Styx.Helpers.DefaultValue(Keys.None)]
         public Keys KeyAngelicFeather { get; set; }
 
-        [Setting, DefaultValue(ModifierKeys.NoRepeat)]
+        [Setting, Styx.Helpers.DefaultValue(ModifierKeys.NoRepeat)]
         public ModifierKeys ModAngelicFeatherVIP { get; set; }
 
-        [Setting, DefaultValue(Keys.None)]
+        [Setting, Styx.Helpers.DefaultValue(Keys.None)]
         public Keys KeyAngelicFeatherVIP { get; set; }
 
 

@@ -56,6 +56,10 @@ namespace RichieAfflictionWarlock {
 
         public override void Initialize() {
 
+            // Prevent duplicate subscriptions on re-init.
+            BotEvents.OnBotStarted -= BotEvents_OnBotStarted;
+            BotEvents.OnBotStopped -= BotEvents_OnBotStopped;
+
             Lua.Events.AttachEvent("PLAYER_TALENT_UPDATE", UpdateMyTalentOrGlyphEvent);
             Lua.Events.AttachEvent("GLYPH_ADDED", UpdateMyTalentOrGlyphEvent);
             
@@ -87,12 +91,29 @@ namespace RichieAfflictionWarlock {
 
         void BotEvents_OnBotStopped(EventArgs args) {
 
-            Lua.Events.DetachEvent("PLAYER_TALENT_UPDATE", UpdateMyTalentOrGlyphEvent);
-            Logging.WriteDiagnostic("Detached talent change tracker");
-            Lua.Events.DetachEvent("GLYPH_ADDED", UpdateMyTalentOrGlyphEvent);
-            Logging.WriteDiagnostic("Detached glyph change tracker");
+            try
+            {
+                Lua.Events.DetachEvent("PLAYER_TALENT_UPDATE", UpdateMyTalentOrGlyphEvent);
+                Logging.WriteDiagnostic("Detached talent change tracker");
+                Lua.Events.DetachEvent("GLYPH_ADDED", UpdateMyTalentOrGlyphEvent);
+                Logging.WriteDiagnostic("Detached glyph change tracker");
+            }
+            catch { }
 
-            DetachCombatLogEvent();
+            try { DetachCombatLogEvent(); } catch { }
+        }
+
+        public override void ShutDown() {
+            try
+            {
+                BotEvents.OnBotStarted -= BotEvents_OnBotStarted;
+                BotEvents.OnBotStopped -= BotEvents_OnBotStopped;
+
+                Lua.Events.DetachEvent("PLAYER_TALENT_UPDATE", UpdateMyTalentOrGlyphEvent);
+                Lua.Events.DetachEvent("GLYPH_ADDED", UpdateMyTalentOrGlyphEvent);
+                DetachCombatLogEvent();
+            }
+            catch { }
         }
 
         public override void OnButtonPress() {

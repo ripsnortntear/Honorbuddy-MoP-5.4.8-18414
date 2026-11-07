@@ -62,6 +62,9 @@ namespace RichieHolyPriestPvP {
 
         public override void Initialize()
         {
+            // Prevent duplicate subscriptions on re-init.
+            BotEvents.OnBotStarted -= BotEvents_OnBotStarted;
+            BotEvents.OnBotStopped -= BotEvents_OnBotStopped;
 
             Lua.Events.AttachEvent("PLAYER_TALENT_UPDATE", onTalentAndGlyphUpdate);
             Lua.Events.AttachEvent("GLYPH_ADDED", onTalentAndGlyphUpdate);
@@ -73,6 +76,20 @@ namespace RichieHolyPriestPvP {
             Logging.Write("-----------------------------------------------------------------------------------------------------");
             Logging.Write("--- Welcome to " + RoutineName + " ---");
             Logging.Write("-----------------------------------------------------------------------------------------------------");
+        }
+
+        public override void ShutDown()
+        {
+            try
+            {
+                BotEvents.OnBotStarted -= BotEvents_OnBotStarted;
+                BotEvents.OnBotStopped -= BotEvents_OnBotStopped;
+                Lua.Events.DetachEvent("PLAYER_TALENT_UPDATE", onTalentAndGlyphUpdate);
+                Lua.Events.DetachEvent("GLYPH_ADDED", onTalentAndGlyphUpdate);
+                Lua.Events.DetachEvent("GLYPH_UPDATED", onTalentAndGlyphUpdate);
+                SpecializedCombatLog.Detach();
+            }
+            catch { }
         }
 
         void BotEvents_OnBotStopped(EventArgs args)
