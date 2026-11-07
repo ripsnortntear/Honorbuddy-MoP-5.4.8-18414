@@ -19,10 +19,38 @@ namespace Superbad
         public static double ClipTime;
 
         private static bool _combatLogAttached;
+        private static bool _combatLogFilterAdded;
+
+        private const string CombatLogFilter =
+            "return args[2] == 'SPELL_AURA_REMOVED' or args[2] == 'SPELL_DAMAGE' or args[2] == 'SPELL_AURA_APPLIED' or args[2] =='SPELL_AURA_REFRESH'";
 
         public static void Init()
         {
             AttachCombatLogEvent();
+        }
+
+        public static void Shutdown()
+        {
+            try
+            {
+                if (_combatLogFilterAdded)
+                {
+                    Lua.Events.RemoveFilter("COMBAT_LOG_EVENT_UNFILTERED", CombatLogFilter);
+                    _combatLogFilterAdded = false;
+                }
+            }
+            catch { }
+
+            try
+            {
+                if (_combatLogAttached)
+                {
+                    Lua.Events.DetachEvent("COMBAT_LOG_EVENT_UNFILTERED", HandleCombatLog);
+                    _combatLogAttached = false;
+                    Logger.WriteDebug("Detached combat log");
+                }
+            }
+            catch { }
         }
 
         private static void AttachCombatLogEvent()
@@ -30,18 +58,30 @@ namespace Superbad
             if (_combatLogAttached)
                 return;
 
-            Lua.Events.AttachEvent("COMBAT_LOG_EVENT_UNFILTERED", HandleCombatLog);
-            if (
-                !Lua.Events.AddFilter(
-                    "COMBAT_LOG_EVENT_UNFILTERED",
-                    "return args[2] == 'SPELL_AURA_REMOVED' or args[2] == 'SPELL_DAMAGE' or args[2] == 'SPELL_AURA_APPLIED' or args[2] =='SPELL_AURA_REFRESH'"))
+            try
             {
-                Logger.Write(
-                    "ERROR: Could not add combat log event filter! - Performance may be horrible, and things may not work properly!");
-            }
+                Lua.Events.AttachEvent("COMBAT_LOG_EVENT_UNFILTERED", HandleCombatLog);
+                _combatLogAttached = true;
 
-            Logger.WriteDebug("Attached combat log");
-            _combatLogAttached = true;
+                if (!_combatLogFilterAdded)
+                {
+                    if (!Lua.Events.AddFilter("COMBAT_LOG_EVENT_UNFILTERED", CombatLogFilter))
+                    {
+                        Logger.Write(
+                            "ERROR: Could not add combat log event filter! - Performance may be horrible, and things may not work properly!");
+                    }
+                    else
+                    {
+                        _combatLogFilterAdded = true;
+                    }
+                }
+
+                Logger.WriteDebug("Attached combat log");
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteDebug("Superbad combat log attach failed: " + ex.Message);
+            }
         }
 
         private static void HandleCombatLog(object sender, LuaEventArgs args)

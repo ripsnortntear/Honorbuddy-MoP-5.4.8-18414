@@ -38,13 +38,37 @@ namespace Superbad
         public static bool FrenziedRegeneration;
         public static bool Shred;
 
+        private static bool _eventsAttached;
+
         static TalentManager()
         {
             Talents = new List<Talent>();
             Glyphs = new HashSet<string>();
-            Lua.Events.AttachEvent("CHARACTER_POINTS_CHANGED", UpdateTalentManager);
-            Lua.Events.AttachEvent("GLYPH_UPDATED", UpdateTalentManager);
-            Lua.Events.AttachEvent("ACTIVE_TALENT_GROUP_CHANGED", UpdateTalentManager);
+            AttachEvents();
+        }
+
+        private static void AttachEvents()
+        {
+            if (_eventsAttached)
+                return;
+            try
+            {
+                Lua.Events.AttachEvent("CHARACTER_POINTS_CHANGED", UpdateTalentManager);
+                Lua.Events.AttachEvent("GLYPH_UPDATED", UpdateTalentManager);
+                Lua.Events.AttachEvent("ACTIVE_TALENT_GROUP_CHANGED", UpdateTalentManager);
+                _eventsAttached = true;
+            }
+            catch { }
+        }
+
+        public static void Shutdown()
+        {
+            if (!_eventsAttached)
+                return;
+            try { Lua.Events.DetachEvent("CHARACTER_POINTS_CHANGED", UpdateTalentManager); } catch { }
+            try { Lua.Events.DetachEvent("GLYPH_UPDATED", UpdateTalentManager); } catch { }
+            try { Lua.Events.DetachEvent("ACTIVE_TALENT_GROUP_CHANGED", UpdateTalentManager); } catch { }
+            _eventsAttached = false;
         }
 
         public static WoWSpec CurrentSpec { get; private set; }

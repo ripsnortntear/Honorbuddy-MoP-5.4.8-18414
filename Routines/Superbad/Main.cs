@@ -294,18 +294,38 @@ namespace Superbad
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(Keys vKey);
 
+        private static bool _initialized;
+        private static bool _modifierStateAttached;
+
         public override void Initialize()
         {
             Logging.Write("");
             Logging.Write("Hello " + StyxWoW.Me.Race + " " + StyxWoW.Me.Class);
             Logging.Write("Thank you for using Superbad");
             Logging.Write("");
+
             EventHandlers.Init();
             if (SuperbadSettings.Instance.Update)
+            {
                 // Updater.CheckForUpdate(); // Disabled: defunct GoogleCode SVN endpoint
+            }
             TalentManager.Update();
-            Lua.Events.AttachEvent("MODIFIER_STATE_CHANGED", HandleModifierStateChanged);
-            //  Lua.Events.AttachEvent("UNIT_POWER", grabUnitPower);
+
+            if (!_modifierStateAttached)
+            {
+                try
+                {
+                    Lua.Events.AttachEvent("MODIFIER_STATE_CHANGED", HandleModifierStateChanged);
+                    _modifierStateAttached = true;
+                }
+                catch (Exception ex)
+                {
+                    Logging.Write(LogLevel.Diagnostic, "Superbad modifier hotkey attach failed: " + ex.Message);
+                }
+            }
+
+            if (_initialized)
+                return;
 
             grabMainHandDPS();
 
@@ -330,6 +350,25 @@ namespace Superbad
             SuperbadSettings.printSettings();
             GCD.GcdSpell = GCD.GetGlobalCooldownSpell;
             SynapseSprings();
+            _initialized = true;
+        }
+
+        public override void ShutDown()
+        {
+            try
+            {
+                if (_modifierStateAttached)
+                {
+                    Lua.Events.DetachEvent("MODIFIER_STATE_CHANGED", HandleModifierStateChanged);
+                    _modifierStateAttached = false;
+                }
+            }
+            catch { }
+
+            try { EventHandlers.Shutdown(); } catch { }
+            try { TalentManager.Shutdown(); } catch { }
+            _initialized = false;
+            base.ShutDown();
         }
 
         private void SynapseSprings()
@@ -477,7 +516,7 @@ namespace Superbad
         {
             if (Paused)
                 return;
-            if (BotManager.Current.Name == "Gatherbuddy" &&
+            if (BotManager.Current != null && BotManager.Current.Name == "Gatherbuddy" &&
                 (StyxWoW.Me.Shapeshift == ShapeshiftForm.EpicFlightForm ||
                  StyxWoW.Me.Shapeshift == ShapeshiftForm.FlightForm))
                 return;
@@ -615,43 +654,51 @@ namespace Superbad
 
         public static WoWUnit grabTarget()
         {
-            if (CurrentShape == ShapeshiftForm.Bear && Group.MeIsTank && StyxWoW.Me.Combat &&
-                TankManager.Instance.FirstUnit != null)
+            var me = StyxWoW.Me;
+            if (me == null || !me.IsValid)
+                return null;
+
+            WoWUnit currentTarget = me.CurrentTarget;
+            if (CurrentShape == ShapeshiftForm.Bear && Group.MeIsTank && me.Combat &&
+                TankManager.Instance != null && TankManager.Instance.FirstUnit != null)
             {
-                if (StyxWoW.Me.CurrentTarget != TankManager.Instance.FirstUnit)
+                WoWUnit tankTarget = TankManager.Instance.FirstUnit;
+                if (currentTarget != tankTarget)
                 {
                     if (TankManager.TargetingTimer.IsFinished)
                     {
                         Logging.Write("TankTarget: switching to first unit of TankTargeting");
-                        return TankManager.Instance.FirstUnit;
+                        return tankTarget;
                     }
 
-                    if (!Unit.ValidUnit(StyxWoW.Me.CurrentTarget))
+                    if (!Unit.ValidUnit(currentTarget))
                     {
                         Logging.Write("TankTarget: CurrentTarget invalid, switching to first unit of TankTargeting");
-                        return TankManager.Instance.FirstUnit;
+                        return tankTarget;
                     }
                 }
-                return StyxWoW.Me.CurrentTarget;
+                return currentTarget;
             }
             if (BotPoi.Current.Type == PoiType.Kill)
             {
                 WoWUnit botpoi = BotPoi.Current.AsObject.ToUnit();
                 if (Unit.ValidUnit(botpoi))
                 {
-                    if (StyxWoW.Me.CurrentTargetGuid != botpoi.Guid)
+                    if (me.CurrentTargetGuid != botpoi.Guid)
                         Logging.Write("Switching to BotPoi: " + botpoi.SafeName + "!");
 
                     return botpoi;
                 }
                 BotPoi.Clear("Superbad detected invalid mob as BotPoi");
             }
-            if (StyxWoW.Me.CurrentTarget == null || StyxWoW.Me.CurrentTarget.IsDead)
+
+            currentTarget = me.CurrentTarget;
+            if (currentTarget == null || !currentTarget.IsValid || currentTarget.IsDead)
                 return null;
-            if (!StyxWoW.Me.IsInGroup() && StyxWoW.Me.Combat &&
-                ((!StyxWoW.Me.CurrentTarget.Combat && !StyxWoW.Me.CurrentTarget.Aggro &&
-                  !StyxWoW.Me.CurrentTarget.PetAggro) || StyxWoW.Me.SpellDistance() > 30 ||
-                 !StyxWoW.Me.CurrentTarget.InLineOfSpellSight))
+            if (!me.IsInGroup() && me.Combat &&
+                ((!currentTarget.Combat && !currentTarget.Aggro &&
+                  !currentTarget.PetAggro) || me.SpellDistance() > 30 ||
+                 !currentTarget.InLineOfSpellSight))
             {
                 // Look for agrroed mobs next. prioritize by IsPlayer, Relative Distance, then Health
                 WoWUnit target = ObjectManager.GetObjectsOfType<WoWUnit>(false, false)
@@ -665,69 +712,76 @@ namespace Superbad
                     .OrderBy(u => u.HealthPercent)
                     .FirstOrDefault();
 
-                if (target != null && target.Guid != StyxWoW.Me.CurrentTargetGuid)
+                if (target != null && target.Guid != me.CurrentTargetGuid)
                 {
                     // Return the closest one to us
                     Logging.Write("Switching to aggroed mob pounding on me " + target.SafeName + "!");
                     return target;
                 }
             }
-            WoWUnit pOwner = Unit.GetPlayerParent(StyxWoW.Me.CurrentTarget);
+
+            currentTarget = me.CurrentTarget;
+            if (currentTarget == null || !currentTarget.IsValid)
+                return null;
+
+            WoWUnit pOwner = Unit.GetPlayerParent(currentTarget);
             if (pOwner != null && Unit.ValidUnit(pOwner) && !Blacklist.Contains(pOwner, BlacklistFlags.Combat))
             {
                 Logging.Write("Current target owned by a player.  Switching to " + pOwner.SafeName + "!");
-                if (BotPoi.Current.Type == PoiType.Kill && BotPoi.Current.Guid == StyxWoW.Me.CurrentTarget.Guid)
+                if (BotPoi.Current.Type == PoiType.Kill && BotPoi.Current.Guid == currentTarget.Guid)
                     BotPoi.Clear(string.Format("Superbad detected {0} as Player Owned Pet",
-                        StyxWoW.Me.CurrentTarget.SafeName));
+                        currentTarget.SafeName));
 
                 return pOwner;
             }
-            if (Blacklist.Contains(StyxWoW.Me.CurrentTargetGuid, BlacklistFlags.Combat))
+            if (Blacklist.Contains(currentTarget.Guid, BlacklistFlags.Combat))
             {
-                if (StyxWoW.Me.CurrentTarget.Combat && StyxWoW.Me.CurrentTarget.IsTargetingMeOrPet)
+                if (currentTarget.Combat && currentTarget.IsTargetingMeOrPet)
                 {
-                    Logging.Write("Current target " + StyxWoW.Me.CurrentTarget.SafeName +
+                    Logging.Write("Current target " + currentTarget.SafeName +
                                   " blacklisted and Bot has no other targets!  Fighting this one and hoping Bot wakes up if its Evade bugged!");
-                    return StyxWoW.Me.CurrentTarget;
+                    return currentTarget;
                 }
 
-                Logging.Write("CurrentTarget " + StyxWoW.Me.CurrentTarget.SafeName +
+                Logging.Write("CurrentTarget " + currentTarget.SafeName +
                               " blacklisted and not in combat with so clearing target!");
-                StyxWoW.Me.ClearTarget();
+                me.ClearTarget();
                 return null;
             }
 
-            if (Unit.ValidUnit(StyxWoW.Me.CurrentTarget))
-                return StyxWoW.Me.CurrentTarget;
+            if (Unit.ValidUnit(currentTarget))
+                return currentTarget;
 
             // at this point, stick with it if in Targetlist
-            if (Targeting.Instance.TargetList.Contains(StyxWoW.Me.CurrentTarget))
+            if (Targeting.Instance.TargetList.Contains(currentTarget))
             {
                 Logging.Write("EnsureTarget: failed validation but {0} is in TargetList, continuing...",
-                    StyxWoW.Me.CurrentTarget.SafeName);
-                return StyxWoW.Me.CurrentTarget;
+                    currentTarget.SafeName);
+                return currentTarget;
             }
 
-            if (StyxWoW.Me.CurrentTarget.SafeName == "Dragonmaw War Banner" ||
-                StyxWoW.Me.CurrentTarget.SafeName == "Healing Tide Totem")
-                return StyxWoW.Me.CurrentTarget;
+            if (currentTarget.SafeName == "Dragonmaw War Banner" ||
+                currentTarget.SafeName == "Healing Tide Totem")
+                return currentTarget;
 
             // otherwise, let's get a new one
             Logging.Write("EnsureTarget: invalid target {0}, so forcing selection of a new one...",
-                StyxWoW.Me.CurrentTarget == null ? "(null)" : StyxWoW.Me.CurrentTarget.SafeName);
+                currentTarget.SafeName);
             return null;
         }
 
         public static WoWUnit grabTarget2()
         {
             WoWPlayer rafLeader = RaFHelper.Leader;
-            if (rafLeader != null && rafLeader.IsValid && !rafLeader.IsMe && rafLeader.Combat &&
-                rafLeader.CurrentTarget != null && rafLeader.CurrentTarget.IsAlive &&
-                !Blacklist.Contains(rafLeader.CurrentTarget, BlacklistFlags.Combat))
+            if (rafLeader != null && rafLeader.IsValid && !rafLeader.IsMe && rafLeader.Combat)
             {
-                Logging.Write("Current target invalid. Switching to Tanks target " + rafLeader.CurrentTarget.SafeName +
-                              "!");
-                return rafLeader.CurrentTarget;
+                WoWUnit leaderTarget = rafLeader.CurrentTarget;
+                if (leaderTarget != null && leaderTarget.IsValid && leaderTarget.IsAlive &&
+                    !Blacklist.Contains(leaderTarget, BlacklistFlags.Combat))
+                {
+                    Logging.Write("Current target invalid. Switching to Tanks target " + leaderTarget.SafeName + "!");
+                    return leaderTarget;
+                }
             }
 
             // if we have BotPoi then try it
