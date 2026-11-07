@@ -232,7 +232,7 @@ namespace Loader
                     try
                     {
                         if (f.InvokeRequired)
-                            f.BeginInvoke(new Action(delegate { try { f.DialogResult = DialogResult.OK; f.Close(); } catch { try { f.Dispose(); } catch { } } }));
+                            f.BeginInvoke(new System.Action(delegate { try { f.DialogResult = DialogResult.OK; f.Close(); } catch { try { f.Dispose(); } catch { } } }));
                         else
                         { try { f.DialogResult = DialogResult.OK; f.Close(); } catch { try { f.Dispose(); } catch { } } }
                     }
