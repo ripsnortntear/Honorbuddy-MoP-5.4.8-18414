@@ -187,7 +187,7 @@ namespace FuryUnleashed.Core.Utilities
             WriteFile("{0} ms of Latency in WoW.", StyxWoW.WoWClient.Latency);
             WriteFile("");
             var entry = Assembly.GetEntryAssembly();
-            WriteFile("{0} is the HB path.", entry != null ? Path.GetDirectoryName(entry.Location) : Utilities.AssemblyDirectory);
+            WriteFile("{0} is the HB path.", entry != null ? Path.GetDirectoryName(entry.Location) : Styx.Common.Utilities.AssemblyDirectory);
             WriteFile("");
             LogSettings("General Settings (SettingsG)", InternalSettings.Instance.General);
             LogSettings("Hotkey Settings (SettingsH)", SettingsH.Instance);
