@@ -146,13 +146,13 @@ namespace HBCoreFixes
                 {
                     if (IsFlightPathSequenceBug(ex))
                     {
-                        LogOnce("Caught HB core FlightPaths Sequence-contains-no-matching-element bug during MoveTo; returning Failed for this tick. " + ex.Message);
+                        LogOnce("Caught HB core FlightPaths Sequence-contains-no-matching-element bug during MoveTo to " + location + "; returning Failed. " + ex.Message);
                         return MoveResult.Failed;
                     }
 
                     if (IsPathGenerationCrash(ex))
                     {
-                        LogOnce("Caught HB core path-generation crash during MoveTo; returning Failed for this tick. " + Describe(ex));
+                        LogOnce("Caught HB core path-generation crash during MoveTo to " + location + "; returning Failed. " + Describe(ex));
                         return MoveResult.Failed;
                     }
 
@@ -187,7 +187,7 @@ namespace HBCoreFixes
                 {
                     if (IsFlightPathSequenceBug(ex) || IsPathGenerationCrash(ex))
                     {
-                        LogOnce("Caught HB core path-generation crash during GeneratePath; returning empty path. " + Describe(ex));
+                        LogOnce("Caught HB core path-generation crash during GeneratePath " + from + " -> " + to + "; returning empty path. " + Describe(ex));
                         return new WoWPoint[0];
                     }
                     throw;
@@ -201,7 +201,7 @@ namespace HBCoreFixes
                 {
                     if (IsFlightPathSequenceBug(ex) || IsPathGenerationCrash(ex))
                     {
-                        LogOnce("Caught HB core navigation crash during CanNavigateFully; returning false. " + Describe(ex));
+                        LogOnce("Caught HB core navigation crash during CanNavigateFully " + from + " -> " + to + "; returning false. " + Describe(ex));
                         return false;
                     }
                     throw;
