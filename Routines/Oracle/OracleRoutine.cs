@@ -255,8 +255,10 @@ namespace Oracle
 
         public override void OnButtonPress()
         {
-            if (_newtempui == null || _newtempui.IsDisposed || _newtempui.Disposing) _newtempui = new Config(); //ChronicleUI // ChronicleViewPort
-            if (_newtempui != null || _newtempui.IsDisposed) _newtempui.ShowDialog();
+            if (_newtempui == null || _newtempui.IsDisposed || _newtempui.Disposing)
+                _newtempui = new Config(); //ChronicleUI // ChronicleViewPort
+            if (_newtempui != null && !_newtempui.IsDisposed)
+                _newtempui.ShowDialog();
         }
 
         #endregion GUI

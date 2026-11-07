@@ -423,7 +423,7 @@ namespace Oracle.UI
 
         private void lblPlusRep_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.thebuddyforum.com/reputation.php?do=addreputation&p=1253045");
+            MessageBox.Show("This legacy reputation link is no longer active.", "Oracle", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private Form _newtempui;

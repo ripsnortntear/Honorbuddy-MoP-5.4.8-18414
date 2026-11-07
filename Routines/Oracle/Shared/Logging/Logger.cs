@@ -16,9 +16,6 @@ using Oracle.Shared.Utilities;
 using Oracle.UI.Settings;
 using Styx.Common;
 using System;
-using System.Globalization;
-using System.Net;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace Oracle.Shared.Logging
@@ -65,25 +62,7 @@ namespace Oracle.Shared.Logging
 
         internal static void StatCounter()
         {
-            // Disabled: StatCounter tracking endpoint is defunct
-            return;
-        }
-
-        private static void UnusedStatCounter()
-        {
-            try
-            {
-                var statcounterDate = DateTime.Now.DayOfYear.ToString(CultureInfo.InvariantCulture);
-                if (!statcounterDate.Equals(OracleSettings.Instance.LastStatCounted))
-                {
-                    Parallel.Invoke(
-                        () => new WebClient().DownloadData("http://c.statcounter.com/9163330/0/bc0014de/1/"),
-                        () => Output(" StatCounter has been updated!"));
-                    OracleSettings.Instance.LastStatCounted = statcounterDate;
-                    OracleSettings.Instance.Save();
-                }
-            }
-            catch { /* Catch all errors */ }
+            // Disabled: legacy stat tracking endpoint removed (defunct).
         }
     }
 }
