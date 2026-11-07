@@ -134,7 +134,7 @@
         </If>
         <TurnIn QuestName="Decontamination" QuestId="27635" TurnInName="Technician Braggle" TurnInId="46255" />
         <PickUp QuestName="To the Surface" QuestId="27674" GiverName="Technician Braggle" GiverId="46255" />
-        <If Condition="HasQuest(27674) &amp;&amp; ( Me.Z &lt; 320 )">
+        <If Condition="HasQuest(27674) &amp;&amp; ( Me.Location.Z &lt; 320 )">
             <CustomBehavior File="InteractWith" MobId="46293" InteractByGossipOptions="1" WaitTime="4000"
                             X="-5180.833" Y="686.3102" Z="287.7943" />
         </If>
@@ -145,7 +145,7 @@
         <CustomBehavior File="Message" Text="Compiling New Tinkertown Quests" LogColor="CornflowerBlue" />
         <TargetingDistance Value="null" />    <!-- Use LevelBot default -->
 
-        <If Condition="Me.Class == WoWClass.Warrior">
+        <If Condition="(int)Me.Class == 1">
             <PickUp QuestName="The Future of Gnomeregan" QuestId="26203" GiverName="Nevin Twistwrench"
                     GiverId="42396" />
             <TurnIn QuestName="The Future of Gnomeregan" QuestId="26203" TurnInName="Drill Sergeant Steamcrank"
@@ -155,7 +155,7 @@
             <TurnIn QuestName="Meet the High Tinker" QuestId="26425" TurnInName="High Tinker Mekkatorque"
                     TurnInId="42317" />
         </If>
-        <If Condition="Me.Class == WoWClass.Priest">
+        <If Condition="(int)Me.Class == 5">
             <PickUp QuestName="The Future of Gnomeregan" QuestId="26199" GiverName="Nevin Twistwrench"
                     GiverId="42396" />
             <TurnIn QuestName="The Future of Gnomeregan" QuestId="26199" TurnInName="Doc Cogspin" TurnInId="42323" />
@@ -170,7 +170,7 @@
             <TurnIn QuestName="Meet the High Tinker" QuestId="26422" TurnInName="High Tinker Mekkatorque"
                     TurnInId="42317" />
         </If>
-        <If Condition="Me.Class == WoWClass.Rogue">
+        <If Condition="(int)Me.Class == 4">
             <PickUp QuestName="The Future of Gnomeregan" QuestId="26206" GiverName="Nevin Twistwrench"
                     GiverId="42396" />
             <TurnIn QuestName="The Future of Gnomeregan" QuestId="26206" TurnInName="Kelsey Steelspark"
@@ -180,7 +180,7 @@
             <TurnIn QuestName="Meet the High Tinker" QuestId="26423" TurnInName="High Tinker Mekkatorque"
                     TurnInId="42317" />
         </If>
-        <If Condition="Me.Class == WoWClass.Mage">
+        <If Condition="(int)Me.Class == 8">
             <PickUp QuestName="The Future of Gnomeregan" QuestId="26197" GiverName="Nevin Twistwrench"
                     GiverId="42396" />
             <TurnIn QuestName="The Future of Gnomeregan" QuestId="26197" TurnInName="Bipsi Frostflinger"
@@ -189,7 +189,7 @@
             <TurnIn QuestName="Meet the High Tinker" QuestId="26421" TurnInName="High Tinker Mekkatorque"
                     TurnInId="42317" />
         </If>
-        <If Condition="Me.Class == WoWClass.Warlock">
+        <If Condition="(int)Me.Class == 9">
             <PickUp QuestName="The Future of Gnomeregan" QuestId="26202" GiverName="Nevin Twistwrench"
                     GiverId="42396" />
             <TurnIn QuestName="The Future of Gnomeregan" QuestId="26202" TurnInName="Alamar Grimm" TurnInId="460" />
@@ -197,7 +197,7 @@
             <TurnIn QuestName="Meet the High Tinker" QuestId="26424" TurnInName="High Tinker Mekkatorque"
                     TurnInId="42317" />
         </If>
-        <If Condition="Me.Class == WoWClass.Monk">
+        <If Condition="(int)Me.Class == 10">
             <PickUp QuestName="The Future of Gnomeregan" QuestId="31135" GiverName="Nevin Twistwrench"
                     GiverId="42396" />
             <TurnIn QuestName="The Future of Gnomeregan" QuestId="31135" TurnInName="Xi, Friend to the Small"
@@ -251,7 +251,9 @@
         <Objective QuestName="Get Me Explosives Back!" QuestId="26285" Type="CollectItem" ItemId="58202"
                    CollectCount="7" />
         <TurnIn QuestName="Get Me Explosives Back!" QuestId="26285" TurnInName="Jessup McCree" TurnInId="42708" />
-        <TurnIn QuestName="Missing in Action" QuestId="26284" TurnInName="Jessup McCree" TurnInId="42708" />
+        <If Condition="HasQuest(26284)">
+            <TurnIn QuestName="Missing in Action" QuestId="26284" TurnInName="Jessup McCree" TurnInId="42708" />
+        </If>
         <PickUp QuestName="Finishin' the Job" QuestId="26318" GiverName="Jessup McCree" GiverId="42708" />
         <Objective QuestName="Finishin' the Job" QuestId="26318" Type="UseObject" ObjectId="204042" UseCount="1" />
         <Objective QuestName="Finishin' the Job" QuestId="26318" Type="KillMob" MobId="42773" KillCount="1" />

@@ -37,3 +37,7 @@ list_refs*
 PrintStrings*
 Decompile*
 Inspect*
+
+# Stray root runtime facade (can conflict with Honorbuddy dynamic compilation)
+# Keep local if present, but do not commit to repo root.
+/System.Runtime.dll

@@ -83,10 +83,12 @@ namespace Boomkin
         {
             get
             {
-                if (buffExists("Tiger's Fury", Me)
-                    && buffExists("Heroism", Me)
-                    && buffExists("Bloodlust", Me)
-                    && buffExists("Ancient Hysteria", Me))
+                if (buffExists("Time Warp", Me)
+                    || buffExists("Heroism", Me)
+                    || buffExists("Bloodlust", Me)
+                    || buffExists("Ancient Hysteria", Me)
+                    || buffExists("Berserking", Me)
+                    || buffExists("Nature's Grace", Me))
                 {
                     return true;
                 }
@@ -350,28 +352,30 @@ namespace Boomkin
         }
         public void useJadePotion()
         {
-            if (gotTarget
-                && (CRSettings.myPrefs.jadepotion == 1
-                && Me.GroupInfo.IsInRaid)
-                || (CRSettings.myPrefs.jadepotion == 2
-                && (Me.GroupInfo.IsInRaid && IsWoWBoss(Me.CurrentTarget)))
-                && IsInRange(39, Me.CurrentTarget))
-            {
-                WoWItem potion = Me.BagItems.FirstOrDefault(h => h.Entry == 76089);
+            if (!gotTarget || !IsInRange(39, Me.CurrentTarget))
+                return;
 
-                if (potion == null
-                    && HavePotionBuff != "no")
+            bool shouldUse = (CRSettings.myPrefs.jadepotion == 1 && Me.GroupInfo.IsInRaid)
+                || (CRSettings.myPrefs.jadepotion == 2 && Me.GroupInfo.IsInRaid && IsWoWBoss(Me.CurrentTarget));
+            if (!shouldUse)
+                return;
+
+            WoWItem potion = Me.BagItems.FirstOrDefault(h => h.Entry == 76089 || h.Entry == 76093); // Potion of the Jade Serpent / Intellect
+            if (potion == null)
+            {
+                if (HavePotionBuff != "no")
                 {
-                    Logging.Write(Colors.BlanchedAlmond, "I have no " + potion.Name);
+                    Logging.Write(Colors.BlanchedAlmond, "I have no Intellect potion");
                     HavePotionBuff = "no";
                 }
-                if (potion != null && potion.CooldownTimeLeft.TotalMilliseconds <= 0 && LastSpell != "virmen")
-                {
-                    potion.Use();
-                    Logging.Write(Colors.BlanchedAlmond, "Using " + potion.Name);
-                    HavePotionBuff = "yes";
-                    LastSpell = "virmen";
-                }
+                return;
+            }
+            if (potion.CooldownTimeLeft.TotalMilliseconds <= 0 && LastSpell != "virmen")
+            {
+                potion.Use();
+                Logging.Write(Colors.BlanchedAlmond, "Using " + potion.Name);
+                HavePotionBuff = "yes";
+                LastSpell = "virmen";
             }
         }
         public void useHealthStone()
@@ -408,21 +412,24 @@ namespace Boomkin
                 useFlask = true;
             }
 
-            if (Me.Combat
-                && useFlask
-                && !buffExists("Flask of the Warm Sun", Me))
+            if (useFlask
+                && !buffExists("Flask of the Warm Sun", Me)
+                && !buffExists(105691, Me)) // Flask of the Warm Sun aura id fallback
             {
-                WoWItem flask = Me.BagItems.FirstOrDefault(h => h.Entry == 76084);
-                if (flask == null
-                    && HaveFlaskBuff != "no")
+                WoWItem flask = Me.BagItems.FirstOrDefault(h => h.Entry == 76085 || h.Entry == 76084); // Flask of the Warm Sun variants
+                if (flask == null)
                 {
-                    Logging.Write(Colors.BlanchedAlmond, "I have no Agility Flask");
-                    HaveFlaskBuff = "no";
+                    if (HaveFlaskBuff != "no")
+                    {
+                        Logging.Write(Colors.BlanchedAlmond, "I have no Intellect Flask");
+                        HaveFlaskBuff = "no";
+                    }
+                    return;
                 }
-                if (flask != null && flask.CooldownTimeLeft.TotalMilliseconds <= 0)
+                if (flask.CooldownTimeLeft.TotalMilliseconds <= 0)
                 {
                     flask.Use();
-                    Logging.Write(Colors.BlanchedAlmond, "Using Agility Flask");
+                    Logging.Write(Colors.BlanchedAlmond, "Using " + flask.Name);
                     HaveFlaskBuff = "yes";
                 }
             }
@@ -430,91 +437,53 @@ namespace Boomkin
         }
         public void UseTrinket1()
         {
-            if (gotTarget
-                && Me.CurrentTarget.IsWithinMeleeRange)
+            if (!gotTarget || Me.CurrentTarget == null)
+                return;
+
+            var firstTrinket = StyxWoW.Me.Inventory.Equipped.Trinket1;
+            if (firstTrinket == null || !CanUseEquippedItem(firstTrinket) || LastSpell == "trinket1")
+                return;
+
+            if (CRSettings.myPrefs.trinket1 == 1
+                || (CRSettings.myPrefs.trinket1 == 2 && IsWoWBoss(Me.CurrentTarget)))
             {
-
-                var firstTrinket = StyxWoW.Me.Inventory.Equipped.Trinket1;
-                if (CRSettings.myPrefs.trinket1 == 2
-                    && IsWoWBoss(Me.CurrentTarget))
-                {
-
-                    if (firstTrinket != null && CanUseEquippedItem(firstTrinket) && LastSpell != "trinket1")
-                    {
-                        firstTrinket.Use();
-                        LogMsg("Using 1st trinket", 2);
-                        LastSpell = "trinket1";
-                    }
-                }
-                if (CRSettings.myPrefs.trinket1 == 1)
-                {
-                    if (firstTrinket != null && CanUseEquippedItem(firstTrinket) && LastSpell != "trinket1")
-                    {
-                        firstTrinket.Use();
-                        LogMsg("Using 1st trinket", 2);
-                        LastSpell = "trinket1";
-                    }
-                }
+                firstTrinket.Use();
+                LogMsg("Using 1st trinket", 2);
+                LastSpell = "trinket1";
             }
         }
         public void UseTrinket2()
         {
+            if (!gotTarget || Me.CurrentTarget == null)
+                return;
 
-            if (gotTarget
-                && Me.CurrentTarget.IsWithinMeleeRange)
+            var secondTrinket = StyxWoW.Me.Inventory.Equipped.Trinket2;
+            if (secondTrinket == null || !CanUseEquippedItem(secondTrinket) || LastSpell == "trinket2")
+                return;
+
+            if (CRSettings.myPrefs.trinket2 == 1
+                || (CRSettings.myPrefs.trinket2 == 2 && IsWoWBoss(Me.CurrentTarget)))
             {
-                var secondTrinket = StyxWoW.Me.Inventory.Equipped.Trinket2;
-
-
-                if (CRSettings.myPrefs.trinket2 == 2
-                    && IsWoWBoss(Me.CurrentTarget))
-                {
-
-                    if (secondTrinket != null && CanUseEquippedItem(secondTrinket) && LastSpell != "trinket2")
-                    {
-                        secondTrinket.Use();
-                        LogMsg("Using 2nd trinket", 2);
-                        LastSpell = "trinket2";
-                    }
-                }
-                else if (CRSettings.myPrefs.trinket2 == 1)
-                {
-                    if (secondTrinket != null && CanUseEquippedItem(secondTrinket) && LastSpell != "trinket2")
-                    {
-                        secondTrinket.Use();
-                        LogMsg("Using 2nd trinket", 2);
-                        LastSpell = "trinket2";
-                    }
-                }
+                secondTrinket.Use();
+                LogMsg("Using 2nd trinket", 2);
+                LastSpell = "trinket2";
             }
         }
         public void UseEngiGloves()
         {
+            if (!gotTarget || Me.CurrentTarget == null)
+                return;
 
-            if (gotTarget
-                && Me.CurrentTarget.IsWithinMeleeRange)
+            var engiGloves = StyxWoW.Me.Inventory.Equipped.Hands;
+            if (engiGloves == null || !CanUseEquippedItem(engiGloves) || LastSpell == "gloves")
+                return;
+
+            if (CRSettings.myPrefs.engigloves == 1
+                || (CRSettings.myPrefs.engigloves == 2 && IsWoWBoss(Me.CurrentTarget)))
             {
-                var engiGloves = StyxWoW.Me.Inventory.Equipped.Hands;
-
-                if (CRSettings.myPrefs.engigloves == 2
-                    && IsWoWBoss(Me.CurrentTarget))
-                {
-                    if (engiGloves != null && CanUseEquippedItem(engiGloves) && LastSpell != "gloves")
-                    {
-                        engiGloves.Use();
-                        LogMsg("Using Engineer Gloves", 2);
-                        LastSpell = "gloves";
-                    }
-                }
-                else if (CRSettings.myPrefs.engigloves == 1)
-                {
-                    if (engiGloves != null && CanUseEquippedItem(engiGloves) && LastSpell != "gloves")
-                    {
-                        engiGloves.Use();
-                        LogMsg("Using Engineer Gloves", 2);
-                        LastSpell = "gloves";
-                    }
-                }
+                engiGloves.Use();
+                LogMsg("Using Engineer Gloves", 2);
+                LastSpell = "gloves";
             }
         }
         private static bool CanUseEquippedItem(WoWItem item)
@@ -689,7 +658,7 @@ namespace Boomkin
             {
                 if (results.Override != null)
                     return results.Override.CooldownTimeLeft;
-                return results.Override.CooldownTimeLeft;
+                return results.Original.CooldownTimeLeft;
             }
             return TimeSpan.MaxValue;
         }
@@ -702,7 +671,7 @@ namespace Boomkin
             {
                 if (results.Override != null)
                     return results.Override.CooldownTimeLeft;
-                return results.Override.CooldownTimeLeft;
+                return results.Original.CooldownTimeLeft;
             }
             return TimeSpan.MaxValue;
         }
@@ -1012,7 +981,8 @@ namespace Boomkin
                 new Action(ret =>
                 {
                     var nieuwTarget = FindTarget();
-                    nieuwTarget.Target();
+                    if (nieuwTarget != null)
+                        nieuwTarget.Target();
                 }));
         }
         #endregion movement, facing, targeting
@@ -1025,7 +995,8 @@ namespace Boomkin
                 && !CRSettings.myPrefs.Targeting)
             {
                 var nieuwTarget = FindTarget();
-                nieuwTarget.Target();
+                if (nieuwTarget != null)
+                    nieuwTarget.Target();
             }
         }
         WoWUnit FindTarget()
@@ -1034,20 +1005,21 @@ namespace Boomkin
                                  where o is WoWUnit
                                  let unit = o.ToUnit()
                                  where
-                                     unit.Distance <= 8
+                                     unit != null
+                                     && unit.Distance <= 40
                                      && unit.CanSelect
                                      && !unit.IsCritter
                                      && !unit.IsPetBattleCritter
-                                     && !unit.TaggedByOther
                                      && unit.IsAlive
                                      && unit.IsHostile
+                                     && unit.Attackable
                                      && !unit.IsPet
                                      && !Blacklist.Contains(unit.Guid, BlacklistFlags.All)
                                  orderby unit.Distance ascending
                                  select unit
                                  ).FirstOrDefault();
-            //newTarget.Target();
-            LogMsg("found new target " + newTarget.Name, 0);
+            if (newTarget != null)
+                LogMsg("found new target " + newTarget.Name, 0);
             return newTarget;
 
         }

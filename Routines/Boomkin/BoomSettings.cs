@@ -1,24 +1,47 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Styx.Helpers;
 using System.IO;
 using Styx;
 using Styx.Common;
-using System.ComponentModel;
+using Styx.Helpers;
 using DefaultValue = Styx.Helpers.DefaultValueAttribute;
-using Styx.TreeSharp;
 
 namespace Boomkin
 {
     public class CRSettings : Settings
     {
-        public static readonly CRSettings myPrefs = new CRSettings();
+        private static CRSettings _instance;
+
+        public static CRSettings myPrefs
+        {
+            get { return _instance ?? (_instance = new CRSettings()); }
+        }
 
         public CRSettings()
-            : base(Path.Combine(Utilities.AssemblyDirectory, string.Format(@"Config/Pasterke/Druid/{0}-BalanceSettings-{1}.xml", StyxWoW.Me.RealmName, StyxWoW.Me.Name)))
+            : base(GetSettingsPath())
         {
+        }
+
+        private static string GetSettingsPath()
+        {
+            string baseDir = Utilities.AssemblyDirectory;
+            if (string.IsNullOrEmpty(baseDir))
+                baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            string realm = "UnknownRealm";
+            string name = "UnknownCharacter";
+            try
+            {
+                if (StyxWoW.Me != null && StyxWoW.Me.IsValid)
+                {
+                    realm = StyxWoW.Me.RealmName;
+                    name = StyxWoW.Me.Name;
+                }
+            }
+            catch
+            {
+            }
+
+            return Path.Combine(baseDir, string.Format(@"Config/Pasterke/Druid/{0}-BalanceSettings-{1}.xml", realm, name));
         }
         [Setting, DefaultValue(5)]
         public int PauseKey { get; set; }

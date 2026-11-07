@@ -186,32 +186,25 @@ namespace Boomkin
         #region pull
         public override void Pull()
         {
-            if(gotTarget && !CRSettings.myPrefs.Movement && Me.CurrentTarget.Distance > 35) 
-            {
-                while (Me.CurrentTarget.Distance > 35)
-                {
-                    Navigator.MoveTo(StyxWoW.Me.CurrentTarget.Location);
-                }
-                Navigator.PlayerMover.MoveStop();
-            }
-            if (gotTarget && !CRSettings.myPrefs.Movement && !Me.CurrentTarget.InLineOfSight)
-            {
-                while (!Me.CurrentTarget.InLineOfSight)
-                {
-                    Navigator.MoveTo(StyxWoW.Me.CurrentTarget.Location);
-                }
-                Navigator.PlayerMover.MoveStop();
-            }
-            if (gotTarget && Me.CurrentTarget.Distance <= 35 && Me.IsMoving)
-            {
-                Navigator.PlayerMover.MoveStop();
-            }
-            
-            Me.CurrentTarget.Face();
+            if (!gotTarget || Me.CurrentTarget == null)
+                return;
 
-            if (gotTarget && !SpellManager.HasSpell("Moonfire"))
+            if (!CRSettings.myPrefs.Movement && (Me.CurrentTarget.Distance > 35 || !Me.CurrentTarget.InLineOfSight))
+            {
+                Navigator.MoveTo(Me.CurrentTarget.Location);
+                return;
+            }
+
+            if (Me.IsMoving)
+                Navigator.PlayerMover.MoveStop();
+
+            if (!CRSettings.myPrefs.Facing)
+                Me.CurrentTarget.Face();
+
+            if (!SpellManager.HasSpell("Moonfire"))
             {
                 CastSpell("Wrath");
+                return;
             }
             CastSpell("Moonfire");
         }
@@ -275,6 +268,7 @@ namespace Boomkin
                 {
                     CastSpell("Barkskin");
                 }
+                UseEngiGloves();
                 useAlchemistFlask();
                 UseTrinket1();
                 UseTrinket2();
@@ -296,166 +290,212 @@ namespace Boomkin
         {
             if (Paused) { return; }
 
-            if (gotTarget && addCount >= CRSettings.myPrefs.startAoe && !DisableAoe) { AoeRotation(); }
-
             if (!gotTarget && !CRSettings.myPrefs.Targeting)
             {
                 getTarget();
             }
-            if (gotTarget && !CRSettings.myPrefs.Movement && Me.CurrentTarget.Distance > 35)
+
+            if (!gotTarget || Me.CurrentTarget == null)
+                return;
+
+            if (addCount >= CRSettings.myPrefs.startAoe && !DisableAoe)
             {
-                while (Me.CurrentTarget.Distance > 35)
-                {
-                    Navigator.MoveTo(StyxWoW.Me.CurrentTarget.Location);
-                }
-                Navigator.PlayerMover.MoveStop();
+                AoeRotation();
+                return;
             }
-            if (gotTarget && !CRSettings.myPrefs.Movement && !Me.CurrentTarget.InLineOfSight)
+
+            if (!CRSettings.myPrefs.Movement && (Me.CurrentTarget.Distance > 35 || !Me.CurrentTarget.InLineOfSight))
             {
-                while (!Me.CurrentTarget.InLineOfSight)
-                {
-                    Navigator.MoveTo(StyxWoW.Me.CurrentTarget.Location);
-                }
-                Navigator.PlayerMover.MoveStop();
+                Navigator.MoveTo(Me.CurrentTarget.Location);
+                return;
             }
-            if (gotTarget && Me.CurrentTarget.Distance <= 35 && Me.IsMoving)
-            {
+
+            if (Me.IsMoving)
                 Navigator.PlayerMover.MoveStop();
-            }
-            if (gotTarget && !CRSettings.myPrefs.Facing)
-            {
+
+            if (!CRSettings.myPrefs.Facing)
                 Me.CurrentTarget.Face();
-            }
-            if (gotTarget
-                    && Me.ManaPercent <= CRSettings.myPrefs.innervate
-                    && !spellOnCooldown("Innervate"))
+            bool inLunar = buffExists(48518, Me) || buffExists("Eclipse (Lunar)", Me);
+            bool inSolar = buffExists(48517, Me) || buffExists("Eclipse (Solar)", Me);
+            bool inEclipse = inLunar || inSolar;
+
+            if (CRSettings.myPrefs.innervate > 0
+                && Me.ManaPercent <= CRSettings.myPrefs.innervate
+                && !spellOnCooldown("Innervate"))
             {
-                CastBuff("Innervate");
+                CastSpell("Innervate");
+                if (spellOnCooldown("Innervate")) return;
             }
-            if (gotTarget
-                    && !debuffExists(FF, Me.CurrentTarget)
-                    && !spellOnCooldown(FF)
-                    && IsInRange(39, Me.CurrentTarget))
+
+            if (!debuffExists(FF, Me.CurrentTarget)
+                && !spellOnCooldown(FF)
+                && IsInRange(40, Me.CurrentTarget))
             {
                 CastSpell(FF);
             }
-            if (gotTarget
-                && buffExists("Shooting Stars", Me))
-            {
-                CastSpell("Starsurge");
-            }
-            if (gotTarget
-                    && !debuffExists("Moonfire", Me.CurrentTarget)
-                    && IsInRange(39, Me.CurrentTarget))
+
+            // Maintain DoTs (refresh if missing or about to expire)
+            if ((!debuffExists("Moonfire", Me.CurrentTarget) || debuffTimeLeft("Moonfire", Me.CurrentTarget) < 3000)
+                && IsInRange(40, Me.CurrentTarget))
             {
                 CastSpell("Moonfire");
             }
-            if (gotTarget
-                && !spellOnCooldown("Nature's Vigil")
-                && !buffExists("Nature's Vigil", Me)
-                && (buffExists(48518, Me) // lunar = 48518
-                || buffExists(48517, Me))) // solar = 48517
-            {
-                CastSpell("Nature's Vigil");
-            }
-            if (gotTarget
-                    && !spellOnCooldown("Incarnation")
-                    && IsWoWBoss(Me.CurrentTarget)
-                    && buffExists("Nature's Vigil", Me)
-                    && IsInRange(39, Me.CurrentTarget))
-            {
-                CastSpell("Incarnation");
-            }
-            if (gotTarget
-                    && !debuffExists("Sunfire", Me.CurrentTarget)
-                    && IsInRange(39, Me.CurrentTarget))
+            if ((!debuffExists("Sunfire", Me.CurrentTarget) || debuffTimeLeft("Sunfire", Me.CurrentTarget) < 3000)
+                && IsInRange(40, Me.CurrentTarget))
             {
                 CastSpell("Sunfire");
             }
-            if (gotTarget
-                    && !spellOnCooldown("Celestial Alignment")
-                    && !buffExists("Nature's Vigil", Me)
-                    && (Me.EclipsePercent <= 20 && Me.EclipsePercent >= -20)
-                    && (CRSettings.myPrefs.celestial == 1
-                    || (CRSettings.myPrefs.celestial == 2 && IsWoWBoss(Me.CurrentTarget))))
+
+            if (buffExists("Shooting Stars", Me) && IsInRange(40, Me.CurrentTarget))
             {
-                CastSpell("Celestial Alignment");
+                CastSpell("Starsurge");
+                if (spellOnCooldown("Starsurge")) return;
             }
-            if (gotTarget
-                    && !spellOnCooldown("Typhoon")
-                    && UnfriendlyUnits.Count() > CRSettings.myPrefs.typhoon)
+
+            if (!spellOnCooldown("Nature's Vigil")
+                && !buffExists("Nature's Vigil", Me)
+                && (inEclipse || IsWoWBoss(Me.CurrentTarget) || addCount >= CRSettings.myPrefs.startAoe))
+            {
+                CastSpell("Nature's Vigil");
+            }
+
+            if (!spellOnCooldown("Incarnation")
+                && IsWoWBoss(Me.CurrentTarget)
+                && (SpellManager.HasSpell("Incarnation: Chosen of Elune") || SpellManager.HasSpell("Incarnation"))
+                && IsInRange(40, Me.CurrentTarget))
+            {
+                if (SpellManager.CanCast("Incarnation: Chosen of Elune"))
+                    SpellManager.Cast("Incarnation: Chosen of Elune");
+                else
+                    CastSpell("Incarnation");
+            }
+
+            if (CRSettings.myPrefs.celestial > 0
+                && !spellOnCooldown("Celestial Alignment")
+                && !buffExists("Celestial Alignment", Me)
+                && (CRSettings.myPrefs.celestial == 1 || IsWoWBoss(Me.CurrentTarget)))
+            {
+                if (inEclipse || (Me.EclipsePercent <= 25 && Me.EclipsePercent >= -25))
+                    CastSpell("Celestial Alignment");
+            }
+
+            if (SpellManager.HasSpell("Force of Nature")
+                && !spellOnCooldown("Force of Nature")
+                && (IsWoWBoss(Me.CurrentTarget) || addCount >= 2)
+                && IsInRange(40, Me.CurrentTarget))
+            {
+                if (SpellManager.CanCast("Force of Nature"))
+                {
+                    SpellManager.Cast("Force of Nature");
+                    SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
+                }
+            }
+
+            if (CRSettings.myPrefs.typhoon > 0
+                && !spellOnCooldown("Typhoon")
+                && UnfriendlyUnits.Count() >= CRSettings.myPrefs.typhoon)
             {
                 CastSpell("Typhoon");
             }
-            if (gotTarget
-                    && !spellOnCooldown("Starsurge")
-                    && IsInRange(39, Me.CurrentTarget))
-            {
-                CastSpell("Starsurge");
-            }
-            if (gotTarget
-                    && !HaveHasteBuff
-                    && SpellManager.HasSpell("Berserking")
-                    && !spellOnCooldown("Berserking")
-                    && (CRSettings.myPrefs.useBerserking == 1
+
+            if (SpellManager.HasSpell("Berserking")
+                && !HaveHasteBuff
+                && !spellOnCooldown("Berserking")
+                && (CRSettings.myPrefs.useBerserking == 1
                     || (CRSettings.myPrefs.useBerserking == 2 && IsWoWBoss(Me.CurrentTarget)))
-                    && IsInRange(39, Me.CurrentTarget))
+                && IsInRange(40, Me.CurrentTarget))
             {
                 CastSpell("Berserking");
             }
-            if (gotTarget
-                    && !spellOnCooldown("Starfall")
-                    && buffExists(48518, Me)) //Eclipse (Lunar)
+
+            if (!spellOnCooldown("Starfall")
+                && (inLunar || buffExists("Celestial Alignment", Me)))
             {
                 CastSpell("Starfall");
             }
-            if (gotTarget && buffExists("Eclipse (Lunar)", Me)
-                    && IsInRange(39, Me.CurrentTarget))
+
+            if (!spellOnCooldown("Starsurge") && IsInRange(40, Me.CurrentTarget))
             {
-                CastSpell("Starfire");
+                CastSpell("Starsurge");
+                if (spellOnCooldown("Starsurge")) return;
             }
-            if (gotTarget
-                    && IsInRange(39, Me.CurrentTarget))
+
+            if (IsInRange(40, Me.CurrentTarget))
             {
-                CastSpell("Wrath");
+                int eclipsePower = 0;
+                try
+                {
+                    using (StyxWoW.Memory.AcquireFrame())
+                    {
+                        eclipsePower = Lua.GetReturnVal<int>("return UnitPower('player', 8)", 0);
+                    }
+                }
+                catch { }
+
+                // Prefer moving toward the correct eclipse when not in one
+                if (inLunar)
+                {
+                    CastSpell("Starfire");
+                }
+                else if (inSolar)
+                {
+                    CastSpell("Wrath");
+                }
+                else if (eclipsePower > 0)
+                {
+                    CastSpell("Starfire");
+                }
+                else
+                {
+                    CastSpell("Wrath");
+                }
             }
         }
 
         public void AoeRotation()
         {
-            if (!gotTarget && CRSettings.myPrefs.Targeting)
+            if (!gotTarget && !CRSettings.myPrefs.Targeting)
             {
                 getTarget();
             }
-            if (gotTarget && !CRSettings.myPrefs.Movement && Me.CurrentTarget.Distance > 29)
+            if (!gotTarget || Me.CurrentTarget == null)
+                return;
+
+            if (!CRSettings.myPrefs.Movement && (Me.CurrentTarget.Distance > 29 || !Me.CurrentTarget.InLineOfSight))
             {
-                Navigator.MoveTo(StyxWoW.Me.CurrentTarget.Location);
+                Navigator.MoveTo(Me.CurrentTarget.Location);
                 return;
             }
-            if (gotTarget && !CRSettings.myPrefs.Movement)
-            {
-                Navigator.PlayerMover.MoveStop();
-            }
-            if (gotTarget && !CRSettings.myPrefs.Facing)
-            {
-                Me.CurrentTarget.Face();
-            }
 
-            if (gotTarget
-                && !spellOnCooldown("Starfall")
-                && buffExists(48518, Me))
+            if (!CRSettings.myPrefs.Movement && Me.IsMoving)
+                Navigator.PlayerMover.MoveStop();
+
+            if (!CRSettings.myPrefs.Facing)
+                Me.CurrentTarget.Face();
+
+            bool inLunar = buffExists(48518, Me) || buffExists("Eclipse (Lunar)", Me);
+
+            if (!spellOnCooldown("Starfall") && (inLunar || buffExists("Celestial Alignment", Me)))
             {
                 CastSpell("Starfall");
             }
 
-            if (gotTarget
-                    && IsInRange(29, Me.CurrentTarget)
-                    && !Me.IsChanneling)
+            if (buffExists("Shooting Stars", Me) && IsInRange(40, Me.CurrentTarget))
+            {
+                CastSpell("Starsurge");
+                return;
+            }
+
+            if (!debuffExists("Moonfire", Me.CurrentTarget) && IsInRange(40, Me.CurrentTarget))
+                CastSpell("Moonfire");
+            if (!debuffExists("Sunfire", Me.CurrentTarget) && IsInRange(40, Me.CurrentTarget))
+                CastSpell("Sunfire");
+
+            if (IsInRange(35, Me.CurrentTarget) && !Me.IsChanneling)
             {
                 CastSpell("Hurricane");
                 SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
             }
-            return;
         }
         #endregion combat
     }
