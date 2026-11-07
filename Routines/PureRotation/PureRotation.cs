@@ -103,6 +103,9 @@ namespace PureRotation
         public static PureRotationRoutine Instance { get; private set; }
 
         private Form _newtempui;
+        private static EventHandler<WoWContextEventArg> _onWoWContextChangedHandler;
+        private static EventHandler _routineReloadedHandler;
+        private bool _botEventsSubscribed;
 
         internal delegate void OnPulseHandler();
 
@@ -115,6 +118,7 @@ namespace PureRotation
             Instance = this;
 
             // Do this now, so we ensure we update our context when needed.
+            // OnMapChanged delegate type varies across HB builds; keep lambda and guard by routine name.
             BotEvents.Player.OnMapChanged += e =>
                 {
                     // Don't run this handler if we're not the current routine!
@@ -125,8 +129,12 @@ namespace PureRotation
                     // so we're not reliant on anything outside of ourselves for updates.
                     UpdateContext();
                 };
-            BotEvents.OnBotStopped += HotKeyManager.BotEvents_OnBotStopped;
-            BotEvents.OnBotStarted += HotKeyManager.BotEvents_OnBotStarted;
+            if (!_botEventsSubscribed)
+            {
+                BotEvents.OnBotStopped += HotKeyManager.BotEvents_OnBotStopped;
+                BotEvents.OnBotStarted += HotKeyManager.BotEvents_OnBotStarted;
+                _botEventsSubscribed = true;
+            }
         }
 
         public override bool WantButton
@@ -287,17 +295,24 @@ namespace PureRotation
             UpdateContext();
 
             // NOTE: Hook these events AFTER the context update.
-            OnWoWContextChanged += (orig, ne) =>
+            if (_onWoWContextChangedHandler != null)
+                OnWoWContextChanged -= _onWoWContextChangedHandler;
+            _onWoWContextChangedHandler = (orig, ne) =>
             {
                 Logger.InfoLog(" Context changed, re-creating behaviors");
                 RebuildBehaviors();
                 BossList.Init();
             };
-            RoutineManager.Reloaded += (s, e) =>
+            OnWoWContextChanged += _onWoWContextChangedHandler;
+
+            if (_routineReloadedHandler != null)
+                RoutineManager.Reloaded -= _routineReloadedHandler;
+            _routineReloadedHandler = (s, e) =>
             {
                 Logger.InfoLog(" Routines were reloaded, re-creating behaviors");
                 RebuildBehaviors();
             };
+            RoutineManager.Reloaded += _routineReloadedHandler;
 
             // Intialize Behaviors....
             if (_combatBehavior == null)
@@ -342,6 +357,36 @@ namespace PureRotation
             Logger.InfoLog(" {0}", _currentRotation.Help);
 
             
+        }
+
+        public override void ShutDown()
+        {
+            try
+            {
+                if (_botEventsSubscribed)
+                {
+                    BotEvents.OnBotStopped -= HotKeyManager.BotEvents_OnBotStopped;
+                    BotEvents.OnBotStarted -= HotKeyManager.BotEvents_OnBotStarted;
+                    _botEventsSubscribed = false;
+                }
+            }
+            catch { }
+
+            try { if (_onWoWContextChangedHandler != null) OnWoWContextChanged -= _onWoWContextChangedHandler; } catch { }
+            try { if (_routineReloadedHandler != null) RoutineManager.Reloaded -= _routineReloadedHandler; } catch { }
+
+            try
+            {
+                if (_newtempui != null && !_newtempui.IsDisposed)
+                {
+                    _newtempui.Close();
+                    _newtempui.Dispose();
+                }
+            }
+            catch { }
+            _newtempui = null;
+
+            base.ShutDown();
         }
 
         private static void StopBot(string reason)
