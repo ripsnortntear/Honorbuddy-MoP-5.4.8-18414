@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExtraUtilsSettings>
+  <UseAlchemyFlask>False</UseAlchemyFlask>
+  <FlaskTypeToUse>Intellect</FlaskTypeToUse>
+  <HealthsStoneHP>40</HealthsStoneHP>
+  <UseTrinket_1_OnCondition>Manual</UseTrinket_1_OnCondition>
+  <Trinket_1_HP>50</Trinket_1_HP>
+  <LifeSpiritHP>50</LifeSpiritHP>
+  <WaterSpiritMANA>30</WaterSpiritMANA>
+  <Trinket_1_MANA>50</Trinket_1_MANA>
+  <UseTrinket_2_OnCondition>Manual</UseTrinket_2_OnCondition>
+  <Trinket_2_HP>50</Trinket_2_HP>
+  <Trinket_2_MANA>50</Trinket_2_MANA>
+  <AOE_HealingButton>Nothing</AOE_HealingButton>
+  <AtonementNormalHealingSwitchButton>Nothing</AtonementNormalHealingSwitchButton>
+  <SoundsEnabled>False</SoundsEnabled>
+  <UseRacials>True</UseRacials>
+  <UseGloves_OnCondition>Always</UseGloves_OnCondition>
+  <UseLifeblood_OnCondition>Always</UseLifeblood_OnCondition>
+  <GigtOfTheNaaruHP>70</GigtOfTheNaaruHP>
+  <ArcaneTorrentMana>70</ArcaneTorrentMana>
+  <DisableAOE_HealingRotation>False</DisableAOE_HealingRotation>
+  <UseDisciplineAtonementHealingRotation>True</UseDisciplineAtonementHealingRotation>
+</ExtraUtilsSettings>

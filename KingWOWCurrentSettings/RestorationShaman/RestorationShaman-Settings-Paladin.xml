@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RestorationShamanSettings>
+  <UseSoS>False</UseSoS>
+  <SoS_healing_only_on_tank>True</SoS_healing_only_on_tank>
+  <SoSHP>30</SoSHP>
+  <imbueType>DEFAULT</imbueType>
+  <AutofaceTarget>True</AutofaceTarget>
+  <PullDistance>28</PullDistance>
+  <SelfHealingPriorityEnabled>False</SelfHealingPriorityEnabled>
+  <SelfHealingPriorityHP>50</SelfHealingPriorityHP>
+  <AutoInterrupt>True</AutoInterrupt>
+  <UseHex>False</UseHex>
+  <WhenUseAscendance>AT_CONDITION</WhenUseAscendance>
+  <AscendanceHP>65</AscendanceHP>
+  <AscendanceNumber>3</AscendanceNumber>
+  <UseDispell>True</UseDispell>
+  <UseResurrection>True</UseResurrection>
+  <Autocast_Spirit_Walk>True</Autocast_Spirit_Walk>
+  <MantainTidalWaves>False</MantainTidalWaves>
+  <RiptidePercent>85</RiptidePercent>
+  <RiptideAlwaysUPOnTank>True</RiptideAlwaysUPOnTank>
+  <HealingWavePercent>90</HealingWavePercent>
+  <ManaTideTotemPercent>75</ManaTideTotemPercent>
+  <TrySaveMana>True</TrySaveMana>
+  <LB_for_rec_mana>True</LB_for_rec_mana>
+  <GreaterHealingWavePercent>50</GreaterHealingWavePercent>
+  <HealingRainPercent>85</HealingRainPercent>
+  <HealingRainNumber>3</HealingRainNumber>
+  <HealingRainOnlyOnTankLocation>True</HealingRainOnlyOnTankLocation>
+  <HealingSurgePercent>30</HealingSurgePercent>
+  <ChainHealPercent>75</ChainHealPercent>
+  <ChainHealNumber>3</ChainHealNumber>
+  <ChainHealOnlyFromTank>True</ChainHealOnlyFromTank>
+  <SpiritLinkPercent>50</SpiritLinkPercent>
+  <SpiritLinkNumber>4</SpiritLinkNumber>
+  <ManaPercent>40</ManaPercent>
+  <HealthPercent>40</HealthPercent>
+  <WhenCastStreamTotem>ALWAYS</WhenCastStreamTotem>
+  <StreamTotemPercent>90</StreamTotemPercent>
+  <StreamTotemNumber>3</StreamTotemNumber>
+  <WhenCastHealingTideTotem>AT_CONDITION</WhenCastHealingTideTotem>
+  <HealingTideTotemPercent>50</HealingTideTotemPercent>
+  <HealingTideTotemNumber>4</HealingTideTotemNumber>
+  <OOCHealing>True</OOCHealing>
+</RestorationShamanSettings>

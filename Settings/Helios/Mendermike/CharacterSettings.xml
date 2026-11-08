@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
   <RessAtSpiritHealers>False</RessAtSpiritHealers>
-  <TicksPerSecond>30</TicksPerSecond>
+  <TicksPerSecond>60</TicksPerSecond>
   <AutoEquip>True</AutoEquip>
   <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
   <SelectTalents>True</SelectTalents>
@@ -16,12 +16,10 @@
   <DrinkAmount>20</DrinkAmount>
   <FoodAmount>20</FoodAmount>
   <MailRecipient>Buttermilk</MailRecipient>
-  <FoodName>8948</FoodName>
-  <DrinkName>4791</DrinkName>
-  <MountName>
-  </MountName>
-  <FlyingMountName>
-  </FlyingMountName>
+  <FoodName>4542</FoodName>
+  <DrinkName>1708</DrinkName>
+  <MountName></MountName>
+  <FlyingMountName></FlyingMountName>
   <UseRandomMount>True</UseRandomMount>
   <MountDistance>60</MountDistance>
   <ClassProfileName>Priest - Shadow</ClassProfileName>
@@ -32,7 +30,9 @@
   <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
   <EnabledPlugins>
     <Entry>Anti Drown</Entry>
+    <Entry>Avoidance</Entry>
     <Entry>Find Rares and Chests</Entry>
+    <Entry>HB Core Fix: FlightPath MoveTo</Entry>
     <Entry>Mobile Banking</Entry>
     <Entry>ObjectGatherer</Entry>
     <Entry>Pandaren Pick Farm 1.22 </Entry>
@@ -42,7 +42,6 @@
     <Entry>RepCollector</Entry>
     <Entry>Timeless Buffs</Entry>
     <Entry>TurnOffCTM</Entry>
-    <Entry>Avoidance</Entry>
   </EnabledPlugins>
   <RecentProfiles>
     <Entry>[A - Quest] EK 12-58 [Kick] ($Rev$)@@!@@D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] EK 12-58 [Kick].xml</Entry>

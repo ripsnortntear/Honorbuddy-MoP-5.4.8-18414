@@ -1,19 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterSettings>
-  <SelectTalents>True</SelectTalents>
-  <ClassProfileName>Paladin - Protection</ClassProfileName>
+  <RessAtSpiritHealers>False</RessAtSpiritHealers>
+  <TicksPerSecond>30</TicksPerSecond>
   <AutoEquip>True</AutoEquip>
+  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
+  <SelectTalents>True</SelectTalents>
+  <RollOnItems>True</RollOnItems>
+  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
+  <LootMobs>True</LootMobs>
+  <SkinMobs>False</SkinMobs>
+  <NinjaSkin>False</NinjaSkin>
+  <HarvestMinerals>False</HarvestMinerals>
+  <HarvestHerbs>False</HarvestHerbs>
+  <LootRadius>45</LootRadius>
+  <DrinkAmount>0</DrinkAmount>
+  <FoodAmount>0</FoodAmount>
+  <MailRecipient></MailRecipient>
+  <FoodName>33454</FoodName>
+  <DrinkName>33444</DrinkName>
+  <MountName>Striped Nightsaber</MountName>
+  <FlyingMountName>Golden Gryphon</FlyingMountName>
+  <UseRandomMount>True</UseRandomMount>
+  <MountDistance>200</MountDistance>
+  <ClassProfileName>Paladin - Protection</ClassProfileName>
   <AutoEquipBags>True</AutoEquipBags>
   <AutoEquipWeapons>True</AutoEquipWeapons>
   <AutoEquipArmor>True</AutoEquipArmor>
-  <AutoEquipBoEEpics>True</AutoEquipBoEEpics>
   <WeaponStyle>Automatic</WeaponStyle>
-  <RollOnItems>True</RollOnItems>
-  <RollDisenchantWhenGreed>True</RollDisenchantWhenGreed>
   <MaxBoEDisenchantQuality>Uncommon</MaxBoEDisenchantQuality>
-  <TicksPerSecond>30</TicksPerSecond>
-  <FoodAmount>0</FoodAmount>
-  <DrinkAmount>0</DrinkAmount>
   <EnabledPlugins>
     <Entry>Anti Drown</Entry>
     <Entry>Avoidance</Entry>
@@ -24,25 +38,11 @@
   </RecentProfiles>
   <!--The last selected index used by the Combobox in the form.-->
   <SelectedBotIndex>-1</SelectedBotIndex>
-  <SelectedBotName>Questing</SelectedBotName>
+  <SelectedBotName>Tyrael</SelectedBotName>
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
-  <UseRandomMount>True</UseRandomMount>
-  <MailRecipient></MailRecipient>
-  <FoodName>33454</FoodName>
-  <DrinkName>33444</DrinkName>
-  <MountName>Striped Nightsaber</MountName>
-  <FlyingMountName>Golden Gryphon</FlyingMountName>
-  <LootMobs>True</LootMobs>
-  <SkinMobs>False</SkinMobs>
-  <NinjaSkin>False</NinjaSkin>
   <LootChests>True</LootChests>
-  <HarvestMinerals>False</HarvestMinerals>
-  <HarvestHerbs>False</HarvestHerbs>
   <UseMount>True</UseMount>
   <PullDistance>100</PullDistance>
-  <LootRadius>45</LootRadius>
   <LastUsedPath>D:\Games\GH of HB\Default Profiles\1-90 Questing Profile Pack\LK\[Fly][A - Quest] LK 68-80 [Kick].xml</LastUsedPath>
-  <MountDistance>200</MountDistance>
-  <RessAtSpiritHealers>False</RessAtSpiritHealers>
 </CharacterSettings>

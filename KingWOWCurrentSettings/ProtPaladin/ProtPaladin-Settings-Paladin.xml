@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProtPaladinSettings>
+  <AvengersWrathTypeUseMode>COOLDOWN</AvengersWrathTypeUseMode>
+  <AttackPowerForAvengersWrath>25000</AttackPowerForAvengersWrath>
+  <AutofaceTarget>True</AutofaceTarget>
+  <BlessingToUse>MANUAL</BlessingToUse>
+  <AttackPowerIncrement>10</AttackPowerIncrement>
+  <SealToUse>AUTO</SealToUse>
+  <PullDistance>30</PullDistance>
+  <ProcAutoHealHP>70</ProcAutoHealHP>
+  <AutoHealHP>50</AutoHealHP>
+  <DivineProtection>90</DivineProtection>
+  <HandOfPurity>80</HandOfPurity>
+  <GuardianOfAncientKing>50</GuardianOfAncientKing>
+  <DShp>10</DShp>
+  <ArdentDefender>30</ArdentDefender>
+  <AutoInterrupt>False</AutoInterrupt>
+  <UseLoHOnPartyMember>False</UseLoHOnPartyMember>
+  <UseHoPOnPartyMember>True</UseHoPOnPartyMember>
+  <UseDSOnPartyMember>False</UseDSOnPartyMember>
+  <UseHealingPartyMember>False</UseHealingPartyMember>
+  <HoPHp>10</HoPHp>
+  <LoHhp>15</LoHhp>
+  <AOECount>3</AOECount>
+  <ManaPercent>20</ManaPercent>
+  <HealthPercent>0</HealthPercent>
+  <UseRedemption>True</UseRedemption>
+</ProtPaladinSettings>

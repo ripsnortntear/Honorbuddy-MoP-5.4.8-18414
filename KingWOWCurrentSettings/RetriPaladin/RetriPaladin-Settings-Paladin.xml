@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RetriPaladinSettings>
+  <CDUseAvengingWrath>COOLDOWN</CDUseAvengingWrath>
+  <CDUseGuardian_of_Ancient_Kings>COOLDOWN</CDUseGuardian_of_Ancient_Kings>
+  <CDUseHoly_Avenger>COOLDOWN</CDUseHoly_Avenger>
+  <AutofaceTarget>True</AutofaceTarget>
+  <AutoTarget>True</AutoTarget>
+  <UseEmancipate>False</UseEmancipate>
+  <BlessingToUse>MANUAL</BlessingToUse>
+  <AttackPowerIncrement>10</AttackPowerIncrement>
+  <SealToUse>AUTO</SealToUse>
+  <PullDistance>30</PullDistance>
+  <ProcAutoHealHP_EF_WoG>70</ProcAutoHealHP_EF_WoG>
+  <ProcAutoHealHPSelfless>70</ProcAutoHealHPSelfless>
+  <AutoHealHP>50</AutoHealHP>
+  <DivineProtection>90</DivineProtection>
+  <HandOfPurity>80</HandOfPurity>
+  <DShp>10</DShp>
+  <AutoInterrupt>False</AutoInterrupt>
+  <UseLoHOnPartyMember>False</UseLoHOnPartyMember>
+  <UseHoPOnPartyMember>True</UseHoPOnPartyMember>
+  <UseDSOnPartyMember>False</UseDSOnPartyMember>
+  <UseHealingPartyMember>False</UseHealingPartyMember>
+  <HoPHp>10</HoPHp>
+  <LoHhp>15</LoHhp>
+  <AOE_Seal_Of_Righteousness>7</AOE_Seal_Of_Righteousness>
+  <AOE_Hammer_Of_The_Righteous>3</AOE_Hammer_Of_The_Righteous>
+  <AOE_Divine_Storm>3</AOE_Divine_Storm>
+  <ManaPercent>20</ManaPercent>
+  <HealthPercent>50</HealthPercent>
+  <UseRedemption>True</UseRedemption>
+</RetriPaladinSettings>

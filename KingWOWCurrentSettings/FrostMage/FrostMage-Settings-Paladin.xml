@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FrostMageSettings>
+  <EvocationHP>50</EvocationHP>
+  <UseEvocation>False</UseEvocation>
+  <UseEvocationInCombat>True</UseEvocationInCombat>
+  <UseDecurse>False</UseDecurse>
+  <AutoInterrupt>False</AutoInterrupt>
+  <AutofaceTarget>True</AutofaceTarget>
+  <TargetTypeSelected>AUTO</TargetTypeSelected>
+  <MultidotEnemyNumberMin>2</MultidotEnemyNumberMin>
+  <MultidotEnemyNumberMax>5</MultidotEnemyNumberMax>
+  <MultidotEnabled>True</MultidotEnabled>
+  <MultidotAvoidCC>True</MultidotAvoidCC>
+  <PullDistance>28</PullDistance>
+  <UsePet>True</UsePet>
+  <UsePetFreeze>True</UsePetFreeze>
+  <ArmorToUse>FROST</ArmorToUse>
+  <UseIcebarrier>False</UseIcebarrier>
+  <AutoBuffBrillance>True</AutoBuffBrillance>
+  <IceWardOnTank>False</IceWardOnTank>
+  <ManaPercent>20</ManaPercent>
+  <HealthPercent>0</HealthPercent>
+  <AOECount>4</AOECount>
+  <CDUseIcyVeins>COOLDOWN</CDUseIcyVeins>
+  <CDUseMirrorImage>COOLDOWN</CDUseMirrorImage>
+  <AutoFrozerOrb>True</AutoFrozerOrb>
+  <CDUseAlterTime>COOLDOWN</CDUseAlterTime>
+  <UseDeepFreeze>False</UseDeepFreeze>
+  <UseRingOfFrost>False</UseRingOfFrost>
+  <UseBlink>True</UseBlink>
+  <UseFrostNova>True</UseFrostNova>
+  <IceBlockHP>15</IceBlockHP>
+  <IceBlockUse>True</IceBlockUse>
+  <UseRuneOfPower>True</UseRuneOfPower>
+  <EvocationBuffAuto>True</EvocationBuffAuto>
+  <UseIncenterWardOnCD>True</UseIncenterWardOnCD>
+  <UseSpellSteal>False</UseSpellSteal>
+  <UsePolymorf>False</UsePolymorf>
+  <UseFlameStrike>True</UseFlameStrike>
+  <UseArcaneExplosion>True</UseArcaneExplosion>
+</FrostMageSettings>

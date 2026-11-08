@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FireMageSettings>
+  <PullDistance>28</PullDistance>
+  <AutoInterrupt>False</AutoInterrupt>
+  <UseManaGemPercent>85</UseManaGemPercent>
+  <AutofaceTarget>True</AutofaceTarget>
+  <UseDecurse>False</UseDecurse>
+  <TargetTypeSelected>AUTO</TargetTypeSelected>
+  <MultidotEnemyNumberMin>2</MultidotEnemyNumberMin>
+  <MultidotEnemyNumberMax>5</MultidotEnemyNumberMax>
+  <MultidotEnabled>True</MultidotEnabled>
+  <MultidotAvoidCC>True</MultidotAvoidCC>
+  <ArmorToUse>MOLTEN</ArmorToUse>
+  <UseIcebarrier>False</UseIcebarrier>
+  <AutoBuffBrillance>True</AutoBuffBrillance>
+  <IceWardOnTank>False</IceWardOnTank>
+  <ManaPercent>20</ManaPercent>
+  <HealthPercent>50</HealthPercent>
+  <EvocationHP>50</EvocationHP>
+  <UseEvocation>False</UseEvocation>
+  <UseEvocationInCombat>True</UseEvocationInCombat>
+  <AOECount>4</AOECount>
+  <UseFlameStrike>True</UseFlameStrike>
+  <UseDragonBreath>True</UseDragonBreath>
+  <UseArcaneExplosion>True</UseArcaneExplosion>
+  <CDUseCombustion>COOLDOWN</CDUseCombustion>
+  <MinIgniteForCombustion>20000</MinIgniteForCombustion>
+  <CDUseMirrorImage>COOLDOWN</CDUseMirrorImage>
+  <CDUseAlterTime>COOLDOWN</CDUseAlterTime>
+  <UseDeepFreeze>False</UseDeepFreeze>
+  <UseRingOfFrost>False</UseRingOfFrost>
+  <UseBlink>True</UseBlink>
+  <UseFrostNova>True</UseFrostNova>
+  <UseRuneOfPower>True</UseRuneOfPower>
+  <EvocationBuffAuto>True</EvocationBuffAuto>
+  <UseIncenterWardOnCD>True</UseIncenterWardOnCD>
+  <IceBlockHP>15</IceBlockHP>
+  <IceBlockUse>True</IceBlockUse>
+  <PyroOnlyWithHU>True</PyroOnlyWithHU>
+  <UseSpellSteal>False</UseSpellSteal>
+  <UsePolymorf>False</UsePolymorf>
+</FireMageSettings>

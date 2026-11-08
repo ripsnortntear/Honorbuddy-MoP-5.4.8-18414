@@ -36,8 +36,7 @@
   <UseFlightPaths>True</UseFlightPaths>
   <FindMountAutomatically>True</FindMountAutomatically>
   <UseRandomMount>True</UseRandomMount>
-  <MailRecipient>
-  </MailRecipient>
+  <MailRecipient></MailRecipient>
   <FoodName>81414</FoodName>
   <DrinkName>81414</DrinkName>
   <MountName>Dreadsteed</MountName>
