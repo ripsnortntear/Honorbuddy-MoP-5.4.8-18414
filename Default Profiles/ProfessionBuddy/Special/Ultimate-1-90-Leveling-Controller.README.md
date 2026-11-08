@@ -67,13 +67,23 @@ Unless `Questing Profile Override` is set, Questing mode selects:
 | 88 | Kun-Lai Summit 88-89 |
 | 89 | Townlong Steppes 89-90 |
 
-`Questing Profile Override` accepts an absolute path or a path relative to the controller XML. Use it to resume a different zone or profile. Neutral Pandaren must choose a faction before a faction-specific mapping can be selected.
+`Questing Profile Override` accepts an absolute path or a path relative to the controller XML. Use it to resume a different zone or profile.
+
+## Neutral Pandaren and faction choice
+
+For a neutral Pandaren at level 1-12, `Pandaren Faction Choice` defaults to `Ask`. In `Auto` or `Questing` mode, the controller shows an **Alliance / Horde / Choose Later** dialog before loading the Wandering Isle profile.
+
+- **Alliance** loads `[A - Quest] Panda 1-12 [Kick].xml`. At `A New Fate` (quest 31450), that profile selects Alliance (`NeutralPlayerSelectFaction(2)`), completes the Alliance introduction, then loads `[A - Quest] EK 12-58 [Kick]`.
+- **Horde** loads `[H - Quest] Panda 1-12 [Kick].xml`. At `A New Fate`, it selects Horde (`NeutralPlayerSelectFaction(1)`), completes the Horde introduction, then loads `[H - Quest] 12-58 K-EK [Kick]`.
+- **Choose Later** defers loading the Wandering Isle profile. Set `Pandaren Faction Choice` to `Alliance` or `Horde`, or leave it as `Ask` and run the controller again when ready.
+
+The choice is saved in PB settings before the story quest; the Kick profile applies it automatically when the story reaches `A New Fate`. After the in-game choice, the controller and Cooking/Fishing handoffs detect `Me.IsAlliance`/`Me.IsHorde` and use the corresponding faction profiles. Changing the PB setting after the in-game faction choice does not change your actual faction.
 
 ## Validation performed
 
 - XML parses successfully.
 - All 10 declarative `Path` references resolve.
-- All 19 dynamic questing/profile references resolve.
-- All 30 custom C# blocks and 21 conditions compile as C# 5/x86 against this installation's `Honorbuddy.exe` API surface.
+- All 21 dynamic questing/profile references resolve.
+- All 32 custom C# blocks and 23 conditions compile as C# 5/x86 against this installation's `Honorbuddy.exe` API surface.
 
 In-game behavior still depends on server data, NPC phasing, quests already completed, profile settings, and the Kick/PB profiles themselves.

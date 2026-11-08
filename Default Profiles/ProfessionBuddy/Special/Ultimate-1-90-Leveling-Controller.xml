@@ -14,6 +14,8 @@
 
     In Auto, the profession chooser appears at level 5+ when fewer than two primary
     professions are known and no choices are saved. Choices are saved to PB profile settings.
+    Neutral Pandaren get an Alliance/Horde chooser before loading the Wandering Isle;
+    the selected Kick Panda profile applies that choice at A New Fate and chains onward.
     See Ultimate-1-90-Leveling-Controller.README.md for setup and profile coverage.
   -->
 
@@ -25,6 +27,7 @@
   <Setting DefaultValue="None" Type="String" Name="Primary Profession 2" Summary="Second primary profession, or None." Category="Professions" Global="False" Hidden="False" />
   <Setting DefaultValue="True" Type="Boolean" Name="Prompt Profession Choice" Summary="At level 5+, prompt when fewer than 2 primary professions are known and choices are unset." Category="Professions" Global="False" Hidden="False" />
   <Setting DefaultValue="" Type="String" Name="Questing Profile Override" Summary="Optional HB profile path (absolute or relative to this file). Empty = automatic level/faction Kick profile." Category="Questing" Global="False" Hidden="False" />
+  <Setting DefaultValue="Ask" Type="String" Name="Pandaren Faction Choice" Summary="Neutral Pandaren only: Ask, Alliance, or Horde. The selected Kick Panda profile applies this at A New Fate (quest 31450)." Category="Questing" Global="False" Hidden="False" />
 
   <Custom Code="try { Styx.Helpers.CharacterSettings.Instance.LootMobs = true; } catch {}" />
   <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_MODE&quot;, (((string)Settings[&quot;Mode&quot;]) ?? &quot;Auto&quot;).Trim().ToLowerInvariant());" />
@@ -203,6 +206,38 @@
     " />
   </If>
 
+  <!-- Neutral Pandaren: choose which Kick Panda profile to use before starting the Wandering Isle. -->
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; Me.Race == WoWRace.Pandaren &amp;&amp; !Me.IsAlliance &amp;&amp; !Me.IsHorde &amp;&amp; Me.Level &lt;= 12 &amp;&amp; string.IsNullOrWhiteSpace((string)Settings[&quot;Questing Profile Override&quot;]) &amp;&amp; Convert.ToString(Settings[&quot;Pandaren Faction Choice&quot;]).Equals(&quot;Ask&quot;, StringComparison.OrdinalIgnoreCase) &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;questing&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;auto&quot;)" IgnoreCanRun="True">
+    <Custom Code="
+      try {
+        using (var form = new System.Windows.Forms.Form()) {
+          form.Text = &quot;Ultimate 1-90 - Pandaren Faction Choice&quot;;
+          form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+          form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+          form.MaximizeBox = false; form.MinimizeBox = false; form.TopMost = true;
+          form.ClientSize = new System.Drawing.Size(520, 205);
+          var label = new System.Windows.Forms.Label();
+          label.SetBounds(12, 12, 496, 82);
+          label.Text = &quot;Your Pandaren is currently neutral.\r\nChoose the faction to select during 'A New Fate' (quest 31450).\r\nThe matching Kick Panda profile will apply this choice at that story point and then continue into the 12-58 profile. You can cancel and choose later.&quot;;
+          form.Controls.Add(label);
+          var alliance = new System.Windows.Forms.Button(); alliance.Text = &quot;Alliance (Aysa)&quot;; alliance.SetBounds(45, 122, 130, 40);
+          var horde = new System.Windows.Forms.Button(); horde.Text = &quot;Horde (Ji)&quot;; horde.SetBounds(195, 122, 130, 40);
+          var cancel = new System.Windows.Forms.Button(); cancel.Text = &quot;Choose Later&quot;; cancel.SetBounds(345, 122, 130, 40); cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+          alliance.Click += delegate { AppDomain.CurrentDomain.SetData(&quot;ULT_PANDA_CHOICE&quot;, &quot;alliance&quot;); form.DialogResult = System.Windows.Forms.DialogResult.OK; form.Close(); };
+          horde.Click += delegate { AppDomain.CurrentDomain.SetData(&quot;ULT_PANDA_CHOICE&quot;, &quot;horde&quot;); form.DialogResult = System.Windows.Forms.DialogResult.OK; form.Close(); };
+          form.Controls.Add(alliance); form.Controls.Add(horde); form.Controls.Add(cancel); form.CancelButton = cancel;
+          if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            string choice = (string)AppDomain.CurrentDomain.GetData(&quot;ULT_PANDA_CHOICE&quot;);
+            Settings[&quot;Pandaren Faction Choice&quot;] = choice;
+            Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;Pandaren faction choice saved: {0}. It will be applied at A New Fate.&quot;, choice);
+          } else {
+            Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Pandaren faction choice deferred; no Wandering Isle profile will be loaded until you choose.&quot;);
+          }
+        }
+      } catch (Exception ex) { Log(Colors.Red,&quot;Ultimate 1-90:&quot;, Colors.White, &quot;Pandaren faction chooser failed: {0}. Set Pandaren Faction Choice to Alliance or Horde in PB Settings.&quot;, ex.Message); }
+    " />
+  </If>
+
   <!-- Default questing: select the correct Kick profile by level and faction. -->
   <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; string.IsNullOrWhiteSpace((string)Settings[&quot;Questing Profile Override&quot;]) &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;questing&quot; || ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;auto&quot; &amp;&amp; Me.Level &lt; 90))" IgnoreCanRun="True">
     <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, true); SwitchToBot(&quot;Questing&quot;);" />
@@ -210,7 +245,11 @@
       try {
         string rel = null;
         if (Me.Level &lt;= 12) {
-          if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 Auto-Loader [Kick].xml&quot;;
+          if (Me.Race == WoWRace.Pandaren &amp;&amp; !Me.IsAlliance &amp;&amp; !Me.IsHorde) {
+            string pandaChoice = (Convert.ToString(Settings[&quot;Pandaren Faction Choice&quot;]) ?? &quot;Ask&quot;).Trim().ToLowerInvariant();
+            if (pandaChoice == &quot;alliance&quot;) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 [Kick]\[A - Quest] Panda 1-12 [Kick].xml&quot;;
+            else if (pandaChoice == &quot;horde&quot;) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[H - Quest] 1-58 [Kick]\[H - Quest] 1-12 [Kick]\[H - Quest] Panda 1-12 [Kick].xml&quot;;
+          } else if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 Auto-Loader [Kick].xml&quot;;
           else if (Me.IsHorde) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[H - Quest] 1-58 [Kick]\[H - Quest] 1-12 Auto-Loader [Kick].xml&quot;;
         } else if (Me.Level &lt;= 57) {
           if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] EK 12-58 [Kick].xml&quot;;
