@@ -414,16 +414,12 @@ namespace Bots.GrindBuddy
                 new Decorator(ret => CleanPoi,
                     new PrioritySelector(
                         new DecoratorIsNotPoiType(new[] { PoiType.Kill, PoiType.Loot, PoiType.Skin, PoiType.Harvest },
-                            new Decorator(ret =>
-                            {
-                                var units = GetGrindUnits().ToList();
-                                return units.Count > 0;
-                            },
+                            new Decorator(ret => GetGrindUnits().Any(),
                                 new PrioritySelector(
                                     new Decorator(ret =>
                                     {
                                         var unit = GetGrindUnits().FirstOrDefault();
-                                        return unit != null && unit.Distance < Targeting.PullDistance;
+                                        return unit != null && unit.IsValid && unit.Distance < Targeting.PullDistance;
                                     },
                                         new Sequence(
                                             new Action(ret =>
@@ -433,11 +429,11 @@ namespace Bots.GrindBuddy
                                                     unit.Target();
                                             }),
                                             new Wait(5, ret => StyxWoW.Me != null && StyxWoW.Me.GotTarget, new ActionIdle()),
-                                            new ActionSetPoi(ret => StyxWoW.Me != null ? new BotPoi(StyxWoW.Me.CurrentTarget, PoiType.Kill) : null))),
+                                            new ActionSetPoi(ret => (StyxWoW.Me != null && StyxWoW.Me.CurrentTarget != null) ? new BotPoi(StyxWoW.Me.CurrentTarget, PoiType.Kill) : null))),
                                     new Decorator(ret =>
                                     {
                                         var unit = GetGrindUnits().FirstOrDefault();
-                                        return unit != null && unit.Distance >= Targeting.PullDistance;
+                                        return unit != null && unit.IsValid && unit.Distance >= Targeting.PullDistance;
                                     },
                                         new Sequence(
                                             new Action(ret =>
@@ -452,12 +448,12 @@ namespace Bots.GrindBuddy
                                                     new Decorator(ret =>
                                                     {
                                                         var unit = GetGrindUnits().FirstOrDefault();
-                                                        return unit != null && Mount.ShouldMount(unit.Location);
+                                                        return unit != null && unit.IsValid && Mount.ShouldMount(unit.Location);
                                                     },
                                                         new Action(ret =>
                                                         {
                                                             var unit = GetGrindUnits().FirstOrDefault();
-                                                            if (unit != null)
+                                                            if (unit != null && unit.IsValid)
                                                                 Mount.StateMount(() => unit.Location);
                                                         })),
                                                     new ActionMoveToTarget())))))))),
@@ -683,7 +679,7 @@ namespace Bots.GrindBuddy
         {
             if (blackspots == null)
                 return false;
-            return blackspots.Any(t => t != null && point.Distance2DSqr(t.Location) <= t.Radius * t.Radius);
+            return blackspots.Any(t => point.Distance2DSqr(t.Location) <= t.Radius * t.Radius);
         }
     }
 }
