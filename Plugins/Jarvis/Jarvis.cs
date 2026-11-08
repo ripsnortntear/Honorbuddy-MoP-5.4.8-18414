@@ -266,7 +266,7 @@ namespace JarvisPlugin
             sb.AppendLine("- Name: " + SafeName(me.Name) + "  Class: " + me.Class + "  Race: " + me.Race + "  Level: " + me.Level);
             sb.AppendLine("- Zone: " + SafeZoneName(me) + "  Area: " + SafeName(me.SubZoneText));
             sb.AppendLine("- Health: " + me.HealthPercent.ToString("0") + "%  Mana/Power: " + me.ManaPercent.ToString("0") + "%  Combat: " + me.Combat);
-            sb.AppendLine("- XP: " + GetXpSummary());
+            sb.AppendLine("- XP: " + GetXpSummary(me));
             sb.AppendLine("- Gold: " + FormatCopper(me.Copper));
             sb.AppendLine("- Bags: free=" + me.FreeBagSlots + " (approx)  Items: " + SafeCount(me.BagItems));
             sb.AppendLine("- Durability: " + AverageDurability(me).ToString("0") + "% (equipped avg)");
@@ -503,25 +503,17 @@ namespace JarvisPlugin
             return ts.Seconds + "s";
         }
 
-        private static string GetXpSummary()
+        private static string GetXpSummary(LocalPlayer me)
         {
             try
             {
-                // HB 5.4.8 API surface varies; use Lua for broad compatibility.
-                var values = Lua.GetReturnValues("local c,m=UnitXP('player'),UnitXPMax('player'); if not c or not m then return '0|0' end; return tostring(c)..'|'..tostring(m)", "JarvisXP.lua");
-                if (values != null && values.Count > 0 && !string.IsNullOrEmpty(values[0]))
-                {
-                    string[] parts = values[0].Split('|');
-                    if (parts.Length >= 2)
-                    {
-                        ulong cur, max;
-                        if (ulong.TryParse(parts[0], out cur) && ulong.TryParse(parts[1], out max))
-                        {
-                            ulong pct = max == 0 ? 0 : (cur * 100UL / max);
-                            return cur + "/" + Math.Max(1UL, max) + " (" + pct + "%)";
-                        }
-                    }
-                }
+                // Honorbuddy docs (Help/Honorbuddy.chm, HB 3.0.1160 / 5.4.8): WoWPlayer.Experience, WoWPlayer.NextLevelExperience.
+                uint cur = me.Experience;
+                uint max = me.NextLevelExperience;
+                if (max == 0)
+                    return cur + "/0 (max level?)";
+                uint pct = cur * 100u / max;
+                return cur + "/" + max + " (" + pct + "%)";
             }
             catch (Exception ex)
             {
