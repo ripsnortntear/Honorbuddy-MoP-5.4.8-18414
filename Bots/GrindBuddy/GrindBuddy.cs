@@ -516,7 +516,7 @@ namespace Bots.GrindBuddy
                     new Decorator(ret => StyxWoW.Me != null && BotPoi.Current != null && StyxWoW.Me.Location.Distance(BotPoi.Current.Location) > 4f,
                         new ActionMoveToPoi())),
 
-                new ActionAlwaysSucceed());
+                new ActionAlwaysSucceed()));
         }
 
         private static bool IsOutsideLootRange(WoWObject obj)
