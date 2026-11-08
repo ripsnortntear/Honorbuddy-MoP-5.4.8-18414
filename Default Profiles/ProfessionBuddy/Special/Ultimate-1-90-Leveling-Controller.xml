@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <!--
+    Ultimate 1-90 Leveling Controller (MoP 5.4.8 / Honorbuddy 18414)
+    All classes/races; detects faction, level, class, race and profession state.
+
+    Run ONE mode at a time (Honorbuddy can only run one bot at a time):
+      Auto                - Cooking/Fishing (if needed), then Archaeology at 20+, then Questing.
+      Setup               - show the two-primary-profession chooser only.
+      CookingFishing      - load the faction JWheels Cooking/Fishing PB profile.
+      Archaeology         - switch PB secondary bot to ArchaeologyBuddy (level 20+).
+      PrimaryProfessions  - load a mapped profile for Primary Profession 1/2.
+      Questing            - select the Kick profile for your level/faction (or Questing Profile Override).
+
+    In Auto, the profession chooser appears at level 5+ when fewer than two primary
+    professions are known and no choices are saved. Choices are saved to PB profile settings.
+    See Ultimate-1-90-Leveling-Controller.README.md for setup and profile coverage.
+  -->
+
+  <Setting DefaultValue="Auto" Type="String" Name="Mode" Summary="Auto, Setup, Questing, CookingFishing, Archaeology, or PrimaryProfessions." Category="Controller" Global="False" Hidden="False" />
+  <Setting DefaultValue="True" Type="Boolean" Name="Enable Fishing and Cooking" Summary="Allow Auto mode to load Cooking/Fishing when not maxed." Category="Professions" Global="False" Hidden="False" />
+  <Setting DefaultValue="True" Type="Boolean" Name="Enable Archaeology at 20+" Summary="Allow Auto mode to switch to ArchaeologyBuddy at level 20+." Category="Professions" Global="False" Hidden="False" />
+  <Setting DefaultValue="ArchaeologyBuddy" Type="String" Name="Archaeology Bot Name" Summary="HB bot name (default ArchaeologyBuddy)." Category="Professions" Global="False" Hidden="False" />
+  <Setting DefaultValue="None" Type="String" Name="Primary Profession 1" Summary="Alchemy, Blacksmithing, Enchanting, Engineering, Herbalism, Inscription, Jewelcrafting, Leatherworking, Mining, Skinning, Tailoring, or None." Category="Professions" Global="False" Hidden="False" />
+  <Setting DefaultValue="None" Type="String" Name="Primary Profession 2" Summary="Second primary profession, or None." Category="Professions" Global="False" Hidden="False" />
+  <Setting DefaultValue="True" Type="Boolean" Name="Prompt Profession Choice" Summary="At level 5+, prompt when fewer than 2 primary professions are known and choices are unset." Category="Professions" Global="False" Hidden="False" />
+  <Setting DefaultValue="" Type="String" Name="Questing Profile Override" Summary="Optional HB profile path (absolute or relative to this file). Empty = automatic level/faction Kick profile." Category="Questing" Global="False" Hidden="False" />
+
+  <Custom Code="try { Styx.Helpers.CharacterSettings.Instance.LootMobs = true; } catch {}" />
+  <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_MODE&quot;, (((string)Settings[&quot;Mode&quot;]) ?? &quot;Auto&quot;).Trim().ToLowerInvariant());" />
+  <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_P1&quot;, (((string)Settings[&quot;Primary Profession 1&quot;]) ?? &quot;None&quot;).Trim().ToLowerInvariant());" />
+  <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_P2&quot;, (((string)Settings[&quot;Primary Profession 2&quot;]) ?? &quot;None&quot;).Trim().ToLowerInvariant());" />
+  <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, false); AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, false);" />
+  <Custom Code="if (AppDomain.CurrentDomain.GetData(&quot;ULT_PROMPTED&quot;) == null) AppDomain.CurrentDomain.SetData(&quot;ULT_PROMPTED&quot;, false);" />
+  <Custom Code="Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;{0} | Lv{1} {2} {3} | {4} | Mode={5}&quot;, Me.Name, Me.Level, Me.Race, Me.Class, (Me.IsAlliance ? &quot;Alliance&quot; : Me.IsHorde ? &quot;Horde&quot; : &quot;Neutral/undecided&quot;), AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;));" />
+
+  <!-- Count learned primary professions using the PB-supported HB skill API. -->
+  <Custom Code="
+    try {
+      int count = 0;
+      Func&lt;Styx.SkillLine, bool&gt; has = delegate(Styx.SkillLine line) {
+        try { return Me.GetSkill(line).MaxValue &gt; 0; } catch { return false; }
+      };
+      if (has(Styx.SkillLine.Alchemy)) count++;
+      if (has(Styx.SkillLine.Blacksmithing)) count++;
+      if (has(Styx.SkillLine.Enchanting)) count++;
+      if (has(Styx.SkillLine.Engineering)) count++;
+      if (has(Styx.SkillLine.Herbalism)) count++;
+      if (has(Styx.SkillLine.Inscription)) count++;
+      if (has(Styx.SkillLine.Jewelcrafting)) count++;
+      if (has(Styx.SkillLine.Leatherworking)) count++;
+      if (has(Styx.SkillLine.Mining)) count++;
+      if (has(Styx.SkillLine.Skinning)) count++;
+      if (has(Styx.SkillLine.Tailoring)) count++;
+      AppDomain.CurrentDomain.SetData(&quot;ULT_PRIMARIES&quot;, count);
+      Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.White, &quot;Primary professions known: {0}/2; configured: {1}, {2}&quot;, count, AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;), AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;));
+    } catch (Exception ex) {
+      AppDomain.CurrentDomain.SetData(&quot;ULT_PRIMARIES&quot;, -1);
+      Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Skill scan failed: {0}&quot;, ex.Message);
+    }
+  " />
+
+  <!-- Two-profession chooser: a real Windows Forms box, once per HB process unless forced by Setup. -->
+  <If Condition="Me.Level &gt;= 5 &amp;&amp; (int)AppDomain.CurrentDomain.GetData(&quot;ULT_PRIMARIES&quot;) &gt;= 0 &amp;&amp; (int)AppDomain.CurrentDomain.GetData(&quot;ULT_PRIMARIES&quot;) &lt; 2 &amp;&amp; (!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PROMPTED&quot;) || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;setup&quot;) &amp;&amp; ((bool)Settings[&quot;Prompt Profession Choice&quot;] || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;setup&quot;) &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;none&quot; &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;none&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;setup&quot;)" IgnoreCanRun="True">
+    <Custom Code="
+      AppDomain.CurrentDomain.SetData(&quot;ULT_PROMPTED&quot;, true);
+      try {
+        string[] options = new string[] { &quot;None&quot;, &quot;Alchemy&quot;, &quot;Blacksmithing&quot;, &quot;Enchanting&quot;, &quot;Engineering&quot;, &quot;Herbalism&quot;, &quot;Inscription&quot;, &quot;Jewelcrafting&quot;, &quot;Leatherworking&quot;, &quot;Mining&quot;, &quot;Skinning&quot;, &quot;Tailoring&quot; };
+        using (var form = new System.Windows.Forms.Form()) {
+          form.Text = &quot;Ultimate 1-90 - Choose 2 Primary Professions&quot;;
+          form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+          form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+          form.MaximizeBox = false;
+          form.MinimizeBox = false;
+          form.ClientSize = new System.Drawing.Size(560, 255);
+          form.TopMost = true;
+
+          var label = new System.Windows.Forms.Label();
+          label.SetBounds(12, 12, 536, 78);
+          label.Text = string.Format(&quot;{0} (level {1} {2} {3})\r\nChoose up to two primary professions.\r\nThe controller saves your choices in PB Settings and maps them to available profiles in PrimaryProfessions mode.\r\nCooking, Fishing and Archaeology are secondary and do not use these two slots.&quot;, Me.Name, Me.Level, Me.Race, Me.Class);
+          form.Controls.Add(label);
+
+          var firstLabel = new System.Windows.Forms.Label(); firstLabel.Text = &quot;Profession 1:&quot;; firstLabel.SetBounds(12, 100, 90, 23); form.Controls.Add(firstLabel);
+          var secondLabel = new System.Windows.Forms.Label(); secondLabel.Text = &quot;Profession 2:&quot;; secondLabel.SetBounds(12, 138, 90, 23); form.Controls.Add(secondLabel);
+
+          var first = new System.Windows.Forms.ComboBox(); first.SetBounds(112, 96, 420, 23); first.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList; first.Items.AddRange(options);
+          var second = new System.Windows.Forms.ComboBox(); second.SetBounds(112, 134, 420, 23); second.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList; second.Items.AddRange(options);
+          string configured1 = (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;);
+          string configured2 = (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;);
+          first.SelectedItem = options.FirstOrDefault(o =&gt; o.Equals(configured1, StringComparison.OrdinalIgnoreCase)) ?? &quot;Mining&quot;;
+          second.SelectedItem = options.FirstOrDefault(o =&gt; o.Equals(configured2, StringComparison.OrdinalIgnoreCase)) ?? &quot;Herbalism&quot;;
+          form.Controls.Add(first); form.Controls.Add(second);
+
+          var ok = new System.Windows.Forms.Button(); ok.Text = &quot;Save Choices&quot;; ok.SetBounds(316, 190, 105, 32);
+          var cancel = new System.Windows.Forms.Button(); cancel.Text = &quot;Cancel&quot;; cancel.SetBounds(427, 190, 105, 32); cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+          ok.Click += delegate {
+            if ((string)first.SelectedItem == (string)second.SelectedItem &amp;&amp; (string)first.SelectedItem != &quot;None&quot;) {
+              System.Windows.Forms.MessageBox.Show(&quot;Choose two different professions, or set Profession 2 to None.&quot;, &quot;Ultimate 1-90&quot;);
+              return;
+            }
+            form.DialogResult = System.Windows.Forms.DialogResult.OK;
+            form.Close();
+          };
+          form.Controls.Add(ok); form.Controls.Add(cancel); form.AcceptButton = ok; form.CancelButton = cancel;
+
+          if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            string p1 = ((string)first.SelectedItem ?? &quot;None&quot;).Trim().ToLowerInvariant();
+            string p2 = ((string)second.SelectedItem ?? &quot;None&quot;).Trim().ToLowerInvariant();
+            AppDomain.CurrentDomain.SetData(&quot;ULT_P1&quot;, p1); AppDomain.CurrentDomain.SetData(&quot;ULT_P2&quot;, p2);
+            try { Settings[&quot;Primary Profession 1&quot;] = p1; Settings[&quot;Primary Profession 2&quot;] = p2; } catch (Exception saveEx) { Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Settings save warning: {0}&quot;, saveEx.Message); }
+            Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;Saved profession choices: {0}, {1}&quot;, p1, p2);
+          } else {
+            Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Profession chooser cancelled; no changes made.&quot;);
+          }
+        }
+      } catch (Exception ex) {
+        Log(Colors.Red,&quot;Ultimate 1-90:&quot;, Colors.White, &quot;Profession chooser failed: {0}. Set Primary Profession 1/2 manually in PB Settings.&quot;, ex.Message);
+      }
+    " />
+  </If>
+
+  <!-- Cooking + Fishing: the selected PB profile replaces this controller and performs training/leveling. -->
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;cookingfishing&quot; || ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;auto&quot; &amp;&amp; (bool)Settings[&quot;Enable Fishing and Cooking&quot;] &amp;&amp; Me.Level &gt;= 5 &amp;&amp; (Fishing.MaxLevel == 0 || Cooking.MaxLevel == 0 || Fishing.Level &lt; Fishing.MaxLevel || Cooking.Level &lt; Cooking.MaxLevel)))" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, true); Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;Cooking/Fishing handoff (faction JWheels PB profile).&quot;);" />
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <LoadProfile ProfileType="Professionbuddy" Path="..\Cooking-Fishing\Cooking-Fishing-1-525-Alliance-JWheels.xml" IsLocal="True" />
+    </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True">
+      <LoadProfile ProfileType="Professionbuddy" Path="..\Cooking-Fishing\Cooking-Fishing-1-525-Horde-JWheels.xml" IsLocal="True" />
+    </If>
+    <If Condition="!Me.IsAlliance &amp;&amp; !Me.IsHorde" IgnoreCanRun="True">
+      <Custom Code="Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Faction not chosen yet; load an Alliance/Horde Cooking-Fishing profile manually after choosing a faction.&quot;);" />
+    </If>
+  </If>
+
+  <!-- ArchaeologyBuddy has AutoTrain and TrainUpto settings; train/configure it there as needed. -->
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; Me.Level &gt;= 20 &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;archaeology&quot; || ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;auto&quot; &amp;&amp; (bool)Settings[&quot;Enable Archaeology at 20+&quot;]))" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, true); Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;Archaeology handoff (level 20+). ArchaeologyBuddy settings: AutoTrain / TrainUpto control training and skill cap.&quot;);" />
+    <Custom Code="SwitchToBot((string)Settings[&quot;Archaeology Bot Name&quot;]);" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;archaeology&quot; &amp;&amp; Me.Level &lt; 20" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, true); Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Archaeology is level-gated to 20+ in this controller; no bot switch was made.&quot;);" />
+  </If>
+
+  <!-- PrimaryProfessions: mapped, explicit profile loads. Re-run for a second different profile if needed. -->
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot;" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, true); Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;Primary profession dispatch: {0}, {1}&quot;, AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;), AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;));" />
+  </If>
+
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;mining&quot; &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;herbalism&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;herbalism&quot; &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;mining&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <LoadProfile ProfileType="Professionbuddy" Path="..\Farming\Mining-Herb\Mining-Herb-1-600-Flying-GB2.xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;alchemy&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;alchemy&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <LoadProfile ProfileType="Professionbuddy" Path="..\Alchemy\Alchemist-1-500-Dalaran-AH.xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;jewelcrafting&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;jewelcrafting&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <LoadProfile ProfileType="Professionbuddy" Path="..\Jewelcrafting\Jewelcrafting-1-500.xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;enchanting&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;enchanting&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;tailoring&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;tailoring&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <LoadProfile ProfileType="Professionbuddy" Path="..\Enchanting-Tailoring\Enchanting-Tailoring-1-600-Neutral.xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;inscription&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;inscription&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <LoadProfile ProfileType="Professionbuddy" Path="..\Inscription\Inscription-Silkweed-Scribe-Max-NPH.xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) != &quot;herbalism&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;mining&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;mining&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <LoadProfile ProfileType="Professionbuddy" Path="..\Farming\Mining-Herb\Mining-Herb-1-600-Flying-GB2.xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) != &quot;mining&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;herbalism&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;herbalism&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <LoadProfile ProfileType="Professionbuddy" Path="..\Farming\Mining-Herb\Mining-Herb-1-600-Flying-GB2.xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; Me.IsAlliance &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;skinning&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;skinning&quot;)" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_PP_LOAD&quot;, true);" />
+    <ChangeBot BotName="Questing" />
+    <LoadProfile ProfileType="Honorbuddy" Path="..\..\1-90 Questing Profile Pack\Professions\Skinning\[A - Fly] QO Skinning 1-525 [Kick].xml" IsLocal="True" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; Me.IsHorde &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;skinning&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;skinning&quot;)" IgnoreCanRun="True">
+    <Custom Code="Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Only an Alliance Skinning leveling profile is bundled; load a Horde skinning profile manually.&quot;);" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;blacksmithing&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;blacksmithing&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;engineering&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;engineering&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;leatherworking&quot; || (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;leatherworking&quot;)" IgnoreCanRun="True">
+    <Custom Code="Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;Blacksmithing/Engineering/Leatherworking have no complete leveling profile bundled. Train manually and provide a profile; gathering/crafting choices with mappings can still be loaded.&quot;);" />
+  </If>
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_PP_LOAD&quot;) &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;primaryprofessions&quot; &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P1&quot;) == &quot;none&quot; &amp;&amp; (string)AppDomain.CurrentDomain.GetData(&quot;ULT_P2&quot;) == &quot;none&quot;" IgnoreCanRun="True">
+    <Custom Code="Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;No primary professions selected. Run Setup or set Primary Profession 1/2 in PB Settings.&quot;);" />
+  </If>
+
+  <!-- Optional exact profile override for resuming later 1-90 zones/expansions. -->
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;questing&quot; || ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;auto&quot; &amp;&amp; Me.Level &lt; 90)) &amp;&amp; !string.IsNullOrWhiteSpace((string)Settings[&quot;Questing Profile Override&quot;])" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, true); SwitchToBot(&quot;Questing&quot;);" />
+    <Custom Code="
+      try {
+        string path = ((string)Settings[&quot;Questing Profile Override&quot;]).Trim();
+        if (!System.IO.Path.IsPathRooted(path)) path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(ProfessionbuddyBot.Instance.CurrentProfile.XmlPath), path);
+        ProfileManager.LoadNew(path, false);
+        Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;Loaded questing override: {0}&quot;, path);
+      } catch (Exception ex) { Log(Colors.Red,&quot;Ultimate 1-90:&quot;, Colors.White, &quot;Questing override failed: {0}&quot;, ex.Message); }
+    " />
+  </If>
+
+  <!-- Default questing: select the correct Kick profile by level and faction. -->
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;) &amp;&amp; string.IsNullOrWhiteSpace((string)Settings[&quot;Questing Profile Override&quot;]) &amp;&amp; ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;questing&quot; || ((string)AppDomain.CurrentDomain.GetData(&quot;ULT_MODE&quot;) == &quot;auto&quot; &amp;&amp; Me.Level &lt; 90))" IgnoreCanRun="True">
+    <Custom Code="AppDomain.CurrentDomain.SetData(&quot;ULT_HANDLED&quot;, true); SwitchToBot(&quot;Questing&quot;);" />
+    <Custom Code="
+      try {
+        string rel = null;
+        if (Me.Level &lt;= 12) {
+          if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] 1-12 Auto-Loader [Kick].xml&quot;;
+          else if (Me.IsHorde) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[H - Quest] 1-58 [Kick]\[H - Quest] 1-12 Auto-Loader [Kick].xml&quot;;
+        } else if (Me.Level &lt;= 57) {
+          if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[A - Quest] 1-58 [Kick]\[A - Quest] EK 12-58 [Kick].xml&quot;;
+          else if (Me.IsHorde) rel = @&quot;..\..\1-90 Questing Profile Pack\Classic\[H - Quest] 1-58 [Kick]\[H - Quest] 12-58 K-EK [Kick].xml&quot;;
+        } else if (Me.Level &lt;= 67) {
+          if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\BC\[Fly][A - Quest] BC 58-70 [Kick].xml&quot;;
+          else if (Me.IsHorde) rel = @&quot;..\..\1-90 Questing Profile Pack\BC\[Fly][H - Quest] BC 58-70 [Kick].xml&quot;;
+        } else if (Me.Level &lt;= 79) {
+          if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\LK\[Fly][A - Quest] LK 68-80 [Kick].xml&quot;;
+          else if (Me.IsHorde) rel = @&quot;..\..\1-90 Questing Profile Pack\LK\[Fly][H - Quest] LK 68-80 [Kick].xml&quot;;
+        } else if (Me.Level &lt;= 81) rel = @&quot;..\..\1-90 Questing Profile Pack\Cata\[Fly][N - Quest] Hyjal 80-82 [Kick].xml&quot;;
+        else if (Me.Level == 82) rel = @&quot;..\..\1-90 Questing Profile Pack\Cata\[Fly][N - Quest] Deepholm 82-84 [Kick].xml&quot;;
+        else if (Me.Level == 83) rel = @&quot;..\..\1-90 Questing Profile Pack\Cata\[Fly][N - Quest] Uldum 83-85 [Kick].xml&quot;;
+        else if (Me.Level == 84) {
+          if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\Cata\[Fly][A - Quest] Twilight Highlands 84-85 [Kick].xml&quot;;
+          else if (Me.IsHorde) rel = @&quot;..\..\1-90 Questing Profile Pack\Cata\[Fly][H - Quest] Twilight Highlands 84-85 [Kick].xml&quot;;
+        } else if (Me.Level == 85) {
+          if (Me.IsAlliance) rel = @&quot;..\..\1-90 Questing Profile Pack\MoP\[A - Quest] 85-86 The Jade Forest [Kick].xml&quot;;
+          else if (Me.IsHorde) rel = @&quot;..\..\1-90 Questing Profile Pack\MoP\[H - Quest] 85-86 The Jade Forest [Kick].xml&quot;;
+        } else if (Me.Level == 86) rel = @&quot;..\..\1-90 Questing Profile Pack\MoP\[N - Quest] 86-87 Valley of the Four Winds [Kick].xml&quot;;
+        else if (Me.Level == 87) rel = @&quot;..\..\1-90 Questing Profile Pack\MoP\[N - Quest] 87-88 Krasarang Wilds [Kick].xml&quot;;
+        else if (Me.Level == 88) rel = @&quot;..\..\1-90 Questing Profile Pack\MoP\[N - Quest] 88-89 Kun-Lai Summit [Kick].xml&quot;;
+        else if (Me.Level == 89) rel = @&quot;..\..\1-90 Questing Profile Pack\MoP\[N - Quest] 89-90 Townlong Steppes [Kick].xml&quot;;
+
+        if (rel == null) {
+          Log(Colors.Orange,&quot;Ultimate 1-90:&quot;, Colors.Yellow, &quot;No faction/level questing mapping for this toon. Choose a faction or set Questing Profile Override.&quot;);
+        } else {
+          string full = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(ProfessionbuddyBot.Instance.CurrentProfile.XmlPath), rel);
+          if (!System.IO.File.Exists(full)) {
+            Log(Colors.Red,&quot;Ultimate 1-90:&quot;, Colors.White, &quot;Questing profile not found: {0}&quot;, full);
+          } else {
+            Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.LightGreen, &quot;Questing handoff (Lv{0}, {1}): {2}&quot;, Me.Level, Me.Race, rel);
+            ProfileManager.LoadNew(full, false);
+          }
+        }
+      } catch (Exception ex) { Log(Colors.Red,&quot;Ultimate 1-90:&quot;, Colors.White, &quot;Questing auto-selection failed: {0}&quot;, ex.Message); }
+    " />
+  </If>
+
+  <If Condition="!(bool)AppDomain.CurrentDomain.GetData(&quot;ULT_HANDLED&quot;)" IgnoreCanRun="True">
+    <Custom Code="Log(Colors.DeepSkyBlue,&quot;Ultimate 1-90:&quot;, Colors.White, &quot;Controller pass complete (Setup, level 90, or no enabled action). Set Mode and re-run to continue another activity.&quot;);" />
+  </If>
+</Professionbuddy>
