@@ -41,7 +41,28 @@ namespace JarvisPlugin
                     string system = settings.SystemPrompt ?? "";
                     string user = BuildUserMessage(userQuestion, contextSnapshot);
                     string body = BuildChatCompletionsJson(model, system, user, settings.Temperature, Math.Max(64, settings.MaxTokens));
-                    string response = PostJson(endpoint, settings.ApiKey, body, Math.Max(5, settings.TimeoutSeconds));
+                    string response = null;
+                    try
+                    {
+                        response = PostJson(endpoint, settings.ApiKey, body, Math.Max(5, settings.TimeoutSeconds));
+                    }
+                    catch (Exception ex)
+                    {
+                        // One conservative retry for rate limiting (429) when Retry-After is short.
+                        string msg = ex.Message ?? "";
+                        if (msg.IndexOf("429", StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            int delaySec = ParseRetryAfterSeconds(msg, 5);
+                            if (delaySec > 0 && delaySec <= 15)
+                            {
+                                Logging.WriteDiagnostic("[Jarvis] AI 429 rate-limited; retrying once after " + delaySec + "s.");
+                                Thread.Sleep(delaySec * 1000);
+                                response = PostJson(endpoint, settings.ApiKey, body, Math.Max(5, settings.TimeoutSeconds));
+                            }
+                            else throw;
+                        }
+                        else throw;
+                    }
                     string content = ExtractAssistantContent(response);
                     if (string.IsNullOrEmpty(content))
                         onComplete(new AiResult { Success = false, Error = "AI response contained no assistant content.", Message = Truncate(response, 500) });
@@ -125,10 +146,34 @@ namespace JarvisPlugin
             using (Stream reqStream = req.GetRequestStream())
                 reqStream.Write(bytes, 0, bytes.Length);
 
-            using (var resp = (HttpWebResponse)req.GetResponse())
-            using (Stream s = resp.GetResponseStream())
-            using (var reader = new StreamReader(s ?? Stream.Null, Encoding.UTF8))
-                return reader.ReadToEnd();
+            try
+            {
+                using (var resp = (HttpWebResponse)req.GetResponse())
+                using (Stream s = resp.GetResponseStream())
+                using (var reader = new StreamReader(s ?? Stream.Null, Encoding.UTF8))
+                    return reader.ReadToEnd();
+            }
+            catch (WebException wex)
+            {
+                string details = wex.Message;
+                try
+                {
+                    var httpResp = wex.Response as HttpWebResponse;
+                    if (httpResp != null)
+                    {
+                        string retryAfter = httpResp.Headers["Retry-After"];
+                        string body = null;
+                        using (Stream es = httpResp.GetResponseStream())
+                        using (var er = new StreamReader(es ?? Stream.Null, Encoding.UTF8))
+                            body = er.ReadToEnd();
+                        details = "HTTP " + (int)httpResp.StatusCode + " " + httpResp.StatusCode;
+                        if (!string.IsNullOrEmpty(retryAfter)) details += " | Retry-After: " + retryAfter;
+                        if (!string.IsNullOrEmpty(body)) details += " | Body: " + Truncate(body, 800);
+                    }
+                }
+                catch { }
+                throw new Exception(details, wex);
+            }
         }
 
         private static string ExtractAssistantContent(string json)
@@ -185,6 +230,25 @@ namespace JarvisPlugin
                 else sb.Append(c);
             }
             return sb.ToString();
+        }
+
+        private static int ParseRetryAfterSeconds(string details, int fallback)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(details)) return fallback;
+                int idx = details.IndexOf("Retry-After:", StringComparison.OrdinalIgnoreCase);
+                if (idx < 0) return fallback;
+                idx += "Retry-After:".Length;
+                while (idx < details.Length && char.IsWhiteSpace(details[idx])) idx++;
+                int end = idx;
+                while (end < details.Length && char.IsDigit(details[end])) end++;
+                int sec;
+                if (end > idx && int.TryParse(details.Substring(idx, end - idx), out sec))
+                    return Math.Max(1, sec);
+            }
+            catch { }
+            return fallback;
         }
 
         private static string Truncate(string s, int max)
