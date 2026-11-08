@@ -153,7 +153,7 @@ namespace HighVoltz.Professionbuddy
 
 		public override string Name
 		{
-			get { return "ProfessionBuddy"; }
+			get { return "ProfessionBuddy (Source)"; }
 		}
 
 		public override PulseFlags PulseFlags
