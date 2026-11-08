@@ -68,7 +68,26 @@ namespace Oracle
 
         #region Misc
 
-        public override WoWClass Class { get { return StyxWoW.Me.Class; } }
+        public override WoWClass Class
+        {
+            get
+            {
+                if (StyxWoW.Me == null)
+                    return WoWClass.None;
+
+                switch (StyxWoW.Me.Class)
+                {
+                    case WoWClass.Druid:
+                    case WoWClass.Monk:
+                    case WoWClass.Paladin:
+                    case WoWClass.Priest:
+                    case WoWClass.Shaman:
+                        return StyxWoW.Me.Class;
+                    default:
+                        return WoWClass.None;
+                }
+            }
+        }
 
         private static WoWSpec Specialization { get { return StyxWoW.Me.Specialization; } }
 

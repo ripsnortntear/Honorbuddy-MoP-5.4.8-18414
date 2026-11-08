@@ -414,7 +414,7 @@ The previously stuck merge state (`MERGE_HEAD = 0611a26`) has been fully resolve
   - **Insanity** (`0205d0b4`): Made `Insanity` loader delegation null-safe if the inner compiled routine fails to instantiate.
   - **King-WoW** (`333867c3`): Fixed specialization cache/switching, added null guards, and hardened `ExtraUtils` and `SoundManager`.
   - **Leaves** (`36cca3a7`): Hardened loader delegation/null safety and removed dead install/update URLs.
-  - **Oracle** (`0eec12a6`, `a7866b5f`): Removed defunct remote endpoints, fixed config form lifecycle, added `ShutDown` event cleanup, guarded Chronicle crit heal estimates, fixed Holy Priest Lightspring/Lightwell IDs, and hardened Proving Grounds targeting.
+  - **Oracle** (`0eec12a6`, `a7866b5f`): Removed defunct remote endpoints, fixed config form lifecycle, added `ShutDown` event cleanup, guarded Chronicle crit heal estimates, fixed Holy Priest Lightspring/Lightwell IDs, hardened Proving Grounds targeting, and restricted `OracleRoutine.Class` to its 5 supported healer classes (`Druid`, `Monk`, `Paladin`, `Priest`, `Shaman`).
   - **Portal** (`ac67d251`): Hardened loader, made `ICombatRoutine` delegation null-safe, and bypassed defunct StatCounter telemetry gate.
   - **PureRotation** (`ffab6d35`): Fixed `BotEvents` and `RoutineManager` event handler lifecycle leaks and added `ShutDown()` cleanup.
   - **Richie** (`cba243b5`): Qualified `[Styx.Helpers.DefaultValue(...)]` across all PvP routines, neutralized defunct UI links, fixed `BotEvents`/Lua event lifecycle leaks, and fixed Shadow Priest ASAP path resolution.
