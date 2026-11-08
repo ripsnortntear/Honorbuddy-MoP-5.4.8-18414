@@ -415,48 +415,18 @@ namespace Bots.GrindBuddy
                     new PrioritySelector(
                         new DecoratorIsNotPoiType(new[] { PoiType.Kill, PoiType.Loot, PoiType.Skin, PoiType.Harvest },
                             new Decorator(ret => GetGrindUnits().Any(),
-                                new PrioritySelector(
-                                    new Decorator(ret =>
+                                new Sequence(
+                                    new Action(ret =>
                                     {
                                         var unit = GetGrindUnits().FirstOrDefault();
-                                        return unit != null && unit.IsValid && unit.Distance < Targeting.PullDistance;
-                                    },
-                                        new Sequence(
-                                            new Action(ret =>
-                                            {
-                                                var unit = GetGrindUnits().FirstOrDefault();
-                                                if (unit != null && unit.IsValid)
-                                                    unit.Target();
-                                            }),
-                                            new Wait(5, ret => StyxWoW.Me != null && StyxWoW.Me.GotTarget, new ActionIdle()),
-                                            new ActionSetPoi(ret => (StyxWoW.Me != null && StyxWoW.Me.CurrentTarget != null) ? new BotPoi(StyxWoW.Me.CurrentTarget, PoiType.Kill) : null))),
-                                    new Decorator(ret =>
-                                    {
-                                        var unit = GetGrindUnits().FirstOrDefault();
-                                        return unit != null && unit.IsValid && unit.Distance >= Targeting.PullDistance;
-                                    },
-                                        new Sequence(
-                                            new Action(ret =>
-                                            {
-                                                var unit = GetGrindUnits().FirstOrDefault();
-                                                if (unit != null && unit.IsValid)
-                                                    unit.Target();
-                                            }),
-                                            new Wait(5, ret => StyxWoW.Me != null && StyxWoW.Me.GotTarget, new ActionIdle()),
-                                            new Decorator(ret => NeedToMoveToTarget(StyxWoW.Me != null ? StyxWoW.Me.CurrentTarget : null),
-                                                new Sequence(
-                                                    new Decorator(ret =>
-                                                    {
-                                                        var unit = GetGrindUnits().FirstOrDefault();
-                                                        return unit != null && unit.IsValid && Mount.ShouldMount(unit.Location);
-                                                    },
-                                                        new Action(ret =>
-                                                        {
-                                                            var unit = GetGrindUnits().FirstOrDefault();
-                                                            if (unit != null && unit.IsValid)
-                                                                Mount.StateMount(() => unit.Location);
-                                                        })),
-                                                    new ActionMoveToTarget())))))))),
+                                        if (unit != null && unit.IsValid)
+                                            unit.Target();
+                                    }),
+                                    new Wait(5, ret => StyxWoW.Me != null && StyxWoW.Me.GotTarget, new ActionIdle()),
+                                    new Decorator(ret => NeedToMoveToTarget(StyxWoW.Me != null ? StyxWoW.Me.CurrentTarget : null),
+                                        new ActionMoveToTarget()),
+                                    new ActionSetPoi(ret => (StyxWoW.Me != null && StyxWoW.Me.CurrentTarget != null && StyxWoW.Me.CurrentTarget.IsValid)
+                                        ? new BotPoi(StyxWoW.Me.CurrentTarget, PoiType.Kill) : null)))))),
 
                 new HookExecutor("GrindBuddy_BeforeCombat"),
                 new HookExecutor("GrindBuddy_Combat"),
