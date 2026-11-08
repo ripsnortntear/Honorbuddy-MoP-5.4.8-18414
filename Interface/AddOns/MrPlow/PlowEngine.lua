@@ -13,10 +13,23 @@ local returnTable = MrPlow.returnTable
 MrPlow.currentProcess = nil
 local currentProcess = MrPlow.currentProcess
 local BagList = {}
+local ConsolidateBagsFrom = nil
+local ConsolidateBagsTo = nil
 local CurrentMove = nil
+local sortbags = nil
+local midmove = nil
+local Paused = 0
 
 local Clean  = getTable()
 local GuildBanking = false
+
+local function IsItemIgnored(linkOrId)
+	if not linkOrId or not db or not db.IgnoreItems then
+		return false
+	end
+	local numId = tonumber(linkOrId)
+	return (db.IgnoreItems[linkOrId] or (numId and db.IgnoreItems[numId]) or db.IgnoreItems[tostring(linkOrId)]) and true or false
+end
 
 local L = LibStub("AceLocale-3.0"):GetLocale("MrPlow", true)
 
@@ -250,9 +263,30 @@ end
 --
 -- Consolidate is direction agnostic
 function PlowEngine:Consolidate(BagsFrom, BagsTo)
+	if not BagsFrom or not BagsTo then
+		BagsFrom = ConsolidateBagsFrom
+		BagsTo = ConsolidateBagsTo
+	else
+		ConsolidateBagsFrom = BagsFrom
+		ConsolidateBagsTo = BagsTo
+	end
+	if not BagsFrom or not BagsTo or not BagsTo[1] then
+		MrPlow.currentFunction = nil
+		currentProcess = nil
+		return
+	end
+
 	local empty = getTable()
 	-- Find out how much space we have
 	for bag, slot in self:NextSlot(BagsTo) do
+		while true do
+			if (select(3, infoFunc(bag, slot))) then
+				if not PlowEngine:IsShown() then PlowEngine:Show() end
+				coroutine.yield(self)
+			else
+				break
+			end
+		end
 		if not GetContainerItemLink(bag, slot) then -- we're empty
 			table.insert(empty, getTable(bag, slot))
 		end
@@ -261,11 +295,19 @@ function PlowEngine:Consolidate(BagsFrom, BagsTo)
 	local bagNum = BagsTo[1]
 	local isSpecial = select(2, GetContainerNumFreeSlots(bagNum))
 	
-	if isSpecial > 0 then
+	if isSpecial and isSpecial > 0 then
 		for bag, slot in self:NextSlot(BagsFrom) do
+			while true do
+				if (select(3, infoFunc(bag, slot))) then
+					if not PlowEngine:IsShown() then PlowEngine:Show() end
+					coroutine.yield(self)
+				else
+					break
+				end
+			end
 			if #empty > 0 then -- if there's room...
 				local link = select(3, (GetContainerItemLink(bag, slot) or ""):find("item:(%d+):"))
-				if link and CanGoInBag(link, bagNum) then
+				if link and not IsItemIgnored(link) and CanGoInBag(link, bagNum) then
 					local freeslot = table.remove(empty,1)
 					PlowEngine:MoveSlot(bag, slot, 0, freeslot[1], freeslot[2])
 				end
@@ -274,10 +316,13 @@ function PlowEngine:Consolidate(BagsFrom, BagsTo)
 	end
 	-- Now run	
 	if #PlowList > 0 then
+		currentProcess = PlowEngine.Consolidate
 		PlowEngine:Show()
 	else
 		MrPlow.currentFunction = nil
 		currentProcess = nil
+		ConsolidateBagsFrom = nil
+		ConsolidateBagsTo = nil
 		returnTable(empty)
 	end 
 end
@@ -307,18 +352,20 @@ function PlowEngine:Restack(...)
 				if not PlowEngine:IsShown() then PlowEngine:Show() end
 				coroutine.yield(self)
 			else
-				break;
+				break
 			end
 		end	
 		local link = select(3, (linkFunc(bag, slot) or ""):find("item:(%d+):"))
 		if link then
-			if not db.IgnoreItems[link] then -- if we're not ignoring this specific item
+			if not IsItemIgnored(link) then -- if we're not ignoring this specific item
 				local stackSize = select(2, infoFunc(bag, slot))
 				local fullStack = select(8, GetItemInfo(link))
-				if not dupe[link] then
-					dupe[link] = getTable()
+				if stackSize and fullStack then
+					if not dupe[link] then
+						dupe[link] = getTable()
+					end
+					table.insert(dupe[link], getTable(bag, slot, stackSize, fullStack))
 				end
-				table.insert(dupe[link], getTable(bag, slot, stackSize, fullStack))
 			end
 		end
 	end
@@ -359,7 +406,7 @@ function PlowEngine:Restack(...)
 			local source = GetFirstNonempty(stacks)
 			
 			if target < 0 or target <= source then -- If we're have no unfilled stacks or if the last unfilled is the same as the first nonempty
-				break;
+				break
 			end
 			
 			target, source = stacks[target], stacks[source]
@@ -401,12 +448,23 @@ function PlowEngine:Defragment(...)
 
 	if select("#", ...) > 0 then
 		BagList = getTable(...)
+		if BagList[1] == self then
+			table.remove(BagList, 1)
+		end
 	end
 	for bag, slot in self:NextSlot(BagList) do
+		while true do
+			if (select(3, infoFunc(bag, slot))) then
+				if not PlowEngine:IsShown() then PlowEngine:Show() end
+				coroutine.yield(self)
+			else
+				break
+			end
+		end
 		local link = select(3, (linkFunc(bag, slot) or ""):find("item:(%d+):"))
 		if not link then -- empty slot
 			table.insert(empty, getTable(bag, slot))
-		elseif not db.IgnoreItems[link] then -- if full and not ignored
+		elseif not IsItemIgnored(link) then -- if full and not ignored
 			table.insert(full, 1, getTable(bag, slot))
 		end
 	end            
@@ -475,7 +533,7 @@ end
 local watch = {}
 
 function SortItemID(a,b)
-	return a.itemID < b.itemID
+	return (tonumber(a.itemID) or 0) < (tonumber(b.itemID) or 0)
 end
 
 function SortAlpha(a,b)
@@ -492,11 +550,11 @@ function SortAlpha(a,b)
 		MrPlow:Print("Alpha: "..a.itemName.." vs "..b.itemName)
 	end
 
-	if a.DarkmoonSet then
+	if a.DarkmoonSet and b.DarkmoonSet and deckOrder[a.DarkmoonCard] and deckOrder[b.DarkmoonCard] then
 		return deckOrder[a.DarkmoonCard] < deckOrder[b.DarkmoonCard]
 	end
 
-	return a.itemName < b.itemName
+	return (a.itemName or "") < (b.itemName or "")
 end
 
 function SortILevel(a, b)
@@ -722,7 +780,7 @@ function TopLevelSort(a,b)
 end
 
 function ErrorPrint(a,b,func)
-	MrPlow:Print("Error in "..func.." between "..a.itemName.." at "..a.bag..":"..a.slot.." and "..b.itemName.." at "..b.bag..":"..b.slot)
+	MrPlow:Print("Error in "..tostring(func).." between "..tostring(a and a.itemName).." at "..tostring(a and a.bag)..":"..tostring(a and a.slot).." and "..tostring(b and b.itemName).." at "..tostring(b and b.bag)..":"..tostring(b and b.slot))
 end
 
 local Item = getTable()
@@ -746,7 +804,7 @@ end
 
 
 local function GlyphType(a)
-	if strfind(a.itemTexture, "INV_Glyph_Major") then
+	if a.itemTexture and strfind(a.itemTexture, "INV_Glyph_Major") then
 		a.GlyphType = 0
 	else
 		a.GlyphType = 1
@@ -760,6 +818,12 @@ Item.new = function(position, ItemID, bag, slot)
   item.pos = position
 	item.itemName, item.itemLink, item.itemRarity, item.itemLevel, item.itemMinLevel, 
 	item.itemType, item.itemSubType, item.itemStackCount, item.itemEquipLoc, item.itemTexture = GetItemInfo(ItemID)
+	item.itemName = item.itemName or tostring(ItemID)
+	item.itemRarity = item.itemRarity or 0
+	item.itemLevel = item.itemLevel or 0
+	item.itemSubType = item.itemSubType or ""
+	item.itemEquipLoc = item.itemEquipLoc or ""
+	item.itemTexture = item.itemTexture or ""
 	item.itemID = ItemID 
   item.itemRanking = itemRanking[item.itemType]
   if not item.itemRanking then item.itemRanking = -1 end
@@ -770,7 +834,7 @@ Item.new = function(position, ItemID, bag, slot)
 	item.Set = item.itemEquipLoc
 	if item.itemType == "Glyph" then GlyphType(item) end
 	item.DarkmoonSet = select(2, PT:ItemInSet(item.itemID, "Misc.QuestMats.Darkmoon Faire.Deck"))
-	if item.DarkmoonSet then
+	if item.DarkmoonSet and item.itemName then
 		item.DarkmoonCard = string.match(item.itemName, "%w+")
 	end
 	return item
@@ -797,6 +861,9 @@ function PlowEngine:MassSort(...)
 	local itemPosition = 0	
 	if select("#", ...) > 0 then
 		BagList = getTable(...)
+		if BagList[1] == self then
+			table.remove(BagList, 1)
+		end
 		Clean = getTable() 
 	end
 	for bag, slot in self:NextSlot(BagList) do 
@@ -806,11 +873,11 @@ function PlowEngine:MassSort(...)
 					if not PlowEngine:IsShown() then PlowEngine:Show() end
 					coroutine.yield(self)
 				else
-					break;
+					break
 				end
 			end				
 			local link = select(3, (linkFunc(bag, slot) or ""):find("item:(%d+)"))
-			if link and not db.IgnoreItems[link] then
+			if link and not IsItemIgnored(link) then
 				local item = Item.new(itemPosition, link, bag, slot)
 				table.insert(Sorted, item)
 				table.insert(Current, getTable(bag, slot, item))
@@ -900,6 +967,7 @@ function PlowScheduler.OnUpdate(self, elapsed, ...)
 	if UnitAffectingCombat("player") or InCombatLockdown() then
 		PlowEngine:StopEverything();
 		print("Aborting due to being in combat")
+		return
 	end
 	if not currentProcess then 
 		if JobQueue then
@@ -909,10 +977,21 @@ function PlowScheduler.OnUpdate(self, elapsed, ...)
 			end
 			if #JobQueue > 0 then
 				local nextCall = table.remove(JobQueue, 1)
-				if(#nextCall > 3) then
-					nextCall[1](nextCall[2], nextCall[3], nextCall[4])
-				else
-					nextCall[1](nextCall[2], unpack(nextCall[3]))
+				midmove = nil
+				CurrentMove = nil
+				currentProcess = nextCall[1]
+				PlowEngine:Show()
+				sortbags = coroutine.create(function()
+					if(#nextCall > 3) then
+						nextCall[1](nextCall[2], nextCall[3], nextCall[4])
+					else
+						nextCall[1](nextCall[2], unpack(nextCall[3]))
+					end
+				end)
+				local ok, err = coroutine.resume(sortbags)
+				if not ok then
+					PlowEngine:StopEverything()
+					MrPlow:Print("MrPlow error: " .. tostring(err))
 				end
 				return
 			end
@@ -930,12 +1009,22 @@ function PlowEngine.OnUpdate(self, elapsed, ...)
 
 	-- If we have bags to operate on, and PlowList is empty and we're not currently working on a suspended move, then run again.:
 	if sortbags and coroutine.status(sortbags) == "suspended" then
-		coroutine.resume(sortbags)
+		local ok, err = coroutine.resume(sortbags)
+		if not ok then
+			PlowEngine:StopEverything()
+			MrPlow:Print("MrPlow error: " .. tostring(err))
+		end
 		return
 	end
-	if BagList and #BagList > 0 and #PlowList == 0 and midmove and coroutine.status(midmove) == "dead" then
+	if ((BagList and #BagList > 0) or (ConsolidateBagsTo and #ConsolidateBagsTo > 0)) and #PlowList == 0 and midmove and coroutine.status(midmove) == "dead" then
+		midmove = nil
 		sortbags = coroutine.create(currentProcess)
-		coroutine.resume(sortbags, self)
+		local ok, err = coroutine.resume(sortbags, self)
+		if not ok then
+			PlowEngine:StopEverything()
+			MrPlow:Print("MrPlow error: " .. tostring(err))
+		end
+		return
 	end
 	if not midmove or coroutine.status(midmove) == "dead" then 
 		if #PlowList > 0 then
@@ -943,7 +1032,11 @@ function PlowEngine.OnUpdate(self, elapsed, ...)
 			midmove = coroutine.create(self.CheckMove)
 		end
 	else
-		coroutine.resume(midmove, self, CurrentMove[1], CurrentMove[2], CurrentMove[3], CurrentMove[4], CurrentMove[5]) 
+		local ok, err = coroutine.resume(midmove, self, CurrentMove[1], CurrentMove[2], CurrentMove[3], CurrentMove[4], CurrentMove[5]) 
+		if not ok then
+			PlowEngine:StopEverything()
+			MrPlow:Print("MrPlow error: " .. tostring(err))
+		end
 	end
 end
 
@@ -961,7 +1054,7 @@ function PlowEngine:ProcessBags(BagList, BagIndex, Slot)
 	else
 		maxSlot = GetContainerNumSlots(BagList[BagIndex])
 	end
-	if MrPlow:IsIgnored(BagList[BagIndex]) then
+	if MrPlow:IsIgnored(BagList[BagIndex], nil, GuildBanking) then
 		return PlowEngine:ProcessBags(BagList, BagIndex + 1, 0)
 	end
 
@@ -982,6 +1075,7 @@ end
 
 function PlowEngine:ReverseProcessBags(BagList, BagIndex, Slot)
 	local maxSlot
+	if not BagList or not BagList[BagIndex] then return end
 	if GuildBanking then
 		maxSlot = 98
 	else
@@ -990,8 +1084,9 @@ function PlowEngine:ReverseProcessBags(BagList, BagIndex, Slot)
 		end
 	end
 	
-	if MrPlow:IsIgnored(BagList[BagIndex]) or GetContainerNumSlots(BagList[BagIndex]) == 0 then
-		return PlowEngine:ReverseProcessBags(BagList, BagIndex - 1, GetContainerNumSlots(BagList[BagIndex - 1]))
+	if MrPlow:IsIgnored(BagList[BagIndex], nil, GuildBanking) or (not GuildBanking and GetContainerNumSlots(BagList[BagIndex]) == 0) then
+		local prevSlot = GuildBanking and 98 or (BagIndex > 1 and GetContainerNumSlots(BagList[BagIndex - 1]) or 0)
+		return PlowEngine:ReverseProcessBags(BagList, BagIndex - 1, prevSlot)
 	end
 
 	if MrPlow:IsIgnored(BagList[BagIndex], Slot, GuildBanking) then
@@ -1028,6 +1123,11 @@ function PlowEngine:StopEverything()
 	PlowEngine:Hide()
 	PlowScheduler:Hide()
 	currentProcess = nil
+	sortbags = nil
+	midmove = nil
+	CurrentMove = nil
+	ConsolidateBagsFrom = nil
+	ConsolidateBagsTo = nil
 	JobQueue = nil
 	PlowList = nil
 	print("Mr Plow pulls to a stop.")
@@ -1056,7 +1156,7 @@ end
 
 function CanGoInBag(item, bag)
    -- Get the item's family
-   local itemFamily = GetItemFamily(item)
+   local itemFamily = GetItemFamily(item) or 0
     
    -- If the item is a container, then the itemFamily should be 0
    local equipSlot = select(9, GetItemInfo(item))
@@ -1065,7 +1165,7 @@ function CanGoInBag(item, bag)
    end
  
    -- Get the bag's family
-   local bagFamily = select(2, GetContainerNumFreeSlots(bag))
+   local bagFamily = select(2, GetContainerNumFreeSlots(bag)) or 0
  
    return bagFamily == 0 or bit.band(itemFamily, bagFamily) > 0
 end

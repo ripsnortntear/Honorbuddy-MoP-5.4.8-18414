@@ -29,14 +29,22 @@ MrPlow.PlowScheduler = CreateFrame("Frame", "PlowScheduler")
 
 local myldb = ldb:NewDataObject("MrPlow", {
     type = "launcher",
-		text = "Mr Plow",
+    text = "Mr Plow",
     icon = "Interface\\Addons\\MrPlow\\Icon.tga",
     OnClick = function(clickedframe, button)
-			if(button == "LeftButton") then	
-				MrPlow:DoStuff("theworks")
-			else
-				MrPlow:DoStuff("banktheworks")
-			end
+        if IsShiftKeyDown() then
+            MrPlow:OpenOptions()
+        elseif button == "LeftButton" then
+            MrPlow:DoStuff("theworks")
+        else
+            MrPlow:DoStuff("banktheworks")
+        end
+    end,
+    OnTooltipShow = function(tooltip)
+        tooltip:AddLine("Mr Plow")
+        tooltip:AddLine("|cffffffffLeft-Click:|r Run The Works (Bags)", 0.2, 1, 0.2)
+        tooltip:AddLine("|cffffffffRight-Click:|r Run The Works (Bank)", 0.2, 1, 0.2)
+        tooltip:AddLine("|cffffffffShift-Click:|r Open Options", 1, 0.82, 0)
     end,
 })
 
@@ -96,9 +104,15 @@ function MrPlow:OnInitialize()
 end
 
 function MrPlow:DoStuff(args)
-	
-	args = args:lower()
-	
+	local trimmed = args and args:match("^%s*(.-)%s*$") or ""
+	local lower = trimmed:lower()
+	if lower == "" or lower == "config" or lower == "opt" or lower == "options" or lower == "gui" or lower == "menu" then
+		MrPlow:OpenOptions()
+		return
+	end
+
+	args = lower
+
 	if args == "stack" then
 		MrPlow:Print("MrPlow restacks your items")
 		PlowEngine:RunJob(PlowEngine.Restack, 0,1,2,3,4)
@@ -177,20 +191,13 @@ function MrPlow:DoStuff(args)
 end
 
 function MrPlow:OnClick()
-	self.PlowEngine:SortMe();
+	self:DoStuff("theworks")
 end
 
 function MrPlow:IgnoreSlots(bag, slot)
-	if not db.IgnoreSlots[bag] then
-		db.IgnoreSlots[bag] = getTable()
-	end
-	db.IgnoreSlots[bag][slot] = true
+	MrPlow:Ignore(bag, slot)
 end
 
 function MrPlow:UnignoreSlots(bag, slot)
-	db.IgnoreSlots[bag][slot] = nil
-
-	if not next(db.IgnoreSlots[bag]) then
-		returnTable(db.IgnoreSlots[bag])
-	end
+	MrPlow:Unignore(bag, slot)
 end
