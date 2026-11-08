@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Styx.Common;
 using Styx.Helpers;
 
@@ -13,16 +13,16 @@ namespace HighVoltz.Professionbuddy
             Load();
         }
 
-		[Setting, DefaultValue(0)]
+		[Setting, Styx.Helpers.DefaultValueAttribute(0)]
 		public int CurrentRevision { get; set; }
 
-		[Setting, DefaultValue(0u)]
+		[Setting, Styx.Helpers.DefaultValueAttribute(0u)]
 		public uint KnownSpellsPtr { get; set; }
 
-		[Setting, DefaultValue(null)]
+		[Setting, Styx.Helpers.DefaultValueAttribute(null)]
 		public string DataStoreTable { get; set; }
 
-        [Setting, DefaultValue("")]
+        [Setting, Styx.Helpers.DefaultValueAttribute("")]
         public string WowVersion { get; set; }
     }
 }

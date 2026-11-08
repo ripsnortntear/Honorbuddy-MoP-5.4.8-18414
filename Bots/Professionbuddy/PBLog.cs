@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -134,21 +134,23 @@ namespace HighVoltz.Professionbuddy
 			{
 				if (GlobalSettings.Instance.LogLevel >= level)
 				{
-					if (_rtbLog == null)
-						_rtbLog = (RichTextBox)Application.Current.MainWindow.FindName("rtbLog");
+					try
+					{
+						if (_rtbLog == null && Application.Current != null && Application.Current.MainWindow != null)
+							_rtbLog = (RichTextBox)Application.Current.MainWindow.FindName("rtbLog");
 
-					//var headerTR = new TextRange(_rtbLog.Document.Blocks[0], _rtbLog.Document.ContentEnd) { Text = header };
-					//headerTR.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(headerColor));
-
-					//var messageTR = new TextRange(_rtbLog.Document.ContentEnd, _rtbLog.Document.ContentEnd);
-					//messageTR.Text = msg + Environment.NewLine;
-					//messageTR.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(msgColor));
-
-
-					var para = (Paragraph)_rtbLog.Document.Blocks.FirstBlock;
-					para.Inlines.Add(new Run(header) { Foreground = new SolidColorBrush(headerColor) });
-					para.Inlines.Add(new Run(msg + Environment.NewLine) { Foreground = new SolidColorBrush(msgColor) });
-					_rtbLog.ScrollToEnd();
+						if (_rtbLog != null && _rtbLog.Document != null && _rtbLog.Document.Blocks != null && _rtbLog.Document.Blocks.FirstBlock is Paragraph)
+						{
+							var para = (Paragraph)_rtbLog.Document.Blocks.FirstBlock;
+							para.Inlines.Add(new Run(header) { Foreground = new SolidColorBrush(headerColor) });
+							para.Inlines.Add(new Run(msg + Environment.NewLine) { Foreground = new SolidColorBrush(msgColor) });
+							_rtbLog.ScrollToEnd();
+						}
+					}
+					catch
+					{
+						// UI logging is best-effort; file/HB logging still proceeds below.
+					}
 				}
 				try
 				{

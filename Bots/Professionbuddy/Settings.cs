@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -24,10 +24,10 @@ namespace HighVoltz.Professionbuddy
 
 		public static ProfessionBuddySettings Instance { get; private set; }
 
-		[Setting, DefaultValue("")]
+		[Setting, Styx.Helpers.DefaultValueAttribute("")]
 		public string LastProfile { get; set; }
 
-		[Setting, DefaultValue("")]
+		[Setting, Styx.Helpers.DefaultValueAttribute("")]
 		public string LastBotBase { get; set; }
 	}
 

@@ -245,11 +245,14 @@ namespace HighVoltz.Professionbuddy
 					// force Tripper.Tools.dll to load........
 					new Vector3(0, 0, 0);
 
+					string charName = (Me != null && !string.IsNullOrEmpty(Me.Name)) ? Me.Name : "Unknown";
+					string realmName = "Unknown";
+					try { realmName = Lua.GetReturnVal<string>("return GetRealmName() or ''", 0) ?? "Unknown"; } catch { }
 					MySettings =
 						new ProfessionBuddySettings(
 							Path.Combine(
 								Utilities.AssemblyDirectory,
-								string.Format(@"Settings\{0}\{0}[{1}-{2}].xml", Name, Me.Name, Lua.GetReturnVal<string>("return GetRealmName()", 0))));
+								string.Format(@"Settings\{0}\{0}[{1}-{2}].xml", Name, charName, realmName)));
 
 					IsTradeSkillsLoaded = false;
 					LoadTradeSkills();
