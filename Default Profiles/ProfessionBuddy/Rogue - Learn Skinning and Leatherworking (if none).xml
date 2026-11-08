@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Professionbuddy>
-  <!-- Learns Skinning and Leatherworking for Rogues who don't have either profession yet (MoP 5.4.8 / HB).
-       Notes:
-       - Uses common trainer NPC entries (Alliance: Stormwind area; Horde: Orgrimmar area). If your rogue is a different race/city,
-         fly to Stormwind or Orgrimmar (or change NpcEntry/Location below) and run again.
-       - TrainSkillAction buys available trainer services; it can learn the profession if the trainer offers it.
-       - PB dynamic conditions expose Me, Skinning, Leatherworking helpers (MaxLevel==0 means not learned). -->
   <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Rogue profession check: Skinning/LW (only if Rogue with no Skinning and no Leatherworking)&quot;);" />
 
   <If Condition="Me.Class != Styx.WoWClass.Rogue" IgnoreCanRun="True">
@@ -19,40 +13,32 @@
   <If Condition="Me.Class == Styx.WoWClass.Rogue &amp;&amp; Skinning.MaxLevel == 0 &amp;&amp; Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
     <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Rogue with no Skinning/Leatherworking detected - attempting to learn both.&quot;);" />
 
-    <!-- Skinning first (pairs well while questing/grinding). -->
     <If Condition="Skinning.MaxLevel == 0" IgnoreCanRun="True">
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Alliance: training Skinning (Stormwind trainer area). NpcEntry 1292, fallback via DB/pathing.&quot;);" />
+        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Alliance: training Skinning (Stormwind). NpcEntry 1292.&quot;);" />
         <MoveToAction Location="-8716.408, 469.4148, 98.61314" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4148, 98.61314" />
       </If>
       <If Condition="Me.IsHorde" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Horde: training Skinning (Orgrimmar trainer area). NpcEntry 7088, fallback via DB/pathing.&quot;);" />
+        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Horde: training Skinning (Orgrimmar). NpcEntry 7088.&quot;);" />
         <MoveToAction Location="1849.04, -4569.23, 24.76048" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="7088" Location="1849.04, -4569.23, 24.76048" />
       </If>
-      <If Condition="!Me.IsAlliance &amp;&amp; !Me.IsHorde" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.Red,&quot;Neutral/unknown faction: cannot auto-pick Skinning trainer. Go to a Skinning trainer and train manually, or edit this profile.&quot;);" />
-      </If>
     </If>
 
-    <!-- Leatherworking -->
     <If Condition="Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Alliance: training Leatherworking (Stormwind trainer area). NpcEntry 5564, fallback via DB/pathing.&quot;);" />
+        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Alliance: training Leatherworking (Stormwind). NpcEntry 5564.&quot;);" />
         <MoveToAction Location="-8726.531, 477.4008, 98.61335" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="5564" Location="-8726.531, 477.4008, 98.61335" />
       </If>
       <If Condition="Me.IsHorde" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Horde: training Leatherworking (Orgrimmar trainer area). NpcEntry 3365, fallback via DB/pathing.&quot;);" />
+        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Horde: training Leatherworking (Orgrimmar). NpcEntry 3365.&quot;);" />
         <MoveToAction Location="1852.83, -4562.65, 24.7605" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="3365" Location="1852.83, -4562.65, 24.7605" />
       </If>
-      <If Condition="!Me.IsAlliance &amp;&amp; !Me.IsHorde" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.Red,&quot;Neutral/unknown faction: cannot auto-pick Leatherworking trainer. Go to a Leatherworking trainer and train manually, or edit this profile.&quot;);" />
-      </If>
     </If>
 
-    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Rogue Skinning/LW profile finished. Skinning max={0}, Leatherworking max={1}. If still 0, trainer/NPC may differ on your server - edit NpcEntry/Location.&quot;, Skinning.MaxLevel, Leatherworking.MaxLevel);" />
+    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Rogue Skinning/LW profile finished. Skinning max={0}, Leatherworking max={1}. If still 0, edit NpcEntry/Location for your server.&quot;, Skinning.MaxLevel, Leatherworking.MaxLevel);" />
   </If>
 </Professionbuddy>
