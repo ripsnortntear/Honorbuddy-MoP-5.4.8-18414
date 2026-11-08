@@ -11,6 +11,9 @@ namespace JarvisPlugin
 {
     internal static class JarvisAiClient
     {
+        // OpenCode Go requires a stable session ID per conversation for routing/prompt caching.
+        private static readonly string SessionId = Guid.NewGuid().ToString("N");
+
         public sealed class AiResult
         {
             public bool Success;
@@ -135,9 +138,11 @@ namespace JarvisPlugin
             req.Method = "POST";
             req.ContentType = "application/json";
             req.Accept = "application/json";
+            req.UserAgent = "Jarvis-HBPlugin/1.1 (Honorbuddy 5.4.8)";
             req.Timeout = timeoutSeconds * 1000;
             req.ReadWriteTimeout = timeoutSeconds * 1000;
             try { req.ServicePoint.Expect100Continue = false; } catch { }
+            try { req.Headers["x-opencode-session"] = SessionId; } catch { }
             if (!string.IsNullOrEmpty(apiKey))
                 req.Headers[HttpRequestHeader.Authorization] = "Bearer " + apiKey.Trim();
 
