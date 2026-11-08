@@ -162,7 +162,7 @@ namespace JarvisPlugin
             if (me == null || !me.IsValid)
                 return;
 
-            uint level = me.Level;
+            uint level = (uint)Math.Max(0, me.Level);
             string zone = SafeZoneName(me);
 
             if (_lastLevel != 0 && level > _lastLevel)
@@ -266,7 +266,7 @@ namespace JarvisPlugin
             sb.AppendLine("- Name: " + SafeName(me.Name) + "  Class: " + me.Class + "  Race: " + me.Race + "  Level: " + me.Level);
             sb.AppendLine("- Zone: " + SafeZoneName(me) + "  Area: " + SafeName(me.SubZoneText));
             sb.AppendLine("- Health: " + me.HealthPercent.ToString("0") + "%  Mana/Power: " + me.ManaPercent.ToString("0") + "%  Combat: " + me.Combat);
-            sb.AppendLine("- XP: " + me.CurrentXP + "/" + Math.Max(1u, me.NextLevelXP) + " (" + (me.NextLevelXP == 0 ? 0 : (me.CurrentXP * 100 / me.NextLevelXP)) + "%)");
+            sb.AppendLine("- XP: " + GetXpSummary());
             sb.AppendLine("- Gold: " + FormatCopper(me.Copper));
             sb.AppendLine("- Bags: free=" + me.FreeBagSlots + " (approx)  Items: " + SafeCount(me.BagItems));
             sb.AppendLine("- Durability: " + AverageDurability(me).ToString("0") + "% (equipped avg)");
@@ -352,10 +352,6 @@ namespace JarvisPlugin
             var result = new List<string>();
             try
             {
-                var skills = me.Skills;
-                if (skills == null)
-                    return result;
-
                 SkillLine[] interesting = new[]
                 {
                     SkillLine.Alchemy, SkillLine.Blacksmithing, SkillLine.Enchanting, SkillLine.Engineering,
@@ -505,6 +501,33 @@ namespace JarvisPlugin
             if (ts.TotalHours >= 1) return ((int)ts.TotalHours) + "h " + ts.Minutes + "m";
             if (ts.TotalMinutes >= 1) return ((int)ts.TotalMinutes) + "m " + ts.Seconds + "s";
             return ts.Seconds + "s";
+        }
+
+        private static string GetXpSummary()
+        {
+            try
+            {
+                // HB 5.4.8 API surface varies; use Lua for broad compatibility.
+                var values = Lua.GetReturnValues("local c,m=UnitXP('player'),UnitXPMax('player'); if not c or not m then return '0|0' end; return tostring(c)..'|'..tostring(m)", "JarvisXP.lua");
+                if (values != null && values.Count > 0 && !string.IsNullOrEmpty(values[0]))
+                {
+                    string[] parts = values[0].Split('|');
+                    if (parts.Length >= 2)
+                    {
+                        ulong cur, max;
+                        if (ulong.TryParse(parts[0], out cur) && ulong.TryParse(parts[1], out max))
+                        {
+                            ulong pct = max == 0 ? 0 : (cur * 100UL / max);
+                            return cur + "/" + Math.Max(1UL, max) + " (" + pct + "%)";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteDiagnostic("[Jarvis] XP read failed: " + ex.Message);
+            }
+            return "(unavailable)";
         }
 
         private static string FormatCopper(ulong copper)
