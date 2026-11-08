@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Professionbuddy>
-  <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Rogue profession check: Skinning/LW (only if Rogue with no Skinning and no Leatherworking)&quot;);" />
-
-  <If Condition="Me.Class != Styx.WoWClass.Rogue" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.Yellow,&quot;Character is not a Rogue ({0}). Profile skipped.&quot;, Me.Class);" />
-  </If>
-
-  <If Condition="Me.Class == Styx.WoWClass.Rogue &amp;&amp; (Skinning.MaxLevel &gt; 0 || Leatherworking.MaxLevel &gt; 0)" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.Yellow,&quot;Rogue already has Skinning (max {0}) or Leatherworking (max {1}). Profile skipped.&quot;, Skinning.MaxLevel, Leatherworking.MaxLevel);" />
-  </If>
-
   <If Condition="Me.Class == Styx.WoWClass.Rogue &amp;&amp; Skinning.MaxLevel == 0 &amp;&amp; Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Rogue with no Skinning/Leatherworking detected - attempting to learn both.&quot;);" />
-
+    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Rogue with no Skinning/Leatherworking - learning professions.&quot;);" />
     <If Condition="Skinning.MaxLevel == 0" IgnoreCanRun="True">
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Alliance: training Skinning (Stormwind). NpcEntry 1292.&quot;);" />
         <MoveToAction Location="-8716.408, 469.4148, 98.61314" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4148, 98.61314" />
       </If>
       <If Condition="Me.IsHorde" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Horde: training Skinning (Orgrimmar). NpcEntry 7088.&quot;);" />
         <MoveToAction Location="1849.04, -4569.23, 24.76048" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="7088" Location="1849.04, -4569.23, 24.76048" />
       </If>
     </If>
-
     <If Condition="Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Alliance: training Leatherworking (Stormwind). NpcEntry 5564.&quot;);" />
         <MoveToAction Location="-8726.531, 477.4008, 98.61335" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="5564" Location="-8726.531, 477.4008, 98.61335" />
       </If>
       <If Condition="Me.IsHorde" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;Horde: training Leatherworking (Orgrimmar). NpcEntry 3365.&quot;);" />
         <MoveToAction Location="1852.83, -4562.65, 24.7605" MoveType="Location" Pathing="Navigator" Entry="0" />
         <TrainSkillAction NpcEntry="3365" Location="1852.83, -4562.65, 24.7605" />
       </If>
     </If>
+  </If>
 
-    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Rogue Skinning/LW profile finished. Skinning max={0}, Leatherworking max={1}. If still 0, edit NpcEntry/Location for your server.&quot;, Skinning.MaxLevel, Leatherworking.MaxLevel);" />
+  <If Condition="Me.Class == Styx.WoWClass.Rogue &amp;&amp; Skinning.MaxLevel &gt; 0 &amp;&amp; !HasItem(7005)" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightYellow,&quot;No skinning knife (7005) found; attempting to buy (Alliance: SW vendor 1320). MoP 5.4.8 usually does not require a knife.&quot;);" />
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <MoveToAction Location="-8713.808, 474.3274, 98.61314" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <BuyItemAction NpcEntry="1320" Location="-8713.808, 474.3274, 98.61314" ItemID="7005" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+    </If>
+  </If>
+
+  <If Condition="Me.Class == Styx.WoWClass.Rogue &amp;&amp; Skinning.MaxLevel &gt; 0 &amp;&amp; Me.IsAlliance &amp;&amp; Skinning.Level &lt; 75" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Skinning {0}/{1}: heading to Elwynn leveling; loading Kick skinning HB profile (EK 1-300, progresses Elwynn-&gt;Westfall).&quot;, Skinning.Level, Skinning.MaxLevel);" />
+    <MoveToAction Location="-9465.0, 62.0, 56.0" MoveType="Location" Pathing="Navigator" Entry="0" />
+    <ChangeBotAction BotName="Questing" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="..\1-90 Questing Profile Pack\Professions\Skinning\[A - Fly] QO Skinning 1-525 [Kick].xml" />
+  </If>
+
+  <If Condition="Me.Class == Styx.WoWClass.Rogue &amp;&amp; Skinning.MaxLevel &gt; 0 &amp;&amp; Me.IsAlliance &amp;&amp; Skinning.Level &gt;= 75" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.LightGreen,&quot;Skinning {0}: ready for Westfall/EK progression; loading Kick skinning HB profile.&quot;, Skinning.Level);" />
+    <ChangeBotAction BotName="Questing" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="..\1-90 Questing Profile Pack\Professions\Skinning\[A - Fly] QO Skinning 1-525 [Kick].xml" />
+  </If>
+
+  <If Condition="Me.Class != Styx.WoWClass.Rogue || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;PB:&quot;,Colors.Yellow,&quot;Rogue skinning/LW profile: skipped leveling handoff (class/skill state).&quot;);" />
   </If>
 </Professionbuddy>
