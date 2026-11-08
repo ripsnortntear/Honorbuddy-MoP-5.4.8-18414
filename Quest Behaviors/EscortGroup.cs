@@ -459,6 +459,8 @@ namespace Honorbuddy.Quest_Behaviors.EscortGroup
         public override void OnFinished()
         {
             // Clean up unmanaged resources (if any) here...
+            try { Targeting.Instance.IncludeTargetsFilter -= Instance_IncludeTargetsFilter; } catch { }
+
             if (_behaviorTreeHook_CombatMain != null)
             {
                 TreeHooks.Instance.RemoveHook("Combat_Main", _behaviorTreeHook_CombatMain);
@@ -467,7 +469,7 @@ namespace Honorbuddy.Quest_Behaviors.EscortGroup
 
             if (_behaviorTreeHook_CombatOnly != null)
             {
-                TreeHooks.Instance.RemoveHook("Combat_Main", _behaviorTreeHook_CombatOnly);
+                TreeHooks.Instance.RemoveHook("Combat_Only", _behaviorTreeHook_CombatOnly);
                 _behaviorTreeHook_CombatOnly = null;
             }
 

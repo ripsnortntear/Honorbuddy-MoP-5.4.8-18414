@@ -27,6 +27,8 @@ using CommonBehaviors.Actions;
 using Honorbuddy.QuestBehaviorCore;
 using Styx;
 using Styx.Common;
+using Styx.Common.Helpers;
+using Styx.Helpers;
 using Styx.CommonBot;
 using Styx.CommonBot.Profiles;
 using Styx.CommonBot.Routines;
@@ -84,6 +86,7 @@ namespace Honorbuddy.Quest_Behaviors.StandAndKill
 		// Private variables for internal state
 		private bool _isBehaviorDone;
 		private Composite _root;
+		private PerFrameCachedValue<WoWUnit> _enemy;
 
 
 		// Private properties
@@ -113,7 +116,14 @@ namespace Honorbuddy.Quest_Behaviors.StandAndKill
 
 		public WoWUnit Enemy
 		{
-			get { return ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Entry == MobIds && u.IsAlive).OrderBy(u => u.Distance).FirstOrDefault(); }
+			get
+			{
+				return _enemy ?? (_enemy = new PerFrameCachedValue<WoWUnit>(() =>
+					ObjectManager.GetObjectsOfType<WoWUnit>()
+						.Where(u => u.Entry == MobIds && u.IsAlive)
+						.OrderBy(u => u.Distance)
+						.FirstOrDefault()));
+			}
 		}
 
 		

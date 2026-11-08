@@ -190,6 +190,18 @@ namespace Honorbuddy.Quest_Behaviors.SpecificQuests.ThePrideofKezan
 		{
 			return _root ?? (_root = new Decorator(ret => !_isBehaviorDone, new PrioritySelector(new ActionAlwaysSucceed())));
 		}
+
+		public override void OnFinished()
+		{
+			if (_behaviorTreeHook_CombatMain != null)
+			{
+				TreeHooks.Instance.RemoveHook("Combat_Main", _behaviorTreeHook_CombatMain);
+				_behaviorTreeHook_CombatMain = null;
+			}
+			TreeRoot.GoalText = string.Empty;
+			TreeRoot.StatusText = string.Empty;
+			base.OnFinished();
+		}
 	}
 }
 

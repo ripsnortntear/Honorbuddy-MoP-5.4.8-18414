@@ -74,14 +74,50 @@ namespace Honorbuddy.QuestBehaviorCore
         private bool NeedsTestFire { get { return double.IsNaN(MuzzleVelocityInFps); } }
         private WeaponArticulation WeaponArticulation { get; set; }
 
+        /// <summary>
+        /// Returns the active vehicle/platform pitch in radians, or 0 when unavailable.
+        /// VehicleAimGetAngle() is vehicle-relative; ballistic solutions are world-relative,
+        /// so we compensate by subtracting vehicle pitch. Roll is not compensated (HB 5.4.8
+        /// does not expose a reliable roll value here).
+        /// </summary>
+        private static double GetVehiclePitchRadians()
+        {
+            try
+            {
+                var mover = WoWMovement.ActiveMover;
+                if (mover != null && mover.IsValid)
+                {
+                    var mi = mover.MovementInfo;
+                    if (mi != null && mi.IsValid)
+                        return mi.Pitch;
+                }
+            }
+            catch
+            {
+                // Movement info can be transient during vehicle transitions.
+            }
+            return 0.0;
+        }
+
         #endregion
 
 
-        // 11Mar2013-04:41UTC chinajade
         private double? CalculateBallisticLaunchAngle(WoWPoint targetLocation)
         {
+            double vehicleRelative;
+            double worldAngle;
+            return TryCalculateBallisticLaunchAngles(targetLocation, out vehicleRelative, out worldAngle)
+                ? vehicleRelative
+                : (double?)null;
+        }
+
+        private bool TryCalculateBallisticLaunchAngles(WoWPoint targetLocation, out double vehicleRelativeAngle, out double worldLaunchAngle)
+        {
+            vehicleRelativeAngle = double.NaN;
+            worldLaunchAngle = double.NaN;
+
             if (targetLocation == WoWPoint.Empty)
-                { return null; }
+                { return false; }
 
             double v0Sqr = MuzzleVelocityInFps * MuzzleVelocityInFps;
             double horizontalDistance = WoWMovement.ActiveMover.Location.Distance2D(targetLocation);
@@ -95,22 +131,33 @@ namespace Honorbuddy.QuestBehaviorCore
             // This means that the muzzleVelocity is insufficient to hit the target
             // at the target's current distance.
             if (radicalTerm < 0)
-                { return null; }
+                { return false; }
 
             radicalTerm = Math.Sqrt(radicalTerm);
+            double vehiclePitch = GetVehiclePitchRadians();
 
             // Prefer the 'lower' angle, if its within the articulation range...
-            double root = Math.Atan((v0Sqr - radicalTerm) / (GravityInFpsSqr * horizontalDistance));
-            if (WeaponArticulation.IsWithinAzimuthLimits(root))
-                { return root; }
+            double worldRoot = Math.Atan((v0Sqr - radicalTerm) / (GravityInFpsSqr * horizontalDistance));
+            double relativeRoot = worldRoot - vehiclePitch;
+            if (WeaponArticulation.IsWithinAzimuthLimits(relativeRoot))
+            {
+                vehicleRelativeAngle = relativeRoot;
+                worldLaunchAngle = worldRoot;
+                return true;
+            }
 
             // First root provides no solution, try second root...
-            root = Math.Atan((v0Sqr + radicalTerm) / (GravityInFpsSqr * horizontalDistance));
-            if (WeaponArticulation.IsWithinAzimuthLimits(root))
-                { return root; }
+            worldRoot = Math.Atan((v0Sqr + radicalTerm) / (GravityInFpsSqr * horizontalDistance));
+            relativeRoot = worldRoot - vehiclePitch;
+            if (WeaponArticulation.IsWithinAzimuthLimits(relativeRoot))
+            {
+                vehicleRelativeAngle = relativeRoot;
+                worldLaunchAngle = worldRoot;
+                return true;
+            }
 
             // Both solutions are out of the vehicle's articulation capabilities, return "no solution"...
-            return null;
+            return false;
         }
 
 
@@ -176,14 +223,16 @@ namespace Honorbuddy.QuestBehaviorCore
         public TimeSpan CalculateTimeOfProjectileFlight(WoWPoint wowPoint)
         {
             var R = Me.Location.Distance2D(wowPoint);
-            var launchAngle = CalculateBallisticLaunchAngle(wowPoint);
-
-            if (!launchAngle.HasValue)
+            double vehicleRelative;
+            double worldAngle;
+            if (!TryCalculateBallisticLaunchAngles(wowPoint, out vehicleRelative, out worldAngle))
                 { return TimeSpan.Zero; }
 
-            var flightTime = TimeSpan.FromSeconds(R / (MuzzleVelocityInFps * Math.Cos(launchAngle.Value)));
+            var denom = MuzzleVelocityInFps * Math.Cos(worldAngle);
+            if (Math.Abs(denom) < 0.0001)
+                { return TimeSpan.Zero; }
 
-            return flightTime;
+            return TimeSpan.FromSeconds(R / denom);
         }
 
 
@@ -242,8 +291,8 @@ namespace Honorbuddy.QuestBehaviorCore
 			//	return true;
 			//}
 
-            // Calculate the azimuth...
-            // TODO: Take vehicle rotations (pitch, roll) into account
+            // Calculate the azimuth (vehicle-relative; compensated for vehicle pitch).
+            // Roll compensation is not available on HB 5.4.8 movement info.
             var azimuth = CalculateBallisticLaunchAngle(selectedTarget.Location);
 
             //// Debugging--looking for pitch/roll contributions...
@@ -295,8 +344,8 @@ namespace Honorbuddy.QuestBehaviorCore
 			//	return true;
 			//}
 
-            // Calculate the azimuth...
-            // TODO: Take vehicle rotations (pitch, roll) into account
+            // Calculate the azimuth (vehicle-relative; compensated for vehicle pitch).
+            // Roll compensation is not available on HB 5.4.8 movement info.
             var azimuth = CalculateBallisticLaunchAngle(selectedLocation);
             if (!azimuth.HasValue || !WeaponArticulation.AzimuthSet(azimuth.Value))
                 { return false; }

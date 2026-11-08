@@ -23,6 +23,8 @@ using System.Linq;
 using Honorbuddy.QuestBehaviorCore;
 using Styx;
 using Styx.Common;
+using Styx.Common.Helpers;
+using Styx.Helpers;
 using Styx.CommonBot;
 using Styx.CommonBot.Frames;
 using Styx.CommonBot.Profiles;
@@ -42,6 +44,7 @@ namespace Honorbuddy.Quest_Behaviors.SetHearthstone
 	{
 		private readonly string _goalText;
 		private bool _done;
+		private PerFrameCachedValue<WoWUnit> _innKeeper;
 
 		public SetHearthstone(Dictionary<string, string> args)
 			: base(args)
@@ -76,11 +79,11 @@ namespace Honorbuddy.Quest_Behaviors.SetHearthstone
 			get
 			{
 				if (NpcId == 0)
-				{
 					return null;
-				}
 
-				return ObjectManager.GetObjectsOfType<WoWUnit>(false, false).FirstOrDefault(u => u.IsInnkeeper && u.Entry == NpcId);
+				return _innKeeper ?? (_innKeeper = new PerFrameCachedValue<WoWUnit>(() =>
+					ObjectManager.GetObjectsOfType<WoWUnit>(false, false)
+						.FirstOrDefault(u => u.IsInnkeeper && u.Entry == NpcId)));
 			}
 		}
 

@@ -233,6 +233,11 @@ namespace Honorbuddy.Quest_Behaviors.SpecificQuests.TheFallofShaiHu
 
         public override void OnFinished()
         {
+            if (_behaviorTreeCombatHook != null)
+            {
+                TreeHooks.Instance.RemoveHook("Combat_Only", _behaviorTreeCombatHook);
+                _behaviorTreeCombatHook = null;
+            }
             TreeRoot.GoalText = string.Empty;
             TreeRoot.StatusText = string.Empty;
             base.OnFinished();

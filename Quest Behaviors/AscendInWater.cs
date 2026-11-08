@@ -58,10 +58,11 @@ namespace Honorbuddy.Quest_Behaviors.AscendInWater
 	public class AscendInWater : CustomForcedBehavior
 	{
 		// Private variables for internal state
-		private static readonly WaitTimer MaxAscendTimer = new WaitTimer(TimeSpan.FromSeconds(30));
-
+		private WaitTimer _maxAscendTimer;
 		private bool _isBehaviorDone;
+		private bool _isOnFinishedRun;
 		private Composite _root;
+		private Composite _behaviorTreeHook_CombatMain;
 
 		#region Overrides of CustomForcedBehavior
 
@@ -77,13 +78,15 @@ namespace Honorbuddy.Quest_Behaviors.AscendInWater
 			// constructor call.
 			OnStart_HandleAttributeProblem();
 
-			MaxAscendTimer.Reset();
+			_maxAscendTimer = new WaitTimer(TimeSpan.FromSeconds(30));
+			_maxAscendTimer.Reset();
 
 			// If the quest is complete, this behavior is already done...
 			// So we don't want to falsely inform the user of things that will be skipped.
 			if (!IsDone)
 			{
-				TreeHooks.Instance.InsertHook("Combat_Main", 0, CreateBehavior_CombatMain());
+				_behaviorTreeHook_CombatMain = CreateBehavior_CombatMain();
+				TreeHooks.Instance.InsertHook("Combat_Main", 0, _behaviorTreeHook_CombatMain);
 				this.UpdateGoalText(0);
 			}
 		}
@@ -135,7 +138,7 @@ namespace Honorbuddy.Quest_Behaviors.AscendInWater
 			if (IsDone)
 				return false;
 
-			if (MaxAscendTimer.IsFinished || !IsUnderWater)
+			if ((_maxAscendTimer != null && _maxAscendTimer.IsFinished) || !IsUnderWater)
 			{
 				// N.B. There were issues getting WoWMovement.MoveStop() calls to always register so using the lua version.
 				Lua.DoString("AscendStop()");
@@ -163,6 +166,17 @@ namespace Honorbuddy.Quest_Behaviors.AscendInWater
 
 		public override void OnFinished()
 		{
+			if (_isOnFinishedRun)
+				return;
+
+			if (_behaviorTreeHook_CombatMain != null)
+			{
+				TreeHooks.Instance.RemoveHook("Combat_Main", _behaviorTreeHook_CombatMain);
+				_behaviorTreeHook_CombatMain = null;
+			}
+			Lua.DoString("AscendStop()");
+
+			_isOnFinishedRun = true;
 			TreeRoot.GoalText = string.Empty;
 			TreeRoot.StatusText = string.Empty;
 			base.OnFinished();

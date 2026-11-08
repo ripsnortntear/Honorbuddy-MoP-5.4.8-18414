@@ -98,8 +98,9 @@ namespace Honorbuddy.Quest_Behaviors.ForceSetVendor
 							DoTrain = true;
 							break;
 						default:
+							QBCLog.Error("Unexpected VendorType '{0}'. Use DoMail/DoRepair/DoSell/DoTrain instead.", type.Value);
 							IsAttributeProblem = true;
-							throw (new NotImplementedException("Unexpected VendorType"));
+							break;
 					}
 				}
 			}

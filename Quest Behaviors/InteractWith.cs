@@ -1671,24 +1671,36 @@ namespace Honorbuddy.Quest_Behaviors.InteractWith
 
 			using (StyxWoW.Memory.AcquireFrame())
 			{
-				var entities =
-					from wowObject in Query.FindMobsAndFactions(MobIds, MobIdIncludesSelf, FactionIds)
-					where
-						Query.IsViable(wowObject)
-						&& IsInteractNeeded(wowObject, mobState)
-						&& Query.IsStateMatch_MeshNavigable(wowObject, MovementBy)
-					let objectCollectionDistance = wowObject.Location.CollectionDistance()
-					where
-						objectCollectionDistance <= CollectionDistance
-					orderby
-						objectCollectionDistance
+				WoWObject best = null;
+				double bestScore = double.MaxValue;
+
+				foreach (var wowObject in Query.FindMobsAndFactions(MobIds, MobIdIncludesSelf, FactionIds))
+				{
+					if (!Query.IsViable(wowObject)
+						|| !IsInteractNeeded(wowObject, mobState)
+						|| !Query.IsStateMatch_MeshNavigable(wowObject, MovementBy))
+					{
+						continue;
+					}
+
+					var objectCollectionDistance = wowObject.Location.CollectionDistance();
+					if (objectCollectionDistance > CollectionDistance)
+						continue;
+
+					var score = objectCollectionDistance
 						// Fix for undead-quest (and maybe some more), where the targets can be minions...
 						+ (Me.Minions.Contains(wowObject) ? minionWeighting : 1)
 						// Make sure 'self' is always last on the list, otherwise we'll ignore all other Mobs...
-						+ (wowObject.IsMe ? 1000 : 0)
-					select wowObject;
+						+ (wowObject.IsMe ? 1000 : 0);
 
-				return entities.ToList();
+					if (score < bestScore)
+					{
+						bestScore = score;
+						best = wowObject;
+					}
+				}
+
+				return best == null ? Enumerable.Empty<WoWObject>() : new[] { best };
 			}
 		}
 

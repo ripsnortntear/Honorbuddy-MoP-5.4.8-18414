@@ -26,6 +26,8 @@ using Bots.Quest;
 using CommonBehaviors.Actions;
 using Honorbuddy.QuestBehaviorCore;
 using Styx.Common;
+using Styx.Common.Helpers;
+using Styx.Helpers;
 using Styx.CommonBot;
 using Styx.CommonBot.Database;
 using Styx.CommonBot.Frames;
@@ -99,6 +101,7 @@ namespace Styx.Bot.Quest_Behaviors
 		// Private variables for internal state
 		private bool _isBehaviorDone;
 		private Composite _root;
+		private PerFrameCachedValue<WoWUnit> _turin;
 
 
 		// Private properties
@@ -142,7 +145,14 @@ namespace Styx.Bot.Quest_Behaviors
 
 		private WoWUnit turin
 		{
-			get { return ObjectManager.GetObjectsOfType<WoWUnit>().FirstOrDefault(x => x.Entry == turninguy.Entry); }
+			get
+			{
+				return _turin ?? (_turin = new PerFrameCachedValue<WoWUnit>(() =>
+				{
+					var turnIn = turninguy;
+					return ObjectManager.GetObjectsOfType<WoWUnit>().FirstOrDefault(x => x.Entry == turnIn.Entry);
+				}));
+			}
 		}
 
 		private NpcResult turninguy

@@ -618,9 +618,9 @@ namespace Honorbuddy.Quest_Behaviors.SpecificQuests.ThePitOfScales
 					// Make certain we stay in main area...
 					&& (BattlefieldCenterPoint.Distance(crocEgg.Location) <= BattlefieldRadius)
 				let dangerScore = (new DefinedArea_Circle(this, crocEgg.Location, CrocEggAvoidanceDistance +1.0)).DangerScore()
+				let isInTargetPath = (SelectedTarget != null) && WoWMathHelper.IsInPath(SelectedTarget, Me.Location, crocEgg.Location)
 				orderby
-					((0.5 * crocEgg.Distance) + (0.5 * dangerScore))
-					//+ (WoWMathHelper.IsInPath(SelectedTarget, Me.Location, crocEgg.Location) ? 100.0 : 0.0) // TODO
+					((0.5 * crocEgg.Distance) + (0.5 * dangerScore) + (isInTargetPath ? 100.0 : 0.0))
 				select crocEgg);
 
 			return crocEggPreferences.FirstOrDefault();
