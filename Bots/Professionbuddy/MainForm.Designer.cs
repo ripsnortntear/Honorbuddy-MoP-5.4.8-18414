@@ -1,4 +1,4 @@
-﻿namespace HighVoltz.Professionbuddy
+namespace HighVoltz.Professionbuddy
 {
     partial class MainForm
     {
@@ -74,6 +74,7 @@
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripBotCombo = new System.Windows.Forms.ToolStripComboBox();
 			this.toolStripBotConfigButton = new System.Windows.Forms.ToolStripButton();
+			this.toolStripLoadHbProfileButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
 			this.MainSplitContainer.Panel1.SuspendLayout();
 			this.MainSplitContainer.Panel2.SuspendLayout();
@@ -582,7 +583,8 @@
             this.toolStripDelete,
             this.toolStripSeparator4,
             this.toolStripBotCombo,
-            this.toolStripBotConfigButton});
+            this.toolStripBotConfigButton,
+            this.toolStripLoadHbProfileButton});
 			this.toolStrip2.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
 			this.toolStrip2.MinimumSize = new System.Drawing.Size(320, 0);
@@ -647,6 +649,16 @@
 			this.toolStripBotConfigButton.Size = new System.Drawing.Size(47, 22);
 			this.toolStripBotConfigButton.Text = "Config";
 			this.toolStripBotConfigButton.Click += new System.EventHandler(this.ToolStripBotConfigButtonClick);
+			// 
+			// toolStripLoadHbProfileButton
+			// 
+			this.toolStripLoadHbProfileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripLoadHbProfileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripLoadHbProfileButton.Name = "toolStripLoadHbProfileButton";
+			this.toolStripLoadHbProfileButton.Size = new System.Drawing.Size(86, 22);
+			this.toolStripLoadHbProfileButton.Text = "Load HB Profile";
+			this.toolStripLoadHbProfileButton.ToolTipText = "Load an Honorbuddy profile (for Questing/secondary bot)";
+			this.toolStripLoadHbProfileButton.Click += new System.EventHandler(this.ToolStripLoadHbProfileButtonClick);
 			// 
 			// MainForm
 			// 
@@ -734,6 +746,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripComboBox toolStripBotCombo;
         private System.Windows.Forms.ToolStripButton toolStripBotConfigButton;
+        private System.Windows.Forms.ToolStripButton toolStripLoadHbProfileButton;
         private System.Windows.Forms.ToolStrip TradeSkillToolStrip;
         private System.Windows.Forms.ToolStripComboBox toolStripAddCombo;
         private System.Windows.Forms.ToolStripTextBox toolStripAddNum;

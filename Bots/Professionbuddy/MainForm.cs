@@ -419,6 +419,30 @@ namespace HighVoltz.Professionbuddy
 			}
 		}
 
+		private void ToolStripLoadHbProfileButtonClick(object sender, EventArgs e)
+		{
+			try
+			{
+				using (var openFileDialog = new OpenFileDialog())
+				{
+					openFileDialog.Filter = "Honorbuddy Profiles (*.xml)|*.xml|All files (*.*)|*.*";
+					openFileDialog.Title = "Load Honorbuddy Profile (for secondary/Questing bot)";
+					openFileDialog.RestoreDirectory = true;
+					if (!string.IsNullOrEmpty(Styx.Helpers.GlobalSettings.Instance.LastUsedPath) && File.Exists(Styx.Helpers.GlobalSettings.Instance.LastUsedPath))
+						openFileDialog.InitialDirectory = Path.GetDirectoryName(Styx.Helpers.GlobalSettings.Instance.LastUsedPath);
+					if (openFileDialog.ShowDialog() == DialogResult.OK)
+					{
+						ProfileManager.LoadNew(openFileDialog.FileName, false);
+						PBLog.Log("Loaded Honorbuddy profile: {0}", openFileDialog.FileName);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				PBLog.Warn(ex.ToString());
+			}
+		}
+
 		private void ProfileListViewMouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			LoadProfileButtonClick(null, null);
